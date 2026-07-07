@@ -1,0 +1,196 @@
+<section [@slideInOut] (click)="$event.stopPropagation()" class="search fixed top-[2.8rem] w-full z-40 bg-black-100 overflow-hidden flex flex-col h-full-with-header">
+<header class="sticky top-0 z-10">
+  <div class="h-12 p-3 bg-secondary text-global-font-on-dark text-14 flex items-center justify-center"><input
+      id="search" name="search" autocomplete="true" type="string"
+      class="effect-20 relative w-full h-40px px-2 z-10 bg-white bg-opacity-0 caret-primary"
+      placeholder="Search Regions..."><span class="icon-close text-14" (click)="closePopup()"></span></div>
+</header>
+<div class="m-4 mb-10px flex">
+  <div class="w-30px bg-black-600 flex justify-center items-center rounded-l-10px shrink-0"><i
+      class="icon-notice text-16 text-white"></i></div>
+  <div class="text-12 leading-snug p-2 border border-black-600 bg-black-600 bg-opacity-13 rounded-r-10px">This game
+    is unavailable in your region. Please do not log in from the unavailable regions listed below.</div>
+</div>
+<div class="pb-8px pl-6 text-15 font-bold">Unavailable Regions</div>
+<div class="flex-1 overflow-scroll pb-4">
+  <div class="px-4">
+    <div class="bg-white rounded-xl text-black text-15 leading-tight divide-y divide-black-300">
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">AUSTRALIA</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">BAHAMAS</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">BELARUS</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">BELGIUM</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">BULGARIA</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">COLOMBIA</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">DENMARK</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">ESTONIA</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">FRANCE</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">GEORGIA</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">GERMANY</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">GIBRALTAR</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">GREECE</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">GUERNSEY</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">INDIA</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">IRAN (ISLAMIC REPUBLIC OF)</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">ISLE OF MAN</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">ISRAEL</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">ITALY</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">KOREA (DEMOCRATIC PEOPLE'S REPUBLIC OF)</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">LATVIA</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">LITHUANIA</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">MALTA</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">NETHERLANDS</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">PHILIPPINES</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">PORTUGAL</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">ROMANIA</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">SERBIA</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">SINGAPORE</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">SOUTH AFRICA</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">SPAIN</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">SWEDEN</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">UKRAINE</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">UNITED ARAB EMIRATES</div>
+        </div>
+      </div>
+      <div class="flex py-2 pl-4 pr-2 justify-between items-center">
+        <div class="w-310px items-center break-all">
+          <div class="py-2">UNITED STATES OF AMERICA</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>

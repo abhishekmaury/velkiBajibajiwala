@@ -1,0 +1,47 @@
+<div class="marquee-wrapper relative overflow-x-hidden h-8">
+  <div class="marquee py-1.5 leading-4 bg-white text-global-font-on-light flex items-center">
+    <div class="icon-wrapper bg-white z-10 px-4">
+      <i class="icon icon-mic inline-block text-16"></i>
+    </div>
+    <div class="border-black-300 z-10 border-r border-solid h-5"></div>
+
+    <div class="flex w-full h-full overflow-hidden">
+       <div #marqueeContainer class="marquee-container">
+        <ul #marqueeList class="marquee-list text-11" (click)="onMark()">
+          <ng-container *ngIf="usermessage && usermessage.length > 0">
+            <li *ngFor="let item of usermessage" class="content mr-5 font-bold cursor-pointer">
+              <span>{{ item.day }} {{ item.month }} {{ item.year }}</span>
+              {{ item.title }} :- {{ item.message }}
+            </li>
+          </ng-container>
+          <ng-container *ngIf="!usermessage || usermessage.length === 0">
+            <li class="content mr-5 font-bold">--</li>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Announcement Popup -->
+<div *ngIf="announcemntPopup" @fadeInOut class="fixed flex-col top-0 bottom-0 left-0 w-full z-50 bg-black text-white px-1" style="z-index: 2000;">
+  <div class="relative modal-title py-4 bg-pop-title">
+    <h4 class="pl-2 mb-0 font-bold text-13 text-center">Announcement</h4>
+    <span (click)="closePopup()" class="absolute right-4 top-3 icon-close text-white text-base cursor-pointer"></span>
+  </div>
+  <div class="modal-content px-7 pt-4 leading-6 rounded-t-lg bg-white overflow-y-scroll text-black">
+    <div *ngFor="let item of usermessage; let i = index">
+      <div class="mb-4">
+        <span class="mb-4 px-3.5 py-1 text-12 text-white font-bold bg-black rounded-xl">
+          {{item.day}}-{{item.month}}-{{item.year}}
+        </span>
+      </div>
+      <div class="content mb-7 text-base break-words">
+        <p>{{item.title}}</p>
+        <p><br></p>
+        <p>{{item.message}}</p>
+      </div>
+      <div class="my-4 h-px bg-black-300"></div>
+    </div>
+  </div>
+</div>

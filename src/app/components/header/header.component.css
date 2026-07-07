@@ -1,0 +1,92 @@
+.item-block[data-v-6d6d5fd0] {
+  font-size: 1.0714285714285714rem;
+  padding-bottom: .5rem;
+  padding-top: .5rem;
+  width: 100%
+}
+
+.item-block .item[data-v-6d6d5fd0] {
+  align-items: center;
+  border-bottom-width: 1px;
+  display: flex;
+  height: 3.2142857142857144rem;
+  --tw-border-opacity: 1;
+  border-color: rgb(212 224 229/var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255/var(--tw-bg-opacity));
+  padding-left: 1rem;
+  padding-right: 1rem
+}
+
+.item-block .item.item-black[data-v-6d6d5fd0] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(212 224 229/var(--tw-bg-opacity))
+}
+
+.item-block .item[data-v-6d6d5fd0]:first-child {
+  border-top-left-radius: .75rem;
+  border-top-right-radius: .75rem
+}
+
+.item-block .item[data-v-6d6d5fd0]:last-child {
+  border-bottom-left-radius: .75rem;
+  border-bottom-right-radius: .75rem;
+  border-width: 0
+}
+
+.item-block .item .icon[data-v-6d6d5fd0] {
+  font-size: 1.1428571428571428rem;
+  margin-right: .5rem
+}
+
+.item-block .item .icon-right[data-v-6d6d5fd0] {
+  position: absolute;
+  right: 2rem;
+  --tw-rotate: 180deg;
+  font-size: .8571428571428571rem;
+  transform: translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  --tw-text-opacity: 1;
+  color: rgb(126 145 158/var(--tw-text-opacity))
+}
+
+.icon-sphere[data-v-6d6d5fd0] {
+  margin-right: .5rem
+}
+.open-side {
+  z-index: 1001;
+  transition: transform 0.3s ease-in-out, z-index 0s;
+}
+
+.close-side {
+  /* transform: translateX(-100%);  */
+  z-index: -10;
+  transition: transform 0.3s ease-in-out, z-index 0s 0.3s;
+}
+.open-back{
+  z-index: 40;
+  display: block;
+}
+.close-back{
+  z-index: -10;
+display: none;
+}
+.side-bar::-webkit-scrollbar{
+display: none;
+}
+
+.bg-signup{
+  background-color: #836705;
+}
+
+.scroll-width {
+  scrollbar-width: thin;  
+}
+
+.scroll-width::-webkit-scrollbar {
+  width: 8px;  
+}
+.scroll-width::-webkit-scrollbar-thumb {
+  background-color: #888; /* scrollbar color */
+  border-radius: 4px;     /* rounded corners */
+  border: 2px solid #f1f1f1; /* adds space around */
+}

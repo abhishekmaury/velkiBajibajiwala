@@ -1,0 +1,95 @@
+<div data-v-47071350="" [style.backgroundImage]="jsonWebdt?.imagesBottomBorderColor" class="-mx-2 market-wrapper h-34px relative bg-primary overflow-y-hidden overflow-x-scroll"
+  style="--eb9c946c: calc(7.471994728419467rem - 3px); --eddfc73c: translateX(8px);background: #0a6d36;">
+  <div data-v-47071350="" class="h-full inline-block">
+    <ul data-v-47071350="" class="ml-2 mr-1 h-full flex flex-nowrap justify-start items-center text-market-name">
+      <li data-v-47071350="" class="mr-15px h-full flex items-center whitespace-nowrap -translate-x-1.5">
+        <div data-v-117db823="" data-v-47071350="" class="w-8 h-6 flex justify-center items-center"
+          style="--b64d5fc0: 0.5518441558441558; --3cad14f0: -0.7413160124258683rem;">
+          <div data-v-117db823="" class="fave bg-star-sprit-white-webp"></div>
+        </div>
+        <span data-v-47071350="" class="text-base" [style.color]="jsonWebdt?.imagesPlayNowTextColor">{{eventData.matchname}}</span>
+      </li>
+    </ul>
+  </div>
+</div>
+<ng-container *ngIf="oddspermission">
+<div class="-mx-2 py-2 px-2 bg-white ng-star-inserted">
+    <div class="mt-3px mb-1 flex justify-between items-center">
+        <div class="w-9/12"></div>
+        <div class="w-4/12 grid gap-0.5 grid-cols-2">
+            <div class="min-w-min text-10 text-global-font-on-light text-center">Back</div>
+            <div class="min-w-min text-10 text-global-font-on-light text-center">Lay</div>
+        </div>
+    </div>
+    <div>
+        <div class="relative">
+            <div class="space-y-px">
+                <div class="exchange_panel_line ng-star-inserted" *ngFor="let item of matchrunners; let j = index;">
+                    <div class="flex justify-start items-center bg-black-100">
+                        <h2
+                            class="px-2.5 w-9/12 h-full leading-5 text-13 flex flex-col justify-center break-all">
+                            {{item.runnerName}} <div data-testid="forecast" *ngIf="getMatcBkData"
+                                class="text-10 leading-normal flex font-bold ng-star-inserted"><span
+                                    class="flex items-center" [class]="bookfilter(item.selectionid) > 0  ? 'text-success' : 'text-error'">
+                                    <div
+                                        class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{bookfilter(item.selectionid) | number :'1.0-2'}}
+                                </span></div>
+                        </h2>
+                        <div class="w-4/12 relative grid gap-0.5 grid-cols-2 self-start">
+                            <div data-v-c72443c8="" title="BACK" (click)="openOddBetPlace(j, 'back', [{isBack : true, selectionId : item.selectionid, selectionName : item.runnerName, odds : runnersList[j]?.ex?.availableToBack[0]?.price, matchName : eventData.matchname, eventId : eventId, sourceId : eventId, sourceBetType : 'Odds', sportId : sportId}])" [ngClass]="showBackSelect == j ? 'select' : ''"
+                                class="py-1.5 h-36px text-center rounded-md bg-back-300" [ngClass]="{'bg-bet-disabled': !(runnersList[j]?.ex?.availableToBack[0]?.price) || (runnersList[j]?.ex?.availableToBack[0]?.price > socketEventOdds?.markets?.[0]?.limit?.[0].oddsLimit) || (runnersList[j]?.ex?.availableToBack[0]?.price <= 0)}">
+                                <h3 data-v-c72443c8="" class="text-15 pb-0.5"> {{(runnersList[j]?.ex?.availableToBack[0]?.price) ?? '--'}}</h3>
+                                <p data-v-c72443c8="" class="text-9">{{(runnersList[j]?.ex?.availableToBack[0]?.size) ?? '--'}}</p>
+                            </div>
+                            <div data-v-c72443c8="" title="LAY"
+                                class="py-1.5 h-36px text-center rounded-md bg-lay-300 animate-spark-lay">
+                                <h3 data-v-c72443c8="" class="text-15 pb-0.5">--</h3>
+                                <p data-v-c72443c8="" class="text-9">--</p>
+                            </div>
+                        </div>
+                    </div>
+                    <app-place-bet-cupwinner *ngIf="showOdd == j && backTrue == true" [clsClr]="classclrforlayBack" [data]="oddPrice" [updOddsBack]="runnersList[j]?.ex?.availableToBack[0]?.price" [updOddsLay]="runnersList[j]?.ex?.availableToLay[0]?.price" [socketEventData]="socketEventOdds" [isInplay]="inplaystatus" (betResult)="getOddsCalculation($event)" (stopTimer)="stopTimeout($event)"></app-place-bet-cupwinner>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+</ng-container>
+
+<!-- bet error success message -->
+<div data-v-f43ca18c="" *ngIf="showBetMsg">
+    <div class="absolute left-0 top-0 w-full h-full z-50" data-testid="toast-overlay"></div>
+    <div class="w-full">
+      <div class="fixed bottom-0 z-50 w-full space-y-2.5" currencyalias="PKU">
+        <div>
+          <div class="text-center flex rounded-t-2xl justify-center p-1 "
+            [ngClass]="betsuccessstatus ? 'bg-success' : 'bg-error'" data-testid="toast-container">
+            <div class="w-full">
+              <div class="flex justify-center items-center text-global-font-on-dark font-bold py-2 mb-1"><i
+                  class="text-global-font-on-dark text-16 icon-notice" data-testid="toast-icon-title"></i>
+                <h4 class="ml-1 leading-none" data-testid="toast-title">{{betSuccess[3].type}}</h4>
+                <div class="icon-close absolute right-5 text-14" data-testid="toast-btn-close-toast" (click)="closeBet()"></div>
+              </div>
+              <div class="px-2 py-4 rounded-lg bg-white bg-opacity-87 text-13 text-global-font-on-light"
+                data-testid="toast-content">{{betSuccess[3].message}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- <div id="msgBox" *ngIf="showBetMsg" class="message-wrap" [ngClass]="betsuccessstatus ? 'success to-open_bets' : 'error'"
+  style="display: fixed;">
+  <div class="message">
+    <h4 id="header">{{betSuccess[3].message}}</h4>
+    <p id="info" [class]="betSuccess[3].type === 'error' ? 'd-none' : ''" style="text-align:left">
+      <span id="sideType" [class]="betSuccess[1].isBack ? 'back' : 'lay'">{{betSuccess[1].isBack ? 'Back' :
+        'Lay'}}</span>
+      <strong id="selectionName">{{betSuccess[1].selectionName}}</strong> <strong id="stake"> {{betSuccess[2]}}</strong>
+      at odds <strong id="odds">{{betSuccess[1].odds}}</strong>
+    </p>
+  </div>
+  <a id="close" class="close ui-link" (click)="closeBet()">Close</a>
+</div> -->

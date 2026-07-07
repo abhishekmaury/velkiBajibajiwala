@@ -1,0 +1,18 @@
+.modal.focus {
+  bottom: auto;
+  top: 0
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column
+}
+
+.wrapper {
+  background-image: var(--34693674);
+  height: 100vh;
+  background-position: 100% 30%;
+}
+.bg-button-normal{
+  cursor: pointer;
+}

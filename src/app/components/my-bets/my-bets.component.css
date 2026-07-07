@@ -1,0 +1,47 @@
+.mybet[data-v-1a3d4c25] {
+  height: calc(100% - 5.85714rem);
+}
+
+.list-area[data-v-1a3d4c25] {
+  height: calc(100% - 2.35714rem)
+}
+
+.event-market-name[data-v-1a3d4c25] {
+  overflow-wrap: anywhere
+}
+
+.tab-indicator[data-v-1a3d4c25] {
+  transform: translateX(102px);
+  transition: transform .3s cubic-bezier(.175, .885, .32, 1.275), width .3s cubic-bezier(.175, .885, .32, 1.275);
+  width: 80px
+}
+
+.row[data-v-a95f7c03] {
+  padding: .5rem
+}
+
+.row.second[data-v-a95f7c03] {
+  padding: 0
+}
+
+.row.third[data-v-a95f7c03] {
+  font-size: .7142857142857143rem;
+  --tw-text-opacity: 1;
+  color: rgb(111 136 152/var(--tw-text-opacity))
+}
+
+.tab-indicator[data-v-1a3d4c25] {
+  /* border-radius: .15rem;
+  height: .29rem; */
+  transform: var(--587cc7b4);
+  transition: transform .3s cubic-bezier(.175, .885, .32, 1.275), width .3s cubic-bezier(.175, .885, .32, 1.275);
+  width: var(--8defbe2c);
+  transition: left 0.3s ease, width 0.3s ease;
+}
+.mybet{
+  z-index: 1004;
+}
+.rotate90
+{
+  rotate: 0deg;
+}

@@ -1,0 +1,151 @@
+<main class="min-h-full-with-header h-screen overflow-y-scroll overflow-x-hidden">
+  <div data-v-f43ca18c="" class="">
+
+    <div data-v-f43ca18c="" class="relative overflow-y-scroll overflow-x-hidden">
+      <app-marquee></app-marquee>
+      <section data-v-a8bfc3ab="" class="h-36px bg-submenu flex items-center"
+        style="--66e0571a: 50px; --39d9b63d: translateX(105px);">
+        <ul data-v-a8bfc3ab="" class="sport-type-filter-ul space-x-2 ml-8px flex flex-nowrap overflow-x-scroll">
+          <li data-v-a8bfc3ab="" [style.backgroundImage]="activeTabId == 5 ? jsonWebdt?.imagesBottomBorderColor : '' "
+            [ngClass]="activeTabId == 5?  'text-filter-active-icon bg-filter-active active':'text-global-font-on-dark event-type-tab'"
+            class="h-30px justify-center flex items-center text-13 font-bold whitespace-nowrap event-type-tab"
+            style="width: 96vw;">
+            <i data-v-a8bfc3ab="" class="mr-1 text-17 icon-all"></i><span data-v-a8bfc3ab="" class="mt">Toss
+              Parlay</span>
+          </li>
+        </ul>
+      </section>
+
+      <div>
+        <ng-container *ngFor="let list of gameList;let i=index;">
+          <div class="" *ngIf="hideTossbefor2HrFun(list)">
+            <div class="px-2">
+              <div class="mb-2">
+                <div
+                  class="relative py-2 mt-2 pr-12px pl-2 bg-secondary rounded-xl cursor-pointer transition-all duration-300 rounded-t-xl rounded-b-none">
+                  <h1 class="flex justify-start items-center text-base font-normal">
+                    <span class="text-event-tab break-words mr-2 matchname">{{list.matchname}}</span>
+                    <span
+                      class="icon-arrow-down-sencodary flex items-center text-12 h-21px ml-auto transition-transform origin-center duration-300 text-event-tab-icon transform rotate-180"></span>
+                  </h1>
+                </div>
+                <div class="bg-white overflow-hidden rounded-b-lg">
+                  <div class="vue-recycle-scroller ready page-mode direction-vertical">
+                    <div class="vue-recycle-scroller__slot"></div>
+                    <div class="vue-recycle-scroller__item-wrapper">
+                      <div class="vue-recycle-scroller__item-view" style="transform: translateY(0px) translateX(0px);">
+                        <div data-index="33882310">
+                          <div class="px-2 border-t border-solid border-black-100">
+                            <div class="pb-2">
+                              <div [style.backgroundImage]="jsonWebdt?.imagesBottomBorderColor"
+                                class="h-24px flex justify-between items-center rounded-t-md bg-primary border-b border-solid border-white">
+                                <div
+                                  class="pl-2 w-9/12 flex items-center text-event-th border-r border-event-th-line leading-5">
+                                  <span class="pr-2 text-13 font-bold">Who will win the Toss</span>
+                                </div>
+                                <div
+                                  class="w-4/12 grid gap-0.5 grid-cols-2 text-10 leading-4 text-event-th-option text-center">
+                                  <div class="min-w-min">Back</div>
+                                  <div class="min-w-min">Lay</div>
+                                </div>
+                              </div>
+                              <div class="relative">
+                                <div class="space-y-px">
+                                  <ng-container *ngFor="let selection of list.selectionnames.split(','); let j = index">
+                                    <div *ngIf="j<=1" class="match_odds_line">
+                                      <div class="flex justify-between bg-black-100">
+                                        <h2 class="px-2 w-9/12 flex flex-col justify-center break-all matchname">
+                                          {{selection}} <div class="text-10 leading-normal flex" data-testid="forecast">
+                                          </div>
+                                        </h2>
+                                        <div class="w-4/12 relative grid gap-0.5 grid-cols-2">
+                                          <div data-v-c72443c8=""
+                                            class="py-1.5 h-36px text-center rounded-md bg-back-300" title="BACK"
+                                            (click)="openTossBetPlace('Toss', [{ isBack: true, selectionId: list.selectionids.split(',')[j], selectionName: selection, odds: tossodd, matchName: list.matchname, eventId: list.marketid, sourceId: runnersList[list?.marketid]?.data?.fancyid, sourceName : runnersList[list?.marketid]?.data?.name, sourceBetType: 'Toss', sportId: list.sportid }])">
+                                            <h3 data-v-c72443c8="" class="text-15 pb-0.5">0.95</h3>
+                                            <p data-v-c72443c8="" class="text-9">10000</p>
+                                          </div>
+                                          <div data-v-c72443c8=""
+                                            class="py-1.5 h-36px text-center rounded-md bg-lay-300" title="LAY">
+                                            <h3 data-v-c72443c8="" class="text-15 pb-0.5"></h3>
+                                            <p data-v-c72443c8="" class="text-9"></p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </ng-container>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </ng-container>
+      </div>
+
+      <!-- <div (click)="openmatchBetSlip()"
+        class="stickyLeftContainer fixed left-2 z-10 pb-7px flex gap-2 flex-col justify-end items-end"
+        id="matchBetSlipBtn" style="--772806b8: 4.3rem;">
+        <div
+          class="relative cursor-pointer flex flex-col items-center justify-center w-45px h-45px rounded-full bg-primary text-menu-active-icon font-bold">
+          <i class="absolute text-22 icon-all m-0"></i>
+          <span
+            class="absolute flex justify-center items-center rounded-full w-4 h-4 text-9 font-bold text-white bg-parlay-down top-1.5 right-1.5">
+            <span class="scale-75" id="selectionCount">{{betCount}}</span>
+          </span>
+        </div>
+      </div> -->
+      <div _ngcontent-ng-c2831854871="" (click)="openmatchBetSlip()"
+        class="stickyLeftContainer fixed left-2 top-1/2 transform -translate-y-1/2 pb-7px flex gap-2 flex-col justify-end items-end z-10 ng-tns-c2831854871-3 ng-star-inserted"
+        bis_skin_checked="1">
+        <div _ngcontent-ng-c2831854871=""
+          class="relative cursor-pointer flex flex-col items-center justify-center w-45px h-45px rounded-full bg-primary text-menu-active-icon font-bold ng-tns-c2831854871-3"
+          bis_skin_checked="1" style="background-image: linear-gradient(rgb(255, 200, 0) 0%, rgb(255, 200, 0) 100%);">
+          <div _ngcontent-ng-c2831854871="" class="flex items-center justify-center text-22 h-full ng-tns-c2831854871-3"
+            bis_skin_checked="1"><i _ngcontent-ng-c2831854871=""
+              class="absolute text-22 icon-parlay-list ng-tns-c2831854871-3" style="color: rgb(0, 0, 0);"></i><span
+              _ngcontent-ng-c2831854871=""
+              class="absolute flex justify-center items-center rounded-full w-4 h-4 text-9 font-bold text-white bg-parlay-down top-1.5 right-1.5 ng-tns-c2831854871-3"><span
+                _ngcontent-ng-c2831854871="" class="scale-75 ng-tns-c2831854871-3">{{betCount}}</span></span></div>
+        </div>
+      </div>
+
+
+      <app-main-footer></app-main-footer>
+      <div data-v-f43ca18c="" *ngIf="showBetMsg">
+        <div class="absolute left-0 top-0 w-full h-full z-50" data-testid="toast-overlay"></div>
+        <div class="w-full">
+          <div class="fixed bottom-0 z-50 w-full space-y-2.5" currencyalias="PKU">
+            <div>
+              <div class="text-center flex rounded-t-2xl justify-center p-1 "
+                [ngClass]="betSuccess[2].type == 'success' ? 'bg-success' : 'bg-error'" data-testid="toast-container">
+                <div class="w-full">
+                  <div class="flex justify-center items-center text-global-font-on-dark font-bold py-2 mb-1"><i
+                      class="text-global-font-on-dark text-16 icon-notice" data-testid="toast-icon-title"></i>
+                    <h4 class="ml-1 leading-none" data-testid="toast-title">{{betSuccess[2].type}}</h4>
+                    <div class="icon-close absolute right-5 text-14" data-testid="toast-btn-close-toast"></div>
+                  </div>
+                  <div class="px-2 py-4 rounded-lg bg-white bg-opacity-87 text-13 text-global-font-on-light"
+                    data-testid="toast-content">{{betSuccess[2].message}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <app-bet-place-parlay *ngIf="openBetSlip" (closeDt)="closeParlyBet($event)"
+        style="position: absolute;"></app-bet-place-parlay>
+    </div>
+  </div>
+</main>
+
+<!-- bet error success message -->

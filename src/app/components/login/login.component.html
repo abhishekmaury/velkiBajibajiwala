@@ -1,0 +1,123 @@
+<section class="">
+  <main class="container mx-auto h-screen relative bg-black-100">
+    <div class="login-wrapper bg-cover bg-center h-full w-full"
+      [ngStyle]="{ 'background-image': 'url(' + backgroundImg + ')' }">
+      <!-- style="background-image : url('../../../assets/images/baaji365-bg-login.webp')"> -->
+      <div (click)="goBack()"
+        class="back absolute w-30px h-30px top-2 left-2 text-16 flex items-center justify-center rounded-full bg-white icon-arrow-left">
+      </div>
+      <form class="info-modal" [formGroup]="loggedData" (ngSubmit)="login()">
+        <div class="modal fixed z-10 container bottom-0">
+          <!-- <img width="192" height="60" alt="logo" [src]="webdata?.imageData?.headers?.[0]?.logo?.replace(' ', '%20')" -->
+          <img width="192" height="60" alt="logo" src="../../../assets/images/newgreenbnsmllvelk.webp?v=1.5"
+            [src]="innrrImg" class="logo h-90px w-auto mx-auto mb-0 newimgwidth" (click)="openWhtlink()">
+          <div class="bg-white rounded-t-xl py-6">
+            <div class="content w-full flex flex-col items-center">
+              <h2 class="text-25 mb-3 font-normal">LOGIN</h2>
+              <div class="inner-width w-5/6 space-y-6">
+                <div data-v-64dd3bfe="" data-v-36418924="" class="relative my-3">
+                  <input data-v-64dd3bfe="" id="username"
+                    [ngClass]="{'has-content':userId?.value, 'has-error': submitted && loggedData.controls['userId'].invalid}"
+                    name="username" autocomplete="off" type="text" step="false" formControlName="userId" maxlength="25" appNoEmoji appNoSpace appNoSpecialChar
+                    class="effect-20 relative w-full h-40px rounded-lg bg-opacity-0 px-2 z-10 disabled:bg-black-300 disabled:cursor-not-allowed disabled:border-0 with-icon inputs"><label
+                    data-v-64dd3bfe="" for="username" class="cursor-text outline-none with-icon">Username</label>
+                  <div data-v-64dd3bfe="" class="absolute top-0 flex items-center h-40px ml-2 space-x-3px start-icon">
+                    <span data-v-64dd3bfe="" class="icon-content text-18 text-black-400 top-3 left-3 z-10 icon-user"
+                      [style]="{'color' :jsonWebdt?.imagesBottomBorderColor}">
+                      <i data-v-64dd3bfe="" class="icon-flag-bangladesh path1 z-10 text-18"></i>
+                      <i data-v-64dd3bfe="" class="icon-flag-bangladesh path2 z-10 text-18"></i>
+                    </span>
+                    <span data-v-64dd3bfe=""
+                      class="prefix-text leading-8 border-r border-black-300 pr-2 text-11 top-2 left-3 z-10"></span>
+                  </div>
+                  <span data-v-64dd3bfe="" class="focus-border">
+                    <i data-v-64dd3bfe=""></i>
+                  </span>
+
+                </div>
+
+                <!-- <div class="member-error ng-star-inserted m-0"
+                  *ngIf="userId?.invalid && (userId?.touched || userId?.dirty)">
+                  <span *ngIf="loggedData.get('userId')?.errors?.['required']"
+                    class="text-danger error-message-place text-red-700">Username
+                    is required
+                  </span>
+                </div> -->
+
+                <div class="relative my-3"><input
+                    [ngClass]="{'has-content':pass?.value , 'has-error': submitted && loggedData.controls['pass'].invalid}"
+                    data-v-64dd3bfe="" id="password" name="password" autocomplete="off" type="password" step="false"
+                    [type]="showpwrd ? 'text':'password'" formControlName="pass" maxlength="30" appNoEmoji appNoSpace
+                    class="effect-20 relative w-full h-40px rounded-lg bg-opacity-0 px-2 z-10 disabled:bg-black-300 disabled:cursor-not-allowed disabled:border-0 with-icon inputs"><label
+                    data-v-64dd3bfe="" for="password" class="cursor-text outline-none with-icon">Password</label>
+                  <div data-v-64dd3bfe="" class="absolute top-0 flex items-center h-40px ml-2 space-x-3px start-icon">
+                    <span data-v-64dd3bfe="" class="icon-content text-18 text-black-400 top-3 left-3 z-10 icon-lock"><i
+                        data-v-64dd3bfe="" class="icon-flag-bangladesh path1 z-10 text-18"></i><i data-v-64dd3bfe=""
+                        class="icon-flag-bangladesh path2 z-10 text-18"></i></span><span data-v-64dd3bfe=""
+                      class="prefix-text leading-8 border-r border-black-300 pr-2 text-11 top-2 left-3 z-10"></span>
+                  </div>
+                  <span data-v-64dd3bfe="" (click)="showpwd()" class="end-icon absolute top-3 right-3 z-10 text-18 "
+                    [ngClass]="showpwrd?'icon-visibility-on':'icon-visibility-off'">
+                  </span><span data-v-64dd3bfe="" class="focus-border"><i data-v-64dd3bfe=""></i></span>
+                </div>
+                <!-- <div class="member-error ng-star-inserted m-0" style="margin-top: 5px !important; " *ngIf="pass?.invalid && (pass?.touched || pass?.dirty)">
+                  <span *ngIf="loggedData.get('pass')?.errors?.['required']"
+                    class="text-danger error-message-place text-red-700">Password
+                    is required
+                  </span>
+                </div> -->
+
+                <div *ngIf="validShowing=='true'" data-v-36418924="" class="relative my-3">
+                  <span
+                    class="validation-img absolute flex justify-center items-center right-1 top-1 h-10 z-40 w-100px text-4xl"
+                    style="font-weight: 700;">{{validationCode}}</span>
+                  <div data-v-64dd3bfe="" data-v-36418924="" class="relative my-3" pattern="\d*">
+                    <input data-v-64dd3bfe="" id="verifyCode" formControlName="validCode" name="verifyCode" appNoEmoji appOnlyNumber
+                      [ngClass]="{ 'has-error': submitted && loggedData.controls['pass'].invalid}" autocomplete="off"
+                      type="text" step="1" maxlength="4" (paste)="numberOnly($event)" (focus)="numberOnly($event)"
+                      (keypress)="numberOnly($event)" (input)="numberOnly($event)"
+                      class="effect-20 relative w-full h-40px rounded-lg bg-opacity-0 px-2 z-10 disabled:bg-black-300 disabled:cursor-not-allowed disabled:border-0 with-icon inputs"
+                      [ngClass]="{'has-content':validCode?.value}">
+                    <label data-v-64dd3bfe="" for="verifyCode" class="cursor-text outline-none with-icon">Validation
+                      Code</label>
+                    <div data-v-64dd3bfe="" class="absolute top-0 flex items-center h-40px ml-2 space-x-3px start-icon">
+                      <span data-v-64dd3bfe=""
+                        class="icon-content text-18 text-black-400 top-3 left-3 z-10 icon-shield"><i data-v-64dd3bfe=""
+                          class="icon-flag-bangladesh path1 z-10 text-18"></i><i data-v-64dd3bfe=""
+                          class="icon-flag-bangladesh path2 z-10 text-18"></i></span><span data-v-64dd3bfe=""
+                        class="prefix-text leading-8 border-r border-black-300 pr-2 text-11 top-2 left-3 z-10"></span>
+                    </div><span data-v-64dd3bfe="" class="focus-border"><i data-v-64dd3bfe=""></i></span>
+                  </div>
+                </div>
+                <!-- <div class="member-error ng-star-inserted m-0"
+                  *ngIf="validCode?.invalid && (validCode?.touched || validCode?.dirty)">
+                  <span *ngIf="loggedData.get('validCode')?.errors?.['required']"
+                    class="text-danger error-message-place text-red-700">Validation Code
+                    is required
+                  </span>
+                </div> -->
+                <div data-v-b0cd02b4="" data-v-36418924="" class="mt-3 mb-6">
+                  <input data-v-b0cd02b4="" id="remember"
+                    name="remember" type="checkbox" class="hidden">
+                    <label data-v-b0cd02b4="" for="remember"
+                    class="flex justify-start items-center select-none"><span data-v-b0cd02b4=""
+                      class="flex justify-center items-center border border-solid border-checkbox-boder mr-1.5 w-4 h-4 rounded bg-checkbox-background remember"
+                      [ngClass]="rememberme ? 'bg-checkbox-checked' : ''" (click)="rememberMe()"><span data-v-b0cd02b4=""
+                        class="icon-check text-checkbox-icon text-8 font-bold"
+                        [style]="rememberme  ? 'display: block;' : 'display: none;'"></span></span>
+                    <div data-v-b0cd02b4="" (click)="rememberMe()">Remember me </div>
+                  </label>
+                </div>
+                <div data-v-36418924="" class="text-error mb-6 text-12">{{errMsg}}</div>
+
+                <div class="text-error mb-6 text-12"></div><button
+                  class="btn-normal p-3 rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed btn-login w-48 h-40px mx-auto text-base font-extrabold custom-btn"
+                  type="submit">Login</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+</section>

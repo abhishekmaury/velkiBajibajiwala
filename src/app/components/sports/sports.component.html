@@ -1,0 +1,1739 @@
+<div data-v-f43ca18c="" class="pb-90px relative">
+  <app-marquee></app-marquee>
+  <section data-v-a8bfc3ab="" id="index-filter" class="flex relative z-10 text-global-font-on-dark bg-secondary"
+    style="--66e0571a: 50px; --39d9b63d: translateX(105px);">
+    <!-- <div (click)="switchtoparlay()" data-v-a8bfc3ab=""
+      class="py-3 bg-black-900 flex justify-start items-center px-2 font-bold">
+      <div data-v-a8bfc3ab="" class="flex pt-px">
+        <div data-v-5482795f="" data-v-a8bfc3ab="" class="btn-switch">
+          <input data-v-5482795f="" id="settingFilter" class="btn-switch__tgl btn-switch__tgl-ios">
+          <label data-v-5482795f="" class="p-px rounded-2xl w-7 h-3.5 btn-switch__tgl-label-shadow-none"
+            [class]="parlay?'btn-switch__tgl-label-shadow-none-active':''"></label>
+        </div>
+      </div>
+      <span data-v-a8bfc3ab="" class="ml-2 text-15 text-black-600 leading-tight duration-300"
+        [class]="parlay?'text-filter-active':''">Parlay</span>
+    </div> -->
+    <div data-v-a8bfc3ab="" class="py-3 bg-black-1000 w-full flex justify-start items-center px-2 font-bold">
+      <div data-v-a8bfc3ab="" (click)="setTab(1)" [ngClass]="activeTab==1?'font-bold':' opacity-75'"
+        class="text-15 whitespace-nowrap tab p-1" #tab1>In-Play</div>
+      <div data-v-a8bfc3ab="" class="text-15 whitespace-nowrap tab p-1" (click)="setTab(2)"
+        [ngClass]="activeTab==2?'font-bold':' opacity-75'" #tab2>Today</div>
+      <div data-v-a8bfc3ab="" class="text-15 whitespace-nowrap tab p-1" (click)="setTab(3)"
+        [ngClass]="activeTab==3?'font-bold':' opacity-75'" #tab3>Tomorrow</div>
+      <div data-v-a8bfc3ab="" class="relative  icon-star-solid text-20 p-1 ml-5"
+        [ngClass]="activeTab==4?'text-header-mypin-active':' text-icon-light'" (click)="setTab(4)"></div>
+      <div data-v-a8bfc3ab=""><span data-v-a8bfc3ab="" (click)="onsearch()" class="icon-search text-20 p-1 ml-5"></span></div>
+    </div>
+   <div
+  class="tab-indicator absolute left-0 rounded-full bg-white"
+  [style.width.px]="indicatorWidth"
+  [style.left.px]="indicatorLeft"
+  style="height: 3px; bottom: 4px;">
+</div>
+
+
+    <!-- <div data-v-a8bfc3ab="" class="tab-indicator absolute left-0 bottom-1 rounded-full bg-white"
+      [style.width.px]="indicatorWidth" [style.left.px]="indicatorLeft"></div> -->
+      <!-- <div data-v-35235b3f="" class="tab-indicator absolute left-0 bottom-1.5 bg-global-font-on-light rounded-full"
+            [style.width.px]="indicatorWidth" [style.left.px]="indicatorLeft">
+          </div> -->
+  </section>
+  <section data-v-a8bfc3ab="" *ngIf="(changestabs==='by Time' || changestabs==='by Competition') && this.activeTab!==4"
+    class="h-36px bg-submenu flex items-center" style="--66e0571a: 50px; --39d9b63d: translateX(105px);">
+    <ul data-v-a8bfc3ab="" class="sport-type-filter-ul space-x-2 ml-8px flex flex-nowrap overflow-x-scroll">
+      <li data-v-a8bfc3ab="" (click)="setActiveTab(5)"
+        [style.backgroundImage]="activeTabId == 5 ? jsonWebdt?.imagesBottomBorderColor : '' "
+        [style.color]="activeTabId == 5 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+        [ngClass]="activeTabId == 5?  'text-filter-active-icon bg-filter-active active':'text-global-font-on-dark event-type-tab'"
+        class="h-30px w-80px justify-center flex items-center text-13 font-bold whitespace-nowrap event-type-tab">
+        <i data-v-a8bfc3ab="" class="mr-1 text-17 icon-all"></i><span data-v-a8bfc3ab="" class="mt">All</span>
+      </li>
+      <li data-v-a8bfc3ab="" (click)="setActiveTab(4)"
+        [style.backgroundImage]="activeTabId == 4 ? jsonWebdt?.imagesBottomBorderColor : '' "
+        [style.color]="activeTabId == 4 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+        [ngClass]="activeTabId == 4?  'text-filter-active-icon bg-filter-active active':'text-global-font-on-dark event-type-tab'"
+        class="h-30px w-80px justify-center flex items-center text-13 font-bold whitespace-nowrap event-type-tab text-global-font-on-dark event-type-tab">
+        <i data-v-a8bfc3ab="" class="mr-1 text-17 icon-cricket"></i><span data-v-a8bfc3ab="" class="mt">Cricket</span>
+      </li>
+      <li data-v-a8bfc3ab="" (click)="setActiveTab(1)"
+        [style.backgroundImage]="activeTabId == 1 ? jsonWebdt?.imagesBottomBorderColor : '' "
+        [style.color]="activeTabId == 1 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+        [ngClass]="activeTabId == 1?  'text-filter-active-icon bg-filter-active active':'text-global-font-on-dark event-type-tab'"
+        class="h-30px w-80px justify-center flex items-center text-13 font-bold whitespace-nowrap event-type-tab text-global-font-on-dark event-type-tab">
+        <i data-v-a8bfc3ab="" class="mr-1 text-17 icon-soccer"></i><span data-v-a8bfc3ab="" class="mt">Soccer</span>
+      </li>
+      <li data-v-a8bfc3ab="" (click)="setActiveTab(2)"
+        [style.backgroundImage]="activeTabId == 2 ? jsonWebdt?.imagesBottomBorderColor : '' "
+        [style.color]="activeTabId == 2 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+        [ngClass]="activeTabId == 2?  'text-filter-active-icon bg-filter-active active':'text-global-font-on-dark event-type-tab'"
+        class="h-30px w-80px justify-center flex items-center text-13 font-bold whitespace-nowrap event-type-tab text-global-font-on-dark event-type-tab">
+        <i data-v-a8bfc3ab="" class="mr-1 text-17 icon-tennis"></i><span data-v-a8bfc3ab="" class="mt">Tennis</span>
+      </li>
+    </ul>
+  </section>
+  <div class="bg-black-100 px-2 py-9px flex justify-between"
+    *ngIf="changestabs==='by Time' || changestabs==='by Competition' || changestabs==='by Matched' && this.activeTab!==4">
+    <div
+      class="relative z-20 flex items-center px-6px py-2 w-114px bg-white text-11 rounded-6px shadow-all-button dpshow"
+      [ngClass]="competion?'rounded-b-none border-b-0':''"><i
+        class="icon-toggle flex items-center justify-center mr-1 rotate-90 text-11"></i>
+      <button (click)="onCompet()" class="select text-left w-full text-15"
+        [ngClass]="competion?'rounded-b-none border-b-0':''" value="options">
+        <div class="flex justify-start items-center">
+          <div class="w-full flex justify-start items-center"><span
+              class="text-11 whitespace-nowrap">{{changestabs}}</span></div><i
+            class="icon-triangle transform text-8 scale-75 transition-transform origin-center duration-300 mx-0.5 "
+            [ngClass]="competion?'transform rotate-180':''"></i>
+        </div>
+      </button>
+      <div class="drop-down w-full left-0 text-15 absolute top-8 -mt-1 z-10 dropdown-toggle" *ngIf="competion">
+        <div class="options bg-white flex flex-col rounded-6px rounded-t-none whitespace-nowrap shadow-all-button">
+          <p class="item flex items-center py-2 px-6 cursor-pointer" *ngIf="changestabs !== 'by Competition'" value="1"
+            (click)="tabsActive('by Competition')"><span class="item-text relative text-11">by Competition </span></p>
+          <p class="item flex items-center py-2 px-6 cursor-pointer" value="2" *ngIf="changestabs !== 'by Time'"
+            (click)="tabsActive('by Time')"><span class="item-text relative text-11">by Time </span></p>
+          <p class="item flex items-center py-2 px-6 cursor-pointer" value="3" *ngIf="changestabs !== 'by Matched'"
+            (click)="tabsActive('by Matched')"><span class="item-text relative text-11">by Matched </span></p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="activeTabId==4" data-v-1d748b9c="" (click)="collapseItem()"
+      class="sort-Filter inline-flex items-center justify-center bg-white text-11 cursor-pointer shadow-all-button bg-opacity-50 py-5px w-58px rounded-4px text-black-700">
+      <span data-v-1d748b9c="" class="mr-1">ALL</span><i data-v-1d748b9c=""
+        [ngClass]="collapseItm ? 'transform rotate-180' : ''"
+        class="icon-arrow-double mt-px sm:mt-0 text-11 scale-75 transition-transform origin-center duration-300"></i>
+    </div>
+    <div *ngIf="activeTabId==1" data-v-1d748b9c="" (click)="collapseItemSoc()"
+      class="sort-Filter inline-flex items-center justify-center bg-white text-11 cursor-pointer shadow-all-button bg-opacity-50 py-5px w-58px rounded-4px text-black-700">
+      <span data-v-1d748b9c="" class="mr-1">ALL</span><i data-v-1d748b9c=""
+        [ngClass]="collapseItmSoc ? 'transform rotate-180' : ''"
+        class="icon-arrow-double mt-px sm:mt-0 text-11 scale-75 transition-transform origin-center duration-300"></i>
+    </div>
+    <div *ngIf="activeTabId==2" data-v-1d748b9c="" (click)="collapseItemTen()"
+      class="sort-Filter inline-flex items-center justify-center bg-white text-11 cursor-pointer shadow-all-button bg-opacity-50 py-5px w-58px rounded-4px text-black-700">
+      <span data-v-1d748b9c="" class="mr-1">ALL</span><i data-v-1d748b9c=""
+        [ngClass]="collapseItmTen ? 'transform rotate-180' : ''"
+        class="icon-arrow-double mt-px sm:mt-0 text-11 scale-75 transition-transform origin-center duration-300"></i>
+    </div>
+  </div>
+
+  <div class="mb-4" *ngIf="changestabs==='by Time' && this.activeTab!==4">
+
+    <ng-container *ngIf="activeTabId==5 || activeTabId==4">
+      <div *ngIf="activeTabId==5 && cricdata?.length > 0" class="h-34px flex justify-start items-center bg-secondary">
+        <span class="block ml-2 mr-11px w-3px h-16px rounded-1.5px bg-event-tab-icon"></span>
+        <p class="text-15 font-bold text-event-tab-icon">Cricket</p>
+      </div>
+      <div class="vue-recycle-scroller ready page-mode direction-vertical">
+        <div class="vue-recycle-scroller__slot"></div>
+        <div class="vue-recycle-scroller__item-wrapper grid grid-cols-1 divide-y divide-black-100">
+          <ng-container *ngFor="let list of cricdata">
+            <div class="vue-recycle-scroller__item-view">
+              <div data-index="0">
+                <div data-v-a15b9f6f="" class="event-block-item-row grid justify-center items-center bg-white">
+                  <div data-v-a15b9f6f="">
+                    <div data-v-a15b9f6f=""
+                      class="animed-star -ml-2px w-8 mr-1 sm:mx-1 flex justify-center items-center">
+                      <div *ngIf="isLogin" (click)="addToMultimarket(list)" data-v-117db823=""
+                        class="w-8 h-6 flex justify-center items-center"
+                        style="--b64d5fc0: 0.51587987012987; --3cad14f0: -0.7929964566904356rem;">
+                        <div data-v-117db823=""
+                          [class]="list.multi?'fave bg-star-sprit-black-webp':'fave animate bg-star-sprit-black-webp'">
+                        </div>
+                      </div>
+                      <div *ngIf="!isLogin" routerLink="/login" data-v-117db823=""
+                        class="w-8 h-6 flex justify-center items-center"
+                        style="--b64d5fc0: 0.51587987012987; --3cad14f0: -0.7929964566904356rem;">
+                        <div data-v-117db823="" class="fave bg-star-sprit-black-webp"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div (click)="openMatch(list.sportid,list.eventid,list.iscupWinner)" data-v-a15b9f6f=""
+                    class="h-full flex justify-center items-start flex-col py-8px bg-white pr-3px text-13 leading-17px">
+                    <div data-v-a15b9f6f="" class="w-270px mb-px">
+                      <p data-v-a15b9f6f="" class="truncate">{{list.matchname}}</p>
+                    </div>
+                    <div data-v-a15b9f6f="" class="flex gap-2px justify-start items-center">
+                      <div *ngIf="activeTab==2" data-v-ef8204d4="" class="inline-flex items-center h-full">
+                        <div data-v-ef8204d4="" class="">
+                          <div data-v-ef8204d4="" class="time-block flex items-center justify-center leading-9px">
+                            <span data-v-ef8204d4="" class="text-submenu py-px text-center text-8 px-2px pb-0">Today
+                              {{list.day|date:'HH:mm'}}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div *ngIf="activeTab==3" data-v-ef8204d4="" class="inline-flex items-center h-full">
+                        <div data-v-ef8204d4="" class="">
+                          <div data-v-ef8204d4="" class="time-block1 flex items-center justify-center leading-9px"><span
+                              data-v-ef8204d4="" class="text-submenu py-px text-center text-8 px-2px pb-0">Tomorrow
+                              {{list.day|date:'HH:mm'}}</span></div>
+                        </div>
+                      </div>
+                      <div *ngIf="activeTab==1" data-v-ef8204d4="" class="inline-flex items-center h-full"
+                        data-is-inplay-type="true" data-is-today-type="false" data-is-tomorrow-type="false">
+                        <div data-v-ef8204d4="" class="">
+                          <div data-v-ef8204d4=""
+                            class="px-3px flex items-center justify-center bg-inPlay text-white font-bold text-8 leading-9px">
+                            <span data-v-ef8204d4="" class="mt-1px">In-Play</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="flex justify-center items-center gap-2px">
+                        <div *ngIf="activeTab==1" class="icon-live"><img src="/assets/images/live.svg" alt="streaming"
+                            class="h-10px"></div>
+                        <div class="flex items-baseline"><img src="/assets/images/unmatched.svg" alt="unmatched"
+                            class="h-10px"></div>
+                        <div class="icon-fancybet"><img src="/assets/images/fancybet.svg" alt="fancybet" class="h-10px">
+                        </div>
+                        <div class="icon-bookmaker"><img src="/assets/images/bookmaker.svg" alt="bookmaker"
+                            class="h-10px">
+                        </div>
+                      </div>
+                      <div>
+                        <p class="leading-10px text-10 text-black-600"> Matched <span
+                            class="font-bold">{{list.matchedPte || 0.0}}</span></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div data-v-a15b9f6f="" class="flex justify-end items-center"></div>
+                  <div data-v-a15b9f6f="" class="h-full flex justify-center items-center bg-white"><span
+                      data-v-a15b9f6f="" class="icon-arrow-left transform rotate-180 text-12 text-black-500"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="activeTabId==5 || activeTabId==1">
+      <div *ngIf="activeTabId==5 && soccdata?.length > 0" class="h-34px flex justify-start items-center bg-secondary"
+        style="margin-top: 16px;">
+        <span class="block ml-2 mr-11px w-3px h-16px rounded-1.5px bg-event-tab-icon"></span>
+        <p class="text-15 font-bold text-event-tab-icon">Soccer</p>
+      </div>
+      <div class="vue-recycle-scroller ready page-mode direction-vertical">
+        <div class="vue-recycle-scroller__slot"></div>
+        <div class="vue-recycle-scroller__item-wrapper grid grid-cols-1 divide-y divide-black-100">
+          <ng-container *ngFor="let list of soccdata">
+            <div class="vue-recycle-scroller__item-view">
+              <div data-index="0">
+                <div data-v-a15b9f6f="" class="event-block-item-row grid justify-center items-center bg-white">
+                  <div data-v-a15b9f6f="">
+                    <div data-v-a15b9f6f=""
+                      class="animed-star -ml-2px w-8 mr-1 sm:mx-1 flex justify-center items-center">
+                      <div *ngIf="isLogin" (click)="addToMultimarket(list)" data-v-117db823=""
+                        class="w-8 h-6 flex justify-center items-center"
+                        style="--b64d5fc0: 0.51587987012987; --3cad14f0: -0.7929964566904356rem;">
+                        <div data-v-117db823=""
+                          [class]="list.multi?'fave bg-star-sprit-black-webp':'fave animate bg-star-sprit-black-webp'">
+                        </div>
+                      </div>
+                      <div *ngIf="!isLogin" routerLink="/login" data-v-117db823=""
+                        class="w-8 h-6 flex justify-center items-center"
+                        style="--b64d5fc0: 0.51587987012987; --3cad14f0: -0.7929964566904356rem;">
+                        <div data-v-117db823="" class="fave bg-star-sprit-black-webp"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div (click)="openMatch(list.sportid,list.eventid,list.iscupWinner)" data-v-a15b9f6f=""
+                    class="h-full flex justify-center items-start flex-col py-8px bg-white pr-3px text-13 leading-17px">
+                    <div data-v-a15b9f6f="" class="w-270px mb-px">
+                      <p data-v-a15b9f6f="" class="truncate">{{list.matchname}}</p>
+                    </div>
+                    <div data-v-a15b9f6f="" class="flex gap-2px justify-start items-center">
+                      <div *ngIf="activeTab==2" data-v-ef8204d4="" class="inline-flex items-center h-full">
+                        <div data-v-ef8204d4="" class="">
+                          <div data-v-ef8204d4="" class="time-block flex items-center justify-center leading-9px">
+                            <span data-v-ef8204d4="" class="text-submenu py-px text-center text-8 px-2px pb-0">Today
+                              {{list.day|date:'HH:mm'}}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div *ngIf="activeTab==3" data-v-ef8204d4="" class="inline-flex items-center h-full">
+                        <div data-v-ef8204d4="" class="">
+                          <div data-v-ef8204d4="" class="time-block1 flex items-center justify-center leading-9px"><span
+                              data-v-ef8204d4="" class="text-submenu py-px text-center text-8 px-2px pb-0">Tomorrow
+                              {{list.day|date:'HH:mm'}}</span></div>
+                        </div>
+                      </div>
+                      <div *ngIf="activeTab==1" data-v-ef8204d4="" class="inline-flex items-center h-full"
+                        data-is-inplay-type="true" data-is-today-type="false" data-is-tomorrow-type="false">
+                        <div data-v-ef8204d4="" class="">
+                          <div data-v-ef8204d4=""
+                            class="px-3px flex items-center justify-center bg-inPlay text-white font-bold text-8 leading-9px">
+                            <span data-v-ef8204d4="" class="mt-1px">In-Play</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex justify-center items-center gap-2px">
+                        <div *ngIf="activeTab==1" class="icon-live"><img src="/assets/images/live.svg" alt="streaming"
+                            class="h-10px"></div>
+                        <div class="flex items-baseline"><img src="/assets/images/unmatched.svg" alt="unmatched"
+                            class="h-10px"></div>
+                        <div class="icon-fancybet"><img src="/assets/images/fancybet.svg" alt="fancybet" class="h-10px">
+                        </div>
+                        <div class="icon-bookmaker"><img src="/assets/images/bookmaker.svg" alt="bookmaker"
+                            class="h-10px">
+                        </div>
+                      </div>
+                      <div>
+                        <p class="leading-10px text-10 text-black-600"> Matched <span
+                            class="font-bold">{{list.matchedPte || 0.0}}</span></p>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div data-v-a15b9f6f="" class="flex justify-end items-center"></div>
+                  <div data-v-a15b9f6f="" class="h-full flex justify-center items-center bg-white"><span
+                      data-v-a15b9f6f="" class="icon-arrow-left transform rotate-180 text-12 text-black-500"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="activeTabId==5 || activeTabId==2">
+      <div *ngIf="activeTabId==5 && tenndata?.length > 0" class="h-34px flex justify-start items-center bg-secondary"
+        style="margin-top: 16px;">
+        <span class="block ml-2 mr-11px w-3px h-16px rounded-1.5px bg-event-tab-icon"></span>
+        <p class="text-15 font-bold text-event-tab-icon">Tennis</p>
+      </div>
+      <div class="vue-recycle-scroller ready page-mode direction-vertical">
+        <div class="vue-recycle-scroller__slot"></div>
+        <div class="vue-recycle-scroller__item-wrapper grid grid-cols-1 divide-y divide-black-100">
+          <ng-container *ngFor="let list of tenndata">
+            <div class="vue-recycle-scroller__item-view">
+              <div data-index="0">
+                <div data-v-a15b9f6f="" class="event-block-item-row grid justify-center items-center bg-white">
+                  <div data-v-a15b9f6f="">
+                    <div data-v-a15b9f6f=""
+                      class="animed-star -ml-2px w-8 mr-1 sm:mx-1 flex justify-center items-center">
+                      <div *ngIf="isLogin" (click)="addToMultimarket(list)" data-v-117db823=""
+                        class="w-8 h-6 flex justify-center items-center"
+                        style="--b64d5fc0: 0.51587987012987; --3cad14f0: -0.7929964566904356rem;">
+                        <div data-v-117db823=""
+                          [class]="list.multi?'fave bg-star-sprit-black-webp':'fave animate bg-star-sprit-black-webp'">
+                        </div>
+                      </div>
+                      <div *ngIf="!isLogin" routerLink="/login" data-v-117db823=""
+                        class="w-8 h-6 flex justify-center items-center"
+                        style="--b64d5fc0: 0.51587987012987; --3cad14f0: -0.7929964566904356rem;">
+                        <div data-v-117db823="" class="fave bg-star-sprit-black-webp"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div (click)="openMatch(list.sportid,list.eventid,list.iscupWinner)" data-v-a15b9f6f=""
+                    class="h-full flex justify-center items-start flex-col py-8px bg-white pr-3px text-13 leading-17px">
+                    <div data-v-a15b9f6f="" class="w-270px mb-px">
+                      <p data-v-a15b9f6f="" class="truncate">{{list.matchname}}</p>
+                    </div>
+                    <div data-v-a15b9f6f="" class="flex gap-2px justify-start items-center">
+                      <div *ngIf="activeTab==2" data-v-ef8204d4="" class="inline-flex items-center h-full">
+                        <div data-v-ef8204d4="" class="">
+                          <div data-v-ef8204d4="" class="time-block flex items-center justify-center leading-9px">
+                            <span data-v-ef8204d4="" class="text-submenu py-px text-center text-8 px-2px pb-0">Today
+                              {{list.day|date:'HH:mm'}}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div *ngIf="activeTab==3" data-v-ef8204d4="" class="inline-flex items-center h-full">
+                        <div data-v-ef8204d4="" class="">
+                          <div data-v-ef8204d4="" class="time-block1 flex items-center justify-center leading-9px"><span
+                              data-v-ef8204d4="" class="text-submenu py-px text-center text-8 px-2px pb-0">Tomorrow
+                              {{list.day|date:'HH:mm'}}</span></div>
+                        </div>
+                      </div>
+                      <div *ngIf="activeTab==1" data-v-ef8204d4="" class="inline-flex items-center h-full"
+                        data-is-inplay-type="true" data-is-today-type="false" data-is-tomorrow-type="false">
+                        <div data-v-ef8204d4="" class="">
+                          <div data-v-ef8204d4=""
+                            class="px-3px flex items-center justify-center bg-inPlay text-white font-bold text-8 leading-9px">
+                            <span data-v-ef8204d4="" class="mt-1px">In-Play</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex justify-center items-center gap-2px">
+                        <div *ngIf="activeTab==1" class="icon-live"><img src="/assets/images/live.svg" alt="streaming"
+                            class="h-10px"></div>
+                        <div class="flex items-baseline"><img src="/assets/images/unmatched.svg" alt="unmatched"
+                            class="h-10px"></div>
+                        <div class="icon-fancybet"><img src="/assets/images/fancybet.svg" alt="fancybet" class="h-10px">
+                        </div>
+                        <div class="icon-bookmaker"><img src="/assets/images/bookmaker.svg" alt="bookmaker"
+                            class="h-10px">
+                        </div>
+                      </div>
+                      <div>
+                        <p class="leading-10px text-10 text-black-600"> Matched <span
+                            class="font-bold">{{list.matchedPte || 0.0}}</span></p>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div data-v-a15b9f6f="" class="flex justify-end items-center"></div>
+                  <div data-v-a15b9f6f="" class="h-full flex justify-center items-center bg-white"><span
+                      data-v-a15b9f6f="" class="icon-arrow-left transform rotate-180 text-12 text-black-500"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+
+  <div *ngIf="changestabs==='by Competition' && this.activeTab!==4">
+
+    <ng-container *ngIf="activeTabId==5 || activeTabId==4">
+      <div class="">
+        <div *ngIf="activeTabId==5 && cricdata?.length > 0" class="all-tab-title h-24 -mb-[3.14285714286rem]">
+          <div class="flex items-center p-2 py-9px">
+            <div class="w-1 h-5 bg-black ml-0.5 mr-3 rounded-sm"></div>
+            <div class="text-15 text-black font-bold leading-none flex-1">Cricket</div>
+            <div data-v-1d748b9c="" (click)="collapseItem()"
+              class="sort-Filter inline-flex items-center justify-center bg-white text-11 cursor-pointer shadow-all-button bg-opacity-50 py-5px w-58px rounded-4px text-black-700">
+              <span data-v-1d748b9c="" class="mr-1">ALL</span><i data-v-1d748b9c=""
+                [ngClass]="collapseItm ? 'transform rotate-180' : ''"
+                class="icon-arrow-double mt-px sm:mt-0 text-11 scale-75 transition-transform origin-center duration-300"></i>
+            </div>
+          </div>
+        </div>
+        <div *ngFor="let series of CricOrganizedData;let i=index;" class="px-2">
+          <div class="mb-2">
+            <div [ngClass]="expandedSections.has(i) ? 'rounded-b-none' : ''"
+              class="relative py-2 pr-12px pl-2 bg-secondary rounded-xl cursor-pointer transition-all duration-300 rounded-t-xl">
+              <h1 class="flex justify-start items-center text-base font-normal" (click)="collapseDetails(i)">
+                <span [style.backgroundImage]="jsonWebdt?.imagesBottomBorderColor"
+                  [style.color]="jsonWebdt?.imagesPlayNowTextColor"
+                  class="w-27px h-5 p-1.5 mr-1 flex justify-center items-center rounded-[1.25rem] text-11 font-bold text-event-tab-num bg-event-tab-bg flex-shrink-0">
+                  {{ series.matches.length }}</span>
+                <span class="text-event-tab break-words mr-2" >{{series.seriesname}}</span>
+                <span
+                  class="icon-arrow-down-sencodary flex items-center text-12 h-21px ml-auto transition-transform origin-center duration-300 text-event-tab-icon "
+                  [ngClass]="expandedSections.has(i) ? 'transform rotate-180' : ''"></span>
+              </h1>
+            </div>
+            <ng-container *ngIf="expandedSections.has(i)">
+              <ng-container *ngFor="let list of series.matches let k = index">
+                <div *ngIf="list.matchType == 'normal' && list.b1 !== undefined && list.isPriority !== undefined && list.isPriority === true else anotherMatches"
+                  class="bg-white overflow-hidden rounded-b-lg">
+                  <div class="vue-recycle-scroller ready page-mode direction-vertical">
+                    <div class="vue-recycle-scroller__slot"></div>
+                    <div class="vue-recycle-scroller__item-wrapper" [ngStyle]="(runnersList[list?.eventid]?.data?.[0]?.runners?.[0]?.ex?.availableToBack?.[0]?.price ||
+                                                                                  runnersList[list?.eventid]?.data?.[0]?.runners?.[0]?.ex?.availableToLay?.[0]?.price ||
+                                                                                  runnersList[list?.eventid]?.data?.[0]?.runners?.[1]?.ex?.availableToBack?.[0]?.price ||
+                                                                                  runnersList[list?.eventid]?.data?.[0]?.runners?.[1]?.ex?.availableToLay?.[0]?.price
+                                                                                ) ? { 'min-height': '180px' } : {}">
+                      <div class="vue-recycle-scroller__item-view" style="transform: translateY(0px) translateX(0px);">
+                        <div data-index="33882310">
+                          <div class="px-2 border-t border-solid border-black-100">
+                            <div
+                              class="competition-main-row grid justify-center items-center gap-1 leading-17px py-10px">
+                              <div class="w-full h-full flex justify-center items-center -ml-1 scale-110">
+                                <div *ngIf="isLogin" (click)="addToMultimarket(list)" data-v-117db823=""
+                                  class="w-8 h-6 flex justify-center items-center"
+                                  style="--b64d5fc0: 0.51587987012987; --3cad14f0: -0.7929964566904356rem;">
+                                  <div data-v-117db823=""
+                                    [class]="list.multi?'fave bg-star-sprit-black-webp':'fave animate bg-star-sprit-black-webp'">
+                                  </div>
+                                </div>
+                                <div *ngIf="!isLogin" routerLink="/login" data-v-117db823=""
+                                  class="w-8 h-6 flex justify-center items-center"
+                                  style="--b64d5fc0: 0.51587987012987; --3cad14f0: -0.7929964566904356rem;">
+                                  <div data-v-117db823="" class="fave bg-star-sprit-black-webp"></div>
+                                </div>
+                              </div>
+
+                              <div (click)="openMatch(list.sportid,list.eventid,list.iscupWinner)"
+                                class="flex flex-col -ml-0.5">
+                                <div class="flex gap-2px justify-start items-center">
+                                  <div class="flex justify-center items-center gap-2px">
+                                    <div *ngIf="activeTab==1" class="icon-live"><img src="/assets/images/live.svg"
+                                        alt="streaming" class="h-10px"></div>
+                                    <div class="icon-fancybet"><img src="/assets/images/fancybet.svg" alt="fancybet"
+                                        class="h-10px"></div>
+                                    <div class="icon-bookmaker"><img src="/assets/images/bookmaker.svg" alt="bookmaker"
+                                        class="h-10px"></div>
+                                  </div>
+                                  <div *ngIf="activeTab==1" data-v-ef8204d4="" class="inline-flex items-center h-full"
+                                    data-is-inplay-type="true" data-is-today-type="false" data-is-tomorrow-type="false">
+                                    <div data-v-ef8204d4="" class="">
+                                      <div data-v-ef8204d4=""
+                                        class="px-3px flex items-center justify-center bg-inPlay text-white font-bold text-8 leading-9px">
+                                        <span data-v-ef8204d4="" class="mt-1px">In-Play</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div *ngIf="activeTab==2" data-v-ef8204d4="" class="inline-flex items-center h-full">
+                                    <div data-v-ef8204d4="" class="">
+                                      <div data-v-ef8204d4=""
+                                        class="time-block flex items-center justify-center leading-9px">
+                                        <span data-v-ef8204d4=""
+                                          class="text-submenu py-px text-center text-8 px-2px pb-0">Today
+                                          {{list.day|date:'HH:mm'}}</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div *ngIf="activeTab==3" data-v-ef8204d4="" class="inline-flex items-center h-full">
+                                    <div data-v-ef8204d4="" class="">
+                                      <div data-v-ef8204d4=""
+                                        class="time-block1 flex items-center justify-center leading-9px"><span
+                                          data-v-ef8204d4=""
+                                          class="text-submenu py-px text-center text-8 px-2px pb-0">Tomorrow
+                                          {{list.day|date:'HH:mm'}}</span></div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <p class="text-black leading-16px text-13 break-all">{{list.matchname}}</p>
+                              </div>
+                              <div class="flex justify-end items-center">
+                                <i class="ml-8px text-14 icon-h2h"></i><i
+                                  class="icon-arrow-down text-12 ml-2 text-black-500 -rotate-90"></i>
+                              </div>
+                            </div>
+                            <div *ngIf="(runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToBack[0]?.price) || (runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToLay[0]?.price) || (runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToBack[0]?.price) || (runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToLay[0]?.price)" class="pb-2">
+                              <div [style.backgroundImage]="jsonWebdt?.imagesBottomBorderColor"
+                                class="h-24px flex justify-between items-center rounded-t-md bg-primary border-b border-solid border-white">
+                                <div [style.color]="jsonWebdt?.imagesPlayNowTextColor"
+                                  class="pl-2 w-9/12 flex items-center text-event-th border-r border-event-th-line leading-5">
+                                  <span class="pr-2 text-13 font-bold whitespace-nowrap">Match Odds</span><span
+                                    class="pr-1 text-10">Matched</span><span
+                                    class="text-10 font-bold">{{runnersList[list?.marketid]?.data?.[0]?.totalMatched ??
+                                    '--'}}</span>
+                                </div>
+                                <div [style.color]="jsonWebdt?.imagesPlayNowTextColor"
+                                  class="w-4/12 grid gap-0.5 grid-cols-2 text-10 leading-4 text-event-th-option text-center">
+                                  <div class="min-w-min">Back</div>
+                                  <div class="min-w-min">Lay</div>
+                                </div>
+                              </div>
+                              <div class="relative">
+                                <div class="space-y-px">
+                                  <div class="match_odds_line">
+                                    <div class="flex justify-between bg-black-100">
+                                      <h2 class="px-2 w-9/12 flex flex-col justify-center break-all" (click)="openMatch(list.sportid,list.eventid,list.iscupWinner)">
+                                        {{list?.selectionnames.split(',')[0]}}
+                                         <ng-container *ngFor="let item of oddsPnlArray">
+                                          <div *ngIf="item?.eventid === list?.eventid" class="text-10 leading-normal flex" data-testid="forecast" bis_skin_checked="1"><span
+                                            class="flex items-center" [class]="item?.pnl1 > 0  ? 'text-success' : 'text-error'">
+                                            <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5" bis_skin_checked="1"></div>{{item?.pnl1 | number :'1.0-2'}}
+                                          </span>
+                                          <span *ngIf="beforeoddscal && eventidd == list?.eventid" class="flex items-center"
+                                          [class]="beforeoddsPnlArray[0] > 0  ? 'text-success' : 'text-error'">
+                                            <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{beforeoddsPnlArray[0] |
+                                            number :'1.0-2'}}
+                                          </span>
+                                          <span *ngIf="afteroddscal && eventidd == list?.eventid" class="flex items-center"
+                                            [class]="afteroddsPnlArray[0] > 0  ? 'text-success' : 'text-error'">
+                                              <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{afteroddsPnlArray[0] |
+                                              number :'1.0-2'}}
+                                            </span>
+                                        </div>
+                                        </ng-container>
+                                        <ng-container>
+                                          <span *ngIf="beforeoddscal && eventidd == list?.eventid" class="flex items-center"
+                                          [class]="beforeoddsPnlArray[0] > 0  ? 'text-success' : 'text-error'">
+                                            <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{beforeoddsPnlArray[0] |
+                                            number :'1.0-2'}}
+                                          </span>
+                                        </ng-container>
+                                      </h2>
+                                      <div class="w-4/12 relative grid gap-0.5 grid-cols-2">
+                                        <div data-v-c72443c8="" class="py-1.5 h-36px text-center rounded-md bg-back-300" [ngClass]="{'bg-bet-disabled': !(runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToBack[0]?.price)}"
+                                          title="BACK" (click)="$event.stopPropagation(); openOddBetPlace(0, 'back', [{isBack : true, selectionId : list?.selectionids?.split(',')?.[0], selectionName : list?.selectionnames.split(',')[0], odds : runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToBack[0]?.price, matchName : list.matchname, eventId : list?.eventid, sourceId : list?.eventid, sourceBetType : 'Odds', sportId : list?.sportid}], list)">
+                                          <h3 data-v-c72443c8="" class="text-15 pb-0.5">{{
+                                            runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToBack[0]?.price
+                                            ?? '--' }}</h3>
+                                          <p data-v-c72443c8="" class="text-9">
+                                            {{runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToBack[0]?.size
+                                            ?? '--' }}</p>
+                                        </div>
+                                        <div data-v-c72443c8="" class="py-1.5 h-36px text-center rounded-md bg-lay-300" [ngClass]="{'bg-bet-disabled': !(runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToLay[0]?.price)}"
+                                          title="LAY" (click)="$event.stopPropagation(); openOddBetPlace(0, 'lay', [{isBack : false, selectionId : list?.selectionids?.split(',')?.[0], selectionName : list?.selectionnames.split(',')[0], odds : runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToLay[0]?.price, matchName : list.matchname, eventId : list?.eventid, sourceId : list?.eventid, sourceBetType : 'Odds', sportId : list?.sportid}],list)">
+                                          <h3 data-v-c72443c8="" class="text-15 pb-0.5">{{
+                                            runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToLay[0]?.price
+                                            ?? '--'}}</h3>
+                                          <p data-v-c72443c8="" class="text-9">
+                                            {{runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToLay[0]?.size
+                                            ?? '--'}}</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <ng-container *ngFor="let item of oddsPnlArray">
+                                      <div *ngIf="item?.eventid === list?.eventid" class="flex w-full bg-black-100 bg-opacity-50 justify-end">
+                                        <div *ngIf="item?.avgBackOdds1 || item?.avgLayOdds1" class="relative text-10 average_odds_line flex w-[calc((100%-2rem)/3)]">
+                                          <div class="flex-1 bg-opacity-25 bg-back-300 rounded-b-3px leading-4 text-center my-1px">
+                                            {{(item?.avgBackOdds1?item.avgBackOdds1+1:'') | number :'1.0-2'}}
+                                          </div>
+                                          <div class="flex-1 bg-opacity-25 bg-lay-300 rounded-b-3px leading-4 text-center my-1px ml-1px">
+                                            {{(item?.avgLayOdds1?item.avgLayOdds1+1:'') | number :'1.0-2'}}
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </ng-container>
+                                  </div>
+
+                                  <div class="match_odds_line">
+                                    <div class="flex justify-between bg-black-100 rounded-b-md">
+                                      <h2 class="px-2 w-9/12 flex flex-col justify-center break-all" (click)="openMatch(list.sportid,list.eventid,list.iscupWinner)">
+                                        {{list?.selectionnames.split(',')[1]}}
+                                         <ng-container *ngFor="let item of oddsPnlArray">
+                                          <div *ngIf="item?.eventid === list?.eventid" class="text-10 leading-normal flex" data-testid="forecast" bis_skin_checked="1"><span
+                                            class="flex items-center" [class]="item?.pnl2 > 0  ? 'text-success' : 'text-error'">
+                                            <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5" bis_skin_checked="1"></div>{{item?.pnl2 | number :'1.0-2'}}
+                                          </span>
+
+                                           <span *ngIf="afteroddscal && eventidd == list?.eventid" class="flex items-center"
+                                            [class]="afteroddsPnlArray[1] > 0  ? 'text-success' : 'text-error'">
+                                              <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{afteroddsPnlArray[1] |
+                                              number :'1.0-2'}}
+                                            </span>
+
+                                        </div>
+                                        </ng-container>
+                                        <ng-container>
+                                          <span *ngIf="beforeoddscal && eventidd == list?.eventid" class="flex items-center"
+                                          [class]="beforeoddsPnlArray[1] > 0  ? 'text-success' : 'text-error'">
+                                            <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{beforeoddsPnlArray[1] |
+                                            number :'1.0-2'}}
+                                          </span>
+                                        </ng-container>
+                                      </h2>
+                                      <div class="w-4/12 relative grid gap-0.5 grid-cols-2">
+                                        <div data-v-c72443c8="" class="py-1.5 h-36px text-center rounded-md bg-back-300" [ngClass]="{'bg-bet-disabled': !(runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToBack[0]?.price)}"
+                                          title="BACK" (click)="$event.stopPropagation(); openOddBetPlace(1, 'back', [{isBack : true, selectionId : list?.selectionids?.split(',')?.[1], selectionName : list?.selectionnames.split(',')[1], odds : runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToBack[0]?.price, matchName : list.matchname, eventId : list?.eventid, sourceId : list?.eventid, sourceBetType : 'Odds', sportId : list?.sportid}], list)">
+                                          <h3 data-v-c72443c8="" class="text-15 pb-0.5">
+                                            {{runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToBack[0]?.price
+                                            ?? '--'}}</h3>
+                                          <p data-v-c72443c8="" class="text-9">
+                                            {{runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToBack[0]?.size
+                                            ?? '--'}}</p>
+                                        </div>
+                                        <div data-v-c72443c8="" class="py-1.5 h-36px text-center rounded-md bg-lay-300" [ngClass]="{'bg-bet-disabled': !(runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToLay[0]?.price)}"
+                                          title="LAY" (click)="$event.stopPropagation(); openOddBetPlace(1, 'lay', [{isBack : false, selectionId : list?.selectionids?.split(',')?.[1], selectionName : list?.selectionnames.split(',')[1], odds : runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToLay[0]?.price, matchName : list.matchname, eventId : list?.eventid, sourceId : list?.eventid, sourceBetType : 'Odds', sportId : list?.sportid}], list)">
+                                          <h3 data-v-c72443c8="" class="text-15 pb-0.5">{{
+                                            runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToLay[0]?.price
+                                            ?? '--'}}</h3>
+                                          <p data-v-c72443c8="" class="text-9">
+                                            {{runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToLay[0]?.size
+                                            ?? '--'}}</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <ng-container *ngFor="let item of oddsPnlArray">
+                                      <div *ngIf="item?.eventid === list?.eventid" class="flex w-full bg-black-100 bg-opacity-50 justify-end">
+                                        <div *ngIf="item?.avgBackOdds2 || item?.avgLayOdds2" class="relative text-10 average_odds_line flex w-[calc((100%-2rem)/3)]">
+                                          <div class="flex-1 bg-opacity-25 bg-back-300 rounded-b-3px leading-4 text-center my-1px">
+                                            {{(item?.avgBackOdds2?item?.avgBackOdds2+1:'') | number :'1.0-2'}}
+                                          </div>
+                                          <div class="flex-1 bg-opacity-25 bg-lay-300 rounded-b-3px leading-4 text-center my-1px ml-1px">
+                                            {{(item?.avgLayOdds2?item?.avgLayOdds2+1:'') | number :'1.0-2'}}
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </ng-container>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+                <ng-template #anotherMatches>
+                  <div class="vue-recycle-scroller__item-view">
+                    <div data-index="0">
+                      <div data-v-a15b9f6f="" class="event-block-item-row grid justify-center items-center bg-white">
+                        <div data-v-a15b9f6f="">
+                          <div data-v-a15b9f6f=""
+                            class="animed-star -ml-2px w-8 mr-1 sm:mx-1 flex justify-center items-center">
+                            <div *ngIf="isLogin" (click)="addToMultimarket(list)" data-v-117db823=""
+                              class="w-8 h-6 flex justify-center items-center"
+                              style="--b64d5fc0: 0.51587987012987; --3cad14f0: -0.7929964566904356rem;">
+                              <div data-v-117db823=""
+                                [class]="list.multi?'fave bg-star-sprit-black-webp':'fave animate bg-star-sprit-black-webp'">
+                              </div>
+                            </div>
+                            <div *ngIf="!isLogin" routerLink="/login" data-v-117db823=""
+                              class="w-8 h-6 flex justify-center items-center"
+                              style="--b64d5fc0: 0.51587987012987; --3cad14f0: -0.7929964566904356rem;">
+                              <div data-v-117db823="" class="fave bg-star-sprit-black-webp"></div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div (click)="openMatch(list.sportid,list.eventid,list.iscupWinner)" data-v-a15b9f6f=""
+                          class="h-full flex justify-center items-start flex-col py-8px bg-white pr-3px text-13 leading-17px">
+                          <div data-v-a15b9f6f="" class="w-270px mb-px">
+                            <p data-v-a15b9f6f="" class="truncate">{{list.matchname}}</p>
+                          </div>
+                          <div data-v-a15b9f6f="" class="flex gap-2px justify-start items-center">
+                            <div *ngIf="activeTab==2" data-v-ef8204d4="" class="inline-flex items-center h-full">
+                              <div data-v-ef8204d4="" class="">
+                                <div data-v-ef8204d4="" class="time-block flex items-center justify-center leading-9px">
+                                  <span data-v-ef8204d4=""
+                                    class="text-submenu py-px text-center text-8 px-2px pb-0">Today
+                                    {{list.day|date:'HH:mm'}}</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div *ngIf="activeTab==3" data-v-ef8204d4="" class="inline-flex items-center h-full">
+                              <div data-v-ef8204d4="" class="">
+                                <div data-v-ef8204d4=""
+                                  class="time-block1 flex items-center justify-center leading-9px"><span
+                                    data-v-ef8204d4=""
+                                    class="text-submenu py-px text-center text-8 px-2px pb-0">Tomorrow
+                                    {{list.day|date:'HH:mm'}}</span></div>
+                              </div>
+                            </div>
+                            <div *ngIf="activeTab==1" data-v-ef8204d4="" class="inline-flex items-center h-full"
+                              data-is-inplay-type="true" data-is-today-type="false" data-is-tomorrow-type="false">
+                              <div data-v-ef8204d4="" class="">
+                                <div data-v-ef8204d4=""
+                                  class="px-3px flex items-center justify-center bg-inPlay text-white font-bold text-8 leading-9px">
+                                  <span data-v-ef8204d4="" class="mt-1px">In-Play</span>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="flex justify-center items-center gap-2px">
+                              <div *ngIf="activeTab==1" class="icon-live"><img src="/assets/images/live.svg"
+                                  alt="streaming" class="h-10px"></div>
+                              <div class="flex items-baseline"><img src="/assets/images/unmatched.svg" alt="unmatched"
+                                  class="h-10px"></div>
+                              <div class="icon-fancybet"><img src="/assets/images/fancybet.svg" alt="fancybet"
+                                  class="h-10px">
+                              </div>
+                              <div class="icon-bookmaker"><img src="/assets/images/bookmaker.svg" alt="bookmaker"
+                                  class="h-10px">
+                              </div>
+                            </div>
+                            <div>
+                              <p class="leading-10px text-10 text-black-600"> Matched <span
+                                  class="font-bold">{{list.matchedPte || 0.0}}</span></p>
+                            </div>
+                          </div>
+                        </div>
+                        <div data-v-a15b9f6f="" class="flex justify-end items-center"></div>
+                        <div data-v-a15b9f6f="" class="h-full flex justify-center items-center bg-white"><span
+                            data-v-a15b9f6f=""
+                            class="icon-arrow-left transform rotate-180 text-12 text-black-500"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ng-container>
+            </ng-container>
+
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="activeTabId==5 || activeTabId==1">
+      <div class="">
+        <div *ngIf="activeTabId==5 && soccdata?.length > 0" class="all-tab-title h-24 -mb-[3.14285714286rem]">
+          <div class="flex items-center p-2 py-9px">
+            <div class="w-1 h-5 bg-black ml-0.5 mr-3 rounded-sm"></div>
+            <div class="text-15 text-black font-bold leading-none flex-1">Soccer</div>
+            <div data-v-1d748b9c="" (click)="collapseItemSoc()"
+              class="sort-Filter inline-flex items-center justify-center bg-white text-11 cursor-pointer shadow-all-button bg-opacity-50 py-5px w-58px rounded-4px text-black-700">
+              <span data-v-1d748b9c="" class="mr-1">ALL</span><i data-v-1d748b9c=""
+                [ngClass]="collapseItmSoc ? 'transform rotate-180' : ''"
+                class="icon-arrow-double mt-px sm:mt-0 text-11 scale-75 transition-transform origin-center duration-300"></i>
+            </div>
+          </div>
+        </div>
+        <div *ngFor="let series of SocOrganizedData ;let i=index;" class="px-2">
+          <div class="mb-2">
+            <div [ngClass]="expandedSections.has(i) ? 'rounded-b-none' : ''"
+              class="relative py-2 pr-12px pl-2 bg-secondary rounded-xl cursor-pointer transition-all duration-300 rounded-t-xl">
+              <h1 (click)="collapseDetailsSoc(i)" class="flex justify-start items-center text-base font-normal"><span
+                  class="w-27px h-5 p-1.5 mr-1 flex justify-center items-center rounded-[1.25rem] text-11 font-bold text-event-tab-num bg-event-tab-bg flex-shrink-0"
+                  [style.backgroundImage]="jsonWebdt?.imagesBottomBorderColor"
+                  [style.color]="jsonWebdt?.imagesPlayNowTextColor">{{
+                  series.matches.length }}</span>
+                <span class="text-event-tab break-words mr-2">{{series.seriesname}}</span>
+                <span
+                  class="icon-arrow-down-sencodary flex items-center text-12 h-21px ml-auto transition-transform origin-center duration-300 text-event-tab-icon"
+                  [ngClass]="expandedSectionsSoc.has(i) ? 'transform rotate-180' : ''"></span>
+              </h1>
+            </div>
+            <ng-container *ngIf="expandedSectionsSoc.has(i)">
+              <ng-container *ngFor="let list of series.matches let k = index">
+                <div *ngIf="list.matchType == 'normal' && list.b1 !== undefined && list.isPriority !== undefined && list.isPriority === true else anotherMatches"
+                  class="bg-white overflow-hidden rounded-b-lg">
+                  <div class="vue-recycle-scroller ready page-mode direction-vertical">
+                    <div class="vue-recycle-scroller__slot"></div>
+                    <div class="vue-recycle-scroller__item-wrapper" [ngStyle]="(runnersList[list?.eventid]?.data?.[0]?.runners?.[0]?.ex?.availableToBack?.[0]?.price ||
+                                                                                  runnersList[list?.eventid]?.data?.[0]?.runners?.[0]?.ex?.availableToLay?.[0]?.price ||
+                                                                                  runnersList[list?.eventid]?.data?.[0]?.runners?.[1]?.ex?.availableToBack?.[0]?.price ||
+                                                                                  runnersList[list?.eventid]?.data?.[0]?.runners?.[1]?.ex?.availableToLay?.[0]?.price
+                                                                                ) ? { 'min-height': '180px' } : {}">
+                      <div class="vue-recycle-scroller__item-view" style="transform: translateY(0px) translateX(0px);">
+                        <div data-index="33882310">
+                          <div class="px-2 border-t border-solid border-black-100">
+                            <div
+                              class="competition-main-row grid justify-center items-center gap-1 leading-17px py-10px">
+                              <div class="w-full h-full flex justify-center items-center -ml-1 scale-110">
+                                <div *ngIf="isLogin" (click)="addToMultimarket(list)" data-v-117db823=""
+                                  class="w-8 h-6 flex justify-center items-center"
+                                  style="--b64d5fc0: 0.51587987012987; --3cad14f0: -0.7929964566904356rem;">
+                                  <div data-v-117db823=""
+                                    [class]="list.multi?'fave bg-star-sprit-black-webp':'fave animate bg-star-sprit-black-webp'">
+                                  </div>
+                                </div>
+                                <div *ngIf="!isLogin" routerLink="/login" data-v-117db823=""
+                                  class="w-8 h-6 flex justify-center items-center"
+                                  style="--b64d5fc0: 0.51587987012987; --3cad14f0: -0.7929964566904356rem;">
+                                  <div data-v-117db823="" class="fave bg-star-sprit-black-webp"></div>
+                                </div>
+                              </div>
+                              <div (click)="openMatch(list.sportid,list.eventid,list.iscupWinner)"
+                                class="flex flex-col -ml-0.5">
+                                <div class="flex gap-2px justify-start items-center">
+                                  <div class="flex justify-center items-center gap-2px">
+                                    <div *ngIf="activeTab==1" class="icon-live"><img src="/assets/images/live.svg"
+                                        alt="streaming" class="h-10px"></div>
+                                    <div class="icon-fancybet"><img src="/assets/images/fancybet.svg" alt="fancybet"
+                                        class="h-10px"></div>
+                                    <div class="icon-bookmaker"><img src="/assets/images/bookmaker.svg" alt="bookmaker"
+                                        class="h-10px"></div>
+                                  </div>
+                                  <div *ngIf="activeTab==1" data-v-ef8204d4="" class="inline-flex items-center h-full"
+                                    data-is-inplay-type="true" data-is-today-type="false" data-is-tomorrow-type="false">
+                                    <div data-v-ef8204d4="" class="">
+                                      <div data-v-ef8204d4=""
+                                        class="px-3px flex items-center justify-center bg-inPlay text-white font-bold text-8 leading-9px">
+                                        <span data-v-ef8204d4="" class="mt-1px">In-Play</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div *ngIf="activeTab==2" data-v-ef8204d4="" class="inline-flex items-center h-full">
+                                    <div data-v-ef8204d4="" class="">
+                                      <div data-v-ef8204d4=""
+                                        class="time-block flex items-center justify-center leading-9px">
+                                        <span data-v-ef8204d4=""
+                                          class="text-submenu py-px text-center text-8 px-2px pb-0">Today
+                                          {{list.day|date:'HH:mm'}}</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div *ngIf="activeTab==3" data-v-ef8204d4="" class="inline-flex items-center h-full">
+                                    <div data-v-ef8204d4="" class="">
+                                      <div data-v-ef8204d4=""
+                                        class="time-block1 flex items-center justify-center leading-9px"><span
+                                          data-v-ef8204d4=""
+                                          class="text-submenu py-px text-center text-8 px-2px pb-0">Tomorrow
+                                          {{list.day|date:'HH:mm'}}</span></div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <p class="text-black leading-16px text-13 break-all">{{list.matchname}}</p>
+                              </div>
+                              <div class="flex justify-end items-center"><i
+                                  class="icon-arrow-down text-12 ml-2 text-black-500 -rotate-90"></i></div>
+                            </div>
+                            <div *ngIf="(runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToBack[0]?.price) || (runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToLay[0]?.price) || (runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToBack[0]?.price) || (runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToLay[0]?.price)" (click)="openMatch(list.sportid,list.eventid,list.iscupWinner)" class="pb-2">
+                              <div [style.backgroundImage]="jsonWebdt?.imagesBottomBorderColor"
+                                class="h-24px flex justify-between items-center rounded-t-md bg-primary border-b border-solid border-white">
+                                <div [style.color]="jsonWebdt?.imagesPlayNowTextColor"
+                                  class="pl-2 w-9/12 flex items-center text-event-th border-r border-event-th-line leading-5">
+                                  <span class="pr-2 text-13 font-bold whitespace-nowrap">Match Odds</span><span
+                                    class="pr-1 text-10">Matched</span><span class="text-10 font-bold">{{
+                                    runnersList[list?.eventid]?.data?.[0]?.totalMatched ?? '--'
+                                    }}</span>
+                                </div>
+                                <div [style.color]="jsonWebdt?.imagesPlayNowTextColor"
+                                  class="w-4/12 grid gap-0.5 grid-cols-2 text-10 leading-4 text-event-th-option text-center">
+                                  <div class="min-w-min">Back</div>
+                                  <div class="min-w-min">Lay</div>
+                                </div>
+                              </div>
+                              <div class="relative">
+                                <div class="space-y-px">
+                                  <div class="match_odds_line">
+                                    <div class="flex justify-between bg-black-100">
+                                      <h2 class="px-2 w-9/12 flex flex-col justify-center break-all" (click)="openMatch(list.sportid,list.eventid,list.iscupWinner)">
+                                        {{list?.selectionnames.split(',')[0]}}
+                                        <!-- book -->
+                                         <ng-container *ngFor="let item of oddsPnlArray">
+                                          <div *ngIf="item?.eventid === list?.eventid" class="text-10 leading-normal flex" data-testid="forecast" bis_skin_checked="1"><span
+                                            class="flex items-center" [class]="item?.pnl1 > 0  ? 'text-success' : 'text-error'">
+                                            <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5" bis_skin_checked="1"></div>{{item?.pnl1 | number :'1.0-2'}}
+                                          </span>
+                                          <span *ngIf="beforeoddscal && eventidd == list?.eventid" class="flex items-center"
+                                          [class]="beforeoddsPnlArray[0] > 0  ? 'text-success' : 'text-error'">
+                                            <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{beforeoddsPnlArray[0] |
+                                            number :'1.0-2'}}
+                                          </span>
+                                          <span *ngIf="afteroddscal && eventidd == list?.eventid" class="flex items-center"
+                                            [class]="afteroddsPnlArray[0] > 0  ? 'text-success' : 'text-error'">
+                                              <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{afteroddsPnlArray[0] |
+                                              number :'1.0-2'}}
+                                            </span>
+                                        </div>
+                                        </ng-container>
+                                        <ng-container>
+                                          <span *ngIf="beforeoddscal && eventidd == list?.eventid" class="flex items-center"
+                                          [class]="beforeoddsPnlArray[0] > 0  ? 'text-success' : 'text-error'">
+                                            <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{beforeoddsPnlArray[0] |
+                                            number :'1.0-2'}}
+                                          </span>
+                                        </ng-container>
+                                      </h2>
+                                      <div class="w-4/12 relative grid gap-0.5 grid-cols-2">
+                                        <div data-v-c72443c8="" class="py-1.5 h-36px text-center rounded-md bg-back-300" [ngClass]="{'bg-bet-disabled': !(runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToBack[0]?.price)}"
+                                          title="BACK" (click)="$event.stopPropagation(); openOddBetPlace(0, 'back', [{isBack : true, selectionId : list?.selectionids?.split(',')?.[0], selectionName : list?.selectionnames.split(',')[0], odds : runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToBack[0]?.price, matchName : list.matchname, eventId : list?.eventid, sourceId : list?.eventid, sourceBetType : 'Odds', sportId : list?.sportid}], list)">
+                                          <h3 data-v-c72443c8="" class="text-15 pb-0.5">{{
+                                            runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToBack[0]?.price
+                                            ?? '--' }}</h3>
+                                          <p data-v-c72443c8="" class="text-9">
+                                            {{runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToBack[0]?.size
+                                            ?? '--' }}</p>
+                                        </div>
+                                        <div data-v-c72443c8="" class="py-1.5 h-36px text-center rounded-md bg-lay-300" [ngClass]="{'bg-bet-disabled': !(runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToLay[0]?.price)}"
+                                          title="LAY" (click)="$event.stopPropagation(); openOddBetPlace(0, 'lay', [{isBack : false, selectionId : list?.selectionids?.split(',')?.[0], selectionName : list?.selectionnames.split(',')[0], odds : runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToLay[0]?.price, matchName : list.matchname, eventId : list?.eventid, sourceId : list?.eventid, sourceBetType : 'Odds', sportId : list?.sportid}],list)">
+                                          <h3 data-v-c72443c8="" class="text-15 pb-0.5">{{
+                                            runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToLay[0]?.price
+                                            ?? '--'}}</h3>
+                                          <p data-v-c72443c8="" class="text-9">
+                                            {{runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToLay[0]?.size
+                                            ?? '--'}}</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <ng-container *ngFor="let item of oddsPnlArray">
+                                      <div *ngIf="item?.eventid === list?.eventid" class="flex w-full bg-black-100 bg-opacity-50 justify-end">
+                                        <div *ngIf="item?.avgBackOdds1 || item?.avgLayOdds1" class="relative text-10 average_odds_line flex w-[calc((100%-2rem)/3)]">
+                                          <div class="flex-1 bg-opacity-25 bg-back-300 rounded-b-3px leading-4 text-center my-1px">
+                                            {{(item?.avgBackOdds1?item.avgBackOdds1+1:'') | number :'1.0-2'}}
+                                          </div>
+                                          <div class="flex-1 bg-opacity-25 bg-lay-300 rounded-b-3px leading-4 text-center my-1px ml-1px">
+                                            {{(item?.avgLayOdds1?item.avgLayOdds1+1:'') | number :'1.0-2'}}
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </ng-container>
+                                  </div>
+
+                                  <div class="match_odds_line">
+                                    <div class="flex justify-between bg-black-100 rounded-b-md">
+                                      <h2 class="px-2 w-9/12 flex flex-col justify-center break-all" (click)="openMatch(list.sportid,list.eventid,list.iscupWinner)">
+                                        {{list?.selectionnames.split(',')[1]}}
+                                        <!-- book -->
+                                         <ng-container *ngFor="let item of oddsPnlArray">
+                                          <div *ngIf="item?.eventid === list?.eventid" class="text-10 leading-normal flex" data-testid="forecast" bis_skin_checked="1"><span
+                                            class="flex items-center" [class]="item?.pnl2 > 0  ? 'text-success' : 'text-error'">
+                                            <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5" bis_skin_checked="1"></div>{{item?.pnl2 | number :'1.0-2'}}
+                                          </span>
+                                           <span *ngIf="beforeoddscal && eventidd == list?.eventid" class="flex items-center"
+                                          [class]="beforeoddsPnlArray[1] > 0  ? 'text-success' : 'text-error'">
+                                            <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{beforeoddsPnlArray[1] |
+                                            number :'1.0-2'}}
+                                          </span>
+                                           <span *ngIf="afteroddscal && eventidd == list?.eventid" class="flex items-center"
+                                            [class]="afteroddsPnlArray[1] > 0  ? 'text-success' : 'text-error'">
+                                              <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{afteroddsPnlArray[1] |
+                                              number :'1.0-2'}}
+                                            </span>
+
+                                        </div>
+                                        </ng-container>
+                                        <ng-container>
+                                          <span *ngIf="beforeoddscal && eventidd == list?.eventid" class="flex items-center"
+                                          [class]="beforeoddsPnlArray[1] > 0  ? 'text-success' : 'text-error'">
+                                            <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{beforeoddsPnlArray[1] |
+                                            number :'1.0-2'}}
+                                          </span>
+                                        </ng-container>
+                                      </h2>
+                                      <div class="w-4/12 relative grid gap-0.5 grid-cols-2">
+                                        <div data-v-c72443c8="" class="py-1.5 h-36px text-center rounded-md bg-back-300" [ngClass]="{'bg-bet-disabled': !(runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToBack[0]?.price)}"
+                                          title="BACK" (click)="$event.stopPropagation(); openOddBetPlace(1, 'back', [{isBack : true, selectionId : list?.selectionids?.split(',')?.[1], selectionName : list?.selectionnames.split(',')[1], odds : runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToBack[0]?.price, matchName : list.matchname, eventId : list?.eventid, sourceId : list?.eventid, sourceBetType : 'Odds', sportId : list?.sportid}], list)">
+                                          <h3 data-v-c72443c8="" class="text-15 pb-0.5">
+                                            {{runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToBack[0]?.price
+                                            ?? '--'}}</h3>
+                                          <p data-v-c72443c8="" class="text-9">
+                                            {{runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToBack[0]?.size
+                                            ?? '--'}}</p>
+                                        </div>
+                                        <div data-v-c72443c8="" class="py-1.5 h-36px text-center rounded-md bg-lay-300" [ngClass]="{'bg-bet-disabled': !(runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToLay[0]?.price)}"
+                                          title="LAY" (click)="$event.stopPropagation(); openOddBetPlace(1, 'lay', [{isBack : false, selectionId : list?.selectionids?.split(',')?.[1], selectionName : list?.selectionnames.split(',')[1], odds : runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToLay[0]?.price, matchName : list.matchname, eventId : list?.eventid, sourceId : list?.eventid, sourceBetType : 'Odds', sportId : list?.sportid}], list)">
+                                          <h3 data-v-c72443c8="" class="text-15 pb-0.5">{{
+                                            runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToLay[0]?.price
+                                            ?? '--'}}</h3>
+                                          <p data-v-c72443c8="" class="text-9">
+                                            {{runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToLay[0]?.size
+                                            ?? '--'}}</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <ng-container *ngFor="let item of oddsPnlArray">
+                                      <div *ngIf="item?.eventid === list?.eventid" class="flex w-full bg-black-100 bg-opacity-50 justify-end">
+                                        <div *ngIf="item?.avgBackOdds2 || item?.avgLayOdds2" class="relative text-10 average_odds_line flex w-[calc((100%-2rem)/3)]">
+                                          <div class="flex-1 bg-opacity-25 bg-back-300 rounded-b-3px leading-4 text-center my-1px">
+                                            {{(item?.avgBackOdds2?item.avgBackOdds2+1:'') | number :'1.0-2'}}
+                                          </div>
+                                          <div class="flex-1 bg-opacity-25 bg-lay-300 rounded-b-3px leading-4 text-center my-1px ml-1px">
+                                            {{(item?.avgLayOdds2?item.avgLayOdds2+1:'') | number :'1.0-2'}}
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </ng-container>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <ng-template #anotherMatches>
+                  <div class="vue-recycle-scroller__item-view">
+                    <div data-index="0">
+                      <div data-v-a15b9f6f="" class="event-block-item-row grid justify-center items-center bg-white">
+                        <div data-v-a15b9f6f="">
+                          <div data-v-a15b9f6f=""
+                            class="animed-star -ml-2px w-8 mr-1 sm:mx-1 flex justify-center items-center">
+                            <div *ngIf="isLogin" (click)="addToMultimarket(list)" data-v-117db823=""
+                              class="w-8 h-6 flex justify-center items-center"
+                              style="--b64d5fc0: 0.51587987012987; --3cad14f0: -0.7929964566904356rem;">
+                              <div data-v-117db823=""
+                                [class]="list.multi?'fave bg-star-sprit-black-webp':'fave animate bg-star-sprit-black-webp'">
+                              </div>
+                            </div>
+                            <div *ngIf="!isLogin" routerLink="/login" data-v-117db823=""
+                              class="w-8 h-6 flex justify-center items-center"
+                              style="--b64d5fc0: 0.51587987012987; --3cad14f0: -0.7929964566904356rem;">
+                              <div data-v-117db823="" class="fave bg-star-sprit-black-webp"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div (click)="openMatch(list.sportid,list.eventid,list.iscupWinner)" data-v-a15b9f6f=""
+                          class="h-full flex justify-center items-start flex-col py-8px bg-white pr-3px text-13 leading-17px">
+                          <div data-v-a15b9f6f="" class="w-270px mb-px">
+                            <p data-v-a15b9f6f="" class="truncate">{{list.matchname}}</p>
+                          </div>
+                          <div data-v-a15b9f6f="" class="flex gap-2px justify-start items-center">
+                            <div *ngIf="activeTab==2" data-v-ef8204d4="" class="inline-flex items-center h-full">
+                              <div data-v-ef8204d4="" class="">
+                                <div data-v-ef8204d4="" class="time-block flex items-center justify-center leading-9px">
+                                  <span data-v-ef8204d4=""
+                                    class="text-submenu py-px text-center text-8 px-2px pb-0">Today
+                                    {{list.day|date:'HH:mm'}}</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div *ngIf="activeTab==3" data-v-ef8204d4="" class="inline-flex items-center h-full">
+                              <div data-v-ef8204d4="" class="">
+                                <div data-v-ef8204d4=""
+                                  class="time-block1 flex items-center justify-center leading-9px"><span
+                                    data-v-ef8204d4=""
+                                    class="text-submenu py-px text-center text-8 px-2px pb-0">Tomorrow
+                                    {{list.day|date:'HH:mm'}}</span></div>
+                              </div>
+                            </div>
+                            <div *ngIf="activeTab==1" data-v-ef8204d4="" class="inline-flex items-center h-full"
+                              data-is-inplay-type="true" data-is-today-type="false" data-is-tomorrow-type="false">
+                              <div data-v-ef8204d4="" class="">
+                                <div data-v-ef8204d4=""
+                                  class="px-3px flex items-center justify-center bg-inPlay text-white font-bold text-8 leading-9px">
+                                  <span data-v-ef8204d4="" class="mt-1px">In-Play</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="flex justify-center items-center gap-2px">
+                              <div *ngIf="activeTab==1" class="icon-live"><img src="/assets/images/live.svg"
+                                  alt="streaming" class="h-10px"></div>
+                              <div class="flex items-baseline"><img src="/assets/images/unmatched.svg" alt="unmatched"
+                                  class="h-10px"></div>
+                              <div class="icon-fancybet"><img src="/assets/images/fancybet.svg" alt="fancybet"
+                                  class="h-10px">
+                              </div>
+                              <div class="icon-bookmaker"><img src="/assets/images/bookmaker.svg" alt="bookmaker"
+                                  class="h-10px">
+                              </div>
+                            </div>
+                            <div>
+                              <p class="leading-10px text-10 text-black-600"> Matched <span
+                                  class="font-bold">{{list.matchedPte || 0.0}}</span></p>
+                            </div>
+
+                          </div>
+                        </div>
+                        <div data-v-a15b9f6f="" class="flex justify-end items-center"></div>
+                        <div data-v-a15b9f6f="" class="h-full flex justify-center items-center bg-white"><span
+                            data-v-a15b9f6f=""
+                            class="icon-arrow-left transform rotate-180 text-12 text-black-500"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="activeTabId==5 || activeTabId==2">
+      <div class="">
+        <div *ngIf="activeTabId==5 && tenndata?.length > 0" class="all-tab-title h-24 -mb-[3.14285714286rem]">
+          <div class="flex items-center p-2 py-9px">
+            <div class="w-1 h-5 bg-black ml-0.5 mr-3 rounded-sm"></div>
+            <div class="text-15 text-black font-bold leading-none flex-1">Tennis</div>
+            <div data-v-1d748b9c="" (click)="collapseItemTen()"
+              class="sort-Filter inline-flex items-center justify-center bg-white text-11 cursor-pointer shadow-all-button bg-opacity-50 py-5px w-58px rounded-4px text-black-700">
+              <span data-v-1d748b9c="" class="mr-1">ALL</span><i data-v-1d748b9c=""
+                [ngClass]="collapseItmTen ? 'transform rotate-180' : ''"
+                class="icon-arrow-double mt-px sm:mt-0 text-11 scale-75 transition-transform origin-center duration-300"></i>
+            </div>
+          </div>
+        </div>
+        <div *ngFor="let series of TenOrganizedData;let i=index;" class="px-2">
+          <div class="mb-2">
+            <div [ngClass]="expandedSections.has(i) ? 'rounded-b-none' : ''"
+              class="relative py-2 pr-12px pl-2 bg-secondary rounded-xl cursor-pointer transition-all duration-300 rounded-t-xl">
+              <h1 class="flex justify-start items-center text-base font-normal" (click)="collapseDetailsTen(i)"><span
+                  class="w-27px h-5 p-1.5 mr-1 flex justify-center items-center rounded-[1.25rem] text-11 font-bold text-event-tab-num bg-event-tab-bg flex-shrink-0"
+                  [style.backgroundImage]="jsonWebdt?.imagesBottomBorderColor"
+                  [style.color]="jsonWebdt?.imagesPlayNowTextColor">{{
+                  series.matches.length }}</span>
+                <span class="text-event-tab break-words mr-2" >{{series.seriesname}}</span>
+                <span [ngClass]="expandedSectionsTen.has(i) ? 'transform rotate-180' : ''"
+                  class="icon-arrow-down-sencodary flex items-center text-12 h-21px ml-auto transition-transform origin-center duration-300 text-event-tab-icon "></span>
+              </h1>
+            </div>
+            <ng-container *ngIf="expandedSectionsTen.has(i)">
+              <ng-container *ngFor="let list of series.matches let k = index">
+                <div *ngIf="list.matchType == 'normal' && list.b1 !== undefined && list.isPriority !== undefined && list.isPriority === true else anotherMatches"
+                  class="bg-white overflow-hidden rounded-b-lg">
+                  <div class="vue-recycle-scroller ready page-mode direction-vertical">
+                    <div class="vue-recycle-scroller__slot"></div>
+                    <div class="vue-recycle-scroller__item-wrapper" [ngStyle]="(runnersList[list?.eventid]?.data?.[0]?.runners?.[0]?.ex?.availableToBack?.[0]?.price ||
+                                                                                  runnersList[list?.eventid]?.data?.[0]?.runners?.[0]?.ex?.availableToLay?.[0]?.price ||
+                                                                                  runnersList[list?.eventid]?.data?.[0]?.runners?.[1]?.ex?.availableToBack?.[0]?.price ||
+                                                                                  runnersList[list?.eventid]?.data?.[0]?.runners?.[1]?.ex?.availableToLay?.[0]?.price
+                                                                                ) ? { 'min-height': '180px' } : {}">
+                      <div class="vue-recycle-scroller__item-view" style="transform: translateY(0px) translateX(0px);">
+                        <div data-index="33882310">
+                          <div class="px-2 border-t border-solid border-black-100">
+                            <div
+                              class="competition-main-row grid justify-center items-center gap-1 leading-17px py-10px">
+                              <div class="w-full h-full flex justify-center items-center -ml-1 scale-110">
+                                <div *ngIf="isLogin" (click)="addToMultimarket(list)" data-v-117db823=""
+                                  class="w-8 h-6 flex justify-center items-center"
+                                  style="--b64d5fc0: 0.51587987012987; --3cad14f0: -0.7929964566904356rem;">
+                                  <div data-v-117db823=""
+                                    [class]="list.multi?'fave bg-star-sprit-black-webp':'fave animate bg-star-sprit-black-webp'">
+                                  </div>
+                                </div>
+                                <div *ngIf="!isLogin" routerLink="/login" data-v-117db823=""
+                                  class="w-8 h-6 flex justify-center items-center"
+                                  style="--b64d5fc0: 0.51587987012987; --3cad14f0: -0.7929964566904356rem;">
+                                  <div data-v-117db823="" class="fave bg-star-sprit-black-webp"></div>
+                                </div>
+                              </div>
+                              <div (click)="openMatch(list.sportid,list.eventid,list.iscupWinner)"
+                                class="flex flex-col -ml-0.5">
+                                <div class="flex gap-2px justify-start items-center">
+                                  <div class="flex justify-center items-center gap-2px">
+                                    <div *ngIf="activeTab==1" class="icon-live"><img src="/assets/images/live.svg"
+                                        alt="streaming" class="h-10px"></div>
+                                    <div class="icon-fancybet"><img src="/assets/images/fancybet.svg" alt="fancybet"
+                                        class="h-10px"></div>
+                                    <div class="icon-bookmaker"><img src="/assets/images/bookmaker.svg" alt="bookmaker"
+                                        class="h-10px"></div>
+                                  </div>
+                                  <div *ngIf="activeTab==1" data-v-ef8204d4="" class="inline-flex items-center h-full"
+                                    data-is-inplay-type="true" data-is-today-type="false" data-is-tomorrow-type="false">
+                                    <div data-v-ef8204d4="" class="">
+                                      <div data-v-ef8204d4=""
+                                        class="px-3px flex items-center justify-center bg-inPlay text-white font-bold text-8 leading-9px">
+                                        <span data-v-ef8204d4="" class="mt-1px">In-Play</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div *ngIf="activeTab==2" data-v-ef8204d4="" class="inline-flex items-center h-full">
+                                    <div data-v-ef8204d4="" class="">
+                                      <div data-v-ef8204d4=""
+                                        class="time-block flex items-center justify-center leading-9px">
+                                        <span data-v-ef8204d4=""
+                                          class="text-submenu py-px text-center text-8 px-2px pb-0">Today
+                                          {{list.day|date:'HH:mm'}}</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div *ngIf="activeTab==3" data-v-ef8204d4="" class="inline-flex items-center h-full">
+                                    <div data-v-ef8204d4="" class="">
+                                      <div data-v-ef8204d4=""
+                                        class="time-block1 flex items-center justify-center leading-9px"><span
+                                          data-v-ef8204d4=""
+                                          class="text-submenu py-px text-center text-8 px-2px pb-0">Tomorrow
+                                          {{list.day|date:'HH:mm'}}</span></div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <p class="text-black leading-16px text-13 break-all">{{list.matchname}}</p>
+                              </div>
+                              <div class="flex justify-end items-center"><i
+                                  class="icon-arrow-down text-12 ml-2 text-black-500 -rotate-90"></i></div>
+                            </div>
+                            <div *ngIf="(runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToBack[0]?.price) || (runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToLay[0]?.price) || (runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToBack[0]?.price) || (runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToLay[0]?.price)" (click)="openMatch(list.sportid,list.eventid,list.iscupWinner)" class="pb-2">
+                              <div [style.backgroundImage]="jsonWebdt?.imagesBottomBorderColor"
+                                class="h-24px flex justify-between items-center rounded-t-md bg-primary border-b border-solid border-white">
+                                <div [style.color]="jsonWebdt?.imagesPlayNowTextColor"
+                                  class="pl-2 w-9/12 flex items-center text-event-th border-r border-event-th-line leading-5">
+                                  <span class="pr-2 text-13 font-bold whitespace-nowrap">Match Odds</span><span
+                                    class="pr-1 text-10">Matched</span><span class="text-10 font-bold">{{
+                                    runnersList[list?.eventid]?.data?.[0]?.totalMatched ?? '--'
+                                    }}</span>
+                                </div>
+                                <div [style.color]="jsonWebdt?.imagesPlayNowTextColor"
+                                  class="w-4/12 grid gap-0.5 grid-cols-2 text-10 leading-4 text-event-th-option text-center">
+                                  <div class="min-w-min">Back</div>
+                                  <div class="min-w-min">Lay</div>
+                                </div>
+                              </div>
+                              <div class="relative">
+                                <div class="space-y-px">
+                                  <div class="match_odds_line">
+                                    <div class="flex justify-between bg-black-100">
+                                      <h2 class="px-2 w-9/12 flex flex-col justify-center break-all" (click)="openMatch(list.sportid,list.eventid,list.iscupWinner)">
+                                        {{list?.selectionnames.split(',')[0]}}
+                                        <!-- book -->
+                                         <ng-container *ngFor="let item of oddsPnlArray">
+                                          <div *ngIf="item?.eventid === list?.eventid" class="text-10 leading-normal flex" data-testid="forecast" bis_skin_checked="1"><span
+                                            class="flex items-center" [class]="item?.pnl1 > 0  ? 'text-success' : 'text-error'">
+                                            <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5" bis_skin_checked="1"></div>{{item?.pnl1 | number :'1.0-2'}}
+                                          </span>
+                                          <span *ngIf="beforeoddscal && eventidd == list?.eventid" class="flex items-center"
+                                          [class]="beforeoddsPnlArray[0] > 0  ? 'text-success' : 'text-error'">
+                                            <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{beforeoddsPnlArray[0] |
+                                            number :'1.0-2'}}
+                                          </span>
+                                          <span *ngIf="afteroddscal && eventidd == list?.eventid" class="flex items-center"
+                                            [class]="afteroddsPnlArray[0] > 0  ? 'text-success' : 'text-error'">
+                                              <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{afteroddsPnlArray[0] |
+                                              number :'1.0-2'}}
+                                            </span>
+                                        </div>
+                                        </ng-container>
+                                        <ng-container>
+                                          <span *ngIf="beforeoddscal && eventidd == list?.eventid" class="flex items-center"
+                                          [class]="beforeoddsPnlArray[0] > 0  ? 'text-success' : 'text-error'">
+                                            <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{beforeoddsPnlArray[0] |
+                                            number :'1.0-2'}}
+                                          </span>
+                                        </ng-container>
+                                      </h2>
+                                      <div class="w-4/12 relative grid gap-0.5 grid-cols-2">
+                                        <div data-v-c72443c8="" class="py-1.5 h-36px text-center rounded-md bg-back-300" [class]="!runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToBack[0]?.price ? 'bg-bet-disabled' : ''"
+                                          title="BACK" (click)="$event.stopPropagation(); openOddBetPlace(0, 'back', [{isBack : true, selectionId : list?.selectionids?.split(',')?.[0], selectionName : list?.selectionnames.split(',')[0], odds : runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToBack[0]?.price, matchName : list.matchname, eventId : list?.eventid, sourceId : list?.eventid, sourceBetType : 'Odds', sportId : list?.sportid}], list)">
+                                          <h3 data-v-c72443c8="" class="text-15 pb-0.5">{{
+                                            runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToBack[0]?.price
+                                            ?? '--' }}</h3>
+                                          <p data-v-c72443c8="" class="text-9">
+                                            {{runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToBack[0]?.size
+                                            ?? '--' }}</p>
+                                        </div>
+                                        <div data-v-c72443c8="" class="py-1.5 h-36px text-center rounded-md bg-lay-300" [ngClass]="{'bg-bet-disabled': !(runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToLay[0]?.price)}"
+                                          title="LAY" (click)="$event.stopPropagation(); openOddBetPlace(0, 'lay', [{isBack : false, selectionId : list?.selectionids?.split(',')?.[0], selectionName : list?.selectionnames.split(',')[0], odds : runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToLay[0]?.price, matchName : list.matchname, eventId : list?.eventid, sourceId : list?.eventid, sourceBetType : 'Odds', sportId : list?.sportid}],list)">
+                                          <h3 data-v-c72443c8="" class="text-15 pb-0.5">{{
+                                            runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToLay[0]?.price
+                                            ?? '--'}}</h3>
+                                          <p data-v-c72443c8="" class="text-9">
+                                            {{runnersList[list?.eventid]?.data?.[0]?.runners?.[0].ex?.availableToLay[0]?.size
+                                            ?? '--'}}</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <ng-container *ngFor="let item of oddsPnlArray">
+                                      <div *ngIf="item?.eventid === list?.eventid" class="flex w-full bg-black-100 bg-opacity-50 justify-end">
+                                        <div *ngIf="item?.avgBackOdds1 || item?.avgLayOdds1" class="relative text-10 average_odds_line flex w-[calc((100%-2rem)/3)]">
+                                          <div class="flex-1 bg-opacity-25 bg-back-300 rounded-b-3px leading-4 text-center my-1px">
+                                            {{(item?.avgBackOdds1?item.avgBackOdds1+1:'') | number :'1.0-2'}}
+                                          </div>
+                                          <div class="flex-1 bg-opacity-25 bg-lay-300 rounded-b-3px leading-4 text-center my-1px ml-1px">
+                                            {{(item?.avgLayOdds1?item.avgLayOdds1+1:'') | number :'1.0-2'}}
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </ng-container>
+                                  </div>
+
+                                  <div class="match_odds_line">
+                                    <div class="flex justify-between bg-black-100 rounded-b-md">
+                                      <h2 class="px-2 w-9/12 flex flex-col justify-center break-all" (click)="openMatch(list.sportid,list.eventid,list.iscupWinner)">
+                                        {{list?.selectionnames.split(',')[1]}}
+                                        <!-- book -->
+                                         <ng-container *ngFor="let item of oddsPnlArray">
+                                          <div *ngIf="item?.eventid === list?.eventid" class="text-10 leading-normal flex" data-testid="forecast" bis_skin_checked="1"><span
+                                            class="flex items-center" [class]="item?.pnl2 > 0  ? 'text-success' : 'text-error'">
+                                            <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5" bis_skin_checked="1"></div>{{item?.pnl2 | number :'1.0-2'}}
+                                          </span>
+                                           <span *ngIf="beforeoddscal && eventidd == list?.eventid" class="flex items-center"
+                                          [class]="beforeoddsPnlArray[1] > 0  ? 'text-success' : 'text-error'">
+                                            <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{beforeoddsPnlArray[1] |
+                                            number :'1.0-2'}}
+                                          </span>
+                                           <span *ngIf="afteroddscal && eventidd == list?.eventid" class="flex items-center"
+                                            [class]="afteroddsPnlArray[1] > 0  ? 'text-success' : 'text-error'">
+                                              <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{afteroddsPnlArray[1] |
+                                              number :'1.0-2'}}
+                                            </span>
+
+                                        </div>
+                                        </ng-container>
+                                        <ng-container>
+                                          <span *ngIf="beforeoddscal && eventidd == list?.eventid" class="flex items-center"
+                                          [class]="beforeoddsPnlArray[1] > 0  ? 'text-success' : 'text-error'">
+                                            <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{beforeoddsPnlArray[1] |
+                                            number :'1.0-2'}}
+                                          </span>
+                                        </ng-container>
+                                      </h2>
+                                      <div class="w-4/12 relative grid gap-0.5 grid-cols-2">
+                                        <div data-v-c72443c8="" class="py-1.5 h-36px text-center rounded-md bg-back-300" [ngClass]="{'bg-bet-disabled': !(runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToBack[0]?.price)}"
+                                          title="BACK" (click)="$event.stopPropagation(); openOddBetPlace(1, 'back', [{isBack : true, selectionId : list?.selectionids?.split(',')?.[1], selectionName : list?.selectionnames.split(',')[1], odds : runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToBack[0]?.price, matchName : list.matchname, eventId : list?.eventid, sourceId : list?.eventid, sourceBetType : 'Odds', sportId : list?.sportid}], list)">
+                                          <h3 data-v-c72443c8="" class="text-15 pb-0.5">
+                                            {{runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToBack[0]?.price
+                                            ?? '--'}}</h3>
+                                          <p data-v-c72443c8="" class="text-9">
+                                            {{runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToBack[0]?.size
+                                            ?? '--'}}</p>
+                                        </div>
+                                        <div data-v-c72443c8="" class="py-1.5 h-36px text-center rounded-md bg-lay-300" [ngClass]="{'bg-bet-disabled': !(runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToLay[0]?.price)}"
+                                          title="LAY" (click)="$event.stopPropagation(); openOddBetPlace(1, 'lay', [{isBack : false, selectionId : list?.selectionids?.split(',')?.[1], selectionName : list?.selectionnames.split(',')[1], odds : runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToLay[0]?.price, matchName : list.matchname, eventId : list?.eventid, sourceId : list?.eventid, sourceBetType : 'Odds', sportId : list?.sportid}], list)">
+                                          <h3 data-v-c72443c8="" class="text-15 pb-0.5">{{
+                                            runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToLay[0]?.price
+                                            ?? '--'}}</h3>
+                                          <p data-v-c72443c8="" class="text-9">
+                                            {{runnersList[list?.eventid]?.data?.[0]?.runners?.[1].ex?.availableToLay[0]?.size
+                                            ?? '--'}}</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <ng-container *ngFor="let item of oddsPnlArray">
+                                      <div *ngIf="item?.eventid === list?.eventid" class="flex w-full bg-black-100 bg-opacity-50 justify-end">
+                                        <div *ngIf="item?.avgBackOdds2 || item?.avgLayOdds2" class="relative text-10 average_odds_line flex w-[calc((100%-2rem)/3)]">
+                                          <div class="flex-1 bg-opacity-25 bg-back-300 rounded-b-3px leading-4 text-center my-1px">
+                                            {{(item?.avgBackOdds2?item.avgBackOdds2+1:'') | number :'1.0-2'}}
+                                          </div>
+                                          <div class="flex-1 bg-opacity-25 bg-lay-300 rounded-b-3px leading-4 text-center my-1px ml-1px">
+                                            {{(item?.avgLayOdds2?item.avgLayOdds2+1:'') | number :'1.0-2'}}
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </ng-container>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <ng-template #anotherMatches>
+                  <div class="vue-recycle-scroller__item-view">
+                    <div data-index="0">
+                      <div data-v-a15b9f6f="" class="event-block-item-row grid justify-center items-center bg-white">
+                        <div data-v-a15b9f6f="">
+                          <div data-v-a15b9f6f=""
+                            class="animed-star -ml-2px w-8 mr-1 sm:mx-1 flex justify-center items-center">
+                            <div *ngIf="isLogin" (click)="addToMultimarket(list)" data-v-117db823=""
+                              class="w-8 h-6 flex justify-center items-center"
+                              style="--b64d5fc0: 0.51587987012987; --3cad14f0: -0.7929964566904356rem;">
+                              <div data-v-117db823=""
+                                [class]="list.multi?'fave bg-star-sprit-black-webp':'fave animate bg-star-sprit-black-webp'">
+                              </div>
+                            </div>
+                            <div *ngIf="!isLogin" routerLink="/login" data-v-117db823=""
+                              class="w-8 h-6 flex justify-center items-center"
+                              style="--b64d5fc0: 0.51587987012987; --3cad14f0: -0.7929964566904356rem;">
+                              <div data-v-117db823="" class="fave bg-star-sprit-black-webp"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div (click)="openMatch(list.sportid,list.eventid,list.iscupWinner)" data-v-a15b9f6f=""
+                          class="h-full flex justify-center items-start flex-col py-8px bg-white pr-3px text-13 leading-17px">
+                          <div data-v-a15b9f6f="" class="w-270px mb-px">
+                            <p data-v-a15b9f6f="" class="truncate">{{list.matchname}}</p>
+                          </div>
+                          <div data-v-a15b9f6f="" class="flex gap-2px justify-start items-center">
+                            <div *ngIf="activeTab==2" data-v-ef8204d4="" class="inline-flex items-center h-full">
+                              <div data-v-ef8204d4="" class="">
+                                <div data-v-ef8204d4="" class="time-block flex items-center justify-center leading-9px">
+                                  <span data-v-ef8204d4=""
+                                    class="text-submenu py-px text-center text-8 px-2px pb-0">Today
+                                    {{list.day|date:'HH:mm'}}</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div *ngIf="activeTab==3" data-v-ef8204d4="" class="inline-flex items-center h-full">
+                              <div data-v-ef8204d4="" class="">
+                                <div data-v-ef8204d4=""
+                                  class="time-block1 flex items-center justify-center leading-9px"><span
+                                    data-v-ef8204d4=""
+                                    class="text-submenu py-px text-center text-8 px-2px pb-0">Tomorrow
+                                    {{list.day|date:'HH:mm'}}</span></div>
+                              </div>
+                            </div>
+                            <div *ngIf="activeTab==1" data-v-ef8204d4="" class="inline-flex items-center h-full"
+                              data-is-inplay-type="true" data-is-today-type="false" data-is-tomorrow-type="false">
+                              <div data-v-ef8204d4="" class="">
+                                <div data-v-ef8204d4=""
+                                  class="px-3px flex items-center justify-center bg-inPlay text-white font-bold text-8 leading-9px">
+                                  <span data-v-ef8204d4="" class="mt-1px">In-Play</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="flex justify-center items-center gap-2px">
+                              <div *ngIf="activeTab==1" class="icon-live"><img src="/assets/images/live.svg"
+                                  alt="streaming" class="h-10px"></div>
+                              <div class="flex items-baseline"><img src="/assets/images/unmatched.svg" alt="unmatched"
+                                  class="h-10px"></div>
+                              <div class="icon-fancybet"><img src="/assets/images/fancybet.svg" alt="fancybet"
+                                  class="h-10px">
+                              </div>
+                              <div class="icon-bookmaker"><img src="/assets/images/bookmaker.svg" alt="bookmaker"
+                                  class="h-10px">
+                              </div>
+                            </div>
+                            <div>
+                              <p class="leading-10px text-10 text-black-600"> Matched <span
+                                  class="font-bold">{{list.matchedPte || 0.0}}</span></p>
+                            </div>
+
+                          </div>
+                        </div>
+                        <div data-v-a15b9f6f="" class="flex justify-end items-center"></div>
+                        <div data-v-a15b9f6f="" class="h-full flex justify-center items-center bg-white"><span
+                            data-v-a15b9f6f=""
+                            class="icon-arrow-left transform rotate-180 text-12 text-black-500"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+
+  </div>
+
+
+  <div *ngIf="changestabs==='by Matched' && this.activeTab!==4">
+    <div class="flex justify-center items-center py-48 ng-star-inserted">
+      <div class="pt-6 px-7 pb-5 bg-white text-center text-black-700 text-base rounded-xl leading-tight">
+        <div class="icon-empty text-40 text-black-300 m-auto mb-2.5">
+        </div>
+        <div>No Event</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab content section -->
+  <div class="tab-content">
+    <!-- Cricket -->
+    <ng-container *ngIf="activeTabId == 4">
+      <ng-container *ngIf="cricdata?.length; else noEvent"></ng-container>
+    </ng-container>
+
+    <!-- Soccer -->
+    <ng-container *ngIf="activeTabId == 1">
+      <ng-container *ngIf="soccdata?.length; else noEvent"></ng-container>
+    </ng-container>
+
+    <!-- Tennis -->
+    <ng-container *ngIf="activeTabId == 2">
+      <ng-container *ngIf="tenndata?.length; else noEvent"></ng-container>
+    </ng-container>
+
+    <!-- All -->
+    <ng-container *ngIf="activeTabId == 5">
+      <ng-container *ngIf="gameList?.length; else noEvent"></ng-container>
+    </ng-container>
+  </div>
+
+  <!-- Common noEvent template -->
+  <ng-template #noEvent>
+    <div class="flex justify-center items-center py-48">
+      <div class="pt-6 px-7 pb-5 bg-white text-center text-black-700 text-base rounded-xl leading-tight">
+        <div class="icon-empty text-40 text-black-300 m-auto mb-2.5"></div>
+        <div>No Event</div>
+      </div>
+    </div>
+  </ng-template>
+
+  <div class="p-2" *ngIf="this.activeTab==4">
+    <div data-v-a64e32ba="" class="px-3px mb-2 rounded-lg bg-white" *ngFor="let item of activeMarkets; let i=index">
+      <div data-v-a64e32ba="" class="py-9px pl-2 relative">
+        <div data-v-a64e32ba="" class="sub-row grid justify-between items-center">
+          <h2 data-v-a64e32ba="" class="leading-tight text-13 break-all">{{item.matchName}}</h2>
+          <div data-v-a64e32ba="" class="flex items-center ml-auto">
+            <div data-v-a64e32ba="" class="flex items-center pr-1">
+              <i data-v-a64e32ba="" class="icon-arrow-down text-12 ml-2 text-black-500 -rotate-90"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-v-a64e32ba="">
+        <div class="pb-1">
+          <div
+            class="relative py-1.5 pr-9 pl-2 text-sm text-primary bg-primary rounded-lg cursor-pointer transition-all duration-300 rounded-t-lg rounded-b-none">
+            <div class="flex justify-start items-center text-base text-market-name font-normal">
+              <div class="-ml-2.5 pt-px mb-3px" (click)="addToMultimarket1(item.matchid)">
+                <div data-v-117db823="" class="w-8 h-6 flex justify-center items-center"
+                  style="--b64d5fc0: 0.51587987012987; --3cad14f0: -0.7929964566904356rem;">
+                  <div data-v-117db823="" class="fave animate bg-star-sprit-white-webp"></div>
+                </div>
+              </div>
+              <div>
+                <span class="pr-2 whitespace-nowrap">Match Odds</span><span
+                  class="pr-1 text-10 text-market-slideTab-tip">Matched</span><span
+                  class="text-10 font-bold text-market-slideTab-tip">20,635,819</span><span (click)="onExpand(i)"
+                  [ngClass]="expand==i?'transform rotate-180':''"
+                  class="icon-arrow-down-sencodary absolute right-4 top-3 text-12 text-market-name transition-transform origin-center duration-300 "></span>
+              </div>
+            </div>
+          </div>
+          <div class="pt-2 bg-white rounded-bl-lg rounded-br-lg" *ngIf="expand==i">
+            <div class="mt-3px mb-1 flex justify-between items-center">
+              <div class="w-9/12"></div>
+              <div class="w-4/12 grid gap-0.5 grid-cols-2">
+                <div class="min-w-min text-10 text-global-font-on-light text-center">Back</div>
+                <div class="min-w-min text-10 text-global-font-on-light text-center">Lay</div>
+              </div>
+            </div>
+            <div class="relative">
+              <div class="space-y-px">
+                <div>
+                  <div class="flex justify-between bg-black-100">
+                    <h2 class="px-2 w-9/12 flex flex-col justify-center text-13 break-all">
+                      {{item?.selectionIdName.split(',')[0]}} <div class="text-10 leading-normal flex"
+                        data-testid="forecast"><span class="text-error"></span></div>
+                    </h2>
+                    <div class="w-4/12 relative grid gap-0.5 grid-cols-2">
+                      <div data-v-c72443c8="" class="py-1.5 h-36px text-center rounded-md bg-back-300 rounded-b-none"
+                        title="BACK">
+                        <h3 data-v-c72443c8="" class="text-15 pb-0.5">--</h3>
+                        <p data-v-c72443c8="" class="text-9">--</p>
+                      </div>
+                      <div data-v-c72443c8=""
+                        class="py-1.5 h-36px text-center rounded-md bg-lay-300 rounded-b-none animate-spark-lay"
+                        title="LAY">
+                        <h3 data-v-c72443c8="" class="text-15 pb-0.5">--</h3>
+                        <p data-v-c72443c8="" class="text-9">--</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between bg-black-100">
+                    <h2 class="px-2 w-9/12 flex flex-col justify-center text-13 break-all">
+                      {{item?.selectionIdName.split(',')[1]}} <div class="text-10 leading-normal flex"
+                        data-testid="forecast"><span class="text-success"></span></div>
+                    </h2>
+                    <div class="w-4/12 relative grid gap-0.5 grid-cols-2">
+                      <div data-v-c72443c8=""
+                        class="py-1.5 h-36px text-center rounded-md bg-back-300 animate-spark-back" title="BACK">
+                        <h3 data-v-c72443c8="" class="text-15 pb-0.5">--</h3>
+                        <p data-v-c72443c8="" class="text-9">--</p>
+                      </div>
+                      <div data-v-c72443c8="" class="py-1.5 h-36px text-center rounded-md bg-lay-300 animate-spark-lay"
+                        title="LAY">
+                        <h3 data-v-c72443c8="" class="text-15 pb-0.5">--</h3>
+                        <p data-v-c72443c8="" class="text-9">--</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="pt-1 flex justify-between items-center">
+              <div
+                class="inline-flex justify-center items-center rounded bg-secondary text-global-font-on-dark px-3px py-1.5">
+                <i class="pl-3px pr-0.5 icon-graph"></i><span class="px-3px text-11"> Market Depth </span>
+              </div>
+              <div class="flex items-center text-black-600" data-testid="betLimit"><i
+                  class="icon-min-max px-1 mt-0.5 text-14"></i><span class="px-0.5 text-11">min/max</span><span
+                  class="px-1 text-11 font-bold">1/500</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="activeMarkets.length===0">
+      <div class="flex justify-center items-center py-48">
+        <div class="pt-6 px-7 pb-5 bg-white text-center text-black-700 text-base rounded-xl leading-tight">
+          <div alt="" class="icon-empty text-40 text-black-300 m-auto mb-2.5"></div>
+          <div>No Event</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-container *ngIf="activeTabId===5">
+    <div *ngIf="CricOrganizedData?.length===0 && SocOrganizedData?.length===0 && TenOrganizedData?.length===0">
+      <div class="flex justify-center items-center py-48">
+        <div class="pt-6 px-7 pb-5 bg-white text-center text-black-700 text-base rounded-xl leading-tight">
+          <div alt="" class="icon-empty text-40 text-black-300 m-auto mb-2.5"></div>
+          <div>No Event</div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="activeTab===1">
+    <ng-container *ngIf="activeTabId=== 4 || activeTabId===1|| activeTabId===2">
+      <div *ngIf="CricOrganizedData?.length===0 || SocOrganizedData?.length===0 || TenOrganizedData?.length===0">
+        <div class="flex justify-center items-center py-48">
+          <div class="pt-6 px-7 pb-5 bg-white text-center text-black-700 text-base rounded-xl leading-tight">
+            <div alt="" class="icon-empty text-40 text-black-300 m-auto mb-2.5"></div>
+            <div>No Event</div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+  <!-- <ng-container *ngIf="activeTabId==5 || activeTabId==4"></ng-container>
+  <ng-container *ngIf="activeTabId==5 || activeTabId==1"></ng-container>
+  <ng-container *ngIf="activeTabId==5 || activeTabId==2"></ng-container> -->
+  <!-- <div *ngIf="tenndata?.length===0 ||cricdata?.length===0||soccdata?.length===0">
+    <div class="flex justify-center items-center py-48">
+      <div class="pt-6 px-7 pb-5 bg-white text-center text-black-700 text-base rounded-xl leading-tight">
+        <div alt="" class="icon-empty text-40 text-black-300 m-auto mb-2.5"></div>
+        <div>No Event</div>
+      </div>
+    </div>
+  </div> -->
+
+  <app-main-footer></app-main-footer>
+
+</div>
+
+<div *ngIf="loading">
+  <app-loader></app-loader>
+</div>
+
+
+<!-- <main class="min-h-full-with-header-footer">
+  <section class="search fixed top-40px w-full h-full-with-header-footer z-20 bg-black-100 overflow-hidden"
+  *ngIf="onsearch">
+  <header class="sticky top-0 z-10">
+    <div class="h-12 p-3 bg-secondary text-global-font-on-dark text-14 flex items-center justify-center">
+      <input [(ngModel)]="searchQuery" (input)="searchGames()" id="search" name="search" autocomplete="off"
+        type="string" class="effect-20 relative w-full h-40px px-2 z-10 bg-white bg-opacity-0 caret-primary"
+        placeholder="Search teams, competitions, and more...">
+      <span class="icon-close text-14" (click)="search()"></span>
+    </div>
+  </header>
+  <div class="sticky top-12 z-10">
+    <section data-v-750158bc="" class="h-44px bg-submenu flex items-center" style="display: none;">
+      <ul data-v-750158bc="" class="sport-type-filter-ul px-2 space-x-2 flex flex-nowrap overflow-x-scroll"></ul>
+    </section>
+  </div>
+  <div id="searchContainer" class="h-full pb-82px overflow-y-scroll">
+    <div>
+      <section class="py-11px px-4">
+        <div class="bg-white rounded-xl text-black text-15 leading-tight divide-y divide-black-300">
+          <div *ngFor="let game of filteredGameList" class="flex py-2 pl-4 pr-2 justify-between items-center">
+            <div class="w-225px">
+              <div>
+                <div class="text-13 leading-17px"><span>{{ game.matchname }}</span><span
+                    class="text-10 text-center mx-1">-</span><span></span></div>
+              </div>
+            </div>
+            <div class="flex justify-end items-center" (click)="openMatch(game.sportid,game.eventid,game.iscupWinner)">
+              <i class="icon-arrow-left transform rotate-180 text-12 text-black-500"></i></div>
+          </div>
+          <div *ngIf="filteredGameList.length==0" class="flex justify-center items-center py-48">
+            <div class="pt-6 px-7 pb-5 bg-white text-center text-black-700 text-base rounded-xl leading-tight">
+              <div alt="" class="icon-empty text-40 text-black-300 m-auto mb-2.5"></div>
+              <div>No Event</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+</main> -->
+<!-- bet error success message -->
+<div data-v-f43ca18c="" *ngIf="showBetMsg">
+  <div class="absolute left-0 top-0 w-full h-full z-50" data-testid="toast-overlay"></div>
+  <div class="w-full">
+    <div class="fixed bottom-0 z-50 w-full space-y-2.5" currencyalias="PKU">
+      <div>
+        <div class="text-center flex rounded-t-2xl justify-center p-1 "
+          [ngClass]="betsuccessstatus ? 'bg-success' : 'bg-error'" data-testid="toast-container">
+          <div class="w-full">
+            <div class="flex justify-center items-center text-global-font-on-dark font-bold py-2 mb-1"><i
+                class="text-global-font-on-dark text-16 icon-notice" data-testid="toast-icon-title"></i>
+              <h4 class="ml-1 leading-none" data-testid="toast-title">{{betSuccess[3].type === 'error' ? 'Error' : betSuccess[3].message}}</h4>
+              <div (click)="closeBet()" class="icon-close absolute right-5 text-14" data-testid="toast-btn-close-toast"></div>
+            </div>
+            <div class="px-2 py-4 rounded-lg bg-white bg-opacity-87 text-13 text-global-font-on-light"
+              data-testid="toast-content">
+              <p style="text-align:left" *ngIf="betSuccess[3].type === 'error'">{{betSuccess[3].message}}</p>
+              <p id="info" *ngIf="betSuccess[3].type !== 'error'" style="text-align:left">
+                <span id="sideType" [class]="betSuccess[1].isBack ? 'back' : 'lay'">{{betSuccess[1].isBack ? 'Back' :
+                  'Lay'}}</span>
+                <strong id="selectionName">{{betSuccess[1].selectionName}}</strong> <strong id="stake"> {{betSuccess[2]}}</strong>
+                at odds <strong id="odds">{{betSuccess[1].odds}}</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-bet-place *ngIf="showOdd == 0 && backTrue == true" [clsClr]="classclrforlayBack" [data]="oddPrice"
+  [updOddsBack]="runnersList[eventidd]?.data?.[0]?.runners?.[0].ex?.availableToBack[0]?.price"
+  [updOddsLay]="runnersList[eventidd]?.data?.[0]?.runners?.[0].ex?.availableToLay[0]?.price" [socketEventData]="socketEventOdds[eventidd]"
+  [isInplay]="inplaystatus" [totalMatched]="runnersList[eventidd]?.data?.[0]?.totalMatched" (stopTimer)="stopTimeout($event)" (betResult)="getOddsCalculation($event)"
+  style="position: absolute;z-index: 99999;left:0%;"></app-bet-place>
+<app-bet-place *ngIf="showOdd == 0 && backTrue == false" [clsClr]="classclrforlayBack" [data]="oddPrice"
+  [updOddsBack]="runnersList[eventidd]?.data?.[0]?.runners?.[0].ex?.availableToBack[0]?.price"
+  [updOddsLay]="runnersList[eventidd]?.data?.[0]?.runners?.[0].ex?.availableToLay[0]?.price" [socketEventData]="socketEventOdds[eventidd]"
+  [isInplay]="inplaystatus" [totalMatched]="runnersList[eventidd]?.data?.[0]?.totalMatched" (stopTimer)="stopTimeout($event)" (betResult)="getOddsCalculation($event)"
+  style="position: absolute;z-index: 99999;left:0%;"></app-bet-place>
+<app-bet-place *ngIf="showOdd == 1 && backTrue == true" [clsClr]="classclrforlayBack" [data]="oddPrice"
+  [updOddsBack]="runnersList[eventidd]?.data?.[0]?.runners?.[1].ex?.availableToBack[0]?.price"
+  [updOddsLay]="runnersList[eventidd]?.data?.[0]?.runners?.[1].ex?.availableToLay[0]?.price" [socketEventData]="socketEventOdds[eventidd]"
+  [isInplay]="inplaystatus" [totalMatched]="runnersList[eventidd]?.data?.[0]?.totalMatched" (stopTimer)="stopTimeout($event)" (betResult)="getOddsCalculation($event)"
+  style="position: absolute;z-index: 99999;left:0%;"></app-bet-place>
+<app-bet-place *ngIf="showOdd == 1 && backTrue == false" [clsClr]="classclrforlayBack" [data]="oddPrice"
+  [updOddsBack]="runnersList[eventidd]?.data?.[0]?.runners?.[1].ex?.availableToBack[0]?.price"
+  [updOddsLay]="runnersList[eventidd]?.data?.[0]?.runners?.[1].ex?.availableToLay[0]?.price" [socketEventData]="socketEventOdds[eventidd]"
+  [isInplay]="inplaystatus" [totalMatched]="runnersList[eventidd]?.data?.[0]?.totalMatched" (stopTimer)="stopTimeout($event)" (betResult)="getOddsCalculation($event)"
+  style="position: absolute;z-index: 99999;left:0%;"></app-bet-place>

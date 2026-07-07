@@ -1,0 +1,84 @@
+<main class="min-h-full-with-header">
+  <div data-v-f43ca18c="" class="pb-20 relative">
+    <div class="mb-20">
+      <header class="h-12 p-3 bg-secondary text-global-font-on-dark text-14 flex items-center justify-center">Balance
+        Overview<div class="icon-close text-16 absolute right-4" routerLink="/home"></div>
+      </header>
+      <div class="content px-4 py-4">
+        <section class="bg-black-800 px-4 pt-4 pb-2 mb-4 rounded-xl text-global-font-on-dark font-bold">
+          <div class="text-14 mb-2">Your Balances</div>
+          <div class="flex"><span [style.backgroundImage]="jsonWebdt?.imagesBottomBorderColor"
+              [style.color]="jsonWebdt?.imagesPlayNowTextColor"
+              class="currency-alias bg-colorful-tag rounded text-10 px-1.5 py-0.5 mr-2 leading-snug text-colorful-text self-center">PBU</span><span
+              class="balance text-22 mb-0.5">{{balInfo?.balance}}</span></div>
+        </section>
+        <!-- <section class="mb-2">
+          <header class="bg-black-300 flex justify-center items-center rounded-t-lg">
+            <div class="px-2 py-5px flex justify-between leading-130% text-12 w-full"><span>2025-01-04
+                09:17:24</span><span></span></div>
+          </header>
+          <section class="bet-info bg-white rounded-b-lg">
+            <div class="row flex border-b border-black-300">
+              <div class="item odds-req border-r border-black-300 p-2 flex-1">
+                <div class="label text-10">Withdrawal</div>
+                <div class="content font-bold leading-17px text-error">53.89</div>
+              </div>
+              <div class="item matched-amount p-2 flex-1">
+                <div class="label text-10">Balance</div>
+                <div class="content font-bold leading-17px">0.00</div>
+              </div>
+            </div>
+            <div class="row flex border-b border-black-300">
+              <div class="flex p-2 text-12 leading-4">
+                <div class="">Master</div>
+                <div class="inline-block ml-1 mr-0.5 mt-2px">
+                  <div class="icon-triangle-black-600 align-baseline"></div>
+                </div>
+                <div class="text-scores">roket</div>
+              </div>
+            </div>
+            <div class="row flex">
+              <div class="p-2"><span class="text-12 text-black-600 break-all p-6"></span></div>
+            </div>
+          </section>
+        </section> -->
+        <!-- <div class="flex justify-center items-center py-48">
+          <div class="pt-6 px-7 pb-5 bg-white text-center text-black-700 text-base rounded-xl leading-tight">
+            <div alt="" class="icon-empty text-40 text-black-300 m-auto mb-2.5"></div>
+            <div>No Data</div>
+          </div>
+        </div> -->
+        <section class="mb-2" *ngFor="let list of accountStmt">
+          <header class="bg-black-300 flex justify-center items-center rounded-t-lg">
+            <div class="px-2 py-5px flex justify-between leading-130% text-12 w-full" bis_skin_checked="1">
+              <span>{{ list.createdOn | date:'dd-MM-yyyy hh:mm:ss a' }}</span><span></span></div>
+          </header>
+          <section class="bet-info bg-white rounded-b-lg">
+            <div class="row flex border-b border-black-300" bis_skin_checked="1">
+              <div class="item odds-req border-r border-black-300 p-2 flex-1" bis_skin_checked="1">
+                <div class="label text-10" bis_skin_checked="1">{{list?.type}}</div>
+                <div class="content font-bold leading-17px" [ngClass]="list?.type == 'Withdraw' ? 'text-error' : ''" bis_skin_checked="1">{{ list.chips | number : '.2-2' }}</div>
+              </div>
+              <div class="item matched-amount p-2 flex-1" bis_skin_checked="1">
+                <div class="label text-10" bis_skin_checked="1">Balance</div>
+                <div class="content font-bold leading-17px" bis_skin_checked="1">{{list?.userbalance | number : '.2-2'}}</div>
+              </div>
+            </div>
+            <div class="row flex border-b border-black-300" bis_skin_checked="1">
+              <div class="flex p-2 text-12 leading-4" bis_skin_checked="1">
+                <div class="" bis_skin_checked="1">{{list?.fromUser=='MA'?'Master':'P2P'}}</div>
+                <div class="inline-block ml-1 mr-0.5 mt-2px" bis_skin_checked="1">
+                  <div class="icon-triangle-black-600 align-baseline" bis_skin_checked="1"></div>
+                </div>
+                <div class="text-scores" bis_skin_checked="1">{{list?.userid}}</div>
+              </div>
+            </div>
+            <div class="row flex" bis_skin_checked="1">
+              <div class="p-2" bis_skin_checked="1"><span class="text-12 text-black-600 break-all p-6"></span></div>
+            </div>
+          </section>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>

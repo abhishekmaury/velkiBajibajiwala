@@ -1,0 +1,42 @@
+<div data-testid="widget-isShowWidget" *ngIf="bottomList" class="widget fixed bottom-0 z-10 w-full">
+    <div class="relative bg-secondary space-x-2 pt-6px">
+      <div class="h-full w-full min-h-44px flex items-center">
+        <div
+          class="swiper swiper-initialized swiper-horizontal swiper-free-mode cursor-pointer swiper-backface-hidden overflow-x-scroll swiper-container7">
+          <div class="swiper-wrapper" style="transition-duration: 400ms; transform: translate3d(0px, 0px, 0px);">
+
+
+            <div class="swiper-slide bg-white p-2px rounded-4px duration-500 relative overflow-hidden ml-2" [class]="list?.marketid == eventid ? 'bg-widget-active-bg swiper-slide-active' : ''"
+              data-testid="widget-active-bg-33907165" *ngFor="let list of gameList" (click)="navgateMatch(list)">
+              <div data-testid="widget-active-text-33907165" [class]="list?.marketid == eventid ? 'bg-widget-active-bg text-widget-active-text' : ''"
+                class="flex items-center px-4px rounded-t-4px">
+                <div class="text-center mr-auto leading-4 h-4">
+                  <div class="flex justify-center text-9 leading-4 h-4 space-x-3px">
+                    <p>{{list?.day | datePipe}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-white flex w-full h-38px justify-between items-center pl-5px pr-4px rounded-b-4px">
+                <div class="w-9/12 h-full pr-3 py-5px flex flex-col justify-around text-12 font-bold"><span
+                    class="relative flex-1 flex items-center"><span data-testid="widget-teamName-home-33907165"
+                      class="truncate text-black-900">{{list?.matchname?.split('v')?.[0]}}</span></span><span
+                    class="relative flex-1 flex items-center"><span data-testid="widget-teamName-away-33907165"
+                      class="truncate text-black-900">{{list?.matchname?.split('v')?.[1]}}</span></span></div>
+                <div class="w-3/12 h-full text-12 font-bold flex flex-col whitespace-nowrap py-5px"><span
+                    class="flex-1 flex items-center justify-end"><span class="text-widget-text"
+                      data-testid="widget-scores-home-33907165">-</span></span><span
+                    class="flex-1 flex items-center justify-end"><span class="text-widget-text"
+                      data-testid="widget-scores-away-33907165">-</span></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-widget-active-bg flex items-center text-11 leading-20px"> {{sportId=='4'?'Crickets':sportId=='2'?'Tennis':sportId=='1'?'Soccers': ''}} in <span
+          class="ml-3px font-bold">24 hours</span></div>
+    </div>
+    <div class="widgetCloseButton absolute top-0 bottom-0 w-40px right-0 flex items-center justify-end z-10">
+      <div class="widgetCloseButton w-40px h-full flex items-center justify-end pr-9px" (click)="closeBottomList()"><span
+          data-testid="widget-closeButton" class="icon-close text-white text-12"></span></div>
+    </div>
+  </div>

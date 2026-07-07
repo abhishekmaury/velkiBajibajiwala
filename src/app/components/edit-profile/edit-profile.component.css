@@ -1,0 +1,17 @@
+.modal.focus {
+  bottom: auto;
+  top: 0
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column
+}
+
+.wrapper {
+  background-image: var(--34693674);
+}
+
+span{
+  cursor: pointer;
+}

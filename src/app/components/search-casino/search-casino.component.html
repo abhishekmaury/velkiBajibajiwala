@@ -1,0 +1,53 @@
+<section class="overflow-y-scroll search fixed w-full h-full-with-header-footer top-40 z-40 bg-black-100" [@slideInOut]>
+    <header class="sticky top-0 z-10">
+        <div
+            class="mx-2 py-13px text-global-font-on-dark text-14 flex items-center justify-center border-b border-casino-search-boder transition duration-300 bg-black-100 border-none">
+            <input id="search" name="search" autocomplete="true" type="string" [(ngModel)]="searchName"
+                (ngModelChange)="onSearchChange()"
+                class="effect-20 relative w-full px-9px z-10 bg-white text-black-900 bg-opacity-0 caret-primary placeholder:text-black-700"
+                placeholder="Search platform, games, and more…">
+            <span class="icon-close text-14 cursor-pointer text-secondary font-bold pr-10px"></span>
+        </div>
+    </header>
+    <div id="casinoSearchContainer" class="h-full pb-14"><!---->
+        <section class="pb-36 px-2">
+            <div class="bg-white rounded-xl text-black text-15 leading-tight divide-y divide-black-300">
+                <ng-container *ngFor="let item of searchResults?.games">
+                    <div *ngIf="item.name" (click)="opencasinogamesmob(item)"
+                        class="flex py-14px min-h-46px px-4 justify-between items-center cursor-pointer">
+                        <div class="items-center flex"><!---->
+                            <div class="leading-120%"><span class="text-back-600 font-bold">{{item.name}}</span></div>
+                        </div><span
+                            class="icon-right icon-arrow-left transform rotate-180 text-1 text-black-500"></span>
+                    </div>
+                </ng-container>
+
+
+            </div>
+            <div class="flex justify-center items-center py-48" style="display: none;">
+                <div class="pt-6 px-7 pb-5 bg-white text-center text-black-700 text-base rounded-xl leading-tight">
+                    <div alt="" class="icon-empty text-40 text-black-300 m-auto mb-2.5"></div>
+                    <div>No Result</div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="border border-black-300 shadow rounded-md py-4 px-4 mb-3" style="display: none;">
+        <div class="flex space-x-4">
+            <div class="flex-1 space-y-4 py-1">
+                <div class="flex justify-start items-center">
+                    <div class="w-1/4 h-4 rounded bg-skeleton-gradient bg-400% animate-skeleton"></div>
+                </div>
+                <div class="space-y-2">
+                    <div class="h-4 rounded bg-skeleton-gradient bg-400% animate-skeleton"></div>
+                    <div class="h-4 rounded bg-skeleton-gradient bg-400% animate-skeleton"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--  error success message -->
+<div class="showMsg" *ngIf="showErrPopup">
+    <h4 [class]="errMsg ? 'red' : 'green'">{{errMsg}}</h4>
+  </div>

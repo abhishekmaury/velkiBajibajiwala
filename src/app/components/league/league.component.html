@@ -1,0 +1,89 @@
+<div data-v-f43ca18c="" class="relative" *ngIf="!popularMatch" [@fadeInOut]>
+  <section data-v-e32ac025="" class="">
+    <section data-v-e32ac025="" class="py-2 bg-submenu flex overflow-x-scroll">
+      <ul data-v-e32ac025="" class="sport-type-filter-ul space-x-2 ml-8px flex flex-nowrap overflow-x-scroll">
+        <li data-v-e32ac025="" (click)="setActiveTab(4)" [style.backgroundImage]="activeTabId === 4 ? jsonWebdt?.imagesBottomBorderColor : '' " [style.color]="activeTabId === 4 ? jsonWebdt?.imagesPlayNowTextColor : ''"
+          class="h-30px w-80px justify-center flex items-center text-13 font-bold whitespace-nowrap event-type-tab " [ngClass]="activeTabId === 4?  'text-filter-active-icon bg-filter-active active':'text-global-font-on-dark event-type-tab'">
+          <i data-v-e32ac025="" class="mr-1 text-17 icon-cricket"></i><span data-v-e32ac025="" class="mt">Cricket</span>
+        </li>
+        <li data-v-e32ac025="" (click)="setActiveTab(1)" [style.backgroundImage]="activeTabId === 1 ? jsonWebdt?.imagesBottomBorderColor : '' " [style.color]="activeTabId === 1 ? jsonWebdt?.imagesPlayNowTextColor : ''"
+          class="h-30px w-80px justify-center flex items-center text-13 font-bold whitespace-nowrap event-type-tab " [ngClass]="activeTabId === 1?  'text-filter-active-icon bg-filter-active active':'text-global-font-on-dark event-type-tab'">
+          <i data-v-e32ac025="" class="mr-1 text-17 icon-soccer"></i><span data-v-e32ac025="" class="mt">Soccer</span>
+        </li>
+        <li data-v-e32ac025="" (click)="setActiveTab(2)" [style.backgroundImage]="activeTabId === 2 ? jsonWebdt?.imagesBottomBorderColor : '' " [style.color]="activeTabId === 2 ? jsonWebdt?.imagesPlayNowTextColor : ''"
+          class="h-30px w-80px justify-center flex items-center text-13 font-bold whitespace-nowrap event-type-tab " [ngClass]="activeTabId === 2?  'text-filter-active-icon bg-filter-active active':'text-global-font-on-dark event-type-tab'">
+          <i data-v-e32ac025="" class="mr-1 text-17 icon-tennis"></i><span data-v-e32ac025="" class="mt">Tennis</span>
+        </li>
+      </ul>
+    </section>
+
+    <div data-v-e32ac025="" class="flex px-4 pb-20">
+      <div data-v-e32ac025="" class="flex-1">
+        <div data-v-e32ac025="">
+          <div data-v-e32ac025="">
+            <div data-v-e32ac025="" class="opacity-0 h-0 text-15 leading-20px font-bold">My Top Leagues</div>
+            <div data-v-e32ac025="" class="mt-6px mb-8px text-category-title text-15 leading-20px font-bold">Popular
+            </div>
+            <ng-container *ngFor="let item of seriesData">
+            <div data-v-e32ac025="" (click)="innerMatches(item)"
+              class="flex pr-8px justify-between items-center bg-white text-15 mb-1px rounded-t-lg" ><span
+                class="icon-top text-16 mr-8px pl-13px py-16px"></span><span
+                class="flex-1 break-all py-2 mr-2 leading-120%">{{item.seriesname}}</span><span
+                class="icon-arrow-left transform rotate-180 text-12 text-black-500"></span></div>
+              </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div data-v-f43ca18c="" class="relative" *ngIf="popularMatch" [@fadeInOut]>
+  <div class="">
+    <section>
+      <div class="px-4 bg-black text-white text-button-normal text-14 flex items-center justify-center shadow-sm">
+        <div class="icon-arrow-left mr-4 text-14" (click)="onPopular()"></div>
+        <div class="flex-1 py-12px leading-20px">{{seariesName}}</div>
+      </div>
+    </section>
+    <section class="px-4 my-4 mt-4 mb-20 text-global-font-default-light">
+      <div>
+        <div class="bg-white rounded-lg text-15px divide-y divide-black-300 shadow-sm">
+          <div *ngFor="let list of innerList">
+            <div data-v-c8d3298d="" (click)="openMatch(list?.sportid,list?.eventid,list?.iscupWinner)" class="min-h-45px flex justify-between item-center gap-2 py-2 pl-4 pr-2">
+              <div data-v-c8d3298d="" class="flex flex-col justify-center flex-1">
+                <div data-v-c8d3298d="" class="flex flex-1 items-center">
+                  <div data-v-ef8204d4="" data-v-c8d3298d="" class="inline-flex items-center h-full mr-4px"
+                    data-is-inplay-type="true" data-is-today-type="false" data-is-tomorrow-type="false">
+                    <div data-v-ef8204d4="" [ngClass]="inPlayMatches(list.day) ? '' : ''">
+                      <div *ngIf="inPlayM" data-v-ef8204d4="" class=" flex items-center text-white bg-inPlay  justify-center leading-9px"
+                        data-is-today-type="false" data-is-tomorrow-type="true"><span data-v-ef8204d4=""
+                          class="text-white py-px text-center text-8 px-2px pb-0">In-Play</span></div>
+                      <div *ngIf="!inPlayM" data-v-ef8204d4="" class="time-block flex items-center justify-center leading-9px"
+                        data-is-today-type="false" data-is-tomorrow-type="true"><span data-v-ef8204d4=""
+                          class="text-submenu py-px text-center text-8 px-2px pb-0">{{list?.day | datePipe}}</span></div>
+                    </div>
+                  </div>
+                  <div data-v-c8d3298d="" class="text-10 text-black-600 font-normal"><span data-v-c8d3298d=""
+                      class="pr-1">Matched</span><span data-v-c8d3298d="">815,156</span></div>
+                </div>
+                <div data-v-c8d3298d="" class="mt-1px">
+                  <div data-v-c8d3298d="" class="text-13 leading-17px break-words"><span
+                      data-v-c8d3298d="">{{list?.matchname?.replace(' v ', ' - ') }}</span></div>
+                </div>
+              </div>
+              <div data-v-c8d3298d="" class="flex justify-end items-center">
+                <div data-v-c8d3298d=""><i data-v-c8d3298d=""
+                    class="block icon-arrow-left self-center text-12 text-black-400 rotate-180"></i></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</div>
+
+<app-loader *ngIf="isloading"></app-loader>

@@ -1,0 +1,51 @@
+<div class="flex justify-center items-center flex-col text-center mt-40px" *ngIf="jsonWeblinksdt?.appShowing == 'true'">
+  <a class="inline-block mb-1" [href]="jsonWeblinksdt?.appContent"><img alt="android download" width="115" height="41"
+      src="/assets/images/btn-android-dl.webp" class="w-120px h-auto mx-auto"></a><span
+    class="text-11 text-black-600">v1.11 - 2022/3/8 - 2.6MB</span>
+  <p class="test-app"></p>
+</div>
+<div class="social relative flex justify-center items-center py-20px">
+  <a [href]="jsonWeblinksdt?.emailContent" target="_blank" *ngIf="jsonWeblinksdt?.emailShowing == 'true'"
+    class="block cursor-pointer mx-1"><span class="text-30 icon-email"></span>
+  </a>
+  <a *ngIf="jsonWeblinksdt?.telegramShowing == 'true'" [href]="jsonWeblinksdt?.telegramContent" target="_blank"
+    class="block cursor-pointer mx-1"><span class="text-30 icon-telegram"></span>
+  </a>
+  <a *ngIf="jsonWeblinksdt?.skypeShowing == 'true'" [href]="jsonWeblinksdt?.skypeContent" target="_blank"
+    class="block cursor-pointer mx-1"><span class="text-30 icon-skype"></span></a>
+  <!-- <a *ngIf="jsonWeblinksdt?.telegramShowing == 'true'" [href]="jsonWeblinksdt?.telegramContent" target="_blank"
+    class="block cursor-pointer mx-1"><span class="text-30 icon-phone"></span></a> -->
+  <a *ngIf="jsonWeblinksdt?.instagramShowing == 'true'" [href]="jsonWeblinksdt?.instagramContent" target="_blank"
+    class="block cursor-pointer mx-1"><span class="text-30 icon-instagram"></span></a><a
+    *ngIf="jsonWeblinksdt?.facebookShowing == 'true'" [href]="jsonWeblinksdt?.facebookContent" target="_blank"
+    class="block cursor-pointer mx-1"><span class="text-30 icon-facebook"></span></a>
+  <!-- <a
+    *ngIf="jsonWeblinksdt?.telegramShowing == 'true'" [href]="jsonWeblinksdt?.telegramContent" target="_blank"
+    class="block cursor-pointer mx-1"><span class="text-30 icon-youtube"><span class="icon-youtube path1"></span><span
+        class="icon-youtube path2"></span></span></a> -->
+  <!-- <a *ngIf="jsonWeblinksdt?.telegramShowing == 'true'" [href]="jsonWeblinksdt?.telegramContent" target="_blank"
+    class="block cursor-pointer mx-1"><span class="text-30 icon-twitter"></span></a> -->
+</div>
+<div data-v-83be86ac="" class="px-3 mb-10px text-center">
+  <ul data-v-83be86ac="">
+    <li data-v-83be86ac="" class="pb-2 inline-block align-middle cursor-pointer" (click)="navigateToPrivacyPolicy()">
+      <span data-v-83be86ac="" class="block px-2 text-11 border-r border-black-300">Privacy
+        Policy</span>
+    </li>
+    <li data-v-83be86ac="" class="pb-2 inline-block align-middle cursor-pointer" (click)="navigateToTermCondtion()">
+      <span data-v-83be86ac="" class="block px-2 text-11 border-r border-black-300">Terms and
+        Conditions</span>
+    </li>
+    <li data-v-83be86ac="" class="pb-2 inline-block align-middle cursor-pointer" (click)="navigateToRuleRegulation()">
+      <span data-v-83be86ac="" class="block px-2 text-11 border-r border-black-300">Rules and
+        Regulations</span>
+    </li>
+    <li data-v-83be86ac="" class="pb-2 inline-block align-middle cursor-pointer" routerLink="/KYC"
+      (click)="navigateToKyc()"><span data-v-83be86ac="" class="block px-2 text-11 border-r border-black-300">KYC</span>
+    </li>
+    <li data-v-83be86ac="" class="pb-2 inline-block align-middle cursor-pointer"
+      (click)="navigateToResponsibleGaming()"><span data-v-83be86ac=""
+        class="block px-2 text-11 border-r border-black-300 border-none">Responsible Gaming</span>
+    </li>
+  </ul>
+</div>

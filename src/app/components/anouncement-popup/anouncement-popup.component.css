@@ -1,0 +1,16 @@
+.pop-page-full__footer[data-v-30b5f859] {
+    width: calc(100% - .5rem);
+}
+
+.bg-checkbox-checked{
+    background-color: #ffc800 !important;
+}
+.modal-content>:last-child {
+    margin-bottom: 9.142857rem
+}
+.text-checkbox-icon {
+    color: #000000;
+}
+.bg-checkbox-background{
+    background-color: #fff4c1;
+}

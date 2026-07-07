@@ -1,0 +1,43 @@
+.active {
+  background-color: #17934E;
+  color: #fff;
+}
+
+.relative {
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.active {
+  background-color: #17934E;
+  color: #fff;
+  transform: scale(1.05);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.badge[data-v-e953cec4] {
+  min-height: 1.0714285714rem;
+  min-width: 1.0714285714rem;
+  transform: translate(35%);
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.text-9 {
+  font-size: .6428571428571429rem;
+}
+
+.p-0\.5 {
+  padding: .125rem;
+}
+
+.tab-indicator {
+  height: 3.2857142857rem;
+  transition: transform 0.3s cubic-bezier(.175, .885, .32, 1.275),
+    width 0.3s cubic-bezier(.175, .885, .32, 1.275);
+}
+
+/* .bg-primary { */
+  /* background-color: #ffc800; */
+/* } */

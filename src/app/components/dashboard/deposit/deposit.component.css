@@ -1,0 +1,14 @@
+.tab-indicator {
+  transition: transform .3s cubic-bezier(.175, .885, .32, 1.275), width .3s cubic-bezier(.175, .885, .32, 1.275);
+  width: 3.2rem;
+}
+
+.calc-btn[data-v-555730cf] {
+  border-radius: .2857142857142857rem;
+  border-width: 1px;
+  height: 3.357142857142857rem;
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgb(238 246 251 / var(--tw-bg-opacity));
+}

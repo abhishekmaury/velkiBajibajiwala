@@ -1,0 +1,202 @@
+<app-loader class="loader" *ngIf="loading"> </app-loader>
+
+<div id="matchBetSlip" style="position: absolute;">
+  <div class="absolute top-0 w-full h-full z-40"></div>
+  <div class="bet-slip fixed z-40 container bottom-0 shadow-top rounded-t-xl">
+    <div class="relative bg-white pt-2 rounded-t-xl">
+      <header class="relative font-bold mb-2" style="display: flex;justify-content: center;align-items: center;">
+        <p class="global-font-on-light text-18 text-center p-2">Bet Slip</p>
+        <div class="icon-close absolute right-5 top-2 mt-2 text-black text-base cursor-pointer" (click)="cancelBet()">
+        </div>
+      </header>
+      <div class="divide-y divide-black-300">
+        <div class="item1 max-h-72 overflow-y-scroll" id="parlayBetSlipInnerList">
+          <div *ngFor="let item of betsList" class="w-full mb-2 px-2">
+            <div class="px-1 w-full flex items-center bg-black-300 rounded-t-lg">
+              <div class="text-black py-2 px-1 w-full text-13">
+                <span
+                  class="leading-tight">{{item.sportId=='4'?'Cricket':item.sportId=='2'?'Tennis':'Soccer'}}</span><span><i
+                    class="icon-triangle-black-600 text-8 inline-block align-middle"></i></span>
+                <!-- <span class="break-all leading-16px">{{item.matchName}}</span> -->
+                <span class="break-all leading-16px" [innerHTML]="formatMatchName(item.matchName)"></span>
+              </div>
+              <i class="self-center icon-del inline-block px-1.5 text-18 text-black-600"
+                (click)="removeParlayBet(item.eventId)"></i>
+            </div>
+            <div class="p-2 w-full bg-black-100 rounded-b-lg">
+              <div class="relative mb-2 flex justify-between items-center">
+                <p class="w-10/12 text-15 text-black font-bold break-all">{{item.selectionName}}</p>
+                <div
+                  class="relative w-48px h-27px flex justify-center items-center text-15 text-center font-bold bg-black-300 rounded">
+                  <span class="text-global-font-on-light" id="parlay1Odds-107455442081621274">{{item.odds}}</span>
+                </div>
+              </div>
+              <p class="text-10 text-black">{{item.sourceName}}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="item2 px-2 ">
+          <div class="py-2 flex justify-between">
+            <div class="flex justify-center items-center">
+              <span class="mr-2 text-13 text-black font-bold">Avg Odds</span>
+              <!-- <span class="mr-2 text-13 text-black font-bold">Total Odds</span> -->
+              <span class="mr-2 text-13 text-warning font-bold" id="parlayTotOdds">@{{this.totalOdds | number :
+                '.2-2'}}</span>
+              <i class="fa fa-angle-left rotate-180 ml-2px text-6 text-parlay-up"></i>
+              <span class="text-10 text-parlay-up font-bold" id="parlayStakes">0</span>
+            </div>
+            <div class="flex justify-center items-center" id="stakeTap">
+              <span class="mr-2 text-13 text-black font-bold">Stake</span>
+              <div class="flex w-90px h-27px text-center leading-normal rounded"><span name="stake"
+                  (click)="showNumpad()" class="input-field is-default" style="color: #000"
+                  id="parlayStakeValue">{{showStake > 0 ? showStake : '' }}</span></div>
+            </div>
+          </div>
+          <ng-container *ngIf="numPadd">
+            <!-- <div class="mb-2 flex parlayStakeDive">
+              <div class="flex flex-1 justify-between">
+                <button (click)="addStaticStake(30)"
+                  class="parlaySumStake btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-80px h-30px border-0"
+                  type="button" value="30">
+                  +30
+                </button>
+                <button (click)="addStaticStake(100)"
+                  class="parlaySumStake btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-80px h-30px border-0"
+                  type="button" value="100">
+                  +100
+                </button>
+                <button (click)="addStaticStake(300)"
+                  class="parlaySumStake btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-80px h-30px border-0"
+                  type="button" value="300">
+                  +300
+                </button>
+                <button (click)="addStaticStake(500)"
+                  class="parlaySumStake btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-80px h-30px border-0"
+                  type="button" value="500">
+                  +500
+                </button>
+              </div>
+            </div> -->
+            <div data-v-3c51d876="" class="mb-2 flex" bis_skin_checked="1">
+      <div class="flex flex-1 justify-between" bis_skin_checked="1"><button (click)="addStakValue(stakeArr.stake1, true)"
+          class="btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-80px h-30px border-0"
+          type="button" value="10" fdprocessedid="v4nv3p">+{{stakeArr.stake1}}</button><button (click)="addStakValue(stakeArr.stake2, true)"
+          class="btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-80px h-30px border-0"
+          type="button" value="50" fdprocessedid="oa34hb">+{{stakeArr.stake2}}</button><button (click)="addStakValue(stakeArr.stake3, true)"
+          class="btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-80px h-30px border-0"
+          type="button" value="100" fdprocessedid="ux6n2i">+{{stakeArr.stake3}}</button><button (click)="addStakValue(stakeArr.stake4, true)"
+          class="btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-80px h-30px border-0"
+          type="button" value="500" fdprocessedid="j0dac2">+{{stakeArr.stake4}}</button><button  (click)="openStakeSetting()"
+          class="btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-9 h-30px border-0 text-16"
+          type="button" fdprocessedid="3yknl"><i class="icon-setting"></i></button></div>
+    </div>
+            <div class="flex parlayStakeDive">
+              <div class="flex flex-1 flex-wrap">
+                <button
+                  class="w-2/12 h-40px flex justify-center items-center font-normal border border-white bg-black-100 rounded parlaySstake color-black"
+                  type="button" value="1" *ngFor="let num of numPadArr"
+                  (click)="addStaticVal1(num, true)">{{num}}</button>
+                <button
+                  class="icon-backspace w-2/12 h-40px flex justify-center items-center font-normal border border-white bg-black-100 rounded clearStake"
+                  (click)="deleteLastNum()"></button>
+              </div>
+              <button type="button"
+                class="flex justify-center items-center w-20 text-base font-bold border-solid border-l border-white rounded bg-black-100 color-black"
+                id="stakeOk" (click)="hideNumPad()"> OK </button>
+            </div>
+          </ng-container>
+        </div>
+        <div class="item3 px-2 py-3 flex justify-between items-center">
+          <div class="py-1">
+            <div class="mb-0.5 k">
+              <span class="mr-2 text-18 font-normal">Total Stakes</span>
+              <span class="text-16 font-bold" id="parlayStake">{{showStake}}</span>
+            </div>
+            <div class="text-base">
+              <span class="mr-2 font-normal">Max Profit</span>
+              <span class="font-bold" id="parlayProf">{{totalProfit | number : '.2-2'}}</span>
+            </div>
+          </div>
+          <button
+            class="parlayBetButton btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-181px h-50px flex justify-center items-center rounded-md bg-button-normal"
+            [disabled]="!enableBtn" (click)="placeBetFunc()" type="submit">
+            Place Bet
+          </button>
+        </div>
+        <div class="item4 p-2 flex justify-between items-center">
+          <div class="text-11 text-black-900">
+            <input id="accept-any-odds" name="accept-any-odds" type="checkbox" class="hidden">
+            <label for="accept-any-odds" class="flex justify-start items-center select-none"><span
+                class="flex justify-center items-center border border-solid border-checkbox-boder mr-1.5 w-4 h-4 rounded bg-checkbox-checked">
+                <span class="icon-check text-checkbox-icon text-8 font-bold checkicon"></span></span>
+              <div>Accept any odds </div>
+            </label>
+          </div>
+          <div class="flex items-center space-x-1"><mark
+              class="text-11 bg-black-300 text-black leading-normal px-2 rounded">Max</mark><span
+              class="text-11 text-black-600 font-bold"></span></div>
+        </div>
+      </div>
+      <!-- <div
+        class="loading absolute z-10 top-0 left-0 w-full h-full flex items-center justify-center bg-black-800 bg-opacity-87 rounded-t-xl"
+        style="display: none;"><img width="147" height="124" src="/mobilefiles/images/mobile/matches/loading-bet.webp"
+          alt=""></div> -->
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- stake setting -->
+
+<div data-v-3c51d876="" bis_skin_checked="1" *ngIf="stakesetting">
+  <div data-v-3c51d876="" class="absolute top-0 w-full h-full z-50" [@slideInOut]  bis_skin_checked="1" style=""></div>
+  
+  <div data-v-05b4889a="" data-v-3c51d876="" class="setting-wrapper" bis_skin_checked="1">
+    <div data-v-05b4889a="" class="absolute top-0 w-full h-full z-50" bis_skin_checked="1" style=""></div>
+    <div data-v-05b4889a="" class="setting fixed z-50 container bottom-0" bis_skin_checked="1" style="">
+      <div data-v-05b4889a=""
+        class="setting-content bg-secondary flex flex-col p-1 pb-0 h-full overscroll-y-none rounded-t-xl"
+        bis_skin_checked="1">
+        <div data-v-05b4889a="" class="setting-header flex justify-center items-center py-2" bis_skin_checked="1"><span
+            data-v-05b4889a="" class="setting-title mx-4 pb-2 text-pop-title font-bold">Default stake setting</span>
+          <div data-v-05b4889a="" (click)="closeStake()"
+            class="icon-close absolute right-2 top-4 justify-center items-center mr-2 cursor-pointer text-global-font-on-dark text-14"
+            bis_skin_checked="1"></div>
+        </div>
+        <div data-v-05b4889a="" class="bg-black-200 rounded-t-lg py-2 px-1 flex" bis_skin_checked="1">
+          <div data-v-05b4889a="" class="input-box h-40px mx-1 flex-1 flex items-center justify-center"
+            bis_skin_checked="1" (click)="stakeFocus(1)"><span data-v-05b4889a="" name="index" [ngClass]="stakeFocusnum == 1 ? 'is-focus' : 'is-default'"
+              class="sum w-10 h-10 flex-1 flex justify-center items-center font-bold overflow-hidden mx-1 rounded-lg border-solid text-global-font-on-light bg-white"
+              value="10">{{stakeArr.stake1}}</span></div>
+          <div data-v-05b4889a="" class="input-box h-40px mx-1 flex-1 flex items-center justify-center"
+            bis_skin_checked="1" (click)="stakeFocus(2)"><span data-v-05b4889a="" name="index" [ngClass]="stakeFocusnum == 2 ? 'is-focus' : 'is-default'"
+              class="sum w-10 h-10 flex-1 flex justify-center items-center font-bold overflow-hidden mx-1 rounded-lg border-solid text-global-font-on-light bg-white "
+              value="50">{{stakeArr.stake2}}</span></div>
+          <div data-v-05b4889a="" class="input-box h-40px mx-1 flex-1 flex items-center justify-center"
+            bis_skin_checked="1" (click)="stakeFocus(3)"><span data-v-05b4889a="" name="index" [ngClass]="stakeFocusnum == 3 ? 'is-focus' : 'is-default'"
+              class="sum w-10 h-10 flex-1 flex justify-center items-center font-bold overflow-hidden mx-1 rounded-lg border-solid text-global-font-on-light bg-white is-default"
+              value="100">{{stakeArr.stake3}}</span></div>
+          <div data-v-05b4889a="" class="input-box h-40px mx-1 flex-1 flex items-center justify-center"
+            bis_skin_checked="1" (click)="stakeFocus(4)"><span data-v-05b4889a="" name="index" [ngClass]="stakeFocusnum == 4 ? 'is-focus' : 'is-default'"
+              class="sum w-10 h-10 flex-1 flex justify-center items-center font-bold overflow-hidden mx-1 rounded-lg border-solid text-global-font-on-light bg-white is-default"
+              value="500">{{stakeArr.stake4}}</span></div>
+        </div>
+        <div data-v-05b4889a="" class="keyboard" bis_skin_checked="1">
+          <div data-v-05b4889a="" class="num grid grid-cols-3 bg-white p-2 pb-0" bis_skin_checked="1">
+
+            <button *ngFor="let num of stakeNumPad" data-v-05b4889a="" (click)="numpadnum(num)" class="calc-btn" type="button" value="1" fdprocessedid="ikqbtw">{{num}}</button>
+             
+              <button (click)="deleteLastNumStake()"
+              data-v-05b4889a="" class="calc-btn icon-backspace text-25" type="button" fdprocessedid="ar21rq"></button>
+          </div>
+        </div>
+        <div data-v-05b4889a="" class="bg-white px-2" bis_skin_checked="1"><button data-v-05b4889a="" (click)="updateStake()"
+            class="btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-full h-40px my-2"
+            type="submit" fdprocessedid="gr2ay">Submit</button></div>
+      </div>
+    </div>
+  </div>
+</div>

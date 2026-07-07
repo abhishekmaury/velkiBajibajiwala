@@ -1,0 +1,70 @@
+<section data-v-f43ca18c="" class="">
+  <main class="container mx-auto h-screen relative bg-black-100">
+    <div data-v-023e1804="" data-v-93000439="" data-v-f43ca18c="" class="wrapper bg-cover bg-center h-full w-full"
+      title="Edit Profile" submitbtn="Update" errortext="" [ngStyle]="{ 'background-image': 'url(' + backgroundImg + ')' }">
+      <div data-v-023e1804="" (click)="goBack()"
+        class="back absolute w-30px h-30px top-2 left-2 text-16 flex items-center justify-center rounded-full bg-white icon-arrow-left">
+      </div>
+      <form data-v-31cc0ed1="" data-v-023e1804="" class="wrapper" [formGroup]="editProfile" (ngSubmit)="updateProfile()">
+        <div data-v-31cc0ed1="" class="modal fixed container bottom-0"><img width="192" height="60" alt="logo" src="../../../assets/images/newgreenbnsmllvelk.webp?v=1.5"
+          [src]="innrrImg"
+            class="logo h-90px w-auto mx-auto mb-0 newimgwidth" class="logo h-60px w-auto mb-4 mx-auto">
+          <div data-v-31cc0ed1="" class="bg-white rounded-t-xl py-6">
+            <div data-v-31cc0ed1="" class="content w-full flex flex-col items-center">
+              <h2 data-v-31cc0ed1="" class="text-25 mb-3 font-normal">Edit Profile</h2>
+              <div data-v-31cc0ed1="" class="inner-width w-5/6">
+                <div data-v-93000439="" class="input-wrapper">
+                  <div data-v-64dd3bfe="" data-v-93000439="" class="relative my-3">
+                    <input data-v-64dd3bfe="" id="First Name" name="First Name" autocomplete="off" type="text"
+                      step="false" maxlength="20" formControlName="firstName" [ngClass]="{'has-content': editProfile.get('firstName')?.value}"
+                      class="effect-20 relative w-full h-40px rounded-lg bg-opacity-0 px-2 z-10 disabled:bg-black-300 disabled:cursor-not-allowed disabled:border-0"><label
+                      data-v-64dd3bfe="" for="First Name" class="cursor-text outline-none">First Name</label>
+                    <div data-v-64dd3bfe="" class="absolute top-0 flex items-center h-40px ml-2 space-x-3px start-icon">
+                      <span data-v-64dd3bfe="" class="icon-content text-18 text-black-400 top-3 left-3 z-10"><i
+                          data-v-64dd3bfe="" class="icon-flag-bangladesh path1 z-10 text-18"></i><i data-v-64dd3bfe=""
+                          class="icon-flag-bangladesh path2 z-10 text-18"></i></span><span data-v-64dd3bfe=""
+                        class="prefix-text leading-8 border-r border-black-300 pr-2 text-11 top-2 left-3 z-10"></span>
+                    </div><span data-v-64dd3bfe="" class="focus-border"><i data-v-64dd3bfe=""></i></span>
+                  </div>
+                </div>
+                <div data-v-93000439="" class="input-wrapper">
+                  <div data-v-64dd3bfe="" data-v-93000439="" class="relative my-3" modelmodifiers="[object Object]">
+                    <input data-v-64dd3bfe="" id="Last Name" name="Last Name" autocomplete="off" type="text"
+                      step="false" maxlength="20" formControlName="lastName" [ngClass]="{'has-content': editProfile.get('lastName')?.value}"
+                      class="effect-20 relative w-full h-40px rounded-lg bg-opacity-0 px-2 z-10 disabled:bg-black-300 disabled:cursor-not-allowed disabled:border-0"><label
+                      data-v-64dd3bfe="" for="Last Name" class="cursor-text outline-none">Last Name</label>
+                    <div data-v-64dd3bfe="" class="absolute top-0 flex items-center h-40px ml-2 space-x-3px start-icon">
+                      <span data-v-64dd3bfe="" class="icon-content text-18 text-black-400 top-3 left-3 z-10"><i
+                          data-v-64dd3bfe="" class="icon-flag-bangladesh path1 z-10 text-18"></i><i data-v-64dd3bfe=""
+                          class="icon-flag-bangladesh path2 z-10 text-18"></i></span><span data-v-64dd3bfe=""
+                        class="prefix-text leading-8 border-r border-black-300 pr-2 text-11 top-2 left-3 z-10"></span>
+                    </div><span data-v-64dd3bfe="" class="focus-border"><i data-v-64dd3bfe=""></i></span>
+                  </div>
+                </div>
+                <div data-v-93000439="" class="input-wrapper">
+                  <div data-v-64dd3bfe="" data-v-93000439="" class="relative my-3" modelmodifiers="[object Object]">
+                    <input data-v-64dd3bfe="" id="Email" name="Email" autocomplete="off" type="text" step="false"
+                      maxlength="50" formControlName="email" [ngClass]="{'has-content': editProfile.get('email')?.value}"
+                      class="effect-20 relative w-full h-40px rounded-lg bg-opacity-0 px-2 z-10 disabled:bg-black-300 disabled:cursor-not-allowed disabled:border-0"><label
+                      data-v-64dd3bfe="" for="Email" class="cursor-text outline-none">Email</label>
+                    <div data-v-64dd3bfe="" class="absolute top-0 flex items-center h-40px ml-2 space-x-3px start-icon">
+                      <span data-v-64dd3bfe="" class="icon-content text-18 text-black-400 top-3 left-3 z-10"><i
+                          data-v-64dd3bfe="" class="icon-flag-bangladesh path1 z-10 text-18"></i><i data-v-64dd3bfe=""
+                          class="icon-flag-bangladesh path2 z-10 text-18"></i></span><span data-v-64dd3bfe=""
+                        class="prefix-text leading-8 border-r border-black-300 pr-2 text-11 top-2 left-3 z-10"></span>
+                    </div><span data-v-64dd3bfe="" class="focus-border"><i data-v-64dd3bfe=""></i></span>
+                  </div>
+                </div>
+                <div data-v-36418924="" class="text-error mb-6 text-12">{{errMsg}}</div>
+                <button data-v-31cc0ed1=""
+                  class="btn-normal p-3 rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed btn-login w-48 mt-3 mb-6 mx-auto text-base font-extrabold"
+                  type="submit">Update</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+</section>
+

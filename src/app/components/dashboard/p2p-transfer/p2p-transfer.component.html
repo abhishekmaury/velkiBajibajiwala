@@ -1,0 +1,137 @@
+<main class="min-h-full-with-header">
+  <div data-v-f43ca18c="" class="pb-20 relative">
+    <div data-v-94307f8a="">
+      <header data-v-94307f8a=""
+        class="h-12 p-3 bg-secondary text-global-font-on-dark text-14 flex items-center justify-center">
+        P2P Transfer
+        <div class="icon-close text-16 absolute right-4" routerLink="/home"></div>
+      </header>
+
+      <div data-v-94307f8a="" class="content px-4 py-4 min-h-full-with-header-footer">
+        <section data-v-94307f8a="">
+          <label data-v-94307f8a="" class="inline-block text-15 font-bold mb-2 ml-3" for="wallet-id">My Wallet ID</label>
+          <div data-v-94307f8a="" class="bg-white rounded-xl w-full p-2 flex relative">
+            <div *ngIf="isCopied" data-v-94307f8a=""
+              class="copied w-full h-full rounded-xl left-0 top-0 absolute bg-black-800 bg-opacity-60 flex justify-center items-center text-white font-bold">
+              Copied
+            </div>
+            <input data-v-94307f8a=""
+              class="bg-black-300 truncate rounded-lg text-15 flex-1 inline p-2 mr-2 leading-7"
+              type="text"
+              [value]="userData?.walletId"
+              readonly>
+            <button *ngIf="!isP2P" data-v-94307f8a="" class="icon-clone text-button-normal text-18 p-3 rounded-lg disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed"></button>
+            <button *ngIf="isP2P" (click)="copyToClipboard(userData?.walletId)" data-v-94307f8a=""
+              [style.backgroundImage]="jsonWebdt?.imagesBottomBorderColor"
+              class="icon-clone text-button-normal bg-button-normal text-18 p-3 rounded-lg disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed"></button>
+          </div>
+        </section>
+
+        <section data-v-94307f8a="" class="mt-4">
+          <label data-v-94307f8a=""
+            class="inline-block text-15 font-bold mb-2 ml-3" for="wallet-id">Transfer To</label>
+
+          <form data-v-94307f8a="" class="info-modal" (submit)="onSubmit($event)">
+            <div data-v-94307f8a="" class="bg-white rounded-xl w-full p-2 pt-0 flex flex-col">
+
+              <!-- Recipient Wallet ID -->
+              <div data-v-94307f8a="" class="input-wrapper">
+                <div data-v-64dd3bfe="" data-v-94307f8a="" class="relative my-3">
+                  <input data-v-64dd3bfe="" id="recipient-wallet-id" name="recipient-wallet-id" autocomplete="off" type="text" maxlength="35"
+                    [(ngModel)]="recipientWalletId" [ngClass]="{'has-content':recipientWalletId}" appNoEmoji appNoSpecialChar appNoSpace [disabled]="!isP2P"
+                    class="effect-20 relative w-full h-40px rounded-lg bg-opacity-0 px-2 z-10 disabled:bg-black-300 disabled:cursor-not-allowed disabled:border-0">
+                  <label data-v-64dd3bfe="" for="recipient-wallet-id" class="cursor-text outline-none">
+                    Recipient Wallet ID
+                  </label>
+                </div>
+              </div>
+
+              <!-- Transfer Amount -->
+              <div data-v-94307f8a="" class="input-wrapper">
+                <div data-v-64dd3bfe="" data-v-94307f8a="" class="relative my-3">
+                  <input data-v-64dd3bfe="" id="transfer-amount" name="transfer-amount" autocomplete="off" type="text" [disabled]="!isP2P"
+                    [(ngModel)]="amount" [ngClass]="{'has-content':amount}" appNoEmoji appOnlyNumber appNoSpace appNoSpecialChar maxlength="10" class="effect-20 relative w-full h-40px rounded-lg bg-opacity-0 px-2 z-10 disabled:bg-black-300 disabled:cursor-not-allowed disabled:border-0 with-prefix-text">
+                  <label data-v-64dd3bfe="" for="transfer-amount" class="cursor-text outline-none with-prefix-text">
+                    Transfer Amount
+                  </label>
+                  <div data-v-64dd3bfe=""
+                    class="absolute top-0 flex items-center h-40px ml-2 space-x-3px start-icon">
+                    <span data-v-64dd3bfe="" class="prefix-text leading-8 border-r border-black-300 pr-2 text-11 top-2 left-3 z-10">
+                      PBU
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Remark -->
+              <div data-v-94307f8a="" class="input-wrapper">
+                <div data-v-64dd3bfe="" data-v-94307f8a="" class="relative my-3">
+                  <input data-v-64dd3bfe="" id="remark" name="remark" autocomplete="off" type="text" [disabled]="!isP2P" appNoEmoji
+                    [(ngModel)]="remark" [ngClass]="{'has-content':remark}" class="effect-20 relative w-full h-40px rounded-lg bg-opacity-0 px-2 z-10 disabled:bg-black-300 disabled:cursor-not-allowed disabled:border-0">
+                  <label data-v-64dd3bfe="" for="remark" class="cursor-text outline-none">Remark</label>
+                </div>
+              </div>
+
+              <div data-v-94307f8a="" class="text-error mb-6 mt-4 text-12"></div>
+
+              <!-- Buttons -->
+              <div data-v-94307f8a="" class="flex">
+                <button data-v-94307f8a=""
+                  class="btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed btn-outline w-48 h-40px mx-auto mr-1 text-base"
+                  type="button"
+                  (click)="clearForm()">
+                  Clear
+                </button>
+
+                <button *ngIf="!isP2P" data-v-94307f8a="" class="btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-48 h-40px mx-auto ml-1 text-base disabled"
+                  type="submit" [disabled]="!isP2P">
+                  {{ loading ? 'Processing...' : 'Transfer' }}
+                </button>
+
+                <button *ngIf="isP2P" data-v-94307f8a=""
+                  [style.backgroundImage]="jsonWebdt?.imagesBottomBorderColor"
+                  class="btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-48 h-40px mx-auto ml-1 text-base disabled"
+                  type="submit" [disabled]="!isP2P">
+                  {{ loading ? 'Processing...' : 'Transfer' }}
+                </button>
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Loader -->
+<div *ngIf="loading">
+  <app-loader></app-loader>
+</div>
+
+
+<!-- bet error success message -->
+<div data-v-f43ca18c="" *ngIf="showMsg">
+  <div class="absolute left-0 top-0 w-full h-full z-50" data-testid="toast-overlay"></div>
+  <div class="w-full">
+    <div class="fixed bottom-0 z-50 w-full space-y-2.5" currencyalias="PKU">
+      <div>
+        <div class="text-center flex rounded-t-2xl justify-center p-1 "
+          [ngClass]="betsuccessstatus ? 'bg-success' : 'bg-error'" data-testid="toast-container">
+          <div class="w-full">
+            <div class="flex justify-center items-center text-global-font-on-dark font-bold py-2 mb-1"><i
+                class="text-global-font-on-dark text-16 icon-notice" data-testid="toast-icon-title"></i>
+              <h4 class="ml-1 leading-none" data-testid="toast-title">{{betsuccessstatus ? 'Success' : 'Error'}}</h4>
+              <div (click)="closeBet()" class="icon-close absolute right-5 text-14" data-testid="toast-btn-close-toast"></div>
+            </div>
+            <div class="px-2 py-4 rounded-lg bg-white bg-opacity-87 text-13 text-global-font-on-light"
+              data-testid="toast-content">
+              <p id="info" style="text-align:center">
+                {{message}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

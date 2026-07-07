@@ -1,0 +1,245 @@
+.swiper, .swiper-container {
+  display: block;
+  list-style: none;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+.swiper-slide img {
+  width: 100%
+}
+
+.tab-indicator {
+  background-image: linear-gradient(90deg,rgba(168,177,202,.2),rgba(245,246,250,.2));
+  height: 4.285714285714286rem;
+  left: var(--77a82245);
+  transform: var(--34f3737d);
+  transition: transform .5s ease;
+  width: 4.285714285714286rem
+}
+.swiper-bullet:only-child {
+  display: inline-block !important ;
+}
+
+.game-hall-filter .swiper {
+  height: 5.142857142857143rem;
+  overflow: visible
+}
+
+.game-hall-filter .swiper-slide img {
+  width: 100%
+}
+
+.game-hall-filter .swiper-pagination {
+  bottom: -.7rem;
+  position: absolute
+}
+
+.game-hall-filter .swiper-slide {
+  align-items: center;
+  border-radius: .5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  z-index: 10
+}
+
+::ng-deep .game-hall-filter .swiper-pagination-bullet {
+  height: .42857142857142855rem;
+  width: .42857142857142855rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255/var(--tw-bg-opacity));
+  opacity: .5;
+  transition-duration: .3s;
+  transition: width .2s
+}
+
+::ng-deep .game-hall-filter .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  /* background-color: #ffc800; */
+  border-radius: .25rem;
+  height: .2857142857142857rem;
+  margin-bottom: .07142857142857142rem;
+  opacity: 1;
+  width: 1.4285714285714286rem
+}
+.custom-swiper-button-prev,
+.custom-swiper-button-next,
+.custom-swiper-button-prev1,
+.custom-swiper-button-next1,
+.custom-swiper-button-prev2,
+.custom-swiper-button-next2,
+.custom-swiper-button-prev3,
+.custom-swiper-button-next3
+{
+background-color: transparent;
+border: none;
+cursor: pointer;
+}
+.btn-siper
+ i
+{
+  color: white;
+}
+.swiper-pagination-lock {
+  display: block;
+}
+.swiper-pagination {
+  position: absolute;
+  text-align: center;
+  transform: translateZ(0);
+  transition: opacity .3s;
+  z-index: 10;
+}
+.swiper-pagination-bullet:only-child{
+  display: inline-block !important;
+}
+
+body.is-desktop .table-tag-text[data-v-895b58e3] {
+  top: 12px
+}
+
+.table-tag[data-v-895b58e3]:before {
+  background-image: url(/assets/images/casino/tag-bg.svg);
+  background-repeat: no-repeat;
+  content: "";
+  height: 22px;
+  position: absolute;
+  width: 53px
+}
+
+.table-tag-text[data-v-895b58e3] {
+  align-items: center;
+  display: flex;
+  font-size: 8px;
+  height: 18px;
+  justify-content: center;
+  position: absolute;
+  text-shadow: 1px 1px 0 rgba(255,230,183,.42),-1px -1px 0 rgba(255,230,183,.42),1px -1px 0 rgba(255,230,183,.42),-1px 1px 0 rgba(255,230,183,.42);
+  top: 9.55px;
+  width: 42px
+}
+
+.marquee-list {
+  animation-duration: 82.07446808510639s;
+  animation-iteration-count: infinite;
+  animation-name: sparkBack_3;
+  animation-timing-function: linear;
+}
+
+@keyframes sparkBack_3 {
+  0% {
+    left: 100%;
+    transform: translate(0);
+  }
+
+  100% {
+    left: 0;
+    transform: translate(-100%);
+  }
+}
+.stickyLeftContainer[data-v-63c2856d] {
+  bottom: 0%;
+  padding-left: 6px;
+  transition: bottom .3s,right .3s
+}
+
+body.is-desktop .stickyLeftContainer[data-v-63c2856d] {
+  left: auto;
+  margin-left: .5rem
+}
+.badge[data-v-270f6def] {
+  min-height: 1.0714285714rem;
+  min-width: 1.0714285714rem;
+  transform: translate(-35%,40%)
+}
+.activEffect {
+  background-image: linear-gradient(90deg, rgba(168, 177, 202, .2), rgba(245, 246, 250, .2));
+  /* height: 4.5rem; */
+  /* transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), width 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); */
+  transition: transform .5s ease;
+  /* transform: scale(1.1); */
+  border-radius: .5rem;
+  /* margin-top: 7px; */
+}
+
+
+.showMsg {
+  width: 80%;
+  top: 10%;
+  position: fixed;
+  left: 10%;
+  z-index: 99999;
+  margin: 0 auto;
+  background-color: #c5aa77;
+  border-radius: 10px;
+}
+.showMsg h4 {
+  padding: 14px;
+  text-align: center;
+}
+.red {
+  color: red;
+}
+.green {
+  color: green;
+}
+
+.stickyLeftContainer{
+  display: flex;
+  align-items: flex-start !important;
+}
+.bgContain{
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.fz-cus{
+  margin-bottom: 15px;
+  font-size: 2.5rem;
+}
+
+.text-event-tab{
+  /* color:#ffc800; */
+}
+
+/* .text-27 {
+    font-size: 1.9285714285714286rem;
+} */
+/* Hover effect har tab pe chale */
+/* .tabHoverEffect:hover {
+  background-image: linear-gradient(90deg, rgba(168, 177, 202, .2), rgba(245, 246, 250, .2));
+  border-radius: .5rem;
+  transition: transform .5s ease;
+} */
+/*
+@media all and (min-width: 768px) {
+  .w-51px {
+    width: 7.642857rem;
+  }
+} */
+.activEffect {
+    background-image: linear-gradient(90deg, rgba(168, 177, 202, .2), rgba(245, 246, 250, .2));
+    transition: transform .5s
+ease;
+    border-radius: .5rem;
+}
+
+.tabs-container {
+  position: relative;
+}
+
+.tab-indicator {
+  position: absolute;
+  background-image: linear-gradient(90deg, rgba(168, 177, 202, 0.2), rgba(245, 246, 250, 0.2));
+  border-radius: 0.5rem;
+  z-index: 0;
+  transition: transform 0.4s ease;
+  left:2px;
+  height:76px;
+}
+
+
+
+

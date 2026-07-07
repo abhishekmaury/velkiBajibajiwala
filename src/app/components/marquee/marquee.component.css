@@ -1,0 +1,39 @@
+.marquee-list {
+  animation: scrollLeft 400s linear infinite;
+  will-change: transform;
+}
+
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Optional styling */
+.icon-wrapper i {
+  color: black;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+
+.marquee-list {
+  display: inline-flex;
+  white-space: nowrap;
+  will-change: transform;
+}
+.mr-5{
+  margin-right: 50px;
+}
+.text-11 {
+    font-size: 0.785714rem;
+}

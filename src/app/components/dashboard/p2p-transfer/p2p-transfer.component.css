@@ -1,0 +1,39 @@
+.text-button-normal {
+  color: #000;
+}
+
+.btn-normal {
+  color: #000;
+}
+
+/* ---- P2P input field border fix ---- */
+.effect-20 {
+  border: 1px solid #ccc !important;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.effect-20:focus {
+  border: 1px solid #999 !important;
+  /* keep border visible on focus */
+  outline: none !important;
+}
+
+.effect-20:focus:not(:disabled) {
+  box-shadow: none !important;
+  background-color: white !important;
+}
+
+.focus-border i {
+  display: none !important;
+}
+
+/* Inputs that should get the border on focus or if they have content */
+#recipient-wallet-id:focus,
+#transfer-amount:focus,
+#remark:focus,
+#recipient-wallet-id.has-content,
+#transfer-amount.has-content,
+#remark.has-content {
+  border: 3px solid #c0a024 !important;
+  outline: none;
+}

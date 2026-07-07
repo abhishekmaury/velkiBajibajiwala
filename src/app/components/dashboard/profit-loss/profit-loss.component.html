@@ -1,0 +1,319 @@
+<main class="min-h-full-with-header">
+  <div data-v-f43ca18c="" class=" relative">
+    <div data-v-35235b3f="" style="--8defbe2c: 67px; --587cc7b4: translateX(8px);">
+      <header data-v-35235b3f=""
+        class="h-12 p-3 bg-secondary text-global-font-on-dark text-14 flex items-center justify-center">Profit &amp;
+        Loss<div class="icon-close text-16 absolute right-4" routerLink="/home"></div>
+      </header>
+      <section data-v-35235b3f="" class="tab-wrapper relative bg-black-300 overflow-x-scroll">
+        <div data-v-35235b3f="" class="h-full inline-block">
+          <ul #tabsContainer data-v-35235b3f="" class="ml-2 mr-1 w-full h-12 flex flex-nowrap justify-start items-center">
+            <li data-v-f00b9242="" class="tab text-13 font-bold py-2 mr-6 text-center whitespace-nowrap"
+              [routerLink]="['/profitLoss/Odds']" routerLinkActive="active-tab" [class.active]="activeTab === 0"
+              (click)="switchTab(0)">Exchange</li>
+              <li data-v-f00b9242="" class="tab text-13 font-bold py-2 mr-6 text-center whitespace-nowrap"
+              [routerLink]="['/profitLoss/BookMaker']" [class.active]="activeTab === 1" (click)="switchTab(1)">BookMaker
+            </li>
+            <li data-v-f00b9242="" class="tab text-13 font-bold py-2 mr-6 text-center whitespace-nowrap"
+              [routerLink]="['/profitLoss/Fancy']" routerLinkActive="active-tab" [class.active]="activeTab === 2"
+              (click)="switchTab(2)">FancyBet
+            </li>
+            <li data-v-f00b9242="" class="tab text-13 font-bold py-2 mr-6 text-center whitespace-nowrap"
+              [routerLink]="['/profitLoss/Premium']" [class.active]="activeTab === 3" (click)="switchTab(3)">SportsBook
+            </li>
+            <li data-v-f00b9242="" class="tab text-13 font-bold py-2 mr-6 text-center whitespace-nowrap"
+              [routerLink]="['/profitLoss/casino']" [class.active]="activeTab === 4" (click)="switchTab(4)">Casino Bet
+            </li>
+            <li data-v-f00b9242="" class="tab text-13 font-bold py-2 mr-6 text-center whitespace-nowrap"
+              [routerLink]="['/profitLoss/Fancy1']" routerLinkActive="active-tab" [class.active]="activeTab === 5"
+              (click)="switchTab(5)">Fancy1Bet
+            </li>
+            <li data-v-f00b9242="" class="tab text-13 font-bold py-2 mr-6 text-center whitespace-nowrap"
+              [routerLink]="['/profitLoss/Toss']" routerLinkActive="active-tab" [class.active]="activeTab === 6"
+              (click)="switchTab(6)">TossBet</li>
+            <li data-v-f00b9242="" class="tab text-13 font-bold py-2 mr-6 text-center whitespace-nowrap"
+              [routerLink]="['/profitLoss/Other']" [class.active]="activeTab === 7" (click)="switchTab(7)">Others
+            </li>
+            <li data-v-f00b9242="" class="tab text-13 font-bold py-2 mr-6 text-center whitespace-nowrap"
+              [routerLink]="['/profitLoss/SABA SPORTS']" [class.active]="activeTab === 8" (click)="switchTab(8)">SABA
+              SPORTS
+            </li>
+            <div data-v-35235b3f=""
+              class="tab-indicator absolute left-0 bottom-1.5 bg-global-font-on-light rounded-full"
+              [style.width.px]="indicatorWidth" [style.left.px]="indicatorLeft"></div>
+            <!-- <div data-v-35235b3f=""
+            class="indicator" ></div> -->
+          </ul>
+
+        </div>
+
+        <!-- <div class="tabs-container" style="position: relative;">
+          <ul class="tabs">
+            <li data-v-f00b9242="" class="tab text-13 font-bold py-2 mr-6 text-center whitespace-nowrap"
+              [routerLink]="['/profitLoss/Odds']" routerLinkActive="active-tab"  [class.active]="activeTab === 0"
+              (click)="switchTab(0)">Exchange</li>
+            <li data-v-f00b9242="" class="tab text-13 font-bold py-2 mr-6 text-center whitespace-nowrap"
+              [routerLink]="['/profitLoss/Fancy']" routerLinkActive="active-tab" [class.active]="activeTab === 1"
+              (click)="switchTab(1)">FancyBet
+            </li>
+          </ul>
+          <div ></div>
+        </div> -->
+
+      </section>
+      <form [formGroup]="betProfitLoss" (ngSubmit)="getProfitLoss()">
+        <section data-v-35235b3f="" class="bet-status relative">
+          <div data-v-35235b3f="" class="w-full flex p-2 gap-2 relative bg-black-800 text-button-normal">
+            <!-- <input id="date" type="date" formControlName="startDate"
+              class="w-[30%] p-2 border rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-transparent text-xs">
+            <input id="date" formControlName="endDate" type="date"
+              class="w-[30%] p-2 border rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-transparent text-xs"> -->
+            <button type="button" (click)="toggleCalendar()"
+              class="calendar-btn text-left px-2 h-30px border rounded border-reportForm-main bg-white bg-opacity-0 text-reportForm-main text-15 mr-2 flex-1 flex items-center justify-start">
+              <div class="icon-calendar mr-2"></div><span class="text-white truncate">
+                {{ selectedStartDate ? (selectedStartDate | date:'dd/MM/yyyy') : 'Start' }} -
+                {{ selectedEndDate ? (selectedEndDate | date:'dd/MM/yyyy') : 'End' }}</span>
+            </button>
+            <button [style.backgroundImage]="jsonWebdt?.imagesBottomBorderColor"
+              [style.color]="jsonWebdt?.imagesPlayNowTextColor"
+              class="bg-button-normal p-2 shrink rounded font-bold mr-2" type="button" (click)="onDuring()">···</button>
+            <button [style.backgroundImage]="jsonWebdt?.imagesBottomBorderColor"
+              [style.color]="jsonWebdt?.imagesPlayNowTextColor"
+              class="bg-button-normal p-2 px-4 rounded font-bold">Submit</button>
+            <div class="fixed w-full z-50 bottom-0 container left-0" *ngIf="during">
+              <div class=" top-0 left-0 w-full h-full z-40 opacity-30" (click)="onDuring()"></div>
+
+              <div class="bg-secondary flex flex-col p-1 pb-0 h-full overscroll-y-none rounded-t-xl shadow-top">
+                <header class="flex py-2">
+                  <div class="main-filter flex-1 text-pop-title">
+                    <ul class="main-filter-ul flex justify-center items-center leading-tight text-center">
+                      <li class="main-filter-li relative mx-4 pb-1 font-bold">During</li>
+                    </ul>
+                  </div>
+                  <div (click)="onDuring()"
+                    class="icon-close absolute right-2 flex justify-center items-center mr-2 cursor-pointer text-global-font-on-dark text-14">
+                  </div>
+                </header>
+                <section class="date-picker-area rounded-t-lg bg-white p-2 grid grid-cols-3 gap-2">
+                  <button [style.backgroundImage]="jsonWebdt?.imagesBottomBorderColor"
+                    [style.color]="jsonWebdt?.imagesPlayNowTextColor"
+                    class="bg-button-normal h-40px px-1 rounded font-bold text-13" type="button"
+                    (click)="justForToday()">Today</button>
+                  <button type="button" [style.backgroundImage]="jsonWebdt?.imagesBottomBorderColor"
+                    [style.color]="jsonWebdt?.imagesPlayNowTextColor"
+                    class="bg-button-normal h-40px px-1 rounded font-bold text-13" (click)="formYesterday()">From
+                    Yesterday</button>
+                  <button [style.backgroundImage]="jsonWebdt?.imagesBottomBorderColor" type="button"
+                    [style.color]="jsonWebdt?.imagesPlayNowTextColor" (click)="form7days()"
+                    class="bg-button-normal h-40px px-1 rounded font-bold text-13">Last 7
+                    Days</button>
+                </section>
+              </div>
+            </div>
+          </div>
+          <!-- <div data-v-8a49f53f="" data-v-35235b3f="" class="custom-select w-full p-2 relative bg-black-800"
+          style="--821e4d10: 0;" style="display: none;"><button data-v-8a49f53f="" type="button" (click)="onDrop()"
+            class="select text-left px-4 w-full h-30px border rounded border-reportForm-main bg-white bg-opacity-0 text-reportForm-main text-15"
+            value="options"
+            [ngClass]="dropdownshow?'rounded-b-none border-b-0':''">
+            <div data-v-8a49f53f="" class="relative flex justify-start items-center">
+              <div data-v-8a49f53f=""
+                class="option-container w-310px grid grid-cols-1 justify-start items-center leading-tight"
+                data-has-label="false" data-has-alt="true"><span data-v-8a49f53f=""
+                  class="option-context mr-2 font-bold truncate leading-tight" >{{
+                  betProfitLoss.controls['resultType'].value || 'All' }}</span><span data-v-8a49f53f=""><span
+                    class="flex items-center">
+                    <span class="mr-2">Total P/L</span>
+                    <span class="text-error font-bold flex-nowrap text-14">
+                      ($1.52)
+                    </span>
+                  </span></span></div><span data-v-8a49f53f=""  [ngClass]="dropdownshow?'transform rotate-180':''"
+                class="icon-arrow-down absolute right-0 top-1.5 text-12 transition-transform origin-center duration-300"></span>
+            </div>
+          </button>
+          <div data-v-8a49f53f="" *ngIf="dropdownshow"
+            class="drop-down border border-reportForm-main rounded rounded-t-none border-t-0 bg-black-800 text-reportForm-main font-bold text-15 absolute z-10"
+            >
+            <div data-v-8a49f53f="" class="options top-10 flex flex-col">
+              <p data-v-8a49f53f="" class="item h-30px flex items-center px-4 hover:bg-black-600" value="-1"
+              (click)="onSelect('All')"><span data-v-8a49f53f="" class="item-text relative">All </span></p>
+              <p data-v-8a49f53f="" (click)="onSelect('Cricket')" class="item h-30px flex items-center px-4 hover:bg-black-600" value="4"><span
+                  data-v-8a49f53f="" class="item-text relative">Cricket </span></p>
+            </div>
+          </div>
+        </div> -->
+          <!-- <div data-v-35235b3f="" class="bg-black-800 p-2 text-15 leading-tight"><span data-v-35235b3f=""
+            class="text-reportForm-main mr-2">Total/PL</span><span data-v-35235b3f=""
+            class="font-bold text-error">($1.52)</span></div> -->
+        </section>
+      </form>
+      <div data-v-35235b3f="" class="content px-4 py-4 " [ngClass]="during===false?'':'scollable'">
+        <section data-v-35235b3f="" class="mb-2" *ngFor=" let list of betAllProfitLoss?.betlist; let i = index;">
+          <header class="bg-black-300 flex justify-center items-center rounded-t-lg break-all">
+            <div class="py-2 px-4 text-center leading-5"><span class="text-13">{{list.sportName}}</span><i
+                class="icon-triangle-black-600 inline-block align-baseline"></i><span
+                class="text-13 font-bold">{{list.matchName}}</span><i
+                class="icon-triangle-black-600 inline-block align-baseline"></i><span
+                class="text-13">{{list.sourceName}}</span>
+            </div>
+          </header>
+          <section class="bg-white">
+            <div class="divide-y divide-black-300">
+              <div class="grid grid-cols-3 divide-x divide-black-300">
+                <!-- <div class="p-2 flex flex-col">
+                  <div class="text-10">Start Time</div>
+                  <div class="font-bold leading-tight pt-0.5">2024-12-30 05:10:00</div>
+                </div> -->
+                <div class="p-2 flex flex-col">
+                  <div class="text-10">Settled date</div>
+                  <div class="font-bold leading-tight pt-0.5">{{list.resultTime}}</div>
+                </div>
+                <div class="p-2 flex flex-col"><span class="text-10">Profit/Loss (PBU)</span>
+                  <span class="font-bold leading-tight pt-0.5 text-black-700"
+                    *ngIf="activetab=='Odds' || activetab=='Saba Sports'"
+                    [class]="list.matchPnl-list.matchCommissionSpent>=0?'green':'red'">({{list.matchPnl-list.matchCommissionSpent
+                    | number : '.2-2'}})</span>
+                  <span class="font-bold leading-tight pt-0.5 text-black-700"
+                    *ngIf="list.sourceType=='Fancy' || list.sourceType=='Fancy1' || list.sourceType=='Toss' || list.sourceType=='Premium' || list.sourceType=='Other'"
+                    [class]="list.fancyPnl-list.fancyCommissionSpent>=0?'green':'red'">({{list.fancyPnl-list.fancyCommissionSpent
+                    | number : '.2-2'}})</span>
+                  <span class="font-bold leading-tight pt-0.5 text-black-700"
+                    *ngIf="list.sportId=='6' || list.sportId=='7'"
+                    [class]="list.casinoPnl-list.casinoCommissionSpent>=0?'green':'red'">({{list.casinoPnl-list.casinoCommissionSpent
+                    | number : '.2-2'}})</span>
+                  <span class="font-bold leading-tight pt-0.5 text-black-700" *ngIf="activetab=='BooKMaker'"
+                    [class]="list.bookMakerPnl-list.matchCommissionSpent>=0?'green':'red'">({{list.bookMakerPnl-list.matchCommissionSpent
+                    | number : '.2-2'}})</span>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="bg-black-200 divide-y divide-black-400" *ngIf="expand==i">
+            <ng-container *ngFor="let item of sourcedata; let j=index;">
+              <div class="divide-y divide-black-400">
+                <div class="flex justify-between border-b border-black-400 bg-black-400 p-2 text-12"><span
+                    class="w-1/3 font-bold">{{item.id.substr(-8)}}</span><span class="pl-1">Bet Placed
+                    {{item.placeTime}}</span></div>
+                <div class="p-2 flex items-center">
+                  <div
+                    class="shrink-0 w-50px h-8 back relative inline-block leading-loose mr-2 font-bold text-center bg-back rounded-full text-13 "
+                    *ngIf="item.type!=='Fancy' && item.type!=='Fancy1'" [class]="item.isBack==true?'bg-back':'bg-lay'">
+                    {{item.isBack==true?'Back':'Lay'}}</div>
+                  <div
+                    class="shrink-0 w-50px h-8 back relative inline-block leading-loose mr-2 font-bold text-center bg-back rounded-full text-13"
+                    *ngIf="item.type=='Fancy' || item.type=='Fancy1'" [class]="item.isBack==true?'bg-back':'bg-lay'">
+                    {{item.isBack==true?'Yes':'No'}}
+                  </div>
+
+                  <span
+                    class="flex items-center text-13 font-bold min-h-28px leading-tight break-all">{{item.type!=='Fancy'
+                    ? item.selectionName
+                    : item?.sourceName}}</span>
+                </div>
+                <div class="grid grid-cols-3 divide-x divide-black-400">
+                  <div class="p-2 flex-1">
+                    <div class="text-10">Odds</div>
+                    <div class="font-bold leading-tight pt-0.5"
+                      *ngIf="item.sourceBetType=='Fancy' || item.sourceBetType=='Fancy1'">
+                      {{item.odds+'/'+item.priceValue}}</div>
+                    <div class="font-bold leading-tight pt-0.5"
+                      *ngIf="item.sourceBetType=='Odds' || item.sourceBetType=='Other'">
+                      {{item.odds+1 | number :'1.0-2'}}</div>
+                    <div class="font-bold leading-tight pt-0.5"
+                      *ngIf="item.sourceBetType=='Premium'">
+                      {{item.odds | number :'1.0-2'}}</div>
+                    <div class="font-bold leading-tight pt-0.5"
+                      *ngIf="item.sourceBetType=='BooKMaker' || item.sourceBetType=='Toss' || item.matchName=='SABA SPORTS'">
+                      {{item.odds * 100}}</div>
+                    <div class="font-bold leading-tight pt-0.5" *ngIf="list.sportId=='6' || list.sportId=='7'">
+                      {{item.odds}}</div>
+                  </div>
+                  <div class="p-2 flex-1">
+                    <div class="text-10">Stake (PBU)</div>
+                    <div class="font-bold leading-tight pt-0.5">{{item.stake}}</div>
+                  </div>
+                  <div class="p-2 flex flex-col"><span class="text-10">Profit/Loss (PBU)</span><span
+                      class="font-bold leading-tight pt-0.5 text-black-700"
+                      [class]="item.resultPnl>0?'green':'red'">({{item.resultPnl | number : '.2-2'}})</span></div>
+                </div>
+              </div>
+              <div class="divide-y divide-black-400">
+                <div class="py-1">
+                  <div class="pl-2 grid grid-cols-3 leading-relaxed"><span class="text-12">Back subtotal</span><span
+                      class="col-span-2 pl-1 text-12 text-black-700"
+                      [class]="getTotalResultPnlForBack()>=0?'green':'red'">({{ getTotalResultPnlForBack() | number:
+                      '.2-2' }})</span></div>
+                  <div class="pl-2 grid grid-cols-3 leading-relaxed"><span class="text-12">Lay subtotal</span><span
+                      class="col-span-2 pl-1 text-12 text-black-700"
+                      [class]="getTotalResultPnlForLay()>=0?'green':'red'">({{ getTotalResultPnlForLay() | number:
+                      '.2-2' }})</span></div>
+                  <div class="pl-2 grid grid-cols-3 leading-relaxed"><span class="text-12">Market subtotal</span><span
+                      class="col-span-2 pl-1 text-12 text-black-700"
+                      [class]="getTotalResultPnlForLay()+getTotalResultPnlForBack()>=0?'green':'red'">({{getTotalResultPnlForBack()+getTotalResultPnlForLay()
+                      | number: '.2-2'}})</span></div>
+                  <div class="pl-2 grid grid-cols-3 leading-relaxed"><span class="text-12">Commission</span>
+                    <span class="col-span-2 pl-1 text-12 text-error"
+                      *ngIf="activetab=='Odds' || activetab=='Saba Sports' || activetab=='BooKMaker'"
+                      class="red">({{activedata?.matchCommissionSpent | number: '.2-2'}})</span>
+                    <span class="col-span-2 pl-1 text-12 text-error"
+                      *ngIf="activetab=='Fancy' || activetab=='Fancy1' || activetab=='Toss' || activetab=='Premium' || activetab=='Other'"
+                      class="red">({{activedata?.fancyCommissionSpent | number: '.2-2'}})</span>
+                    <span class="col-span-2 pl-1 text-12 text-error" *ngIf="activetab=='Casino'"
+                      class="red">({{activedata?.casinoCommissionSpent | number: '.2-2'}})</span>
+                  </div>
+                </div>
+                <div class="pl-2 py-1 grid grid-cols-3 leading-relaxed"><span class="text-12">Net Market Total</span>
+                  <span class="col-span-2 pl-1 text-12 text-black-700"
+                    *ngIf="activetab=='Odds' || activetab=='Saba Sports' || activetab=='BooKMaker'"
+                    [class]="getTotalResultPnlForBack()+getTotalResultPnlForLay()-activedata?.matchCommissionSpent>=0?'green':'red'">{{getTotalResultPnlForBack()+getTotalResultPnlForLay()-activedata?.matchCommissionSpent
+                    | number: '.2-2'}}</span>
+                  <span class="col-span-2 pl-1 text-12 text-black-700"
+                    *ngIf="activetab=='Fancy' || activetab=='Fancy1' || activetab=='Toss' || activetab=='Premium' || activetab=='Other'"
+                    [class]="getTotalResultPnlForBack()+getTotalResultPnlForLay()-activedata?.fancyCommissionSpent>=0?'green':'red'">{{getTotalResultPnlForBack()+getTotalResultPnlForLay()-activedata?.fancyCommissionSpent
+                    | number: '.2-2'}}</span>
+                  <span class="col-span-2 pl-1 text-12 text-black-700" *ngIf="activetab=='Casino'"
+                    [class]="getTotalResultPnlForBack()+getTotalResultPnlForLay()-activedata?.casinoCommissionSpent>=0?'green':'red'">{{getTotalResultPnlForBack()+getTotalResultPnlForLay()-activedata?.casinoCommissionSpent
+                    | number: '.2-2'}}</span>
+
+                </div>
+              </div>
+            </ng-container>
+          </section>
+          <footer>
+            <div class="h-2 rounded-b-lg transition-colors duration-300 bg-black-300"></div>
+            <div [ngClass]="expand==i?'bg-black-300':'bg-black-400'"
+              class="h-4 rounded-b-lg w-90px mx-auto flex justify-center transition-colors duration-300 bg-black-300">
+              <span (click)="details(i,list)" [ngClass]="expand==i?'transform rotate-180':''"
+                class="icon-arrow-down-sencodary relative -top-1 text-black transition-transform origin-center duration-300"></span>
+            </div>
+          </footer>
+        </section>
+        <div data-v-35235b3f=""></div>
+        <div data-v-35235b3f="" *ngIf="betAllProfitLoss?.betlist?.length === 0"
+          class="flex justify-center items-center py-48">
+          <div class="pt-6 px-7 pb-5 bg-white text-center text-black-700 text-base rounded-xl leading-tight">
+            <div alt="" class="icon-empty text-40 text-black-300 m-auto mb-2.5"></div>
+            <div>No Data</div>
+          </div>
+        </div>
+      </div>
+
+      <div data-v-50e366fc="" data-v-35235b3f=""
+        class="container modal fixed z-40 bottom-0 bg-black rounded-t-lg shadow-top" style="display: none;">
+        <div data-v-50e366fc="" class="relative modal-title py-6 bg-black rounded-t-lg"><span data-v-50e366fc=""
+            class="absolute right-4 top-3 icon-close text-white text-base"></span></div>
+        <div data-v-50e366fc="" class="leading-6 rounded-t-lg bg-white">
+          <div data-v-50e366fc="" class="w-full overflow-scroll min-h-full p-1 content"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="asidebar" (click)="$event.stopPropagation()">
+<app-date-range-picker *ngIf="showCalendar" [startDate]="selectedStartDate" [endDate]="selectedEndDate"
+  (rangeSelected)="onRangeSelected($event)" (close)="showCalendar=false"></app-date-range-picker>
+</div>
+<div *ngIf="loading">
+  <app-loader></app-loader>
+</div>

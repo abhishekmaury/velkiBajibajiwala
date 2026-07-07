@@ -1,0 +1,326 @@
+<main class="min-h-full-with-header-footer">
+  <section class="pb-20">
+    <section class="casino-category sticky top-40px py-8px bg-opacity-80 z-20 pb-20px">
+      <div class="swiper my-swiper swiper-container1">
+        <div class="swiper-wrapper flex">
+          <!-- First Slide (Popular) -->
+          <div class="swiper-slide" [ngClass]="{'swiper-slide-active': activeIndex === 0}" (click)="setActiveSlide(0)"
+            style="width: 90.566px;">
+            <div class="h-full flex flex-1 flex-col justify-center items-center text-center w-53px">
+              <div [ngClass]="activeIndex === 0 ? 'text-casino-gold-light' : 'text-casino-gold-dark'"
+                class="leading-tight font-bold text-12">
+                Popular
+              </div>
+              <div class="w-53px m-auto flex-1 flex items-center justify-center">
+                <img
+                  [src]="activeIndex === 0 ? '/assets/images/casino/hover-popular.svg' : '/assets/images/casino/popular.svg'"
+                  [ngClass]="activeIndex === 0 ? 'animate-select' : 'animate-deselect'" width="53" height="50"
+                  alt="popular" class="img mt-0.5 h-50px">
+              </div>
+            </div>
+          </div>
+
+          <!-- Second Slide (Live) -->
+          <div class="swiper-slide" [ngClass]="{'swiper-slide-active': activeIndex === 1}" (click)="setActiveSlide(1)"
+            style="width: 90.566px;">
+            <div class="h-full flex flex-1 flex-col justify-center items-center text-center w-53px">
+              <div [ngClass]="activeIndex === 1 ?'text-casino-gold-light' : 'text-casino-gold-dark'"
+                class="leading-tight font-bold text-12">
+                Live
+              </div>
+              <div class="w-53px m-auto flex-1 flex items-center justify-center">
+                <img
+                  [src]="activeIndex === 1 ? '/assets/images/casino/hover-live.svg' : '/assets/images/casino/live.svg'"
+                  [ngClass]="activeIndex === 1 ? 'animate-select' : 'animate-deselect'" width="53" height="50"
+                  alt="live" class="img mt-0.5 h-50px">
+              </div>
+            </div>
+          </div>
+
+          <!-- Third Slide (Table) -->
+          <div class="swiper-slide" [ngClass]="{'swiper-slide-active': activeIndex === 2}" (click)="setActiveSlide(2)"
+            style="width: 90.566px;">
+            <div class="h-full flex flex-1 flex-col justify-center items-center text-center w-53px">
+              <div [ngClass]="activeIndex === 2 ? 'text-casino-gold-light' : 'text-casino-gold-dark'"
+                class="leading-tight font-bold text-12">
+                Table
+              </div>
+              <div class="w-53px m-auto flex-1 flex items-center justify-center">
+                <img
+                  [src]="activeIndex === 2 ? '/assets/images/casino/hover-table.svg' : '/assets/images/casino/table.svg'"
+                  [ngClass]="activeIndex === 2 ? 'animate-select' : 'animate-deselect'" width="53" height="50"
+                  alt="table" class="img mt-0.5 h-50px">
+              </div>
+            </div>
+          </div>
+
+          <!-- Fourth Slide (Slot) -->
+          <div class="swiper-slide" [ngClass]="{'swiper-slide-active': activeIndex === 3}" (click)="setActiveSlide(3)"
+            style="width: 90.566px;">
+            <div class="h-full flex flex-1 flex-col justify-center items-center text-center w-53px">
+              <div [ngClass]="activeIndex === 3 ? 'text-casino-gold-light' : 'text-casino-gold-dark'"
+                class="leading-tight font-bold text-12">
+                Slot
+              </div>
+              <div class="w-53px m-auto flex-1 flex items-center justify-center">
+                <img
+                  [src]="activeIndex === 3 ? '/assets/images/casino/hover-slot.svg' : '/assets/images/casino/slot.svg'"
+                  [ngClass]="activeIndex === 3 ? 'animate-select' : 'animate-deselect'" width="53" height="50"
+                  alt="slot" class="img mt-0.5 h-50px">
+              </div>
+            </div>
+          </div>
+
+          <!-- Fifth Slide (Fishing) -->
+          <div class="swiper-slide" [ngClass]="{'swiper-slide-active': activeIndex === 4}" (click)="setActiveSlide(4)"
+            style="width: 90.566px;">
+            <div class="h-full flex flex-1 flex-col justify-center items-center text-center w-53px">
+              <div [ngClass]="activeIndex === 4 ? 'text-casino-gold-light' : 'text-casino-gold-dark'"
+                class="leading-tight font-bold text-12">
+                Fishing
+              </div>
+              <div class="w-53px m-auto flex-1 flex items-center justify-center">
+                <img
+                  [src]="activeIndex === 4 ? '/assets/images/casino/hover-fishing.svg' : '/assets/images/casino/fishing.svg'"
+                  [ngClass]="activeIndex === 4 ? 'animate-select' : 'animate-deselect'" width="53" height="50"
+                  alt="fishing" class="img mt-0.5 h-50px">
+              </div>
+            </div>
+          </div>
+
+          <!-- Sixth Slide (Egame) -->
+          <div class="swiper-slide" [ngClass]="{'swiper-slide-active': activeIndex === 5}" (click)="setActiveSlide(5)"
+            style="width: 90.566px;">
+            <div class="h-full flex flex-1 flex-col justify-center items-center text-center w-53px">
+              <div [ngClass]="activeIndex === 5 ? 'text-casino-gold-light' : 'text-casino-gold-dark'"
+                class="leading-tight font-bold text-12">
+                Egame
+              </div>
+              <div class="w-53px m-auto flex-1 flex items-center justify-center">
+                <img
+                  [src]="activeIndex === 5 ? '/assets/images/casino/hover-egame.svg' : '/assets/images/casino/egame.svg'"
+                  [ngClass]="activeIndex === 5 ? 'animate-select' : 'animate-deselect'" width="53" height="50"
+                  alt="egame" class="img mt-0.5 h-50px">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">
+          <span class="swiper-pagination-bullet"
+            [ngClass]="{'swiper-pagination-bullet-active': activeIndex === 0}"></span>
+          <span class="swiper-pagination-bullet"
+            [ngClass]="{'swiper-pagination-bullet-active': activeIndex === 1}"></span>
+          <span class="swiper-pagination-bullet"
+            [ngClass]="{'swiper-pagination-bullet-active': activeIndex === 2}"></span>
+          <span class="swiper-pagination-bullet"
+            [ngClass]="{'swiper-pagination-bullet-active': activeIndex === 3}"></span>
+          <span class="swiper-pagination-bullet"
+            [ngClass]="{'swiper-pagination-bullet-active': activeIndex === 4}"></span>
+          <span class="swiper-pagination-bullet"
+            [ngClass]="{'swiper-pagination-bullet-active': activeIndex === 5}"></span>
+        </div>
+      </div>
+
+
+    </section>
+    <section data-v-66efd84f=""
+      *ngIf="activeIndex==1 ||activeIndex==2||activeIndex==3||activeIndex==4 || activeIndex==5"
+      style="display: block; --2b44150e: 0px; --2a4c9e82: translateX(0px); --3f66d81c: translateY(-6.003214285714286px);">
+      <div data-v-66efd84f="" class="bg-submenu">
+        <div data-v-66efd84f=""
+          class="sport-type-filter-ul flex flex-wrap overflow-x-scroll divide-x divide-black divide-opacity-30 relative py-6px gap-y-6px">
+          <div data-v-66efd84f="" id="casino-PP" class="z-10" [ngClass]="activesport==='ALL'?'textbg':''"
+            [style.backgroundImage]="activesport==='ALL' ? jsonWebdt?.imagesBottomBorderColor : '' "
+            (click)="sportsactive('ALL')"><span data-v-66efd84f=""
+              class="justify-center px-2 mx-2 h-24px text-13 flex items-center font-bold rounded text-black text-opacity-50 cursor-pointer"><span
+                [style.color]="activesport==='ALL' ? jsonWebdt?.imagesPlayNowTextColor : '' " data-v-66efd84f=""
+                class="text-global-font-on-dark">ALL</span></span></div>
+          <div *ngFor="let tab of sortedTabs()" data-v-66efd84f="" id="casino-SPRIBE" class="z-10 "
+            [ngClass]="activesport===tab?'textbg':''"
+            [style.backgroundImage]="activesport===tab ? jsonWebdt?.imagesBottomBorderColor : '' "
+            (click)="sportsactive(tab)"><span data-v-66efd84f=""
+              class="justify-center px-2 mx-2 h-24px text-13 flex items-center font-bold rounded text-black text-opacity-50 cursor-pointer"><span
+                [style.color]="activesport===tab ? jsonWebdt?.imagesPlayNowTextColor : '' " data-v-66efd84f=""
+                class="text-casino-platform-text">{{tab}}</span></span></div>
+          <div data-v-66efd84f="" class="tab-indicator absolute z-0 rounded bg-button-normal"></div>
+        </div>
+      </div>
+    </section>
+    <div class="casino-content p-2">
+      <section style="--aa9e4620: 69px; --f7291840: translateX(4px);">
+        <div class="flex pb-3 pt-1">
+          <div class="sport-type-filter-ul flex-1 flex flex-wrap divide-x divide-black divide-opacity-30 relative">
+            <div *ngIf="activeIndex==0 || activeIndex==1" class="z-10"><span
+                class="px-3 mx-2 h-20px text-13 flex items-center font-bold rounded ml-1"
+                [ngClass]="activeTabId===1?'textbg':''"
+                [style.backgroundImage]="activeTabId === 1 ? jsonWebdt?.imagesBottomBorderColor : '' "><span class=""
+                  (click)="setActiveTab(1)" [style.color]="activeTabId===1 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+                  [ngClass]="activeTabId===1?'text-market-name':'text-black'">Catalog</span></span></div>
+            <div class="z-10"><span class="px-3 mx-2 h-20px text-13 flex items-center font-bold rounded"
+                [ngClass]="activeTabId===2?'textbg':''"
+                [style.backgroundImage]="activeTabId === 2 ? jsonWebdt?.imagesBottomBorderColor : '' "><span class=""
+                  (click)="setActiveTab(2)" [style.color]="activeTabId===2 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+                  [ngClass]="activeTabId===2?'text-market-name':'text-black'">Latest</span></span></div>
+            <div class="z-10"><span class="px-3 mx-2 h-20px text-13 flex items-center font-bold rounded"
+                [ngClass]="activeTabId===3?'textbg':''"
+                [style.backgroundImage]="activeTabId === 3 ? jsonWebdt?.imagesBottomBorderColor : '' "><span
+                  class="text-black" (click)="setActiveTab(3)"
+                  [style.color]="activeTabId===3 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+                  [ngClass]="activeTabId===3?'text-market-name':'text-black'">A-Z</span></span></div>
+            <div class="tab-indicator absolute left-0 top-0 z-0 rounded-full bg-primary"></div>
+          </div>
+          <div class="flex items-center"><span class="icon-search text-18 mr-4" (click)="onsearch()"></span></div>
+        </div>
+      </section>
+      <section *ngIf="activeIndex==0 || activeIndex==1">
+        <ng-container *ngIf="activeTabId==1">
+          <section *ngFor="let items of liveData"
+            class="relative mb-2 group bg-white rounded-tl rounded-tr-2xl rounded-bl-2xl">
+            <header class="label absolute -left-2 top-0 bg-primary h-30px rounded-r-full flex items-center w-40"
+              [style.backgroundImage]="jsonWebdt?.imagesBottomBorderColor">
+              <div class="pl-4 font-bold text-14 text-market-name" [style.color]="jsonWebdt?.imagesPlayNowTextColor">
+                {{items?.type_name}}</div><span class="icon-triangle-shadow absolute left-0 top-full"></span>
+            </header>
+            <div class="pl-2 pr-2 pt-10 pb-2 flex flex-wrap">
+              <ng-container *ngFor="let game of items?.game_ids">
+                <div class="p-1 w-1/3 cursor-pointer" (click)="opencasinogamesmob(game)">
+                  <div data-v-895b58e3=""
+                    class="lozad relative w-full bg-black-300 bg-cover bg-center bg-no-repeat aspect-auto rounded-tr-2xl rounded-bl-2xl"
+                    data-background-image="" data-loaded="true">
+                    <div data-v-895b58e3="" class="relative">
+                      <div data-v-895b58e3="" class="table-tag relative top-2"></div>
+                      <img [src]="game?.image" alt="" class="aspect-square rounded-tr-2xl rounded-bl-2xl"
+                        style="height: 110px;width:100%;">
+                      <p data-v-895b58e3="" class="table-tag-text font-bold text-center overflow-hidden">
+                        {{game?.name}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </section>
+        </ng-container>
+        <ng-container *ngIf="activeTabId!==1">
+          <section class="bg-white rounded-tl rounded-tr-2xl rounded-bl-2xl p-2 flex flex-wrap">
+            <div class="p-1 w-1/3 cursor-pointer" *ngFor="let game of gameslist">
+              <div data-v-895b58e3="" (click)="opencasinogamesmob(game)"
+                class="lozad relative w-full bg-black-300 bg-cover bg-center bg-no-repeat" data-background-image=""
+                data-loaded="true">
+                <img [src]="game?.image" alt="" class="aspect-square rounded-tr-2xl rounded-bl-2xl"
+                  style="height: 110px; width: 100%;">
+              </div>
+            </div>
+          </section>
+        </ng-container>
+      </section>
+
+      <section *ngIf="activeIndex==2 || activeIndex==3 || activeIndex==4 || activeIndex==5">
+        <section class="bg-white rounded-tl rounded-tr-2xl rounded-bl-2xl p-2 flex flex-wrap">
+          <div class="p-1 w-1/3 cursor-pointer" *ngFor="let game of gameslist">
+            <div data-v-895b58e3="" (click)="opencasinogamesmob(game)"
+              class="lozad relative w-full bg-cover bg-center bg-no-repeat" data-background-image="" data-loaded="true">
+              <img [src]="game?.image" alt="" class="aspect-square rounded-tr-2xl rounded-bl-2xl"
+                style="height: 110px; width: 100%;">
+
+            </div>
+          </div>
+        </section>
+        <div class="scroll" #scrollTarget></div>
+      </section>
+
+
+
+      <div class="flex justify-center items-center py-48"
+        *ngIf="gameslist?.length===0 || liveData?.game_ids?.length===0">
+        <div class="pt-6 px-7 pb-5 bg-white text-center text-black-700 text-base rounded-xl leading-tight">
+          <div alt="" class="icon-empty text-40 text-black-300 m-auto mb-2.5"></div>
+          <div>No Data</div>
+        </div>
+      </div>
+    </div>
+    <app-main-footer></app-main-footer>
+  </section>
+</main>
+
+
+<section *ngIf="openSearch"
+  class="search fixed w-full h-full-with-header-footer top-40 z-40 bg-black-100"   [ngClass]="{'overflow-y-auto': searchResults?.length > 0, 'overflow-hidden': searchResults?.length === 0}" [@slideInOut]>
+  <header class="sticky top-0 z-10">
+    <div
+      class="mx-2 py-13px text-global-font-on-dark text-14 flex items-center justify-center border-b border-casino-search-boder transition duration-300 bg-black-100 border-none" [ngClass]="{'bottomborder':searchResults?.length === 0}">
+      <input id="search" name="search" autocomplete="true" type="string" [(ngModel)]="searchName" appNoEmoji
+        (ngModelChange)="onSearchChange()"
+        class="effect-20 relative w-full px-9px z-10 bg-white text-black-900 bg-opacity-0 caret-primary placeholder:text-black-700"
+        placeholder="Search platform, games, and more…">
+      <span class="icon-close text-14 cursor-pointer text-secondary font-bold pr-10px" (click)="onsearch()"></span>
+    </div>
+  </header>
+  <ng-container *ngIf="!searchName && userName">
+    <div *ngIf="searchHistory.length>0" id="casinoSearchContainer" class="h-full pb-14 overflow-y-scroll">
+      <section class="py-2 px-2">
+        <div class="title text-14 font-bold leading-19px rounded-t-xl pt-6px pb-9px px-4 bg-black-400/50">History</div>
+        <div class="bg-white px-2 rounded-b-xl text-black text-15 divide-y divide-black-300">
+          <div *ngFor="let item of searchHistory" class="flex py-4 px-2 justify-between items-center cursor-pointer" (click)="onHistoryClick(item)">
+            <div   class="flex items-center"><span class="icon-history mr-2"></span><span>{{item}}</span></div><span
+              class="icon-right icon-arrow-left transform rotate-180 text-12 text-black-500"></span>
+          </div>
+
+        </div>
+      </section><!---->
+    </div>
+  </ng-container>
+
+  <div id="casinoSearchContainer" class="h-full pb-14"><!---->
+    <section class="pb-36 px-2">
+      <div class="bg-white rounded-xl text-black text-15 leading-tight divide-y divide-black-300">
+        <ng-container *ngFor="let item of searchResults">
+          <div *ngIf="item.name" (click)="opencasinogamesmob(item)"
+            class="flex py-14px min-h-46px px-4 justify-between items-center cursor-pointer">
+            <div class="items-center flex"><!---->
+              <div class="leading-120%"><span [innerHTML]="highlightMatch(item.name)"></span></div>
+            </div><span class="icon-right icon-arrow-left transform rotate-180 text-1 text-black-500"></span>
+          </div>
+        </ng-container>
+
+
+      </div>
+      <div *ngIf="searchResults.length==0 && searchName !== ''" class="flex justify-center items-center py-48">
+        <div class="pt-6 px-7 pb-5 bg-white text-center text-black-700 text-base rounded-xl leading-tight">
+          <div alt="" class="icon-empty text-40 text-black-300 m-auto mb-2.5"></div>
+          <div>No Result</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+</section>
+
+
+<!--  error success message -->
+<div data-v-f43ca18c="" *ngIf="showErrPopup">
+  <div class="absolute left-0 top-0 w-full h-full z-50" data-testid="toast-overlay"></div>
+  <div class="w-full">
+    <div class="fixed bottom-0 z-50 w-full space-y-2.5" currencyalias="PKU">
+      <div>
+        <div class="text-center flex rounded-t-2xl justify-center p-1 bg-error" data-testid="toast-container">
+          <div class="w-full">
+            <div class="flex justify-center items-center text-global-font-on-dark font-bold py-2 mb-1"><i
+                class="text-global-font-on-dark text-16 icon-notice" data-testid="toast-icon-title"></i>
+              <h4 class="ml-1 leading-none" data-testid="toast-title">Error</h4>
+              <div class="icon-close absolute right-5 text-14" data-testid="toast-btn-close-toast"></div>
+            </div>
+            <div class="px-2 py-4 rounded-lg bg-white bg-opacity-87 text-13 text-global-font-on-light"
+              data-testid="toast-content">
+              <p style="text-align:center">{{errMsg}}</p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+.success-header[data-v-e313196e]{
+  background-color: #d5f2b8;
+}
+.border-reportForm-main {
+    border-color: #ffc800;
+}
+.drop-down{
+    width: calc(100% - 1rem);
+}
+.d-none{
+  display: none;
+}
+.d-block{
+  display: block;
+}
+.text-reportForm-main {
+    color:  #ffc800;
+}

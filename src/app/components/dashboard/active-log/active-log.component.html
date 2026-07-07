@@ -1,0 +1,109 @@
+<main class="min-h-full-with-header">
+  <div data-v-f43ca18c="" class="pb-20 relative">
+    <div data-v-e313196e="">
+      <header data-v-e313196e=""
+        class="h-12 p-3 bg-secondary text-global-font-on-dark text-14 flex items-center justify-center">{{selectedOption}}<div
+          class="icon-close text-16 absolute right-4" routerLink="/home"></div>
+      </header>
+      <div data-v-8a49f53f="" data-v-e313196e="" class="custom-select w-full p-2 relative bg-black-800"
+        style="--821e4d10: 0;">
+        <button data-v-8a49f53f="" (click)="toggleSelect()"
+          class="select text-left px-4 w-full h-30px border rounded border-reportForm-main bg-white bg-opacity-0 text-reportForm-main text-15 "
+          [ngClass]="selectTab?'rounded-b-none border-b-0':''" value="options">
+          <div data-v-8a49f53f="" class="relative flex justify-start items-center">
+            <div data-v-8a49f53f=""
+              class="option-container w-310px grid grid-cols-1 justify-start items-center leading-tight"
+              data-has-label="false" data-has-alt="false"><span data-v-8a49f53f=""
+                class="option-context mr-2 font-bold truncate leading-tight"> {{ selectedOption }}
+              </span></div><span data-v-8a49f53f=""
+              class="icon-arrow-down absolute right-0 top-1.5 text-12 transition-transform origin-center duration-300 "
+              [ngClass]="selectTab?'transform rotate-180':''"></span>
+          </div>
+        </button>
+        <div data-v-8a49f53f=""
+          class="drop-down border border-reportForm-main rounded rounded-t-none border-t-0 bg-black-800 text-reportForm-main font-bold text-15 absolute z-10"
+          [ngClass]="selectTab?'d-block':'d-none'">
+          <div data-v-8a49f53f="" class="options top-10 flex flex-col">
+            <p data-v-8a49f53f="" class="item h-30px flex items-center px-4 hover:bg-black-600" value="0"
+             (click)="selectOption('Active Log')"
+              [style.display]="selectedOption === 'Active Log' ? 'none' : 'flex'"><span data-v-8a49f53f="" class="item-text relative">Active Log </span></p>
+            <p data-v-8a49f53f="" class="item h-30px flex items-center px-4 hover:bg-black-600" value="1"
+            (click)="selectOption('Change Password Log')" [style.display]="selectedOption === 'Change Password Log' ? 'none' : 'flex'"><span
+                data-v-8a49f53f="" class="item-text relative">Change Password Log </span></p>
+          </div>
+        </div>
+      </div>
+      <div data-v-e313196e="" class="p-4">
+        <ng-container *ngIf="selectedOption == 'Active Log'">
+        <div data-v-e313196e="" *ngFor="let data of activityLog ">
+          <div data-v-e313196e="" class="mb-2 break-all">
+            <div data-v-e313196e=""
+              class="py-5px px-2 leading-130% text-12 text-global-font-on-light rounded-t-lg success-header">
+              {{data?.activityOn}}</div>
+            <div data-v-e313196e="" class="p-2 bg-white border-b border-black-300">
+              <p data-v-e313196e="" class="text-11 text-global-font-on-light">Login Status</p>
+              <p data-v-e313196e="" class="text-base font-bold text-success">{{data?.activityType}} Success</p>
+            </div>
+            <div data-v-e313196e="" class="p-2 flex justify-start items-center bg-white border-b border-black-300"><span
+                data-v-e313196e="" class="mr-4 w-4/12 text-12 text-global-font-on-light">IP Address</span><span
+                data-v-e313196e="" class="w-8/12 text-12 text-black-600">{{data?.ipaddress}}</span></div>
+            <div data-v-e313196e="" class="p-2 flex justify-start items-start bg-white border-b border-black-300"><span
+                data-v-e313196e="" class="mr-4 w-4/12 text-12 text-global-font-on-light">ISP</span><span
+                data-v-e313196e="" class="w-8/12 text-12 text-black-600">{{data?.isp || '-'}}</span></div>
+            <div data-v-e313196e="" class="p-2 flex justify-start items-start bg-white rounded-b-lg"><span
+                data-v-e313196e="" class="mr-4 w-4/12 text-12 text-global-font-on-light">City/State/Country</span><span
+                data-v-e313196e="" class="w-8/12 text-12 text-black-600 leading-16px">{{data?.city}}
+                {{data?.country}}</span>
+            </div>
+          </div>
+
+        </div>
+        </ng-container>
+        <ng-container *ngIf="selectedOption == 'Change Password Log'">
+        <div data-v-e313196e="" *ngFor="let data of passwrodLog ">
+          <div data-v-e313196e="" class="mb-2 break-all">
+            <div data-v-e313196e=""
+              class="py-5px px-2 leading-130% text-12 text-global-font-on-light rounded-t-lg success-header">
+              {{data?.activityOn | date:'yyyy-mm-dd hh:mm:ss'}}</div>
+            <!-- <div data-v-e313196e="" class="p-2 bg-white border-b border-black-300">
+              <p data-v-e313196e="" class="text-11 text-global-font-on-light">Login Status</p>
+              <p data-v-e313196e="" class="text-base font-bold text-success">{{data?.activityType}} Success</p>
+            </div> -->
+            <div data-v-e313196e="" class="p-2 flex justify-start items-center bg-white border-b border-black-300"><span
+                data-v-e313196e="" class="mr-4 w-4/12 text-12 text-global-font-on-light">Date/Time</span><span
+                data-v-e313196e="" class="w-8/12 text-12 text-black-600">{{data?.activityOn | date:'yyyy-mm-dd hh:mm:ss'}}</span></div>
+            <div data-v-e313196e="" class="p-2 flex justify-start items-start bg-white border-b border-black-300"><span
+                data-v-e313196e="" class="mr-4 w-4/12 text-12 text-global-font-on-light">IP</span><span
+                data-v-e313196e="" class="w-8/12 text-12 text-black-600">{{data?.ipaddress}}</span></div>
+            <div data-v-e313196e="" class="p-2 flex justify-start items-start bg-white rounded-b-lg"><span
+                data-v-e313196e="" class="mr-4 w-4/12 text-12 text-global-font-on-light">Updator</span><span
+                data-v-e313196e="" class="w-8/12 text-12 text-black-600 leading-16px">{{data?.userid}} </span>
+            </div>
+          </div>
+
+        </div>
+
+        <div data-v-e313196e=""></div>
+         <div data-v-e313196e="" *ngIf="passwrodLog?.length ===0" class="flex justify-center items-center py-48">
+          <div class="pt-6 px-7 pb-5 bg-white text-center text-black-700 text-base rounded-xl leading-tight">
+            <div alt="" class="icon-empty text-40 text-black-300 m-auto mb-2.5"></div>
+            <div>No Data</div>
+          </div>
+        </div>
+        </ng-container>
+
+        <div data-v-e313196e=""></div>
+        <div data-v-e313196e="" *ngIf="activityLog?.length ===0" class="flex justify-center items-center py-48">
+          <div class="pt-6 px-7 pb-5 bg-white text-center text-black-700 text-base rounded-xl leading-tight">
+            <div alt="" class="icon-empty text-40 text-black-300 m-auto mb-2.5"></div>
+            <div>No Data</div>
+          </div>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+</main>
+<div *ngIf="loading">
+  <app-loader></app-loader>
+</div>

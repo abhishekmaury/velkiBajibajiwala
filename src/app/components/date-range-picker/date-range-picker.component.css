@@ -1,0 +1,185 @@
+.date-modal {
+  width: 320px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+.modal-header {
+  background: #000;
+  color: #fff;
+  padding: 10px 16px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  font-weight: 500;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  padding: 0 12px 12px;
+}
+
+.day-name {
+  font-size: 12px;
+  color: #777;
+  margin-bottom: 4px;
+}
+
+.day {
+  padding: 8px 0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.day:hover {
+  background: #f0f0f0;
+}
+
+.day.in-range {
+  background: #d9e6f7;
+}
+
+.day.range-start,
+.day.range-end {
+  background: #6495ed;
+  color: #fff;
+}
+
+.time-section {
+  background: #f5f5f5;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-top: 1px solid #e0e0e0;
+}
+
+
+
+.day-color {
+  background-color: #9cb1bd;
+}
+
+.selection-color {
+  background-color: #d4e0e5;
+}
+
+.mybet {
+  z-index: 999999;
+}
+
+.vc-svg-icon {
+  display: inline-block;
+  stroke: rgb(113 128 150);
+  stroke-width: 0;
+}
+
+.vc-svg-icon path {
+  fill: rgb(113 128 150);
+}
+
+.date-picker-area {
+  width: 97.5%;
+  left: .3rem;
+  position: relative;
+}
+
+.month-pos {
+  top: 12%;
+  transform: translate(13vw, 10px);
+}
+
+
+.vc-popover-caret.direction-bottom.align-center {
+  -webkit-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  transform: translateX(-50%) translateY(-50%) rotate(45deg);
+}
+
+
+.vc-popover-caret.align-center {
+  left: 50%;
+}
+
+.vc-popover-caret.direction-bottom {
+  top: 0;
+}
+
+.vc-container,
+.vc-container * {
+  box-sizing: border-box;
+}
+
+.vc-popover-caret {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-top: inherit;
+  border-left: inherit;
+  background-color: inherit;
+  z-index: -1;
+}
+
+.is-active {
+  color: #2a4365;
+  background: #ebf8ff;
+  font-weight: 700;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  border-radius: 0.25rem;
+}
+
+.pdd-4 {
+  padding: 1rem .4rem .4rem;
+}
+
+.gap-2 {
+  gap: 0.5rem 0;
+}
+
+.iconColor {
+  fill: rgb(244 249 255);
+}
+
+@media screen and (min-width:768px) {
+  .gap-2 {
+    gap: 8.96px 0;
+}
+
+.pdd-4 {
+    padding: 17.92px 7.168px 7.168px;
+}
+.month-pos {
+    top: 12%;
+    transform: translate(62.4px, 10px);
+}
+}

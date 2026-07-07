@@ -1,0 +1,19 @@
+.widget .swiper-wrapper .swiper-slide {
+  width: 11.4285714286rem !important;
+}
+
+.widgetCloseButton {
+  background: linear-gradient(90deg, transparent, #000);
+  opacity: 1;
+}
+
+.swiper-slide-active {
+  /* background-color: var(--color-widget-active-bg) !important; */
+}
+.text-widget-active-bg {
+    color: #FFC811;
+}
+.bg-widget-active-bg {
+    background-color: #ffc800;
+    color: #000;
+}

@@ -1,0 +1,77 @@
+<main class="min-h-full-with-header">
+  <div data-v-f43ca18c="" class=" relative">
+    <div data-v-35235b3f="" style="--8defbe2c: 67px; --587cc7b4: translateX(8px);">
+      <header data-v-35235b3f="" class="h-12 p-3 bg-secondary text-global-font-on-dark text-14 flex items-center justify-center">Rebate
+        <div class="icon-close text-16 absolute right-4" routerLink="/home"></div>
+      </header>
+      <section data-v-35235b3f="" class="tab-wrapper relative bg-black-300 overflow-x-scroll">
+        <div data-v-35235b3f="" class="h-full inline-block">
+          <ul data-v-35235b3f="" class="ml-2 mr-1 w-full h-12 flex flex-nowrap justify-start items-center">
+            <li data-v-f00b9242="" class="tab text-13 font-bold py-2 mr-6 text-center whitespace-nowrap"
+              [routerLink]="['/rebate/Daily']" routerLinkActive="active-tab" [class.active]="activeTab === 1"
+              (click)="switchTab(1)">Daily</li>
+            <li data-v-f00b9242="" class="tab text-13 font-bold py-2 mr-6 text-center whitespace-nowrap"
+              [routerLink]="['/rebate/Weekly']" routerLinkActive="active-tab" [class.active]="activeTab === 2"
+              (click)="switchTab(2)">Weekly
+            </li>
+            <li data-v-f00b9242="" class="tab text-13 font-bold py-2 mr-6 text-center whitespace-nowrap"
+              [routerLink]="['/rebate/Monthly']" [class.active]="activeTab === 3" (click)="switchTab(3)">
+              Monthly
+            </li>
+            <div data-v-35235b3f=""
+              class="tab-indicator absolute left-0 bottom-1.5 bg-global-font-on-light rounded-full"
+              [style.width.px]="indicatorWidth" [style.left.px]="indicatorLeft"></div>
+          </ul>
+        </div>
+      </section>
+      
+      <div data-v-35235b3f="" class="content px-4 py-4 " [ngClass]="during===false?'':'scollable'">
+        <div data-v-e313196e="" *ngFor="let list of betAllProfitLoss?.data; let i = index;">
+          <div data-v-e313196e="" class="mb-2 break-all">
+            <div data-v-e313196e="" class="p-2 flex justify-start items-center bg-white border-b border-black-300"><span
+                data-v-e313196e="" class="mr-4 w-4/12 text-12 text-global-font-on-light">P&L</span><span
+                data-v-e313196e="" class="w-8/12 text-12 text-black-600">{{list?.pl | number : '.2-2'}}</span></div>
+            <div data-v-e313196e="" class="p-2 flex justify-start items-start bg-white border-b border-black-300"><span
+                data-v-e313196e="" class="mr-4 w-4/12 text-12 text-global-font-on-light">Comm</span><span
+                data-v-e313196e="" class="w-8/12 text-12 text-black-600">{{list?.comm || '-'}}</span></div>
+            <div *ngIf="activeTab===1" data-v-e313196e="" class="p-2 flex justify-start items-start bg-white rounded-b-lg"><span
+                data-v-e313196e="" class="mr-4 w-4/12 text-12 text-global-font-on-light">Remark</span><span
+                data-v-e313196e="" class="w-8/12 text-12 text-black-600 leading-16px">Daily Rebate of {{list?.periodStart}}</span>
+            </div>
+            <div *ngIf="activeTab===2" data-v-e313196e="" class="p-2 flex justify-start items-start bg-white rounded-b-lg"><span
+                data-v-e313196e="" class="mr-4 w-4/12 text-12 text-global-font-on-light">Remark</span><span
+                data-v-e313196e="" class="w-8/12 text-12 text-black-600 leading-16px">Weekly Rebate of Period ({{list?.periodStart}} - {{list?.periodEnd}})</span>
+            </div>
+            <div *ngIf="activeTab===3" data-v-e313196e="" class="p-2 flex justify-start items-start bg-white rounded-b-lg"><span
+                data-v-e313196e="" class="mr-4 w-4/12 text-12 text-global-font-on-light">Remark</span><span
+                data-v-e313196e="" class="w-8/12 text-12 text-black-600 leading-16px">Monthly Rebate of Period ({{list?.periodStart}} - {{list?.periodEnd}})</span>
+            </div>
+          </div>
+        </div>
+        <div data-v-35235b3f=""></div>
+        <div data-v-35235b3f="" *ngIf="betAllProfitLoss?.data?.length === 0"
+          class="flex justify-center items-center py-48">
+          <div class="pt-6 px-7 pb-5 bg-white text-center text-black-700 text-base rounded-xl leading-tight">
+            <div alt="" class="icon-empty text-40 text-black-300 m-auto mb-2.5"></div>
+            <div>No Data</div>
+          </div>
+        </div>
+      </div>
+
+      <div data-v-50e366fc="" data-v-35235b3f=""
+        class="container modal fixed z-40 bottom-0 bg-black rounded-t-lg shadow-top" style="display: none;">
+        <div data-v-50e366fc="" class="relative modal-title py-6 bg-black rounded-t-lg"><span data-v-50e366fc=""
+            class="absolute right-4 top-3 icon-close text-white text-base"></span></div>
+        <div data-v-50e366fc="" class="leading-6 rounded-t-lg bg-white">
+          <div data-v-50e366fc="" class="w-full overflow-scroll min-h-full p-1 content"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="asidebar" (click)="$event.stopPropagation()">
+
+<div *ngIf="loading">
+  <app-loader></app-loader>
+</div>

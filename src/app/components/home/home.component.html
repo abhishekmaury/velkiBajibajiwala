@@ -1,0 +1,507 @@
+<div class="pb-2 relative">
+  <div class="banner">
+    <div class="swiper-container swiper-initialized swiper-horizontal swiper-backface-hidden">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" style="width: 480px;">
+          <img (click)="naviageteToLeague('casino/LIVE/EVOLUTION')" class="img" src="/assets/banner/evolution.webp" loading="lazy"
+            data-placeholder-background="grey" style="height: 8rem;">
+        </div>
+        <div class="swiper-slide" style="width: 480px;">
+          <img (click)="naviageteToLeague('casino/LIVE/SEXYBCRT')" class="img" src="/assets/banner/sexy.webp" loading="lazy"
+            data-placeholder-background="grey" style="height: 8rem;">
+        </div>
+        <div class="swiper-slide" style="width: 480px;">
+          <img (click)="naviageteToLeague('casino/SLOT/NETENT')" class="img" src="/assets/banner/netent.webp" loading="lazy"
+            data-placeholder-background="grey" style="height: 8rem;">
+        </div>
+        <div class="swiper-slide" style="width: 480px;">
+          <img (click)="naviageteToLeague('casino/EGAME/SPRIBE')" class="img" src="/assets/banner/kv-hotroad.webp" loading="lazy"
+            data-placeholder-background="grey" style="height: 8rem;">
+        </div>
+        <div class="swiper-slide" style="width: 480px;">
+          <img (click)="naviageteToLeague('casino/EGAME/SPRIBE')" class="img" src="/assets/banner/kv-smartsoft.webp" loading="lazy"
+            data-placeholder-background="grey" style="height: 8rem;">
+        </div>
+        <div class="swiper-slide" style="width: 480px;">
+          <img (click)="naviageteToLeague('casino/EGAME/JDB')" class="img" src="/assets/banner/jdb.webp" loading="lazy"
+            data-placeholder-background="grey" style="height: 8rem;">
+        </div>
+      </div>
+      <button
+        class="custom-swiper-button-prev w-8 h-full flex justify-center items-center absolute left-0 top-0 z-10 btn-siper">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+      <button
+        class="custom-swiper-button-next w-8 h-full flex justify-center items-center absolute right-0 top-0 z-10 btn-siper"><i
+          class="fa fa-chevron-right" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <app-marquee></app-marquee>
+  <section class="w-full game-hall-filter bg-black-900 pb-4"
+    style="--34f3737d: translateX(-90px); --77a82245: -0.275rem;">
+    <div class="swiper swiper-initialized swiper-horizontal swiper-backface-hidden swiper-container1"
+      id="game-hall-filter-swiper">
+      <div class="swiper-wrapper tabs-container relative">
+           <!-- <div class="active-indicator" [ngStyle]="indicatorStyle"></div> -->
+
+        <div class="tab-indicator absolute left-0 top-2 z-0 rounded-lg h-60px" [ngStyle]="indicatorStyle"></div>
+        <div #tabRef class="swiper-slide swiper-slide-active tab" (mouseenter)="onHover(1)" (mouseleave)="onLeave()"
+          (click)="setActiveSwiperTab(1);setActive(1)" id="swiper-Sports" style="width: 89.7196px;">
+          <div [ngClass]="getTabClass(1)">
+            <div class="w-60px h-60px flex flex-col justify-between items-center">
+              <p class="pt-2 text-12 group-hover:text-event-tab transition-colors duration-700 "
+                [ngClass]="activeSwiper==1?'text-event-tab':'text-menu-inactive'">
+                Sports</p><i
+                class="relative flex items-center justify-center group-hover:text-event-tab transition-colors duration-700 text-42 pt-0.5 icon-game-hall-sports"
+                [ngClass]="activeSwiper==1?'text-event-tab':'text-menu-inactive'"></i>
+            </div>
+          </div>
+        </div>
+        <div #tabRef class="swiper-slide swiper-slide-next tab" (mouseenter)="onHover(2)" (mouseleave)="onLeave()"
+          (click)="setActiveSwiperTab(2);setActive(2)" id="swiper-Live" style="width: 89.7196px;">
+          <div [ngClass]="getTabClass(2)">
+            <div class="w-60px h-60px flex flex-col justify-between items-center">
+              <p class="pt-2 text-12 group-hover:text-event-tab transition-colors duration-700 "
+                [ngClass]="activeSwiper==2?'text-event-tab':'text-menu-inactive'">Live
+              </p><i
+                class="relative flex items-center justify-center group-hover:text-event-tab transition-colors duration-700 text-42 pt-0.5 icon-game-hall-live "
+                [ngClass]="activeSwiper==2?'text-event-tab':'text-menu-inactive'"></i>
+            </div>
+          </div>
+        </div>
+        <div #tabRef class="swiper-slide tab" id="swiper-Table" (mouseenter)="onHover(3)" (mouseleave)="onLeave()"
+          (click)="setActiveSwiperTab(3);setActive(3)" style="width: 89.7196px;">
+          <div [ngClass]="getTabClass(3)">
+            <div class="w-60px h-60px flex flex-col justify-between items-center">
+              <p class="pt-2 text-12 group-hover:text-event-tab transition-colors duration-700 "
+                [ngClass]="activeSwiper==3?'text-event-tab':'text-menu-inactive'">
+                Table</p><i
+                class="relative flex items-center justify-center group-hover:text-event-tab transition-colors duration-700 text-42 pt-0.5 icon-game-hall-table "
+                [ngClass]="activeSwiper==3?'text-event-tab':'text-menu-inactive'"></i>
+            </div>
+          </div>
+        </div>
+        <div #tabRef class="swiper-slide tab" id="swiper-Slot" style="width: 89.7196px;" (mouseenter)="onHover(4)"
+          (mouseleave)="onLeave()" (click)="setActiveSwiperTab(4);setActive(4)">
+          <div [ngClass]="getTabClass(4)">
+            <div class="w-60px h-60px flex flex-col justify-between items-center">
+              <p class="pt-2 text-12 group-hover:text-event-tab transition-colors duration-700 "
+                [ngClass]="activeSwiper==4?'text-event-tab':'text-menu-inactive'">
+                Slot</p><i
+                class="relative flex items-center justify-center group-hover:text-event-tab transition-colors duration-700 text-42 pt-0.5 icon-game-hall-slot "
+                [ngClass]="activeSwiper==4?'text-event-tab':'text-menu-inactive'"></i>
+            </div>
+          </div>
+        </div>
+        <div #tabRef class="swiper-slide tab" id="swiper-Fishing" style="width: 89.7196px;" (mouseenter)="onHover(5)"
+          (mouseleave)="onLeave()" (click)="setActiveSwiperTab(5);setActive(5)">
+          <div [ngClass]="getTabClass(5)">
+            <div class="w-60px h-60px flex flex-col justify-between items-center">
+              <p class="pt-2 text-12 group-hover:text-event-tab transition-colors duration-700 "
+                [ngClass]="activeSwiper==5?'text-event-tab':'text-menu-inactive'">
+                Fishing</p><i
+                class="relative flex items-center justify-center group-hover:text-event-tab transition-colors duration-700 text-42 pt-0.5 icon-game-hall-fishing "
+                [ngClass]="activeSwiper==5?'text-event-tab':'text-menu-inactive'"></i>
+            </div>
+          </div>
+        </div>
+        <div #tabRef class="swiper-slide tab" id="swiper-Egame" style="width: 89.7196px;" (mouseenter)="onHover(6)"
+          (mouseleave)="onLeave()" (click)="setActiveSwiperTab(6);setActive(6)">
+          <div [ngClass]="getTabClass(6)">
+            <div class="w-60px h-60px flex flex-col justify-between items-center">
+              <p class="pt-2 text-12 group-hover:text-event-tab transition-colors duration-700 "
+                [ngClass]="activeSwiper==6?'text-event-tab':'text-menu-inactive'">
+                Egame</p><i
+                class="relative flex items-center justify-center group-hover:text-event-tab transition-colors duration-700 text-42 pt-0.5 icon-game-hall-egame "
+                [ngClass]="activeSwiper==6?'text-event-tab':'text-menu-inactive'"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination swiper-pagination-bullets swiper-pagination-horizontal ">
+        <span class="swiper-pagination-bullet"></span>
+        <span class="swiper-pagination-bullet"></span>
+      </div>
+      <div class="tab-indicator absolute left-0 top-2 z-0 rounded-lg h-60px"></div>
+    </div>
+  </section>
+
+  <div class="p-2 relative flex" ismaintenance="false" *ngIf="activeSwiper==1">
+    <aside class="bg-white p-3px rounded-md space-y-4 h-full w-51px">
+      <div (click)="setActiveTab(1)"
+        class="relative group z-10 flex flex-col justify-center items-center cursor-pointer w-full h-63px transition duration-500"
+        [ngClass]="activeTabId === 1 ? 'rounded-lg' : ''"
+        [style.backgroundImage]="activeTabId === 1 ? jsonWebdt?.imagesBottomBorderColor : '' ">
+        <i class="relative flex items-center justify-center text-27 icon-inplay-b"
+          [style.color]="activeTabId === 1 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+          [ngClass]="activeTabId === 1 ? 'text-menu-active-icon' : 'text-black-700 group-hover:opacity-50 transition-opacity duration-700'">
+        </i>
+        <p class="pt-2 text-9" [style.color]="activeTabId === 1 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+          [ngClass]="activeTabId === 1 ? 'text-menu-active-icon' : 'text-black-700 group-hover:opacity-50 transition-opacity duration-700'">
+          In-Play
+        </p>
+      </div>
+      <div (click)="setActiveTab(2)"
+        class="relative group z-10 flex flex-col justify-center items-center cursor-pointer w-full h-63px transition duration-500"
+        [ngClass]="activeTabId === 2? 'rounded-lg':''"
+        [style.backgroundImage]="activeTabId === 2 ? jsonWebdt?.imagesBottomBorderColor : '' ">
+        <i class="relative flex items-center justify-center text-27 icon-today "
+          [style.color]="activeTabId === 2 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+          [ngClass]="activeTabId === 2? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'"></i>
+        <p class="pt-2 text-9 " [style.color]="activeTabId === 2 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+          [ngClass]="activeTabId === 2? 'text-menu-active-icon':' text-black-700 group-hover:opacity-50 transition-opacity duration-700'">
+          Today</p>
+      </div>
+      <div (click)="setActiveTab(3)"
+        class="relative group z-10 flex flex-col justify-center items-center cursor-pointer w-full h-63px transition duration-500"
+        [ngClass]="activeTabId === 3? 'rounded-lg':''"
+        [style.backgroundImage]="activeTabId === 3 ? jsonWebdt?.imagesBottomBorderColor : '' ">
+        <i class="relative flex items-center justify-center text-27 icon-tomorrow "
+          [style.color]="activeTabId === 3 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+          [ngClass]="activeTabId === 3? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'"></i>
+        <p class="pt-2 text-9 " [style.color]="activeTabId === 3 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+          [ngClass]="activeTabId === 3? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'">
+          Tomorrow</p>
+      </div>
+      <div (click)="setActiveTab(4)"
+        class="relative group z-10 flex flex-col justify-center items-center cursor-pointer w-full h-63px transition duration-500"
+        [ngClass]="activeTabId === 4? 'rounded-lg':''"
+        [style.backgroundImage]="activeTabId === 4 ? jsonWebdt?.imagesBottomBorderColor : '' " (click)="naviageteToLeague('league')">
+        <i class="relative flex items-center justify-center text-27 icon-trophy "
+          [style.color]="activeTabId === 4 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+          [ngClass]="activeTabId === 4? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'"></i>
+        <p class="pt-2 text-9 " [style.color]="activeTabId === 4 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+          [ngClass]="activeTabId === 4? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'">
+          Leagues</p>
+      </div>
+      <!-- <div (click)="setActiveTab(5)" [ngClass]="activeTabId === 5? 'rounded-lg':''"
+        [style.backgroundImage]="activeTabId === 5 ? jsonWebdt?.imagesBottomBorderColor : '' "
+        class="relative group z-10 flex flex-col justify-center items-center cursor-pointer w-full h-63px transition duration-500"
+        (click)="naviageteToLeague('sports/parlay')">
+        <i class="relative flex items-center justify-center text-27 icon-parlay"
+          [style.color]="activeTabId === 5 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+          [ngClass]="activeTabId === 5? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'"></i>
+        <p class="pt-2 text-9 " [style.color]="activeTabId === 5 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+          [ngClass]="activeTabId === 5? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'">
+          Parlay</p>
+      </div> -->
+    </aside>
+    <div class="flex-1 w-full ml-2 space-y-1.5" *ngIf="activeTabId === 1">
+      <div class="h-96px bg-cover rounded-xl cursor-pointer" (click)="naviageteToLeague('sports/Inplay/5')"
+        style="background-image: url(&quot;/assets/images/baaji365-sport-all1.webp&quot;);">
+        <div class="flex flex-col justify-center h-full w-14 ml-6">
+          <p class="text-black-700 text-15 font-bold">All</p>
+          <p class="text-black-900 text-48 font-bold">{{inplayGamesCount}}</p>
+        </div>
+      </div>
+      <div class="h-96px bg-cover rounded-xl cursor-pointer" (click)="naviageteToLeague('sports/Inplay/4')"
+        style="background-image: url(&quot;/assets/images/baaji365-sport-cricket2.webp&quot;);">
+        <div class="flex flex-col justify-center h-full w-14 ml-6">
+          <p class="text-black-700 text-15 font-bold">Cricket</p>
+          <p class="text-black-900 text-48 font-bold">{{cricketCount}}</p>
+        </div>
+      </div>
+      <div class="h-96px bg-cover rounded-xl cursor-pointer" (click)="naviageteToLeague('sports/Inplay/1')"
+        style="background-image: url(&quot;/assets/images/baaji365-sport-soccer3.webp&quot;);">
+        <div class="flex flex-col justify-center h-full w-14 ml-6">
+          <p class="text-black-700 text-15 font-bold">Soccer</p>
+          <p class="text-black-900 text-48 font-bold">{{soccerCount}}</p>
+        </div>
+      </div>
+      <div class="h-96px bg-cover rounded-xl cursor-pointer" (click)="naviageteToLeague('sports/Inplay/2')"
+        style="background-image: url(&quot;/assets/images/baaji365-sport-tennis1.webp&quot;);">
+        <div class="flex flex-col justify-center h-full w-14 ml-6">
+          <p class="text-black-700 text-15 font-bold">Tennis</p>
+          <p class="text-black-900 text-48 font-bold">{{tennisCount}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="flex-1 w-full ml-2 space-y-1.5" *ngIf="activeTabId === 2">
+      <div class="h-96px bg-cover rounded-xl cursor-pointer" (click)="naviageteToLeague('sports/Today/5')"
+        style="background-image: url(&quot;/assets/images/baaji365-sport-all1.webp&quot;);">
+        <div class="flex flex-col justify-center h-full w-14 ml-6">
+          <p class="text-black-700 text-15 font-bold">All</p>
+          <p class="text-black-900 text-48 font-bold">{{todayGamesCount}}</p>
+        </div>
+      </div>
+      <div class="h-96px bg-cover rounded-xl cursor-pointer" (click)="naviageteToLeague('sports/Today/4')"
+        style="background-image: url(&quot;/assets/images/baaji365-sport-cricket2.webp&quot;);">
+        <div class="flex flex-col justify-center h-full w-14 ml-6">
+          <p class="text-black-700 text-15 font-bold">Cricket</p>
+          <p class="text-black-900 text-48 font-bold">{{todayCricketCount}}</p>
+        </div>
+      </div>
+      <div class="h-96px bg-cover rounded-xl cursor-pointer" (click)="naviageteToLeague('sports/Today/1')"
+        style="background-image: url(&quot;/assets/images/baaji365-sport-soccer3.webp&quot;);">
+        <div class="flex flex-col justify-center h-full w-14 ml-6">
+          <p class="text-black-700 text-15 font-bold">Soccer</p>
+          <p class="text-black-900 text-48 font-bold">{{todaySoccerCount}}</p>
+        </div>
+      </div>
+      <div class="h-96px bg-cover rounded-xl cursor-pointer" (click)="naviageteToLeague('sports/Today/2')"
+        style="background-image: url(&quot;/assets/images/baaji365-sport-tennis1.webp&quot;);">
+        <div class="flex flex-col justify-center h-full w-14 ml-6">
+          <p class="text-black-700 text-15 font-bold">Tennis</p>
+          <p class="text-black-900 text-48 font-bold">{{todayTennisCount}}</p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="activeTabId === 3" class="flex-1 w-full ml-2 space-y-1.5">
+      <div class="h-96px bg-cover rounded-xl cursor-pointer" (click)="naviageteToLeague('sports/Tomorrow/5')"
+        style="background-image: url(&quot;/assets/images/baaji365-sport-all1.webp&quot;);">
+        <div class="flex flex-col justify-center h-full w-14 ml-6">
+          <p class="text-black-700 text-15 font-bold">All</p>
+          <p class="text-black-900 text-48 font-bold -indent-2px">{{tommorrowGamesCount}}</p>
+        </div>
+      </div>
+      <div class="h-96px bg-cover rounded-xl cursor-pointer" (click)="naviageteToLeague('sports/Tomorrow/4')"
+        style="background-image: url(&quot;/assets/images/baaji365-sport-cricket2.webp&quot;);">
+        <div class="flex flex-col justify-center h-full w-14 ml-6">
+          <p class="text-black-700 text-15 font-bold">Cricket</p>
+          <p class="text-black-900 text-48 font-bold">{{tomCricketCount}}</p>
+        </div>
+      </div>
+      <div class="h-96px bg-cover rounded-xl cursor-pointer" (click)="naviageteToLeague('sports/Tomorrow/1')"
+        style="background-image: url(&quot;/assets/images/baaji365-sport-soccer3.webp&quot;);">
+        <div class="flex flex-col justify-center h-full w-14 ml-6">
+          <p class="text-black-700 text-15 font-bold">Soccer</p>
+          <p class="text-black-900 text-48 font-bold">{{tomSoccerCount}}</p>
+        </div>
+      </div>
+      <div class="h-96px bg-cover rounded-xl cursor-pointer" (click)="naviageteToLeague('sports/Tomorrow/2')"
+        style="background-image: url(&quot;/assets/images/baaji365-sport-tennis1.webp&quot;);">
+        <div class="flex flex-col justify-center h-full w-14 ml-6">
+          <p class="text-black-700 text-15 font-bold">Tennis</p>
+          <p class="text-black-900 text-48 font-bold">{{tomTennisCount}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-2 px-8px relative flex pr-0" gametypename="LIVE" *ngIf="activeSwiper==2">
+    <aside class="bg-white p-3px rounded-md space-y-4 h-full w-51px">
+      <div (click)="setActivelive(1)"
+        class="relative group z-10 flex flex-col justify-center items-center cursor-pointer w-full h-63px transition duration-500"
+        [ngClass]="livetab === 1? 'rounded-lg':''"
+        [style.backgroundImage]="livetab === 1 ? jsonWebdt?.imagesBottomBorderColor : '' ">
+        <i class="relative flex items-center justify-center text-27 icon-catalog "
+          [style.color]="livetab === 1 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+          [ngClass]="livetab === 1? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'"></i>
+        <p class="pt-2 text-9 " [style.color]="livetab === 1 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+          [ngClass]="livetab === 1? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'">
+          Catalog</p>
+      </div>
+
+      <div (click)="setActivelive(2)"
+        class="relative group z-10 flex flex-col justify-center items-center cursor-pointer w-full h-63px transition duration-500"
+        [ngClass]="livetab === 2? 'rounded-lg':''"
+        [style.backgroundImage]="livetab === 2 ? jsonWebdt?.imagesBottomBorderColor : '' ">
+        <i [ngClass]="livetab === 2? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'"
+          class="relative flex items-center justify-center text-27 icon-latest "
+          [style.color]="livetab === 2 ? jsonWebdt?.imagesPlayNowTextColor : '' "></i>
+        <p class="pt-2 text-9 " [style.color]="livetab === 2 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+          [ngClass]="livetab === 2? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'">
+          Latest</p>
+      </div>
+      <div (click)="setActivelive(3)" [ngClass]="livetab === 3? 'rounded-lg':''"
+        [style.backgroundImage]="livetab === 3 ? jsonWebdt?.imagesBottomBorderColor : '' "
+        class="relative group z-10 flex flex-col justify-center items-center cursor-pointer w-full h-63px transition duration-500">
+        <i [ngClass]="livetab === 3? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'"
+          class="relative flex items-center justify-center text-27 icon-a-z "
+          [style.color]="livetab === 3 ? jsonWebdt?.imagesPlayNowTextColor : '' "></i>
+        <p class="pt-2 text-9" [style.color]="livetab === 3 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+          [ngClass]="livetab === 3? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'">
+          A-Z</p>
+      </div>
+    </aside>
+    <div class="relative flex-1 p-0">
+      <section *ngIf="livetab === 1" class="rounded-2xl">
+        <div *ngFor="let item of liveData;">
+          <div class="w-full cursor-pointer pb-5px">
+            <div class="bg-casino-game-hall-live h-24 -mb-24"></div>
+            <header *ngIf="livetab === 1" class="flex items-center text-base font-bold px-9px h-34px">
+              <div class="inline-flex w-1 h-16px bg-black mr-3 rounded-lg"></div>
+              <span>{{item.type_name}}</span>
+            </header>
+            <div class="grid grid-cols-3 gap-2 p-9px pt-0">
+              <div *ngFor="let ldt of item.game_ids">
+                <div data-v-895b58e3=""  (click)="opencasinogamesmob(ldt)"
+                  class="lozad relative w-full bg-black-300 bg-cover bg-center bg-no-repeatrounded-xl h-95px"
+                  data-background-image="/gameIcon/EVOLUTION/EVOLUTION-LIVE-205.png?3637388420065568"
+                  data-loaded="true">
+                  <img [src]="ldt?.image" alt="" class="aspect-square rounded-xl" style="height: 6.79rem; width: 100%;">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section *ngIf="livetab !== 1" class="rounded-2xl grid grid-cols-3 gap-2">
+        <div class="w-full cursor-pointer" *ngFor="let game of gameslist">
+          <div data-v-895b58e3="" (click)="opencasinogamesmob(game)"
+            class="lozad relative w-full bg-black-300 bg-cover bg-center bg-no-repeat rounded-xl"
+            data-background-image="/gameIcon/KINGMAKER/KM-SLOT-005.webp?3637388420065568" data-loaded="true">
+            <img [src]="game?.image" alt="" class="aspect-square rounded-xl" style="height: 6.79rem; width: 100%;">
+          </div>
+        </div>
+      </section>
+      <button (click)="naviageteToLeague('casino/LIVE/ALL')"
+        class="btn-normal p-3 rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed bg-black-900 text-white font-normal mx-auto mt-4 h-30px px-2">
+        <span class="px-2">Show More</span><i class="icon-arrow-left transform rotate-180"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="p-2 px-8px relative flex" *ngIf="activeSwiper==3">
+    <aside class="bg-white p-3px rounded-md space-y-4 h-full w-51px">
+      <div (click)="setActivetable(1)" [ngClass]="tabeltab === 1? 'rounded-lg':''"
+        [style.backgroundImage]="tabeltab === 1 ? jsonWebdt?.imagesBottomBorderColor : '' "
+        class="relative group z-10 flex flex-col justify-center items-center cursor-pointer w-full h-63px transition duration-500">
+        <i class="relative flex items-center justify-center text-27 icon-latest"
+          [style.color]="tabeltab === 1 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+          [ngClass]="tabeltab === 1? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'"></i>
+        <p class="pt-2 text-9" [style.color]="tabeltab === 1 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+          [ngClass]="tabeltab === 1? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'">
+          Latest</p>
+      </div>
+      <div (click)="setActivetable(2)" [ngClass]="tabeltab === 2? 'rounded-lg':''"
+        [style.backgroundImage]="tabeltab === 2 ? jsonWebdt?.imagesBottomBorderColor : '' "
+        class="relative group z-10 flex flex-col justify-center items-center cursor-pointer w-full h-63px transition duration-500">
+        <i [ngClass]="tabeltab === 2? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'"
+          class="relative flex items-center justify-center text-27 icon-a-z "
+          [style.color]="tabeltab === 2 ? jsonWebdt?.imagesPlayNowTextColor : '' "></i>
+        <p class="pt-2 text-9 " [style.color]="tabeltab === 2 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+          [ngClass]="tabeltab === 2? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'">
+          A-Z</p>
+      </div>
+    </aside>
+    <div class="pl-9px relative flex-1 pr-2px">
+      <section class="rounded-2xl grid grid-cols-3 gap-2">
+        <div class="w-full cursor-pointer" *ngFor="let game of gameslist">
+          <div data-v-895b58e3="" (click)="opencasinogamesmob(game)"
+            class="lozad relative w-full bg-black-300 bg-cover bg-center bg-no-repeat rounded-xl"
+            data-background-image="/gameIcon/JILI/JILI-TABLE-021.png?3637388420065568" data-loaded="true">
+            <img [src]="game?.image" alt="" class="aspect-square rounded-xl" style="height: 6.79rem; width: 100%;">
+          </div>
+        </div>
+      </section><button (click)="naviageteToLeague('casino/TABLE/KINGMAKER')"
+        class="btn-normal p-3 rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed bg-black-900 text-white font-normal mx-auto mt-4 h-30px px-2"><span
+          class="px-2">Show More</span><i class="icon-arrow-left transform rotate-180"></i></button>
+    </div>
+  </div>
+
+
+  <div class="p-2 px-8px relative flex" *ngIf="activeSwiper==4">
+    <aside class="bg-white p-3px rounded-md space-y-4 h-full w-51px">
+      <div (click)="setActiveSlot(1)" [ngClass]="slot === 1? 'rounded-lg':''"
+        [style.backgroundImage]="slot === 1 ? jsonWebdt?.imagesBottomBorderColor : '' "
+        class="relative group z-10 flex flex-col justify-center items-center cursor-pointer w-full h-63px transition duration-500">
+        <i class="relative flex items-center justify-center text-27 icon-latest"
+          [style.color]="slot === 1 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+          [ngClass]="slot === 1? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'"></i>
+        <p class="pt-2 text-9" [style.color]="slot === 1 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+          [ngClass]="slot === 1? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'">
+          Latest</p>
+      </div>
+      <div (click)="setActiveSlot(2)" [ngClass]="slot === 2? 'rounded-lg':''"
+        [style.backgroundImage]="slot === 2 ? jsonWebdt?.imagesBottomBorderColor : '' "
+        class="relative group z-10 flex flex-col justify-center items-center cursor-pointer w-full h-63px transition duration-500">
+        <i [ngClass]="slot === 2? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'"
+          class="relative flex items-center justify-center text-27 icon-a-z "
+          [style.color]="slot === 2 ? jsonWebdt?.imagesPlayNowTextColor : '' "></i>
+        <p class="pt-2 text-9 " [style.color]="slot === 2 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+          [ngClass]="slot === 2? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'">
+          A-Z</p>
+      </div>
+    </aside>
+    <div class="pl-9px relative flex-1 pr-2px">
+      <section class="rounded-2xl grid grid-cols-3 gap-2">
+        <div class="w-full cursor-pointer" *ngFor="let game of gameslist">
+          <div data-v-895b58e3="" (click)="opencasinogamesmob(game)"
+            class="lozad relative w-full bg-black-300 bg-cover bg-center bg-no-repeat rounded-xl"
+            data-background-image="/gameIcon/KINGMAKER/KM-SLOT-005.webp?3637388420065568" data-loaded="true">
+            <img [src]="game?.image" alt="" class="aspect-square rounded-xl" style="height: 6.79rem; width: 100%;">
+          </div>
+        </div>
+      </section>
+      <button (click)="naviageteToLeague('casino/SLOT/PRAGMATICPLAY')"
+        class="btn-normal p-3 rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed bg-black-900 text-white font-normal mx-auto mt-4 h-30px px-2"><span
+          class="px-2">Show More</span><i class="icon-arrow-left transform rotate-180"></i></button>
+    </div>
+  </div>
+  <div class="p-2 px-8px relative flex" *ngIf="activeSwiper==5">
+    <aside class="bg-white p-3px rounded-md space-y-4 h-full w-51px">
+      <div (click)="setActiveFishing(1)" [ngClass]="fishing === 1? 'rounded-lg':''"
+        [style.backgroundImage]="fishing === 1 ? jsonWebdt?.imagesBottomBorderColor : '' "
+        class="relative group z-10 flex flex-col justify-center items-center cursor-pointer w-full h-63px transition duration-500">
+        <i class="relative flex items-center justify-center text-27 icon-latest"
+          [style.color]="fishing === 1 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+          [ngClass]="fishing === 1? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'"></i>
+        <p class="pt-2 text-9" [style.color]="fishing === 1 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+          [ngClass]="fishing === 1? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'">
+          Latest</p>
+      </div>
+      <div (click)="setActiveFishing(2)" [ngClass]="fishing === 2? 'rounded-lg':''"
+        [style.backgroundImage]="fishing === 2 ? jsonWebdt?.imagesBottomBorderColor : '' "
+        class="relative group z-10 flex flex-col justify-center items-center cursor-pointer w-full h-63px transition duration-500">
+        <i [ngClass]="fishing === 2? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'"
+          class="relative flex items-center justify-center text-27 icon-a-z "
+          [style.color]="fishing === 2 ? jsonWebdt?.imagesPlayNowTextColor : '' "></i>
+        <p class="pt-2 text-9 " [style.color]="fishing === 2 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+          [ngClass]="fishing === 2? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'">
+          A-Z</p>
+      </div>
+    </aside>
+    <div class="pl-9px relative flex-1 pr-2px">
+      <section class="rounded-2xl grid grid-cols-3 gap-2">
+        <div class="w-full cursor-pointer" *ngFor="let game of gameslist">
+          <div data-v-895b58e3="" (click)="opencasinogamesmob(game)"
+            class="lozad relative w-full bg-black-300 bg-cover bg-center bg-no-repeat rounded-xl"
+            data-background-image="/gameIcon/JDB/JDB-FISH-008.webp?3637388420065568" data-loaded="true">
+            <img [src]="game?.image" alt="" class="aspect-square rounded-xl" style="height: 6.79rem; width: 100%;">
+          </div>
+        </div>
+      </section><button (click)="naviageteToLeague('casino/FH/SPADEGAMING')"
+        class="btn-normal p-3 rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed bg-black-900 text-white font-normal mx-auto mt-4 h-30px px-2"><span
+          class="px-2">Show More</span><i class="icon-arrow-left transform rotate-180"></i></button>
+    </div>
+  </div>
+  <div class="p-2 px-8px relative flex" *ngIf="activeSwiper==6">
+    <aside class="bg-white p-3px rounded-md space-y-4 h-full w-51px">
+      <div (click)="setActiveEgame(1)" [ngClass]="egame === 1? 'rounded-lg':''"
+        [style.backgroundImage]="egame === 1 ? jsonWebdt?.imagesBottomBorderColor : '' "
+        class="relative group z-10 flex flex-col justify-center items-center cursor-pointer w-full h-63px transition duration-500">
+        <i class="relative flex items-center justify-center text-27 icon-latest"
+          [style.color]="egame === 1 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+          [ngClass]="egame === 1? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'"></i>
+        <p class="pt-2 text-9" [style.color]="egame === 1 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+          [ngClass]="egame === 1? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'">
+          Latest</p>
+      </div>
+      <div (click)="setActiveEgame(2)" [ngClass]="egame === 2? 'rounded-lg':''"
+        [style.backgroundImage]="egame === 2 ? jsonWebdt?.imagesBottomBorderColor : '' "
+        class="relative group z-10 flex flex-col justify-center items-center cursor-pointer w-full h-63px transition duration-500">
+        <i [ngClass]="egame === 2? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'"
+          class="relative flex items-center justify-center text-27 icon-a-z "
+          [style.color]="egame === 2 ? jsonWebdt?.imagesPlayNowTextColor : '' "></i>
+        <p class="pt-2 text-9 " [style.color]="egame === 2 ? jsonWebdt?.imagesPlayNowTextColor : '' "
+          [ngClass]="egame === 2? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'">
+          A-Z</p>
+      </div>
+    </aside>
+    <div class="pl-9px relative flex-1 pr-2px">
+      <section class="rounded-2xl grid grid-cols-3 gap-2">
+        <div class="w-full cursor-pointer" *ngFor="let game of gameslist">
+          <div data-v-895b58e3="" (click)="opencasinogamesmob(game)"
+            class="lozad relative w-full bg-black-300 bg-cover bg-center bg-no-repeat rounded-xl"
+            data-background-image="/gameIcon/SPRIBE/SPRIBE-EGAME-001.webp?3637388420065568" data-loaded="true">
+            <img [src]="game?.image" alt="" class="aspect-square rounded-xl" style="height: 6.79rem; width: 100%;">
+          </div>
+        </div>
+      </section><button (click)="naviageteToLeague('casino/EGAME/ALL')"
+        class="btn-normal p-3 rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed bg-black-900 text-white font-normal mx-auto mt-4 h-30px px-2"><span
+          class="px-2">Show More</span><i class="icon-arrow-left transform rotate-180"></i></button>
+    </div>
+  </div>
+
+
+  <app-main-footer></app-main-footer>
+</div>

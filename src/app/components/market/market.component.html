@@ -1,0 +1,1590 @@
+<main class="min-h-full-with-header overflow-y-scroll overflow-x-hidden" style="height: calc(100vh - 2.9rem);"
+  (scroll)="onScroll($event)">
+  <div data-v-f43ca18c="">
+    <div class="relative">
+      <div class="px-2 mt-2">
+        <div data-v-46787094="" class="h-36px relative flex justify-center items-center bg-black"
+          style="--75265984: 33px; --33d33e52: translateX(104px);">
+          <div data-v-46787094="" class="flex justify-center items-center w-full">
+            <div *ngIf="isLogin && eventData?.gameType!=='virtual1'" (click)="scoreTvTabs('tv')" data-v-46787094="" class="text-center w-1/2">
+              <span data-v-46787094="" [class]="showTabs == 'tv'? 'active' :''"
+                class="text-13 text-white text-center font-bold">Live</span>
+            </div>
+            <div (click)="scoreTvTabs('scrd')" id="muteBtn" data-v-46787094="" class="text-center w-1/2">
+              <span data-v-46787094="" [class]="showTabs == 'scrd'? 'active' :''"
+                class="text-13 text-white text-center">Scoreboard</span>
+            </div>
+          </div>
+          <!-- <div class="indicator-tab absolute left-0 bottom-1 rounded-full bg-white"></div> -->
+          <div data-v-46787094="" class="tab-indicator absolute left-0 bottom-1 rounded-full bg-white"></div>
+        </div>
+        <div data-v-74773829="" class="py-1.5 px-4 min-h-40px flex justify-center items-center bg-white">
+          <div data-v-74773829="" class="sub-row w-full grid items-center">
+            <div data-v-74773829="" class="flex justify-start items-center">
+              <h2 data-v-74773829="" class="w-3/4 text-13 break-words text-left">{{matchrunners[0]}}</h2><span
+                data-v-74773829="" class="ml-2 text-13 text-widget-text font-bold"></span>
+            </div><span data-v-74773829="" class="text-13 text-widget-text font-bold text-center">-</span>
+            <div data-v-74773829="" class="flex justify-end items-center"><span data-v-74773829=""
+                class="mr-2 text-13 text-widget-text font-bold"></span>
+              <h2 data-v-74773829="" class="w-3/4 text-13 text-right break-words">{{matchrunners[1]}}</h2>
+            </div>
+          </div>
+        </div>
+        <div class="bg-secondary">
+          <div [style.display]="showTabs == 'tv' ? 'block' : 'none'" data-v-5c7611c3=""
+            class="video-contaienr relative">
+            <div data-v-5c7611c3="" class="video-wrapper relative z-0" (click)="showHideIcon()">
+              <div cdkDrag [cdkDragDisabled]="!isOutside" class="framedet">
+                <span class="flex justify-end">
+                  <i class="fa fa-arrows frmicon" [style.display]="isOutside ? 'block' : 'none'"></i>
+                </span>
+                <video id="videoPlayer" poster="/assets/images/livetvimage.jpg?v=1.01" muted autoplay playsinline
+                  disablePictureInPicture class="no-default-controls">
+                </video>
+                <div *ngIf="playtv" class="custom-controls" id="customControls">
+                  <button id="muteBtn" (click)="muteVideo()">🔇</button>
+                  <button id="unMuteBtn" (click)="unmuteVideo()">🔊</button>
+                </div>
+                <div (click)="closeTv()" [style.display]="isOutside ? 'flex' : 'none'" data-v-5c7611c3=""
+                  class="btn-close w-10 h-10 absolute right-5 top-3 z-50 flex justify-center items-center rounded-full">
+                  <span data-v-5c7611c3="" class="icon-close text-16px text-white"></span>
+                </div>
+              </div>
+
+            </div>
+            <div data-v-5c7611c3="" class="absolute w-full h-0 left-0 top-0 -z-10"></div>
+          </div>
+          <div *ngIf="showTabs == 'scrd'">
+            <iframe #iframeRef id="myIframe" [src]="urlSafe" allowfullscreen="true" class="iframeboard"></iframe>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="px-2 mb-12">
+        <div>
+          <div *ngIf="eventData?.gameType!=='virtual1' && oddspermission"
+            class="-mx-2 px-2 h-34px flex justify-between items-center bg-black">
+            <p class="text-base text-white">Exchange</p>
+            <div class="flex justify-center items-center"><span class="mr-1 text-10 text-market-exchange-tip opacity-85"
+                [style.color]="'#ffc800'">Matched</span><span class="text-10 text-market-exchange-tip font-bold"
+                [style.color]="'#ffc800'">PBU {{totalMatched}}</span></div>
+          </div>
+          <div *ngIf="oddspermission || otherpermission" data-v-47071350=""
+            [style]="{'background':jsonWebdt?.imagesBottomBorderColor}"
+            class="-mx-2 market-wrapper h-34px relative bg-primary overflow-y-hidden overflow-x-scroll"
+            style="--eb9c946c: calc(7.475390887561326rem - 3px); --eddfc73c: translateX(8px);">
+            <div data-v-47071350="" class="h-full inline-block">
+              <ul data-v-47071350=""
+                class="ml-2 mr-1 h-full flex flex-nowrap justify-start items-center text-market-name">
+                <li *ngIf="oddspermission" (click)="matchTabs('Match-Odds')" data-v-47071350=""
+                  class=" mr-15px h-full flex items-center whitespace-nowrap -translate-x-1.5">
+                  <div data-v-117db823="" data-v-47071350="" class="w-8 h-6 flex justify-center items-center"
+                    style="--b64d5fc0: 0.5818181818181818; --3cad14f0: -0.7031249999999999rem;">
+                    <!-- <div data-v-117db823="" class="fave bg-star-sprit-white-webp"></div> -->
+                    <i class="fa-regular fa-star" [style]="{ 'color' : jsonWebdt?.imagesPlayNowTextColor}"></i>
+                  </div><span data-v-47071350="" [style]="{ 'color' : jsonWebdt?.imagesPlayNowTextColor}"
+                    class="text-base">Match Odds</span>
+                </li>
+                <ng-container *ngIf="otherpermission">
+                  <ng-container *ngFor="let preitem of preMatchMarket;">
+                    <ng-container *ngFor="let item of MOddsDataOther;">
+                      <li *ngIf="preitem.id==item.marketId" data-v-47071350="" (click)="matchTabs(preitem.name)"
+                        [class.active]="preitem.name === TopMenuselectedItem"
+                        class="mr-15px h-full flex items-center whitespace-nowrap -translate-x-1.5">
+                        <div data-v-117db823="" data-v-47071350="" class="w-8 h-6 flex justify-center items-center"
+                          style="--b64d5fc0: 0.5818181818181818; --3cad14f0: -0.7031249999999999rem;">
+                          <!-- <div data-v-117db823="" class="fave bg-star-sprit-white-webp"></div> -->
+                          <i class="fa-regular fa-star" [style]="{ 'color' : jsonWebdt?.imagesPlayNowTextColor}"></i>
+                        </div>
+                        <span data-v-47071350="" [style]="{ 'color' : jsonWebdt?.imagesPlayNowTextColor}"
+                          class="text-base">{{preitem.name}}</span>
+                      </li>
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+              </ul>
+              <!-- <div data-v-47071350="" class="tab-indicator absolute left-0.5 bottom-1 rounded-full bg-market-name"></div> -->
+            </div>
+          </div>
+          <!-- odds -->
+
+          <div *ngIf="TopMenuselectedItem=='Match-Odds' && oddspermission" class="-mx-2 py-2 px-2 bg-white">
+            <div class="mt-3px mb-1 flex justify-between items-center">
+              <div class="w-9/12"></div>
+              <div class="w-4/12 grid gap-0.5 grid-cols-2">
+                <div class="min-w-min text-10 text-global-font-on-light text-center">Back</div>
+                <div class="min-w-min text-10 text-global-font-on-light text-center">Lay</div>
+              </div>
+            </div>
+            <div>
+              <div class="relative">
+                <div class="space-y-px">
+                  <div *ngFor="let item of matchrunners; let j = index;" class="exchange_panel_line">
+                    <div class="flex justify-start items-center bg-black-100">
+                      <h2 class="px-2.5 w-9/12 h-full leading-5 text-13 flex flex-col justify-center break-all">
+                        {{matchrunners[j]}}
+                        <div class="text-10 leading-normal flex font-bold" data-testid="forecast">
+                          <span class="flex items-center" *ngIf="getMatcBkData && oddsPnlArray.length > 0"
+                            [class]="oddsPnlArray[j] > 0  ? 'text-success' : 'text-error'">
+                            <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{oddsPnlArray[j] |
+                            number :'1.0-2'}}
+                          </span>
+                          <span *ngIf="beforeoddscal" class="flex items-center"
+                            [class]="beforeoddsPnlArray[j] > 0  ? 'text-success' : 'text-error'">
+                            <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{beforeoddsPnlArray[j] |
+                            number :'1.0-2'}}
+                          </span>
+                          <span *ngIf="afteroddscal" class="flex items-center"
+                            [class]="afteroddsPnlArray[j] > 0  ? 'text-success' : 'text-error'">
+                            <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{afteroddsPnlArray[j] |
+                            number :'1.0-2'}}
+                          </span>
+                        </div>
+                      </h2>
+                      <div class="w-4/12 relative grid gap-0.5 grid-cols-2 self-start">
+                        <div
+                          (click)="openOddBetPlace(j, 'back', [{isBack : true, selectionId : runnersList[j].selectionId, selectionName : matchrunners[j], odds : runnersList[j]?.ex?.availableToBack[0]?.price, matchName : eventData.matchname, eventId : eventId, sourceId : eventId, sourceBetType : 'Odds', sportId : sportId}])"
+                          data-v-c72443c8="" class="py-1.5 h-36px text-center rounded-md bg-back-300"
+                          [ngClass]="{'bg-bet-disabled': !(runnersList[j]?.ex?.availableToBack?.[0]?.price) || (runnersList[j]?.ex?.availableToBack?.[0]?.price > socketEventOdds?.markets?.[0]?.limit?.[0].oddsLimit) || (eventData?.lowLiquidity>=totalMatched)}"
+                          title="BACK">
+                          <h3 data-v-c72443c8="" class="text-15 pb-0.5 spark-back">
+                            {{(runnersList[j]?.ex?.availableToBack[0]?.price) ?? '--'}}</h3>
+                          <p data-v-c72443c8="" class="text-9">{{(runnersList[j]?.ex?.availableToBack[0]?.size) ??
+                            '--'}}</p>
+                        </div>
+                        <div
+                          (click)="openOddBetPlace(j, 'lay', [{isBack : false, selectionId : runnersList[j].selectionId, selectionName : matchrunners[j], odds : runnersList[j]?.ex?.availableToLay[0]?.price, matchName : eventData.matchname, eventId : eventId, sourceId : eventId, sourceBetType : 'Odds', sportId : sportId}])"
+                          data-v-c72443c8="" class="py-1.5 h-36px text-center rounded-md bg-lay-300"
+                          [ngClass]="{'bg-bet-disabled': !(runnersList[j]?.ex?.availableToLay?.[0]?.price) || (runnersList[j]?.ex?.availableToLay?.[0]?.price > socketEventOdds?.markets?.[0]?.limit?.[0].oddsLimit) || (eventData?.lowLiquidity>=totalMatched)}"
+                          title="LAY">
+                          <h3 data-v-c72443c8="" class="text-15 pb-0.5 spark-lay">
+                            {{(runnersList[j]?.ex?.availableToLay[0]?.price) ?? '--'}}</h3>
+                          <p data-v-c72443c8="" class="text-9">{{(runnersList[j]?.ex?.availableToLay[0]?.size) ??
+                            '--'}}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div *ngIf="getMatcBkData && oddsPnlArray.length > 0"
+                      class="flex w-full bg-black-100 bg-opacity-50 justify-end">
+                      <div *ngIf="betOddResult?.['avgBackOdds' + (j+1)] || betOddResult?.['avgLayOdds' + (j+1)]"
+                        class="relative text-10 average_odds_line flex w-[calc((100%-2rem)/3)]">
+                        <div class="flex-1 bg-opacity-25 bg-back-300 rounded-b-3px leading-4 text-center my-1px">
+                          {{ (betOddResult?.['avgBackOdds' + (j+1)] ? betOddResult['avgBackOdds' + (j+1)] + 1 : '') |
+                          number:'1.0-2' }}
+                        </div>
+                        <div class="flex-1 bg-opacity-25 bg-lay-300 rounded-b-3px leading-4 text-center my-1px ml-1px">
+                          {{ (betOddResult?.['avgLayOdds' + (j+1)] ? betOddResult['avgLayOdds' + (j+1)] + 1 : '') |
+                          number:'1.0-2' }}
+                        </div>
+                      </div>
+                    </div>
+                    <app-bet-place *ngIf="showOdd == j && backTrue == true" [clsClr]="classclrforlayBack"
+                      [data]="oddPrice" [updOddsBack]="runnersList[j]?.ex?.availableToBack[0]?.price"
+                      [updOddsLay]="runnersList[j]?.ex?.availableToLay[0]?.price" [socketEventData]="socketEventOdds"
+                      [isInplay]="inplaystatus" [minLimit]="oddMin" [maxLimit]="oddMax" [lowLiquidity]="eventData?.lowLiquidity" [totalMatched]="totalMatched"
+                      (betResult)="getOddsCalculation($event)" (stopTimer)="stopTimeout($event)"
+                      style="position: absolute;z-index: 99999;left:-2%;"></app-bet-place>
+                    <app-bet-place *ngIf="showOdd == j && backTrue == false" [clsClr]="classclrforlayBack"
+                      [data]="oddPrice" [updOddsBack]="runnersList[j]?.ex?.availableToBack[0]?.price"
+                      [updOddsLay]="runnersList[j]?.ex?.availableToLay[0]?.price" [socketEventData]="socketEventOdds"
+                      [isInplay]="inplaystatus" [minLimit]="oddMin" [maxLimit]="oddMax" [lowLiquidity]="eventData?.lowLiquidity" [totalMatched]="totalMatched"
+                      (betResult)="getOddsCalculation($event)" (stopTimer)="stopTimeout($event)"
+                      style="position:absolute;z-index: 99999;left:-2%;"></app-bet-place>
+                  </div>
+                </div>
+              </div>
+              <div class="pt-1 flex justify-between items-center">
+                <div
+                  class="inline-flex justify-center items-center rounded bg-secondary text-global-font-on-dark px-3px py-1.5">
+                  <i class="pl-3px pr-0.5 icon-graph"></i><span class="px-3px text-11"> Market Depth </span>
+                </div>
+                <div class="flex items-center text-black-600" data-testid="betLimit">
+                  <i class="icon-min-max px-1 mt-0.5 text-14"></i><span class="px-0.5 text-11">min/max</span>
+                  <span class="px-1 text-11 font-bold">{{oddMin}}/{{oddMax | number:'1.0-0'}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- other -->
+
+          <ng-container *ngIf="otherpermission">
+            <ng-container *ngFor="let preitem of preMatchMarket; let i= index;">
+              <ng-container *ngIf="TopMenuselectedItem==preitem.name">
+                <div class="-mx-2 py-2 px-2 bg-white">
+                  <div class="mt-3px mb-1 flex justify-between items-center">
+                    <div class="w-9/12"></div>
+                    <div class="w-4/12 grid gap-0.5 grid-cols-2">
+                      <div class="min-w-min text-10 text-global-font-on-light text-center">Back</div>
+                      <div class="min-w-min text-10 text-global-font-on-light text-center">Lay</div>
+                    </div>
+                  </div>
+                  <div class="relative">
+                    <div class="space-y-px">
+                      <div *ngFor="let preitemdata of preitem.pSelection;let j=index;" class="exchange_panel_line">
+                        <div class="flex justify-start items-center bg-black-100">
+                          <h2 class="px-2.5 w-9/12 h-full leading-5 text-13 flex flex-col justify-center break-all">
+                            {{preitemdata.selectionName}}
+                            <div *ngIf="getMatchODData" class="text-10 leading-normal flex font-bold"
+                              data-testid="forecast">
+                              <span class="flex items-center"
+                                [class]="omPnlArrayData[j] >= 0  ? 'text-success' : 'text-error'">
+                                <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{omPnlArrayData[j] |
+                                number :'1.0-2'}}
+                              </span>
+                            </div>
+
+                          </h2>
+                          <div class="w-4/12 relative grid gap-0.5 grid-cols-2 self-start">
+                            <div
+                              (click)="openOtherBetPlace(j, 'back', [{isBack : true, selectionId : preitemdata.id, selectionName : preitemdata.selectionName, odds : MOddsDataOther[i]?.runners[j]?.ex?.availableToBack[0]?.price, matchName : eventData.matchname, eventId : eventId, sourceId : preitem.fancyid, sourceBetType : 'Other', sportId : sportId, marketName:preitem.name}])"
+                              data-v-c72443c8="" class="py-1.5 h-36px text-center rounded-md bg-back-300" title="BACK">
+                              <h3 data-v-c72443c8="" class="text-15 pb-0.5">
+                                {{(MOddsDataOther[i]?.runners[j]?.ex?.availableToBack[0]?.price) ?? '--'}}</h3>
+                              <p data-v-c72443c8="" class="text-9">
+                                {{(MOddsDataOther[i]?.runners[j]?.ex?.availableToBack[0]?.size) ?? '--'}}</p>
+                            </div>
+                            <div
+                              (click)="openOtherBetPlace(j, 'lay', [{isBack : false, selectionId : preitemdata.id, selectionName : preitemdata.selectionName, odds : MOddsDataOther[i]?.runners[j]?.ex?.availableToLay[0]?.price, matchName : eventData.matchname, eventId : eventId, sourceId : preitem.fancyid, sourceBetType : 'Other', sportId : sportId, marketName:preitem.name}])"
+                              data-v-c72443c8=""
+                              class="py-1.5 h-36px text-center rounded-md bg-lay-300 animate-spark-lay" title="LAY">
+                              <h3 data-v-c72443c8="" class="text-15 pb-0.5">
+                                {{(MOddsDataOther[i]?.runners[j]?.ex?.availableToLay[0]?.price) ?? '--'}}</h3>
+                              <p data-v-c72443c8="" class="text-9">
+                                {{(MOddsDataOther[i]?.runners[j]?.ex?.availableToLay[0]?.size) ?? '--'}}</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <app-bet-place *ngIf="showOther == j" [clsClr]="classclrforlayBack" [data]="oddPrice"
+                          [updOddsBack]="MOddsDataOther[i]?.runners[j]?.ex?.availableToBack[0]?.price"
+                          [updOddsLay]="MOddsDataOther[i]?.runners[j]?.ex?.availableToLay[0]?.price"
+                          [socketEventData]="MOddsAllData.events" [minLimit]="otherMin" [maxLimit]="otherMax"
+                          [isInplay]="inplaystatus" (betResult)="getOddsCalculation($event)"
+                          style="position:absolute;z-index: 99999;"></app-bet-place>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="pt-1 flex justify-between items-center">
+                    <div
+                      class="inline-flex justify-center items-center rounded bg-secondary text-global-font-on-dark px-3px py-1.5">
+                      <i class="pl-3px pr-0.5 icon-graph"></i><span class="px-3px text-11"> Market Depth </span>
+                    </div>
+                    <div class="flex items-center text-black-600" data-testid="betLimit"><i
+                        class="icon-min-max px-1 mt-0.5 text-14"></i><span class="px-0.5 text-11">min/max</span>
+                      <span class="px-1 text-11 font-bold">{{otherMin}}/{{otherMax | number:'1.0-0'}}</span>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+
+        </div>
+
+        <section *ngIf="bmpermission">
+          <div class="mt-2">
+            <div [style]="{'background':jsonWebdt?.imagesBottomBorderColor}"
+              class="relative py-1.5 pr-9 pl-1.5 text-sm h-34px text-primary bg-primary rounded-xl cursor-pointer transition-all duration-300 "
+              [ngClass]="arroicon?'rounded-t-xl rounded-b-none':''">
+              <div class="flex justify-start items-center text-base text-market-name font-normal" (click)="downarrow()">
+                <div class="-ml-2 sm:-ml-1 pt-px mb-3px">
+                  <div data-v-117db823="" class="w-8 h-6 flex justify-center items-center"
+                    style="--b64d5fc0: 0.5818181818181818; --3cad14f0: -0.7031249999999999rem;">
+                    <!-- <div data-v-117db823="" class="fave bg-star-sprit-white-webp"></div> -->
+                    <i class="fa-regular fa-star" [style]="{ 'color' : jsonWebdt?.imagesPlayNowTextColor}"></i>
+                  </div>
+                </div>
+                <p class="pr-2 h-6" [style]="{ 'color' : jsonWebdt?.imagesPlayNowTextColor}">Bookmaker </p>
+              </div><span (click)="downarrow()"
+                class="icon-arrow-down-sencodary absolute right-4 top-3 text-12 text-market-name transition-transform origin-center duration-300"
+                [ngClass]="arroicon?'transform rotate-180':''"
+                [style]="{ 'color' : jsonWebdt?.imagesPlayNowTextColor}"></span>
+            </div>
+            <div *ngIf="arroicon">
+              <div class="rounded-b-lg">
+                <div class="pt-1 px-1 bg-white rounded-bl-lg rounded-br-lg">
+                  <div class="mb-1 flex justify-between items-center">
+                    <div class="w-9/12"></div>
+                    <div class="w-4/12 grid gap-0.5 grid-cols-2">
+                      <div class="min-w-min text-10 text-global-font-on-light text-center">Back</div>
+                      <div class="min-w-min text-10 text-global-font-on-light text-center">Lay</div>
+                    </div>
+                  </div>
+                  <div data-v-589e144f="">
+                    <div data-v-589e144f="" class="relative space-y-px py-1">
+                      <div *ngFor="let item of matchrunners; let i = index;" data-v-589e144f=""
+                        class="bookmaker_selection_line">
+                        <div data-v-589e144f="" class="relative flex justify-start items-center bg-black-100">
+                          <h2 data-v-589e144f=""
+                            class="px-2 w-9/12 h-full leading-5 text-13 flex flex-col justify-center break-all">
+                            {{matchrunners[i]}}
+                            <div class="text-10 leading-normal flex font-bold" data-testid="forecast">
+                              <span *ngIf="getMatcBkData" class="flex items-center"
+                                [class]="bmPnlArray[i] >= 0  ? 'text-success' : 'text-error'">
+                                <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{bmPnlArray[i] |
+                                number :'1.0-2'}}
+                              </span>
+                              <span *ngIf="beforeBMcal" class="flex items-center"
+                                [class]="beforeBMPnlArray[i] >= 0  ? 'text-success' : 'text-error'">
+                                <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{beforeBMPnlArray[i] |
+                                number :'1.0-2'}}
+                              </span>
+                              <span *ngIf="afterBMcal" class="flex items-center"
+                                [class]="afterBMPnlArray[i] >= 0  ? 'text-success' : 'text-error'">
+                                <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{afterBMPnlArray[i] |
+                                number :'1.0-2'}}
+                              </span>
+                            </div>
+
+                          </h2>
+                          <div data-v-589e144f=""
+                            class="w-4/12 relative grid grid-cols-2 gap-x-2 bg-bookmaker-market p-1 rounded-md self-start">
+                            <div
+                              (click)="openBMBetPlace(i, 'back', [{isBack : true, selectionId : matchrunnerssid[i], selectionName : matchrunners[i], odds : runnersList2.bookmaker[i]?.backOddsInfo[0], matchName : eventData.matchname, eventId : eventId, sourceId : eventId, sourceBetType : 'BooKMaker', sportId : sportId}])"
+                              data-v-01d554b6="" data-v-589e144f=""
+                              class="h-30px text-center rounded-md border border-white flex items-center justify-center active-text-white bg-back-300"
+                              title="BACK">
+                              <h3 data-v-01d554b6="" class="text-15">{{(runnersList2?.bookmaker?.[i]?.backOddsInfo[0])
+                                || '0' }}</h3>
+                            </div>
+                            <div
+                              (click)="openBMBetPlace(i, 'lay', [{isBack : false, selectionId : matchrunnerssid[i], selectionName : matchrunners[i], odds : runnersList2.bookmaker[i]?.layOddsInfo[0], matchName : eventData.matchname, eventId : eventId, sourceId : eventId, sourceBetType : 'BooKMaker', sportId : sportId}])"
+                              data-v-01d554b6="" data-v-589e144f=""
+                              class="h-30px text-center rounded-md border border-white flex items-center justify-center active-text-white bg-lay-300"
+                              title="LAY">
+                              <h3 data-v-01d554b6="" class="text-15">{{(runnersList2?.bookmaker?.[i]?.layOddsInfo[0])
+                                || '0' }}</h3>
+                            </div>
+                            <div *ngIf="runnersList2?.bookmaker?.[i]?.status!='Active'" _ngcontent-ng-c1953198863=""
+                              data-v-589e144f=""
+                              class="absolute right-0 top-0 flex justify-center items-center h-full bg-black-700 opacity-80 text-11 text-white rounded-md w-full">
+                              Suspend</div>
+                          </div>
+                        </div>
+                        <div *ngIf="getMatcBkData" class="flex w-full bg-black-100 bg-opacity-50 justify-end">
+                          <div *ngIf="betOddResult?.['avgBackOddsbm' + (i+1)] || betOddResult?.['avgLayOddsbm' + (i+1)]"
+                            class="relative text-10 average_odds_line flex w-[calc((100%-2rem)/3)]">
+                            <div class="flex-1 bg-opacity-25 bg-back-300 rounded-b-3px leading-4 text-center my-1px">
+                              {{ (betOddResult?.['avgBackOddsbm' + (i+1)] ? betOddResult['avgBackOddsbm' + (i+1)] * 100
+                              : '') | number:'1.0-2' }}
+                            </div>
+                            <div
+                              class="flex-1 bg-opacity-25 bg-lay-300 rounded-b-3px leading-4 text-center my-1px ml-1px">
+                              {{ (betOddResult?.['avgLayOddsbm' + (i+1)] ? betOddResult['avgLayOddsbm' + (i+1)] * 100 :
+                              '') | number:'1.0-2' }}
+                            </div>
+                          </div>
+                        </div>
+                        <app-bet-place
+                          *ngIf="showBM == i && backTrue == true && runnersList2.bookmaker[i]?.status=='Active'"
+                          [clsClr]="classclrforlayBack" [data]="oddPrice"
+                          [updOddsBack]="runnersList2.bookmaker[i]?.backOddsInfo[0]"
+                          [updOddsLay]="runnersList2.bookmaker[i]?.layOddsInfo[0]"
+                          [socketEventData]="runnersList2.events" [isInplay]="inplaystatus"
+                          [minLimit]="runnersList2.min" [maxLimit]="runnersList2?.max"
+                          (betResult)="getOddsCalculation($event)"
+                          style="position:absolute;z-index: 99999;left:-3%;"></app-bet-place>
+                        <app-bet-place
+                          *ngIf="showBM == i && backTrue == false && runnersList2.bookmaker[i]?.status=='Active'"
+                          [clsClr]="classclrforlayBack" [data]="oddPrice"
+                          [updOddsBack]="runnersList2.bookmaker[i]?.backOddsInfo[0]"
+                          [updOddsLay]="runnersList2.bookmaker[i]?.layOddsInfo[0]"
+                          [socketEventData]="runnersList2.events" [isInplay]="inplaystatus"
+                          [minLimit]="runnersList2.min" [maxLimit]="runnersList2.max"
+                          (betResult)="getOddsCalculation($event)"
+                          style="position:absolute;z-index: 99999;left:-3%;"></app-bet-place>
+                      </div>
+                    </div>
+                    <div data-v-589e144f="" class="py-1 flex justify-center items-center">
+                      <div data-v-589e144f="" class="flex flex-1 justify-end items-center">
+                        <div data-v-589e144f="" class="flex items-center text-black-600" data-testid="betLimit"><i
+                            class="icon-min-max px-1 mt-0.5 text-14"></i><span class="px-0.5 text-11">min/max</span>
+                          <span class="px-1 text-11 font-bold">{{ runnersList2?.min ? (runnersList2.min) : '' }} / {{
+                            runnersList2?.max ? ((runnersList2.max) | number:'1.0-0') : '' }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section *ngIf="showhidetoss==true">
+          <div class="mt-2">
+            <div [style]="{'background':jsonWebdt?.imagesBottomBorderColor}"
+              class="relative py-1.5 pr-9 pl-1.5 text-sm h-34px text-primary bg-primary rounded-xl cursor-pointer transition-all duration-300 "
+              [ngClass]="arroiconToss?'rounded-t-xl rounded-b-none':''">
+              <div class="flex justify-start items-center text-base text-market-name font-normal"
+                (click)="downarrowToss()">
+                <div class="-ml-2 sm:-ml-1 pt-px mb-3px">
+                  <div data-v-117db823="" class="w-8 h-6 flex justify-center items-center"
+                    style="--b64d5fc0: 0.5818181818181818; --3cad14f0: -0.7031249999999999rem;">
+                    <!-- <div data-v-117db823="" class="fave bg-star-sprit-white-webp"></div> -->
+                    <i class="fa-regular fa-star" [style]="{ 'color' : jsonWebdt?.imagesPlayNowTextColor}"></i>
+                  </div>
+                </div>
+                <p class="pr-2 h-6" [style]="{ 'color' : jsonWebdt?.imagesPlayNowTextColor}">Toss </p>
+              </div><span (click)="downarrowToss()"
+                class="icon-arrow-down-sencodary absolute right-4 top-3 text-12 text-market-name transition-transform origin-center duration-300"
+                [ngClass]="arroiconToss?'transform rotate-180':''"
+                [style]="{ 'color' : jsonWebdt?.imagesPlayNowTextColor}"></span>
+            </div>
+            <div *ngIf="arroiconToss">
+              <div class="rounded-b-lg">
+                <div class="pt-1 px-1 bg-white rounded-bl-lg rounded-br-lg">
+                  <div class="mb-1 flex justify-between items-center">
+                    <div class="w-9/12"></div>
+                    <div class="w-4/12 grid gap-0.5 grid-cols-2">
+                      <div class="min-w-min text-10 text-global-font-on-light text-center">Back</div>
+                      <div class="min-w-min text-10 text-global-font-on-light text-center">Lay</div>
+                    </div>
+                  </div>
+                  <div data-v-589e144f="">
+                    <div data-v-589e144f="" class="relative space-y-px">
+                      <ng-container *ngFor="let item of matchrunners; let i = index;">
+                        <div *ngIf="i <= 1" data-v-589e144f="" class="bookmaker_selection_line">
+                          <div data-v-589e144f="" class="relative flex justify-start items-center bg-black-100">
+                            <h2 data-v-589e144f=""
+                              class="px-2 w-9/12 h-full leading-5 text-13 flex flex-col justify-center break-all">
+                              {{matchrunners[i]}}
+                              <div *ngIf="getTossBkData" class="text-10 leading-normal flex font-bold"
+                                data-testid="forecast">
+                                <span class="flex items-center"
+                                  [class]="tossPnlArray[i] >= 0  ? 'text-success' : 'text-error'">
+                                  <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{tossPnlArray[i] |
+                                  number :'1.0-2'}}
+                                </span>
+                              </div>
+                            </h2>
+                            <div data-v-589e144f=""
+                              class="w-4/12 relative grid grid-cols-2 gap-x-2 bg-bookmaker-market p-1 rounded-md self-start">
+                              <div
+                                (click)="openTossBetPlace(i, 'back', [{isBack : true, selectionId : matchrunnerssid[i], selectionName : matchrunners[i], odds : '0.95', matchName : eventData.matchname, eventId : eventId, sourceId : eventId, sourceBetType : 'Toss', sportId : sportId}])"
+                                data-v-01d554b6="" data-v-589e144f=""
+                                class="h-30px text-center rounded-md border border-white flex items-center justify-center active-text-white bg-back-300"
+                                title="BACK">
+                                <h3 data-v-01d554b6="" class="text-15">0.95</h3>
+                              </div>
+                              <div data-v-01d554b6="" data-v-589e144f=""
+                                class="h-30px text-center rounded-md border border-white flex items-center justify-center active-text-white bg-lay-300"
+                                title="LAY">
+                                <h3 data-v-01d554b6="" class="text-15"></h3>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <app-bet-place *ngIf="showToss == i" [clsClr]="classclrforlayBack" [data]="oddPrice"
+                          [updOddsBack]="0.95" [updOddsLay]="0.95" [socketEventData]="tosssocketdata.events"
+                          [isInplay]="inplaystatus" [minLimit]="tossMin" [maxLimit]="tossMax"
+                          (betResult)="getOddsCalculation($event)"
+                          style="position:absolute;z-index: 99999;left:-3%;"></app-bet-place>
+                      </ng-container>
+                    </div>
+                    <div data-v-589e144f="" class="py-1 flex justify-center items-center">
+                      <div data-v-589e144f="" class="flex flex-1 justify-end items-center">
+                        <div data-v-589e144f="" class="flex items-center text-black-600" data-testid="betLimit">
+                          <i class="icon-min-max px-1 mt-0.5 text-14"></i><span class="px-0.5 text-11">min/max</span>
+                          <span class="px-1 text-11 font-bold">{{tossMin}} / {{tossMax | number:'1.0-0'}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="mt-2" style="min-height: 300px;">
+          <section class="p-2 pb-0 bg-secondary rounded-t-xl -mb-px">
+            <div class="flex rounded-t-md overflow-hidden bg-market-tab1 w-max">
+              <div *ngIf="fancypermission" class="relative text-14 w-100px">
+                <div class=" h-8 py-2" [ngStyle]="getLinkStyles(bets==0)"
+                  [ngClass]="bets==0?'bg-market-tab-active rounded-t-md':''"></div><span
+                  class="left-1/2 absolute top-1/2 -translate-y-1/2 -translate-x-1/2"
+                  [ngStyle]="getactiveColor(bets==0)"
+                  [ngClass]="bets==0?'text-market-tab-text left-1/2':'text-market-tab-active left-[45%]'"
+                  (click)="fBets(0)">Fancybet</span>
+              </div>
+              <div class="relative text-14 w-100px -ml-10px">
+                <div class="h-8 py-2" [ngStyle]="getLinkStyles(bets==1)"
+                  [ngClass]="bets==1?'bg-market-tab-active rounded-t-md':''"></div><span
+                  class="left-1/2 absolute top-1/2 -translate-y-1/2 -translate-x-1/2"
+                  [ngStyle]="getactiveColor(bets==1)"
+                  [ngClass]="bets==1?'text-market-tab-text left-1/2':'text-market-tab-active left-[55%]'"
+                  (click)="fBets(1)">Sportsbook</span>
+              </div>
+            </div>
+          </section>
+          <div *ngIf="bets==0 && fancypermission" class="mt-0.5">
+            <div data-v-7d578f35=""
+              [style]="{'background':jsonWebdt?.imagesBottomBorderColor, 'color' : jsonWebdt?.imagesPlayNowTextColor}"
+              class="flex items-center bg-market-tab-active text-market-tab-text pl-1.5 pt-px"
+              style="--27cc0d26: 40px; --44f3f56a: translateX(4px);">
+              <div data-v-7d578f35="" class="overflow-x-scroll mr-2 -ml-0.5">
+                <div data-v-7d578f35="" class="relative inline-block">
+                  <div data-v-7d578f35="" class="w-full h-30px flex jusrify-center">
+                    <div data-v-7d578f35="" (click)="displayFancy(0)" [ngClass]="{'active1': fancyselectedTab === 0}"
+                      class="tab white-space text-13 font-bold py-2 px-2 mx-1 mt-px text-center">All</div>
+                    <div data-v-7d578f35="" (click)="displayFancy(1)" [ngClass]="{'active1': fancyselectedTab === 1}"
+                      class="tab white-space text-13 font-bold py-2 px-2 mx-1 mt-px text-center">Normal</div>
+                    <div data-v-7d578f35="" (click)="displayFancy(2)"
+                      [ngClass]="{'active1': fancyselectedTab === 'fancy1'}"
+                      class="tab white-space text-13 font-bold py-2 px-2 mx-1 mt-px text-center">Fancy1</div>
+                    <div data-v-7d578f35="" (click)="displayFancy(3)"
+                      [ngClass]="{'active1': fancyselectedTab === 'over'}"
+                      class="tab white-space text-13 font-bold py-2 px-2 mx-1 mt-px text-center">Over</div>
+                    <div data-v-7d578f35="" (click)="displayFancy(4)"
+                      [ngClass]="{'active1': fancyselectedTab === 'bbb'}"
+                      class="tab white-space text-13 font-bold py-2 px-2 mx-1 mt-px text-center">Ball By Ball</div>
+                    <div data-v-7d578f35="" (click)="displayFancy(5)"
+                      [ngClass]="{'active1': fancyselectedTab === 'khadda'}"
+                      class="tab white-space text-13 font-bold py-2 px-2 mx-1 mt-px text-center">Khadda</div>
+                    <div data-v-7d578f35="" (click)="displayFancy(6)"
+                      [ngClass]="{'active1': fancyselectedTab === 'lottery'}"
+                      class="tab white-space text-13 font-bold py-2 px-2 mx-1 mt-px text-center">Lottery</div>
+                    <div data-v-7d578f35="" (click)="displayFancy(7)"
+                      [ngClass]="{'active1': fancyselectedTab === 'oddeven'}"
+                      class="tab white-space text-13 font-bold py-2 px-2 mx-1 mt-px text-center">Odd/Even</div>
+                  </div>
+                  <div data-v-35235b3f=""
+                    class="tab-indicator absolute left-0 bottom-1.5 bg-global-font-on-light rounded-full"
+                    [style.width.px]="indicatorWidth" [style.left.px]="indicatorLeft">
+                  </div>
+                  <!-- <div data-v-b21f4b8c="" class="tab-indicator absolute left-0 bottom-1 bg-market-tab-text rounded-full"  [style.width.px]="indicatorWidth" [style.left.px]="indicatorLeft"></div> -->
+                </div>
+              </div>
+              <div (click)="openRulesPopup()" data-v-7d578f35=""
+                [style]="{'color' : jsonWebdt?.imagesPlayNowTextColor,'opacity' : '.5'}"
+                class="icon-info-circle block w-4 h-4 text-market-sub-icon ml-auto mr-2"></div>
+            </div>
+            <!-- fancy -->
+            <div class="rounded-b-lg">
+              <div class="pt-1 bg-white rounded-bl-lg rounded-br-lg pb-1">
+                <div class="mb-1 flex justify-between items-center">
+                  <div class="w-9/12"></div>
+                  <div class="w-4/12 grid gap-0.5 grid-cols-2">
+                    <div class="min-w-min text-10 text-global-font-on-light text-center">No</div>
+                    <div class="min-w-min text-10 text-global-font-on-light text-center">Yes</div>
+                  </div>
+                </div>
+                <div class="divide-y divide-black-100">
+                  <ng-container *ngIf="normalFan && normalfancy.length > 0">
+                    <div class="mb-1px px-1 relative"
+                      *ngFor="let item of normalfancy; trackBy: trackByFn; let i = index">
+                      <div class="flex justify-start items-center bg-black-100">
+                        <div class="-ml-5px -mr-4px">
+                          <div data-v-117db823="" class="w-8 h-6 flex justify-center items-center"
+                            style="--b64d5fc0: 0.5818181818181818; --3cad14f0: -0.7031249999999999rem;">
+                            <div data-v-117db823="" class="fave bg-star-sprit-black-webp"></div>
+                          </div>
+                        </div>
+                        <div class="w-8/12 h-full text-13 flex flex-col justify-center my-7px px-2">
+                          <div class="flex flex-row">
+                            <h2 class="break-words flex-1 leading-5 m-auto">{{item?.nat}}</h2>
+                            <ng-container *ngFor="let liab of fancyLiability">
+                              <div *ngIf="liab.sourceId == item.selectionId"
+                                class="text-11 text-global-font-on-dark font-normal p-5px leading-12px h-min rounded-3px bg-black-600 ml-7px"
+                                data-testid="books-btn">
+                                <div class="visible" (click)="openfnacyBook(liab?.sourceId)">Book</div>
+                              </div>
+                            </ng-container>
+                          </div>
+                          <ng-container *ngFor="let liab of fancyLiability">
+                            <div *ngIf="liab.sourceId == item.selectionId" class="text-10 leading-normal flex font-bold"
+                              data-testid="forecast">
+                              <span class="flex items-center text-error">
+                                <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{liab.liability}}
+                              </span>
+                            </div>
+                          </ng-container>
+                        </div>
+                        <div class="w-4/12 relative grid gap-0.5 grid-cols-2 self-start" selections="[object Map]">
+                          <div data-v-93e7df57="" class="min-h-full text-center rounded-md bg-lay-300 pt-2 pb-5px"
+                            title="NO"
+                            (click)="openFancyBetPlace(item.sid, 'lay', [{isBack : false, selectionId : item.selectionId, selectionName : item.ls1, odds : item.l1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
+                            <h3 data-v-93e7df57="" class="text-15 leading-12px">{{item.l1 | number:'1.0-0'}}</h3>
+                            <p data-v-93e7df57="" class="text-9 mt-2px h-10px leading-10px">{{item.ls1 |
+                              number:'1.0-0'}}</p>
+                          </div>
+                          <div data-v-93e7df57="" class="min-h-full text-center rounded-md bg-back-300 pt-2 pb-5px"
+                            title="YES"
+                            (click)="openFancyBetPlace(item.sid, 'back', [{isBack : true, selectionId : item.selectionId, selectionName : item.bs1, odds : item.b1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
+                            <h3 data-v-93e7df57="" class="text-15 leading-12px">{{item.b1 | number:'1.0-0'}}</h3>
+                            <p data-v-93e7df57="" class="text-9 mt-2px h-10px leading-10px">{{item.bs1 |
+                              number:'1.0-0'}}</p>
+                          </div>
+                          <div *ngIf="item.gstatus=='SUSPENDED'"
+                            class="absolute right-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-md"
+                            data-testid="fancybet-market-status">Suspend</div>
+                          <div *ngIf="item.gstatus=='Ball Running' || item.gstatus=='Starting soon.'"
+                            class="absolute right-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-md"
+                            data-testid="fancybet-market-status">Ball Running</div>
+                        </div>
+                      </div>
+                      <app-bet-place *ngIf="showFancyBet == item.sid && backTrue == true" [clsClr]="classclrforlayBack"
+                        [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                        [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                        [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
+                        style="position:absolute;z-index: 99999;left:-2%;"></app-bet-place>
+                      <app-bet-place *ngIf="showFancyBet == item.sid && backTrue == false" [clsClr]="classclrforlayBack"
+                        [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                        [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                        [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
+                        style="position:absolute;z-index: 99999;left:-2%;"></app-bet-place>
+                    </div>
+                  </ng-container>
+
+                  <ng-container *ngIf="fan1 && fancy1.length > 0">
+                    <div class="mb-1px px-1 relative" *ngFor="let item of fancy1; trackBy: trackByFn; let j = index">
+                      <div class="flex justify-start items-center bg-black-100">
+                        <div class="-ml-5px -mr-4px">
+                          <div data-v-117db823="" class="w-8 h-6 flex justify-center items-center"
+                            style="--b64d5fc0: 0.5818181818181818; --3cad14f0: -0.7031249999999999rem;">
+                            <div data-v-117db823="" class="fave bg-star-sprit-black-webp"></div>
+                          </div>
+                        </div>
+                        <div class="w-8/12 h-full text-13 flex flex-col justify-center my-7px px-2">
+                          <div class="flex flex-row">
+                            <h2 class="break-words flex-1 leading-5 m-auto">{{item?.nat}}</h2>
+                            <ng-container *ngFor="let liab of fancyLiability">
+                              <div *ngIf="liab.sourceId == item.selectionId"
+                                class="text-11 text-global-font-on-dark font-normal p-5px leading-12px h-min rounded-3px bg-black-600 ml-7px"
+                                data-testid="books-btn">
+                                <div class="visible" (click)="openfnacyBook(liab?.sourceId)">Book</div>
+                              </div>
+                            </ng-container>
+                          </div>
+                          <ng-container *ngFor="let liab of fancyLiability">
+                            <div *ngIf="liab.sourceId == item.selectionId" class="text-10 leading-normal flex font-bold"
+                              data-testid="forecast">
+                              <span class="flex items-center text-error">
+                                <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{liab.liability}}
+                              </span>
+                            </div>
+                          </ng-container>
+                        </div>
+                        <div class="w-4/12 relative grid gap-0.5 grid-cols-2 self-start" selections="[object Map]">
+                          <div data-v-93e7df57="" class="min-h-full text-center rounded-md bg-lay-300 pt-2 pb-5px"
+                            title="NO"
+                            (click)="openFancyBetPlace(item.sid, 'lay', [{isBack : false, selectionId : item.selectionId, selectionName : item.ls1, odds : item.l1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
+                            <h3 data-v-93e7df57="" class="text-15 leading-12px">{{item.l1 | number:'1.0-0'}}</h3>
+                            <p data-v-93e7df57="" class="text-9 mt-2px h-10px leading-10px">{{item.ls1 |
+                              number:'1.0-0'}}</p>
+                          </div>
+                          <div data-v-93e7df57="" class="min-h-full text-center rounded-md bg-back-300 pt-2 pb-5px"
+                            title="YES"
+                            (click)="openFancyBetPlace(item.sid, 'back', [{isBack : true, selectionId : item.selectionId, selectionName : item.bs1, odds : item.b1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
+                            <h3 data-v-93e7df57="" class="text-15 leading-12px">{{item.b1 | number:'1.0-0'}}</h3>
+                            <p data-v-93e7df57="" class="text-9 mt-2px h-10px leading-10px">{{item.bs1 |
+                              number:'1.0-0'}}</p>
+                          </div>
+                          <div *ngIf="item.gstatus=='SUSPENDED'"
+                            class="absolute right-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-md"
+                            data-testid="fancybet-market-status">Suspend</div>
+                          <div *ngIf="item.gstatus=='Ball Running' || item.gstatus=='Starting soon.'"
+                            class="absolute right-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-md"
+                            data-testid="fancybet-market-status">Ball Running</div>
+                        </div>
+                      </div>
+                      <app-bet-place *ngIf="showFancyBet == item.sid && backTrue == true" [clsClr]="classclrforlayBack"
+                        [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                        [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                        [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
+                        style="position:absolute;z-index: 99999;left:-2%;"></app-bet-place>
+                      <app-bet-place *ngIf="showFancyBet == item.sid && backTrue == false" [clsClr]="classclrforlayBack"
+                        [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                        [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                        [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
+                        style="position:absolute;z-index: 99999;left:-2%;"></app-bet-place>
+                    </div>
+                  </ng-container>
+
+                  <ng-container *ngIf="overFan && overfancy.length > 0">
+                    <div class="mb-1px px-1 relative" *ngFor="let item of overfancy; trackBy: trackByFn; let j = index">
+                      <div class="flex justify-start items-center bg-black-100">
+                        <div class="-ml-5px -mr-4px">
+                          <div data-v-117db823="" class="w-8 h-6 flex justify-center items-center"
+                            style="--b64d5fc0: 0.5818181818181818; --3cad14f0: -0.7031249999999999rem;">
+                            <div data-v-117db823="" class="fave bg-star-sprit-black-webp"></div>
+                          </div>
+                        </div>
+                        <div class="w-8/12 h-full text-13 flex flex-col justify-center my-7px px-2">
+                          <div class="flex flex-row">
+                            <h2 class="break-words flex-1 leading-5 m-auto">{{item?.nat}}</h2>
+                            <ng-container *ngFor="let liab of fancyLiability">
+                              <div *ngIf="liab.sourceId == item.selectionId"
+                                class="text-11 text-global-font-on-dark font-normal p-5px leading-12px h-min rounded-3px bg-black-600 ml-7px"
+                                data-testid="books-btn">
+                                <div class="visible" (click)="openfnacyBook(liab?.sourceId)">Book</div>
+                              </div>
+                            </ng-container>
+                          </div>
+                          <ng-container *ngFor="let liab of fancyLiability">
+                            <div *ngIf="liab.sourceId == item.selectionId" class="text-10 leading-normal flex font-bold"
+                              data-testid="forecast">
+                              <span class="flex items-center text-error">
+                                <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{liab.liability}}
+                              </span>
+                            </div>
+                          </ng-container>
+                        </div>
+                        <div class="w-4/12 relative grid gap-0.5 grid-cols-2 self-start" selections="[object Map]">
+                          <div data-v-93e7df57="" class="min-h-full text-center rounded-md bg-lay-300 pt-2 pb-5px"
+                            title="NO"
+                            (click)="openFancyBetPlace(item.sid, 'lay', [{isBack : false, selectionId : item.selectionId, selectionName : item.ls1, odds : item.l1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
+                            <h3 data-v-93e7df57="" class="text-15 leading-12px">{{item.l1 | number:'1.0-0'}}</h3>
+                            <p data-v-93e7df57="" class="text-9 mt-2px h-10px leading-10px">{{item.ls1 |
+                              number:'1.0-0'}}</p>
+                          </div>
+                          <div data-v-93e7df57="" class="min-h-full text-center rounded-md bg-back-300 pt-2 pb-5px"
+                            title="YES"
+                            (click)="openFancyBetPlace(item.sid, 'back', [{isBack : true, selectionId : item.selectionId, selectionName : item.bs1, odds : item.b1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
+                            <h3 data-v-93e7df57="" class="text-15 leading-12px">{{item.b1 | number:'1.0-0'}}</h3>
+                            <p data-v-93e7df57="" class="text-9 mt-2px h-10px leading-10px">{{item.bs1 |
+                              number:'1.0-0'}}</p>
+                          </div>
+                          <div *ngIf="item.gstatus=='SUSPENDED'"
+                            class="absolute right-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-md"
+                            data-testid="fancybet-market-status">Suspend</div>
+                          <div *ngIf="item.gstatus=='Ball Running' || item.gstatus=='Starting soon.'"
+                            class="absolute right-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-md"
+                            data-testid="fancybet-market-status">Ball Running</div>
+                        </div>
+                      </div>
+                      <app-bet-place *ngIf="showFancyBet == item.sid && backTrue == true" [clsClr]="classclrforlayBack"
+                        [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                        [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                        [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
+                        style="position:absolute;z-index: 99999;left:-2%;"></app-bet-place>
+                      <app-bet-place *ngIf="showFancyBet == item.sid && backTrue == false" [clsClr]="classclrforlayBack"
+                        [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                        [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                        [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
+                        style="position:absolute;z-index: 99999;left:-2%;"></app-bet-place>
+
+                    </div>
+                  </ng-container>
+
+                  <ng-container *ngIf="bbbFan && bbbfancy.length > 0">
+                    <div class="mb-1px px-1 relative" *ngFor="let item of bbbfancy; trackBy: trackByFn; let j = index">
+                      <div class="flex justify-start items-center bg-black-100">
+                        <div class="-ml-5px -mr-4px">
+                          <div data-v-117db823="" class="w-8 h-6 flex justify-center items-center"
+                            style="--b64d5fc0: 0.5818181818181818; --3cad14f0: -0.7031249999999999rem;">
+                            <div data-v-117db823="" class="fave bg-star-sprit-black-webp"></div>
+                          </div>
+                        </div>
+                        <div class="w-8/12 h-full text-13 flex flex-col justify-center my-7px px-2">
+                          <div class="flex flex-row">
+                            <h2 class="break-words flex-1 leading-5 m-auto">{{item?.nat}}</h2>
+                            <ng-container *ngFor="let liab of fancyLiability">
+                              <div *ngIf="liab.sourceId == item.selectionId"
+                                class="text-11 text-global-font-on-dark font-normal p-5px leading-12px h-min rounded-3px bg-black-600 ml-7px"
+                                data-testid="books-btn">
+                                <div class="visible" (click)="openfnacyBook(liab?.sourceId)">Book</div>
+                              </div>
+                            </ng-container>
+                          </div>
+                          <ng-container *ngFor="let liab of fancyLiability">
+                            <div *ngIf="liab.sourceId == item.selectionId" class="text-10 leading-normal flex font-bold"
+                              data-testid="forecast">
+                              <span class="flex items-center text-error">
+                                <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{liab.liability}}
+                              </span>
+                            </div>
+                          </ng-container>
+                        </div>
+                        <div class="w-4/12 relative grid gap-0.5 grid-cols-2 self-start" selections="[object Map]">
+                          <div data-v-93e7df57="" class="min-h-full text-center rounded-md bg-lay-300 pt-2 pb-5px"
+                            title="NO"
+                            (click)="openFancyBetPlace(item.sid, 'lay', [{isBack : false, selectionId : item.selectionId, selectionName : item.ls1, odds : item.l1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
+                            <h3 data-v-93e7df57="" class="text-15 leading-12px">{{item.l1 | number:'1.0-0'}}</h3>
+                            <p data-v-93e7df57="" class="text-9 mt-2px h-10px leading-10px">{{item.ls1 |
+                              number:'1.0-0'}}</p>
+                          </div>
+                          <div data-v-93e7df57="" class="min-h-full text-center rounded-md bg-back-300 pt-2 pb-5px"
+                            title="YES"
+                            (click)="openFancyBetPlace(item.sid, 'back', [{isBack : true, selectionId : item.selectionId, selectionName : item.bs1, odds : item.b1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
+                            <h3 data-v-93e7df57="" class="text-15 leading-12px">{{item.b1 | number:'1.0-0'}}</h3>
+                            <p data-v-93e7df57="" class="text-9 mt-2px h-10px leading-10px">{{item.bs1 |
+                              number:'1.0-0'}}</p>
+                          </div>
+                          <div *ngIf="item.gstatus=='SUSPENDED'"
+                            class="absolute right-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-md"
+                            data-testid="fancybet-market-status">Suspend</div>
+                          <div *ngIf="item.gstatus=='Ball Running' || item.gstatus=='Starting soon.'"
+                            class="absolute right-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-md"
+                            data-testid="fancybet-market-status">Ball Running</div>
+                        </div>
+                      </div>
+                      <app-bet-place *ngIf="showFancyBet == item.sid && backTrue == true" [clsClr]="classclrforlayBack"
+                        [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                        [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                        [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
+                        style="position:absolute;z-index: 99999;left:-2%;"></app-bet-place>
+                      <app-bet-place *ngIf="showFancyBet == item.sid && backTrue == false" [clsClr]="classclrforlayBack"
+                        [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                        [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                        [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
+                        style="position:absolute;z-index: 99999;left:-2%;"></app-bet-place>
+
+                    </div>
+                  </ng-container>
+
+                  <ng-container *ngIf="khaddaFan && khaddafancy.length > 0">
+                    <div class="mb-1px px-1 relative"
+                      *ngFor="let item of khaddafancy; trackBy: trackByFn; let j = index">
+                      <div class="flex justify-start items-center bg-black-100">
+                        <div class="-ml-5px -mr-4px">
+                          <div data-v-117db823="" class="w-8 h-6 flex justify-center items-center"
+                            style="--b64d5fc0: 0.5818181818181818; --3cad14f0: -0.7031249999999999rem;">
+                            <div data-v-117db823="" class="fave bg-star-sprit-black-webp"></div>
+                          </div>
+                        </div>
+                        <div class="w-8/12 h-full text-13 flex flex-col justify-center my-7px px-2">
+                          <div class="flex flex-row">
+                            <h2 class="break-words flex-1 leading-5 m-auto">{{item?.nat}}</h2>
+                            <ng-container *ngFor="let liab of fancyLiability">
+                              <div *ngIf="liab.sourceId == item.selectionId"
+                                class="text-11 text-global-font-on-dark font-normal p-5px leading-12px h-min rounded-3px bg-black-600 ml-7px"
+                                data-testid="books-btn">
+                                <div class="visible" (click)="openfnacyBook(liab?.sourceId)">Book</div>
+                              </div>
+                            </ng-container>
+                          </div>
+                          <ng-container *ngFor="let liab of fancyLiability">
+                            <div *ngIf="liab.sourceId == item.selectionId" class="text-10 leading-normal flex font-bold"
+                              data-testid="forecast">
+                              <span class="flex items-center text-error">
+                                <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{liab.liability}}
+                              </span>
+                            </div>
+                          </ng-container>
+                        </div>
+                        <div class="w-4/12 relative grid gap-0.5 grid-cols-2 self-start" selections="[object Map]">
+                          <div data-v-93e7df57="" class="min-h-full text-center rounded-md bg-lay-300 pt-2 pb-5px"
+                            title="NO"
+                            (click)="openFancyBetPlace(item.sid, 'lay', [{isBack : false, selectionId : item.selectionId, selectionName : item.ls1, odds : item.l1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
+                            <h3 data-v-93e7df57="" class="text-15 leading-12px">{{item.l1 | number:'1.0-0'}}</h3>
+                            <p data-v-93e7df57="" class="text-9 mt-2px h-10px leading-10px">{{item.ls1 |
+                              number:'1.0-0'}}</p>
+                          </div>
+                          <div data-v-93e7df57="" class="min-h-full text-center rounded-md bg-back-300 pt-2 pb-5px"
+                            title="YES"
+                            (click)="openFancyBetPlace(item.sid, 'back', [{isBack : true, selectionId : item.selectionId, selectionName : item.bs1, odds : item.b1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
+                            <h3 data-v-93e7df57="" class="text-15 leading-12px">{{item.b1 | number:'1.0-0'}}</h3>
+                            <p data-v-93e7df57="" class="text-9 mt-2px h-10px leading-10px">{{item.bs1 |
+                              number:'1.0-0'}}</p>
+                          </div>
+                          <div *ngIf="item.gstatus=='SUSPENDED'"
+                            class="absolute right-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-md"
+                            data-testid="fancybet-market-status">Suspend</div>
+                          <div *ngIf="item.gstatus=='Ball Running' || item.gstatus=='Starting soon.'"
+                            class="absolute right-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-md"
+                            data-testid="fancybet-market-status">Ball Running</div>
+                        </div>
+                      </div>
+                      <app-bet-place *ngIf="showFancyBet == item.sid && backTrue == true" [clsClr]="classclrforlayBack"
+                        [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                        [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                        [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
+                        style="position:absolute;z-index: 99999;left:-2%;"></app-bet-place>
+                      <app-bet-place *ngIf="showFancyBet == item.sid && backTrue == false" [clsClr]="classclrforlayBack"
+                        [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                        [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                        [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
+                        style="position:absolute;z-index: 99999;left:-2%;"></app-bet-place>
+
+                    </div>
+                  </ng-container>
+
+                  <ng-container *ngIf="lotteryFan && lotteryfancy.length > 0">
+                    <div class="mb-1px px-1 relative"
+                      *ngFor="let item of lotteryfancy; trackBy: trackByFn; let j = index">
+                      <div class="flex justify-start items-center bg-black-100">
+                        <div class="-ml-5px -mr-4px">
+                          <div data-v-117db823="" class="w-8 h-6 flex justify-center items-center"
+                            style="--b64d5fc0: 0.5818181818181818; --3cad14f0: -0.7031249999999999rem;">
+                            <div data-v-117db823="" class="fave bg-star-sprit-black-webp"></div>
+                          </div>
+                        </div>
+                        <div class="w-8/12 h-full text-13 flex flex-col justify-center my-7px px-2">
+                          <div class="flex flex-row">
+                            <h2 class="break-words flex-1 leading-5 m-auto">{{item?.nat}}</h2>
+                            <ng-container *ngFor="let liab of fancyLiability">
+                              <div *ngIf="liab.sourceId == item.selectionId"
+                                class="text-11 text-global-font-on-dark font-normal p-5px leading-12px h-min rounded-3px bg-black-600 ml-7px"
+                                data-testid="books-btn">
+                                <div class="visible" (click)="openfnacyBook(liab?.sourceId)">Book</div>
+                              </div>
+                            </ng-container>
+                          </div>
+                          <ng-container *ngFor="let liab of fancyLiability">
+                            <div *ngIf="liab.sourceId == item.selectionId" class="text-10 leading-normal flex font-bold"
+                              data-testid="forecast">
+                              <span class="flex items-center text-error">
+                                <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{liab.liability}}
+                              </span>
+                            </div>
+                          </ng-container>
+                        </div>
+                        <div class="w-4/12 relative grid gap-0.5 grid-cols-2 self-start" selections="[object Map]">
+                          <div data-v-93e7df57="" class="min-h-full text-center rounded-md bg-lay-300 pt-2 pb-5px"
+                            title="NO"
+                            (click)="openFancyBetPlace(item.sid, 'lay', [{isBack : false, selectionId : item.selectionId, selectionName : item.ls1, odds : item.l1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
+                            <h3 data-v-93e7df57="" class="text-15 leading-12px">{{item.l1 | number:'1.0-0'}}</h3>
+                            <p data-v-93e7df57="" class="text-9 mt-2px h-10px leading-10px">{{item.ls1 |
+                              number:'1.0-0'}}</p>
+                          </div>
+                          <div data-v-93e7df57="" class="min-h-full text-center rounded-md bg-back-300 pt-2 pb-5px"
+                            title="YES"
+                            (click)="openFancyBetPlace(item.sid, 'back', [{isBack : true, selectionId : item.selectionId, selectionName : item.bs1, odds : item.b1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
+                            <h3 data-v-93e7df57="" class="text-15 leading-12px">{{item.b1 | number:'1.0-0'}}</h3>
+                            <p data-v-93e7df57="" class="text-9 mt-2px h-10px leading-10px">{{item.bs1 |
+                              number:'1.0-0'}}</p>
+                          </div>
+                          <div *ngIf="item.gstatus=='SUSPENDED'"
+                            class="absolute right-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-md"
+                            data-testid="fancybet-market-status">Suspend</div>
+                          <div *ngIf="item.gstatus=='Ball Running' || item.gstatus=='Starting soon.'"
+                            class="absolute right-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-md"
+                            data-testid="fancybet-market-status">Ball Running</div>
+                        </div>
+                      </div>
+                      <app-bet-place *ngIf="showFancyBet == item.sid && backTrue == true" [clsClr]="classclrforlayBack"
+                        [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                        [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                        [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
+                        style="position:absolute;z-index: 99999;left:-2%;"></app-bet-place>
+                      <app-bet-place *ngIf="showFancyBet == item.sid && backTrue == false" [clsClr]="classclrforlayBack"
+                        [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                        [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                        [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
+                        style="position:absolute;z-index: 99999;left:-2%;"></app-bet-place>
+
+                    </div>
+                  </ng-container>
+
+                  <ng-container *ngIf="oddevenFan && oddevenfancy.length > 0">
+                    <div class="mb-1px px-1 relative"
+                      *ngFor="let item of oddevenfancy; trackBy: trackByFn; let j = index">
+                      <div class="flex justify-start items-center bg-black-100">
+                        <div class="-ml-5px -mr-4px">
+                          <div data-v-117db823="" class="w-8 h-6 flex justify-center items-center"
+                            style="--b64d5fc0: 0.5818181818181818; --3cad14f0: -0.7031249999999999rem;">
+                            <div data-v-117db823="" class="fave bg-star-sprit-black-webp"></div>
+                          </div>
+                        </div>
+                        <div class="w-8/12 h-full text-13 flex flex-col justify-center my-7px px-2">
+                          <div class="flex flex-row">
+                            <h2 class="break-words flex-1 leading-5 m-auto">{{item?.nat}}</h2>
+                            <ng-container *ngFor="let liab of fancyLiability">
+                              <div *ngIf="liab.sourceId == item.selectionId"
+                                class="text-11 text-global-font-on-dark font-normal p-5px leading-12px h-min rounded-3px bg-black-600 ml-7px"
+                                data-testid="books-btn">
+                                <div class="visible" (click)="openfnacyBook(liab?.sourceId)">Book</div>
+                              </div>
+                            </ng-container>
+                          </div>
+                          <ng-container *ngFor="let liab of fancyLiability">
+                            <div *ngIf="liab.sourceId == item.selectionId" class="text-10 leading-normal flex font-bold"
+                              data-testid="forecast">
+                              <span class="flex items-center text-error">
+                                <div class="icon-arrow-left rotate-180 flex text-6 mx-0.5"></div>{{liab.liability}}
+                              </span>
+                            </div>
+                          </ng-container>
+                        </div>
+                        <div class="w-4/12 relative grid gap-0.5 grid-cols-2 self-start" selections="[object Map]">
+                          <div data-v-93e7df57="" class="min-h-full text-center rounded-md bg-lay-300 pt-2 pb-5px"
+                            title="NO"
+                            (click)="openFancyBetPlace(item.sid, 'lay', [{isBack : false, selectionId : item.selectionId, selectionName : item.ls1, odds : item.l1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
+                            <h3 data-v-93e7df57="" class="text-15 leading-12px">{{item.l1 | number:'1.0-0'}}</h3>
+                            <p data-v-93e7df57="" class="text-9 mt-2px h-10px leading-10px">{{item.ls1 |
+                              number:'1.0-0'}}</p>
+                          </div>
+                          <div data-v-93e7df57="" class="min-h-full text-center rounded-md bg-back-300 pt-2 pb-5px"
+                            title="YES"
+                            (click)="openFancyBetPlace(item.sid, 'back', [{isBack : true, selectionId : item.selectionId, selectionName : item.bs1, odds : item.b1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
+                            <h3 data-v-93e7df57="" class="text-15 leading-12px">{{item.b1 | number:'1.0-0'}}</h3>
+                            <p data-v-93e7df57="" class="text-9 mt-2px h-10px leading-10px">{{item.bs1 |
+                              number:'1.0-0'}}</p>
+                          </div>
+                          <div *ngIf="item.gstatus=='SUSPENDED'"
+                            class="absolute right-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-md"
+                            data-testid="fancybet-market-status">Suspend</div>
+                          <div *ngIf="item.gstatus=='Ball Running' || item.gstatus=='Starting soon.'"
+                            class="absolute right-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-md"
+                            data-testid="fancybet-market-status">Ball Running</div>
+                        </div>
+                      </div>
+                      <app-bet-place *ngIf="showFancyBet == item.sid && backTrue == true" [clsClr]="classclrforlayBack"
+                        [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                        [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                        [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
+                        style="position:absolute;z-index: 99999;left:-2%;"></app-bet-place>
+                      <app-bet-place *ngIf="showFancyBet == item.sid && backTrue == false" [clsClr]="classclrforlayBack"
+                        [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                        [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                        [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
+                        style="position:absolute;z-index: 99999;left:-2%;"></app-bet-place>
+
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- premium fancy -->
+          <div *ngIf="bets==1">
+            <!-- <iframe *ngIf="premiumData != null && premiumData != ''" [src]="premiumData" width="100%" height="600"
+              frameborder="0" allowfullscreen>
+            </iframe> -->
+
+            <div data-v-7d578f35="" [style]="{'background':jsonWebdt?.imagesBottomBorderColor, 'color' : jsonWebdt?.imagesPlayNowTextColor}"  class="flex items-center bg-market-tab-active text-market-tab-text pl-1.5 pt-px"
+                style="--27cc0d26: 36px; --44f3f56a: translateX(4px);">
+                <div data-v-7d578f35="" class="overflow-x-scroll mr-2 -ml-0.5">
+                  <div data-v-7d578f35="" class="relative inline-block">
+                    <div data-v-7d578f35="" class="w-full h-30px flex jusrify-center">
+                      <div data-v-7d578f35="" class="text-13 font-bold py-2 px-2 mx-1 mt-px text-center" (click)="preActiveTab('All')" [ngClass]="{'active': preactivetab === 'All'}">All</div>
+                      <div data-v-7d578f35="" class="text-13 font-bold py-2 px-2 mx-1 mt-px text-center" (click)="preActiveTab('popular')" [ngClass]="{'active': preactivetab === 'popular'}">Popular</div>
+                      <div data-v-7d578f35="" class="text-13 font-bold py-2 px-2 mx-1 mt-px text-center" (click)="preActiveTab('match')" [ngClass]="{'active': preactivetab === 'match'}">Match</div>
+                      <div data-v-7d578f35="" class="text-13 font-bold py-2 px-2 mx-1 mt-px text-center" (click)="preActiveTab('overrr')" [ngClass]="{'active': preactivetab === 'overrr'}">Over</div>
+                      <div data-v-7d578f35="" class="text-13 font-bold py-2 px-2 mx-1 mt-px text-center" (click)="preActiveTab('innigs')" [ngClass]="{'active': preactivetab === 'innigs'}">Innings</div>
+                      <div data-v-7d578f35="" class="text-13 font-bold py-2 px-2 mx-1 mt-px text-center" (click)="preActiveTab('players')" [ngClass]="{'active': preactivetab === 'players'}">Players</div>
+                    </div>
+                  </div>
+                </div>
+                <div (click)="openPreRulesPopup()" data-v-7d578f35="" [style]="{'color' : jsonWebdt?.imagesPlayNowTextColor, 'opacity' : '.5'}"
+                  class="icon-info-circle block w-4 h-4 text-market-sub-icon ml-auto mr-2"></div>
+              </div>
+              <div class="rounded-b-lg">
+                <div class="s-p-2 s-bg-betSlip-light bg-white s-rounded-b-5px">
+                  <div *ngFor="let item of PFancyData; trackBy: trackByFn; let i = index;"
+                    class=" s-bg-betSlip-light s-rounded-b-5px ">
+                    <div class="s-mb-3px" id="">
+                      <div>
+                        <div (click)="collapseData(i)"
+                          class="s-relative s-py-2 s-pl-0 s-mb-0.5 s-flex s-justify-start s-items-center s-rounded-t-4px s-bg-black-100 bg-black-100 s-min-h-35px">
+                          <div class="-ml-2 sm:-ml-1 pt-px mb-3px">
+                            <div data-v-117db823="" class="w-8 h-6 flex justify-center items-center"
+                              style="--b64d5fc0: 0.5818181818181818; --3cad14f0: -0.7031249999999999rem;">
+                              <i class="fa-regular fa-star"></i>
+                            </div>
+                          </div>
+                          <span class="s-text-14px s-px-2 s-flex-1 tnamecolor" id="">{{item.marketName}}</span>
+                          <i class="fa-solid fa-chevron-down " id="DDR{{i}}" [class]="i<=2?'openar':''"></i>
+                        </div>
+                        <div class="s-grid s-grid-cols-2 s-gap-0.5 s-relatives" [class]="i>=3?'d-none':''"
+                          id="sportSelData{{i}}">
+                          <ng-container
+                            *ngFor="let pfancydata of sortPFancyData(PFancyData[i].sportsBookSelection); trackBy: trackByFn; let j = index;">
+                            <div>
+                              <div id="premiumOddsDiv2036199901"
+                                (click)="openPreFancyBetPlace(pfancydata.id, 'back', [{isBack : true, selectionId : pfancydata.id, selectionName : pfancydata.selectionName, odds : pfancydata.odds, matchName : eventData.matchname, eventId : eventId, sourceId : PFancyData[i].id, sourceBetType : 'Premium', sportId : sportId}])"
+                                class="betslipopen s-py-1.5 s-text-center s-flex s-flex-col s-justify-center s-items-center s-bg-back-200 dark:s-bg-back-400-dark s-min-0 s-relative s-overflow-hidden s-rounded-b-md s-min-h-53px spark"
+                                title="back">
+                                <div class="wrapper s-w-full s-h-full s-overflow-hidden s-top-0 s-left-0 s-z-10"
+                                  style="--0b879273: 0;">
+                                  <span
+                                    class="mask s-w-full s-h-full s-opacity-10 s-bg-black-900 s-absolute s-left-0 s-top-0"
+                                    style="display: none;"></span>
+                                  <span
+                                    class="feedback s-block s-bg-white s-bg-opacity-25 s-rounded-full s-mix-blend-overlay s-absolute"
+                                    style="display: none;"></span>
+                                </div>
+                                <p class="s-text-15px s-px-1 s-text-black-900 namecolor" id="">
+                                  {{pfancydata.selectionName}}</p>
+                                <p class="s-text-10px s-text-black-900 oddcolor font-bold text-15" id="premiumOdds2036199901">
+                                  {{pfancydata.odds}}</p>
+                                <ng-container *ngFor="let pitem of PremiumfancyLiability;">
+                                  <div *ngIf="pitem.sourceId==PFancyData[i].id"
+                                    class="s-rounded-full s-px-2 s-mt-0.5 s-bg-white s-bg-opacity-40">
+                                    <ng-container *ngFor="let pitemdata of pitem.multiLiab;">
+                                      <div *ngIf="pitemdata.selectionid==pfancydata.id"
+                                        [class]="pitemdata.pnl >= 0 ? 'bookgreencolor' : 'bookredcolor'"
+                                        class="s-forecast s-sportsbook-forecast s-text-10px s-leading-normal s-flex s-font-bold s-font-bold"
+                                        data-testid="forecast">
+                                        <span class="s-single-winner-forecast-context s-flex s-items-center"
+                                          data-bet-type="SPORTSBOOK"
+                                          [style]="pitemdata.pnl > 0 ?'color:green' :'color:red'">
+                                          <span class="s-rotate-180 s-flex s-text-6px s-mx-0.5"></span>
+                                          ({{pitemdata.pnl | number :'1.0-2'}})
+                                        </span>
+                                      </div>
+                                    </ng-container>
+                                  </div>
+                                </ng-container>
+                              </div>
+                            </div>
+                            <app-bet-place *ngIf="showPreFancyBet == pfancydata.id" [clsClr]="classclrforlayBack"
+                              [data]="oddPrice" [updOddsBack]="pfancydata.odds" [socketEventData]="PFancyAllData.events"
+                              [isInplay]="inplaystatus" (betResult)="getOddsCalculation($event)"
+                              style="position:absolute;z-index: 99999;left:-.4%;"></app-bet-place>
+                          </ng-container>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <app-main-footer></app-main-footer>
+
+
+      <div *ngIf="hideHeader1" data-v-66df63c1="" @fadeInOut
+        class="fixed flex-col top-0 bottom-0 left-0 w-full z-50 bg-black text-global-font-on-light px-1"
+        style="z-index: 2000;">
+        <div data-v-66df63c1="" class="relative modal-title py-4 bg-pop-title">
+          <h4 data-v-66df63c1="" class="pl-2 mb-0 font-bold text-13 text-center text-pop-title">Fancybet Rule</h4>
+          <span (click)="openRulesPopup()" data-v-66df63c1=""
+            class="absolute right-4 top-3 icon-close text-white text-base"></span>
+        </div>
+        <div data-v-66df63c1="" class="modal-content px-7 pt-4 leading-6 rounded-t-lg bg-white overflow-y-scroll">
+          <ol data-v-ee7eeac6="" data-v-66df63c1="" class="pl-3.5 mb-4">
+            <li data-v-ee7eeac6="" class="list-decimal text-base">WS : {{newSocketData?.socket}}
+              <ul data-v-ee7eeac6="" class="pl-3.5 py-1"></ul>
+            </li>
+            <li data-v-ee7eeac6="" class="list-decimal text-base">All Fancy Bets Will Be Validated When Match Has Been
+              Tied.
+              <ul data-v-ee7eeac6="" class="pl-3.5 py-1"></ul>
+            </li>
+            <li data-v-ee7eeac6="" class="list-decimal text-base">All Advance Fancy Will Be Suspended Before Toss Or
+              Weather
+              Condition. <ul data-v-ee7eeac6="" class="pl-3.5 py-1"></ul>
+            </li>
+            <li data-v-ee7eeac6="" class="list-decimal text-base">In Case Technical Error Or Any Circumstances Any
+              Fancy Is
+              Suspended And Does Not Resume Result Will Be Given All Previous Bets Will Be Valid. <ul data-v-ee7eeac6=""
+                class="pl-3.5 py-1"></ul>
+            </li>
+            <li data-v-ee7eeac6="" class="list-decimal text-base">If Any Case Wrong Rate And Wrong Commentary Has Been
+              Given
+              In Fancy That Particular Bets Will Be Cancelled. <ul data-v-ee7eeac6="" class="pl-3.5 py-1"></ul>
+            </li>
+            <li data-v-ee7eeac6="" class="list-decimal text-base">In Any Circumstances Management Decision Will Be
+              Final
+              Related To All Exchange Items. <ul data-v-ee7eeac6="" class="pl-3.5 py-1"></ul>
+            </li>
+            <li data-v-ee7eeac6="" class="list-decimal text-base">In Case Customer Make Bets In Wrong Fancy We Are Not
+              Liable
+              To Delete, No Changes Will Be Made And Bets Will Be Consider As Confirm Bet. <ul data-v-ee7eeac6=""
+                class="pl-3.5 py-1"></ul>
+            </li>
+            <li data-v-ee7eeac6="" class="list-decimal text-base">Due To Any Technical Error Market Is Open And Result
+              Has
+              Came All Bets After Result Will Be Deleted. <ul data-v-ee7eeac6="" class="pl-3.5 py-1"></ul>
+            </li>
+            <li data-v-ee7eeac6="" class="list-decimal text-base">Four, Sixes, Wide, Wicket, Extra Run, Total Run,
+              Highest
+              Over And Top Batsman,Maiden Over,Caught-Out,No-Ball,Run-Out,Fifty And Century Are Valid Only Match Has
+              Been
+              Completed In Case Due To Rain Over Has Been Reduced All Other Fancy Will Be Deleted.All Complet Event
+              Are Valid
+              E.X 1 Over Run Team A Etc.. . <ul data-v-ee7eeac6="" class="pl-3.5 py-1"></ul>
+            </li>
+            <li data-v-ee7eeac6="" class="list-decimal text-base">ODI / T10 / T20 / TEST
+
+              Penalty Runs Will Be Counted <ul data-v-ee7eeac6="" class="pl-3.5 py-1"></ul>
+            </li>
+            <li data-v-ee7eeac6="" class="list-decimal text-base">Due To Mistakes In Official Scorecard Our Scorecard
+              And
+              Results Will Be Valid. <ul data-v-ee7eeac6="" class="pl-3.5 py-1"></ul>
+            </li>
+            <li data-v-ee7eeac6="" class="list-decimal text-base">Minimum Number Of Legal Over Has To Be Bowled By The
+              Bowler
+              Mentioned In The Event, Else The Same Will Not Be Considered As Valid. <ul data-v-ee7eeac6=""
+                class="pl-3.5 py-1"></ul>
+            </li>
+            <li data-v-ee7eeac6="" class="list-decimal text-base">Mystery Free Hit Boundaries Will Not Counted In
+              Player
+              Boundaries... <ul data-v-ee7eeac6="" class="pl-3.5 py-1"></ul>
+            </li>
+            <li data-v-ee7eeac6="" class="list-decimal text-base">PLAYER BOOKMAKER <ul data-v-ee7eeac6=""
+                class="pl-3.5 py-1">
+                <li data-v-ee7eeac6="" class="font-base">Suppose Either No1 Or No2 Player Score Compare To Run But
+                  Which Ever
+                  IS Higher Score IS Win</li>
+                <li data-v-ee7eeac6="" class="font-base">Explaination Of Player Bookmaker: Compare Both Player Runs At
+                  Wicket
+                  ..If V Kohli Runs 22 And R.Sharma Run 20 At The Moment Of WICKET Then V KOHLI Will BE Winner.</li>
+                <li data-v-ee7eeac6="" class="font-base">If Both Player Score Is Level It's Means Virat Khohali &amp;
+                  Rohit
+                  Sharma Both Are Either Out Match Over Is Complete, It's Mean Game Is Tie</li>
+                <li data-v-ee7eeac6="" class="font-base">If Match Are Interpreted Due To Bed Weather Or Any Thing Else
+                  At That
+                  Time Law Score Player Run Are Not Count And Match Are Declared To ABOUNDED</li>
+              </ul>
+            </li>
+            <li data-v-ee7eeac6="" class="list-decimal text-base">CHEATING <ul data-v-ee7eeac6="" class="pl-3.5 py-1">
+                <li data-v-ee7eeac6="" class="font-base">Cheating Of Any Kind Is Not Allowed And Customers Bets Who
+                  Are Deemed
+                  To Be Cheating Are Liable To Have Bets Made Void. Cheating Includes But Is Not Limited To; Market
+                  Price
+                  Manipulation, Court Siding, Sniping And Commission Abuse.</li>
+                <li data-v-ee7eeac6="" class="font-base">The Site Reserves The Right To Void Any Bets That Are Under
+                  Review As
+                  Part Of Any Integrity Investigation.</li>
+                <li data-v-ee7eeac6="" class="font-base">The Site May Void Certain Bets In A Market Or Void A Whole
+                  Market In
+                  Its Entirety As A Result Of Any Integrity Investigation.</li>
+                <li data-v-ee7eeac6="" class="font-base">The Site's Decision In Such Integrity Cases Shall Be ﬁnal And
+                  Binding
+                  Upon The Customer.</li>
+                <li data-v-ee7eeac6="" class="font-base">Customers Using VPN Applications To Mask Location Or Proxy
+                  Servers To
+                  Mask Device Are Liable To Having Bets Invalidated. Customers Appearing From Multiple IP Locations
+                  Are Also
+                  Liable To Having Bets Invalidated.</li>
+              </ul>
+            </li>
+            <li data-v-ee7eeac6="" class="list-decimal text-base">TEST <ul data-v-ee7eeac6="" class="pl-3.5 py-1">
+                <li data-v-ee7eeac6="" class="font-base">1 Session:-</li>
+                <li data-v-ee7eeac6="" class="font-base">Complete Session Valid In Test.</li>
+                <li data-v-ee7eeac6="" class="font-base">Session Is Not Completed For Ex:- India 60 Over Run Session
+                  Ind Is
+                  Running In Case India Team Declares Or All-Out At 55 Over Next 5 Over Session Will Be Continue In
+                  England
+                  Inning.</li>
+                <li data-v-ee7eeac6="" class="font-base">1st Day 1st Session Run Minimum 25 Over Will Be Played Then
+                  Result Is
+                  Given Otherwise 1st Day 1st Session Will Be Deleted.</li>
+                <li data-v-ee7eeac6="" class="font-base">1st Day 2nd Session Run Minimum 25 Over Will Be Played Then
+                  Result Is
+                  Given Otherwise 1st Day 2nd Session Will Be Deleted.</li>
+                <li data-v-ee7eeac6="" class="font-base">1st Day Total Run Minimum 80 Over Will Be Played Then Result
+                  Is Given
+                  Otherwise 1st Day Total Run Will Be Deleted.</li>
+                <li data-v-ee7eeac6="" class="font-base">Test Match Both Advance Session Is Valid.</li>
+                <li data-v-ee7eeac6="" class="font-base">2. Test Lambi/ Inning Run:-</li>
+                <li data-v-ee7eeac6="" class="font-base">2.1 Mandatory 70 Over Played In Test Lambi Paari/ Innings
+                  Run. If Any
+                  Team All-Out Or Declaration Lambi Paari/ Innings Run Is Valid.</li>
+                <li data-v-ee7eeac6="" class="font-base">In Case Due To Weather Situation Match Has Been Stopped All
+                  Lambi
+                  Trades Will Be Deleted.</li>
+                <li data-v-ee7eeac6="" class="font-base">In Test Both Lambi Paari / Inning Run Is Valid In Advance
+                  Fancy.</li>
+                <li data-v-ee7eeac6="" class="font-base">3. Test Batsman:-</li>
+                <li data-v-ee7eeac6="" class="font-base">In Case Batsmen Is Injured He/She Is Made 34 Runs The Result
+                  Will Be
+                  Given 34 Runs.</li>
+                <li data-v-ee7eeac6="" class="font-base">Batsman 50/100 Run If Batsman Is Injured Or Declaration The
+                  Result
+                  Will Be Given On Particular Run.</li>
+                <li data-v-ee7eeac6="" class="font-base">In Next Men Out Fancy If Player Is Injured Particular Fancy
+                  Will Be
+                  Deleted.</li>
+                <li data-v-ee7eeac6="" class="font-base">In Advance Fancy Opening Batsmen Is Only Valid If Same
+                  Batsmen Came
+                  In Opening The Fancy Will Be Valid In Case One Batsmen Is Changed That Particular Player Fancy Will
+                  Be
+                  Deleted.</li>
+                <li data-v-ee7eeac6="" class="font-base">Test Match Both Advance Fancy Batsmen Run Is Valid.</li>
+                <li data-v-ee7eeac6="" class="font-base">4. Other Fancy Advance (Test):-</li>
+                <li data-v-ee7eeac6="" class="font-base">Four, Sixes, Wide, Wicket, Extra Run, Total Run, Highest Over
+                  And Top
+                  Batsmen Is Valid Only If 300 Overs Has Been Played Or The Match Has Been Won By Any Team Otherwise
+                  All These
+                  Fancy Will Be Deleted.</li>
+                <li data-v-ee7eeac6="" class="font-base">5. Concussion In Test:-</li>
+                <li data-v-ee7eeac6="" class="font-base">All Bets Of One Over Session Will Be Deleted In Test
+                  Scenario, In
+                  Case Session Is Incomplete. For Example Innings Declared Or Match Suspended To Bad Light Or Any
+                  Other
+                  Conditions.</li>
+                <li data-v-ee7eeac6="" class="font-base">Total Match- Events (Test):-</li>
+                <li data-v-ee7eeac6="" class="font-base">Minimum Of 300 Overs To Be Bowled In The Entire Test Match,
+                  Otherwise
+                  All Bets Related To The Particular Event Will Get Void. For Example, Total Match Caught Outs Will Be
+                  Valid
+                  Only If 300 Overs Been Bowled In The Particular Test Match</li>
+              </ul>
+            </li>
+            <li data-v-ee7eeac6="" class="list-decimal text-base">ODI / T20 <ul data-v-ee7eeac6="" class="pl-3.5 py-1">
+                <li data-v-ee7eeac6="" class="font-base">1. Session:-</li>
+                <li data-v-ee7eeac6="" class="font-base">Match 1st Over Run Advance Fancy Only 1st Innings Run Will Be
+                  Counted.</li>
+                <li data-v-ee7eeac6="" class="font-base">For Example:- 35 Over Run Team A Is Playing Any Case Team A
+                  Is
+                  All-Out In 33 Over Team A Has Made 150 Run The Session Result Is Validated On Particular Run.</li>
+                <li data-v-ee7eeac6="" class="font-base">Advance Session &amp; All Fancy Is Valid In Only 1st Innings.
+                </li>
+                <li data-v-ee7eeac6="" class="font-base">2. 50 Over Runs:-</li>
+                <li data-v-ee7eeac6="" class="font-base">2.1. In Case 50 Over Is Not Completed All Bet Will Be Deleted
+                  Due To
+                  Weather Or Any Condition.</li>
+                <li data-v-ee7eeac6="" class="font-base">Advance 50 Over Runs Is Valid In Only 1st Innings.</li>
+                <li data-v-ee7eeac6="" class="font-base">3. Odi / T20 Batsman Runs:-</li>
+                <li data-v-ee7eeac6="" class="font-base">In Case Batsman Is Injured He/She Is Made 34 Runs The Result
+                  Will Be
+                  Given 34 Runs.</li>
+                <li data-v-ee7eeac6="" class="font-base">In Next Men Out Fancy If Player Is Injured Particular Fancy
+                  Will Be
+                  Deleted.</li>
+                <li data-v-ee7eeac6="" class="font-base">In Advance Fancy Opening Batsmen Is Only Valid If Same
+                  Batsmen Came
+                  In Opening The Fancy Will Be Valid In Case One Batsmen Is Changed That Particular Player Fancy Will
+                  Be
+                  Deleted.</li>
+                <li data-v-ee7eeac6="" class="font-base">4. T20 Over Runs:-</li>
+                <li data-v-ee7eeac6="" class="font-base">Advance 20 Over Run Is Valid Only In 1st Innings. 20 Over Run
+                  Will
+                  Not Be Considered As Valid If 20 Overs Is Not Completed Due To Any Situation.</li>
+                <li data-v-ee7eeac6="" class="font-base">5. T20 / ODI Batsman Runs:-</li>
+                <li data-v-ee7eeac6="" class="font-base">In Case Batsman Is Injured He/She Is Made 34 Runs The Result
+                  Will Be
+                  Given 34 Runs.</li>
+                <li data-v-ee7eeac6="" class="font-base">In Next Men Out Fancy If Player Is Injured Particular Fancy
+                  Will Be
+                  Deleted.</li>
+                <li data-v-ee7eeac6="" class="font-base">In Advance Fancy Opening Batsmen Is Only Valid If Same
+                  Batsmen Came
+                  In Opening The Fancy Will Be Valid In Case One Batsmen Is Changed That Particular Player Fancy Will
+                  Be
+                  Deleted.</li>
+                <li data-v-ee7eeac6="" class="font-base">6. At The Moment Of The Third Umpire Decision We Can't Accept
+                  Bets In
+                  Any Fancy And Match Odds.</li>
+              </ul>
+            </li>
+            <li data-v-ee7eeac6="" class="list-decimal text-base">OTHER FANCY <ul data-v-ee7eeac6=""
+                class="pl-3.5 py-1">
+                <li data-v-ee7eeac6="" class="font-base">T-20 ,One Day And Test Match In Case Current Innings Player
+                  And
+                  Partnership Are Running In Between Match Has Been Called Off Or Abandoned That Situation All Current
+                  Player
+                  And Partnership Results Are Valid.</li>
+                <li data-v-ee7eeac6="" class="font-base">1st Wicket Lost To Any Team Balls Meaning That Any Team 1st
+                  Wicket
+                  Fall Down In How Many Balls That Particular Fancy At Least Minimum One Ball Have To Be Played
+                  Otherwise Bets
+                  Will Be Deleted.</li>
+                <li data-v-ee7eeac6="" class="font-base">1st Wicket Lost To Any Team Fancy Valid Both Innings.</li>
+                <li data-v-ee7eeac6="" class="font-base">How Many Balls For 50 Runs Any Team Meaning That Any Team
+                  Achieved 50
+                  Runs In How Many Balls That Particular Fancy At Least One Ball Have To Be Played Otherwise That
+                  Fancy Bets
+                  Will Be Deleted.</li>
+                <li data-v-ee7eeac6="" class="font-base">How Many Balls For 50 Runs Fancy Any Team Only First Inning
+                  Valid.
+                </li>
+                <li data-v-ee7eeac6="" class="font-base">How Many Balls Face Any Batsman Meaning That Any Batsman How
+                  Many
+                  Balls He/She Played That Particular Fancy At Least One Ball Have To Be Played Otherwise That Fancy
+                  Bets Will
+                  Be Deleted.</li>
+                <li data-v-ee7eeac6="" class="font-base">How Many Balls Face By Any Batsman Both Innings Valid.</li>
+                <li data-v-ee7eeac6="" class="font-base">Dot Balls Event... Only No Run Will Count As Dot Ball. If
+                  Wicket
+                  Means That Will Not Count As Dot Ball.</li>
+              </ul>
+            </li>
+            <li data-v-ee7eeac6="" class="list-decimal text-base">LUNCH FAVOURITE <ul data-v-ee7eeac6=""
+                class="pl-3.5 py-1">
+                <li data-v-ee7eeac6="" class="font-base">The Team Which Is Favourite At Lunch Will Be Considered As
+                  Lunch
+                  Favourite Or The Team Which Is Favourite After First Inning Last Ball Will Be Considered As Lunch
+                  Favourite
+                  In Our Exchange.</li>
+                <li data-v-ee7eeac6="" class="font-base">In Any Circumstances Management Decision Will Be Final.</li>
+                <li data-v-ee7eeac6="" class="font-base">In Case Of Tie In T20 Or One Day In Lunch Favourite Game ,
+                  All Bets
+                  Will Be Deleted In Our Exchange.</li>
+                <li data-v-ee7eeac6="" class="font-base">In Case Overs Are Reduced In A Match, The Team Which
+                  Favourite At
+                  Lunch Will Be Considered As Lunch Favourite.</li>
+                <li data-v-ee7eeac6="" class="font-base">For Example :- If Match Is Reduced To 18 Over Per Side In T20
+                  Or
+                  Oneday Then After 18 Over The Team Which Is Favourite At Lunch Will Be Considered As Lunch
+                  Favourite.</li>
+                <li data-v-ee7eeac6="" class="font-base">In Case Of Weather, 1st Innings Match Overs Are Reduced And
+                  Direct
+                  Target Is Given To Team Which Will Bat In 2nd Inning Then Lunch Favourite Will Be Considered After
+                  Target Is
+                  Given At Lunch.</li>
+                <li data-v-ee7eeac6="" class="font-base">For Example :- In T20 Match Rain Comes At 14 Over And Match
+                  Is
+                  Interrupted Due To Rain And Direct Target Is Given To 2nd Batting Team, Then Team Which Is Favourite
+                  In
+                  Match Odds After Target Is Given In Match, Will Be Considered As Lunch Favourite.</li>
+              </ul>
+            </li>
+            <li data-v-ee7eeac6="" class="list-decimal text-base">KHADO <ul data-v-ee7eeac6="" class="pl-3.5 py-1">
+                <li data-v-ee7eeac6="" class="font-base">You Can Choose Your Own Value In This Event.</li>
+              </ul>
+            </li>
+            <li data-v-ee7eeac6="" class="list-decimal text-base">PLAYER RACE RULES <ul data-v-ee7eeac6=""
+                class="pl-3.5 py-1">
+                <li data-v-ee7eeac6="" class="font-base">All profits will be calculated at .97</li>
+                <li data-v-ee7eeac6="" class="font-base">Opposite batsman must atleast face 1 delivery in the innings
+                  or bets
+                  will be voided. (only for player run race) bets will only be considered valid if Full both innings
+                  are
+                  played or the team is all out.</li>
+                <li data-v-ee7eeac6="" class="font-base">Bets will be voided if for any reason the overs of the match
+                  are
+                  reduced in any innings during the match except for player run race and/or if both the bowlers aginst
+                  each
+                  other have bowled full overs. (e.g., bumrah v rashid &amp; both have bowled 4 overs/each in a t20
+                  before the
+                  overs get reduced</li>
+                <li data-v-ee7eeac6="" class="font-base">If both players (batsman/bowler/wicket keeper/team) score is
+                  equal
+                  then the result will be tied. the highest scoring player (batsman/bowler/wicket keeper/team) will be
+                  considered winner and diferrence (run/wicket/catcheswill be calculated accordingly the bonus points
+                  given
+                  (player/bowler/wicket keeper/team) will be considered and the difference will be calculated
+                  accordingly</li>
+              </ul>
+            </li>
+            <li data-v-ee7eeac6="" class="list-decimal text-base">Total Match 30s: In this market, If player's score
+              between
+              30 to 49 Runs that will be considered in this Market. If a player reached 50 or above, they aren't
+              considerd in
+              this event. <ul data-v-ee7eeac6="" class="pl-3.5 py-1"></ul>
+            </li>
+            <li data-v-3db50598="" class="list-decimal text-base">Total Match Fifty Fancy Counted 50 Runs to 99 Runs
+              Will Be Counted
+              in This Fancy (FROM 24/08/2025) <ul data-v-3db50598="" class="pl-3.5 py-1"></ul>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <div *ngIf="hideHeader2" data-v-66df63c1="" @fadeInOut
+        class="fixed flex-col top-0 bottom-0 left-0 w-full z-50 bg-black text-global-font-on-light px-1"
+        style="z-index: 2000;">
+        <div data-v-66df63c1="" class="relative modal-title py-4 bg-pop-title">
+          <h4 data-v-66df63c1="" class="pl-2 mb-0 font-bold text-13 text-center text-pop-title">Rules of Sportsbook</h4>
+          <span (click)="openPreRulesPopup()" data-v-66df63c1=""
+            class="absolute right-4 top-3 icon-close text-white text-base"></span>
+        </div>
+        <div data-v-6697e9d9="" class="modal-content px-7 pt-4 leading-6 rounded-t-lg bg-white overflow-y-scroll">
+          <div data-v-6697e9d9="" class="-mx-8 -mt-28px grid grid-cols-1 border-b border-black-300">
+            <div class="py-9px pl-22px pr-12px flex justify-between">
+              <div class="flex items-center"><i class="icon-pdf mr-2 text-18 text-black-600"></i><span
+                  class="text-13">Cricket (including Virtual
+                  Cricket)</span></div>
+              <div class="w-8 h-8 flex justify-center items-center bg-button-normal rounded-4px"><a
+                  class="inline-flex no-underline" href="https://docs.hbuwgj.xyz/geniusSports/rules/Cricket.pdf"
+                  download="0" target="_blank"><i class="icon-download text-button-normal"></i></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <app-market-widget *ngIf="showWidget && gameList.length > 0" [gameList]="gameList" [eventid]="eventId"
+    (closeWidget)="closeWiddgett()"></app-market-widget>
+
+</main>
+<!-- </section> -->
+
+<!-- <div *ngIf="isLogin && count > 0" data-v-63c2856d="" class="stickyLeftContainer sticky left-2  pb-7px flex gap-2 flex-col justify-end items-start z-10">
+  <div data-v-270f6def="" class="relative w-45px h-45px bg-black-900 text-global-font-on-dark rounded-full">
+    <div data-v-270f6def="" class="flex items-center justify-center text-22 h-full"
+    (click)="openPopup()">
+    <span data-v-270f6def=""
+        class="icon-list">
+        <span data-v-270f6def=""
+          class="badge absolute top-0 right-0 text-global-font-on-dark bg-error rounded-full text-9 h-3.5 flex justify-center items-center font-bold">{{count}}</span></span>
+    </div>
+  </div>
+</div> -->
+
+
+<!-- bet error success message -->
+<div data-v-f43ca18c="" *ngIf="showBetMsg">
+  <!-- <div class="absolute left-0 top-0 w-full h-full z-50" data-testid="toast-overlay"></div> -->
+  <div class="w-full">
+    <div class="fixed bottom-0 z-50 w-full space-y-2.5" currencyalias="PKU">
+      <div>
+        <div class="text-center flex rounded-t-2xl justify-center p-1 "
+          [ngClass]="betsuccessstatus ? 'bg-success' : 'bg-error'" data-testid="toast-container">
+          <div class="w-full">
+            <div class="flex justify-center items-center text-global-font-on-dark font-bold py-2 mb-1"><i
+                class="text-global-font-on-dark text-16 icon-notice" data-testid="toast-icon-title"></i>
+              <h4 class="ml-1 leading-none" data-testid="toast-title">{{betSuccess[3].type === 'error' ? 'Error' :
+                betSuccess[3].message}}</h4>
+              <div (click)="closeBet()" class="icon-close absolute right-5 text-14" data-testid="toast-btn-close-toast">
+              </div>
+            </div>
+            <div class="px-2 py-4 rounded-lg bg-white bg-opacity-87 text-13 text-global-font-on-light"
+              data-testid="toast-content">
+              <p style="text-align:left" *ngIf="betSuccess[3].type === 'error'">{{betSuccess[3].message}}</p>
+              <p id="info" *ngIf="betSuccess[3].type !== 'error'" style="text-align:left">
+                <span id="sideType" [class]="betSuccess[1].isBack ? 'back' : 'lay'">{{betSuccess[1].isBack ? 'Back' :
+                  'Lay'}}</span>
+                <strong id="selectionName">{{betSuccess[1].selectionName}}</strong> <strong id="stake">
+                  {{betSuccess[2]}}</strong>
+                at odds <strong id="odds">{{betSuccess[1].odds}}</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- book -->
+<div data-v-78fa00d1="" *ngIf="openFanBook">
+  <div data-v-78fa00d1="" data-testid="btn-hidden-book-modal"
+    class="fixed top-0 w-full h-full z-40 bg-pop-title opacity-30"></div>
+  <div data-v-78fa00d1="" data-testid="container-book-modal" class="book fixed z-40 container bottom-0">
+    <div data-v-78fa00d1="" class="mybet-content bg-secondary flex flex-col px-1 h-full overscroll-y-none rounded-t-xl">
+      <header data-v-78fa00d1="" class="mybet-title flex py-3.5">
+        <div data-v-78fa00d1="" class="flex-1 text-pop-title text-center font-bold text-13">Book Position</div>
+        <div data-v-78fa00d1="" (click)="closeFancyBook()"
+          class="icon-close absolute justify-center items-center right-3 cursor-pointer text-global-font-on-dark text-14">
+        </div>
+      </header><span data-v-78fa00d1="" class="py-4 rounded-t-md bg-black-300 text-center px-7px">
+        <div data-v-78fa00d1="" class="inline-block text-left leading-120%"><span data-v-78fa00d1=""
+            data-testid="bookData-eventName-home" class="text-13 font-bold">{{matchrunners?.[0]}}</span><span
+            data-v-78fa00d1="" class="text-13 mx-1">vs</span><span data-v-78fa00d1=""
+            data-testid="bookData-eventName-away" class="text-13 font-bold">{{matchrunners?.[1]}}</span>
+          <div data-v-78fa00d1="" class="inline-block ml-1 mr-0.5">
+            <div data-v-78fa00d1="" class="icon-triangle-black-600"></div>
+          </div>
+          <p data-v-78fa00d1="" data-testid="bookData-marketName" class="inline text-13 break-all">
+            {{fancybookdata?.[0]?.fancyName}}</p>
+        </div>
+      </span>
+      <section data-v-cbf37226="" class="pl-3 py-3 text-base text-white">Runs</section>
+      <section data-v-cbf37226="" class="content bg-white overflow-y-scroll">
+        <div data-v-cbf37226="" class="flex justify-center items-center bg-back-100" data-testid="171"
+          *ngFor="let item of bookList; let i=index;">
+          <div data-v-cbf37226="" class="pl-3 py-2.5 w-1/3 text-13 font-bold border-b border-white border-r">{{item}}
+          </div>
+          <div data-v-cbf37226="" class="pl-3 py-2.5 w-2/3 text-13 font-bold border-b border-white"
+            [style]="pnlList[i] > 0 ? 'color:green;' : 'color:red;' ">{{pnlList[i]}}</div>
+        </div>
+        <!-- <div data-v-cbf37226="" class="flex justify-center items-center bg-lay-100" data-testid="172">
+          <div data-v-cbf37226="" class="pl-3 py-2.5 w-1/3 text-13 font-bold border-b border-white border-r">172</div>
+          <div data-v-cbf37226="" class="pl-3 py-2.5 w-2/3 text-13 font-bold border-b border-white text-exposure-lay">
+            (2.00)</div>
+        </div>
+        <div data-v-cbf37226="" class="flex justify-center items-center bg-lay-100" data-testid="173">
+          <div data-v-cbf37226="" class="pl-3 py-2.5 w-1/3 text-13 font-bold border-b border-white border-r">173</div>
+          <div data-v-cbf37226="" class="pl-3 py-2.5 w-2/3 text-13 font-bold border-b border-white text-exposure-lay">
+            (2.00)</div>
+        </div> -->
+      </section>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="loading">
+  <app-loader></app-loader>
+</div>

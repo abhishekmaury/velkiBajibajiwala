@@ -1,0 +1,6 @@
+.bg-bet-disabled {
+  --tw-bg-opacity: 1;
+  background-color: rgb(212 224 229 / var(--tw-bg-opacity));
+  pointer-events: none;
+  cursor: not-allowed;
+}

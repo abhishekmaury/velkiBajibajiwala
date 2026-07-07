@@ -1,0 +1,21 @@
+
+.showMsg{
+    width: 80%;
+    position: fixed;
+    left: 10%;
+    z-index: 99999;
+    margin: 0 auto;
+    background-color: #c5aa77;
+    border-radius: 10px;
+  }
+  .showMsg h4{
+    padding: 14px;
+    text-align: center;
+  }
+  .red{
+    color: red;
+  }
+  .green{
+    color: green;
+  }
+  

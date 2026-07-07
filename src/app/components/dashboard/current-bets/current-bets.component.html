@@ -1,0 +1,382 @@
+<main class="min-h-full-with-header">
+  <div data-v-f43ca18c="" class="pb-20 relative">
+    <div data-v-3da282ba="" class="mb-20">
+      <header data-v-3da282ba=""
+        class="h-12 p-3 bg-secondary text-global-font-on-dark text-14 flex items-center justify-center">Current Bets<div
+          class="icon-close text-16 absolute right-4" routerLink="/home"></div>
+      </header>
+      <section data-v-3da282ba="" class="tab-wrapper relative bg-black-300 overflow-x-scroll">
+        <div data-v-3da282ba="" class="h-full inline-block">
+          <ul #tabsContainer data-v-3da282ba="" class="ml-2 mr-1 w-full h-12 flex flex-nowrap justify-start items-center">
+            <li data-v-3da282ba="" [class.active]="selected === 'Odds'"
+              class="text-13 font-bold py-2 mr-6 text-center whitespace-nowrap" (click)="getAllBets('Odds')">Exchange
+            </li>
+            <li data-v-3da282ba="" [class.active]="selected === 'BooKMaker'"
+              class="text-13 font-bold py-2 mr-6 text-center whitespace-nowrap" (click)="getAllBets('BooKMaker')">
+              BookMaker</li>
+            <li data-v-3da282ba="" [class.active]="selected === 'Fancy'"
+              class="text-13 font-bold py-2 mr-6 text-center whitespace-nowrap" (click)="getAllBets('Fancy')">FancyBet
+            </li>
+            <li data-v-3da282ba="" [class.active]="selected === 'Sportsbook'"
+              class="text-13 font-bold py-2 mr-6 text-center whitespace-nowrap" (click)="getAllBets('Sportsbook')">SportsBook
+            </li>
+            <!-- <li data-v-3da282ba="" [class.active]="selected === 'Parlay'"
+              class="text-13 font-bold py-2 mr-6 text-center whitespace-nowrap" (click)="getAllBets('Parlay')">Parlay
+            </li> -->
+            <li data-v-3da282ba="" [class.active]="selected === 'Fancy1'"
+              class="text-13 font-bold py-2 mr-6 text-center whitespace-nowrap" (click)="getAllBets('Fancy1')">Fancy1Bet
+            </li>
+            <li data-v-3da282ba="" [class.active]="selected === 'Toss'"
+              class="text-13 font-bold py-2 mr-6 text-center whitespace-nowrap" (click)="getAllBets('Toss')">TossBet
+            </li>
+            <li data-v-3da282ba="" [class.active]="selected === 'Casino'"
+              class="text-13 font-bold py-2 mr-6 text-center whitespace-nowrap" (click)="getAllBets('Casino')">CasinoBet
+            </li>
+            <li data-v-3da282ba="" [class.active]="selected === 'Other'"
+              class="text-13 font-bold py-2 mr-6 text-center whitespace-nowrap" (click)="getAllBets('Other')">Other</li>
+            <li data-v-3da282ba="" [class.active]="selected === 'Saba'"
+              class="text-13 font-bold py-2 mr-6 text-center whitespace-nowrap" (click)="getAllBets('Saba')">SABA SPORTS
+            </li>
+            
+            <div data-v-3da282ba="" *ngIf="selected !== 'Odds'" [style.width]="indicatorWidth + 'px'"
+              [style.transform]="'translateX(' + indicatorPosition + 'px)'"
+              class="tab-indicator absolute left-0 bottom-1.5 bg-global-font-on-light rounded-full"></div>
+            <div data-v-3da282ba="" *ngIf="selected === 'Odds'"
+              style="width: 75.5795px; transform: translateX(10.375px);"
+              class="tab-indicator absolute left-0 bottom-1.5 bg-global-font-on-light rounded-full"></div>
+          </ul>
+
+
+        </div>
+      </section>
+      <form [formGroup]="currentBetsData">
+        <section data-v-3da282ba="" class="bet-status relative">
+          <div data-v-8a49f53f="" data-v-e313196e="" class="custom-select w-full p-2 relative bg-black-800"
+            style="--821e4d10: 0;">
+            <button data-v-8a49f53f="" (click)="toggleSelect()"
+              class="select text-left px-4 w-full h-30px border rounded border-reportForm-main bg-white bg-opacity-0 text-reportForm-main text-15 "
+              [ngClass]="selectTab?'rounded-b-none border-b-0':''" value="options">
+              <div data-v-8a49f53f="" class="relative flex justify-start items-center">
+                <div data-v-8a49f53f=""
+                  class="option-container w-310px grid grid-cols-1 justify-start items-center leading-tight"
+                  data-has-label="true" data-has-alt="false"><span data-v-8a49f53f="" class="mr-2">Bet
+                    Status</span><span data-v-8a49f53f="" class="option-context mr-2 font-bold truncate leading-tight">
+                    {{ selectedOption }}</span></div>
+                <span data-v-8a49f53f=""
+                  class="icon-arrow-down absolute right-0 top-1.5 text-12 transition-transform origin-center duration-300 "
+                  [ngClass]="selectTab?'transform rotate-180':''"></span>
+              </div>
+            </button>
+            <div data-v-8a49f53f=""
+              class="drop-down border border-reportForm-main rounded rounded-t-none border-t-0 bg-black-800 text-reportForm-main font-bold text-15 absolute z-10"
+              [ngClass]="selectTab?'d-block':'d-none'">
+              <div data-v-8a49f53f="" class="options top-10 flex flex-col">
+                <p data-v-8a49f53f="" class="item h-30px flex items-center px-4 hover:bg-black-600" value="0"
+                  (click)="selectOption('Matched')" [style.display]="selectedOption === 'Matched' ? 'none' : 'flex'">
+                  <span data-v-8a49f53f="" class="item-text relative">Matched </span>
+                </p>
+                <p data-v-8a49f53f="" class="item h-30px flex items-center px-4 hover:bg-black-600" value="1"
+                  (click)="selectOption('Unmatched')"
+                  [style.display]="selectedOption === 'Unmatched' ? 'none' : 'flex'"><span data-v-8a49f53f=""
+                    class="item-text relative">Unmatched </span></p>
+              </div>
+            </div>
+          </div>
+          <div data-v-3da282ba="" class="flex justify-end items-center bg-black-800 h-30px p2"><span data-v-3da282ba=""
+              class="title text-15 text-reportForm-main mr-2">Order By</span>
+            <div data-v-3da282ba="" class="radio-button-group flex">
+              <div data-v-a5fdb595="" data-v-3da282ba="" (click)="normalWorking('bt')">
+                <input data-v-a5fdb595="" id="betPlaced" name="radio-option" type="radio" class="hidden">
+                <label data-v-a5fdb595="" for="betPlaced" class="flex justify-start items-center select-none">
+                  <span data-v-a5fdb595=""
+                    [style]="checkboxx == 'bt' ? 'background:'+jsonWebdt?.imagesBottomBorderColor+'' : ''"
+                    class="flex justify-center items-center border border-solid border-checkbox-boder mr-1.5 w-4 h-4 rounded bg-checkbox-background">
+                    <span *ngIf="checkboxx == 'bt'" data-v-a5fdb595=""
+                      class="icon-check text-checkbox-icon text-8 font-bold"></span>
+                  </span>
+                  <span data-v-a5fdb595="" class="text-global-font-on-dark mr-2 text-11">Bet Placed</span></label>
+              </div>
+              <div data-v-a5fdb595="" data-v-3da282ba="" (click)="normalWorking('mt')">
+                <input data-v-a5fdb595="" id="market" name="radio-option" type="radio" class="hidden"><label
+                  data-v-a5fdb595="" for="market" class="flex justify-start items-center select-none"><span
+                    data-v-a5fdb595=""
+                    [style]="checkboxx == 'mt' ? 'background:'+jsonWebdt?.imagesBottomBorderColor+'' : ''"
+                    class="flex justify-center items-center border border-solid border-checkbox-boder mr-1.5 w-4 h-4 rounded bg-checkbox-background">
+                    <span *ngIf="checkboxx == 'mt'" data-v-a5fdb595=""
+                      class="icon-check text-checkbox-icon text-8 font-bold">
+                    </span></span><span data-v-a5fdb595=""
+                    class="text-global-font-on-dark mr-2 text-11">Market</span></label>
+              </div>
+            </div>
+          </div>
+        </section>
+      </form>
+      <div *ngIf="selectedOption=='Matched'" data-v-3da282ba="" class="content px-4 py-4">
+        <div data-v-3da282ba="" *ngFor="let item of exchange;let i =index;">
+          <section data-v-3da282ba="" class="mb-2">
+            <header class="bg-black-300 flex justify-center items-center rounded-t-8px">
+              <div class="py-2 px-4 text-center leading-5 break-all">
+                <span
+                  class="text-11">{{item.sportId=='4'?'Cricket':item.sportId=='2'?'Tennis':item.sportId=='1'?'Soccer':item.sportId=='11'?'SABA':'Casino'}}</span>
+                <i class="icon-triangle-black-600 inline-block align-baseline"></i>
+                <span class="text-11 font-bold">{{item.matchName}}</span>
+                <i class="icon-triangle-black-600 inline-block align-baseline"></i>
+                <span class="text-11">{{item.sourceName}}</span>
+              </div>
+            </header>
+            <section class="bg-white">
+              <div class="divide-y divide-black-300">
+                <div class="p-2 flex items-center">
+                  <div *ngIf="item.type!=='Fancy' && item.type!=='Fancy1'"
+                    [class]="item.isBack==true?'bg-back':'bg-lay'"
+                    class="shrink-0 w-50px h-6 back relative inline-block leading-loose mr-2 font-bold text-center bg-back rounded-full text-11 ">
+                    {{item.isBack==true?'Back':'Lay'}}</div>
+                  <span class="flex items-center text-11 font-bold min-h-28px leading-tight break-all"
+                    *ngIf="item.type=='Fancy' || item.type=='Fancy1'">{{item.isBack==true?'Yes':'No'}}</span>
+                  {{item.selectionName}}
+                </div>
+                <div class="grid grid-cols-3 divide-x divide-black-300">
+                  <div *ngIf="selected!='Parlay'" class="p-2 flex-1">
+                    <div class="text-9">Odds req.</div>
+                    <div class="font-bold leading-tight pt-0.5"
+                      *ngIf="item.sourceBetType=='Odds' || item.sourceBetType=='Other'">
+                      {{item.odds+1 | number :'1.0-2'}}</div>
+                    <div class="font-bold leading-tight pt-0.5"
+                      *ngIf="item.sourceBetType=='Premium'">
+                      {{item.odds | number :'1.0-2'}}</div>
+                    <div class="font-bold leading-tight pt-0.5"
+                      *ngIf="item.sourceBetType=='Fancy' || item.sourceBetType=='Fancy1'">
+                      {{item.odds+'/'+item.priceValue}}</div>
+                    <div class="font-bold leading-tight pt-0.5"
+                      *ngIf="item.sourceBetType=='BooKMaker' || item.sourceBetType=='Toss' || item.matchName=='SABA SPORTS'">
+                      {{item.odds * 100}}</div>
+                  </div>
+                  <div *ngIf="selected!='Parlay'" class="p-2 flex-1">
+                    <div class="text-9">Odds Matched</div>
+                    <div class="font-bold leading-tight pt-0.5"
+                      *ngIf="item.sourceBetType=='Odds' || item.sourceBetType=='Other'">
+                      {{item.odds+1 | number :'1.0-2'}}</div>
+                    <div class="font-bold leading-tight pt-0.5"
+                      *ngIf="item.sourceBetType=='Premium'">
+                      {{item.odds | number :'1.0-2'}}</div>
+                    <div class="font-bold leading-tight pt-0.5"
+                      *ngIf="item.sourceBetType=='Fancy' || item.sourceBetType=='Fancy1'">
+                      {{item.odds+'/'+item.priceValue}}</div>
+                    <div class="font-bold leading-tight pt-0.5"
+                      *ngIf="item.sourceBetType=='BooKMaker' || item.sourceBetType=='Toss' || item.matchName=='SABA SPORTS'">
+                      {{item.odds * 100}}</div>
+                  </div>
+
+                  <div *ngIf="selected=='Parlay'" class="p-2 flex-1">
+                    <div class="text-9">Odds req.</div>
+                    <div class="font-bold leading-tight pt-0.5">
+                      {{item.odds | number :'1.0-2'}}</div>
+                  </div>
+                  <div *ngIf="selected=='Parlay'" class="p-2 flex-1">
+                    <div class="text-9">Odds Matched</div>
+                    <div class="font-bold leading-tight pt-0.5">
+                      {{item.odds | number :'1.0-2'}}</div>
+                  </div>
+                  <div class="p-2 flex-1">
+                    <div class="label text-9">Matched (PBU)</div>
+                    <div class="font-bold leading-tight pt-0.5">{{item.stake}}</div>
+                  </div>
+                </div>
+                <div class="flex p-2 text-12"><span class="w-1/3">Bet ID</span><span
+                    class="pl-1 text-black-700">{{item.id.substr(-8)}}</span></div>
+                <div class="flex p-2 text-12"><span class="w-1/3">Bet Placed</span><span
+                    class="pl-1 text-black-700">{{item.placeTime}}</span></div>
+                <div class="flex p-2 text-12"><span class="w-1/3">Matched Date</span><span
+                    class="pl-1 text-black-700">{{item.matchedTime}}</span></div>
+              </div>
+            </section>
+            <section *ngIf="expand==i">
+              <div class="bg-black-200 divide-y divide-black-400">
+                <div class="row second flex border-b border-black-400 bg-black-400 p-2 text-12">
+                  <span class="w-1/3">Bet Taken</span><span class="pl-1">{{item.betDate}} {{item.betTime}}</span>
+                </div>
+                <div class="grid grid-cols-3 divide-x divide-black-400">
+                  <div *ngIf="selected!='Parlay'" class="p-2 flex-1">
+                    <div class="text-10">Odds req.</div>
+                    <div class="font-bold leading-tight pt-0.5"
+                      *ngIf="item.sourceBetType=='Odds' || item.sourceBetType=='Other'">
+                      {{item.odds+1 | number :'1.0-2'}}</div>
+                    <div class="font-bold leading-tight pt-0.5"
+                      *ngIf="item.sourceBetType=='Premium'">
+                      {{item.odds | number :'1.0-2'}}</div>
+                    <div class="font-bold leading-tight pt-0.5"
+                      *ngIf="item.sourceBetType=='Fancy' || item.sourceBetType=='Fancy1'">
+                      {{item.odds+'/'+item.priceValue}}</div>
+                    <div class="font-bold leading-tight pt-0.5"
+                      *ngIf="item.sourceBetType=='BooKMaker' || item.sourceBetType=='Toss' || item.matchName=='SABA SPORTS'">
+                      {{(item.odds * 100) | number :'1.0-2'}}</div>
+                  </div>
+                  <div *ngIf="selected!='Parlay'" class="p-2 flex-1">
+                    <div class="text-10">Odds Matched</div>
+                    <div class="font-bold leading-tight pt-0.5"
+                      *ngIf="item.sourceBetType=='Odds' || item.sourceBetType=='Other'">
+                      {{item.odds+1 | number :'1.0-2'}}</div>
+                    <div class="font-bold leading-tight pt-0.5"
+                      *ngIf="item.sourceBetType=='Premium'">
+                      {{item.odds | number :'1.0-2'}}</div>
+                    <div class="font-bold leading-tight pt-0.5"
+                      *ngIf="item.sourceBetType=='Fancy' || item.sourceBetType=='Fancy1'">
+                      {{item.odds+'/'+item.priceValue}}</div>
+                    <div class="font-bold leading-tight pt-0.5"
+                      *ngIf="item.sourceBetType=='BooKMaker' || item.sourceBetType=='Toss' || item.matchName=='SABA SPORTS'">
+                      {{(item.odds * 100) | number :'1.0-2'}}</div>
+                  </div>
+
+                  <div *ngIf="selected=='Parlay'" class="p-2 flex-1">
+                    <div class="text-10">Odds req.</div>
+                    <div class="font-bold leading-tight pt-0.5">
+                      {{item.odds | number :'1.0-2'}}</div>
+                  </div>
+                  <div *ngIf="selected=='Parlay'" class="p-2 flex-1">
+                    <div class="text-10">Odds Matched</div>
+                    <div class="font-bold leading-tight pt-0.5">
+                      {{item.odds | number :'1.0-2'}}</div>
+                  </div>
+                  <div class="p-2 flex-1">
+                    <div class="label text-10">Matched (PBU)</div>
+                    <div class="font-bold leading-tight pt-0.5">{{item.stake}}</div>
+                  </div>
+                </div>
+                <div class="flex p-2 text-12"><span class="w-1/3">Liability </span>
+                  <span class="pl-1" style="color: red;">({{item.liability || '--'}})</span>
+                </div>
+              </div>
+            </section>
+            <footer>
+              <div class="h-2 rounded-b-lg transition-colors duration-300 bg-black-300"></div>
+              <div [ngClass]="expand==i?'bg-black-300':'bg-black-400'"
+                class="h-4 rounded-b-lg w-90px mx-auto flex justify-center transition-colors duration-300 ">
+                <span (click)="details(i)" [ngClass]="expand==i?'transform rotate-180':''"
+                  class="icon-arrow-down-sencodary relative -top-1 text-black transition-transform origin-center duration-300"></span>
+              </div>
+            </footer>
+          </section>
+        </div>
+        <div data-v-3da282ba="" *ngIf="exchange?.length === 0" class="flex justify-center items-center py-48">
+          <div class="pt-6 px-7 pb-5 bg-white text-center text-black-700 text-base rounded-xl leading-tight">
+            <div alt="" class="icon-empty text-40 text-black-300 m-auto mb-2.5"></div>
+            <div>No Data</div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="selectedOption=='Unmatched'" data-v-732d8950="" class="content px-4 py-4">
+        <div data-v-732d8950="">
+          <section data-v-732d8950="" class="rounded-b-lg overflow-hidden mb-2">
+            <header class="bg-black-300 flex justify-center items-center rounded-t-8px">
+              <div class="py-2 px-4 text-center leading-5 break-all"><span class="text-13">Cricket</span><i
+                  class="icon-triangle-black-600 inline-block align-baseline"></i><span class="text-13 font-bold">India
+                  v West Indies</span><i class="icon-triangle-black-600 inline-block align-baseline"></i><span
+                  class="text-13">Match Odds</span></div>
+            </header>
+            <section class="bg-white rounded-b-8px">
+              <div class="divide-y divide-black-300">
+                <div class="p-2 flex items-center">
+                  <div data-v-b0cd02b4="" class="text-11 text-black-900"><input data-v-b0cd02b4="" id="215636154"
+                      name="215636154" type="checkbox" class="hidden"><label (click)="test()" data-v-b0cd02b4=""
+                      for="215636154" class="flex justify-start items-center select-none"><span data-v-a5fdb595=""
+                        [style]="unmatchedtest === true ? 'background:'+jsonWebdt?.imagesBottomBorderColor+'' : ''"
+                        class="flex justify-center items-center border border-solid border-checkbox-boder mr-1.5 w-4 h-4 rounded bg-checkbox-background">
+                        <span *ngIf="unmatchedtest === true" data-v-a5fdb595=""
+                          class="icon-check text-checkbox-icon text-8 font-bold">
+                        </span></span>
+                      <div data-v-b0cd02b4=""> </div>
+                    </label></div>
+                  <div
+                    class="shrink-0 w-50px h-8 back relative inline-block leading-loose mr-2 font-bold text-center bg-back rounded-full text-13 bg-back">
+                    Back</div><span
+                    class="flex items-center text-13 font-bold min-h-28px leading-tight break-all">India</span><!---->
+                  <div data-v-2ea85bd9="" class="icon-unmatched ml-auto" style="width: 1rem; height: 1rem;"><svg
+                      width="100%" height="100%" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"
+                      data-v-2ea85bd9="">
+                      <g clip-path="url(#clip0_4958_39086)" data-v-2ea85bd9="">
+                        <path
+                          d="M9.165 0C9.625 0 10 0.374167 10 0.835V9.165C10 9.625 9.62583 10 9.165 10H0.835C0.725346 10 0.616766 9.9784 0.515459 9.93644C0.414152 9.89448 0.322103 9.83297 0.244566 9.75543C0.167029 9.6779 0.105523 9.58585 0.0635606 9.48454C0.0215979 9.38323 0 9.27465 0 9.165L0 0.835C0 0.375 0.374167 0 0.835 0H9.165Z"
+                          fill="#C73A54" data-v-2ea85bd9=""></path>
+                        <g clip-path="url(#clip1_4958_39086)" data-v-2ea85bd9="">
+                          <path d="M7.77004 6.23806L9.07185 2.5H6.86807L5.56006 6.23806H7.77004Z" fill="white"
+                            data-v-2ea85bd9=""></path>
+                          <path
+                            d="M5.33688 6.53857C5.32759 6.53857 5.32139 6.53857 5.31209 6.53857L3.71537 6.53862C3.71537 6.53862 3.66219 6.53862 3.25019 6.53866L1.34373 6.53862L1.31583 6.61611C1.19185 6.95706 1.26624 7.24532 1.5421 7.47778C1.81796 7.71335 2.2147 7.82803 2.73233 7.82803L5.70263 7.82799C6.22026 7.82799 6.6387 7.7102 6.96415 7.47774C7.2896 7.24217 7.51277 6.95701 7.63675 6.61606L7.66465 6.53857H5.33688Z"
+                            fill="white" data-v-2ea85bd9=""></path>
+                          <path d="M3.57107 6.23806L4.88218 2.5H2.6784L1.37659 6.23806H3.57107Z" fill="white"
+                            data-v-2ea85bd9=""></path>
+                        </g>
+                      </g>
+                      <defs data-v-2ea85bd9="">
+                        <clipPath id="clip0_4958_39086" data-v-2ea85bd9="">
+                          <rect width="10" height="10" fill="white" data-v-2ea85bd9=""></rect>
+                        </clipPath>
+                        <clipPath id="clip1_4958_39086" data-v-2ea85bd9="">
+                          <rect width="8.125" height="5.625" fill="white" transform="translate(1.0625 2.5)"
+                            data-v-2ea85bd9=""></rect>
+                        </clipPath>
+                      </defs>
+                    </svg></div>
+                </div>
+                <div class="grid grid-cols-3 divide-x divide-black-300">
+                  <div class="p-2 flex-1">
+                    <div class="text-10">Odds req.</div>
+                    <div class="font-bold leading-tight pt-0.5">1.15</div>
+                  </div>
+                  <div class="p-2 flex-1">
+                    <div class="text-10">Avg. Odds</div>
+                    <div class="font-bold leading-tight pt-0.5">--</div>
+                  </div>
+                  <div class="p-2 flex-1">
+                    <div class="label text-10">Unmatched</div>
+                    <div class="font-bold leading-tight pt-0.5">1.00</div>
+                  </div>
+                </div>
+                <div class="flex p-2 text-12"><span class="w-1/3">Bet ID</span><span
+                    class="pl-1 text-black-600">215636154</span></div>
+                <div class="flex p-2 text-12"><span class="w-1/3">Bet Placed</span><span
+                    class="pl-1 text-black-600">2025-10-10 14:29:28</span></div><!---->
+              </div>
+            </section>
+            <section style="display: none;"></section><!---->
+          </section>
+        </div>
+        <div data-v-732d8950="" class="flex justify-center items-center py-48" style="display: none;">
+          <div class="pt-6 px-7 pb-5 bg-white text-center text-black-700 text-base rounded-xl leading-tight">
+            <div alt="" class="icon-empty text-40 text-black-300 m-auto mb-2.5"></div>
+            <div>No Data</div>
+          </div>
+        </div><!---->
+      </div>
+
+      <div *ngIf="selectedOption=='Unmatched'" data-v-3da282ba=""
+        class="bg-black-100 p-14px mt-auto fixed bottom-0 w-full"><button
+          class="btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed bg-error text-global-font-on-dark w-full rounded-4px"><i
+            class="icon-del text-14 mr-3px"></i> Cancel </button></div>
+    </div>
+  </div>
+</main>
+
+<!--
+<div data-v-f43ca18c="">
+  <div class="absolute left-0 top-0 w-full h-full z-50" data-testid="toast-overlay" style=""></div>
+  <div class="fixed bottom-0 z-50 w-full space-y-2.5" currencyalias="PKU">
+    <div>
+      <div class="text-center flex rounded-t-2xl justify-center p-1 bg-error" data-testid="toast-container">
+        <div class="w-full">
+          <div class="flex justify-center items-center text-global-font-on-dark font-bold py-2 mb-1"><i
+              class="text-global-font-on-dark text-16 icon-notice" data-testid="toast-icon-title"></i>
+            <h4 class="ml-1 leading-none" data-testid="toast-title">Error</h4>
+            <div class="icon-close absolute right-5 text-14" data-testid="toast-btn-close-toast"></div>
+          </div>
+          <div class="px-2 py-4 rounded-lg bg-white bg-opacity-87 text-13 text-global-font-on-light"
+            data-testid="toast-content">Request denied, please contact your superior</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div *ngIf="loading">
+  <app-loader></app-loader>
+</div>

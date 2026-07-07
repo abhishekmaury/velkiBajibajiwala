@@ -1,0 +1,188 @@
+<div data-v-1c2d4b42="" *ngIf="!stakesetting">
+
+<div data-v-1c2d4b42="" class="absolute top-0 w-full h-full z-50" [@slideInOut] (click)="closePopup()"></div>
+<div #betComponent *ngIf="closeBet" class="bet-slip fixed z-50 container bottom-0 shadow-top rounded-t-xl" [@slideInOut]
+  (click)="$event.stopPropagation()">
+  <div class="bet-slip-content bg-white relative p-2 rounded-t-xl">
+    <header class="bet-slip-title flex items-center font-bold mb-2">
+      <span *ngIf="data[0].isBack"
+        class="bet-tag back relative w-50px py-2 inline-block font-bold text-center text-13 rounded-full shrink-0 bg-back">Back</span>
+      <span *ngIf="!data[0].isBack"
+        class="bet-tag back relative w-50px py-2 inline-block font-bold text-center text-13 rounded-full shrink-0 bg-lay">Lay</span>
+
+        <span *ngIf="data[0].sourceBetType=='Fancy' || data[0].sourceBetType=='Fancy1'"
+        class="inline-block global-font-on-light text-18 align-text-bottom p-2 mr-6 break-all grow">{{data[0].fancyName}}</span>
+        <span *ngIf="data[0].sourceBetType!='Fancy' && data[0].sourceBetType!='Fancy1'"
+        class="inline-block global-font-on-light text-18 align-text-bottom p-2 mr-6 break-all grow">{{data[0].selectionName}}</span>
+      <div (click)="closePopup()" (click)="cancelBet()"
+        class="icon-close absolute right-2 mr-2 text-black text-base flex justify-center items-center cursor-pointer">
+      </div>
+    </header>
+    <div class="bg-unMatchMode-setting border-transparent p-7px mb-7px rounded-6px border">
+      <div class="flex items-center">
+        <div data-v-2ea85bd9="" class="icon-unmatched" style="width: 1rem; height: 1rem;"><svg width="100%"
+            height="100%" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" data-v-2ea85bd9="">
+            <g clip-path="url(#clip0_4958_39086)" data-v-2ea85bd9="">
+              <path
+                d="M9.165 0C9.625 0 10 0.374167 10 0.835V9.165C10 9.625 9.62583 10 9.165 10H0.835C0.725346 10 0.616766 9.9784 0.515459 9.93644C0.414152 9.89448 0.322103 9.83297 0.244566 9.75543C0.167029 9.6779 0.105523 9.58585 0.0635606 9.48454C0.0215979 9.38323 0 9.27465 0 9.165L0 0.835C0 0.375 0.374167 0 0.835 0H9.165Z"
+                fill="#C73A54" data-v-2ea85bd9=""></path>
+              <g clip-path="url(#clip1_4958_39086)" data-v-2ea85bd9="">
+                <path d="M7.77004 6.23806L9.07185 2.5H6.86807L5.56006 6.23806H7.77004Z" fill="white" data-v-2ea85bd9="">
+                </path>
+                <path
+                  d="M5.33688 6.53857C5.32759 6.53857 5.32139 6.53857 5.31209 6.53857L3.71537 6.53862C3.71537 6.53862 3.66219 6.53862 3.25019 6.53866L1.34373 6.53862L1.31583 6.61611C1.19185 6.95706 1.26624 7.24532 1.5421 7.47778C1.81796 7.71335 2.2147 7.82803 2.73233 7.82803L5.70263 7.82799C6.22026 7.82799 6.6387 7.7102 6.96415 7.47774C7.2896 7.24217 7.51277 6.95701 7.63675 6.61606L7.66465 6.53857H5.33688Z"
+                  fill="white" data-v-2ea85bd9=""></path>
+                <path d="M3.57107 6.23806L4.88218 2.5H2.6784L1.37659 6.23806H3.57107Z" fill="white" data-v-2ea85bd9="">
+                </path>
+              </g>
+            </g>
+            <defs data-v-2ea85bd9="">
+              <clipPath id="clip0_4958_39086" data-v-2ea85bd9="">
+                <rect width="10" height="10" fill="white" data-v-2ea85bd9=""></rect>
+              </clipPath>
+              <clipPath id="clip1_4958_39086" data-v-2ea85bd9="">
+                <rect width="8.125" height="5.625" fill="white" transform="translate(1.0625 2.5)" data-v-2ea85bd9="">
+                </rect>
+              </clipPath>
+            </defs>
+          </svg></div>
+        <div class="ml-5px">Unmatched Mode</div>
+        <div data-v-9a42e1e7="" class="btn-switch ml-auto"><input data-v-9a42e1e7="" id="unmatchedMode11"
+            class="btn-switch__tgl btn-switch__tgl-ios" type="checkbox"><label data-v-9a42e1e7=""
+            class="p-px rounded-2xl w-35px h-20px btn-switch__tgl-label-unmatchedMode" for="unmatchedMode"></label>
+        </div>
+      </div>
+    </div>
+    <div class="flex">
+      <section class="bet-amount bg-black-100">
+        <dt class="title font-normal">Odds</dt>
+        <dd class="input-box">
+          <button class="btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300
+            disabled:text-black-600 disabled:cursor-not-allowed" name="minus" [style]="{'background':'#d4e0e5','color':'#1b1f23'}">
+            <i class="icon-minus"></i>
+          </button>
+          <span *ngIf="data[0].sourceBetType=='Fancy' || data[0].sourceBetType=='Fancy1'" name="odds" class="input-field is-default"
+          id="selectedOdds">{{data[0].odds | number:'1.0-0'}}/{{data[0].selectionName | number:'1.0-0'}}</span>
+      <span *ngIf="data[0].sourceBetType!='Fancy' && data[0].sourceBetType!='Fancy1' && data[0].sourceBetType!=='BooKMaker'" name="odds" class="input-field is-default"
+          id="selectedOdds">{{data[0].odds}}</span>
+      <span *ngIf="data[0].sourceBetType==='BooKMaker'" name="odds" class="input-field is-default"
+          id="selectedOdds">{{data[0].isBack ? updOddsBack : updOddsLay}}</span>
+
+          <!-- <span name="odds" class="input-field is-default" value="2.9">{{data[0].odds}}</span> -->
+          <button class="btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300
+          disabled:text-black-600 disabled:cursor-not-allowed" name="plus" [style]="{'background':'#d4e0e5','color':'#1b1f23'}">
+            <i class="icon-plus"></i>
+          </button>
+        </dd>
+      </section>
+      <section class="bet-amount ml-2 bg-black-100">
+        <dt class="title bfont-normal">Stake</dt>
+        <dd class="input-box">
+          <button [style]="enableBtn ? {'background-image':jsonWebdt?.imagesBottomBorderColor,'color':jsonWebdt?.imagesPlayNowTextColor} : {'background':'#d4e0e5','color':'#1b1f23'}" class="btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300
+          disabled:text-black-600 disabled:cursor-not-allowed" name="minus" (click)="minusCounter(true)">
+            <i class="icon-minus"></i>
+          </button>
+          <span name="stake" class="input-field is-focus" value="">{{counterBet}}</span>
+          <button [style]="enableBtn ? {'background-image':jsonWebdt?.imagesBottomBorderColor,'color':jsonWebdt?.imagesPlayNowTextColor} : {'background':'#d4e0e5','color':'#1b1f23'}" class="btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300
+        disabled:text-black-600 disabled:cursor-not-allowed" name="plus" (click)="plusCounter(true)">
+            <i class="icon-plus "></i>
+          </button>
+        </dd>
+      </section>
+    </div>
+    <div data-v-3c51d876="" class="mb-2 flex" bis_skin_checked="1">
+      <div class="flex flex-1 justify-between" bis_skin_checked="1"><button (click)="addStakValue(stakeArr.stake1, true)"
+          class="btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-80px h-30px border-0"
+          type="button" value="10" fdprocessedid="v4nv3p">+{{stakeArr.stake1}}</button><button (click)="addStakValue(stakeArr.stake2, true)"
+          class="btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-80px h-30px border-0"
+          type="button" value="50" fdprocessedid="oa34hb">+{{stakeArr.stake2}}</button><button (click)="addStakValue(stakeArr.stake3, true)"
+          class="btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-80px h-30px border-0"
+          type="button" value="100" fdprocessedid="ux6n2i">+{{stakeArr.stake3}}</button><button (click)="addStakValue(stakeArr.stake4, true)"
+          class="btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-80px h-30px border-0"
+          type="button" value="500" fdprocessedid="j0dac2">+{{stakeArr.stake4}}</button><button  (click)="openStakeSetting()"
+          class="btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-9 h-30px border-0 text-16"
+          type="button" fdprocessedid="3yknl"><i class="icon-setting"></i></button></div>
+    </div>
+    <div class="flex">
+      <div class="flex flex-1 flex-wrap">
+        <button  *ngFor="let num of numPadArr" (click)="addStaticVal1(num, true)"
+          class="w-2/12 h-40px flex justify-center items-center font-normal border border-white bg-black-100 rounded"
+          type="button" value="1">{{num}}</button>
+      </div>
+      <button type="button" (click)="deleteLastNum()"
+        class="icon-backspace w-20 text-2xl font-bold border-solid border-l border-white rounded bg-black-100"></button>
+    </div>
+    <div class="info mt-1.5 flex items-center">
+      <div class="flex items-center text-black-500"><i class="icon-min-max mr-0.5 text-base"></i><span
+          class="mr-0.5 text-11">min/max</span>
+          <mark class="font-bold bg-white text-11 text-black-500">{{minLimit}}/{{maxLimit | number:'1.0-0'}}</mark>
+      </div>
+    </div>
+    <button *ngIf="data[0].sourceBetType=='Odds'" [style]="enableBtn && (totalMatched>lowLiquidity) ? {'background-image':jsonWebdt?.imagesBottomBorderColor,'color':jsonWebdt?.imagesPlayNowTextColor} : {'background':'#d4e0e5','color':'#1b1f23','opacity' : '.7'}" (click)="placeBetFunc()" [ngClass]="enableBtn && (totalMatched>lowLiquidity) ? 'btn-send' : 'btn-send disable'"
+      class="btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-full h-40px my-2" type="button">{{totalMatched>lowLiquidity?'Place Bet':'Low Liquidity Game'}}</button>
+    <button *ngIf="data[0].sourceBetType!=='Odds'" [style]="enableBtn ? {'background-image':jsonWebdt?.imagesBottomBorderColor,'color':jsonWebdt?.imagesPlayNowTextColor} : {'background':'#d4e0e5','color':'#1b1f23','opacity' : '.7'}" (click)="placeBetFunc()" [ngClass]="enableBtn ? 'btn-send' : 'btn-send disable'"
+      class="btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-full h-40px my-2" type="button">Place Bet</button>
+    <div *ngIf="loading"
+      class="loading absolute z-10 top-0 left-0 w-full h-full flex items-center justify-center bg-black-800 bg-opacity-87 rounded-t-xl"
+      style="display: bolck;"><img width="147" height="124" src="../../../assets/images/loading-bet.gif" alt="">
+    </div>
+  </div>
+</div>
+
+<!-- <div *ngIf="loading">
+	<app-loader></app-loader>
+</div> -->
+
+</div>
+
+<!-- stake setting -->
+
+<div data-v-3c51d876="" bis_skin_checked="1" *ngIf="stakesetting">
+  <div data-v-3c51d876="" class="absolute top-0 w-full h-full z-50" [@slideInOut]  bis_skin_checked="1" style=""></div>
+
+  <div data-v-05b4889a="" data-v-3c51d876="" class="setting-wrapper" bis_skin_checked="1">
+    <div data-v-05b4889a="" class="absolute top-0 w-full h-full z-50" bis_skin_checked="1" style=""></div>
+    <div data-v-05b4889a="" class="setting fixed z-50 container bottom-0" bis_skin_checked="1" style="">
+      <div data-v-05b4889a=""
+        class="setting-content bg-secondary flex flex-col p-1 pb-0 h-full overscroll-y-none rounded-t-xl"
+        bis_skin_checked="1">
+        <div data-v-05b4889a="" class="setting-header flex justify-center items-center py-2" bis_skin_checked="1"><span
+            data-v-05b4889a="" class="setting-title mx-4 pb-2 text-pop-title font-bold">Default stake setting</span>
+          <div data-v-05b4889a="" (click)="closeStake()"
+            class="icon-close absolute right-2 top-4 justify-center items-center mr-2 cursor-pointer text-global-font-on-dark text-14"
+            bis_skin_checked="1"></div>
+        </div>
+        <div data-v-05b4889a="" class="bg-black-200 rounded-t-lg py-2 px-1 flex" bis_skin_checked="1">
+          <div data-v-05b4889a="" class="input-box h-40px mx-1 flex-1 flex items-center justify-center"
+            bis_skin_checked="1" (click)="stakeFocus(1)"><span data-v-05b4889a="" name="index" [ngClass]="stakeFocusnum == 1 ? 'is-focus' : 'is-default'"
+              class="sum w-10 h-10 flex-1 flex justify-center items-center font-bold overflow-hidden mx-1 rounded-lg border-solid text-global-font-on-light bg-white"
+              value="10">{{stakeArr.stake1}}</span></div>
+          <div data-v-05b4889a="" class="input-box h-40px mx-1 flex-1 flex items-center justify-center"
+            bis_skin_checked="1" (click)="stakeFocus(2)"><span data-v-05b4889a="" name="index" [ngClass]="stakeFocusnum == 2 ? 'is-focus' : 'is-default'"
+              class="sum w-10 h-10 flex-1 flex justify-center items-center font-bold overflow-hidden mx-1 rounded-lg border-solid text-global-font-on-light bg-white "
+              value="50">{{stakeArr.stake2}}</span></div>
+          <div data-v-05b4889a="" class="input-box h-40px mx-1 flex-1 flex items-center justify-center"
+            bis_skin_checked="1" (click)="stakeFocus(3)"><span data-v-05b4889a="" name="index" [ngClass]="stakeFocusnum == 3 ? 'is-focus' : 'is-default'"
+              class="sum w-10 h-10 flex-1 flex justify-center items-center font-bold overflow-hidden mx-1 rounded-lg border-solid text-global-font-on-light bg-white is-default"
+              value="100">{{stakeArr.stake3}}</span></div>
+          <div data-v-05b4889a="" class="input-box h-40px mx-1 flex-1 flex items-center justify-center"
+            bis_skin_checked="1" (click)="stakeFocus(4)"><span data-v-05b4889a="" name="index" [ngClass]="stakeFocusnum == 4 ? 'is-focus' : 'is-default'"
+              class="sum w-10 h-10 flex-1 flex justify-center items-center font-bold overflow-hidden mx-1 rounded-lg border-solid text-global-font-on-light bg-white is-default"
+              value="500">{{stakeArr.stake4}}</span></div>
+        </div>
+        <div data-v-05b4889a="" class="keyboard" bis_skin_checked="1">
+          <div data-v-05b4889a="" class="num grid grid-cols-3 bg-white p-2 pb-0" bis_skin_checked="1">
+
+            <button *ngFor="let num of stakeNumPad" data-v-05b4889a="" (click)="numpadnum(num)" class="calc-btn" type="button" value="1" fdprocessedid="ikqbtw">{{num}}</button>
+
+              <button (click)="deleteLastNumStake()"
+              data-v-05b4889a="" class="calc-btn icon-backspace text-25" type="button" fdprocessedid="ar21rq"></button>
+          </div>
+        </div>
+        <div data-v-05b4889a="" class="bg-white px-2" bis_skin_checked="1"><button data-v-05b4889a="" (click)="updateStake()"
+            class="btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-full h-40px my-2"
+            type="submit" fdprocessedid="gr2ay">Submit</button></div>
+      </div>
+    </div>
+  </div>
+</div>

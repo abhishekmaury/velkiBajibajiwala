@@ -1,0 +1,48 @@
+<section class="search fixed top-40px w-full h-full-with-header-footer z-20 bg-black-100 overflow-hidden" [@slideInOut]>
+  <header class="sticky top-0 z-10">
+    <div class="h-12 p-3 bg-secondary text-global-font-on-dark text-14 flex items-center justify-center"><input
+        id="search" name="search" autocomplete="off" type="string" [(ngModel)]="searchName" appNoEmoji
+        class="effect-20 relative w-full h-40px px-2 z-10 bg-white bg-opacity-0 caret-primary"
+        placeholder="Search teams, competitions, and more..."><span class="icon-close text-14"(click)="closePopup()"></span></div>
+  </header>
+  <div class="showMsg" *ngIf="showErrPopup">
+    <h4 [class]="errMsg ? 'red' : 'green'">{{errMsg}}</h4>
+  </div>
+  <div class="sticky top-12 z-10">
+    <section data-v-750158bc="" class="h-44px bg-submenu flex items-center" style="display: none;">
+      <ul data-v-750158bc="" class="sport-type-filter-ul px-2 space-x-2 flex flex-nowrap overflow-x-scroll"></ul>
+    </section>
+  </div>
+  <div id="searchContainer" class="h-full pb-82px overflow-y-scroll">
+    <div>
+      <section class="py-2 px-4">
+        <div class="bg-white rounded-xl text-black text-15 divide-y divide-black-300">
+          <div *ngFor="let item of filteredUsers" class="flex py-2 pl-4 pr-2 justify-between items-center">
+            <div class="flex relative w-full" *ngIf="item.matchname">
+              <div class="flex w-full">
+                <div>
+                  <div class="text-13 leading-17px"><span>{{ item.matchname }}</span></div>
+                </div>
+              </div>
+              <div class="flex justify-end items-center right-0 absolute"
+                (click)="openMatch(item.sportid,item.eventid,item.iscupWinner,item.isPremiumData)">
+                <i class="icon-arrow-left transform rotate-180 text-12 text-black-500"></i>
+              </div>
+            </div>
+            <div class="flex relative w-full" *ngIf="item.name"  (click)="opencasinogamesmob(item)">
+              <div class="flex w-full ">
+                <div>
+                  <div class="text-13 leading-17px"><span>{{ item.name }}</span></div>
+                </div>
+              </div>
+              <div class="flex items-center right-0 absolute">
+                <i class="icon-arrow-left transform rotate-180 text-12 text-black-500"></i>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

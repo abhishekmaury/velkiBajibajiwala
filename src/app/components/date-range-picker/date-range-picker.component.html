@@ -1,0 +1,146 @@
+<div data-v-1a3d4c25=""
+  class="mybet fixed container bottom-0 ng-tns-c3078540662-1 ng-trigger ng-trigger-slideInOut ng-star-inserted"
+  [@slideInOut]>
+  <div data-v-1a3d4c25=""
+    class="mybet-content bg-secondary flex flex-col h-full overscroll-y-none rounded-t-xl overflow-hidden ng-tns-c3078540662-1">
+    <div data-v-1a3d4c25="" class="shrink-0 bg-secondary rounded-t-xl ng-tns-c3078540662-1">
+      <header data-v-1a3d4c25=""
+        class="mybet-title flex p-1 py-2 h-40px justify-center items-center ng-tns-c3078540662-1">
+        <div data-v-1a3d4c25="" class="main-filter flex-1 text-pop-title -mr-28px ng-tns-c3078540662-1">
+          <ul data-v-1a3d4c25=""
+            class="main-filter-ul flex justify-center items-center leading-tight text-center break-all ng-tns-c3078540662-1">
+            <li data-v-1a3d4c25="" class="main-filter-li relative mx-4 pb-1 font-bold text-13 ng-tns-c3078540662-1">
+              Select Date</li>
+          </ul>
+        </div>
+        <div data-v-1a3d4c25="" (click)="applySelection()"
+          class="icon-close flex justify-center items-center mr-2 cursor-pointer text-global-font-on-dark text-14 ng-tns-c3078540662-1">
+        </div>
+      </header>
+    </div>
+    <section class="date-picker-area rounded-t-lg bg-white flex justify-center">
+
+      <div class="w-4/5">
+        <div class="bg-white rounded-xl overflow-hidden">
+
+          <div class="flex justify-between items-center px-5 py-3 border-b border-gray-200">
+            <button (click)="prevMonth()" class="text-xl">
+              <svg class="vc-svg-icon" width="26px" height="26px" viewBox="0 -1 16 34">
+                <path
+                  d="M11.196 10c0 0.143-0.071 0.304-0.179 0.411l-7.018 7.018 7.018 7.018c0.107 0.107 0.179 0.268 0.179 0.411s-0.071 0.304-0.179 0.411l-0.893 0.893c-0.107 0.107-0.268 0.179-0.411 0.179s-0.304-0.071-0.411-0.179l-8.321-8.321c-0.107-0.107-0.179-0.268-0.179-0.411s0.071-0.304 0.179-0.411l8.321-8.321c0.107-0.107 0.268-0.179 0.411-0.179s0.304 0.071 0.411 0.179l0.893 0.893c0.107 0.107 0.179 0.25 0.179 0.411z">
+                </path>
+              </svg></button>
+            <span class="font-semibold text-gray-800 text-base" (click)="toggleMonthYearPopup()">
+              {{ monthNames[currentMonth] }} {{ currentYear }}
+            </span>
+            <!-- month popup -->
+            <div *ngIf="showMonthYearPopup"
+              class="absolute bg-gray-800 text-white pdd-4 rounded-lg grid grid-cols-3 gap-2 z-50 month-pos">
+              <span class="vc-popover-caret direction-bottom align-center"></span>
+              <!-- Year navigation -->
+              <div class="col-span-3 flex justify-between items-center mb-2 iconColor">
+                <button (click)="currentYear = currentYear - 1"><svg class="vc-svg-icon" width="20px" height="24px"
+                    viewBox="0 -1 16 34">
+                    <path
+                      d="M11.196 10c0 0.143-0.071 0.304-0.179 0.411l-7.018 7.018 7.018 7.018c0.107 0.107 0.179 0.268 0.179 0.411s-0.071 0.304-0.179 0.411l-0.893 0.893c-0.107 0.107-0.268 0.179-0.411 0.179s-0.304-0.071-0.411-0.179l-8.321-8.321c-0.107-0.107-0.179-0.268-0.179-0.411s0.071-0.304 0.179-0.411l8.321-8.321c0.107-0.107 0.268-0.179 0.411-0.179s0.304 0.071 0.411 0.179l0.893 0.893c0.107 0.107 0.179 0.25 0.179 0.411z">
+                    </path>
+                  </svg></button>
+                <span class="font-bold">{{ currentYear }}</span>
+                <button (click)="currentYear = currentYear + 1"><svg class="vc-svg-icon" width="20px" height="24px"
+                    viewBox="-5 -1 16 34">
+                    <path
+                      d="M10.625 17.429c0 0.143-0.071 0.304-0.179 0.411l-8.321 8.321c-0.107 0.107-0.268 0.179-0.411 0.179s-0.304-0.071-0.411-0.179l-0.893-0.893c-0.107-0.107-0.179-0.25-0.179-0.411 0-0.143 0.071-0.304 0.179-0.411l7.018-7.018-7.018-7.018c-0.107-0.107-0.179-0.268-0.179-0.411s0.071-0.304 0.179-0.411l0.893-0.893c0.107-0.107 0.268-0.179 0.411-0.179s0.304 0.071 0.411 0.179l8.321 8.321c0.107 0.107 0.179 0.268 0.179 0.411z">
+                    </path>
+                  </svg></button>
+              </div>
+
+              <!-- Months -->
+              <button *ngFor="let month of monthNames; let i = index" (click)="selectMonth(i)"
+                class="px-3 py-1 rounded hover:bg-blue-600" [ngClass]="{
+          'is-active': i === currentMonth, 
+          'border border-white rounded': i === todayMonth && currentYear === todayYear
+        }">
+                {{ month | slice:0:3 }}
+              </button>
+            </div>
+
+            <button (click)="nextMonth()" class="text-xl">
+              <svg class="vc-svg-icon" width="26px" height="26px" viewBox="-5 -1 16 34">
+                <path
+                  d="M10.625 17.429c0 0.143-0.071 0.304-0.179 0.411l-8.321 8.321c-0.107 0.107-0.268 0.179-0.411 0.179s-0.304-0.071-0.411-0.179l-0.893-0.893c-0.107-0.107-0.179-0.25-0.179-0.411 0-0.143 0.071-0.304 0.179-0.411l7.018-7.018-7.018-7.018c-0.107-0.107-0.179-0.268-0.179-0.411s0.071-0.304 0.179-0.411l0.893-0.893c0.107-0.107 0.268-0.179 0.411-0.179s0.304 0.071 0.411 0.179l8.321 8.321c0.107 0.107 0.179 0.268 0.179 0.411z">
+                </path>
+              </svg></button>
+          </div>
+
+          <div class="grid grid-cols-7 text-center text-lg font-normal text-gray-400 mt-2 px-3">
+            <div *ngFor="let d of dayNames">{{ d }}</div>
+          </div>
+
+          <div class="grid grid-cols-7 text-center px-3 pb-3 relative">
+            <div *ngFor="let day of daysInMonth" class="relative flex items-center justify-center h-6 my-1"
+              [class.opacity-40]="day.blank || day.disabled">
+
+              <div *ngIf="isInRange(day)" class="absolute inset-0  h-6 bg-[#d4e0e5]" [ngClass]="{
+            'rounded-l-full ml-3': isStart(day),
+            'rounded-r-full mr-3': isEnd(day),
+            'rounded-none': !isStart(day) && !isEnd(day)
+          }"></div>
+
+              <!-- <div (click)="selectDate(day)"
+                class="relative z-10 w-6 h-6 flex items-center justify-center rounded-full cursor-pointer transition-all duration-150"
+                [ngClass]="{
+      'bg-[#9cb1bd] text-black': isStart(day) || isEnd(day),
+      'cursor-not-allowed text-gray-400': day.disabled,
+      'text-gray-800': !isStart(day) && !isEnd(day) && !day.disabled
+    }">
+                {{ day.date }}
+              </div> -->
+              <div (click)="selectDate(day)"
+                class="relative z-10 w-6 h-6 flex items-center justify-center rounded-full cursor-pointer transition-all duration-150 text-sm font-medium"
+                [ngClass]="{
+       'bg-blue-50 border-2 border-blue-600 text-blue-950 font-bold ': isStart(day) && !endDate,
+       'bg-[#9cb1bd] text-black ': isStart(day) && endDate || isEnd(day),
+       'cursor-not-allowed text-gray-400': day.disabled,
+       'text-gray-800': !isStart(day) && !isEnd(day) && !day.disabled
+     }">
+                {{ day.date }}
+              </div>
+            </div>
+
+            <div *ngFor="let filler of [].constructor(42 - daysInMonth.length)" class="h-8"></div>
+          </div>
+
+          <div class="px-4">
+            <div class="bg-black-300 rounded-lg h-40px mb-4 flex items-center p-2 pl-4">
+              <div class="icon-clock text-20 text-black-400 mr-2"></div><span class="text-15 text-black">09:30 am -
+                09:29 am</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+</div>
+
+
+<div class="w-full" *ngIf="definedays">
+  <div currencyalias="PKU" class="fixed bottom-0 z-50 w-full space-y-2.5" style="z-index: 1000000;">
+    <div>
+      <div data-testid="toast-container" class="text-center flex rounded-t-2xl justify-center p-1 bg-error"
+        ng-reflect-ng-class="bg-error">
+        <div class="w-full">
+          <div class="flex justify-center items-center text-global-font-on-dark font-bold py-2 mb-1"><i
+              data-testid="toast-icon-title" class="text-global-font-on-dark text-16 icon-notice"></i>
+            <h4 data-testid="toast-title" class="ml-1 leading-none">Error</h4>
+            <div data-testid="toast-btn-close-toast" class="icon-close absolute right-5 text-14" (click)="closemsg()" ></div>
+          </div>
+          <div data-testid="toast-content"
+            class="px-2 py-4 rounded-lg bg-white bg-opacity-87 text-13 text-global-font-on-light">
+            <p style="text-align: center;">Only can be searched for 14 days</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

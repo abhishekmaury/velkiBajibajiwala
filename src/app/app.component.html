@@ -1,0 +1,69 @@
+<div id="app" data-v-app="">
+  <div id="page-container" style="--e9a9fc00: url(&quot;/assets/images/baaji365-desktop-bg.webp&quot;);"
+    *ngIf="!loading">
+    <div id="desktop-bg-logo" class="flex justify-center items-center col-start-1 col-end-1">
+      <img width="323" height="101" class="w-full max-w-xs" alt="desktop-bg-logo"
+        [src]="webdata?.imageData?.headers?.[0]?.second_logo?.replace(' ', '%20')">
+    </div>
+    <section id="main-container" [@routeAnimations]="prepareRoute(outlet)"
+      class="relative col-start-2 col-end-2 container h-screen mx-auto overflow-y-scroll overflow-x-hidden bg-black-100 ">
+      <app-header *ngIf="hideMarqueeHeader() && showHeader" [countData]="count"></app-header>
+      <main class="min-h-full-with-header">
+        <router-outlet #outlet="outlet"></router-outlet>
+      </main>
+      <app-footer *ngIf="hidefooter() &&hidefoot() && showFooter" [countData]="count" [avtiveData]="activeIndex"></app-footer>
+      <app-my-bets></app-my-bets>
+      <app-region *ngIf="isRegion"></app-region>
+      <!-- <app-search *ngIf="isSearch" [gameslist]="gameslist"></app-search> -->
+      <!-- <app-search-casino *ngIf="isSearch"></app-search-casino> -->
+    </section>
+    <div *ngIf="loading"
+      class="loading absolute z-10 top-0 left-0 w-full h-full flex items-center justify-center bg-black-800 bg-opacity-87 rounded-t-xl"
+      style="display: bolck;"><img width="147" height="124" src="../../../assets/images/loading-bet.gif" alt="">
+    </div>
+  </div>
+
+</div>
+
+<div *ngIf="!hideCasino" class="git_model fixed_gif movable-element" (touchstart)="onTouchStart($event)"
+  (touchmove)="onTouchMove($event)" (touchend)="onTouchEnd($event)"
+  [ngStyle]="{ top: position.top + 'px', left: position.left + 'px' }" (click)="goToFrmLogo()">
+  <div>
+    <img src="../../../assets/images/promot.svg?v=0.05" class="gif-img">
+  </div>
+</div>
+<ng-container *ngIf="!hideAnnounce">
+<div *ngIf="jsonWeblinksdt?.skypeShowing == 'true'" [style]="hidefooter() &&hidefoot() ? 'bottom : 64px' : 'bottom : 2px'" class="git_model fixed_gif1">
+  <a [href]="jsonWeblinksdt?.skypeContent">
+    <img src="../assets/images/icon-chat.webp" class="gif-img1">
+  </a>
+</div>
+</ng-container>
+<div data-v-63c2856d="" *ngIf="showMybet && loggedIn && count > 0"
+  [class]="showWidget ? 'stickyLeftContainer1' : 'stickyLeftContainer'"
+  class=" left-2  pb-7px flex gap-2 flex-col justify-start items-end z-10">
+  <div data-v-270f6def="" class="relative w-45px h-45px bg-black-900 text-global-font-on-dark rounded-full">
+    <div data-v-270f6def="" class="flex items-center justify-center text-22 h-full" (click)="openPopup()">
+      <span data-v-270f6def="" class="icon-list">
+        <span data-v-270f6def=""
+          class="badge absolute top-0 right-0 text-global-font-on-dark bg-error rounded-full text-9 h-3.5 flex justify-center items-center font-bold">{{count}}</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- <div *ngIf="!hideCasino" class="whatsappIcon" [ngStyle]="{ top: position1.top + 'px', left: position1.left + 'px' }">
+  <a *ngIf="jsonWeblinksdt?.whatsappShowing == 'true'" [href]="jsonWeblinksdt?.whatsappContent" target="_blank"
+    class="block cursor-pointer mx-1"><span class="text-30 icon-whatsapp"></span></a>
+</div> -->
+<div
+  class="custom-fab stickyRightContainer fixed z-30 right-2 pb-7px flex gap-2 flex-col justify-end items-end"
+  (click)="openIntercom()">
+
+  <div class="w-48px h-48px flex justify-center items-center rounded-full bg-black-900">
+    <div id="live-chat" class="icon-chat text-24 text-white"></div>
+  </div>
+
+</div>
+
+<app-popup *ngIf="openAlertPop" [errMsg]="errmesg"></app-popup>
+<!-- <app-market-widget (closeWidget)="closeWiddgett()"></app-market-widget> -->

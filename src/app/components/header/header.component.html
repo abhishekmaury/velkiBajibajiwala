@@ -1,0 +1,165 @@
+<div *ngIf="!loggedIn; else noLoggedIn" class="sticky top-0">
+  <div data-v-c43df3f1="" id="header" *ngIf="showHeader"
+    [ngStyle]="{'background-image':jsonWebdt?.imagesBottomBorderColor}"
+    class="h-40px py-1.5 px-2 z-30 flex justify-between items-center text-11 bg-primary">
+    <div data-v-c43df3f1="" class="flex items-center">
+      <div data-v-c43df3f1="" *ngIf="isMarketRoute" class="mr-3"><i (click)="goBack()" data-v-c43df3f1=""
+          [style.color]="jsonWebdt?.imagesPlayNowTextColor" class="icon-arrow-left text-20 text-header-icon"></i>
+      </div>
+      <img data-v-c43df3f1="" width="84" height="26" alt="logo" routerLink="/home" [src]="img"
+        class="w-24 h-auto max-h-8 object-contain object-left">
+    </div>
+    <div data-v-c43df3f1="" class="flex space-x-2">
+      <button *ngIf="jsonWeblinksdt?.signupShowing == 'true'" (click)="openSignup(jsonWeblinksdt?.signupContent)"
+        class="btn-normal p-3 rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed bg-signup text-white h-26px text-13 font-bold self-center">
+        <i class="icon-sign-up text-14 w-4 mr-1.5 not-italic"></i>
+        SignUp </button>
+      <button routerLink="/login"
+        class="btn-normal p-3 rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed btn-login-index h-26px text-13 font-bold self-center"><i
+          class="icon-login w-4 mr-1.5 not-italic"></i> Login </button>
+    </div>
+  </div>
+</div>
+<ng-template #noLoggedIn>
+  <div class="sticky top-0">
+    <div data-v-c43df3f1="" id="header" *ngIf="showHeader"
+      [ngStyle]="{'background-image':jsonWebdt?.imagesBottomBorderColor}"
+      class="h-40px py-1.5 px-2 z-30 flex justify-between items-center text-11 bg-primary">
+      <div data-v-c43df3f1="" class="flex items-center">
+        <div data-v-c43df3f1="" *ngIf="!isMarketRoute" class="mr-2.5" (click)="openMenu()">
+          <i data-v-c43df3f1="" class="icon-menu text-20 text-header-icon"
+            [style.color]="jsonWebdt?.imagesPlayNowTextColor"></i>
+        </div>
+        <div data-v-c43df3f1="" *ngIf="isMarketRoute" class="mr-3"><i (click)="goBack()" data-v-c43df3f1=""
+            [style.color]="jsonWebdt?.imagesPlayNowTextColor" class="icon-arrow-left text-20 text-header-icon"></i>
+        </div>
+        <img routerLink="/home" data-v-c43df3f1="" width="84" height="26" alt="logo" [src]="img"
+          class="w-24 h-auto max-h-8 object-contain object-left">
+      </div>
+      <div data-v-c43df3f1="" class="flex justify-between items-center">
+        <div *ngIf="!refreshBtn" data-v-c43df3f1="" class="w-full max-w-xs h-full py-0.5 flex flex-col justify-between">
+          <p data-v-c43df3f1="" class="mb-1 text-header-text" [style.color]="jsonWebdt?.imagesPlayNowTextColor">
+            @{{userName}}</p>
+          <div data-v-c43df3f1="" class="flex flex-row">
+            <div data-v-c43df3f1=""><span data-v-c43df3f1="" style="color:#000000ab"
+                class="mr-1 text-header-dollar font-bold">PBU</span>
+              <span data-v-c43df3f1="" class="text-header-text"
+                [style.color]="jsonWebdt?.imagesPlayNowTextColor">{{balInfo | number:'1.0-2'}}</span>
+            </div>
+            <div data-v-c43df3f1="" class="pl-2.5">
+              <span data-v-c43df3f1="" class="mr-1 text-header-dollar font-bold" style="color:#000000ab">Exp</span>
+              <span data-v-c43df3f1="" style="color:red" class="text-header-exp bg-header-exp">({{expoInfo |
+                number:'1.0-2'}})</span>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="refreshBtn" data-v-e8bc8454="" data-v-c43df3f1=""
+          class="loading-bar w-full flex items-center justify-center"><span data-v-e8bc8454=""
+            class="w-4px h-4px mr-2 rounded-full bg-header-icon animate-load-bar"></span>
+          <span data-v-e8bc8454="" class="w-4px h-4px mr-2 rounded-full bg-header-icon animate-load-bar"></span>
+          <span data-v-e8bc8454="" class="w-4px h-4px mr-2 rounded-full bg-header-icon animate-load-bar"></span>
+          <span data-v-e8bc8454="" class="w-4px h-4px mr-2 rounded-full bg-header-icon animate-load-bar"></span>
+          <span data-v-e8bc8454="" class="w-4px h-4px mr-2 rounded-full bg-header-icon animate-load-bar"></span>
+          <span data-v-e8bc8454="" class="w-4px h-4px mr-2 rounded-full bg-header-icon animate-load-bar"></span>
+          <span data-v-e8bc8454="" class="w-4px h-4px mr-2 rounded-full bg-header-icon animate-load-bar"></span>
+          <span data-v-e8bc8454="" class="w-4px h-4px mr-2 rounded-full bg-header-icon animate-load-bar"></span>
+        </div>
+
+        <i data-v-c43df3f1="" (click)="upDateBalance()" class="icon-refresh mr-1 ml-2.5 text-20 text-header-icon"
+          [ngClass]="{'rotate':refreshBtn}" [style.color]="jsonWebdt?.imagesPlayNowTextColor">
+        </i>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div data-v-6d6d5fd0="" class="fixed w-full h-screen top-0 overflow-hidden"
+  [ngClass]="menu ? 'open-side' : 'close-side'">
+  <div data-v-6d6d5fd0="" class="fixed top-0 w-full h-screen bg-black opacity-30" (click)="close()"
+    [ngClass]="menu ? 'open-back' : 'close-back'"></div>
+  <div data-v-6d6d5fd0=""
+    class="relative px-4 py-3 left-0 top-0 z-50 w-3/4 bg-black-100 h-full overflow-y-scroll side-bar scroll-width"
+    [@slideInOut]="menu ? 'open' : 'closed'">
+    <div data-v-6d6d5fd0="">
+      <div data-v-6d6d5fd0="" class="mt-1 mb-2 px-2 flex justify-between"><span data-v-6d6d5fd0=""
+          class="font-bold text-15">Menu</span><i data-v-6d6d5fd0="" class="icon-close" (click)="openMenu()"></i></div>
+      <!-- <div data-v-6d6d5fd0="" class="item-block">
+        <div data-v-6d6d5fd0="" class="item" (click)="close()" routerLink="/menu/deposit"><span data-v-6d6d5fd0=""
+            class="icon icon-funds"></span><span data-v-6d6d5fd0="">Deposit</span><span data-v-6d6d5fd0=""
+            class="icon-right icon-arrow-left"></span>
+        </div>
+        <div data-v-6d6d5fd0="" class="item" (click)="close()" routerLink="/menu/payment-transfer-log"><span
+            data-v-6d6d5fd0="" class="icon icon-payment-transfer-log"><span data-v-6d6d5fd0=""
+              class="path1"></span><span data-v-6d6d5fd0="" class="path2 text-whtie"></span></span><span
+            data-v-6d6d5fd0="">Payment Transfer log</span><span data-v-6d6d5fd0=""
+            class="icon-right icon-arrow-left"></span></div>
+      </div> -->
+      <div data-v-6d6d5fd0="" class="item-block">
+        <div data-v-6d6d5fd0="" class="item" (click)="close()" routerLink="/menu/upline-whatsapp-number"><span
+            data-v-6d6d5fd0="" class="icon icon-whatsapp-line"></span><span data-v-6d6d5fd0="">Upline WhatsApp
+            Number</span><span data-v-6d6d5fd0="" class="icon-right icon-arrow-left"></span></div>
+        <div data-v-6d6d5fd0="" class="item" (click)="close()" routerLink="/menu/balance"><span data-v-6d6d5fd0=""
+            class="icon icon-wallet"></span><span data-v-6d6d5fd0="">Balance Overview</span><span data-v-6d6d5fd0=""
+            class="icon-right icon-arrow-left"></span></div>
+        <!-- <div data-v-6d6d5fd0="" class="item" (click)="close()" routerLink="/menu/account-statement">
+          <span data-v-6d6d5fd0="" class="icon icon-profile"></span>
+          <span data-v-6d6d5fd0="">Account Statement</span>
+          <span data-v-6d6d5fd0="" class="icon-right icon-arrow-left"></span>
+        </div> -->
+        <div data-v-6d6d5fd0="" class="item" (click)="close()" routerLink="/menu/current-bets"><span data-v-6d6d5fd0=""
+            class="icon icon-list"></span><span data-v-6d6d5fd0="" class="flex items-center justify-center"> Current
+            Bets <span *ngIf="countData!==0" data-v-6d6d5fd0=""
+              [ngStyle]="{'background-image':jsonWebdt?.imagesBottomBorderColor, 'color' : jsonWebdt?.imagesPlayNowTextColor}"
+              class="bg-button-normal rounded text-12 font-bold px-1.5 py-0.5 ml-2 flex items-center leading-tight text-button-normal">{{countData}}</span></span><span
+            data-v-6d6d5fd0="" class="icon-right icon-arrow-left"></span></div>
+        <div data-v-6d6d5fd0="" class="item" (click)="close()" [routerLink]="['/bet-history/Odds']"><span
+            data-v-6d6d5fd0="" class="icon icon-history"></span><span data-v-6d6d5fd0="">Bets History</span><span
+            data-v-6d6d5fd0="" class="icon-right icon-arrow-left"></span>
+        </div>
+        <div data-v-6d6d5fd0="" class="item" (click)="close()" [routerLink]="['/profitLoss/Odds']"><span
+            data-v-6d6d5fd0="" class="icon icon-profit-loss"></span><span data-v-6d6d5fd0="">Profit &amp; Loss</span>
+          <span data-v-6d6d5fd0="" class="icon-right icon-arrow-left"></span>
+        </div>
+        <div data-v-6d6d5fd0="" class="item" (click)="close()" routerLink="/menu/activeLog"><span data-v-6d6d5fd0=""
+            class="icon icon-active-log"></span><span data-v-6d6d5fd0="">Active Log</span><span data-v-6d6d5fd0=""
+            class="icon-right icon-arrow-left"></span>
+        </div>
+        <div data-v-6d6d5fd0="" class="item" (click)="close()" routerLink="/menu/profile"><span data-v-6d6d5fd0=""
+            class="icon icon-profile"></span><span data-v-6d6d5fd0="">My Profile</span><span data-v-6d6d5fd0=""
+            class="icon-right icon-arrow-left"></span>
+        </div>
+        <div data-v-6d6d5fd0="" routerLink="menu/referral" (click)="close()" class="item"><span data-v-6d6d5fd0=""
+            class="icon icon-list ng-tns-c1817188355-2"></span><span data-v-6d6d5fd0=""
+            class="flex items-center justify-center ng-tns-c1817188355-2"> Referral</span><span data-v-6d6d5fd0=""
+            class="icon-right icon-arrow-left ng-tns-c1817188355-2"></span></div>
+        <div data-v-6d6d5fd0="" [routerLink]="['/rebate/Daily']" (click)="close()" class="item"><span data-v-6d6d5fd0=""
+            class="icon icon-profit-loss ng-tns-c1817188355-2"></span><span data-v-6d6d5fd0=""
+            class="flex items-center justify-center ng-tns-c1817188355-2"> Rebate</span><span data-v-6d6d5fd0=""
+            class="icon-right icon-arrow-left ng-tns-c1817188355-2"></span></div>
+      </div>
+      <div data-v-6d6d5fd0="" class="item-block">
+        <div data-v-6d6d5fd0="" class="item" (click)="close()" routerLink="/menu/p2ptransfer"><span data-v-6d6d5fd0=""
+            class="icon icon-transfer"></span><span data-v-6d6d5fd0="">P2P Transfer</span><span data-v-6d6d5fd0=""
+            class="icon-right icon-arrow-left"></span>
+        </div>
+        <div data-v-6d6d5fd0="" class="item" (click)="close()" routerLink="/menu/p2ptransferLog"><span
+            data-v-6d6d5fd0="" class="icon icon-transfer-log"><span data-v-6d6d5fd0="" class="path1"></span><span
+              data-v-6d6d5fd0="" class="path2 text-whtie"></span></span><span data-v-6d6d5fd0="">P2P Transfer
+            log</span><span data-v-6d6d5fd0="" class="icon-right icon-arrow-left"></span></div>
+      </div>
+      <div data-v-6d6d5fd0="" class="item-block">
+        <div data-v-6d6d5fd0="" class="item" (click)="close()" routerLink="/menu/settings"><span data-v-6d6d5fd0=""
+            class="icon icon-setting"></span><span data-v-6d6d5fd0="">Setting</span><span data-v-6d6d5fd0=""
+            class="icon-right icon-arrow-left"></span></div>
+      </div>
+      <div data-v-6d6d5fd0="" (click)="logout()" class="item-block">
+        <div data-v-6d6d5fd0="" class="item item-black"><span data-v-6d6d5fd0="" class="icon icon-logout"></span><span
+            data-v-6d6d5fd0="">Logout</span><span data-v-6d6d5fd0="" class="icon-right icon-arrow-left"></span></div>
+      </div>
+    </div>
+    <div data-v-6d6d5fd0="" class="time-zone px-3 mt-6 flex justify-center items-start text-black-600"><i
+        data-v-6d6d5fd0="" class="icon-sphere w-5 text-16"></i>
+      <p data-v-6d6d5fd0="" class="text-13 leading-tight">Time Zone：GMT+6:00</p>
+    </div>
+  </div>
+</div>

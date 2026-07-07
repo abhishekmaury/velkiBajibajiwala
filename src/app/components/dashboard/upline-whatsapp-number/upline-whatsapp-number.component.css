@@ -1,0 +1,31 @@
+.whatsapp {
+    color: #00a14a;
+}
+.text-back-600 {
+    --tw-text-opacity: 1;
+    color: rgb(26 142 225 / var(--tw-text-opacity));
+}
+.copy-popup {
+  position: fixed;
+  background-color: #2d7830;
+  color: black;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  top: 62%;
+  left: 50%;
+  transform: translateX(-50%);
+  /* opacity: 0; */
+  z-index: 999;
+  animation: _ngcontent-ng-c1677729350_fadeInOut 2s forwards;
+}
+
+.copy-popup span {
+  white-space: nowrap;
+  color: #fff;
+}
+
+.text-button-normal {
+    color: #ffffff;
+}

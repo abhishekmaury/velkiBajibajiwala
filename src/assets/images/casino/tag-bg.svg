@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="47px" height="26px" viewBox="0 0 47 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Fill 1</title>
+    <defs>
+        <linearGradient x1="1.29160565e-13%" y1="54.5567818%" x2="83.4703172%" y2="45.4432182%" id="linearGradient-1">
+            <stop stop-color="#8F7249" offset="0%"></stop>
+            <stop stop-color="#CDAE74" offset="24.8959944%"></stop>
+            <stop stop-color="#FFE0A7" offset="71.7483416%"></stop>
+            <stop stop-color="#906F40" offset="100%"></stop>
+            <stop stop-color="#906F40" offset="100%"></stop>
+            <stop stop-color="#906F40" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-12.9443587%" y1="54.5567818%" x2="86.1848146%" y2="45.4432182%" id="linearGradient-2">
+            <stop stop-color="#8F7249" offset="0%"></stop>
+            <stop stop-color="#CDAE74" offset="26.8684441%"></stop>
+            <stop stop-color="#FFE0A7" offset="65.904772%"></stop>
+            <stop stop-color="#906F40" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="81.0855723%" y1="54.5567818%" x2="1.29160565e-13%" y2="45.4432182%" id="linearGradient-3">
+            <stop stop-color="#8F7249" offset="0%"></stop>
+            <stop stop-color="#CDAE74" offset="31.9863809%"></stop>
+            <stop stop-color="#FFE0A7" offset="65.904772%"></stop>
+            <stop stop-color="#906F40" offset="100%"></stop>
+        </linearGradient>
+        <path d="M2.52344739,2.34313293 L2.52344739,2.34313293 C-0.841149129,5.46729118 -0.841149129,10.5326519 2.52344739,13.656924 C4.13929516,15.1571305 6.33072008,16 8.61567246,16 L51.2050702,16 C52.1964612,16 53,15.2537692 53,14.3333381 L53,0 L8.61567246,0 C6.33072008,0 4.13929516,0.842812602 2.52344739,2.34313293" id="path-4"></path>
+        <filter x="-14.2%" y="-34.4%" width="128.3%" height="193.8%" filterUnits="objectBoundingBox" id="filter-5">
+            <feMorphology radius="0.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Live-Casino-大廳改版" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="casino---VK---Live" transform="translate(-132.000000, -269.000000)">
+            <g id="theme_1" transform="translate(14.000000, 265.000000)">
+                <g id="game-icon" transform="translate(118.000000, 0.000000)">
+                    <g id="tab_2" transform="translate(-10.151569, 7.000000)">
+                        <g id="Fill-1" transform="translate(26.500000, 8.000000) scale(-1, 1) translate(-26.500000, -8.000000) ">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-4"></use>
+                            <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-4"></use>
+                            <use stroke="url(#linearGradient-3)" stroke-width="1" fill-opacity="0.68" fill="url(#linearGradient-2)" fill-rule="evenodd" xlink:href="#path-4"></use>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

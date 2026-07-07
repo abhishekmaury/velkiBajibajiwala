@@ -1,0 +1,91 @@
+<main class="min-h-full-with-header">
+  <div data-v-f43ca18c="" class="pb-20 relative">
+    <div class="mb-20">
+      <header class="h-12 p-3 bg-secondary text-global-font-on-dark text-14 flex items-center justify-center">Referral<div class="icon-close text-16 absolute right-4" routerLink="/home"></div>
+      </header>
+      <div class="content px-4 py-4">
+        <div class="container main-wrap"
+          style="font-family: Lato, sans-serif !important;background-color: #fff; padding: 20px 20px 60px;">
+          <div class="header" style="display: block;background: transparent;">
+            <img src="/assets/images/referral.png" alt="Referral Program" class="header-gif">
+            <h1>Referral Bonus</h1>
+          </div>
+          <div class="content">
+            <p>{{referralDetails?.content_eng}} </p>
+            <div class="code-container">
+              <span class="referral-code" id="ref_code">{{userData?.userid}}</span>
+              <div class="tooltip-container">
+                <button class="copy-btn" (click)="copyToClipboard(userData?.userid)">Copy</button>
+                <span *ngIf="isCopied" class="tooltip-text ref_code">Copied!</span>
+              </div>
+            </div>
+            <p id="banContent">{{referralDetails?.content}}</p>
+            <div class="stat">
+              <div class="stat-value">Ongoing pnl:<span style="color: inherit;" id="onPl">{{totalPL}}</span>
+              </div>
+              <div class="stat-value">Ongoing commission:<span id="commEar">{{commEar | number:'1.2-2'}}</span></div>
+            </div>
+            <div class="table-container">
+              <ul class="tab-header">
+                <li [class.active]="activeTab === 'all'" id="all" (click)="setTab('all')">
+                  All
+                </li>
+                <li [class.active]="activeTab === 'current'" id="current" (click)="setTab('current')">
+                  Current
+                </li>
+              </ul>
+              <div class="tab-content">
+                <div class="table-container ng-star-inserted">
+                  <table class="referral-table" id="all_table" *ngIf="activeTab === 'all'">
+                    <thead>
+                      <tr>
+                        <th>SR No.</th>
+                        <th>Referral Username</th>
+                      </tr>
+                    </thead>
+
+                    <tbody id="refUsers">
+                      <ng-container *ngFor="let item of refUser; let idx = index">
+                        <tr class="ng-star-inserted">
+                          <td class="no-data-message">{{idx+1}}</td>
+                          <td class="no-data-message">{{item?.userid}}</td>
+                        </tr>
+                      </ng-container>
+                      <ng-container *ngIf="refUser?.length === 0">
+                        <tr class="ng-star-inserted">
+                          <td colspan="2" class="no-data-message">No data available</td>
+                        </tr>
+                      </ng-container>
+                    </tbody>
+                  </table>
+                  <table class="referral-table" id="current_table" *ngIf="activeTab === 'current'">
+                    <thead>
+                      <tr>
+                        <th>Referral Username</th>
+                        <th>Total Pnl</th>
+                      </tr>
+                    </thead>
+                    <tbody id="plUsers">
+                      <ng-container *ngFor="let item of currentPL; let idx = index">
+                        <tr class="ng-star-inserted">
+                          <td class="no-data-message">{{item?.userId}}</td>
+                          <td class="no-data-message">{{item?.pnl}}</td>
+                        </tr>
+                      </ng-container>
+                      <ng-container *ngIf="currentPL?.length === 0">
+                        <tr class="ng-star-inserted">
+                          <td colspan="2" class="no-data-message">No data available</td>
+                        </tr>
+                      </ng-container>
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

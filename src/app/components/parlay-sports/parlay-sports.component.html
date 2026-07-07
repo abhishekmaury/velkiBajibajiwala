@@ -1,0 +1,1415 @@
+<div data-v-f43ca18c="" class="pb-90px relative">
+  <app-marquee></app-marquee>
+
+
+  <section data-v-a8bfc3ab="" id="index-filter" class="flex relative z-10 text-global-font-on-dark bg-secondary"
+    style="--66e0571a: 50px; --39d9b63d: translateX(105px);">
+    <div (click)="switchtoparlay()" data-v-a8bfc3ab=""
+      class="py-3 bg-black-900 flex justify-start items-center px-2 font-bold">
+      <div data-v-a8bfc3ab="" class="flex pt-px">
+        <div data-v-5482795f="" data-v-a8bfc3ab="" class="btn-switch">
+          <input data-v-5482795f="" id="settingFilter" class="btn-switch__tgl btn-switch__tgl-ios">
+          <label data-v-5482795f="" class="p-px rounded-2xl w-7 h-3.5 btn-switch__tgl-label-shadow-none"
+            [class]="parlay?'btn-switch__tgl-label-shadow-none-active':''"></label>
+        </div>
+      </div>
+      <span data-v-a8bfc3ab="" class="ml-2 text-15 text-black-600 leading-tight duration-300"
+        [class]="parlay?'text-filter-active':''">Parlay</span>
+    </div>
+    <div data-v-a8bfc3ab="" class="flex w-full justify-evenly items-center">
+      <!-- <div data-v-a8bfc3ab="" (click)="setTab(1)" [ngClass]="activeTab==1?'font-bold':' opacity-75'"
+        class="text-15 whitespace-nowrap " #tab1>Premium Parlay</div>
+      <div data-v-a8bfc3ab="" class="text-15 whitespace-nowrap" (click)="setTab(2)"
+        [ngClass]="activeTab==2?'font-bold':' opacity-75'" #tab2>Toss Parlay</div> -->
+
+      <div data-v-a8bfc3ab="" (click)="setTab(1)" [ngClass]="activeTab==1?'font-bold':' opacity-75'"
+        class="text-15 whitespace-nowrap " #tab1>In-Play</div>
+      <div data-v-a8bfc3ab="" class="text-15 whitespace-nowrap" (click)="setTab(2)"
+        [ngClass]="activeTab==2?'font-bold':' opacity-75'" #tab2>Today</div>
+      <div data-v-a8bfc3ab="" class="text-15 whitespace-nowrap" (click)="setTab(3)"
+        [ngClass]="activeTab==3?'font-bold':' opacity-75'" #tab3>Tomorrow</div>
+      <div data-v-a8bfc3ab="" class="relative icon-star-disable text-20 opacity-75"
+        [ngClass]="activeTab==4?'text-header-mypin-active':' text-icon-light'">
+      </div>
+      <div data-v-a8bfc3ab=""><span data-v-a8bfc3ab="" (click)="onsearch()" class="icon-search text-20"></span></div>
+    </div>
+    <div data-v-a8bfc3ab="" class="tab-indicator absolute left-0 bottom-1 rounded-full bg-white"
+      [ngStyle]="getIndicatorStyles()"></div>
+  </section>
+
+
+  <section *ngIf="activeTab==1 || activeTab==2 || activeTab==3"  data-v-a8bfc3ab="" class="h-36px bg-submenu flex items-center"
+    style="--66e0571a: 50px; --39d9b63d: translateX(105px);">
+    <ul data-v-a8bfc3ab="" class="sport-type-filter-ul space-x-2 ml-8px flex flex-nowrap overflow-x-scroll">
+      <li data-v-a8bfc3ab="" (click)="setActiveTab(5)"
+        [style.backgroundImage]="activeTabId == 5 ? jsonWebdt?.imagesBottomBorderColor : '' "
+        [ngClass]="activeTabId == 5?  'text-filter-active-icon bg-filter-active active':'text-global-font-on-dark event-type-tab'"
+        class="h-30px w-80px justify-center flex items-center text-13 font-bold whitespace-nowrap event-type-tab">
+        <i data-v-a8bfc3ab="" class="mr-1 text-17 icon-all"></i><span data-v-a8bfc3ab="" class="mt">All</span>
+      </li>
+      <li data-v-a8bfc3ab="" (click)="setActiveTab(4)"
+        [style.backgroundImage]="activeTabId == 4 ? jsonWebdt?.imagesBottomBorderColor : '' "
+        [ngClass]="activeTabId == 4?  'text-filter-active-icon bg-filter-active active':'text-global-font-on-dark event-type-tab'"
+        class="h-30px w-80px justify-center flex items-center text-13 font-bold whitespace-nowrap event-type-tab text-global-font-on-dark event-type-tab">
+        <i data-v-a8bfc3ab="" class="mr-1 text-17 icon-cricket"></i><span data-v-a8bfc3ab="" class="mt">Cricket</span>
+      </li>
+      <li data-v-a8bfc3ab="" (click)="setActiveTab(1)"
+        [style.backgroundImage]="activeTabId == 1 ? jsonWebdt?.imagesBottomBorderColor : '' "
+        [ngClass]="activeTabId == 1?  'text-filter-active-icon bg-filter-active active':'text-global-font-on-dark event-type-tab'"
+        class="h-30px w-80px justify-center flex items-center text-13 font-bold whitespace-nowrap event-type-tab text-global-font-on-dark event-type-tab">
+        <i data-v-a8bfc3ab="" class="mr-1 text-17 icon-soccer"></i><span data-v-a8bfc3ab="" class="mt">Soccer</span>
+      </li>
+      <li data-v-a8bfc3ab="" (click)="setActiveTab(2)"
+        [style.backgroundImage]="activeTabId == 2 ? jsonWebdt?.imagesBottomBorderColor : '' "
+        [ngClass]="activeTabId == 2?  'text-filter-active-icon bg-filter-active active':'text-global-font-on-dark event-type-tab'"
+        class="h-30px w-80px justify-center flex items-center text-13 font-bold whitespace-nowrap event-type-tab text-global-font-on-dark event-type-tab">
+        <i data-v-a8bfc3ab="" class="mr-1 text-17 icon-tennis"></i><span data-v-a8bfc3ab="" class="mt">Tennis</span>
+      </li>
+    </ul>
+
+
+  </section>
+
+
+  <div class="bg-black-100 px-2 py-9px flex justify-between"
+    *ngIf="changestabs==='by Time' || changestabs==='by Competition' && this.activeTab!==4">
+    <div
+      class="relative z-20 flex items-center px-6px py-2 w-114px bg-white text-11 rounded-6px shadow-all-button dpshow"
+      [ngClass]="competion?'rounded-b-none border-b-0':''"><i
+        class="icon-toggle flex items-center justify-center mr-1 rotate-90 text-11"></i>
+      <button (click)="onCompet()" class="select text-left w-full text-15"
+        [ngClass]="competion?'rounded-b-none border-b-0':''" value="options">
+        <div class="flex justify-start items-center">
+          <div class="w-full flex justify-start items-center"><span
+              class="text-11 whitespace-nowrap">{{changestabs}}</span></div><i
+            class="icon-triangle transform text-8 scale-75 transition-transform origin-center duration-300 mx-0.5 "
+            [ngClass]="competion?'transform rotate-180':''"></i>
+        </div>
+      </button>
+      <div class="drop-down w-full left-0 text-15 absolute top-8 -mt-1 z-10 dropdown-toggle" *ngIf="competion">
+        <div class="options bg-white flex flex-col rounded-6px rounded-t-none whitespace-nowrap shadow-all-button">
+          <p class="item flex items-center py-2 px-6 cursor-pointer" *ngIf="changestabs !== 'by Competition'" value="1"
+            (click)="tabsActive('by Competition')"><span class="item-text relative text-11">by Competition </span></p>
+          <p class="item flex items-center py-2 px-6 cursor-pointer" value="2" *ngIf="changestabs !== 'by Time'"
+            (click)="tabsActive('by Time')"><span class="item-text relative text-11">by Time </span></p>
+          <!-- <p class="item flex items-center py-2 px-6 cursor-pointer" value="3" *ngIf="changestabs !== 'by Matched'"
+            (click)="tabsActive('by Matched')"><span class="item-text relative text-11">by Matched </span></p> -->
+        </div>
+      </div>
+    </div>
+    <div *ngIf="changestabs==='by Competition'" data-v-1d748b9c="" (click)="collapseItem()"
+      class="sort-Filter inline-flex items-center justify-center bg-white text-11 cursor-pointer shadow-all-button bg-opacity-50 py-5px w-58px rounded-4px text-black-700">
+      <span data-v-1d748b9c="" class="mr-1">ALL</span><i data-v-1d748b9c=""
+        [ngClass]="collapseItm ? 'transform rotate-180' : ''"
+        class="icon-arrow-double mt-px sm:mt-0 text-11 scale-75 transition-transform origin-center duration-300"></i>
+    </div>
+    <!-- <div *ngIf="activeTabId==1" data-v-1d748b9c="" (click)="collapseItemSoc()"
+      class="sort-Filter inline-flex items-center justify-center bg-white text-11 cursor-pointer shadow-all-button bg-opacity-50 py-5px w-58px rounded-4px text-black-700">
+      <span data-v-1d748b9c="" class="mr-1">ALL</span><i data-v-1d748b9c=""
+        [ngClass]="collapseItmSoc ? 'transform rotate-180' : ''"
+        class="icon-arrow-double mt-px sm:mt-0 text-11 scale-75 transition-transform origin-center duration-300"></i>
+    </div>
+    <div *ngIf="activeTabId==2" data-v-1d748b9c="" (click)="collapseItemTen()"
+      class="sort-Filter inline-flex items-center justify-center bg-white text-11 cursor-pointer shadow-all-button bg-opacity-50 py-5px w-58px rounded-4px text-black-700">
+      <span data-v-1d748b9c="" class="mr-1">ALL</span><i data-v-1d748b9c=""
+        [ngClass]="collapseItmTen ? 'transform rotate-180' : ''"
+        class="icon-arrow-double mt-px sm:mt-0 text-11 scale-75 transition-transform origin-center duration-300"></i>
+    </div> -->
+  </div>
+  <!-- by-compitition -->
+  <div data-v-5827634e="" *ngIf="changestabs==='by Competition'" class="mb-2" bis_skin_checked="1">
+    <div class="mb-4" *ngIf="activeTab==1">
+      <ng-container *ngIf="activeTabId==5 || activeTabId==4">
+        <ng-container *ngFor="let series of CricOrganizedData let i=index;">
+          <div (click)="collapseDetails(i)"
+            class="relative py-2 pr-12px pl-2 bg-secondary rounded-xl cursor-pointer transition-all duration-300 mx-2 rounded-t-xl rounded-b-none"
+            bis_skin_checked="1">
+            <h1 class="flex justify-start items-center text-base font-normal"><span
+                class="w-27px h-5 p-1.5 mr-1 flex justify-center items-center rounded-[1.25rem] text-11 font-bold text-event-tab-num bg-event-tab-bg flex-shrink-0"
+                style="background-color: #ffc800;color: #000;">{{series.matches.length }}</span><span
+                class="text-event-tab break-all mr-2" style="color: #ffc800;">{{series.seriesname}}</span><span
+                style="color: #ffc800;" [ngClass]="!expandedSections.has(i) ? 'transform rotate-180' : ''"
+                class="icon-arrow-down-sencodary flex items-center text-12 h-21px ml-auto transition-transform origin-center duration-300 text-event-tab-icon transform"></span>
+            </h1>
+          </div>
+          <div class="relative overflow-hidden" bis_skin_checked="1">
+            <div class="vue-recycle-scroller ready page-mode direction-vertical" bis_skin_checked="1">
+              <div class="vue-recycle-scroller__slot" bis_skin_checked="1"></div>
+              <div class="vue-recycle-scroller__item-wrapper" bis_skin_checked="1">
+                <div class="vue-recycle-scroller__item-view" bis_skin_checked="1"
+                  style="transform: translateY(0px) translateX(0px);">
+                  <div class="mx-2 bg-white border-b border-black-100" data-index="0" bis_skin_checked="1">
+                    <div class="p-1 flex w-full border-b border-black-100" bis_skin_checked="1">
+
+                      <ng-container *ngIf="!expandedSections.has(i)">
+                        <div class="flex flex-col w-full bg-black-100 rounded-bl" bis_skin_checked="1">
+                          <div class="relative z-10 py-3.5 flex justify-end items-center bg-primary rounded-t"
+                            bis_skin_checked="1" style="background-color: #ffc800;">
+                            <div class="absolute w-1px h-1/2 bg-black-900 right-48" bis_skin_checked="1"></div>
+                          </div>
+
+                          <div class="flex" bis_skin_checked="1" *ngFor="let list of series?.matches; let j = index">
+                            <div class="w-full h-full flex flex-col justify-between px-2 pt-3 pb-4px"
+                              bis_skin_checked="1" (click)="openMatch(list.sportid,list.eventid)">
+                              <div class="space-y-1" bis_skin_checked="1">
+                                <div bis_skin_checked="1"><span
+                                    class="break-words leading-tight">{{list.matchname}}</span></div>
+                              </div>
+                              <div class="mt-4 flex justify-between mb-3" bis_skin_checked="1">
+                                <div class="flex gap-2px justify-start items-center" bis_skin_checked="1">
+                                  <div data-v-ef8204d4="" class="inline-flex items-center h-full"
+                                    data-is-inplay-type="true" data-is-today-type="false" data-is-tomorrow-type="false"
+                                    bis_skin_checked="1">
+                                    <div data-v-ef8204d4="" class="" bis_skin_checked="1">
+                                      <div data-v-ef8204d4=""
+                                        class="px-3px flex items-center justify-center bg-inPlay text-white font-bold text-8 leading-9px"
+                                        bis_skin_checked="1"><span data-v-ef8204d4="" class="mt-1px">In-Play</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div><i class="ml-8px text-14 icon-h2h"></i>
+                              </div>
+                            </div>
+                            <div bis_skin_checked="1">
+                              <div data-v-926e88b0="" class="relative geniusParlay-content -mt-7" bis_skin_checked="1"
+                                style="--dadfaaea: 160px; --ed940334: 7px; --1f98e046: -24px; --ee3598e2: 31px;">
+                                <div data-v-926e88b0="" class="relative h-full bg-white" bis_skin_checked="1">
+                                  <div data-v-926e88b0=""
+                                    class="flex h-full bg-black-100 rounded-br rounded-tr overflow-hidden"
+                                    bis_skin_checked="1">
+                                    <div data-v-926e88b0="" class="shrink-0 w-48" bis_skin_checked="1">
+                                      <div data-v-926e88b0=""
+                                        class="swiper swiper-initialized swiper-horizontal relative swiper-backface-hidden "
+                                        dynamicmainbullets="2" bis_skin_checked="1">
+                                        <div class="swiper-wrapper" bis_skin_checked="1">
+                                          <div data-v-926e88b0="" class="swiper-slide slide swiper-slide-active"
+                                            betinfoid="34280916" bis_skin_checked="1" style="width: 88px;">
+                                            <div data-v-926e88b0=""
+                                              class="w-24 h-7 py-1.5 flex text-10 leading-4 text-event-th-option text-center"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="min-w-min w-full flex justify-center line-clamp-1 mx-px"
+                                                bis_skin_checked="1" *ngIf="j==0">Matched</div>
+                                            </div>
+                                            <div data-v-926e88b0="" class="relative h-3/4 flex mt-px ml-px"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="w-full flex flex-col pt-px pr-px space-y-px"
+                                                bis_skin_checked="1">
+                                                <div data-v-926e88b0="" class="border-black-600 h-1/2"
+                                                  bis_skin_checked="1">
+                                                  <div data-v-926e88b0="" class="h-full bg-black-300 rounded"
+                                                    bis_skin_checked="1">
+                                                    <div data-v-926e88b0=""
+                                                      class="relative h-full text-center flex justify-center items-center flex-col"
+                                                      bis_skin_checked="1"><span
+                                                        class="line-clamp-2 w-11/12 mx-1 text-center text-11 leading-tight">{{list?.selectionnames.split(',')?.[0]}}</span><span
+                                                        class="text-15 px-1 mt-px font-bold text-parlay-up">{{list?.b1
+                                                        ?? '--'}}</span><span
+                                                        class="absolute text-10 top-0.5 right-2px icon-parlay-up text-parlay-up scale-75"></span>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                <div data-v-926e88b0="" class="border-black-600 h-1/2"
+                                                  bis_skin_checked="1">
+                                                  <div data-v-926e88b0="" class="h-full bg-black-300 rounded"
+                                                    bis_skin_checked="1">
+                                                    <div data-v-926e88b0=""
+                                                      class="relative h-full text-center flex justify-center items-center flex-col"
+                                                      bis_skin_checked="1"><span
+                                                        class="line-clamp-2 w-11/12 mx-1 text-center text-11 leading-tight">{{list?.selectionnames.split(',')?.[1]}}</span><span
+                                                        class="text-15 px-1 mt-px font-bold text-parlay-down">{{list?.l1
+                                                        ?? '--'}}</span><span
+                                                        class="absolute text-10 bottom-0.5 right-2px icon-parlay-up rotate-90 text-parlay-down scale-75"></span>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div data-v-926e88b0=""
+                                            class="swiper-slide slide swiper-slide-next swiper-container10"
+                                            betinfoid="undefined" bis_skin_checked="1" style="width: 88px;">
+                                            <div data-v-926e88b0=""
+                                              class="w-24 h-7 py-1.5 flex text-10 leading-4 text-event-th-option text-center"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="min-w-min w-full flex justify-center line-clamp-1 mx-px"
+                                                bis_skin_checked="1"></div>
+                                            </div>
+                                            <div data-v-926e88b0="" class="relative h-3/4 flex mt-px ml-px"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="z-10 absolute -mx-px left-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-md"
+                                                bis_skin_checked="1"></div>
+                                              <div data-v-926e88b0="" class="w-full flex flex-col space-y-px pr-px"
+                                                bis_skin_checked="1">
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div data-v-926e88b0="" class="swiper-slide slide" betinfoid="undefined"
+                                            bis_skin_checked="1" style="width: 88px;">
+                                            <div data-v-926e88b0=""
+                                              class="w-24 h-7 py-1.5 flex text-10 leading-4 text-event-th-option text-center"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="min-w-min w-full flex justify-center line-clamp-1 mx-px"
+                                                bis_skin_checked="1">A 1st O/U</div>
+                                            </div>
+                                            <div data-v-926e88b0="" class="relative h-3/4 flex mt-px"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="z-10 absolute -mx-px left-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-l-md"
+                                                bis_skin_checked="1"></div>
+                                              <div data-v-926e88b0="" class="w-full flex flex-col space-y-px pr-px"
+                                                bis_skin_checked="1">
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div data-v-926e88b0="" class="swiper-slide slide" betinfoid="undefined"
+                                            bis_skin_checked="1" style="width: 88px;">
+                                            <div data-v-926e88b0=""
+                                              class="w-24 h-7 py-1.5 flex text-10 leading-4 text-event-th-option text-center"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="min-w-min w-full flex justify-center line-clamp-1 mx-px"
+                                                bis_skin_checked="1">H 2nd O/U</div>
+                                            </div>
+                                            <div data-v-926e88b0="" class="relative h-3/4 flex mt-px"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="z-10 absolute -mx-px left-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-r-md"
+                                                bis_skin_checked="1"></div>
+                                              <div data-v-926e88b0="" class="w-full flex flex-col space-y-px pr-px"
+                                                bis_skin_checked="1">
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div data-v-926e88b0="" class="swiper-slide slide" betinfoid="undefined"
+                                            bis_skin_checked="1" style="width: 88px;">
+                                            <div data-v-926e88b0=""
+                                              class="w-24 h-7 py-1.5 flex text-10 leading-4 text-event-th-option text-center"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="min-w-min w-full flex justify-center line-clamp-1 mx-px"
+                                                bis_skin_checked="1">A 2nd O/U</div>
+                                            </div>
+                                            <div data-v-926e88b0="" class="relative h-3/4 flex mt-px"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="z-10 absolute -mx-px left-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-l-md"
+                                                bis_skin_checked="1"></div>
+                                              <div data-v-926e88b0="" class="w-full flex flex-col space-y-px pr-px"
+                                                bis_skin_checked="1">
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div data-v-926e88b0="" class="swiper-slide slide" betinfoid="undefined"
+                                            bis_skin_checked="1" style="width: 88px;">
+                                            <div data-v-926e88b0=""
+                                              class="w-24 h-7 py-1.5 flex text-10 leading-4 text-event-th-option text-center"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="min-w-min w-full flex justify-center line-clamp-1 mx-px"
+                                                bis_skin_checked="1">H First 6 O/U</div>
+                                            </div>
+                                            <div data-v-926e88b0="" class="relative h-3/4 flex mt-px"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="z-10 absolute -mx-px left-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-r-md"
+                                                bis_skin_checked="1"></div>
+                                              <div data-v-926e88b0="" class="w-full flex flex-col space-y-px pr-px"
+                                                bis_skin_checked="1">
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div data-v-926e88b0="" class="swiper-slide slide" betinfoid="undefined"
+                                            bis_skin_checked="1" style="width: 88px;">
+                                            <div data-v-926e88b0=""
+                                              class="w-24 h-7 py-1.5 flex text-10 leading-4 text-event-th-option text-center"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="min-w-min w-full flex justify-center line-clamp-1 mx-px"
+                                                bis_skin_checked="1">A First 6 O/U</div>
+                                            </div>
+                                            <div data-v-926e88b0="" class="relative h-3/4 flex mt-px"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="z-10 absolute -mx-px left-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-md"
+                                                bis_skin_checked="1"></div>
+                                              <div data-v-926e88b0="" class="w-full flex flex-col space-y-px pr-px"
+                                                bis_skin_checked="1">
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div
+                                          class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"
+                                          bis_skin_checked="1"><span
+                                            class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span
+                                            class="swiper-pagination-bullet"></span><span
+                                            class="swiper-pagination-bullet"></span><span
+                                            class="swiper-pagination-bullet"></span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="vue-recycle-scroller__slot" bis_skin_checked="1"></div>
+              <div data-v-b329ee4c="" class="resize-observer" tabindex="-1" bis_skin_checked="1"><object
+                  aria-hidden="true" tabindex="-1" type="text/html" data="about:blank"></object></div>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+
+      <ng-container *ngIf="activeTabId==5 || activeTabId==1">
+        <ng-container *ngFor="let series of SocOrganizedData let i=index;">
+          <div (click)="collapseDetails(i)" [ngClass]="expandedSections.has(i) ? 'rounded-b-none' : ''"
+            class="relative py-2 pr-12px pl-2 bg-secondary rounded-xl cursor-pointer transition-all duration-300 mx-2 rounded-t-xl rounded-b-none"
+            bis_skin_checked="1">
+            <h1 class="flex justify-start items-center text-base font-normal"><span
+                class="w-27px h-5 p-1.5 mr-1 flex justify-center items-center rounded-[1.25rem] text-11 font-bold text-event-tab-num bg-event-tab-bg flex-shrink-0"
+                style="background-color: #ffc800;color: #000;">{{series.matches.length }}</span><span
+                class="text-event-tab break-all mr-2" style="color: #ffc800;">{{series.seriesname}}</span><span
+                style="color: #ffc800;" [ngClass]="!expandedSections.has(i) ? 'transform rotate-180' : ''"
+                class="icon-arrow-down-sencodary flex items-center text-12 h-21px ml-auto transition-transform origin-center duration-300 text-event-tab-icon transform"></span>
+            </h1>
+          </div>
+          <div class="relative overflow-hidden" bis_skin_checked="1">
+            <div class="vue-recycle-scroller ready page-mode direction-vertical" bis_skin_checked="1">
+              <div class="vue-recycle-scroller__slot" bis_skin_checked="1"></div>
+              <div class="vue-recycle-scroller__item-wrapper" bis_skin_checked="1">
+                <div class="vue-recycle-scroller__item-view" bis_skin_checked="1"
+                  style="transform: translateY(0px) translateX(0px);">
+                  <div class="mx-2 bg-white border-b border-black-100" data-index="0" bis_skin_checked="1">
+                    <div class="p-1 flex w-full border-b border-black-100" bis_skin_checked="1">
+
+                      <ng-container *ngIf="!expandedSections.has(i)">
+                        <div class="flex flex-col w-full bg-black-100 rounded-bl" bis_skin_checked="1">
+                          <div class="relative z-10 py-3.5 flex justify-end items-center bg-primary rounded-t"
+                            bis_skin_checked="1" style="background-color: #ffc800;">
+                            <div class="absolute w-1px h-1/2 bg-black-900 right-48" bis_skin_checked="1"></div>
+                          </div>
+
+                          <div class="flex" bis_skin_checked="1" *ngFor="let list of series?.matches; let j = index">
+                            <div class="w-full h-full flex flex-col justify-between px-2 pt-3 pb-4px"
+                              bis_skin_checked="1" (click)="openMatch(list.sportid,list.eventid)">
+                              <div class="space-y-1" bis_skin_checked="1">
+                                <div bis_skin_checked="1"><span
+                                    class="break-words leading-tight">{{list.matchname}}</span></div>
+                              </div>
+                              <div class="mt-4 flex justify-between mb-3" bis_skin_checked="1">
+                                <div class="flex gap-2px justify-start items-center" bis_skin_checked="1">
+                                  <div data-v-ef8204d4="" class="inline-flex items-center h-full"
+                                    data-is-inplay-type="true" data-is-today-type="false" data-is-tomorrow-type="false"
+                                    bis_skin_checked="1">
+                                    <div data-v-ef8204d4="" class="" bis_skin_checked="1">
+                                      <div data-v-ef8204d4=""
+                                        class="px-3px flex items-center justify-center bg-inPlay text-white font-bold text-8 leading-9px"
+                                        bis_skin_checked="1"><span data-v-ef8204d4="" class="mt-1px">In-Play</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div><i class="ml-8px text-14 icon-h2h"></i>
+                              </div>
+                            </div>
+                            <div bis_skin_checked="1">
+                              <div data-v-926e88b0="" class="relative geniusParlay-content -mt-7" bis_skin_checked="1"
+                                style="--dadfaaea: 160px; --ed940334: 7px; --1f98e046: -24px; --ee3598e2: 31px;">
+                                <div data-v-926e88b0="" class="relative h-full bg-white" bis_skin_checked="1">
+                                  <div data-v-926e88b0=""
+                                    class="flex h-full bg-black-100 rounded-br rounded-tr overflow-hidden"
+                                    bis_skin_checked="1">
+                                    <div data-v-926e88b0="" class="shrink-0 w-48" bis_skin_checked="1">
+                                      <div data-v-926e88b0=""
+                                        class="swiper swiper-initialized swiper-horizontal relative swiper-backface-hidden"
+                                        dynamicmainbullets="2" bis_skin_checked="1">
+                                        <div class="swiper-wrapper" bis_skin_checked="1">
+                                          <div data-v-926e88b0="" class="swiper-slide slide swiper-slide-active"
+                                            betinfoid="34280916" bis_skin_checked="1" style="width: 88px;">
+                                            <div data-v-926e88b0=""
+                                              class="w-24 h-7 py-1.5 flex text-10 leading-4 text-event-th-option text-center"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="min-w-min w-full flex justify-center line-clamp-1 mx-px"
+                                                bis_skin_checked="1" *ngIf="j==0">Matched</div>
+                                            </div>
+                                            <div data-v-926e88b0="" class="relative h-3/4 flex mt-px ml-px"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="w-full flex flex-col pt-px pr-px space-y-px"
+                                                bis_skin_checked="1">
+                                                <div data-v-926e88b0="" class="border-black-600 h-1/2"
+                                                  bis_skin_checked="1">
+                                                  <div data-v-926e88b0="" class="h-full bg-black-300 rounded"
+                                                    bis_skin_checked="1">
+                                                    <div data-v-926e88b0=""
+                                                      class="relative h-full text-center flex justify-center items-center flex-col"
+                                                      bis_skin_checked="1"><span
+                                                        class="line-clamp-2 w-11/12 mx-1 text-center text-11 leading-tight">{{list?.selectionnames.split(',')?.[0]}}</span><span
+                                                        class="text-15 px-1 mt-px font-bold text-parlay-up">{{list?.b1
+                                                        ?? '--'}}</span><span
+                                                        class="absolute text-10 top-0.5 right-2px icon-parlay-up text-parlay-up scale-75"></span>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                <div data-v-926e88b0="" class="border-black-600 h-1/2"
+                                                  bis_skin_checked="1">
+                                                  <div data-v-926e88b0="" class="h-full bg-black-300 rounded"
+                                                    bis_skin_checked="1">
+                                                    <div data-v-926e88b0=""
+                                                      class="relative h-full text-center flex justify-center items-center flex-col"
+                                                      bis_skin_checked="1"><span
+                                                        class="line-clamp-2 w-11/12 mx-1 text-center text-11 leading-tight">{{list?.selectionnames.split(',')?.[1]}}</span><span
+                                                        class="text-15 px-1 mt-px font-bold text-parlay-down">{{list?.l1
+                                                        ?? '--'}}</span><span
+                                                        class="absolute text-10 bottom-0.5 right-2px icon-parlay-up rotate-90 text-parlay-down scale-75"></span>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div data-v-926e88b0="" class="swiper-slide slide swiper-slide-next"
+                                            betinfoid="undefined" bis_skin_checked="1" style="width: 88px;">
+                                            <div data-v-926e88b0=""
+                                              class="w-24 h-7 py-1.5 flex text-10 leading-4 text-event-th-option text-center"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="min-w-min w-full flex justify-center line-clamp-1 mx-px"
+                                                bis_skin_checked="1"></div>
+                                            </div>
+                                            <div data-v-926e88b0="" class="relative h-3/4 flex mt-px ml-px"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="z-10 absolute -mx-px left-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-md"
+                                                bis_skin_checked="1"></div>
+                                              <div data-v-926e88b0="" class="w-full flex flex-col space-y-px pr-px"
+                                                bis_skin_checked="1">
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div data-v-926e88b0="" class="swiper-slide slide" betinfoid="undefined"
+                                            bis_skin_checked="1" style="width: 88px;">
+                                            <div data-v-926e88b0=""
+                                              class="w-24 h-7 py-1.5 flex text-10 leading-4 text-event-th-option text-center"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="min-w-min w-full flex justify-center line-clamp-1 mx-px"
+                                                bis_skin_checked="1">A 1st O/U</div>
+                                            </div>
+                                            <div data-v-926e88b0="" class="relative h-3/4 flex mt-px"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="z-10 absolute -mx-px left-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-l-md"
+                                                bis_skin_checked="1"></div>
+                                              <div data-v-926e88b0="" class="w-full flex flex-col space-y-px pr-px"
+                                                bis_skin_checked="1">
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div data-v-926e88b0="" class="swiper-slide slide" betinfoid="undefined"
+                                            bis_skin_checked="1" style="width: 88px;">
+                                            <div data-v-926e88b0=""
+                                              class="w-24 h-7 py-1.5 flex text-10 leading-4 text-event-th-option text-center"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="min-w-min w-full flex justify-center line-clamp-1 mx-px"
+                                                bis_skin_checked="1">H 2nd O/U</div>
+                                            </div>
+                                            <div data-v-926e88b0="" class="relative h-3/4 flex mt-px"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="z-10 absolute -mx-px left-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-r-md"
+                                                bis_skin_checked="1"></div>
+                                              <div data-v-926e88b0="" class="w-full flex flex-col space-y-px pr-px"
+                                                bis_skin_checked="1">
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div data-v-926e88b0="" class="swiper-slide slide" betinfoid="undefined"
+                                            bis_skin_checked="1" style="width: 88px;">
+                                            <div data-v-926e88b0=""
+                                              class="w-24 h-7 py-1.5 flex text-10 leading-4 text-event-th-option text-center"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="min-w-min w-full flex justify-center line-clamp-1 mx-px"
+                                                bis_skin_checked="1">A 2nd O/U</div>
+                                            </div>
+                                            <div data-v-926e88b0="" class="relative h-3/4 flex mt-px"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="z-10 absolute -mx-px left-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-l-md"
+                                                bis_skin_checked="1"></div>
+                                              <div data-v-926e88b0="" class="w-full flex flex-col space-y-px pr-px"
+                                                bis_skin_checked="1">
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div data-v-926e88b0="" class="swiper-slide slide" betinfoid="undefined"
+                                            bis_skin_checked="1" style="width: 88px;">
+                                            <div data-v-926e88b0=""
+                                              class="w-24 h-7 py-1.5 flex text-10 leading-4 text-event-th-option text-center"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="min-w-min w-full flex justify-center line-clamp-1 mx-px"
+                                                bis_skin_checked="1">H First 6 O/U</div>
+                                            </div>
+                                            <div data-v-926e88b0="" class="relative h-3/4 flex mt-px"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="z-10 absolute -mx-px left-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-r-md"
+                                                bis_skin_checked="1"></div>
+                                              <div data-v-926e88b0="" class="w-full flex flex-col space-y-px pr-px"
+                                                bis_skin_checked="1">
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div data-v-926e88b0="" class="swiper-slide slide" betinfoid="undefined"
+                                            bis_skin_checked="1" style="width: 88px;">
+                                            <div data-v-926e88b0=""
+                                              class="w-24 h-7 py-1.5 flex text-10 leading-4 text-event-th-option text-center"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="min-w-min w-full flex justify-center line-clamp-1 mx-px"
+                                                bis_skin_checked="1">A First 6 O/U</div>
+                                            </div>
+                                            <div data-v-926e88b0="" class="relative h-3/4 flex mt-px"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="z-10 absolute -mx-px left-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-md"
+                                                bis_skin_checked="1"></div>
+                                              <div data-v-926e88b0="" class="w-full flex flex-col space-y-px pr-px"
+                                                bis_skin_checked="1">
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div
+                                          class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"
+                                          bis_skin_checked="1"><span
+                                            class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span
+                                            class="swiper-pagination-bullet"></span><span
+                                            class="swiper-pagination-bullet"></span><span
+                                            class="swiper-pagination-bullet"></span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="vue-recycle-scroller__slot" bis_skin_checked="1"></div>
+              <div data-v-b329ee4c="" class="resize-observer" tabindex="-1" bis_skin_checked="1"><object
+                  aria-hidden="true" tabindex="-1" type="text/html" data="about:blank"></object></div>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="activeTabId==5 || activeTabId==2">
+        <ng-container *ngFor="let series of TenOrganizedData let i=index;">
+          <div (click)="collapseDetails(i)"
+            class="relative py-2 pr-12px pl-2 bg-secondary rounded-xl cursor-pointer transition-all duration-300 mx-2 rounded-t-xl rounded-b-none"
+            bis_skin_checked="1">
+            <h1 class="flex justify-start items-center text-base font-normal"><span
+                class="w-27px h-5 p-1.5 mr-1 flex justify-center items-center rounded-[1.25rem] text-11 font-bold text-event-tab-num bg-event-tab-bg flex-shrink-0"
+                style="background-color: #ffc800;color: #000;">{{series.matches.length }}</span><span
+                class="text-event-tab break-all mr-2" style="color: #ffc800;">{{series.seriesname}}</span><span
+                style="color: #ffc800;" [ngClass]="!expandedSections.has(i) ? 'transform rotate-180' : ''"
+                class="icon-arrow-down-sencodary flex items-center text-12 h-21px ml-auto transition-transform origin-center duration-300 text-event-tab-icon transform "></span>
+            </h1>
+          </div>
+          <div class="relative overflow-hidden" bis_skin_checked="1">
+            <div class="vue-recycle-scroller ready page-mode direction-vertical" bis_skin_checked="1">
+              <div class="vue-recycle-scroller__slot" bis_skin_checked="1"></div>
+              <div class="vue-recycle-scroller__item-wrapper" bis_skin_checked="1">
+                <div class="vue-recycle-scroller__item-view" bis_skin_checked="1"
+                  style="transform: translateY(0px) translateX(0px);">
+                  <div class="mx-2 bg-white border-b border-black-100" data-index="0" bis_skin_checked="1">
+                    <div class="p-1 flex w-full border-b border-black-100" bis_skin_checked="1">
+
+                      <ng-container *ngIf="!expandedSections.has(i)">
+                        <div class="flex flex-col w-full bg-black-100 rounded-bl" bis_skin_checked="1">
+                          <div class="relative z-10 py-3.5 flex justify-end items-center bg-primary rounded-t"
+                            bis_skin_checked="1" style="background-color: #ffc800;">
+                            <div class="absolute w-1px h-1/2 bg-black-900 right-48" bis_skin_checked="1"></div>
+                          </div>
+
+                          <div class="flex" bis_skin_checked="1" *ngFor="let list of series?.matches; let j = index">
+                            <div class="w-full h-full flex flex-col justify-between px-2 pt-3 pb-4px"
+                              bis_skin_checked="1" (click)="openMatch(list.sportid,list.eventid)">
+                              <div class="space-y-1" bis_skin_checked="1">
+                                <div bis_skin_checked="1"><span
+                                    class="break-words leading-tight">{{list.matchname}}</span></div>
+                              </div>
+                              <div class="mt-4 flex justify-between mb-3" bis_skin_checked="1">
+                                <div class="flex gap-2px justify-start items-center" bis_skin_checked="1">
+                                  <div data-v-ef8204d4="" class="inline-flex items-center h-full"
+                                    data-is-inplay-type="true" data-is-today-type="false" data-is-tomorrow-type="false"
+                                    bis_skin_checked="1">
+                                    <div data-v-ef8204d4="" class="" bis_skin_checked="1">
+                                      <div data-v-ef8204d4=""
+                                        class="px-3px flex items-center justify-center bg-inPlay text-white font-bold text-8 leading-9px"
+                                        bis_skin_checked="1"><span data-v-ef8204d4="" class="mt-1px">In-Play</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div><i class="ml-8px text-14 icon-h2h"></i>
+                              </div>
+                            </div>
+                            <div bis_skin_checked="1">
+                              <div data-v-926e88b0="" class="relative geniusParlay-content -mt-7" bis_skin_checked="1"
+                                style="--dadfaaea: 160px; --ed940334: 7px; --1f98e046: -24px; --ee3598e2: 31px;">
+                                <div data-v-926e88b0="" class="relative h-full bg-white" bis_skin_checked="1">
+                                  <div data-v-926e88b0=""
+                                    class="flex h-full bg-black-100 rounded-br rounded-tr overflow-hidden"
+                                    bis_skin_checked="1">
+                                    <div data-v-926e88b0="" class="shrink-0 w-48" bis_skin_checked="1">
+                                      <div data-v-926e88b0=""
+                                        class="swiper swiper-initialized swiper-horizontal relative swiper-backface-hidden"
+                                        dynamicmainbullets="2" bis_skin_checked="1">
+                                        <div class="swiper-wrapper" bis_skin_checked="1">
+                                          <div data-v-926e88b0="" class="swiper-slide slide swiper-slide-active"
+                                            betinfoid="34280916" bis_skin_checked="1" style="width: 88px;">
+                                            <div data-v-926e88b0=""
+                                              class="w-24 h-7 py-1.5 flex text-10 leading-4 text-event-th-option text-center"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="min-w-min w-full flex justify-center line-clamp-1 mx-px"
+                                                bis_skin_checked="1" *ngIf="j==0">Matched</div>
+                                            </div>
+                                            <div data-v-926e88b0="" class="relative h-3/4 flex mt-px ml-px"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="w-full flex flex-col pt-px pr-px space-y-px"
+                                                bis_skin_checked="1">
+                                                <div data-v-926e88b0="" class="border-black-600 h-1/2"
+                                                  bis_skin_checked="1">
+                                                  <div data-v-926e88b0="" class="h-full bg-black-300 rounded"
+                                                    bis_skin_checked="1">
+                                                    <div data-v-926e88b0=""
+                                                      class="relative h-full text-center flex justify-center items-center flex-col"
+                                                      bis_skin_checked="1"><span
+                                                        class="line-clamp-2 w-11/12 mx-1 text-center text-11 leading-tight">{{list?.selectionnames.split(',')?.[0]}}</span><span
+                                                        class="text-15 px-1 mt-px font-bold text-parlay-up">{{list?.b1
+                                                        ?? '--'}}</span><span
+                                                        class="absolute text-10 top-0.5 right-2px icon-parlay-up text-parlay-up scale-75"></span>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                <div data-v-926e88b0="" class="border-black-600 h-1/2"
+                                                  bis_skin_checked="1">
+                                                  <div data-v-926e88b0="" class="h-full bg-black-300 rounded"
+                                                    bis_skin_checked="1">
+                                                    <div data-v-926e88b0=""
+                                                      class="relative h-full text-center flex justify-center items-center flex-col"
+                                                      bis_skin_checked="1"><span
+                                                        class="line-clamp-2 w-11/12 mx-1 text-center text-11 leading-tight">{{list?.selectionnames.split(',')?.[1]}}</span><span
+                                                        class="text-15 px-1 mt-px font-bold text-parlay-down">{{list?.l1
+                                                        ?? '--'}}</span><span
+                                                        class="absolute text-10 bottom-0.5 right-2px icon-parlay-up rotate-90 text-parlay-down scale-75"></span>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div data-v-926e88b0="" class="swiper-slide slide swiper-slide-next"
+                                            betinfoid="undefined" bis_skin_checked="1" style="width: 88px;">
+                                            <div data-v-926e88b0=""
+                                              class="w-24 h-7 py-1.5 flex text-10 leading-4 text-event-th-option text-center"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="min-w-min w-full flex justify-center line-clamp-1 mx-px"
+                                                bis_skin_checked="1"></div>
+                                            </div>
+                                            <div data-v-926e88b0="" class="relative h-3/4 flex mt-px ml-px"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="z-10 absolute -mx-px left-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-md"
+                                                bis_skin_checked="1"></div>
+                                              <div data-v-926e88b0="" class="w-full flex flex-col space-y-px pr-px"
+                                                bis_skin_checked="1">
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div data-v-926e88b0="" class="swiper-slide slide" betinfoid="undefined"
+                                            bis_skin_checked="1" style="width: 88px;">
+                                            <div data-v-926e88b0=""
+                                              class="w-24 h-7 py-1.5 flex text-10 leading-4 text-event-th-option text-center"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="min-w-min w-full flex justify-center line-clamp-1 mx-px"
+                                                bis_skin_checked="1">A 1st O/U</div>
+                                            </div>
+                                            <div data-v-926e88b0="" class="relative h-3/4 flex mt-px"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="z-10 absolute -mx-px left-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-l-md"
+                                                bis_skin_checked="1"></div>
+                                              <div data-v-926e88b0="" class="w-full flex flex-col space-y-px pr-px"
+                                                bis_skin_checked="1">
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div data-v-926e88b0="" class="swiper-slide slide" betinfoid="undefined"
+                                            bis_skin_checked="1" style="width: 88px;">
+                                            <div data-v-926e88b0=""
+                                              class="w-24 h-7 py-1.5 flex text-10 leading-4 text-event-th-option text-center"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="min-w-min w-full flex justify-center line-clamp-1 mx-px"
+                                                bis_skin_checked="1">H 2nd O/U</div>
+                                            </div>
+                                            <div data-v-926e88b0="" class="relative h-3/4 flex mt-px"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="z-10 absolute -mx-px left-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-r-md"
+                                                bis_skin_checked="1"></div>
+                                              <div data-v-926e88b0="" class="w-full flex flex-col space-y-px pr-px"
+                                                bis_skin_checked="1">
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div data-v-926e88b0="" class="swiper-slide slide" betinfoid="undefined"
+                                            bis_skin_checked="1" style="width: 88px;">
+                                            <div data-v-926e88b0=""
+                                              class="w-24 h-7 py-1.5 flex text-10 leading-4 text-event-th-option text-center"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="min-w-min w-full flex justify-center line-clamp-1 mx-px"
+                                                bis_skin_checked="1">A 2nd O/U</div>
+                                            </div>
+                                            <div data-v-926e88b0="" class="relative h-3/4 flex mt-px"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="z-10 absolute -mx-px left-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-l-md"
+                                                bis_skin_checked="1"></div>
+                                              <div data-v-926e88b0="" class="w-full flex flex-col space-y-px pr-px"
+                                                bis_skin_checked="1">
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div data-v-926e88b0="" class="swiper-slide slide" betinfoid="undefined"
+                                            bis_skin_checked="1" style="width: 88px;">
+                                            <div data-v-926e88b0=""
+                                              class="w-24 h-7 py-1.5 flex text-10 leading-4 text-event-th-option text-center"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="min-w-min w-full flex justify-center line-clamp-1 mx-px"
+                                                bis_skin_checked="1">H First 6 O/U</div>
+                                            </div>
+                                            <div data-v-926e88b0="" class="relative h-3/4 flex mt-px"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="z-10 absolute -mx-px left-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-r-md"
+                                                bis_skin_checked="1"></div>
+                                              <div data-v-926e88b0="" class="w-full flex flex-col space-y-px pr-px"
+                                                bis_skin_checked="1">
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div data-v-926e88b0="" class="swiper-slide slide" betinfoid="undefined"
+                                            bis_skin_checked="1" style="width: 88px;">
+                                            <div data-v-926e88b0=""
+                                              class="w-24 h-7 py-1.5 flex text-10 leading-4 text-event-th-option text-center"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="min-w-min w-full flex justify-center line-clamp-1 mx-px"
+                                                bis_skin_checked="1">A First 6 O/U</div>
+                                            </div>
+                                            <div data-v-926e88b0="" class="relative h-3/4 flex mt-px"
+                                              bis_skin_checked="1">
+                                              <div data-v-926e88b0=""
+                                                class="z-10 absolute -mx-px left-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-md"
+                                                bis_skin_checked="1"></div>
+                                              <div data-v-926e88b0="" class="w-full flex flex-col space-y-px pr-px"
+                                                bis_skin_checked="1">
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                                <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                                  bis_skin_checked="1"></div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div
+                                          class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"
+                                          bis_skin_checked="1"><span
+                                            class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span
+                                            class="swiper-pagination-bullet"></span><span
+                                            class="swiper-pagination-bullet"></span><span
+                                            class="swiper-pagination-bullet"></span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="vue-recycle-scroller__item-view" bis_skin_checked="1"
+            style="transform: translateY(168px) translateX(0px);">
+            <div class="mx-2 bg-white border-b border-black-100" data-index="1" bis_skin_checked="1">
+              <div class="p-1 flex w-full border-b border-black-100" bis_skin_checked="1">
+                <div class="flex flex-col w-full bg-black-100 rounded-bl" bis_skin_checked="1">
+                  <div class="flex" bis_skin_checked="1">
+                    <div class="w-full h-full flex flex-col justify-between px-2 pt-3 pb-4px" bis_skin_checked="1">
+                      <div class="space-y-1" bis_skin_checked="1">
+                        <div bis_skin_checked="1"><span class="break-words leading-tight">Queensland Bulls</span><span
+                            class="mx-1">-</span><span class="break-words leading-tight">Tasmania Tigers</span></div>
+                        
+                      </div>
+                      <div class="mt-4 flex justify-between mb-3" bis_skin_checked="1">
+                        <div class="flex gap-2px justify-start items-center" bis_skin_checked="1">
+                          <div data-v-ef8204d4="" class="inline-flex items-center h-full" data-is-inplay-type="true"
+                            data-is-today-type="false" data-is-tomorrow-type="false" bis_skin_checked="1">
+                            <div data-v-ef8204d4="" class="" bis_skin_checked="1">
+                              <div data-v-ef8204d4=""
+                                class="px-3px flex items-center justify-center bg-inPlay text-white font-bold text-8 leading-9px"
+                                bis_skin_checked="1"><span data-v-ef8204d4="" class="mt-1px">In-Play</span></div>
+                            </div>
+                          </div>
+                        </div><i class="ml-8px text-14 icon-h2h"></i>
+                      </div>
+                    </div>
+                    <div bis_skin_checked="1">
+                      <div data-v-926e88b0="" class="relative geniusParlay-content" bis_skin_checked="1"
+                        style="--dadfaaea: 160px; --ed940334: 7px; --1f98e046: -24px; --ee3598e2: 31px;">
+                        <div data-v-926e88b0="" class="relative h-full bg-white" bis_skin_checked="1">
+                          <div data-v-926e88b0="" class="flex h-full bg-black-100 rounded-br rounded-tr overflow-hidden"
+                            bis_skin_checked="1">
+                            <div data-v-926e88b0="" class="shrink-0 w-48" bis_skin_checked="1">
+                              <div data-v-926e88b0=""
+                                class="swiper swiperSecond swiper-initialized swiper-horizontal relative swiper-backface-hidden"
+                                dynamicmainbullets="2" bis_skin_checked="1">
+                                <div class="swiper-wrapper" bis_skin_checked="1">
+                                  <div data-v-926e88b0="" class="swiper-slide slide swiper-slide-active"
+                                    betinfoid="undefined" bis_skin_checked="1" style="width: 88px;">
+                                    <div data-v-926e88b0="" class="relative h-3/4 flex mt-px" bis_skin_checked="1">
+                                      <div data-v-926e88b0=""
+                                        class="z-10 absolute -mx-px left-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-l-md"
+                                        bis_skin_checked="1"></div>
+                                      <div data-v-926e88b0="" class="w-full flex flex-col space-y-px pr-px"
+                                        bis_skin_checked="1">
+                                        <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                          bis_skin_checked="1"></div>
+                                        <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                          bis_skin_checked="1"></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div data-v-926e88b0="" class="swiper-slide slide swiper-slide-next"
+                                    betinfoid="undefined" bis_skin_checked="1" style="width: 88px;">
+                                    <div data-v-926e88b0="" class="relative h-3/4 flex mt-px" bis_skin_checked="1">
+                                      <div data-v-926e88b0=""
+                                        class="z-10 absolute -mx-px left-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-r-md"
+                                        bis_skin_checked="1"></div>
+                                      <div data-v-926e88b0="" class="w-full flex flex-col space-y-px pr-px"
+                                        bis_skin_checked="1">
+                                        <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                          bis_skin_checked="1"></div>
+                                        <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                          bis_skin_checked="1"></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div data-v-926e88b0="" class="swiper-slide slide" betinfoid="undefined"
+                                    bis_skin_checked="1" style="width: 88px;">
+                                    <div data-v-926e88b0="" class="relative h-3/4 flex mt-px" bis_skin_checked="1">
+                                      <div data-v-926e88b0=""
+                                        class="z-10 absolute -mx-px left-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-l-md"
+                                        bis_skin_checked="1"></div>
+                                      <div data-v-926e88b0="" class="w-full flex flex-col space-y-px pr-px"
+                                        bis_skin_checked="1">
+                                        <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                          bis_skin_checked="1"></div>
+                                        <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                          bis_skin_checked="1"></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div data-v-926e88b0="" class="swiper-slide slide" betinfoid="undefined"
+                                    bis_skin_checked="1" style="width: 88px;">
+                                    <div data-v-926e88b0="" class="relative h-3/4 flex mt-px" bis_skin_checked="1">
+                                      <div data-v-926e88b0=""
+                                        class="z-10 absolute -mx-px left-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-r-md"
+                                        bis_skin_checked="1"></div>
+                                      <div data-v-926e88b0="" class="w-full flex flex-col space-y-px pr-px"
+                                        bis_skin_checked="1">
+                                        <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                          bis_skin_checked="1"></div>
+                                        <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                          bis_skin_checked="1"></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div data-v-926e88b0="" class="swiper-slide slide" betinfoid="undefined"
+                                    bis_skin_checked="1" style="width: 88px;">
+                                    <div data-v-926e88b0="" class="relative h-3/4 flex mt-px" bis_skin_checked="1">
+                                      <div data-v-926e88b0=""
+                                        class="z-10 absolute -mx-px left-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-l-md"
+                                        bis_skin_checked="1"></div>
+                                      <div data-v-926e88b0="" class="w-full flex flex-col space-y-px pr-px"
+                                        bis_skin_checked="1">
+                                        <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                          bis_skin_checked="1"></div>
+                                        <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                          bis_skin_checked="1"></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div data-v-926e88b0="" class="swiper-slide slide" betinfoid="undefined"
+                                    bis_skin_checked="1" style="width: 88px;">
+                                    <div data-v-926e88b0="" class="relative h-3/4 flex mt-px" bis_skin_checked="1">
+                                      <div data-v-926e88b0=""
+                                        class="z-10 absolute -mx-px left-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-r-md"
+                                        bis_skin_checked="1"></div>
+                                      <div data-v-926e88b0="" class="w-full flex flex-col space-y-px pr-px"
+                                        bis_skin_checked="1">
+                                        <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                          bis_skin_checked="1"></div>
+                                        <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                          bis_skin_checked="1"></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div data-v-926e88b0="" class="swiper-slide slide" betinfoid="undefined"
+                                    bis_skin_checked="1" style="width: 88px;">
+                                    <div data-v-926e88b0="" class="relative h-3/4 flex mt-px" bis_skin_checked="1">
+                                      <div data-v-926e88b0=""
+                                        class="z-10 absolute -mx-px left-0 top-0 flex justify-center items-center w-full h-full bg-black-700 opacity-80 text-11 text-white rounded-md"
+                                        bis_skin_checked="1"></div>
+                                      <div data-v-926e88b0="" class="w-full flex flex-col space-y-px pr-px"
+                                        bis_skin_checked="1">
+                                        <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                          bis_skin_checked="1"></div>
+                                        <div data-v-926e88b0="" class="h-60px bg-black-300 rounded opacity-40"
+                                          bis_skin_checked="1"></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div
+                                  class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"
+                                  bis_skin_checked="1"><span
+                                    class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span
+                                    class="swiper-pagination-bullet"></span><span
+                                    class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+              </div>
+              <div class="vue-recycle-scroller__slot" bis_skin_checked="1"></div>
+              <div data-v-b329ee4c="" class="resize-observer" tabindex="-1" bis_skin_checked="1"><object
+                  aria-hidden="true" tabindex="-1" type="text/html" data="about:blank"></object></div>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- by-time -->
+  <ng-container *ngIf="changestabs==='by Time'">
+    <div class="mb-4" *ngIf="activeTab==1">
+
+      <ng-container *ngIf="activeTabId==5 || activeTabId==4">
+        <div *ngIf="activeTabId==5 && cricdata?.length > 0" class="h-34px flex justify-start items-center bg-secondary">
+          <span class="block ml-2 mr-11px w-3px h-16px rounded-1.5px bg-event-tab-icon"></span>
+          <p class="text-15 font-bold text-event-tab-icon">Cricket</p>
+        </div>
+        <div class="vue-recycle-scroller ready page-mode direction-vertical">
+          <div class="vue-recycle-scroller__slot"></div>
+          <div class="vue-recycle-scroller__item-wrapper grid grid-cols-1 divide-y divide-black-100">
+            <ng-container *ngFor="let list of cricdata">
+              <div class="vue-recycle-scroller__item-view">
+                <div data-index="0">
+                  <div data-v-a15b9f6f="" class="event-block-item-row grid justify-center items-center bg-white">
+                    <div data-v-a15b9f6f="">
+                      <div data-v-a15b9f6f=""
+                        class="animed-star -ml-2px w-8 mr-1 sm:mx-1 flex justify-center items-center">
+                        <div data-v-117db823="" class="w-8 h-6 flex justify-center items-center"
+                          style="--b64d5fc0: 0.51587987012987; --3cad14f0: -0.7929964566904356rem;">
+                          <div data-v-117db823="" class="fave bg-star-sprit-black-webp"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div (click)="openMatch(list.sportid,list.eventid)" data-v-a15b9f6f=""
+                      class="h-full flex justify-center items-start flex-col py-8px bg-white pr-3px text-13 leading-17px">
+                      <div data-v-a15b9f6f="" class="w-270px mb-px">
+                        <p data-v-a15b9f6f="" class="truncate">{{list.matchname}}</p>
+                      </div>
+                      <div data-v-a15b9f6f="" class="flex gap-2px justify-start items-center">
+                        <div>
+                          <p class="leading-10px text-10 text-black-600"> Matched <span
+                              class="font-bold">79,855,220</span></p>
+                        </div>
+                        <div class="flex justify-center items-center gap-2px">
+                          <div *ngIf="activeTab==1" class="icon-live"><img src="/assets/images/live.svg" alt="streaming"
+                              class="h-10px"></div>
+                          <div class="icon-fancybet"><img src="/assets/images/fancybet.svg" alt="fancybet"
+                              class="h-10px">
+                          </div>
+                        </div>
+                        <div data-v-ef8204d4="" class="inline-flex items-center h-full" data-is-inplay-type="true"
+                          data-is-today-type="false" data-is-tomorrow-type="false">
+                          <div data-v-ef8204d4="" class="">
+                            <div data-v-ef8204d4=""
+                              class="px-3px flex items-center justify-center bg-inPlay text-white font-bold text-8 leading-9px">
+                              <span data-v-ef8204d4="" class="mt-1px">In-Play</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div data-v-a15b9f6f="" class="flex justify-end items-center">
+                      <i class="ml-8px text-14 icon-h2h"></i>
+                    </div>
+
+                    <div (click)="openMatch(list.sportid,list.eventid)" data-v-a15b9f6f=""
+                      class="h-full flex justify-center items-center bg-white"><span data-v-a15b9f6f=""
+                        class="icon-arrow-left transform rotate-180 text-12 text-black-500"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="activeTabId==5 || activeTabId==1">
+        <div *ngIf="activeTabId==5 && soccdata?.length > 0" class="h-34px flex justify-start items-center bg-secondary">
+          <span class="block ml-2 mr-11px w-3px h-16px rounded-1.5px bg-event-tab-icon"></span>
+          <p class="text-15 font-bold text-event-tab-icon">Soccer</p>
+        </div>
+        <div class="vue-recycle-scroller ready page-mode direction-vertical">
+          <div class="vue-recycle-scroller__slot"></div>
+          <div class="vue-recycle-scroller__item-wrapper grid grid-cols-1 divide-y divide-black-100">
+            <ng-container *ngFor="let list of soccdata">
+              <div class="vue-recycle-scroller__item-view">
+                <div data-index="0">
+                  <div data-v-a15b9f6f="" class="event-block-item-row grid justify-center items-center bg-white">
+                    <div data-v-a15b9f6f="">
+                      <div data-v-a15b9f6f=""
+                        class="animed-star -ml-2px w-8 mr-1 sm:mx-1 flex justify-center items-center">
+                        <div data-v-117db823="" class="w-8 h-6 flex justify-center items-center"
+                          style="--b64d5fc0: 0.51587987012987; --3cad14f0: -0.7929964566904356rem;">
+                          <div data-v-117db823="" class="fave bg-star-sprit-black-webp"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div (click)="openMatch(list.sportid,list.eventid)" data-v-a15b9f6f=""
+                      class="h-full flex justify-center items-start flex-col py-8px bg-white pr-3px text-13 leading-17px">
+                      <div data-v-a15b9f6f="" class="w-270px mb-px">
+                        <p data-v-a15b9f6f="" class="truncate">{{list.matchname}}</p>
+                      </div>
+                      <div data-v-a15b9f6f="" class="flex gap-2px justify-start items-center">
+                        <div>
+                          <p class="leading-10px text-10 text-black-600"> Matched <span
+                              class="font-bold">79,855,220</span></p>
+                        </div>
+                        <div class="flex justify-center items-center gap-2px">
+                          <div class="icon-live"><img src="/assets/images/live.svg" alt="streaming" class="h-10px">
+                          </div>
+                          <div class="icon-fancybet"><img src="/assets/images/fancybet.svg" alt="fancybet"
+                              class="h-10px">
+                          </div>
+                        </div>
+                        <div data-v-ef8204d4="" class="inline-flex items-center h-full" data-is-inplay-type="true"
+                          data-is-today-type="false" data-is-tomorrow-type="false">
+                          <div data-v-ef8204d4="" class="">
+                            <div data-v-ef8204d4=""
+                              class="px-3px flex items-center justify-center bg-inPlay text-white font-bold text-8 leading-9px">
+                              <span data-v-ef8204d4="" class="mt-1px">In-Play</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div data-v-a15b9f6f="" class="flex justify-end items-center">
+                      <i class="ml-8px text-14 icon-h2h"></i>
+                    </div>
+                    <div (click)="openMatch(list.sportid,list.eventid)" data-v-a15b9f6f=""
+                      class="h-full flex justify-center items-center bg-white"><span data-v-a15b9f6f=""
+                        class="icon-arrow-left transform rotate-180 text-12 text-black-500"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="activeTabId==5 || activeTabId==2">
+        <div *ngIf="activeTabId==5 && tenndata?.length > 0" class="h-34px flex justify-start items-center bg-secondary">
+          <span class="block ml-2 mr-11px w-3px h-16px rounded-1.5px bg-event-tab-icon"></span>
+          <p class="text-15 font-bold text-event-tab-icon">Tennis</p>
+        </div>
+        <div class="vue-recycle-scroller ready page-mode direction-vertical">
+          <div class="vue-recycle-scroller__slot"></div>
+          <div class="vue-recycle-scroller__item-wrapper grid grid-cols-1 divide-y divide-black-100">
+            <ng-container *ngFor="let list of tenndata">
+              <div class="vue-recycle-scroller__item-view">
+                <div data-index="0">
+                  <div data-v-a15b9f6f="" class="event-block-item-row grid justify-center items-center bg-white">
+                    <div data-v-a15b9f6f="">
+                      <div data-v-a15b9f6f=""
+                        class="animed-star -ml-2px w-8 mr-1 sm:mx-1 flex justify-center items-center">
+                        <div data-v-117db823="" class="w-8 h-6 flex justify-center items-center"
+                          style="--b64d5fc0: 0.51587987012987; --3cad14f0: -0.7929964566904356rem;">
+                          <div data-v-117db823="" class="fave bg-star-sprit-black-webp"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div (click)="openMatch(list.sportid,list.eventid)" data-v-a15b9f6f=""
+                      class="h-full flex justify-center items-start flex-col py-8px bg-white pr-3px text-13 leading-17px">
+                      <div data-v-a15b9f6f="" class="w-270px mb-px">
+                        <p data-v-a15b9f6f="" class="truncate">{{list.matchname}}</p>
+                      </div>
+                      <div data-v-a15b9f6f="" class="flex gap-2px justify-start items-center">
+                        <div>
+                          <p class="leading-10px text-10 text-black-600"> Matched <span
+                              class="font-bold">79,855,220</span></p>
+                        </div>
+                        <div class="flex justify-center items-center gap-2px">
+                          <div class="icon-live"><img src="/assets/images/live.svg" alt="streaming" class="h-10px">
+                          </div>
+                          <div class="icon-fancybet"><img src="/assets/images/fancybet.svg" alt="fancybet"
+                              class="h-10px">
+                          </div>
+                        </div>
+                        <div data-v-ef8204d4="" class="inline-flex items-center h-full" data-is-inplay-type="true"
+                          data-is-today-type="false" data-is-tomorrow-type="false">
+                          <div data-v-ef8204d4="" class="">
+                            <div data-v-ef8204d4=""
+                              class="px-3px flex items-center justify-center bg-inPlay text-white font-bold text-8 leading-9px">
+                              <span data-v-ef8204d4="" class="mt-1px">In-Play</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div data-v-a15b9f6f="" class="flex justify-end items-center">
+                      <i class="ml-8px text-14 icon-h2h"></i>
+                    </div>
+                    <div (click)="openMatch(list.sportid,list.eventid)" data-v-a15b9f6f=""
+                      class="h-full flex justify-center items-center bg-white"><span data-v-a15b9f6f=""
+                        class="icon-arrow-left transform rotate-180 text-12 text-black-500"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+
+    </div>
+
+    <div class="mb-4" *ngIf="activeTab==2">
+      <div class="h-34px flex justify-start items-center bg-submenu">
+        <span class="block ml-2 mr-11px w-3px h-16px rounded-1.5px bg-event-tab-icon"></span>
+        <p class="text-15 font-bold text-event-tab-icon">Toss Parlay</p>
+      </div>
+      <div class="vue-recycle-scroller ready page-mode direction-vertical">
+        <div class="vue-recycle-scroller__slot"></div>
+        <div class="vue-recycle-scroller__item-wrapper grid grid-cols-1 divide-y divide-black-100">
+          <div class="vue-recycle-scroller__item-view">
+            <div data-index="0">
+              <div routerLink="/toss-parlay" data-v-a15b9f6f=""
+                class="event-block-item-row grid justify-center items-center bg-white">
+                <div data-v-a15b9f6f="">
+                  <div data-v-a15b9f6f="" class="animed-star -ml-2px w-8 mr-1 sm:mx-1 flex justify-center items-center">
+                    <div data-v-117db823="" class="w-8 h-6 flex justify-center items-center"
+                      style="--b64d5fc0: 0.51587987012987; --3cad14f0: -0.7929964566904356rem;">
+                      <div data-v-117db823="" class="fave bg-star-sprit-black-webp"></div>
+                    </div>
+                  </div>
+                </div>
+                <div data-v-a15b9f6f=""
+                  class="h-full flex justify-center items-start flex-col py-8px bg-white pr-3px text-13 leading-17px">
+                  <div data-v-a15b9f6f="" class="w-270px mb-px">
+                    <p data-v-a15b9f6f="" class="truncate">Toss Parlay</p>
+                  </div>
+                  <div data-v-a15b9f6f="" class="flex gap-2px justify-start items-center">
+                    <div>
+                      <p class="leading-10px text-10 text-black-600"> Matched <span class="font-bold">79,855,220</span>
+                      </p>
+                    </div>
+                    <div class="flex justify-center items-center gap-2px">
+                      <div class="icon-live"><img src="/assets/images/live.svg" alt="streaming" class="h-10px"></div>
+                      <div class="icon-fancybet"><img src="/assets/images/fancybet.svg" alt="fancybet" class="h-10px">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div data-v-a15b9f6f="" class="flex justify-end items-center"></div>
+                <div data-v-a15b9f6f="" class="h-full flex justify-center items-center bg-white"><span
+                    data-v-a15b9f6f="" class="icon-arrow-left transform rotate-180 text-12 text-black-500"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div >
+      <div class="flex justify-center items-center py-48">
+        <div class="pt-6 px-7 pb-5 bg-white text-center text-black-700 text-base rounded-xl leading-tight">
+          <div alt="" class="icon-empty text-40 text-black-300 m-auto mb-2.5"></div>
+          <div>No Event</div>
+        </div>
+      </div>
+    </div> -->
+  </ng-container>
+
+  <!-- Tab content section -->
+  <div class="tab-content">
+    <!-- Cricket -->
+    <ng-container *ngIf="activeTabId == 4">
+      <ng-container *ngIf="cricdata?.length; else noEvent"></ng-container>
+    </ng-container>
+
+    <!-- Soccer -->
+    <ng-container *ngIf="activeTabId == 1">
+      <ng-container *ngIf="soccdata?.length; else noEvent"></ng-container>
+    </ng-container>
+
+    <!-- Tennis -->
+    <ng-container *ngIf="activeTabId == 2">
+      <ng-container *ngIf="tenndata?.length; else noEvent"></ng-container>
+    </ng-container>
+
+    <!-- All -->
+    <ng-container *ngIf="activeTabId == 5">
+      <ng-container *ngIf="gameList?.length; else noEvent"></ng-container>
+    </ng-container>
+  </div>
+
+  <!-- Common noEvent template -->
+  <ng-template #noEvent>
+    <div class="flex justify-center items-center py-48">
+      <div class="pt-6 px-7 pb-5 bg-white text-center text-black-700 text-base rounded-xl leading-tight">
+        <div class="icon-empty text-40 text-black-300 m-auto mb-2.5"></div>
+        <div>No Event</div>
+      </div>
+    </div>
+  </ng-template>
+
+  <app-main-footer></app-main-footer>
+
+</div>
+
+<div *ngIf="loading">
+  <app-loader></app-loader>
+</div>

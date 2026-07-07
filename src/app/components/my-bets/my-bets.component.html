@@ -1,0 +1,415 @@
+<div data-v-1a3d4c25="" class="absolute -top-40px w-full h-full z-40 bg-black opacity-30" (click)="closePopup()"
+  *ngIf="isOpen" [@slideInOut]></div>
+<div data-v-1a3d4c25="" class="mybet fixed container bottom-0" *ngIf="isOpen" [@slideInOut]
+  (click)="$event.stopPropagation()">
+  <div data-v-1a3d4c25=""
+    class="mybet-content bg-black flex flex-col h-full overscroll-y-none rounded-t-xl overflow-hidden">
+    <div data-v-1a3d4c25="" class="shrink-0 bg-secondary rounded-t-xl">
+      <header data-v-1a3d4c25="" class="mybet-title flex p-1 py-2 h-40px justify-center items-center">
+        <div data-v-1a3d4c25="" class="main-filter flex-1 text-pop-title -mr-28px">
+          <ul data-v-1a3d4c25=""
+            class="main-filter-ul flex justify-center items-center leading-tight text-center break-all">
+            <li data-v-1a3d4c25="" class="main-filter-li relative mx-4 pb-1 font-bold text-13">My Bets</li>
+          </ul>
+        </div>
+        <div data-v-1a3d4c25="" (click)="closePopup()"
+          class="icon-close flex justify-center items-center mr-2 cursor-pointer text-global-font-on-dark text-14">
+        </div>
+      </header>
+      <div data-v-1a3d4c25=""
+        class="mybet-title relative py-3 flex items-center justify-center bg-black-300 rounded-t-xl mx-3px h-40px">
+        <ul data-v-1a3d4c25="" class="main-filter-ul flex justify-center items-center text-13">
+          <li data-v-1a3d4c25="" class="tab main-filter-li relative mx-3.5 font-bold cursor-pointer"
+            (click)="setTab(0)"> Exchange <div data-v-1a3d4c25=""
+              class="count inline-block px-1.5 py-1 ml-0.5 text-10 bg-secondary rounded text-global-font-on-dark font-bold">
+              {{countEx}}</div>
+          </li>
+          <!-- <li data-v-1a3d4c25="" class="tab main-filter-li relative mx-3.5 font-bold cursor-pointer"
+            (click)="setTab(1)"> Parlay <div data-v-1a3d4c25=""
+              class="count inline-block px-1.5 py-1 ml-0.5 text-10 bg-secondary rounded text-global-font-on-dark font-bold">
+              {{count}}</div>
+          </li> -->
+        </ul>
+        <div data-v-1a3d4c25="" class="tab-indicator absolute left-0 bottom-1.5 border-2 rounded-full"
+          [style.width.px]="indicatorWidth" [style.left.px]="indicatorLeft"></div>
+      </div>
+    </div>
+    <div data-v-1a3d4c25="" *ngIf="activeTab==0" class="mx-3px bg-white flex-1 flex flex-col overflow-hidden"
+      isshownewmybets="true" isshowdetail="false">
+      <div class="bg-black-200 flex justify-around px-4px py-5px text-13 font-medium space-x-8px">
+        <div (click)="matchtab('1')" class=" text-button-normal py-7px px-5px rounded-3px w-full text-center "
+          [style.color]="jsonWebdt?.imagesPlayNowTextColor"
+          [style.backgroundImage]="selectmatch === '1' ? jsonWebdt?.imagesBottomBorderColor : ''">Matched
+        </div>
+        <div (click)="matchtab('0')" class="py-7px px-5px rounded-3px w-full text-center"
+          [style.backgroundImage]="selectmatch === '0' ? jsonWebdt?.imagesBottomBorderColor : ''">Unmatched</div>
+      </div>
+      <div class="bg-black-100 px-2 py-7px flex justify-between flex-shrink-0">
+        <div
+          class="relative z-20 flex items-center px-6px py-2 w-114px bg-white text-11 rounded-6px shadow-all-button dpshow"
+          [ngClass]="competion?'rounded-b-none border-b-0':''"><i
+            class="icon-toggle flex items-center justify-center mr-1 rotate-90 text-11"></i>
+          <button (click)="onCompet()" class="select text-left w-full text-15"
+            [ngClass]="competion?'rounded-b-none border-b-0':''" value="options">
+            <div class="flex justify-start items-center">
+              <div class="w-full flex justify-start items-center"><span
+                  class="text-11 whitespace-nowrap">{{changestabs}}</span></div><i
+                class="icon-triangle transform text-8 scale-75 transition-transform origin-center duration-300 mx-0.5 "
+                [ngClass]="competion?'transform rotate-180':''"></i>
+            </div>
+          </button>
+          <div class="drop-down w-full left-0 text-15 absolute top-8 -mt-1 z-10 dropdown-toggle" *ngIf="competion">
+            <div class="options bg-white flex flex-col rounded-6px rounded-t-none whitespace-nowrap shadow-all-button">
+              <p class="item flex items-center py-2 px-6 cursor-pointer" *ngIf="changestabs !== 'by Competition'"
+                value="1" (click)="tabsActive('by Event')"><span class="item-text relative text-11">by Event
+                </span></p>
+              <p class="item flex items-center py-2 px-6 cursor-pointer" value="2" *ngIf="changestabs !== 'by Time'"
+                (click)="tabsActive('by Time')"><span class="item-text relative text-11">by Time </span></p>
+              <!-- <p class="item flex items-center py-2 px-6 cursor-pointer" value="3" *ngIf="changestabs !== 'by Matched'"
+                (click)="tabsActive('by Matched')"><span class="item-text relative text-11">by Matched </span></p> -->
+            </div>
+          </div>
+        </div>
+        <div
+          class="sort-Filter inline-flex items-center justify-center bg-white text-11 cursor-pointer shadow-all-button p-2 h-26px rounded-6px text-submenu">
+          <span class="mr-1">ALL</span><i
+            class="icon-arrow-double mt-px sm:mt-0 text-11 text-submenu scale-75 transition-transform origin-center duration-300 transform rotate-180"></i>
+        </div>
+      </div>
+      <div class="overflow-y-scroll" *ngIf="selectmatch === '1'">
+        <div class="mybet-content bg-secondary flex flex-col pb-0">
+          <section class="list-area rounded-b-none bg-white">
+            <div class="list-group border-b-black-300 border-b p-2" *ngFor="let liab of exchange ;let i =index">
+              <div class="list rounded flex items-center justify-center transition-all delay-200">
+                <!-- <div
+                  class="text-button-normal count h-5 w-6 flex justify-center items-center leading-6 text-10 mr-1.5 bg-button-normal rounded font-bold">
+                  {{i+1}}</div> -->
+                <div class="event-market-name flex-1 whitespace-pre-wrap leading-tight text-clip text-13"><span
+                    class="font-bold mr-1">{{liab.matchName}}</span>
+                  <div class="icon-triangle-black-300 inline-block align-baseline"></div><span
+                    class="ml-3px">{{liab.sourceName}}</span>
+                </div>
+                <div
+                  class="flex flex-grow-0 flex-shrink-0 items-center justify-center w-7 h-7 ml-1.5 rounded border border-black-300">
+                  <div (click)="openListInfo(liab)"
+                    class="icon-arrow-down text-12 text-global-font-on-light transform transition-transform origin-center"
+                    [ngClass]="liab?.id == betid && betListInfo?'rotate-180':'rotate90'">
+                  </div>
+                </div>
+              </div>
+              <div data-v-a95f7c03="" *ngIf="liab?.id == betid && betListInfo"
+                class="mybet-detail-content flex flex-col h-full bg-black-200 p-2 rounded-3px mt-2">
+                <div data-v-a95f7c03="" class="detail-list-area rounded-t-lg flex-1">
+                  <div data-v-a95f7c03="" class="list rounded mt-1 first:mt-0">
+                    <div data-v-a95f7c03="" class="list-content border border-black-300 bg-white rounded-4px"
+                      *ngFor="let liabdata of ActiveLiablist">
+                      <div data-v-a95f7c03=""
+                        class="row flex justify-between bg-black-100 rounded-t-4px text-13 min-h-40px items-center">
+                        <div data-v-a95f7c03="" class="flex items-center">
+                          <div data-v-a95f7c03="" *ngIf="liabdata.sourceBetType=='Fancy'"
+                            class="{{liabdata.isBack==true?'bg-back':'bg-lay'}}"
+                            class="bet-tag w-50px shrink-0 h-8 back relative inline-block leading-loose mr-2 font-bold text-center bg-back rounded-full ">
+                            {{liabdata.isBack==true?'Yes':'No'}}</div>
+                          <div data-v-a95f7c03="" *ngIf="liabdata.sourceBetType!='Fancy'"
+                            class="{{liabdata.isBack==true?'bg-back':'bg-lay'}}"
+                            class="bet-tag w-50px shrink-0 h-8 back relative inline-block leading-loose mr-2 font-bold text-center bg-back rounded-full ">
+                            {{liabdata.isBack==true?'Back':'Lay'}}</div>
+                          <span data-v-a95f7c03=""
+                            class="flex items-center text-13 font-bold min-h-28px leading-tight break-all">{{liabdata.sourceBetType!='Fancy' ? liabdata.selectionName : liabdata.sourceName}}</span>
+                        </div>
+                      </div>
+                      <div data-v-a95f7c03="" class="row second flex border-t border-b border-black-300"
+                        *ngIf="liabdata.sourceBetType!='Fancy'">
+                        <div data-v-a95f7c03="" class="item odds border-r border-black-300 p-2 flex-1">
+                          <div data-v-a95f7c03="" class="label text-10">Odds</div>
+                          <div data-v-a95f7c03="" class="content font-bold leading-tight">{{liabdata.odds+1 | number}}
+                          </div>
+                        </div>
+                        <div data-v-a95f7c03="" class="item stake border-r border-black-300 p-2 flex-1">
+                          <div data-v-a95f7c03="" class="label text-10">Stake (PBU)</div>
+                          <div data-v-a95f7c03="" class="content font-bold leading-tight">{{liabdata.stake}}</div>
+                        </div>
+                        <div data-v-a95f7c03="" class="item profit p-2 flex-1">
+                          <div data-v-a95f7c03="" class="label text-10">{{liabdata.isBack==true?'Profit':'Liability'}}
+                          </div>
+
+                          <div data-v-a95f7c03="" class="content font-bold leading-tight">
+                            <span data-v-a95f7c03="" class="text-success"
+                              *ngIf="liabdata.isBack==true">{{liabdata.pnl}}</span>
+                            <span data-v-a95f7c03="" class="text-error"
+                              *ngIf="liabdata.isBack==false">{{liabdata.liability}}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div data-v-a95f7c03="" class="row second flex border-t border-b border-black-300"
+                        *ngIf="liabdata.sourceBetType=='Fancy'">
+                        <div data-v-a95f7c03="" class="item odds border-r border-black-300 p-2 flex-1">
+                          <div data-v-a95f7c03="" class="label text-10">Runs/Odds</div>
+                          <div data-v-a95f7c03="" class="content font-bold leading-tight">{{liabdata.odds | number}}
+                            / {{liabdata.priceValue}}
+                          </div>
+                        </div>
+                        <div data-v-a95f7c03="" class="item stake border-r border-black-300 p-2 flex-1">
+                          <div data-v-a95f7c03="" class="label text-10">Stake (PBU)</div>
+                          <div data-v-a95f7c03="" class="content font-bold leading-tight">{{liabdata.stake}}</div>
+                        </div>
+                        <div data-v-a95f7c03="" class="item profit p-2 flex-1">
+                          <div data-v-a95f7c03="" class="label text-10">{{liabdata.isBack==true?'Profit':'Liability'}}
+                          </div>
+                          <div data-v-a95f7c03="" class="content font-bold leading-tight">
+                            <span data-v-a95f7c03="" class="text-success"
+                              *ngIf="liabdata.isBack==true">{{liabdata.pnl}}</span>
+                            <span data-v-a95f7c03="" class="text-error"
+                              *ngIf="liabdata.isBack==false">{{liabdata.liability}}</span>
+
+                          </div>
+                        </div>
+                      </div>
+                      <div data-v-a95f7c03="" class="row third">
+                        <div data-v-a95f7c03="" class="flex justify-between"><span data-v-a95f7c03="">Ref:
+                            {{liabdata?.id.slice(0-12)}}</span><span data-v-a95f7c03="">{{liabdata?.betDate}}
+                            {{liabdata?.betTime}}</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="exchange?.length===0" class="flex justify-center items-center py-48">
+              <div class="pt-6 px-7 pb-5 bg-white text-center text-black-700 text-base rounded-xl leading-tight">
+                <div alt="" class="icon-empty text-40 text-black-300 m-auto mb-2.5"></div>
+                <div>No Data</div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <!-- unmatched -->
+      <div class="overflow-y-scroll" *ngIf="selectmatch === '0'">
+        <div class="mybet-content bg-secondary flex flex-col pb-0">
+          <section class="list-area rounded-b-none bg-white">
+            <div class="list-group border-b-black-300 border-b p-2" *ngFor="let liab of exchange01 ;let i =index">
+              <div class="list rounded flex items-center justify-center transition-all delay-200">
+                <!-- <div
+                  class="text-button-normal count h-5 w-6 flex justify-center items-center leading-6 text-10 mr-1.5 bg-button-normal rounded font-bold">
+                  {{i+1}}</div> -->
+                <div class="event-market-name flex-1 whitespace-pre-wrap leading-tight text-clip text-13"><span
+                    class="font-bold mr-1">{{liab.matchName}}</span>
+                  <div class="icon-triangle-black-300 inline-block align-baseline"></div><span
+                    class="ml-3px">{{liab.sourceName}}</span>
+                </div>
+                <div
+                  class="flex flex-grow-0 flex-shrink-0 items-center justify-center w-7 h-7 ml-1.5 rounded border border-black-300">
+                  <div (click)="openListUnmatchedInfo(liab)"
+                    class="icon-arrow-down text-12 text-global-font-on-light transform transition-transform origin-center"
+                    [ngClass]="liab?.id == betid && betListInfo?'rotate-180':'rotate90'">
+                  </div>
+                </div>
+              </div>
+              <div data-v-a95f7c03="" *ngIf="liab?.id == betid && betListInfo"
+                class="mybet-detail-content flex flex-col h-full bg-black-200 p-2 rounded-3px mt-2">
+                <div data-v-a95f7c03="" class="detail-list-area rounded-t-lg flex-1">
+                  <div data-v-a95f7c03="" class="list rounded mt-1 first:mt-0">
+                    <div data-v-a95f7c03="" class="list-content border border-black-300 bg-white rounded-4px"
+                      *ngFor="let liabdata of ActiveLiablist">
+                      <div data-v-a95f7c03=""
+                        class="row flex justify-between bg-black-100 rounded-t-4px text-13 min-h-40px items-center">
+                        <div data-v-a95f7c03="" class="flex items-center">
+                          <div data-v-a95f7c03="" *ngIf="liabdata.sourceBetType=='Fancy'"
+                            class="{{liabdata.isBack==true?'bg-back':'bg-lay'}}"
+                            class="bet-tag w-50px shrink-0 h-8 back relative inline-block leading-loose mr-2 font-bold text-center bg-back rounded-full ">
+                            {{liabdata.isBack==true?'Yes':'No'}}</div>
+                          <div data-v-a95f7c03="" *ngIf="liabdata.sourceBetType!='Fancy'"
+                            class="{{liabdata.isBack==true?'bg-back':'bg-lay'}}"
+                            class="bet-tag w-50px shrink-0 h-8 back relative inline-block leading-loose mr-2 font-bold text-center bg-back rounded-full ">
+                            {{liabdata.isBack==true?'Back':'Lay'}}</div>
+                          <span data-v-a95f7c03=""
+                            class="flex items-center text-13 font-bold min-h-28px leading-tight break-all">{{selectedList.matchName}}</span>
+                        </div>
+                      </div>
+                      <div data-v-a95f7c03="" class="row second flex border-t border-b border-black-300"
+                        *ngIf="liabdata.sourceBetType!='Fancy'">
+                        <div data-v-a95f7c03="" class="item odds border-r border-black-300 p-2 flex-1">
+                          <div data-v-a95f7c03="" class="label text-10">Odds</div>
+                          <div data-v-a95f7c03="" class="content font-bold leading-tight">{{liabdata.odds+1 | number}}
+                          </div>
+                        </div>
+                        <div data-v-a95f7c03="" class="item stake border-r border-black-300 p-2 flex-1">
+                          <div data-v-a95f7c03="" class="label text-10">Stake (PBU)</div>
+                          <div data-v-a95f7c03="" class="content font-bold leading-tight">{{liabdata.stake}}</div>
+                        </div>
+                        <div data-v-a95f7c03="" class="item profit p-2 flex-1">
+                          <div data-v-a95f7c03="" class="label text-10">{{liabdata.isBack==true?'Profit':'Liability'}}
+                          </div>
+
+                          <div data-v-a95f7c03="" class="content font-bold leading-tight">
+                            <span data-v-a95f7c03="" class="text-success"
+                              *ngIf="liabdata.isBack==true">{{liabdata.pnl}}</span>
+                            <span data-v-a95f7c03="" class="text-error"
+                              *ngIf="liabdata.isBack==false">{{liabdata.liability}}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div data-v-a95f7c03="" class="row second flex border-t border-b border-black-300"
+                        *ngIf="liabdata.sourceBetType=='Fancy'">
+                        <div data-v-a95f7c03="" class="item odds border-r border-black-300 p-2 flex-1">
+                          <div data-v-a95f7c03="" class="label text-10">Odds</div>
+                          <div data-v-a95f7c03="" class="content font-bold leading-tight">{{liabdata.odds | number}}
+                            <br> {{liabdata.priceValue}}
+                          </div>
+                        </div>
+                        <div data-v-a95f7c03="" class="item stake border-r border-black-300 p-2 flex-1">
+                          <div data-v-a95f7c03="" class="label text-10">Stake (PBU)</div>
+                          <div data-v-a95f7c03="" class="content font-bold leading-tight">{{liabdata.stake}}</div>
+                        </div>
+                        <div data-v-a95f7c03="" class="item profit p-2 flex-1">
+                          <div data-v-a95f7c03="" class="label text-10">{{liabdata.isBack==true?'Profit':'Liability'}}
+                          </div>
+                          <div data-v-a95f7c03="" class="content font-bold leading-tight">
+                            <span data-v-a95f7c03="" class="text-success"
+                              *ngIf="liabdata.isBack==true">{{liabdata.pnl}}</span>
+                            <span data-v-a95f7c03="" class="text-error"
+                              *ngIf="liabdata.isBack==false">{{liabdata.liability}}</span>
+
+                          </div>
+                        </div>
+                      </div>
+                      <div data-v-a95f7c03="" class="row third">
+                        <div data-v-a95f7c03="" class="flex justify-between"><span data-v-a95f7c03="">Ref:
+                            {{liabdata?.id.slice(0-12)}}</span><span data-v-a95f7c03="">{{liabdata?.betDate}}
+                            {{liabdata?.betTime}}</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="exchange01?.length===0" class="flex justify-center items-center py-48">
+              <div class="pt-6 px-7 pb-5 bg-white text-center text-black-700 text-base rounded-xl leading-tight">
+                <div alt="" class="icon-empty text-40 text-black-300 m-auto mb-2.5"></div>
+                <div>No Data</div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="bg-black-100 p-14px mt-auto" style="display: none;"><button
+          class="btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed bg-error text-global-font-on-dark w-full rounded-4px"><i
+            class="icon-del text-14 mr-3px"></i> Cancel </button></div>
+    </div>
+    <!-- parlay -->
+    <ng-container *ngIf="activeTab==1">
+      <div id="parlaydesign" class="list-area bg-white p-1 pt-0 overflow-scroll mx-3px">
+        <div>
+          <div class="bg-black-200 flex justify-around px-4px py-5px text-13 font-medium space-x-8px">
+            <div (click)="matchtab1('1')" class=" text-button-normal py-7px px-5px rounded-3px w-full text-center "
+              [style.color]="jsonWebdt?.imagesPlayNowTextColor"
+              [style.backgroundImage]="selectmatch1 === '1' ? jsonWebdt?.imagesBottomBorderColor : ''">Matched
+            </div>
+            <div (click)="matchtab1('0')" class="py-7px px-5px rounded-3px w-full text-center"
+              [style.backgroundImage]="selectmatch1 === '0' ? jsonWebdt?.imagesBottomBorderColor : ''">Unmatched</div>
+          </div>
+          <div class="bg-black-100 px-2 py-7px flex justify-between flex-shrink-0 -mx-3px"><!---->
+            <div></div>
+            <div
+              class="sort-Filter inline-flex items-center justify-center bg-white text-11 cursor-pointer shadow-all-button p-2 h-26px rounded-6px text-submenu">
+              <span class="mr-1">ALL</span><i
+                class="icon-arrow-double mt-px sm:mt-0 text-11 text-submenu scale-75 transition-transform origin-center duration-300"></i>
+            </div>
+          </div>
+        </div>
+        <section *ngFor="let item of parlay ;let i =index">
+          <section class="bg-white first:mt-2 mb-2"><span
+              class="bg-black-300 flex items-center justify-center rounded-t-lg">
+              <div class="p-2 flex justify-between leading-tight text-12 w-full">
+                <span>Ref : {{item.parlayId}}</span>
+                <span>{{item.date}}</span>
+              </div>
+            </span>
+            <section class="divide-black-300 divide-y">
+              <div class="divide-black-300 divide-y border border-b-0 border-black-300">
+                <section class="divide-black-300 divide-x grid grid-cols-3">
+                  <div class="p-2 flex-1">
+                    <div class="text-10">Odds</div>
+                    <div class="leading-tight font-bold pt-0.5">{{item.totalOdds}}</div>
+                  </div>
+                  <div class="p-2 flex-1">
+                    <div class="text-10">Stake (PBU)</div>
+                    <div class="leading-tight font-bold pt-0.5">{{item.liability}}</div>
+                  </div>
+                  <div class="p-2 flex-1">
+                    <div class="text-10">Profit (PBU)</div>
+                    <div class="leading-tight font-bold pt-0.5">{{item.totalPnl}}</div>
+                  </div>
+                </section>
+                <section class="p-2 divide-black-300 divide-y text-10"><span>Will be <strong>keep</strong> at
+                    in-play</span>
+                </section>
+              </div>
+              <section *ngIf="openParlayBets==item.parlayId">
+                <article *ngFor="let pd of parlayActive">
+                  <ng-container *ngIf="pd.isDeleted == false && pd.isSuspended == false">
+                    <span class="flex justify-center items-center bg-black-300">
+                      <div class="p-2 leading-tight text-10 w-full">
+                        <span
+                          class="whitespace-pre-wrap">{{pd.sportId==4?'Cricket':pd.sportId==2?'Tennis':'Soccer'}}</span>
+                        <i class="icon-triangle-black-600 inline-block"></i>
+                        <span>
+                          <strong>{{pd.matchName}}</strong>
+                        </span>
+                        <i class="icon-triangle-black-600 inline-block"></i>
+                        <span>
+                          <strong>{{pd.selectionName}}</strong>
+                        </span>
+                        <i class="icon-triangle-black-600 inline-block"></i>
+                        <span>{{pd.sourceName}}</span>
+                      </div>
+                    </span>
+                    <section class="p-2 flex justify-between items-center bg-black-100">
+                      <div class="flex justify-center items-center">
+                        <div *ngIf="pd.isActive==false && pd.parlayIswin==true"
+                          class="shrink-0 w-50px h-8 flex mr-2 font-bold justify-center items-center content-between rounded-full text-13 bg-success text-white">
+                          <div class="bold text-13">Win</div>
+                        </div>
+                        <div *ngIf="pd.isActive==false && pd.parlayIswin==false"
+                          class="shrink-0 w-50px h-8 flex mr-2 font-bold justify-center items-center content-between rounded-full text-13 bg-error text-white">
+                          <div class="bold text-13">Loss</div>
+                        </div>
+                        <div *ngIf="pd.isActive==true"
+                          class="shrink-0 w-50px h-8 flex mr-2 font-bold justify-center items-center content-between bg-black-300 rounded-full text-13"
+                          style="margin-right: 10px;">
+                          <div class="dot w-4px mr-1 h-4px bg-black-600 rounded-full"></div>
+                          <div class="dot w-4px mr-1 h-4px bg-black-600 rounded-full"></div>
+                          <div class="dot w-4px h-4px bg-black-600 rounded-full"></div>
+                        </div>
+                        <div class="bg-black-300 text-black text-15 px-3 py-2 rounded-md font-bold">{{pd.odds}}</div>
+                      </div>
+                    </section>
+                  </ng-container>
+                </article>
+              </section>
+            </section>
+            <footer>
+              <div style="background:#000 !important"
+                class="bg-black-300 bg-black-400 duration-500 rounded-b-lg transition-colors h-2"></div>
+              <div style="background:#000 !important;height:1.3rem;align-items:center;"
+                class="bg-black-300 bg-black-400 duration-500 rounded-b-lg transition-colors flex h-4 justify-center mx-auto w-90px"
+                (click)="getParlayById(item.parlayId)">
+                <span class="-top-1 duration-300 origin-center relative text-black transition-transform"
+                  style="font-family:inherit !important;color:#fff !important;font-weight:600">{{openParlayBets==item.parlayId?'Hide':'Show'}}
+                  Bets</span>
+              </div>
+            </footer>
+
+          </section>
+        </section>
+        <div *ngIf="parlay?.length===0" class="flex justify-center items-center py-48">
+          <div class="bg-white leading-tight pb-5 pt-6 px-7 rounded-xl text-base text-black-700 text-center">
+            <div class="icon-empty m-auto mb-2.5 text-40 text-black-300" alt=""></div>
+            <div>No Data</div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

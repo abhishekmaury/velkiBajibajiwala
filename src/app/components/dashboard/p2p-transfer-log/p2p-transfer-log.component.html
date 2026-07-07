@@ -1,0 +1,43 @@
+<main class="min-h-full-with-header">
+  <div data-v-f43ca18c="" class="pb-20 relative">
+    <div data-v-6266c5cb="">
+      <header data-v-6266c5cb=""
+        class="h-12 p-3 bg-secondary text-global-font-on-dark text-14 flex items-center justify-center">P2P Transfer Log
+        <div class="icon-close text-16 absolute right-4" routerLink="/home"></div>
+      </header>
+      <div data-v-6266c5cb="" class="p-4">
+        <div *ngFor="let data of data" data-v-6266c5cb="" class="mb-2">
+          <div data-v-6266c5cb="" class="p-2 text-12 text-global-font-on-light rounded-t-lg flex justify-between" [class]="data.isCredit?'success-header':'bg-lay-100'">
+            <span data-v-6266c5cb="">Ref: {{data?.reference}}</span><span data-v-6266c5cb="">{{data?.dateTime}}</span></div>
+          <div data-v-6266c5cb="" class="row second flex bg-white border-b border-black-300">
+            <div data-v-6266c5cb="" class="item odds-req border-r border-black-300 p-2 flex-1">
+              <div data-v-6266c5cb="" class="label text-10 leading-tight">Deposit</div>
+              <div *ngIf="data.isCredit" data-v-6266c5cb="" class="content font-bold leading-tight pt-0.5">{{data?.amount}}</div>
+            </div>
+            <div data-v-6266c5cb="" class="item matched-amount p-2 flex-1 leading-snug">
+              <div data-v-6266c5cb="" class="label text-10 leading-tight">Withdrawal</div>
+              <div *ngIf="!data.isCredit" data-v-6266c5cb="" class="content font-bold leading-tight pt-0.5 text-error">({{data?.amount}})</div>
+            </div>
+          </div>
+          <div data-v-6266c5cb="" class="p-2 flex justify-start items-center bg-white border-b border-black-300"><span
+              data-v-6266c5cb="" class="mr-4 w-1/5 text-12 text-global-font-on-light">Balance</span><span data-v-6266c5cb=""
+              class="w-auto text-12 text-black-600">{{data?.balance}}</span></div>
+          <div data-v-6266c5cb="" class="p-2 flex justify-start items-center bg-white border-b border-black-300"><span
+              data-v-6266c5cb="" class="mr-4 w-1/5 text-12 text-global-font-on-light">Remark</span><span data-v-6266c5cb=""
+              class="w-auto text-12 text-black-600">{{data?.remark}}</span></div>
+          <div data-v-6266c5cb="" class="p-2 flex justify-start items-center bg-white rounded-b-lg"><span data-v-6266c5cb=""
+              class="mr-4 w-1/5 text-12 text-global-font-on-light">IP</span><span data-v-6266c5cb=""
+              class="w-auto text-12 text-black-600">{{data?.ipAddress}}</span></div>
+        </div>
+      </div>
+      <div *ngIf="data?.length ===0"  data-v-6266c5cb="" class="p-4">
+        <div data-v-6266c5cb="" class="flex justify-center items-center py-48">
+          <div class="pt-6 px-7 pb-5 bg-white text-center text-black-700 text-base rounded-xl leading-tight">
+            <div alt="" class="icon-empty text-40 text-black-300 m-auto mb-2.5"></div>
+            <div>No Data</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,77 @@
+<!-- <div data-v-e953cec4="" class="fixed left-0 bottom-0 w-full z-20"
+  style="--30361704: translateX(83px); --64e45968: 60px;">
+  <div data-v-e953cec4=""
+    class="relative container mx-auto h-60px flex items-center justify-around bg-white border-t border-black-300">
+    <div data-v-e953cec4="" routerLink="/home" routerLinkActive="active" #home="routerLinkActive" [ngStyle]="getLinkStyles(home.isActive)"
+      class="relative z-10 flex flex-col justify-center items-center cursor-pointer rounded-lg w-60px"
+       ><i data-v-e953cec4=""
+        class="text-20 relative flex items-center justify-center pb-1 pt-6px icon-home "></i>
+      <p data-v-e953cec4="" class="pb-2 text-11 ">Home</p>
+    </div>
+    <div data-v-e953cec4=""
+      class="relative z-10 flex flex-col justify-center items-center cursor-pointer rounded-lg w-60px" [ngStyle]="activeTab('casino')"
+        routerLink="/casino/POPULAR/ALL"><i data-v-e953cec4=""
+        class="text-20 relative flex items-center justify-center pb-1 pt-6px icon-poker "></i>
+      <p data-v-e953cec4="" class="pb-2 text-11 ">Casino</p>
+    </div>
+    <div data-v-e953cec4="" routerLink="/sports/Inplay/5" #sports="routerLinkActive"  [ngStyle]="activeTab('sports')"
+      class="relative z-10 flex flex-col justify-center items-center cursor-pointer rounded-lg w-60px"
+        routerLinkActive="active"><i data-v-e953cec4=""
+        class="text-20 relative flex items-center justify-center pb-1 pt-6px icon-sport "></i>
+      <p data-v-e953cec4="" class="pb-2 text-11 ">Sports</p>
+    </div>
+    <div data-v-e953cec4="" #league="routerLinkActive" [ngStyle]="getLinkStyles(league.isActive)"
+      class="relative z-10 flex flex-col justify-center items-center cursor-pointer rounded-lg w-60px"
+      data-is-leagues="true"  routerLink="/league" routerLinkActive="active"><i data-v-e953cec4=""
+        class="text-20 relative flex items-center justify-center pb-1 pt-6px icon-trophy" ></i>
+      <p data-v-e953cec4="" class="pb-2 text-11 ">Leagues</p>
+    </div>
+    <div data-v-e953cec4="" (click)="openPopup()"
+      class="relative z-10 flex flex-col justify-center items-center cursor-pointer rounded-lg w-60px"
+       ><i data-v-e953cec4=""
+        class="text-20 relative flex items-center justify-center pb-1 pt-6px icon-list text-black-900">
+        <span *ngIf="countData > 0" data-v-e953cec4="" class="badge absolute top-0 right-0 bg-error text-white rounded-full text-9 h-3.5 p-0.5 flex justify-center items-center font-bold">{{countData}}</span>
+      </i>
+      <p data-v-e953cec4="" class="pb-2 text-11 text-black-900">My Bets</p>
+    </div>
+    <div data-v-e953cec4="" class="tab-indicator absolute left-0 top-6px z-0 rounded-lg bg-primary"></div>
+  </div>
+</div> -->
+
+
+<div data-v-649ce69d="" class="fixed left-0 bottom-0 w-full z-30"
+  [ngStyle]="{'--54b41d2b': indicatorWidth + 'px','--3f1e2085': 'translateX(' + indicatorOffset + 'px)'}">
+  <div data-v-649ce69d=""
+    class="relative container mx-auto h-60px flex items-center justify-around bg-white border-t border-black-300">
+    <div data-v-649ce69d="" routerLink="/home" 
+      class="relative z-10 flex flex-col justify-center items-center cursor-pointer rounded-lg w-60px main-con">
+      <i data-v-649ce69d="" class="text-20 relative flex items-center justify-center pb-1 pt-6px icon-home"></i>
+      <p data-v-649ce69d="" class="pb-2 text-11">Home</p>
+    </div>
+    <div data-v-649ce69d="" (click)="setActiveTab(1)"
+      class="relative z-10 flex flex-col justify-center items-center cursor-pointer rounded-lg w-60px main-con">
+      <i data-v-649ce69d="" class="text-20 relative flex items-center justify-center pb-1 pt-6px icon-poker"></i>
+      <p data-v-649ce69d="" class="pb-2 text-11">Casino</p>
+    </div>
+    <div data-v-649ce69d="" (click)="setActiveTab(2)"
+      class="relative z-10 flex flex-col justify-center items-center cursor-pointer rounded-lg w-60px main-con">
+      <i data-v-649ce69d="" class="text-20 relative flex items-center justify-center pb-1 pt-6px icon-sport"></i>
+      <p data-v-649ce69d="" class="pb-2 text-11 ">Sports</p>
+    </div>
+    <div data-v-649ce69d="" (click)="setActiveTab(3)"
+      class="relative z-10 flex flex-col justify-center items-center cursor-pointer rounded-lg w-60px main-con"
+      data-is-leagues="true"><i data-v-649ce69d=""
+        class="text-20 relative flex items-center justify-center pb-1 pt-6px icon-trophy"></i>
+      <p data-v-649ce69d="" class="pb-2 text-11 ">Leagues</p>
+    </div>
+    <div data-v-649ce69d="" (click)="openPopup()"
+      class="relative z-10 flex flex-col justify-center items-center cursor-pointer rounded-lg w-60px main-con">
+      <i data-v-649ce69d="" class="text-20 relative flex items-center justify-center pb-1 pt-6px icon-list"></i>
+      <p data-v-649ce69d="" class="pb-2 text-11">My Bets</p>
+    </div>
+    <div data-v-649ce69d="" class="tab-indicator absolute left-0 top-6px z-0 rounded-lg bg-primary" [ngStyle]="{
+        width: indicatorWidth + 'px',
+        transform: 'translateX(' + indicatorOffset + 'px)'
+      }"></div>
+  </div>
+</div>

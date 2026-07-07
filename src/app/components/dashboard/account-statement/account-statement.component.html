@@ -1,0 +1,109 @@
+<main class="min-h-full-with-header">
+  <div class="pb-20 relative">
+    <div class="mb-20">
+      <header class="h-12 p-3 bg-secondary text-global-font-on-dark text-14 flex items-center justify-center">
+        <span>Account Statement</span>
+        <button class="icon-close text-16 absolute right-4" routerLink="/home">
+
+        </button>
+      </header>
+      <div class="overflow-x-auto pb-4 mb-6 text-white w-full" *ngIf="accountStmt?.data?.length > 0">
+        <table class="w-full border-collapse border border-gray-700 divide-y divide-gray-700 table-auto">
+          <thead class="bg-primary w-full" [style.backgroundImage]="jsonWebdt?.imagesBottomBorderColor">
+            <tr class="text-white">
+              <th scope="col" [style.color]="jsonWebdt?.imagesPlayNowTextColor" class="w-full border-gray-700 px-2 py-1 text-left text-xs uppercase tracking-wider">
+                Date/Time
+              </th>
+              <th scope="col" [style.color]="jsonWebdt?.imagesPlayNowTextColor"
+                class="border-gray-700 px-2 py-1 text-right text-xs uppercase tracking-wider w-full whitespace-nowrap">
+                Deposit
+              </th>
+              <th scope="col" [style.color]="jsonWebdt?.imagesPlayNowTextColor"
+                class="border-gray-700 px-2 py-1 text-right text-xs uppercase tracking-wider w-full whitespace-nowrap">
+                Withdraw
+              </th>
+              <th scope="col" [style.color]="jsonWebdt?.imagesPlayNowTextColor"
+                class="border-gray-700 px-2 py-1 text-left text-xs uppercase tracking-wider w-full whitespace-nowrap">
+                Balance
+              </th>
+              <th scope="col" [style.color]="jsonWebdt?.imagesPlayNowTextColor"
+                class="border-gray-700 px-2 py-1 text-left text-xs uppercase tracking-wider w-full whitespace-nowrap">
+                Remark
+              </th>
+              <th scope="col" [style.color]="jsonWebdt?.imagesPlayNowTextColor"
+                class="border-gray-700 px-2 py-1 text-left text-xs uppercase tracking-wider w-full whitespace-nowrap">
+                From/To
+              </th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-700 bg-white w-full" id="statements">
+            <tr class="hover:bg-slate-200" *ngFor="let data of accountStmt?.data">
+              <td class="border border-gray-700 px-2 py-1 text-xs text-black whitespace-nowrap">
+                {{ data.createdOn | date:'dd-MM-yyyy hh:mm:ss a' }}
+              </td>
+              <td class="border border-gray-700 px-2 py-1 text-xs text-right text-green-400 whitespace-nowrap">
+                {{ data.crdr ? (data.chips | number : '.2-2') : '-' }}
+              </td>
+              <td class="border border-gray-700 px-2 py-1 text-xs text-right text-red-400 whitespace-nowrap">
+                {{ data.crdr ? '-' : (data.chips | number : '.2-2') }}
+              </td>
+              <td class="border border-gray-700 px-2 py-1 text-xs text-black whitespace-nowrap">
+                {{ data.userbalance | number :'1.0-2' }}
+              </td>
+              <td *ngIf="data.type=='Deposit' || data.type=='Withdraw'" class="border border-gray-700 px-2 py-1 text-xs text-black whitespace-nowrap">
+                --
+              </td>
+              <td  *ngIf="data.type!=='Deposit' && data.type!=='Withdraw'" class="border border-gray-700 px-2 py-1 text-xs text-black whitespace-nowrap">
+                {{ data.narration }}
+              </td>
+              <td class="border border-gray-700 px-2 py-1 text-xs text-black whitespace-nowrap">
+                <span id="from">{{ data.fromUser }}</span>
+                <i class="icon-triangle-black-600 inline-block align-baseline "></i>
+                <span id="to">{{ data.toUser }}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="flex justify-center mt-4" *ngIf="accountStmt?.data?.length > 0">
+        <ul id="pageNumberContent" class="flex items-center space-x-2">
+
+          <li id="prev">
+            <a class="px-3 py-1 border rounded-md text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300 transition
+                     cursor-pointer" [class.cursor-not-allowed]="pages[0] === 1" [class.opacity-50]="pages[0] === 1"
+              (click)="removeLastPage()">
+              Prev
+            </a>
+          </li>
+
+          <li id="pageNumber" *ngFor="let page of pages">
+            <a class="px-3 py-1 border rounded-md text-sm hover:text-gray-700 hover:border-gray-300 transition cursor-pointer"
+              [class.bg-blue-500]="currentPage === page" [class.text-white]="currentPage === page"
+              [class.text-gray-700]="currentPage !== page" [class.border-blue-500]="currentPage === page"
+              [class.cursor-default]="currentPage === page" (click)="onPageClick(page)">
+              {{ page }}
+            </a>
+          </li>
+
+          <li id="next">
+            <a class="px-3 py-1 border rounded-md text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300 transition
+                     cursor-pointer" [class.cursor-not-allowed]="currentPage === totalPages"
+              [class.opacity-50]="currentPage === totalPages" (click)="addNextPage()">
+              Next
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div data-v-f00b9242="" *ngIf="accountStmt?.data?.length === 0"  class="flex justify-center items-center py-48">
+        <div class="pt-6 px-7 pb-5 bg-white text-center text-black-700 text-base rounded-xl leading-tight">
+          <div alt="" class="icon-empty text-40 text-black-300 m-auto mb-2.5"></div>
+          <div>No Data</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+<div *ngIf="loading">
+  <app-loader></app-loader>
+</div>

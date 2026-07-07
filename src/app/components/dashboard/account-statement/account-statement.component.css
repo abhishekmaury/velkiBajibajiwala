@@ -1,0 +1,10 @@
+.text-green-400 {
+  --tw-text-opacity: 1;
+  color: rgb(0 132 48);
+  font-weight: 600;
+}
+.text-red-400 {
+  --tw-text-opacity: 1;
+  color: rgb(222 17 17);
+  font-weight: 600;
+}

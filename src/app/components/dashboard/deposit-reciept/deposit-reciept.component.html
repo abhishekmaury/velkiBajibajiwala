@@ -1,0 +1,120 @@
+<div class="third-party-box third-party-mort-cont" *ngIf="!showSucPopup">
+  <div class="third-party-title ng-star-inserted">
+    <h3 id="paymentMethod">Cash Out Payment - <span style="color: blue;">{{depositdata?.method}}</span></h3>
+  </div>
+  <div class="third-party-bar ng-star-inserted">
+    <p class="number">Transaction ID: <span id="ownTransId">{{depositdata?.transactionId}}</span></p>
+    <p class="times">Transaction Create Time: <span id="transactionCreatedOn">{{depositdata?.createdOn}}
+        (GMT+5.5)</span></p>
+  </div>
+  <div id="ten-countdown" class="ng-star-inserted"></div>
+  <div class="third-party-main ng-star-inserted">
+    <div class="tips-group">
+      <ul>
+        <li class="dp1ss">Please ensure that both the amount should be same which you had
+          submitted before this form and the amount you had transferred.</li>
+        <li class="dp1ss">Please use phone number registered with company for cash out,
+          deposits with 3rd party phone numbers are restricted</li>
+        <li class="dp1ss ng-star-inserted">If you are depositing in rocket payment method
+          then make sure to type the extra number also , which is provided by rocket company without extra number your
+          transaction will not be complete - for example your mobile number is 01787250515 and rocket company provide
+          you an extra number 7 for the transactions then you have to type 017872505157 like this</li>
+      </ul>
+    </div>
+    <h2>Please <span id="modeName">Cash Out</span> to the
+      account below within <span id="timer">{{ minutes < 10 ? '0' + minutes : minutes }} : {{ seconds < 10 ? '0' +
+          seconds : seconds }}</span> minutes after submitting the
+          deposit form. </h2>
+    <div id="depositEntryDiv" class="third-party-content third-party-account-content"><img loading="lazy"
+        src="/assets/images/walletNumber.png?v=1.01"><img loading="lazy" id="transQrCode"
+        style="margin-bottom: 0; display: none;">
+      <div class="pay-wrap">
+        <div class="pay-inner">
+          <div class="pay-block">
+            <div class="text">
+              <div class="pay-account" style="display: block;">
+                <h4 style="line-height: 0.7; margin-bottom: 10px;"><span
+                    id="walletNumbet">{{hindNumber(depositdata?.address)}}</span></h4>
+                <button class="button-icon-copy" (click)="copyToClipboard(depositdata?.address)"><i class="fa fa-clone"
+                    style="margin-right: 3px;"></i> Copy</button>
+              </div>
+              <p class="pay-info" style="width: 100%; place-content: center;"> Amount :
+                <span id="selectedAmount">{{depositdata?.amount}}</span>
+              </p><button class="button-icon-copy" (click)="copyToClipboard(depositdata?.amount)"><i class="fa fa-clone"
+                  style="margin-right: 3px;"></i> Copy</button>
+              <div id="qrCodeContainer" class="qrcode" style="display: none;"></div>
+            </div>
+            <div class="receipt-wrap">
+              <form [formGroup]="recForm" (ngSubmit)="updateUserTransDetail($event)"
+                class="ng-untouched ng-pristine ng-invalid">
+                <div class="receipt-inner">
+                  <div class="bank-acc-wrap">
+                    <h3>Phone Number</h3><input type="tel" placeholder="Please input Number"
+                      [attr.minlength]="depositdata?.method === 'Rocket' ? 11 : 11"
+                      [attr.maxlength]="depositdata?.method === 'Rocket' ? 12 : 11" formControlName="userNumber"
+                      (paste)="getMobileNo($event)" (focus)="getMobileNo($event)" (keypress)="getMobileNo($event)"
+                      (input)="getMobileNo($event)" (keyup)="getMobileNo($event)" style="text-transform: uppercase;"
+                      appOnlyDigits class="ng-untouched ng-pristine ng-invalid">
+                  </div>
+                  <div class="reference-wrap">
+                    <h3>Transaction ID</h3><input type="text" placeholder="Please input data" id="value"
+                      (keyup)="getReferenceNo($event)" [(ngModel)]="inputValue" (keydown)="preventSpace($event)"
+                      (input)="trimInput()" aria-required="true" style="text-transform: uppercase;"
+                      class="ng-untouched ng-pristine ng-invalid" formControlName="userTransId" maxlength="25">
+
+                    <span *ngIf="transId?.errors?.['pattern']" id="transError"
+                      style="color:red; font-size: 0.8rem;">Special
+                      characters are not allowed</span>
+
+                  </div>
+                  <div class="upload-wrap">
+                    <div class="title">
+                      <h3 style="margin-right: 10px;">{{'Upload Receipt' }}</h3>
+                    </div>
+                    <input id="uploadImages" name="uploadImages" type="file" (change)="uploadeImg($event)"
+                      accept="image/*" multiple="">
+                    <p class="rec-txt">Receipt Is Not Mandatory</p>
+
+                  </div>
+                </div><span style="color: red;">{{errMsg}}</span>
+                <button type="submit" class="submit-btn">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="third-party-main" *ngIf="showSucPopup">
+  <div class="third-party-content third-party-account-content">
+    <img src="/assets/images/walletNumber.png">
+    <div class="pay-wrap">
+      <div class="pay-inner panding" style="width: 200%;">
+        <div class="pay-block"></div>
+        <div id="resultBlock" class="pay-panding pay-approved">
+          <div class="text">
+            <h4 id="sownNumber">{{depositdata?.address}}</h4>
+            <p class="pay-info">{{'AMOUNT' }} :
+              <span id="sselectedAmount">{{depositdata?.amount}}</span>
+            </p>
+          </div>
+          <div class="status-wrap">
+            <p>{{'Thank you, your deposit request has been successfully submitted.' }}</p>
+            <p>{{'Your account balance will be updated once your request is approved.' }}</p>
+            <div class="status" style="color: #555;">{{'TRANSACTIONID' }} : <span
+                id="sownTransId">{{depositdata?.transactionId}}</span></div>
+            <!-- <p>{{'CLOSEWINDOW' }}</p> -->
+            <button class="return-btn" (click)="closeWindow();">{{'CLOSE' }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isCopied" class="copy-popup">
+  <span>Copied to Clipboard!</span>
+</div>

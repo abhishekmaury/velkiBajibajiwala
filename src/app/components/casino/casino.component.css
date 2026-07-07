@@ -1,0 +1,208 @@
+.casino-category {
+  background-image: url(/assets/images/casino/nav_bg.png);
+  background-size: contain;
+}
+
+.casino-category .swiper {
+  height: 5.142857142857143rem;
+  overflow: visible;
+}
+
+.casino-category .slide img {
+  width: 100%;
+}
+
+.casino-category .swiper-pagination {
+  bottom: -1rem;
+  position: absolute;
+}
+
+::ng-deep .casino-category .swiper-pagination-bullet {
+  height: 0.42857142857142855rem;
+  width: 0.42857142857142855rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(148 111 59 / var(--tw-bg-opacity));
+  opacity: 1;
+  transition-duration: 0.3s;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::ng-deep
+  .casino-category
+  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  border-radius: 0.25rem;
+  width: 1.4285714285714286rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(204 179 134 / var(--tw-bg-opacity));
+}
+
+.casino-category .swiper-slide {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
+.tab-indicator[data-v-66efd84f] {
+  border: 0;
+  height: 1.7142857143rem;
+  transform: var(--2a4c9e82) var(--3f66d81c);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  width: var(--2b44150e);
+}
+
+.tab-indicator[data-v-f05ec365] {
+  border: 0;
+  height: 1.4285714286rem;
+  transform: var(--f7291840);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  width: var(--aa9e4620);
+}
+
+.table-tag[data-v-895b58e3]:before {
+  background-image: url(/assets/images/casino/tag-bg.svg);
+  background-repeat: no-repeat;
+  content: "";
+  height: 22px;
+  position: absolute;
+  width: 53px;
+}
+
+.table-tag-text[data-v-895b58e3] {
+  align-items: center;
+  display: flex;
+  font-size: 8px;
+  height: 18px;
+  justify-content: center;
+  position: absolute;
+  text-shadow: 1px 1px 0 rgba(255, 230, 183, 0.42),
+    -1px -1px 0 rgba(255, 230, 183, 0.42), 1px -1px 0 rgba(255, 230, 183, 0.42),
+    -1px 1px 0 rgba(255, 230, 183, 0.42);
+  top: 9.55px;
+  width: 42px;
+}
+
+/* .text-market-name {
+  color: #fff;
+} */
+.divide-x > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-x-reverse: 0;
+  border-left-width: calc(1px * (1 - var(--tw-divide-x-reverse)));
+  border-right-width: calc(1px * var(--tw-divide-x-reverse));
+}
+
+.divide-y > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-y-reverse: 0;
+  border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
+  border-top-width: calc(1px * (1 - var(--tw-divide-y-reverse)));
+}
+
+.divide-black > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-opacity: 1;
+  border-color: rgb(30 30 30 / var(--tw-divide-opacity));
+}
+
+.divide-black-100 > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-opacity: 1;
+  border-color: rgb(238 246 251 / var(--tw-divide-opacity));
+}
+
+.divide-black-300 > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-opacity: 1;
+  border-color: rgb(212 224 229 / var(--tw-divide-opacity));
+}
+
+.divide-black-400 > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-opacity: 1;
+  border-color: rgb(156 177 189 / var(--tw-divide-opacity));
+}
+
+.divide-white > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-divide-opacity));
+}
+
+.divide-opacity-30 > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-opacity: 0.3;
+}
+.textbg {
+  background-color: #17934e;
+  border-radius: 10px;
+}
+.text-width {
+  width: 150px;
+}
+
+.sport-type-filter-ul {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+}
+.showMsg {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  z-index: 999999;
+  background-color: #c5aa77;
+  padding: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+.showMsg h4 {
+  padding: 14px;
+  text-align: center;
+}
+.red {
+  color: red;
+}
+.green {
+  color: green;
+}
+.z-50{
+  z-index: 9999;
+}
+.bottomborder{
+   border-bottom: 1px solid #d1d5db;
+}
+span.highlight {
+  color: yellow !important; /* or any color */
+}
+
+.text-black {
+    --tw-text-opacity: 1;
+    color: rgb(30 30 30 / var(--tw-text-opacity));
+}
+
+/* Active tab scale + bounce */
+.textbg {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease;
+  transform: scale(1.05);
+}
+
+/* Optional: inner text color transition */
+.textbg span span {
+  transition: color 0.3s ease;
+}
+
+/* Bounce keyframes (for quick pop effect) */
+@keyframes bounceActive {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1.05); }
+}
+
+.textbg {
+  animation: bounceActive 0.3s ease;
+}
+
+#casino-SPRIBE:active {
+  transform: translateY(-4px);
+  transition: transform 0.2s ease-out;
+}
+

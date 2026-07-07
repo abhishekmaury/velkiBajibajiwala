@@ -1,0 +1,22 @@
+.member-error {
+  padding: 0;
+  margin: 6px 0 0 !important;
+  color: #fd1f4c;
+  background: none;
+  font-size: small;
+}
+
+.bg-checkbox-checked {
+  background-color: #ffc800;
+}
+
+.text-checkbox-icon {
+  color: #1b1f23;
+}
+/* .login-wrapper{
+  scrollbar-width: none;
+} */
+input.has-error {
+ border-color: #e20000;
+    border-width: 1px;
+}

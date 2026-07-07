@@ -1,0 +1,24 @@
+.event-type-tab[data-v-e32ac025] {
+  transition-duration: .5s
+}
+
+.event-type-tab.active[data-v-e32ac025] {
+  border-radius: 50px
+}
+
+.event-type-tab.active[data-v-e32ac025]:hover {
+  opacity: 1
+}
+
+.event-type-tab[data-v-e32ac025]:hover {
+  opacity: .5;
+  transition-duration: .5s
+}
+.sport-type-filter-ul li{
+  cursor: pointer;
+}
+
+.time-block[data-is-tomorrow-type=true][data-v-ef8204d4] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 234 239 / var(--tw-bg-opacity));
+}

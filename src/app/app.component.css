@@ -1,0 +1,170 @@
+@media (max-width:768px) {
+  #desktop-bg-logo {
+    display: none;
+  }
+
+}
+
+
+.fixed_gif {
+  position: fixed;
+  z-index: 2;
+  bottom: 43px;
+  left: 5px;
+  z-index: 99;
+}
+
+.fixed_gif .close-gif {
+  position: absolute;
+  right: -5px;
+  cursor: pointer;
+  background: #fff;
+  font-size: 26px;
+  color: #000;
+  font-weight: 600;
+  z-index: 9999;
+  width: 23px;
+  align-items: center;
+  height: 23px;
+  display: flex;
+  justify-content: center;
+  border-radius: 59%;
+  top: -7px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+@media (max-width: 768px) {
+  .gif-img {
+    width: 70px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .movable-element {
+    display: none;
+  }
+
+  /* .git_model {
+    display: none;
+  } */
+
+}
+
+.movable-element {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  width: 100px;
+  height: 70px;
+  z-index: 1000;
+  touch-action: none;
+  /* Prevent default touch action */
+}
+
+.stickyLeftContainer[data-v-63c2856d] {
+  bottom: 0%;
+  position: fixed;
+  padding-left: 6px;
+  transition: bottom .3s, right .3s
+}
+
+.stickyLeftContainer1[data-v-63c2856d] {
+  bottom: 13%;
+  position: fixed;
+  padding-left: 6px;
+  transition: bottom .3s, right .3s
+}
+
+body.is-desktop .stickyLeftContainer[data-v-63c2856d] {
+  left: auto;
+  margin-left: .5rem
+}
+
+.badge[data-v-270f6def] {
+  min-height: 1.0714285714rem;
+  min-width: 1.0714285714rem;
+  transform: translate(-35%, 40%)
+}
+
+.fixed_gif1 {
+  position: fixed;
+  bottom: 2px;
+  right: 11px;
+  z-index: 99;
+}
+
+.gif-img1 {
+  width: 55px !important;
+}
+
+@media (min-width:768px) {
+
+  .stickyLeftContainer1[data-v-63c2856d] {
+    padding-left: 0px;
+    transition: bottom .3s, right .3s;
+    height: auto;
+    margin-right: 0;
+    position: fixed;
+    bottom: 0;
+    transform-origin: 100% 0;
+    z-index: 30;
+  }
+
+  .stickyLeftContainer[data-v-63c2856d] {
+    padding-left: 0px;
+  }
+
+  .fixed_gif1 {
+    position: fixed;
+    bottom: 2px;
+    /* right: 11px; */
+    right: calc((100vw - 480px) / 2 + 27px);
+    z-index: 99;
+  }
+}
+
+.whatsappIcon {
+  position: fixed;
+  bottom: 90px;
+  /* left: 7px; */
+  z-index: 99999;
+  right: 22px;
+}
+
+@media (min-width:768px) {
+  .stickyLeftContainer {
+    left: calc((100vw - 1200px) / 2 + 370px);
+  }
+}
+
+.intercom-lightweight-app,
+.intercom-launcher,
+.intercom-launcher-frame,
+.intercom-messenger-frame,
+iframe[name="intercom-launcher-frame"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.intercom-launcher,
+iframe[name="intercom-launcher-frame"] {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .custom-fab {
+    bottom: 5px;
+    right: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  .custom-fab {
+    position: fixed;
+    bottom: 5px !important;
+    right: calc((100vw - 480px) / 2 + 27px) !important;
+    z-index: 2147483003;
+  }
+}
