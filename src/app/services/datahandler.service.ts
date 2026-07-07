@@ -12,8 +12,8 @@ import { IntercomService } from './intercom.service';
 })
 
 export class DataHandlerService implements OnInit {
-  //baseUrl = `https://ag.9xbet9.live/api-V2`;
-  baseUrl = `https://ag.${window.location.hostname}/api-V2`;
+  baseUrl = `https://ag.9xbet9.live/api-V2`;
+  // baseUrl = `https://ag.${window.location.hostname}/api-V2`;
   secretKey = environment.secretKey;
   sendLoggedData: BehaviorSubject<any> = new BehaviorSubject('abc')
   sendLoggedData1 = new Subject<any>()
@@ -37,6 +37,9 @@ export class DataHandlerService implements OnInit {
 
   base64EncodedString = environment.base64EncodedString
   decodedKey = CryptoJS.enc.Base64.parse(this.base64EncodedString);
+  
+  private themeFlag = new Subject<any>();
+  public changeTheme$ = this.themeFlag.asObservable();
 
   constructor(private http: HttpClient, private router: Router, private jwtHelper: JwtHelperService,private intercom: IntercomService) { }
 
@@ -674,6 +677,9 @@ export class DataHandlerService implements OnInit {
   }
   getIntercomData() {
     return this.http.post(`${this.baseUrl}/getChatToken`, {})
+  }
+  getThemeFlag(data : any){
+    this.themeFlag.next(data)
   }
 }
 

@@ -1,0 +1,222 @@
+<div class="wrap">
+  <div class="wrap-inner">
+    <div class="content cricket">
+      <div class="ng-tns-c389869152-1 ng-trigger ng-trigger-routeLayoutPageAni">
+        <div id="vueWebComponent" class="cricket-container">
+          <div id="s-app-container" class="s-app s-space-y-px s-default">
+            @if (showBetMsg) {
+            <div class="s-bottom-20px s-z-40 s-flex s-justify-center s-w-full s-fixed popupset">
+              <!-- Bet Alert popup -->
+              <div
+                class="s-alert s-w-335px s-text-center s-flex s-justify-center s-p-3px s-rounded-5px s-mx-auto erropop"
+                [ngClass]="betsuccessstatus ? 's-bg-warning-light dark:s-bg-warning-dark' : 's-bg-error-light dark:s-bg-error-dark'">
+                <div class="s-w-full">
+                  <div
+                    class="s-flex s-item-center s-text-global-font-on-dark s-justify-start s-items-center s-font-bold s-py-10px s-px-9px s-text-14px">
+                    <span class="s-icon-notice s-text-global-font-on-dark s-text-16px"></span>
+                    <h4 class="s-ml-1 s-flex-1 s-text-13px s-text-left s-leading-none">{{betSuccess[2].type}}</h4>
+                    <div class="s-icon-close s-right-4 s-text-14px" (click)="closeBet()"></div>
+                  </div>
+                  <div
+                    class="s-alert-content s-px-9px s-py-4 s-rounded-3px s-bg-white s-text-global-font-default-light dark:s-bg-black-800 s-text-13px dark:s-text-global-font-default-dark s-text-left"
+                    id="msuccessPop">{{betSuccess[2].message}}</div>
+                </div>
+              </div>
+            </div>
+            }
+            <div class="s-main-container-wrapper">
+              <section id="s-main-container" class="s-min-h-full-with-header s-mx-auto s-bg-body">
+                <main>
+                  <div>
+                    <div id="s-index-filter" class="s-pt-7px s-sports-mode-filter s-sticky sp-top"
+                      style="--22ec0bd9: url('../../../assets/bjimage/chip.webp');">
+                      <div class="s-sports-eventType-tabs s-relative s-flex s-items-center s-text-center s-text-10px
+                      s-font-bold s-pl-3px s-pr-1px s-h-50px s-overflow-hidden s-text5vw"
+                        style="color: black;justify-content: center;">
+                        <div class="s-relative s-z-10">
+                          <h1>Toss Parlay</h1>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="liveTab" class="tab-content active ng-star-inserted">
+                      <div class="tab-content active cricketTab ng-star-inserted">
+                        <div class="s-min-h-full-with-header s-pb-20px s-px-2 s-app s-py-10px">
+                          <div>
+                            @for ( item of cricketList; let i = $index ; track $index) {
+                            <div id="100008MatchList" class="s-mb-12px ng-star-inserted">
+                              <div
+                                class="s-relative s-py-2 s-px-10px s-rounded-5px s-cursor-pointer s-transition-all s-duration-300 s-bg-main-collapse s-text-event-tab s-rounded-t-5px s-rounded-b-none">
+                                <h1
+                                  class="s-flex s-justify-between s-items-center s-text-14px s-text-event-tab s-font-normal s-pr-26px s-leading-20px">
+                                  <span class="s-break-words s-mr-1 single-line-text">{{ item.matchname }}</span>
+                                  <!-- <span id="100008MatchCount"
+                                      class="s-w-24px s-h-16px s-leading-16px s-text-center s-text-12px s-font-semibold s-rounded-3px s-flex-shrink-0 s-border s-border-solid s-border-event-tab s-text-event-tab eventnum">1</span> -->
+                                </h1>
+                                <!-- <span
+                                    class="s-icon-arrow-down-sencodary s-absolute s-text-12px s-right-4 s-top-3 s-transition-transform s-origin-center s-duration-300 s-text-event-tab s-transform s-rotate-180 arrowIcon 100008arrow"
+                                    ng-reflect-ng-class=""></span> -->
+                              </div>
+                              <div></div>
+                              <div class="s-rounded-t-5px ng-star-inserted">
+                                <div class="ng-star-inserted">
+                                  <div class="11678489MatchesUP s-shadow-2sm matchDetail"
+                                    style="display: block; margin-bottom: 5px;">
+                                    <div class="s-bg-white dark:s-bg-main-block-dark s-rounded-5px">
+                                      <div
+                                        class="s-main-row s-grid s-content-center s-items-center s-gap-1 s-leading-5 s-py-5px s-px-10px s-bg-primary s-min-h-38px">
+                                        <div
+                                          class="s-fav s-text-market-star-icon dark:s-text-market-star-icon s-text-16px s-mr-10px">
+                                          <div id="starIcon33293820"
+                                            class="s-star-line-box s-relative s-icon-star starIcon"
+                                            ng-reflect-ng-class=""><span
+                                              class="s-rating-star-line s-bg-market-star-icon dark:s-bg-market-star-icon"></span><span
+                                              class="s-rating-star-line s-bg-market-star-icon dark:s-bg-market-star-icon"></span><span
+                                              class="s-rating-star-line s-bg-market-star-icon dark:s-bg-market-star-icon"></span>
+                                          </div>
+                                        </div>
+                                        <div class="s-flex s-flex-col -s-ml-7px" tabindex="0"
+                                          ng-reflect-router-link="/match/4/33976511">
+                                          <div class="s-text-market-name s-mt-2px s-text-14px s-leading-17px">Who will
+                                            win the toss</div>
+                                        </div>
+                                        <div class="s-flex s-justify-end s-items-center s-leading-20px" tabindex="0"
+                                          ng-reflect-router-link="/match/4/33976511">
+                                          <div class="s-whitespace-nowrap s-text-market-name"><span
+                                              class="s-pl-1 s-text-14px s-text-right s-font-bold"></span><span
+                                              class="s-text-14px s-font-bold s-text-center s-mx-1.5">:</span><span
+                                              class="s-text-14px s-font-bold"></span></div>
+                                          <i class="s-icon-cash-out s-text-cash-out-icon s-text-16px s-ml-10px"></i><i
+                                            class="s-ml-10px s-text-16px s-text-[var(--color-market-name)] s-icon-h2h head-to-head-list"></i><i
+                                            class="s-relative s-icon-arrow-down s-text-12px s-ml-10px s-text-market-name -s-rotate-90 s-mr-3px"></i>
+                                        </div>
+                                      </div>
+                                      <div class="s-p-3px s-pt-0">
+                                        <div class="s-flex s-justify-between s-items-center"
+                                          style="justify-content: end;">
+                                          <!-- <div class="s-py-3px s-flex s-flex-1 s-items-center s-leading-14px s-mb-1px">
+                                            </div> -->
+                                          <div
+                                            class="s-w-131px s-grid s-gap-0.5 s-font-semibold s-grid-cols-2 s-text-12px s-leading-4 s-text-global-font-default-light dark:s-text-global-font-default-dark s-text-center">
+                                            <div class="s-min-w-min">Back</div>
+                                            <div class="s-min-w-min">Lay</div>
+                                          </div>
+                                        </div>
+                                        <div class="s-relative" tabindex="0">
+                                          @for ( selection of item.selectionnames.split(','); let j = $index ; track
+                                          $index) {
+                                          <div class="s-space-y-px">
+                                            <div class="s-text-13px">
+                                              <div
+                                                class="s-flex s-justify-between s-bg-black-100 dark:s-bg-main-block-dark">
+                                                <p
+                                                  class="s-px-2 s-flex s-flex-1 s-flex-col s-justify-center s-break-all s-text-global-font-default-light dark:s-text-global-font-default-dark s-text-14px">
+                                                  {{selection}} </p>
+                                                <div data-testid="forecast"
+                                                  class="s-forecast s-sportsbook-forecast s-text-10px s-leading-normal s-flex s-font-bold">
+                                                </div>
+                                                <p></p>
+                                                <div
+                                                  class="s-w-131px s-relative s-grid s-gap-1px s-grid-cols-2 dark:s-text-black-900"
+                                                  style="margin-bottom: 1px;">
+                                                  <div title="BACK"
+                                                    (click)="openTossBetPlace('Toss', [{ isBack: true, selectionId: item.selectionids.split(',')[j], selectionName: selection, odds: tossodd, matchName: item.matchname, eventId: item.marketid, sourceId: runnersList[item?.marketid]?.data?.fancyid, sourceName : runnersList[item?.marketid]?.data?.name, sourceBetType: 'Toss', sportId: item.sportid }])"
+                                                    class="s-py-1.5 s-flex s-flex-col s-text-center s-rounded-3px s-min-h-39px s-relative s-overflow-hidden s-bg-back-300 dark:s-bg-back-400-dark placebet-slip">
+                                                    <div
+                                                      class="wrapper s-w-full s-h-full s-absolute s-overflow-hidden s-top-0 s-left-0 s-z-10"
+                                                      style="--0b879273: 0;"><span
+                                                        class="mask s-w-full s-h-full s-opacity-10 s-bg-black-900 s-absolute s-left-0 s-top-0"
+                                                        style="display: none;"></span><span
+                                                        class="feedback s-block s-bg-white s-bg-opacity-25 s-rounded-full s-mix-blend-overlay s-absolute"
+                                                        style="display: none;"></span></div>
+                                                    <p id="b033293820" class="s-text-15px s-pb-0.5"> 0.95</p>
+                                                    <p id="33293820b0" class="s-text-9px">
+                                                      10000</p>
+                                                  </div>
+                                                  <div title="LAY"
+                                                    class="s-py-1.5 s-flex s-flex-col s-text-center s-rounded-3px s-min-h-39px s-relative s-overflow-hidden s-bg-lay-300 dark:s-bg-lay-400-dark placebet-slip">
+                                                    <div
+                                                      class="wrapper s-w-full s-h-full s-absolute s-overflow-hidden s-top-0 s-left-0 s-z-10"
+                                                      style="--0b879273: 0;"><span
+                                                        class="mask s-w-full s-h-full s-opacity-10 s-bg-black-900 s-absolute s-left-0 s-top-0"
+                                                        style="display: none;"></span><span
+                                                        class="feedback s-block s-bg-white s-bg-opacity-25 s-rounded-full s-mix-blend-overlay s-absolute"
+                                                        style="display: none;"></span></div>
+                                                    <p id="l033293820" class="s-text-15px s-pb-0.5">--</p>
+                                                    <p id="33293820l0" class="s-text-9px">
+                                                      --</p>
+                                                  </div>
+                                                  <div
+                                                    class="s-absolute s-right-0 s-top-0 s-flex s-justify-center s-items-center s-w-full s-h-full s-bg-black-600 dark:s-bg-black-800 s-opacity-80 s-text-11px s-text-white s-rounded-3px s-z-20 33293820status"
+                                                    style="display: none;">Suspended</div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          }
+                                        </div>
+                                      </div>
+                                      <div class="s-bg-black-300 dark:s-bg-white dark:s-bg-opacity-5 -mx-4 mt-2">
+                                        <div
+                                          class="head-to-head-wrapper s-relative s-border-solid s-bg-white dark:s-bg-body s-rounded-3px"
+                                          style="--e44b9ab4: 0.8vw; display: none;">
+                                          <div
+                                            class="s-icon-close s-text-9px s-absolute s-top-8px s-right-8px s-z-10 dark:s-text-global-font-default-dark">
+                                          </div>
+                                          <div id="head-to-head" size="95px"
+                                            class="s-head-to-head s-w-full s-min-h-[291px]"></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            }
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </main>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- <div
+  class="stickyLeftContainer fixed left-2 z-10 pb-7px flex gap-2 flex-col justify-end items-end" id="matchBetSlipBtn"
+  style="--772806b8: 4.3rem;">
+  <div
+    class="relative cursor-pointer flex flex-col items-center justify-center w-45px h-45px rounded-full bg-primary text-menu-active-icon font-bold">
+    <i class="absolute text-22 icon-all m-0" style="width:7.333vw"></i>
+    <span
+      class="absolute flex justify-center items-center rounded-full w-4 h-4 text-9 font-bold text-white bg-parlay-down top-1.5 right-1.5">
+      <span class="scale-75" id="selectionCount"></span>
+    </span>
+  </div>
+</div> -->
+
+
+<div id="fixpostion" (click)="openmatchBetSlip()"
+  class="stickyLeftContainer fixed left-2 top-1/2 transform -translate-y-1/2 pb-7px flex gap-2 flex-col justify-end items-end z-10 ng-tns-c3532512303-6">
+  <div
+    class="relative cursor-pointer flex flex-col items-center justify-center w-45px h-45px rounded-full bg-primary text-menu-active-icon font-bold ng-tns-c3532512303-6">
+    <div class="flex items-center justify-center text-22 h-full ng-tns-c3532512303-6"><i class="fa fa-trophy trophy">
+      </i>
+      <span
+        class="absolute flex justify-center items-center rounded-full w-4 h-4 text-9 font-bold text-white bg-parlay-down top-1.5 right-1.5 ng-tns-c3532512303-6">
+        <span class="seticon">{{betCount}}
+        </span>
+      </span>
+    </div>
+  </div>
+</div>
+@if (openBetSlip) {
+<app-parlay-bet-place (closeDt)="closeParlyBet($event)" style="position: absolute;"></app-parlay-bet-place>
+}

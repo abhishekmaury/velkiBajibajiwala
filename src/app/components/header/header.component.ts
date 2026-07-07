@@ -69,6 +69,7 @@ export class HeaderComponent implements OnInit{
   validShowing: any;
   isMobile: boolean = false;
   isRefreshing = false
+  isToggled = false
 
   constructor(
     private dataServe: DataHandlerService,
@@ -199,6 +200,27 @@ export class HeaderComponent implements OnInit{
 
   openSignup(url: string | undefined) {
     if (url) window.location.href = url;
+  }
+  toggleSwitch() {
+    this.isToggled = !this.isToggled;
+    this.dataServe.getThemeFlag(this.isToggled)
+    localStorage.setItem('clssaicTheme', JSON.stringify(this.isToggled))
+    const classic = document.getElementById('classic-style') as HTMLLinkElement;
+    const modern = document.getElementById('newer-style') as HTMLLinkElement;
+
+    classic?.remove();
+    modern?.remove();
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    if (this.isToggled) {
+      link.id = 'classic-style';
+      link.href = './assets/css/halfbaji.css?v=1.10';
+    } else {
+      link.id = 'newer-style';
+      link.href = './assets/css/main.css?v=1.10';
+    }
+    
+    document.head.appendChild(link);
   }
 }
 

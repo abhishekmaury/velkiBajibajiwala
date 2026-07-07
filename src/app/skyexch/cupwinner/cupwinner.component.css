@@ -1,0 +1,157 @@
+@import url(../exStyles.css);
+
+.tnamecolor {
+  font-weight: 600;
+}
+
+.namecolor {
+  font-weight: bold;
+  margin-bottom: 1px !important;
+}
+
+.oddcolor {
+  font-size: 3.4vw !important;
+  font-weight: bold;
+}
+
+.bookgreencolor {
+  color: #4aff4a;
+}
+
+.bookredcolor {
+  color: #ff6767;
+}
+
+/* .zoomed_mode{
+position: relative;
+top: 0px;
+left: 0px;
+margin: auto;
+max-height: 100%;
+width: 100%;
+} */
+video::-webkit-media-controls-timeline {
+  display: none;
+}
+
+video::-webkit-media-controls-fullscreen-button,
+video::-webkit-media-controls-picture-in-picture-button {
+  display: none;
+}
+
+/* video::-webkit-media-controls-current-time-display, video::-webkit-media-controls-time-remaining-display, video::-webkit-media-controls-play-button, video::-webkit-media-controls-big-play-button{
+display: none;stream_url2
+} */
+
+audio::-webkit-media-controls-mute-button,
+video::-webkit-media-controls-mute-button {
+  -webkit-appearance: media-mute-button;
+  display: flex;
+  width: 16px;
+  height: 16px;
+  background-color: none;
+  border: initial;
+  color: inherit;
+}
+
+video::-webkit-media-controls-panel {
+
+  background-image: linear-gradient(transparent, transparent) !important;
+
+}
+
+video::-webkit-media-controls {
+  visibility: hidden;
+}
+
+video::-webkit-media-controls-enclosure {
+  visibility: visible;
+}
+
+video::-webkit-media-controls-overlay-play-button {
+  display: none;
+}
+
+.hide {
+  display: none;
+}
+
+.bgimage {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+}
+
+.bgimage img {
+  width: 100%;
+  height: 100%;
+}
+
+
+.disabled {
+  pointer-events: none;
+}
+
+.d-none {
+  display: none;
+}
+
+.displaydata {
+  display: grid;
+}
+
+.openar {
+  transform: rotate(-180deg)
+}
+
+.closear {
+  transform: rotate(0deg)
+}
+
+.zoomed_mode {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  margin: auto;
+  max-height: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+.zoomed_mode.stuck {
+  -ms-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -ms-transform-origin: left top 0;
+  -moz-transform-origin: left top 0;
+  -webkit-transform-origin: left top 0;
+  transform-origin: left top 0;
+  color: #313131;
+  float: left;
+  cursor: vertical-text;
+  letter-spacing: 5px;
+  position: fixed;
+  z-index: 10;
+  text-transform: capitalize;
+  width: 150px;
+  height: 100px;
+  top: 50%;
+  left: 0;
+  animation: fade-in-up 0.25s ease forwards;
+  z-index: 9999;
+  touch-action: none;
+  transform-origin: center;
+  transform: translate(-0%, -0%);
+}
+
+#videoWrap {
+  z-index: 99;
+}
+header .logo{
+  width: 26.6666666667vw;
+left: 30%;
+}

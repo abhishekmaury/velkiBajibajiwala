@@ -1,0 +1,253 @@
+<div class="wrap">
+  <div class="wrap-inner">
+    <div class="content cricket">
+      <div class="cricket-container">
+        <div class="s-app s-space-y-px s-default">
+          @if (showBetMsg) {
+          <div class="s-bottom-20px s-z-40 s-flex s-justify-center s-w-full s-fixed">
+            <!-- Bet Alert popup -->
+            <div class="s-alert s-w-335px s-text-center s-flex s-justify-center s-p-3px s-rounded-5px s-mx-auto"
+              [ngClass]="betSuccess[2].type !== 'success' ? 's-bg-error-light dark:s-bg-error-dark' : 's-bg-success-light dark:s-bg-success-dark'">
+              <div class="s-w-full">
+                <div
+                  class="s-flex s-item-center s-text-global-font-on-dark s-justify-start s-items-center s-font-bold s-py-10px s-px-9px s-text-14px">
+                  <span class="s-icon-notice s-text-global-font-on-dark s-text-16px"></span>
+                  <h4 class="s-ml-1 s-flex-1 s-text-13px s-text-left s-leading-none">{{betSuccess[2].type}}</h4>
+                  <div class="s-icon-close s-right-4 s-text-14px"></div>
+                </div>
+                <div
+                  class="s-alert-content s-px-9px s-py-4 s-rounded-3px s-bg-white s-text-global-font-default-light dark:s-bg-black-800 s-text-13px dark:s-text-global-font-default-dark s-text-left"
+                  id="msuccessPop">{{betSuccess[2].message}}</div>
+              </div>
+            </div>
+          </div>
+          }
+          <div class="s-main-container-wrapper">
+            <section class="s-min-h-full-with-header s-mx-auto s-bg-body">
+              <main>
+                <div>
+                  <div>
+                    <div class="s-score-tab">
+                      <div class="s-relative s-h-34px s-overflow-y-hidden s-flex s-items-center s-bg-secondary">
+                        <div onclick="history.back()"
+                          class="s-absolute s-w-44px s-h-full s-flex s-justify-center s-items-center"><span
+                            class="s-icon-arrow-left s-w-14px s-h-14px s-text-14px s-text-white"></span></div>
+                        <div class="s-w-full s-h-full s-flex s-justify-center s-items-end">
+                          @if (isLogin) {
+                          <div (click)="scoreTvTabs('tv')"
+                            class="s-mode-tab livetvTab s-relative s-w-90px s-h-27px s-flex s-justify-center s-items-center s-text-center s-rounded-tl-md s-rounded-tr-md first:s--mr-2.5px last:s--ml-2.5px is-active s-bg-scoreboard-tab-bg s-text-scoreboard-tab-text s-z-40"
+                            [ngClass]="showTabs == 'tv' ? 's-bg-scoreboard-tab-bg-active s-text-scoreboard-tab-text-active' : ''">
+                            <span
+                              class="s-icon-live-tv s-block s-mr-4px s-text-17px s-text-scoreboard-tab-text s-text-scoreboard-tab-text-active"></span>
+                            <span class="s-leading-27px s-text-14px">TV</span>
+                          </div>
+                          }
+                          <!-- s-bg-scoreboard-tab-bg-active s-text-scoreboard-tab-text-active -->
+                          <div (click)="scoreTvTabs('scrd')"
+                            class="s-mode-tab scorecardTab s-relative s-w-90px s-h-27px s-flex s-justify-center s-items-center s-text-center s-rounded-tl-md s-rounded-tr-md first:s--mr-2.5px last:s--ml-2.5px s-bg-scoreboard-tab-bg s-text-scoreboard-tab-text s-z-30"
+                            [ngClass]="showTabs == 'scrd' ? 's-bg-scoreboard-tab-bg-active s-text-scoreboard-tab-text-active' : ''">
+                            <span class="s-icon-live-tv s-block s-mr-4px s-text-17px s-text-scoreboard-tab-text"
+                              style="display: none;">
+                            </span><span class="s-leading-27px s-text-14px">Scoreboard</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="s-w-full s-h-4px s-bg-scoreboard-tab-bg-active"></div>
+                    </div>
+                    <div class="s-bg-secondary" style="height: auto;">
+                      <!-- scorecard -->
+                      @if (showTabs == 'scrd') {
+                      <div class="s-justify-center s-items-center scoremin scorecard-container">
+                        <iframe [src]="urlSafe" allowfullscreen="true"
+                          style="width: 100%; border:none;" class="scoreheight"></iframe>
+                      </div>
+                      }
+                      @if (showTabs == 'tv') {
+                      <div class="tv-wrap">
+                        <div id="streamContainer" class="tv-box">
+                          <div id="tv" class="tv" style="height: 0px;">
+                            <div class="zoomed_mode" id="zoomdrag" style="left: 117.144px; top: 327.217px;">
+                              <span
+                                style="position:absolute;z-index:99;display:flex;width:100%;justify-content:end;font-size:20px;"><i
+                                  style="position: relative; top: -5px;color: #fff;right: -13px;" id="tvFrame"
+                                  class="fa fa-arrows"></i></span>
+                              <iframe [src]="urlSafe2" allowfullscreen="true"
+                                style="width: 100%; border:none; height: 55vw;" class="zoomed_mode"></iframe>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                      }
+                    </div>
+                  </div>
+                  <section class="s-pt-2 s-px-12px s-bg-primary s-rounded-t-5px">
+                    <div class="s-flex s-bg-market-tab-bg s-w-max s-rounded-t-md">
+                      <div class="s-relative s-text-14px s-z-10"></div>
+                      <div class="s-relative s-text-14px s-z-10 ng-star-inserted s-bg-market-tab-bg-active">
+                        <div class="sportbookTab">
+                          <div class="s-relative s-tab s-w-90px s-h-33px s-py-2 s-rounded-t-md">
+                            <div class="s-absolute -s-left-4 s-bottom-0 s-w-14px s-h-14px"><svg width="8px" height="8px"
+                                viewBox="0 0 8 8" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                class="s-svg-image s-absolute s-right-0 s-bottom-0 s-w-7px s-h-7px">
+                                <title>tab-radius-l</title>
+                                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+                                  data-is-selected="false" class="s-fill-market-tab-bg">
+                                  <path d="M0,0 C0,4.418278 3.581722,8 8,8 L0,8 L0,0 Z" id="tab-radius-l"
+                                    transform="translate(4.000000, 4.000000) scale(-1, 1) translate(-4.000000, -4.000000) ">
+                                  </path>
+                                </g>
+                              </svg></div>
+                            <div class="s-absolute s--right-4 s-bottom-0 s-w-14px s-h-14px"><svg width="8px"
+                                height="8px" viewBox="0 0 8 8" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                class="s-svg-image s-absolute s-left-0 s-bottom-0 s-w-7px s-h-7px">
+                                <title>tab-radius-r</title>
+                                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+                                  data-is-selected="false" class="s-fill-market-tab-bg">
+                                  <path d="M0,0 C0,4.418278 3.581722,8 8,8 L0,8 L0,0 Z" id="tab-radius-r">
+                                  </path>
+                                </g>
+                              </svg></div>
+                          </div><span id="showSportsBookBtn"
+                            class="s-text-market-tab-text s-left-1/2 s-left-[51%] s-absolute s-top-1/2 s--translate-y-1/2 s--translate-x-1/2 s-bg-market-tab-bg-active">Sportsbook</span>
+                        </div>
+                      </div><!---->
+                    </div>
+                  </section>
+                  @if (showFancy) {
+                  <div class="sportBook">
+                    <div class="s-flex s-items-center" isshowsportsbook="true"
+                      style="--066c3991: 42px; --5625d3df: translateX(18px);">
+                      <div
+                        class="s-w-full s-overflow-x-scroll s-h-30px s-relative s-flex s-items-center s-bg-market-tab-bg-active s-pt-px">
+                        <div class="s-relative s-inline-block s-mr-2">
+                          <div
+                            class="s-w-full s-flex s-jusrify-center s-px-4 s-h-30px s-cursor-pointer s-text-market-sub-text">
+                            <div name="All" class="s-text-center s-py-2 s-px-4 s-mx-1 s-text-13px">All</div>
+                            <div name="Popular" class="s-text-center s-py-2 s-px-4 s-mx-1 s-text-13px">Popular</div>
+                            <div name="1" class="s-text-center s-py-2 s-px-4 s-mx-1 s-text-13px">Match</div>
+                            <div name="2" class="s-text-center s-py-2 s-px-4 s-mx-1 s-text-13px">Over</div>
+                            <div name="3" class="s-text-center s-py-2 s-px-4 s-mx-1 s-text-13px">Innings</div>
+                            <div name="4" class="s-text-center s-py-2 s-px-4 s-mx-1 s-text-13px">Players</div>
+                          </div>
+                          <div
+                            class="s-tab-indicator s-absolute s-left-0 s-bottom-1 s-rounded-1.5px s-bg-market-sub-text s-h-3px">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="s-flex s-items-center s-h-30px s-bg-market-tab-bg-active">
+                        <div (click)="openRulesPopup()"
+                          class="s-icon-info-circle s-w-4 s-h-4 s-mx-2 s-text-market-sub-text s-opacity-25 dark:s-opacity-45 s-text-12px">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="s-p-2 s-bg-betSlip-light dark:s-bg-betSlip-dark s-rounded-b-5px">
+                      @for ( item of PFancyData; let i = $index; track trackByFn(i,item)) {
+                      <div class="s-p-2 s-bg-betSlip-light s-rounded-b-5px dark:s-bg-betSlip-dark">
+                        <div class="s-mb-3px" id="">
+                          <div>
+                            <div (click)="collapseData(i)"
+                              class="s-relative s-py-2 s-pl-0 s-mb-0.5 s-flex s-justify-start s-items-center s-rounded-t-4px s-bg-black-100 dark:s-bg-secondary dark:s-text-global-font-default-dark s-min-h-35px">
+                              <div
+                                class="s-fav s-text-global-font-default-light dark:s-text-global-font-default-dark s-text-15px s-ml-9px s-mr-4px">
+                                <div
+                                  class="s-star-line-box s-relative s-icon-star dark:s-text-global-font-default-dark">
+                                  <span
+                                    class="s-rating-star-line s-bg-global-font-default-light dark:s-bg-global-font-default-dark"></span>
+                                  <span
+                                    class="s-rating-star-line s-bg-global-font-default-light dark:s-bg-global-font-default-dark"></span>
+                                  <span
+                                    class="s-rating-star-line s-bg-global-font-default-light dark:s-bg-global-font-default-dark"></span>
+                                </div>
+                              </div>
+                              <span class="s-text-14px s-px-2 s-flex-1 tnamecolor" id="">{{item.marketName}}</span>
+                              <span id="arrowIcon"
+                                class="fa fa-angle-down s-icon-arrow-down-sencodary s-text-12px s-mr-3 s-justify-self-end s-text-global-font-default-light dark:s-text-global-font-default-dark s-transition-transform s-origin-center s-duration-300 s-transform"
+                                id="DDR{{i}}" [class]="i<=2?'openar':''">
+                              </span>
+                            </div>
+                            <div class="s-grid s-grid-cols-2 s-gap-0.5 s-relatives" [class]="i>=3?'d-none':''"
+                              id="sportSelData{{i}}">
+                              @for ( pfancydata of sortPFancyData(PFancyData[i].sportsBookSelection); let j = $index; track trackByFn(j,PFancyData)) {
+                                <div>
+                                  <div id="premiumOddsDiv2036199901"
+                                    (click)="openPreFancyBetPlace('Premium', [{isBack : true, selectionId : pfancydata.id, selectionName : pfancydata.selectionName, odds : pfancydata.odds, matchName : eventData.matchname, eventId : eventId, sourceId : PFancyData[i].id, sourceName : item.marketName, sourceBetType : 'Premium', sportId : sportId}])"
+                                    class="betslipopen s-py-1.5 s-text-center s-flex s-flex-col s-justify-center s-items-center s-bg-back-200 dark:s-bg-back-400-dark s-min-0 s-relative s-overflow-hidden s-rounded-b-md s-min-h-53px spark"
+                                    title="back">
+                                    <div class="wrapper s-w-full s-h-full s-overflow-hidden s-top-0 s-left-0 s-z-10"
+                                      style="--0b879273: 0;">
+                                      <span
+                                        class="mask s-w-full s-h-full s-opacity-10 s-bg-black-900 s-absolute s-left-0 s-top-0"
+                                        style="display: none;"></span>
+                                      <span
+                                        class="feedback s-block s-bg-white s-bg-opacity-25 s-rounded-full s-mix-blend-overlay s-absolute"
+                                        style="display: none;"></span>
+                                    </div>
+                                    <p class="s-text-15px s-px-1 s-text-black-900 namecolor" id="">
+                                      {{pfancydata.selectionName}}</p>
+                                    <p class="s-text-10px s-text-black-900 oddcolor" id="premiumOdds2036199901">
+                                      {{pfancydata.odds}}</p>
+                                    @for ( pitem of PremiumfancyLiability; track $index) {
+                                    @if (pitem.sourceId==PFancyData[i].id) {
+                                    <div class="s-rounded-full s-px-2 s-mt-0.5 s-bg-white s-bg-opacity-40">
+                                      @for ( pitemdata of pitem.multiLiab; track $index) {
+                                      @if (pitemdata.selectionid==pfancydata.id) {
+                                      <div [class]="pitemdata.pnl >= 0 ? 'bookgreencolor' : 'bookredcolor'"
+                                        class="s-forecast s-sportsbook-forecast s-text-10px s-leading-normal s-flex s-font-bold s-font-bold"
+                                        data-testid="forecast">
+                                        <span class="s-single-winner-forecast-context s-flex s-items-center"
+                                          data-bet-type="SPORTSBOOK">
+                                          <span class="s-rotate-180 s-flex s-text-6px s-mx-0.5"></span>
+                                          ({{pitemdata.pnl | number :'1.0-2'}})
+                                        </span>
+                                      </div>
+                                      }
+                                      }
+                                    </div>
+                                    }
+                                    }
+                                  </div>
+                                </div>
+                              }
+                            </div>
+                          </div>
+                        </div>
+                        <dl id="premiumfancyBetBoard563027855" class="bet_slip-wrap back" style="display: none;">
+                        </dl>
+                      </div>
+                      }
+
+                    </div>
+                  </div>
+                  }
+                  <!-- </ng-container> -->
+                  <div
+                    class="s-w-full s-max-w-[480px] s-fixed s-bottom-0 s-left-1/2 s-z-30 s-transition-all s-duration-300"
+                    style="transform: translateX(-50%);"></div>
+                </div>
+              </main>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div (click)="openmatchBetSlip()"
+  class="stickyLeftContainer fixed left-2 z-10 pb-7px flex gap-2 flex-col justify-end items-end" id="matchBetSlipBtn"
+  style="--772806b8: 4.3rem;">
+  <div
+    class="relative cursor-pointer flex flex-col items-center justify-center w-45px h-45px rounded-full bg-primary text-menu-active-icon font-bold">
+    <i class="absolute text-22 icon-all m-0"></i>
+    <span
+      class="absolute flex justify-center items-center rounded-full w-4 h-4 text-9 font-bold text-white bg-parlay-down top-1.5 right-1.5">
+      <span class="scale-75" id="selectionCount">{{betCount}}</span>
+    </span>
+  </div>
+</div>
+@if (openBetSlip) {
+<app-parlay-bet-place (closeDt)="closeParlyBet($event)" style="position: absolute;"></app-parlay-bet-place>
+}

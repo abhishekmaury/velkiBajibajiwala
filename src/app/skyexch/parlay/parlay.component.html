@@ -1,0 +1,394 @@
+<div class="wrap">
+  <div class="wrap-inner">
+    <div class="content cricket">
+      <div class="ng-tns-c389869152-1 ng-trigger ng-trigger-routeLayoutPageAni">
+        <div id="vueWebComponent" class="cricket-container">
+          <div id="s-app-container" class="s-app s-space-y-px s-default">
+            <div class="s-main-container-wrapper">
+              <section id="s-main-container" class="s-min-h-full-with-header s-mx-auto s-bg-body">
+                <main>
+                  <div>
+                    <div id="s-index-filter" class="s-pt-7px s-sports-mode-filter s-sticky sp-top"
+                      style="--22ec0bd9: url('../../../assets/bjimage/chip.webp');">
+                      <div class="s-flex s-ml-7px s-justify-between">
+                        <div
+                          class="s-sports-mode-filter-types s-flex s-items-center s-text-center s-text-14px s-rounded-t-5px s-bg-main-tab-bg s-text-black dark:s-text-global-font-default-dark">
+                          <div routerLink="/exchange/sport"
+                            class="livematches s-relative s-h-full s-flex s-items-center s-justify-center s-rounded-t-5px s-px-11px s-bg-main-tab-bg s-text-main-tab-text s-z-20">
+                            <div class="s-absolute -s-left-4 s-bottom-0 s-w-14px s-h-14px">
+                              <svg width="8px" height="8px" viewBox="0 0 8 8" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                class="s-svg-image s-absolute s-right-0 s-bottom-0 s-w-7px s-h-7px">
+                                <title>tab-radius-l</title>
+                                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+                                  data-is-selected="true" class="s-fill-main-tab-bg-active">
+                                  <path d="M0,0 C0,4.418278 3.581722,8 8,8 L0,8 L0,0 Z" id="tab-radius-l"
+                                    transform="translate(4.000000, 4.000000) scale(-1, 1) translate(-4.000000, -4.000000) ">
+                                  </path>
+                                </g>
+                              </svg>
+                            </div>
+                            <span>Live</span>
+                            <div class="s-absolute s--right-4 s-bottom-0 s-w-14px s-h-14px">
+                              <svg width="8px" height="8px" viewBox="0 0 8 8" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                class="s-svg-image s-absolute s-left-0 s-bottom-0 s-w-7px s-h-7px">
+                                <title> tab-radius-r</title>
+                                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+                                  data-is-selected="true" class="s-fill-main-tab-bg-active">
+                                  <path d="M0,0 C0,4.418278 3.581722,8 8,8 L0,8 L0,0 Z" id="tab-radius-r"></path>
+                                </g>
+                              </svg>
+                            </div>
+                          </div>
+                          <div [ngClass]="mainTabs == 1?'s-bg-main-tab-bg-active s-text-main-tab-text-active':''"
+                            class="livematches s-relative s-h-full s-flex s-items-center s-justify-center s-rounded-t-5px s-px-11px s-bg-main-tab-bg s-text-main-tab-text s-z-20">
+                            <div class="s-absolute -s-left-4 s-bottom-0 s-w-14px s-h-14px">
+                              <svg width="8px" height="8px" viewBox="0 0 8 8" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                class="s-svg-image s-absolute s-right-0 s-bottom-0 s-w-7px s-h-7px">
+                                <title>tab-radius-l</title>
+                                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+                                  data-is-selected="true" class="s-fill-main-tab-bg-active">
+                                  <path d="M0,0 C0,4.418278 3.581722,8 8,8 L0,8 L0,0 Z" id="tab-radius-l"
+                                    transform="translate(4.000000, 4.000000) scale(-1, 1) translate(-4.000000, -4.000000) ">
+                                  </path>
+                                </g>
+                              </svg>
+                            </div>
+                            <span class="singleLine" (click)="changeCount(1)">Premium Parlay</span>
+                            <div class="s-absolute s--right-4 s-bottom-0 s-w-14px s-h-14px">
+                              <svg width="8px" height="8px" viewBox="0 0 8 8" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                class="s-svg-image s-absolute s-left-0 s-bottom-0 s-w-7px s-h-7px">
+                                <title> tab-radius-r</title>
+                                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+                                  data-is-selected="true" class="s-fill-main-tab-bg-active">
+                                  <path d="M0,0 C0,4.418278 3.581722,8 8,8 L0,8 L0,0 Z" id="tab-radius-r"></path>
+                                </g>
+                              </svg>
+                            </div>
+                          </div>
+                          <div (click)="changeCount(2)"
+                            [ngClass]="mainTabs == 2?'s-bg-main-tab-bg-active s-text-main-tab-text-active':''"
+                            class="upcomingmatches s-relative s-h-full s-flex s-items-center s-justify-center s-rounded-t-5px s-px-11px s-text-main-tab-text s-z-20">
+                            <span class="singleLine">Toss Parlay</span>
+                          </div>
+                        </div>
+                        <div
+                          class="s-flex s-text-12px s-space-x-2 s-pl-16px s-pr-7px s-mb-3px s-text-icon-dark dark:s-text-icon-light">
+                          <div (click)="openSearch()"
+                            class="s-flex s-justify-center s-items-center s-w-24px s-h-24px s-bg-filter-background-light dark:s-bg-filter-background-dark s-rounded-full s-shadow-2sm"
+                            id="searchpopup" routerLink="/exchange/search">
+                            <span class="s-icon-search dark:s-text-global-font-default-dark"></span>
+                          </div>
+                          <div (click)="openNotification()"
+                            class="s-flex s-justify-center s-items-center s-w-24px s-h-24px s-bg-filter-background-light dark:s-bg-filter-background-dark s-rounded-full s-shadow-2sm"
+                            id="notificationpopup">
+                            <span class="s-icon-notifications dark:s-text-global-font-default-dark"></span>
+                          </div>
+                          <div (click)="openSetting()"
+                            class="s-flex s-justify-center s-items-center s-w-24px s-h-24px s-bg-filter-background-light dark:s-bg-filter-background-dark s-rounded-full s-shadow-2sm"
+                            id="settingpopup" routerLink="/exchange/setting">
+                            <span class="s-icon-setting dark:s-text-global-font-default-dark"></span>
+                          </div>
+                        </div>
+                      </div>
+                      @if (mainTabs !== 2) {
+                      <div class="s-sports-eventType-tabs s-relative s-flex s-items-center s-text-center
+                        s-text-10px s-font-bold s-pl-3px s-pr-1px s-h-50px s-overflow-hidden">
+                        <div class="s-relative s-z-10"> </div>
+                        <div class="ms-casino-icon-light s-w-66px s-mr-3px" routerLink="/casinoAll">
+                          <div [ngClass]="activeTab == 'live' ? 's-text-main-menu-text-active ms-bg-light ' : ''"
+                            class="s-w-66px s-h-44px s-flex s-flex-col s-items-center s-justify-between">
+                            <div class="s-chip s-mt-8px s-w-24px s-h-24px s-bg-contain s-bg-no-repeat s-pb-20px">
+                            </div>
+                            <p
+                              class="ms-casino-icon-content-light s-pt-2.5px s-pb-4px s-text-secondary dark:s-text-global-font-default-dark">
+                              Casino </p>
+                          </div>
+                        </div>
+                        <div class="s-relative s-z-10 myfavactive" (click)="sportsTab(5)">
+                          <div
+                            [ngClass]="activeTab == 5 ? 's-text-main-menu-text-active ms-bg-light fav-indicator' : ''"
+                            class="s-menu-active s-flex favmatches s-w-60px s-flex-col s-h-44px s-justify-center s-items-center s-rounded-5px s-ml s-pt-5px s-pb-4px">
+                            <span class="s-icon-star-solid s-text-19px s-text-main-tab-text-active"></span>
+                            <div
+                              class="s-event-count s-my-fav s-flex s-items-center s-text-9 s-justify-center s-absolute s-top-0 s-right-3 s-px-2px s-min-w-14px s-h-14px s-rounded-full s-font-normal">
+                              <span class="s-h-10px myFavMatchesCount">{{totalCount}}</span>
+                            </div>
+                            <p class="s-h-9px s-pt-3px s-text-main-tab-text-active">All
+                            </p>
+                          </div>
+                        </div>
+                        <div class="s-relative s-z-10 mycricactive" (click)="sportsTab(4)">
+                          <div
+                            [ngClass]="activeTab == 4 ? 's-text-main-menu-text-active ms-bg-light cricket-indicator' : ''"
+                            class="s-menu-active cricketmatch s-h-44px s-pt-4px s-pb-4px s-rounded-5px s-z-20 s-flex s-flex-col s-justify-center s-items-center s-ml">
+                            <span class="s-event-type-icon s-px-30.5px s-text-19px s-w-80px s-icon-cricket"></span>
+                            <div
+                              class="s-event-count s-flex s-items-center s-text-9 s-justify-center s-absolute s-top-0 s-right-5 s-px-2px s-min-w-14px s-h-14px s-rounded-full s-font-normal">
+                              <span class="s-h-10px cricketInplayCount">{{cricdata?.length}}</span>
+                            </div>
+                            <p class="s-event-type-context s-h-9px s-pt-3px">Cricket</p>
+                          </div>
+                        </div>
+                        <div class="s-relative s-z-10 mysocceractive" (click)="sportsTab(1)">
+                          <div
+                            [ngClass]="activeTab == 1 ? 's-text-main-menu-text-active ms-bg-light soccer-indicator' : ''"
+                            class="s-menu-active soccermatch s-h-44px s-pt-4px s-pb-4px s-rounded-5px s-z-20 s-flex s-flex-col s-justify-center s-items-center s-ml ">
+                            <span class="s-event-type-icon s-px-30.5px s-text-19px s-w-80px s-icon-soccer"></span>
+                            <div
+                              class="s-event-count s-flex s-items-center s-text-9 s-justify-center s-absolute s-top-0 s-right-5 s-px-2px s-min-w-14px s-h-14px s-rounded-full s-font-normal">
+                              <span class="s-h-10px soccerInplayCount">{{soccdata?.length}}</span>
+                            </div>
+                            <p class="s-event-type-context s-h-9px s-pt-3px">Soccer</p>
+                          </div>
+                        </div>
+                        <div class="s-relative s-z-10 mytennisactive" (click)="sportsTab(2)">
+                          <div
+                            [ngClass]="activeTab == 2 ? 's-text-main-menu-text-active ms-bg-light tennis-indicator' : ''"
+                            class="s-menu-active tennismatch s-h-44px s-pt-4px s-pb-4px s-rounded-5px s-z-20 s-flex s-flex-col s-justify-center s-items-center s-ml">
+                            <span class="s-event-type-icon s-px-30.5px s-text-19px s-w-80px s-icon-tennis"></span>
+                            <div
+                              class="s-event-count s-flex s-items-center s-text-9 s-justify-center s-absolute s-top-0 s-right-5 s-px-2px s-min-w-14px s-h-14px s-rounded-full s-font-normal">
+                              <span class="s-h-10px tennisInplayCount">{{tenndata?.length}}</span>
+                            </div>
+                            <p class="s-event-type-context s-h-9px s-pt-3px">Tennis</p>
+                          </div>
+                        </div>
+                        <div
+                          class="tab-indicator s-absolute s-left-0 s-top-3px s-bg-main-menu-bg-active s-h-44px s-rounded-5px">
+                        </div>
+                      </div>
+                      }@else {
+                      <div class="s-sports-eventType-tabs s-relative s-flex s-items-center s-text-center
+                        s-text-10px s-font-bold s-pl-3px s-pr-1px s-h-50px s-overflow-hidden">
+                        <div class="s-relative s-z-10"> </div>
+                        <div class="ms-casino-icon-light s-w-66px s-mr-3px" routerLink="/casinoAll">
+                          <div [ngClass]="activeTab == 'live' ? 's-text-main-menu-text-active ms-bg-light ' : ''"
+                            class="s-w-66px s-h-44px s-flex s-flex-col s-items-center s-justify-between">
+                            <div class="s-chip s-mt-8px s-w-24px s-h-24px s-bg-contain s-bg-no-repeat s-pb-20px">
+                            </div>
+                            <p
+                              class="ms-casino-icon-content-light s-pt-2.5px s-pb-4px s-text-secondary dark:s-text-global-font-default-dark">
+                              Casino </p>
+                          </div>
+                        </div>
+                        <div class="s-relative s-z-10 myfavactive">
+                          <div
+                            class="s-menu-active s-flex favmatches s-w-60px s-flex-col s-h-44px s-justify-center s-items-center s-rounded-5px s-ml s-pt-5px s-pb-4px s-text-main-menu-text-active ms-bg-light fav-indicator">
+                            <span class="s-icon-cricket s-text-19px s-text-main-tab-text-active"></span>
+                            <div
+                              class="s-event-count s-my-fav s-flex s-items-center s-text-9 s-justify-center s-absolute s-top-0 s-right-3 s-px-2px s-min-w-14px s-h-14px s-rounded-full s-font-normal">
+                              <span class="s-h-10px myFavMatchesCount">44</span>
+                            </div>
+                            <p class="s-h-9px s-pt-3px s-text-main-tab-text-active">Cricket
+                            </p>
+                          </div>
+                        </div>
+                        <div
+                          class="tab-indicator s-absolute s-left-0 s-top-3px s-bg-main-menu-bg-active s-h-44px s-rounded-5px">
+                        </div>
+                      </div>
+                      }
+                    </div>
+                    @if (mainTabs !== 2) {
+                    <div id="liveTab" class="tab-content active ng-star-inserted">
+                      <div class="tab-content active cricketTab ng-star-inserted">
+                        <div class="s-min-h-full-with-header s-pb-20px s-px-2 s-app s-py-10px">
+                          <div>
+                            @for ( list of gameList;let i = $index ; track $index) {
+                            <div id="100008MatchList" class="s-mb-12px ng-star-inserted">
+                              <div (click)="collapseDetails(i)"
+                                class="s-relative s-py-2 s-px-10px s-rounded-5px s-cursor-pointer s-transition-all s-duration-300 s-bg-main-collapse s-text-event-tab s-rounded-t-5px s-rounded-b-none">
+                                <h1
+                                  class="s-flex s-justify-between s-items-center s-text-14px s-text-event-tab s-font-normal s-pr-26px s-leading-20px">
+                                  <span class="s-break-words s-mr-1">{{list?.seriesname}}</span><span
+                                    id="100008MatchCount"
+                                    class="s-w-24px s-h-16px s-leading-16px s-text-center s-text-12px s-font-semibold s-rounded-3px s-flex-shrink-0 s-border s-border-solid s-border-event-tab s-text-event-tab eventnum">1</span>
+                                </h1><span [ngClass]="expandedSectiongame.has(i) ? 'rotate180' : ''"
+                                  class="s-icon-arrow-down-sencodary s-absolute s-text-12px s-right-4 s-top-3 s-transition-transform s-origin-center s-duration-300 s-text-event-tab s-transform s-rotate-180 arrowIcon 100008arrow"></span>
+                              </div>
+                              <div></div>
+                              @if (!expandedSectiongame.has(i)) {
+                              <div class="s-rounded-t-5px ng-star-inserted">
+                                <div data-is-inplay-type="true"
+                                  routerLink="/exchange/premium-parlay/{{list?.sportid}}/{{list?.marketid}}"
+                                  class="s-event-block-item-row s-grid s-justify-center s-items-center s-bg-white dark:s-bg-main-block-dark ng-star-inserted">
+                                  <div>
+                                    <div class="s-pl-8px s-w-8 s-flex s-justify-center s-items-center s-scale-110">
+                                      <div
+                                        class="s-fav s-text-icon-dark dark:s-text-global-font-default-dark s-relative s-pl-5px s-text-15px">
+                                        <div id="starIconbt-10647759"
+                                          class="s-star-line-box s-relative s-icon-star starIcon"><span
+                                            class="s-rating-star-line s-bg-icon-dark dark:s-bg-global-font-default-dark"></span><span
+                                            class="s-rating-star-line s-bg-icon-dark dark:s-bg-global-font-default-dark"></span><span
+                                            class="s-rating-star-line s-bg-icon-dark dark:s-bg-global-font-default-dark"></span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div>
+                                    <div class="s-inline-flex s-items-center">
+                                      <div
+                                        class="s-overflow-hidden s-flex s-flex-col s-rounded-3px s-h-32px s-w-40px s-mx-7px ng-star-inserted">
+                                        <div
+                                          class="s-px-2px s-leading-14px s-flex s-items-center s-justify-center s-bg-inPlay-light dark:s-bg-inPlay-dark s-text-black s-flex-1 s-leading-16px">
+                                          <span class="s-text-10px">In-play</span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div
+                                    class="s-h-full s-flex s-justify-center s-items-start s-flex-col s-py-8px s-pr-3px s-text-14px s-leading-17px s-break-words s-text-global-font-default-light dark:s-text-global-font-default-dark"
+                                    tabindex="0">
+                                    <p class="s-break-all">{{list?.matchname}}</p>
+                                    <div class="s-flex s-justify-start s-items-center">
+                                      <div class="s-flex s-items-center">
+                                        <div class="s-icon-vr-electronic s-event-icons s-mr-4px ng-star-inserted"
+                                          style="display: flex;"><span class="path1"></span><span class="path2"></span>
+                                        </div>
+                                        <p class="s-leading-14px s-text-12px s-text-black-600 s-mr-3px s-mt-1px">
+                                          Matched
+                                          <span>0.00</span>
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="s-flex s-justify-end s-items-center">
+                                    <div
+                                      class="s-h-full s-flex s-justify-end s-items-center s-text-14px s-font-bold s-leading-17px s-text-global-font-default-light dark:s-text-global-font-default-dark s-whitespace-nowrap">
+                                      <p></p>
+                                      <p class="s-px-2">:</p>
+                                      <p></p>
+                                    </div><i
+                                      class="s-ml-10px s-text-16px dark:s-text-global-font-default-dark s-icon-h2h"></i>
+                                  </div>
+                                  <div class="s-h-full s-flex s-justify-center s-items-center s-mr-9px s-ml-10px">
+                                    <span
+                                      class="s-icon-arrow-left s-transform s-rotate-180 s-text-12px s-text-black-400 dark:s-text-black-600"
+                                      tabindex="0"></span>
+                                  </div>
+                                </div>
+                                <div class="s-bg-black-300 dark:s-bg-white dark:s-bg-opacity-5 ng-star-inserted"
+                                  style="--e44b9ab4: 0.8vw;">
+                                  <div
+                                    class="head-to-head-wrapper s-relative s-border-solid s-bg-white dark:s-bg-body s-rounded-3px">
+                                    <div class="s-w-full s-absolute s-min-h-[291px]" style="display: none;">
+                                      <div
+                                        class="s-loading s-w-full s-h-full s-z-[300] s-flex s-justify-center s-items-center s-text-xl s-text-center s-text-primary s-absolute"
+                                        style="display: none; --42467982: 300;">
+                                        <div
+                                          class="s-loading-box s-flex s-justify-center s-items-center s-border s-border-solid s-border-primary-dark-200 s-rounded-lg s-w-28 s-h-28">
+                                          <div class="s-loading-spinner s-relative s-w-1/2 s-h-20px"></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div
+                                      class="s-icon-close s-text-9px s-absolute s-top-8px s-right-8px s-z-10 dark:s-text-global-font-default-dark"
+                                      style="display: none;"></div>
+                                    <div id="head-to-head-43048697" size="95px"
+                                      class="s-head-to-head s-w-full s-min-h-[291px]" style="display: none;"></div>
+                                  </div>
+                                </div>
+                              </div>
+                              }
+                            </div>
+                            }
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    }@else{
+                    <div id="liveTab" class="tab-content active ng-star-inserted">
+                      <div class="tab-content active cricketTab ng-star-inserted">
+                        <div class="s-min-h-full-with-header s-pb-20px s-px-2 s-app s-py-10px">
+                          <div>
+                            <div id="100008MatchList" class="s-mb-12px ng-star-inserted">
+                              <div
+                                class="s-relative s-py-2 s-px-10px s-rounded-5px s-cursor-pointer s-transition-all s-duration-300 s-bg-main-collapse s-text-event-tab s-rounded-t-5px s-rounded-b-none">
+                                <h1
+                                  class="s-flex s-justify-between s-items-center s-text-14px s-text-event-tab s-font-normal s-pr-26px s-leading-20px">
+                                  <span class="s-break-words s-mr-1">Toss Parlay</span><span id="100008MatchCount"
+                                    class="s-w-24px s-h-16px s-leading-16px s-text-center s-text-12px s-font-semibold s-rounded-3px s-flex-shrink-0 s-border s-border-solid s-border-event-tab s-text-event-tab eventnum">1</span>
+                                </h1><span
+                                  class="s-icon-arrow-down-sencodary s-absolute s-text-12px s-right-4 s-top-3 s-transition-transform s-origin-center s-duration-300 s-text-event-tab s-transform s-rotate-180 arrowIcon 100008arrow"></span>
+                              </div>
+                              <div></div>
+                              <div class="s-rounded-t-5px ng-star-inserted">
+                                <div data-is-inplay-type="true" routerLink="/exchange/toss-parlay"
+                                  class="s-event-block-item-row s-grid s-justify-center s-items-center s-bg-white dark:s-bg-main-block-dark ng-star-inserted">
+                                  <div>
+                                    <div class="s-pl-8px s-w-8 s-flex s-justify-center s-items-center s-scale-110">
+                                      <div
+                                        class="s-fav s-text-icon-dark dark:s-text-global-font-default-dark s-relative s-pl-5px s-text-15px">
+                                        <div id="starIconbt-10647759"
+                                          class="s-star-line-box s-relative s-icon-star starIcon"><span
+                                            class="s-rating-star-line s-bg-icon-dark dark:s-bg-global-font-default-dark"></span><span
+                                            class="s-rating-star-line s-bg-icon-dark dark:s-bg-global-font-default-dark"></span><span
+                                            class="s-rating-star-line s-bg-icon-dark dark:s-bg-global-font-default-dark"></span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div>
+                                    <div class="s-inline-flex s-items-center">
+                                      <div
+                                        class="s-overflow-hidden s-flex s-flex-col s-rounded-3px s-h-32px s-w-40px s-mx-7px ng-star-inserted">
+                                        <div
+                                          class="s-px-2px s-leading-14px s-flex s-items-center s-justify-center s-bg-inPlay-light dark:s-bg-inPlay-dark s-text-black s-flex-1 s-leading-16px">
+                                          <span class="s-text-10px">In-play</span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div
+                                    class="s-h-full s-flex s-justify-center s-items-start s-flex-col s-py-8px s-pr-3px s-text-14px s-leading-17px s-break-words s-text-global-font-default-light dark:s-text-global-font-default-dark"
+                                    tabindex="0">
+                                    <p class="s-break-all">Cricket matches</p>
+                                    <div class="s-flex s-justify-start s-items-center">
+                                      <div class="s-flex s-items-center">
+                                        <div class="s-icon-vr-electronic s-event-icons s-mr-4px ng-star-inserted"
+                                          style="display: flex;"><span class="path1"></span><span class="path2"></span>
+                                        </div>
+                                        <p class="s-leading-14px s-text-12px s-text-black-600 s-mr-3px s-mt-1px">
+                                          Matched
+                                          <span>0.00</span>
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="s-flex s-justify-end s-items-center">
+                                    <div
+                                      class="s-h-full s-flex s-justify-end s-items-center s-text-14px s-font-bold s-leading-17px s-text-global-font-default-light dark:s-text-global-font-default-dark s-whitespace-nowrap">
+                                      <p></p>
+                                      <p class="s-px-2">:</p>
+                                      <p></p>
+                                    </div><i
+                                      class="s-ml-10px s-text-16px dark:s-text-global-font-default-dark s-icon-h2h"></i>
+                                  </div>
+                                  <div class="s-h-full s-flex s-justify-center s-items-center s-mr-9px s-ml-10px">
+                                    <span
+                                      class="s-icon-arrow-left s-transform s-rotate-180 s-text-12px s-text-black-400 dark:s-text-black-600"
+                                      tabindex="0"></span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    }
+                  </div>
+                </main>
+              </section>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

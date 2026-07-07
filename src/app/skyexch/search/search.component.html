@@ -1,0 +1,101 @@
+<div class="wrap">
+    <div class="wrap-inner">
+        <div class="content cricket">
+            <div class="ng-tns-c389869152-1 ng-trigger ng-trigger-routeLayoutPageAni">
+                <div id="vueWebComponent" class="cricket-container">
+                    <div id="s-app-container" class="s-app s-space-y-px s-default">
+                        <div class="s-main-container-wrapper">
+                            <section id="s-main-container" class="s-min-h-full-with-header s-mx-auto s-bg-body">
+                                <main>
+                                    <section class="s-search-modal s-bg-body s-overflow-hidden s-fixed s-w-full s-top-0"
+                                        style="z-index: 100; height: 100%;">
+                                        <div class="s-sticky s-top-0 s-z-10">
+                                            <div
+                                                class="s-h-44px s-p-3 s-bg-black dark:s-bg-secondary s-text-white s-text-14px s-flex s-items-center s-justify-center">
+                                                <input id="search" name="search" autocomplete="true" type="string"
+                                                    class="s-effect-20 s-relative s-w-full s-h-40px s-px-2 s-z-10 s-bg-white s-bg-opacity-0 s-placeholder:text-white"
+                                                    placeholder="Search teams, competitions, and more..."
+                                                    (input)="onInput($event)" (paste)="onPaste($event)">
+                                                <span class="s-icon-close s-text-14px s-ml-7px"
+                                                    (click)="closeSearch()"></span>
+                                            </div>
+                                        </div>
+                                        <div id="searchContainer"
+                                            class="s-h-full s-pb-14 s-overflow-y-scroll s-text-global-font-default-light dark:s-text-global-font-default-dark dark:s-bg-main-background-dark">
+                                            <section class="s-px-4 s-pt-7px">
+                                                <div
+                                                    class="s-title s-text-15px s-pt-7px s-pb-6px s-leading-21px s-text-category-title">
+                                                    History</div>
+                                                <div
+                                                    class="s-rounded-5px s-text-15px s-divide-y s-divide-black-300 dark:s-divide-black-900 s-shadow-2sm s-bg-betSlip-light dark:s-bg-white dark:s-bg-opacity-5 s-text-global-font-default-light dark:s-text-global-font-default-dark">
+                                                </div>
+                                            </section>
+                                            <div class="mb-14px">
+                                                <section>
+                                                    <div class="s-px-4" style="display: none;">
+                                                        <div
+                                                            class="s-pt-14px s-pb-6px s-text-15px s-leading-21px s-text-category-title">
+                                                            Competitions</div>
+                                                    </div>
+                                                    <div class="s-p-14px" style="display: none;">
+                                                        <div
+                                                            class="s-bg-betSlip-light dark:s-bg-white dark:s-bg-opacity-5 s-rounded-5px s-text-global-font-default-light dark:s-text-global-font-default-dark s-text-15px s-leading-tight s-divide-y s-divide-black-300 s-shadow-2sm">
+                                                            <div
+                                                                class="s-flex s-py-4 s-pl-4 s-pr-2 s-items-center s-h-44px">
+                                                                <div class="s-pr-12px s-text-black-500">
+                                                                    <span
+                                                                        class="s-icon-arrow-left s-pr-2 s-text-12px"></span>
+                                                                    <span class="s-text-15px">Back</span>
+                                                                </div>
+                                                                <div class="s-border-r s-border-r-black-300 s-h-15px">
+                                                                </div>
+                                                                <span class="s-pl-12px s-text-15px s-truncate"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="s-bg-betSlip-light dark:s-bg-white dark:s-bg-opacity-5 s-text-global-font-default-light dark:s-text-global-font-default-dark s-rounded-5px s-text-15px s-leading-tight s-divide-y s-divide-black-300 dark:s-divide-main-background-dark s-shadow-2sm s-mt-12px"
+                                                            style="display: none;"></div>
+                                                    </div>
+                                                </section>
+                                                <section class="s-px-4" style="display: none;">
+                                                    <div
+                                                        class="s-pt-14px s-pb-6px s-text-15px s-leading-21px s-text-category-title">
+                                                        Event</div>
+                                                </section>
+                                            </div>
+                                            <div class="s-p-36" style="display: none;">
+                                                <div
+                                                    class="s-w-98px s-h-106px s-m-auto s-pt-6 s-pb-5 s-bg-white dark:s-bg-black-800 s-text-center s-text-global-font-default-light dark:s-text-global-font-default-dark s-text-base s-rounded-5px s-leading-tight s-shadow-2sm">
+                                                    <div alt=""
+                                                        class="s-icon-empty s-text-40px s-text-black-300 dark:s-text-global-font-default-dark dark:s-opacity-30 s-m-auto s-mb-2.5">
+                                                    </div>
+                                                    <p
+                                                        class="s-context s-text-base dark:s-text-global-font-default-dark">
+                                                        No Event</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+
+                                </main>
+                            </section>
+                            <div class="s-fixed s-top-0 s-left-0 s-w-full s-h-full s-z-40" style="display: none;"></div>
+                            <div class="s-loading s-w-full s-h-full s-z-[300] s-flex s-justify-center s-items-center s-text-xl s-text-center s-text-primary s-fixed s-left-0 s-top-0"
+                                style="display: none; --42467982: 300;">
+                                <div
+                                    class="s-loading-box s-flex s-justify-center s-items-center s-border s-border-solid s-border-primary-dark-200 s-rounded-lg s-w-28 s-h-28">
+                                    <div class="s-loading-spinner s-relative s-w-1/2 s-h-20px"></div>
+                                </div>
+                            </div>
+                            <div id="testLMT" class="s-hidden">
+                            </div>
+                            <div class="s-relative -s-bottom-4px"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+
+        </div>
+    </div>
+</div>

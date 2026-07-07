@@ -1,0 +1,42 @@
+<div class="skyexchange">
+  <app-header></app-header>
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
+  @if (myBets) {
+    <app-my-bets (closeModal)="myBets = false"></app-my-bets>
+  }
+  <div class="s-bottom-0 s-w-fit s-m-auto s-z-10 s-fixed s-left-1/2 -s-translate-x-1/2 badgeforcasino"
+    bis_skin_checked="1">
+    <div class="s-flex s-justify-center s-items-center" bis_skin_checked="1">
+      <div id="s-my-bets" (click)="openbets()"
+        class="s-relative s-z-10 s-flex s-items-center s-justify-center s-w-42px s-h-39px s-text-global-font-on-dark s-rounded-t-md s-bg-betSlip-icon-light dark:s-bg-betSlip-icon-dark"
+        style="--4af1ca07: 1.0714285714285714rem;" bis_skin_checked="1">
+        <span class="s-icon-list s-absolute s-text-22px">
+          <i class="fa fa-bars" aria-hidden="true"></i>
+        </span>
+        <div class="s-absolute -s-left-4 s-bottom-0 s-w-14px s-h-14px" bis_skin_checked="1"><svg width="8px"
+            height="8px" viewBox="0 0 8 8" version="1.1" xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            class="s-svg-image s-absolute s-right-0 s-bottom-0 s-w-7px s-h-7px">
+            <title>tab-radius-l</title>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" data-is-selected="false"
+              class="s-fill-betSlip-icon-light dark:s-fill-betSlip-icon-dark">
+              <path d="M0,0 C0,4.418278 3.581722,8 8,8 L0,8 L0,0 Z" id="tab-radius-l"
+                transform="translate(4.000000, 4.000000) scale(-1, 1) translate(-4.000000, -4.000000) ">
+              </path>
+            </g>
+          </svg></div>
+        <div class="s-absolute s--right-4 s-bottom-0 s-w-14px s-h-14px" bis_skin_checked="1"><svg width="8px"
+            height="8px" viewBox="0 0 8 8" version="1.1" xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            class="s-svg-image s-absolute s-left-0 s-bottom-0 s-w-7px s-h-7px">
+            <title>tab-radius-r </title>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" data-is-selected="false"
+              class="s-fill-betSlip-icon-light dark:s-fill-betSlip-icon-dark">
+              <path d="M0,0 C0,4.418278 3.581722,8 8,8 L0,8 L0,0 Z" id="tab-radius-r"></path>
+            </g>
+          </svg></div>
+      </div>
+    </div>
+  </div>
+</div>

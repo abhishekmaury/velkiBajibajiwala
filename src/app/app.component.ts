@@ -71,8 +71,9 @@ export class AppComponent implements OnInit {
 
   showHeader: boolean = true;
   showFooter: boolean = true;
+  classicTheme = true;
   constructor(private titleService: Title, private route: Router, private popupService: HandlerService,
-              private dataServe: DataHandlerService, private authserve: AuthserviceService,private intercom: IntercomService) {
+              private dataServe: DataHandlerService, private router: Router,private intercom: IntercomService) {
     this.route.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         if (event.url.includes('/deposit-rec')) {
@@ -251,6 +252,36 @@ export class AppComponent implements OnInit {
     })
   }
 
+  themeToggleFun() {
+
+    this.dataServe.changeTheme$.subscribe((res: any) => {
+      this.classicTheme = res;
+      if (this.classicTheme == true) {
+        this.router.navigate(['/sports'])
+      } else {
+        this.router.navigate(['/home'])
+      }
+    })
+    let theme = localStorage.getItem('clssaicTheme');
+    const classic = document.getElementById('classic-style') as HTMLLinkElement;
+    const modern = document.getElementById('newer-style') as HTMLLinkElement;
+
+    classic?.remove();
+    modern?.remove();
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+
+    if (theme == 'true') {
+      this.classicTheme = true;
+      link.id = 'classic-style';
+      link.href = './assets/css/halfbaji.css?v=1.10';
+    } else {
+      this.classicTheme = false;
+      link.id = 'newer-style';
+      link.href = './assets/css/main.css?v=1.10';
+    }
+    document.head.appendChild(link);
+  }
   ngAfterViewInit() {
     this.removeIntercomLauncher();
   }

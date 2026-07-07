@@ -1,0 +1,24 @@
+@import url(../exStyles.css);
+
+header .logo {
+  width: 26.6666666667vw !important;
+  left: 30% !important;
+}
+
+.singleLine {
+  white-space: nowrap;
+}
+
+.sp-top {
+  top: 13.33vw;
+}
+
+@media (min-width: 768px) {
+header .logo {
+    width: 128px !important;
+}
+
+  .sp-top {
+    top: 63.984px;
+  }
+}

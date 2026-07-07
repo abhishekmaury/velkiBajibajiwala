@@ -1,0 +1,228 @@
+<div class="wrap">
+  <div class="wrap-inner">
+    <div class="content cricket">
+      <div class="cricket-container">
+        <div class="s-app s-space-y-px s-default">
+          @if (showBetMsg) {
+          <div class="s-bottom-20px s-z-40 s-flex s-justify-center s-w-full s-fixed">
+            <!-- Bet Alert popup -->
+            <div class="s-alert s-w-335px s-text-center s-flex s-justify-center s-p-3px s-rounded-5px s-mx-auto"
+              [ngClass]="betsuccessstatus ? 's-bg-warning-light dark:s-bg-warning-dark' : 's-bg-error-light dark:s-bg-error-dark'">
+              <div class="s-w-full">
+                <div
+                  class="s-flex s-item-center s-text-global-font-on-dark s-justify-start s-items-center s-font-bold s-py-10px s-px-9px s-text-14px">
+                  <span class="s-icon-notice s-text-global-font-on-dark s-text-16px"></span>
+                  <h4 class="s-ml-1 s-flex-1 s-text-13px s-text-left s-leading-none">{{betSuccess[3].type}}</h4>
+                  <div class="s-icon-close s-right-4 s-text-14px"></div>
+                </div>
+                <div
+                  class="s-alert-content s-px-9px s-py-4 s-rounded-3px s-bg-white s-text-global-font-default-light dark:s-bg-black-800 s-text-13px dark:s-text-global-font-default-dark s-text-left"
+                  id="msuccessPop">{{betSuccess[3].message}}</div>
+              </div>
+            </div>
+          </div>
+          }
+          <div class="s-main-container-wrapper">
+            <section class="s-min-h-full-with-header s-mx-auto s-bg-body">
+              <main>
+                <div>
+                  <div>
+                    <div class="s-score-tab">
+                      <div class="s-relative s-h-34px s-overflow-y-hidden s-flex s-items-center s-bg-secondary">
+                        <div onclick="history.back()"
+                          class="s-absolute s-w-44px s-h-full s-flex s-justify-center s-items-center">
+                          <span class="s-icon-arrow-left s-w-14px s-h-14px s-text-14px s-text-white"></span>
+                        </div>
+                        <!-- <div class="s-w-full s-h-full s-flex s-justify-center s-items-end">
+                                                    <div class="s-mode-tab livetvTab s-relative s-w-90px s-h-27px s-flex s-justify-center s-items-center s-text-center s-rounded-tl-md s-rounded-tr-md first:s--mr-2.5px last:s--ml-2.5px is-active s-bg-scoreboard-tab-bg s-text-scoreboard-tab-text s-z-40 s-bg-scoreboard-tab-bg-active s-text-scoreboard-tab-text-active"
+                                                        ng-reflect-ng-class="s-bg-scoreboard-tab-bg-active "><span
+                                                            class="s-icon-live-tv s-block s-mr-4px s-text-17px s-text-scoreboard-tab-text s-text-scoreboard-tab-text-active"></span><span
+                                                            class="s-leading-27px s-text-14px">TV</span></div>
+                                                    <div class="s-mode-tab scorecardTab s-relative s-w-90px s-h-27px s-flex s-justify-center s-items-center s-text-center s-rounded-tl-md s-rounded-tr-md first:s--mr-2.5px last:s--ml-2.5px s-bg-scoreboard-tab-bg s-text-scoreboard-tab-text s-z-30"
+                                                        ng-reflect-ng-class=""><span
+                                                            class="s-icon-live-tv s-block s-mr-4px s-text-17px s-text-scoreboard-tab-text"
+                                                            style="display: none;"></span><span
+                                                            class="s-leading-27px s-text-14px">Scoreboard</span></div>
+                                                </div> -->
+                      </div>
+                      <div class="s-w-full s-h-4px s-bg-scoreboard-tab-bg-active"></div>
+                    </div>
+                    <div class="s-bg-secondary" style="height: auto;">
+                      <div class="tv-wrap">
+                        <div id="streamContainer" class="tv-box">
+                          <div id="tv" class="tv" style="height: 0px;">
+                            <div id="zoomdrag" class="zoomed_mode" style="left: 117.144px; top: 327.217px;"><span
+                                style="position: absolute; z-index: 99; display: flex; width: 100%; justify-content: end; font-size: 20px;"><i
+                                  id="tvFrame" class="fa fa-arrows"
+                                  style="position: relative; top: -5px; color: #fff; right: -13px;"></i></span><iframe
+                                allowfullscreen="true" class="zoomed_mode"
+                                style="width: 100%; border: none; height: 55vw;"
+                                src="https://e765432.xyz/static/f7088fa6ad4983b579bcec09709b8afbce3b7c2b/getdata.php?chid=7102"></iframe>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="fullMarketEventRightOverUnder" class="s-min-h-677px s-px-2 s-pb-80px">
+                    <div>
+                      <div>
+                        <div>
+                          <div class="s--mx-2 s-px-2 s-flex s-justify-between s-items-center s-bg-secondary s-h-34px">
+                            <div class="s-text-base s-text-white s-flex"> Exchange</div>
+                            <div class="s-flex s-justify-center s-items-center">
+                              <div><span
+                                  class="s-mr-1 s-text-11px s-text-market-exchange-tip s-opacity-85">Matched</span><span
+                                  id="MatchedVolume" class="s-text-11px s-text-market-exchange-tip s-font-bold">
+                                  PBU 308973.63 </span></div><span
+                                class="s-ml-1.5 s-p-1.5 s-text-10px s-text-white s-font-bold s-bg-error-light dark:s-bg-error-dark s-rounded-md"
+                                style="display: none;"> Low </span>
+                            </div>
+                          </div>
+                          <div class="s--mx-2 market-wrapper s-h-40px s-relative s-bg-primary s-overflow-y-hidden"
+                            style="--69bae85a: 92px; --3d1c2e7c: translateX(7px);">
+                            <div class="s-h-full s-inline-block">
+                              <ul id="naviMarketList"
+                                class="s-ml-2 s-mr-1 s-h-full s-flex s-flex-nowrap s-justify-start s-items-center s-text-market-name">
+                                <li
+                                  class="matchodds s-mr-15px s-h-full s-flex s-items-center s-whitespace-nowrap s--translate-x-1.5 select">
+                                  <div
+                                    class="s-fav s-text-market-name dark:s-text-market-name s-text-16px s-mb-3px s-mr-4px s-pl-6px">
+                                    <div class="s-star-line-box s-relative s-icon-star">
+                                      <span
+                                        class="s-rating-star-line s-bg-market-name dark:s-bg-market-name"></span><span
+                                        class="s-rating-star-line s-bg-market-name dark:s-bg-market-name"></span><span
+                                        class="s-rating-star-line s-bg-market-name dark:s-bg-market-name"></span>
+                                    </div>
+                                  </div><span class="s-text-14px select">{{eventData.matchname}}</span>
+                                </li>
+
+                              </ul>
+                              <div
+                                class="tab-indicator oddstab-indicator s-h-3px s-absolute -s-left-0.5 s-bottom-2 s-rounded-1.5px s-bg-market-name">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="matchoddsTab -s-mx-2 s-py-1 s-px-2 s-bg-white dark:s-bg-black-800 s-shadow-2sm">
+                            <div class="s-mb-1 s-mt-3px s-flex s-justify-between s-items-center">
+                              <div class="s-flex-1"></div>
+                              <div class="s-w-131px s-grid s-gap-0.5 s-grid-cols-2 s-font-bold">
+                                <div
+                                  class="s-min-w-min s-text-11px s-text-global-font-default-light dark:s-text-global-font-default-dark s-text-center">
+                                  Back</div>
+                                <div
+                                  class="s-min-w-min s-text-11px s-text-global-font-default-light dark:s-text-global-font-default-dark s-text-center">
+                                  Lay</div>
+                              </div>
+                            </div>
+                            <div>
+                              <div class="s-relative">
+                                <div class="s-space-y-px">
+                                  @for (item of matchrunners; let j = $index; track $index) {
+                                  <div class="s-bg-black-100 dark:s-bg-black-700">
+                                    <div class="s-flex s-justify-start s-items-center">
+                                      <p
+                                        class="s-px-2.5 s-flex-1 s-h-full s-leading-5 s-text-14px s-flex s-flex-col s-justify-center s-break-all s-text-global-font-default-light dark:s-text-global-font-default-dark">
+                                        <span>{{item.runnerName}}</span>
+                                        @if (getMatcBkData) {
+                                        <span style="display:flex">
+                                          <span
+                                            [class]="bookfilter(item.selectionid) > 0   ? 'bookgreencolor' : 'bookredcolor'"
+                                            class="s-forecast s-sportsbook-forecast s-text-10px s-leading-normal s-flex s-font-bold">{{bookfilter(item.selectionid)
+                                            | number :'1.0-2'}}</span>
+                                        </span>
+                                        }
+                                      </p>
+                                      <div
+                                        class="s-w-131px s-relative s-grid s-gap-0.5 s-grid-cols-2 s-self-start dark:s-text-black-900">
+                                        <div title="BACK"
+                                          (click)="openOddBetPlace(j, 'back', [{isBack : true, selectionId : item.selectionid, selectionName : item.runnerName, odds : runnersList[j]?.ex?.availableToBack[0]?.price, matchName : eventData.matchname, eventId : eventId, sourceId : eventId, sourceBetType : '', sportId : sportId}])"
+                                          class="back12954260 s-py-1.5 s-flex s-flex-col s-text-center s-rounded-3px s-min-h-39px s-relative s-overflow-hidden s-bg-back-300 dark:s-bg-back-400-dark"
+                                          ng-reflect-ng-class=""
+                                          [ngClass]="(runnersList[j]?.ex?.availableToLay[0]?.price) ? '' : 'disabled'">
+                                          <div
+                                            class="wrapper s-w-full s-h-full s-absolute s-overflow-hidden s-top-0 s-left-0 s-z-10"
+                                            style="--0b879273: 0;"><span
+                                              class="mask s-w-full s-h-full s-opacity-10 s-bg-black-900 s-absolute s-left-0 s-top-0"
+                                              style="display: none;"></span><span
+                                              class="feedback s-block s-bg-white s-bg-opacity-25 s-rounded-full s-mix-blend-overlay s-absolute"
+                                              style="display: none;"></span>
+                                          </div>
+                                          <p class="s-text-15px s-pb-0.5 s-text-black">
+                                            {{(runnersList[j]?.ex?.availableToBack[0]?.price) ?? '--'}}</p>
+                                          <p class="s-text-9px s-text-black">
+                                            {{(runnersList[j]?.ex?.availableToBack[0]?.size) ?? '--'}}</p>
+                                        </div>
+                                        <div title="LAY"
+                                          class="lay12954260 s-py-1.5 s-flex s-flex-col s-text-center s-rounded-3px s-min-h-39px s-relative s-overflow-hidden s-bg-lay-300 dark:s-bg-lay-400-dark"
+                                          ng-reflect-ng-class="">
+                                          <div
+                                            class="wrapper s-w-full s-h-full s-absolute s-overflow-hidden s-top-0 s-left-0 s-z-10"
+                                            style="--0b879273: 0;"><span
+                                              class="mask s-w-full s-h-full s-opacity-10 s-bg-black-900 s-absolute s-left-0 s-top-0"
+                                              style="display: none;"></span><span
+                                              class="feedback s-block s-bg-white s-bg-opacity-25 s-rounded-full s-mix-blend-overlay s-absolute"
+                                              style="display: none;"></span>
+                                          </div>
+                                          <p id="lay1Odds2954260" class="s-text-15px s-pb-0.5 s-text-black">
+                                            --</p>
+                                          <p id="lay1Price2954260" class="s-text-9px s-text-black">
+                                            --</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    @if (showOdd == j && backTrue == true) {
+                                    <app-place-bet-cupwinner [clsClr]="classclrforlayBack" [data]="oddPrice"
+                                      [updOddsBack]="runnersList[j]?.ex?.availableToBack[0]?.price"
+                                      [updOddsLay]="runnersList[j]?.ex?.availableToLay[0]?.price"
+                                      [socketEventData]="socketEventOdds" [isInplay]="inplaystatus"
+                                      (betResult)="getOddsCalculation($event)"
+                                      (stopTimer)="stopTimeout($event)"></app-place-bet-cupwinner>
+                                    }
+
+                                  </div>
+                                  }
+
+                                  <div id="fullMarketSuspendedDiv" data-testid="fancybet-market-status"
+                                    class="s-absolute s-right-0 s-top-0 s-flex s-justify-center s-items-center s-w-full s-h-full s-bg-black-600 dark:s-bg-black-800 s-opacity-80 s-text-11px s-text-white s-rounded-3px s-z-20 s-w-131px"
+                                    style="display: none;">Suspended</div>
+                                </div>
+                              </div>
+                              <div class="s-pt-1 s-flex s-justify-between s-items-center s-min-h-30px">
+                                <!-- <div
+                                                                    class="marketDepth s-inline-flex s-justify-center s-items-center s-rounded s-bg-secondary s-text-global-font-on-dark s-px-3px s-py-1.5">
+                                                                    <span
+                                                                        class="s-icon-graph s-pl-3px s-pr-0.5 s-text-14px"></span><span
+                                                                        class="s-px-3px s-text-14px"> Market Depth
+                                                                    </span>
+                                                                </div> -->
+                                <!-- <div data-testid="betLimit"
+                                                                    class="s-flex s-items-center s-text-black-600 dark:s-text-black-400">
+                                                                    <span
+                                                                        class="s-icon-min-max s-px-1 s-mt-0.5 s-text-11px"></span><span
+                                                                        class="s-px-0.5 s-text-11px">Min/Max</span><span
+                                                                        class="s-px-1 s-text-11px s-font-bold ominMaxInfo">10
+                                                                        / 10000</span>
+                                                                </div> -->
+                              </div>
+                            </div>
+                          </div>
+                          <div class="overunderTab -s-mx-2 s-py-1 s-px-2 s-bg-white dark:s-bg-black-800 s-shadow-2sm">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div
+                    class="s-w-full s-max-w-[480px] s-fixed s-bottom-0 s-left-1/2 s-z-30 s-transition-all s-duration-300"
+                    style="transform: translateX(-50%);"></div>
+                </div>
+              </main>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

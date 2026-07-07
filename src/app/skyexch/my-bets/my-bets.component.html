@@ -1,0 +1,356 @@
+<div class="wrap">
+  <div class="wrap-inner">
+    <div class="content cricket">
+      <div class="ng-tns-c389869152-1 ng-trigger ng-trigger-routeLayoutPageAni">
+        <div id="vueWebComponent" class="cricket-container">
+          <div id="s-app-container" class="s-app s-space-y-px s-default">
+            <div class="s-main-container-wrapper">
+              <section id="s-main-container" class="s-min-h-full-with-header s-mx-auto s-bg-body">
+                <main>
+                  <div>
+                    <div>
+                      <div
+                        class="s-my-bets-mask s-top-0 s-left-0 s-w-full s-h-full s-bg-black/50 s-backdrop-blur-[2px] s-fixed s-w-full"
+                        style="z-index: 299;"></div>
+                      <div
+                        class="s-my-bets s-flex s-flex-col s-bottom-0 s-bg-pop-title-bg s-text-pop-title-text s-rounded-t-5px s-fixed s-w-full"
+                        style="--1c4d8e14: 300; --497febee: 100%  - 5.857142857142857rem;">
+                        <div class="exchangemybets">
+                          <div class="s-flex s-py-2.5 s-text-13px">
+                            <div class="s-main-filter s-flex-1">
+                              <ul
+                                class="s-main-filter-ul s-flex s-justify-center s-items-center s-leading-tight s-text-center s-break-all s-text-14px">
+                                <li class="s-main-filter-li s-relative s-mx-4 s-py-0.5 s-font-bold">
+                                  My Bets</li>
+                              </ul>
+                            </div>
+                            <div (click)="close()"
+                              class="s-icon-close s-flex s-justify-center s-items-center s-mr-2 s-cursor-pointer s-text-14px">
+                            </div>
+                          </div>
+                          <div class="s-flex s-pl-15px s-h-27px s-text-14px">
+                            <!-- exchange -->
+                            <div (click)="tabs('exchange')" [ngClass]="activeTab == 'exchange' ? 'active' : ''"
+                              class="s-relative s-h-full s-flex s-items-center s-justify-around s-rounded-t-5px s-w-90px s-text-market-tab-text dark:s-text-global-font-default-dark s-bg-white s-z-10 dark:s-bg-black-800">
+                              <div class="s-flex s-items-center">
+                                <span>Exchange</span>
+                              </div>
+                            </div>
+                            <!-- parlay -->
+                            <div (click)="tabs('parlay')" [ngClass]="activeTab == 'parlay' ? 'active' : ''"
+                              class="s-relative s-h-full s-flex s-items-center s-justify-around s-rounded-t-5px s-w-90px s-text-market-tab-text dark:s-text-global-font-default-dark s-bg-white s-z-10 dark:s-bg-black-800">
+                              <div class="s-flex s-items-center">
+                                <span>Parlay</span>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                        @if (parlayActiveLiability?.length == 0 && activeTab == 'parlay') {
+                        <div
+                          class="exchangeMatches s-bg-pop-title-bg s-text-pop-title-text s-flex-1 s-flex s-flex-col s-overflow-y-scroll s-px-3px s-pb-3px s-rounded-5px">
+                          <div id="betsData" style="display: none;"></div>
+                          <div id="noBets">
+                            <section
+                              class="s-list-area s-rounded-t-5px s-bg-white dark:s-bg-black-800 s-flex-1 s-overflow-y-scroll"
+                              style="display:block;">
+                              <div>
+                                <div class="s-p-36">
+                                  <div
+                                    class="s-w-98px s-h-106px s-m-auto s-pt-6 s-pb-5 s-bg-white dark:s-bg-black-800 s-text-center s-text-global-font-default-light dark:s-text-global-font-default-dark s-text-base s-rounded-5px s-leading-tight s-shadow-2sm">
+                                    <div alt=""
+                                      class="s-icon-empty s-text-40px s-text-black-300 dark:s-text-global-font-default-dark dark:s-opacity-30 s-m-auto s-mb-2.5">
+                                    </div>
+                                    <p class="s-context s-text-base dark:s-text-global-font-default-dark">
+                                      Bet Slip is Empty
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </section>
+                          </div>
+                        </div>
+                        }
+                        @if (exchange?.length == 0 && activeTab == 'exchange') {
+                        <div
+                          class="exchangeMatches s-bg-pop-title-bg s-text-pop-title-text s-flex-1 s-flex s-flex-col s-overflow-y-scroll s-px-3px s-pb-3px s-rounded-5px">
+                          <div id="betsData" style="display: none;"></div>
+                          <div id="noBets">
+                            <section
+                              class="s-list-area s-rounded-t-5px s-bg-white dark:s-bg-black-800 s-flex-1 s-overflow-y-scroll"
+                              style="display:block;">
+                              <div>
+                                <div class="s-p-36">
+                                  <div
+                                    class="s-w-98px s-h-106px s-m-auto s-pt-6 s-pb-5 s-bg-white dark:s-bg-black-800 s-text-center s-text-global-font-default-light dark:s-text-global-font-default-dark s-text-base s-rounded-5px s-leading-tight s-shadow-2sm">
+                                    <div alt=""
+                                      class="s-icon-empty s-text-40px s-text-black-300 dark:s-text-global-font-default-dark dark:s-opacity-30 s-m-auto s-mb-2.5">
+                                    </div>
+                                    <p class="s-context s-text-base dark:s-text-global-font-default-dark">
+                                      Bet Slip is Empty
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </section>
+                          </div>
+                        </div>
+                        }
+                        <!-- /// Exchange Tab -->
+                        @if (activeTab == 'exchange') {
+                        @if (betDetails) {
+                        <div
+                          class="exchangeMatches s-bg-pop-title-bg s-text-pop-title-text s-flex-1 s-flex s-flex-col s-overflow-y-scroll s-px-3px s-pb-3px s-rounded-5px">
+                          <div id="betsData">
+                            @for ( list of exchange ; track $index) {
+                            <section (click)="openListInfo(list)"
+                              class="s-list-area s-rounded-t-5px s-bg-white dark:s-bg-black-800 s-flex-1 s-overflow-y-scroll">
+                              <div>
+                                <div
+                                  class="exchangematchlist s-list-group s-border-b-black-300 dark:s-border-black-900 s-border-b s-px-1 s-py-2">
+                                  <div class="s-list s-rounded s-flex s-items-center s-justify-center">
+                                    <div
+                                      class="s-text-button-normal s-count s-shrink-0 s-h-5 s-w-6 s-flex s-justify-center s-items-center s-text-10px s-mr-1.5 s-ml-1 s-bg-button-normal s-rounded s-font-bold">
+                                      {{list?.betcount}}
+                                    </div>
+                                    <div
+                                      class="s-flex-1 s-whitespace-pre-wrap s-leading-tight s-text-clip s-text-13px s-text-global-font-default-light dark:s-text-global-font-default-dark"
+                                      style="white-space: normal;"><span class="s-font-bold s-mr-1"
+                                        style="white-space: pre-wrap;">{{list?.matchName}}</span>
+                                      <div
+                                        class="s-icon-triangle-black-300 dark:s-border-l-global-dark dark:s-opacity-30 s-inline-block s-align-baseline">
+                                      </div>
+                                      <span> {{list?.sourceName}} -
+                                        {{list?.type}}</span>
+                                    </div>
+                                    <div
+                                      class="s-flex s-flex-grow-0 s-flex-s-shrink-0 s-items-center s-justify-center s-w-25px s-h-25px s-ml-1.5 s-mr-1 s-text-11px s-rounded-3px s-bg-black-300 dark:s-bg-black-700 s-text-global-font-default-light dark:s-text-global-font-default-dark">
+                                      <div class="s-icon-arrow-left s-transform s-rotate-180 s-ml-1px">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </section>
+                            }
+                          </div>
+
+                        </div>
+                        }
+                        <!-- /// -->
+                        @if (betListInfo) {
+                        <div
+                          class="exchangematchDetail s-text-pop-title-text s-flex-1 s-flex s-flex-col s-overflow-y-scroll s-px-3px s-pb-3px s-rounded-5px">
+                          <div class="s-mybet-title s-flex s-py-12px s-text-13px">
+                            <div (click)="goBack()"
+                              class="s-icon-arrow-left exchange-arrow-left s-flex s-justify-center s-items-center s-ml-2 s-cursor-pointer s-text-14px">
+                            </div>
+                            <div class="s-main-filter s-flex-1">
+                              <ul
+                                class="s-main-filter-ul s-flex s-justify-center s-items-center s-leading-tight s-text-center s-break-all s-text-14px">
+                                <li
+                                  class="s-main-filter-li s-relative s-mx-8 s-justify-center s-items-center s-font-bold s-text-13px">
+                                  <span class="s-font-bold s-mr-1" id="detailMName">{{selectedList.matchName}}</span>
+                                  <div
+                                    class="s-icon-triangle-black-600 dark:s-border-l-global-dark dark:s-opacity-30 s-inline-block s-align-baseline">
+                                  </div>
+                                  <!-- <span class="s-font-normal" id="detailType">{{selectedList?.sourceName}}
+                                            - ({{selectedList?.type}})</span> -->
+                                </li>
+                              </ul>
+                            </div>
+                            <div
+                              class="s-icon-close s-flex s-justify-center s-items-center s-mr-2 s-cursor-pointer s-text-14px"
+                              (click)="closebet()"></div>
+                          </div>
+                          <section
+                            class="s-list-area s-rounded-t-5px s-bg-white dark:s-bg-black-800 s-flex-1 s-overflow-hidden">
+                            <div
+                              class="s-mybet-detail-content s-flex s-flex-col s-h-full s-bg-black-300 s-rounded-t-xl">
+                              <div
+                                class="s-detail-list-area s-overflow-y-scroll s-rounded-t-3px s-bg-white dark:s-bg-black-800 s-flex-1 s-p-4px">
+                                <div class="s-wrapper s-overflow-y-scroll s-h-full" id="dBetData">
+                                  @for ( list of ActiveLiablist ; track $index ) {
+                                  <div
+                                    class="list-s-content s-border s-border-black-300 dark:s-border-black-700 s-rounded-md">
+                                    <div
+                                      class="s-row s-flex s-justify-between s-bg-black-100 dark:s-bg-black-700 s-text-13px s-min-h-40px s-items-center">
+                                      <div class="s-flex s-items-center">
+                                        <div
+                                          class="bet-tag s-w-50px s-shrink-0 s-h-8 back s-relative s-flex s-justify-center s-items-center s-mr-2 s-font-bold s-text-center s-rounded-3px s-text-black dark:s-text-black-900"
+                                          [ngClass]="list?.isBack == true ? 's-bg-back dark:s-bg-back-300' : 's-bg-lay dark:s-bg-lay-300'">
+                                          {{list?.isBack == true ? 'Back'
+                                          : 'Lay'}}</div><span
+                                          class="s-flex s-items-center s-text-13px s-font-bold s-min-h-28px s-leading-tight s-break-all">{{list?.selectionName}}</span>
+                                      </div>
+                                    </div>
+                                    <div
+                                      class="s-row s-second s-flex s-border-t s-border-b s-border-black-300 dark:s-border-black-700 s-text-14px">
+                                      <div
+                                        class="s-item odds s-border-r s-border-black-300 dark:s-border-black-700 s-p-2 s-flex-1">
+                                        <div class="s-label s-text-10px">
+                                          Odds</div>
+                                        <div class="s-content s-font-bold s-leading-tight">
+                                          {{list?.odds}}</div>
+                                      </div>
+                                      <div
+                                        class="s-item stake s-border-r s-border-black-300 dark:s-border-black-700 s-p-2 s-flex-1">
+                                        <div class="s-label s-text-10px">
+                                          Stake </div>
+                                        <div class="s-content s-font-bold s-leading-tight">
+                                          {{list?.stake}}</div>
+                                      </div>
+                                      <div class="s-item s-profit s-p-2 s-flex-1">
+                                        <div class="s-label s-text-10px">
+                                          Profit / Liabilty  </div>
+                                        <div class="s-content s-font-bold s-leading-tight">
+                                          <span>{{list?.pnl}}/
+                                            {{list?.liability}}</span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="s-row s-third">
+                                      <div class="s-flex s-justify-between">
+                                        <span>Ref:
+                                          {{list?.id.slice(0-12)}}</span><span>{{list?.betDate}}
+                                          {{list?.betTime}}</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  }
+                                </div>
+                              </div>
+                            </div>
+                          </section>
+                        </div>
+                        }
+                        }
+                        <!-- // Patlay Tab -->
+                        @if (activeTab == 'parlay') {
+                        <div [style]="betDetails ? 'display:none' : ''"
+                          class="exchangeMatches s-bg-pop-title-bg s-text-pop-title-text s-flex-1 s-flex s-flex-col s-overflow-y-scroll s-px-3px s-pb-3px s-rounded-5px">
+                          <div id="betsData">
+                            <section
+                              class="s-list-area s-rounded-t-5px s-bg-white dark:s-bg-black-800 s-flex-1 s-overflow-y-scroll">
+                              @for ( item of parlayActiveLiability ; track $index) {
+                              <section>
+                                <section class="bg-white first:mt-2 mb-2 p-2"><span
+                                    class=" flex items-center justify-center rounded-t-lg bg-black-300">
+                                    <div class="p-2 flex justify-between leading-tight text-12 w-full">
+                                      <span>Ref : {{item.parlayId}}</span>
+                                      <span>{{item.date}}</span>
+                                    </div>
+                                  </span>
+                                  <section class="divide-black-300 divide-y">
+                                    <div class="divide-black-300 divide-y border border-b-0 border-black-300">
+                                      <section class="divide-black-300 divide-x grid grid-cols-3">
+                                        <div class="p-2 flex-1">
+                                          <div class="text-10">Odds</div>
+                                          <div class="leading-tight font-bold pt-0.5">{{item.totalOdds}}</div>
+                                        </div>
+                                        <div class="p-2 flex-1">
+                                          <div class="text-10">Stake (PKU)</div>
+                                          <div class="leading-tight font-bold pt-0.5">{{item.liability}}</div>
+                                        </div>
+                                        <div class="p-2 flex-1">
+                                          <div class="text-10">Profit (PKU)</div>
+                                          <div class="leading-tight font-bold pt-0.5">{{item.totalPnl}}</div>
+                                        </div>
+                                      </section>
+                                      <section class="p-2 divide-black-300 divide-y text-10"><span>Will be
+                                          <strong>keep</strong> at in-play</span>
+                                      </section>
+                                    </div>
+                                    @if (openParlayBets==item.parlayId) {
+                                    <section>
+                                      @for ( pd of parlayLiabData ; track $index) {
+                                      <article>
+                                        <span class="flex justify-center items-center bg-black-300">
+                                          <div class="p-2 leading-tight text-10 w-full">
+                                            <span
+                                              class="whitespace-pre-wrap">{{pd.sportId==4?'Cricket':pd.sportId==2?'Tennis':'Soccer'}}</span>
+                                            <i class="icon-triangle-black-600 inline-block"></i>
+                                            <span>
+                                              <strong>{{pd.matchName}}</strong>
+                                            </span>
+                                            <i class="icon-triangle-black-600 inline-block"></i>
+                                            <span>
+                                              <strong>{{pd.selectionName}}</strong>
+                                            </span>
+                                            <i class="icon-triangle-black-600 inline-block"></i>
+                                            <span>{{pd.sourceName}}</span>
+                                          </div>
+                                        </span>
+                                        <section class="p-2 flex justify-between items-center bg-black-100">
+                                          <div class="flex justify-center items-center">
+                                            @if (pd.isActive==false && pd.parlayIswin==true) {
+                                            <div
+                                              class="shrink-0 w-50px h-8 flex mr-2 font-bold justify-center items-center content-between rounded-full text-13 bg-success text-white">
+                                              <div class="bold text-13">Win</div>
+                                            </div>
+                                            }
+
+                                            @if (pd.isActive==false && pd.parlayIswin==false) {
+                                            <div
+                                              class="shrink-0 w-50px h-8 flex mr-2 font-bold justify-center items-center content-between rounded-full text-13 bg-error text-white">
+                                              <div class="bold text-13">Loss</div>
+                                            </div>
+                                            }
+                                            @if (pd.isActive==true) {
+                                            <div
+                                              class="shrink-0 w-50px h-8 flex mr-2 font-bold justify-center items-center content-between bg-black-300 rounded-full text-13"
+                                              style="margin-right: 10px;">
+                                              <div class="dot w-4px mr-1 h-4px bg-black-600 rounded-full"></div>
+                                              <div class="dot w-4px mr-1 h-4px bg-black-600 rounded-full"></div>
+                                              <div class="dot w-4px h-4px bg-black-600 rounded-full"></div>
+                                            </div>
+                                            }
+                                            <div class="bg-black-300 text-black text-15 px-3 py-2 rounded-md font-bold">
+                                              {{pd.odds}}</div>
+                                          </div>
+                                        </section>
+                                      </article>
+                                      }
+                                    </section>
+                                    }
+                                  </section>
+                                  <footer>
+                                    <div style="background:#000 !important"
+                                      class="bg-black-300 bg-black-400 duration-500 rounded-b-lg transition-colors h-2">
+                                    </div>
+                                    <div style="background:#000 !important;height:1.3rem;align-items:center;"
+                                      class="bg-black-300 bg-black-400 duration-500 rounded-b-lg transition-colors flex h-4 justify-center mx-auto w-90px"
+                                      (click)="getParlayById(item.parlayId)"><span
+                                        class="-top-1 duration-300 icon-arrow-down-sencodary origin-center relative text-black transition-transform hideshowFont"
+                                        style="font-family:inherit !important;color:#fff !important;font-weight:600;">{{openParlayBets==item.parlayId?'Hide':'Show'}}
+                                        Bets</span></div>
+                                  </footer>
+                                  <div class="flex justify-center items-center py-48" style="display:none">
+                                    <div
+                                      class="bg-white leading-tight pb-5 pt-6 px-7 rounded-xl text-base text-black-700 text-center">
+                                      <div class="icon-empty m-auto mb-2.5 text-40 text-black-300" alt=""></div>
+                                      <div>No Data</div>
+                                    </div>
+                                  </div>
+                                </section>
+                              </section>
+                              }
+                            </section>
+                          </div>
+                        </div>
+                        }
+                      </div>
+                    </div>
+                  </div>
+                </main>
+              </section>
+              <div id="testLMT" class="s-hidden">
+              </div>
+              <div class="s-relative -s-bottom-4px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

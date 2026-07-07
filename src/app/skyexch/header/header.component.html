@@ -1,0 +1,718 @@
+<!-- Login Popup -->
+<div id="pop_bg_login" class="pop-bg" style="z-index: 7000;" [ngClass]="{ 'bshow': showlangpop, 'bhide': !showlangpop }"
+(click)="closelang() "></div>
+<div class="login-pop-group" style="z-index: 7000; display: block;">
+</div>
+<!-- <div class="wrap-pop language-pop language-pop-desktop"
+[ngClass]="{ 'langshow': showlangpop, 'langhide': !showlangpop }">
+<div class="pop-title ng-tns-c2605279879-5 ng-star-inserted">
+  <h3 class="ng-tns-c2605279879-5">Currency and Language</h3><a (click)="closelang()"
+  class="btn-close ng-tns-c2605279879-5"><span class="item-icon ng-tns-c2605279879-5"
+style="background-image: url(&quot;/assets/images/icon-cross-type01.svg?v=1726575604702&quot;);"></span></a>
+</div>
+<div class="pop-inner ng-tns-c2605279879-5">
+  <ul class="language-list ng-tns-c2605279879-5">
+    <li class="ng-tns-c2605279879-5 ng-star-inserted">
+      <div class="left-language-area ng-tns-c2605279879-5"><img fetchpriority="high"  class="ng-tns-c2605279879-5" alt="BDT"
+        src="/assets/images/IN.png?v='1.01'" loading="lazy">
+        <p class="ng-tns-c2605279879-5"><span class="ng-tns-c2605279879-5">₹ </span> INR </p>
+      </div>
+      <div class="right-language-area ng-tns-c2605279879-5">
+        <div class="radio-box ng-tns-c2605279879-5 ng-star-inserted" (click)="setActiveLang('en')">
+          <input type="radio" [checked]="lang=='en'"><label class="ng-tns-c2605279879-5" for="BDT0"> English
+        </label>
+      </div>
+      <div class="radio-box ng-tns-c2605279879-5 ng-star-inserted" (click)="setActiveLang('bd')">
+        <input type="radio" [checked]="lang=='bd'">
+        <label class="ng-tns-c2605279879-5" for="BDT0"> বাংলা</label>
+      </div>
+    </div>
+  </li>
+</ul>
+</div>
+</div> -->
+<!-- mobile header  -->
+<header (click)="$event.stopPropagation()" style="z-index: 99;" id="header"
+  [style]="{'background':themeData?.masterBgColor1}" class="normal ng-star-inserted header-down">
+  <div class="header-left-btn-group">
+    <div class="back-btn" [style]="{'background':themeData?.masterTextColor1}"></div>
+    <div class="menu-btn" [style]="{'background':themeData?.masterBgColor1, 'margin' : '0'}" (click)="openSidebar()">
+      <ul>
+        <li [style]="{'background':themeData?.masterTextColor1}"></li>
+        <li [style]="{'background':themeData?.masterTextColor1}"></li>
+        <li [style]="{'background':themeData?.masterTextColor1}"></li>
+      </ul>
+    </div>
+  </div>
+  <div class="logo headLogo logoImp" tabindex="0" routerLink="/home" style="background-image: url('{{headerLogo}}');">
+  </div>
+  @if (beforeLogin) {
+    <div class="header-btn-group ng-star-inserted">
+      <a class="login header-link ng-star-inserted" routerLink="/login"
+        [style]="{'background':themeData?.loginButtonBackground,'color':themeData?.loginButtonTextColor}">
+        <font style="vertical-align: inherit;">
+          <font style="vertical-align: inherit;">Login</font>
+        </font>
+      </a><a class="register header-link ng-star-inserted" routerLink="/signup"
+      [style]="{'background':themeData?.signupButtonBackground,'color':themeData?.signupButtonTextColor}">
+      <font style="vertical-align: inherit;">
+        <font style="vertical-align: inherit;">Sign up</font>
+      </font>
+    </a>
+    <div class="language-select" (click)="openPopup()"><img fetchpriority="high"  alt="IN" src="/assets/images/IN.png" loading="lazy">
+    </div>
+  </div>
+}
+@if (afterLogin) {
+  <div class="header-right-btn-group ng-star-inserted">
+    <div class="wall" >
+      <a class="ui-link" (click)="walletOpen()" style="display: flex; justify-content: center; align-items: center; ">
+        <img fetchpriority="high"  loading="lazy" src="/assets/exchange/Wallet.svg" style="width: 20px;">
+        <span style="padding-right: 3px;">wallet</span>
+      </a>
+    </div>
+    <div class="cricket-money" style="border-bottom-left-radius: 0; border-top-left-radius: 0;">
+      <div (click)="updateBal(selectedWallet)" class="icon-refresh"  [ngClass]="disabled?'btn-disable':''"
+        style="mask-image: url('../../../assets/bjimage/icons/icon-refresh-type01.svg'); -webkit-mask-image: url('../../../assets/bjimage/icons/icon-refresh-type01.svg');">
+        </div> ₹&nbsp;<span class="mainBalance">{{userBalance | number : '.2-2'}}</span>
+      </div>
+      <div class="exp"> EXP <span id="exposureMob">{{exposure | number : '.2-2'}}</span>
+    </div>
+  </div>
+}
+<div class="header-right-btn-group" style="display: none;">
+  <a class="app-download ng-star-inserted" routerLink="/Mappdownload">
+    <svg width="4.33vw" height="4.33vw" viewBox="0 0 16 18" version="1.1" xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink" style="margin-bottom:.5vw">
+      <g id="icon-set" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="images/h5/icon-set/index-theme-icon" transform="translate(-39.000000, -211.000000)"
+          [attr.fill]="themeData?.masterBgColor1" fill-rule="nonzero">
+          <g id="header-appdownload-icon" transform="translate(39.000000, 211.000000)">
+            <path
+              d="M13.2,17.8 L2.6,17.8 C1.2,17.8 8.8817842e-16,16.6 8.8817842e-16,15.2 L8.8817842e-16,14.2 L8.8817842e-16,2.6 C8.8817842e-16,1.2 1.2,0 2.6,0 L5.4,0 C5.7,0 6,0.2 6,0.5 C6,0.5 6,0.5 6,0.6 C6,0.9 5.8,1.2 5.4,1.2 L5.4,1.2 L2.6,1.2 C1.8,1.2 1.2,1.8 1.2,2.6 L1.2,2.6 L1.2,15.2 C1.2,16 1.8,16.6 2.6,16.6 L2.6,16.6 L13.2,16.6 C14,16.6 14.6,16 14.6,15.2 L14.6,2.6 C14.6,1.8 14,1.2 13.2,1.2 L10.4,1.2 C10,1.2 9.8,0.9 9.8,0.6 L9.8,0.6 C9.8,0.3 10,0 10.4,0 L13.2,0 C14.6,0 15.8,1.2 15.8,2.6 L15.8,15.2 C15.7,16.5 14.6,17.8 13.2,17.8 Z"
+            id="Path"></path>
+            <path
+              d="M15.1,12 L0.6,12 C0.3,12 4.30211422e-16,11.7 0.1,11.3 C0.1,11 0.3,10.8 0.6,10.8 L15.2,10.8 C15.5,10.8 15.8,11.1 15.7,11.5 C15.6,11.8 15.4,12 15.1,12 Z"
+            id="Path"></path>
+            <circle id="Oval" cx="7.9" cy="14.3" r="1"></circle>
+            <path
+              d="M7.9,7.7 C7.6,7.7 7.3,7.4 7.3,7.1 L7.3,0.6 C7.3,0.3 7.5,4.4408921e-16 7.9,4.4408921e-16 C8.2,4.4408921e-16 8.5,0.3 8.5,0.6 L8.5,7.1 C8.4,7.5 8.2,7.7 7.9,7.7 Z"
+            id="Path"></path>
+            <path
+              d="M7.9,7.7 C7.8,7.7 7.7,7.7 7.6,7.6 L5.3,5.9 C5.1,5.7 5,5.3 5.2,5.1 C5.4,4.9 5.8,4.8 6,5 L8.2,6.6 C8.5,6.8 8.5,7.2 8.3,7.4 C8.2,7.6 8,7.7 7.9,7.7 Z"
+            id="Path"></path>
+            <path
+              d="M7.9,7.7 C7.7,7.7 7.5,7.6 7.4,7.5 C7.2,7.2 7.2,6.8 7.5,6.6 L7.5,6.6 L9.7,5 C10,4.8 10.3,4.9 10.5,5.1 C10.7,5.4 10.6,5.7 10.4,5.9 L8.2,7.6 C8.1,7.6 8,7.7 7.9,7.7 Z"
+            id="Path"></path>
+          </g>
+        </g>
+      </g>
+      <circle cx="50" cy="25" r="30" [attr.fill]="themeData?.masterBgColor1" opacity="0.4" />
+    </svg>
+    <p class="ng-star-inserted" [style]="{'color':themeData?.masterBgColor1}">{{'APP' | transloco}}</p>
+  </a>
+  <a class="forum-btn ng-star-inserted" (click)="openforum()">
+    <svg width="5.33vw" height="5.33vw" viewBox="0 0 20 17" version="1.1" xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink" style="margin-bottom:.5vw">
+      <g id="icon-set" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="images/h5/icon-set/index-theme-icon" transform="translate(-88.000000, -211.000000)"
+          [attr.fill]="themeData?.masterBgColor1" fill-rule="nonzero">
+          <g id="header-forum-icon" transform="translate(88.000000, 211.000000)">
+            <path
+              d="M18.9,16.5 L15.2,14.3 L8.1,14.3 C7,14.3 5.9,13.3 5.9,12.3 L5.9,11.5 L15.9,11.5 C16.8,11.5 16.9,10.6 16.9,10.4 L16.9,4.7 L17.9,4.7 C19,4.7 19.6,5.4 19.6,6.5 L19.6,12.4 C19.6,13.4 19.1,14.1 18.4,14.3 L18.9,16.5 Z M7,12.6 C7.2,13 7.6,13.3 8.1,13.3 L15.5,13.3 L17.4,14.4 L17.1,13.3 L17.8,13.3 C18.5,13.3 18.5,12.5 18.5,12.3 L18.5,6.4 C18.5,5.7 18.1,5.6 17.8,5.6 L17.8,10.4 C17.8,11.6 17,12.5 15.8,12.5 L7,12.5 L7,12.6 Z"
+            id="Shape"></path>
+            <path
+              d="M0.9,13.6 L1.7,10.7 C0.8,10.4 0,9.8 0,8.9 L0,2.2 C0,1 1.4,0 2.6,0 L13.6,0 C14.8,0 16,1.1 16,2.2 L16,8.9 C16,10 15,10.8 13.6,10.8 L5.6,10.8 L0.9,13.6 Z M2.5,1 C1.7,1 0.9,1.7 0.9,2.2 L0.9,8.9 C0.9,9.3 1.6,9.7 2.3,9.8 L2.9,9.9 L2.5,11.5 L5.4,9.8 L13.6,9.8 C14.3,9.8 15,9.4 15,8.9 L15,2.2 C15,1.7 14.4,1 13.6,1 L2.5,1 Z M11.6,6.6 C10.8,6.6 10.1,5.9 10.1,5.1 C10.1,4.3 10.8,3.6 11.6,3.6 C12.4,3.6 13.1,4.3 13.1,5.1 C13.1,5.9 12.5,6.6 11.6,6.6 Z M11.6,4.7 C11.3,4.7 11.1,4.9 11.1,5.2 C11.1,5.5 11.3,5.7 11.6,5.7 C11.9,5.7 12.1,5.5 12.1,5.2 C12.1,4.9 11.9,4.7 11.6,4.7 Z M7.9,6.6 C7.1,6.6 6.4,5.9 6.4,5.1 C6.4,4.3 7.1,3.6 7.9,3.6 C8.7,3.6 9.4,4.3 9.4,5.1 C9.4,5.9 8.7,6.6 7.9,6.6 Z M7.9,4.7 C7.6,4.7 7.4,4.9 7.4,5.2 C7.4,5.5 7.6,5.7 7.9,5.7 C8.2,5.7 8.4,5.5 8.4,5.2 C8.4,4.9 8.2,4.7 7.9,4.7 Z M4.2,6.6 C3.4,6.6 2.7,5.9 2.7,5.1 C2.7,4.3 3.4,3.6 4.2,3.6 C5,3.6 5.7,4.3 5.7,5.1 C5.7,5.9 5,6.6 4.2,6.6 Z M4.2,4.7 C3.9,4.7 3.7,4.9 3.7,5.2 C3.7,5.5 3.9,5.7 4.2,5.7 C4.5,5.7 4.7,5.5 4.7,5.2 C4.7,4.9 4.5,4.7 4.2,4.7 Z"
+            id="Shape"></path>
+          </g>
+        </g>
+      </g>
+      <circle cx="50" cy="25" r="30" [attr.fill]="themeData?.masterBgColor1" opacity="0.4" />
+    </svg>
+    <p class="ng-star-inserted" [style]="{'color':themeData?.masterBgColor1}">{{'FORUM' | transloco}}</p>
+  </a>
+  <div class="editor-btn" style="display: none;"></div>
+</div>
+</header>
+
+<main>
+  @if (isSidebarOpen) {
+    <div id="menubox">
+      <div id="menu" class="menu show ng-star-inserted active">
+        <div class="btn-close" style="mask-image: url(/assets/images/icon-set/icon-close.svg);">
+        </div>
+        <div class="menu-first" (click)="$event.stopPropagation()">
+          <div class="menu-top" style="opacity: 1; transform: translate(0px, 0px);">
+            <div class="menu-header" [style.--headerBgmain]="themeData?.masterBgColor1">
+              <img fetchpriority="high"  src="/assets/images/profile.png" alt="">
+              @if (beforeLogin) {
+                <div class="member-name ng-star-inserted" [style]="{'color':themeData?.masterTextColor1}"><span
+                  class="ng-tns-c3392045011-3 ng-star-inserted">
+                  <font style="vertical-align: inherit;">
+                    <font style="vertical-align: inherit;">Hi, welcome.</font>
+                  </font>
+                </span></div>
+              }
+              @if (afterLogin) {
+                <div class="member-name ng-tns-c3392045011-16 ng-star-inserted">
+                  <div id="account" class="account ng-tns-c3392045011-16 ng-star-inserted"><!----><!----></div><!---->
+                  <p id="profile_text" class="ng-tns-c3392045011-16" [style]="{'color':themeData?.masterTextColor1}"
+                    routerLink="/account" (click)="closeSidebar()" style="display: flex;">
+                    <font style="vertical-align: inherit;">
+                      <font style="vertical-align: inherit;">Profile</font>
+                    </font>
+                  </p>
+                </div>
+                <div routerLink="/account" (click)="closeSidebar()"
+                  class="icon-arrow ng-tns-c3392045011-16 ng-star-inserted"
+                  [style]="{'background':themeData?.masterTextColor1}"
+                  style="mask-image: url(/assets/newimg/icon-arrow-type01.svg); display: flex;">
+                </div>
+              }
+            </div>
+            @if (beforeLogin) {
+              <div class="beforelogin ng-star-inserted" [style]="{'background':themeData?.homenavsvgbgcolor}">
+                <div class="login-button">
+                  <span [style]="{'background':themeData?.homenavsvgtextcolor}"
+                    style="-webkit-mask-image: url(/assets/newimg/icon-login.svg);" class="ng-tns-c3392045011-3">
+                  </span>
+                  <a class="ng-tns-c3392045011-3" [style]="{'color':themeData?.homenavsvgtextcolor}" routerLink="/login"
+                    (click)="closeSidebar()">
+                    <font style="vertical-align: inherit;">
+                      <font style="vertical-align: inherit;">Log in</font>
+                    </font>
+                  </a>
+                </div>
+                <div class="register-button" routerLink="/signup" (click)="closeSidebar()">
+                  <span [style]="{'background':themeData?.homenavsvgtextcolor}"
+                    style="-webkit-mask-image: url(/assets/newimg/icon-register.svg);" class="ng-tns-c3392045011-3">
+                  </span>
+                  <a class="ng-tns-c3392045011-3" [style]="{'color':themeData?.homenavsvgtextcolor}">
+                    <font style="vertical-align: inherit;">
+                      <font style="vertical-align: inherit;">Sign up</font>
+                    </font>
+                  </a>
+                </div>
+              </div>
+            }
+            @if (afterLogin) {
+              <div class="afterlogin marquee ng-tns-c3392045011-16 ng-star-inserted"
+                [style]="{'background':themeData?.homenavsvgbgcolor}">
+                <div class="main-wallet ng-tns-c3392045011-16">
+                  <div class="wallet ng-tns-c3392045011-16" [style]="{'color':themeData?.homenavsvgtextcolor}">
+                    <font style="vertical-align: inherit;">
+                      <font style="vertical-align: inherit;">Main Wallet</font>
+                    </font>
+                    <div class="icon-refresh ng-tns-c3392045011-16" [class]="spinner ? 'active' : ''"  [ngClass]="disabled?'btn-disable':''"
+                      [style]="{'background':themeData?.homenavsvgtextcolor}" (click)="updateBal(selectedWallet)"
+                      style="mask-image: url(/assets/images/icon-refresh-type01.svg);">
+                    </div>
+                  </div>
+                  <div class="amount ng-tns-c3392045011-16">
+                    <span class="amount ng-tns-c3392045011-16" [style]="{'color':themeData?.homenavsvgtextcolor}"><i
+                      class="ng-tns-c3392045011-16">
+                      <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">₹&nbsp;{{userBalance | number : '.2-2'}}</font>
+                      </font>
+                    </i></span>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+          <div class="menu-item">
+            <div class="ng-tns-c3392045011-3">
+              @if (afterLogin) {
+                <ul class="wallet-box ng-tns-c3392045011-3 ng-star-inserted">
+                  @if (country=='India') {
+                    @if (agentType==1) {
+                      <li id="deposit" class="ng-tns-c3392045011-3" tabindex="0" routerLink="/bank/depositInManual"
+                        (click)="closeSidebar()" ot-tag="menu_Deposit_T" style="opacity: 1; transform: translate(0px, 0px);" [style]="{'background':themeData?.sidebarBg}"><a
+                        class="ng-tns-c3392045011-3"><span class="ng-tns-c3392045011-3"
+                        style="mask-image: url(/assets/newimg/icon-deposit.svg); background: var(--sideIconColor);"
+                      [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
+                      <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">Deposit</p>
+                    </a>
+                  </li>
+                  <li id="withdrawal" class="ng-tns-c3392045011-3" routerLink="/bank/withdrawalInManual"
+                    (click)="closeSidebar()" ot-tag="menu_Withdrawal_T" style="opacity: 1; transform: translate(0px, 0px);" [style]="{'background':themeData?.sidebarBg}">
+                    <a class="ng-tns-c3392045011-3"><span class="ng-tns-c3392045011-3"
+                      style="mask-image: url(/assets/newimg/icon-withdrawal.svg);background: var(--sideIconColor);"
+                    [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
+                    <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">Withdrawal</p>
+                  </a>
+                </li>
+              } @else {
+                <li id="deposit" class="ng-tns-c3392045011-3" tabindex="0" routerLink="/bank/depositIn"
+                  (click)="closeSidebar()" ot-tag="menu_Deposit_T" style="opacity: 1; transform: translate(0px, 0px);" [style]="{'background':themeData?.sidebarBg}"><a
+                  class="ng-tns-c3392045011-3"><span class="ng-tns-c3392045011-3"
+                  style="mask-image: url(/assets/newimg/icon-deposit.svg);background: var(--sideIconColor);"
+                [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
+                <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">Deposit</p>
+              </a>
+            </li>
+
+            <li id="withdrawal" class="ng-tns-c3392045011-3" routerLink="/bank/withdrawalIn" (click)="closeSidebar()"
+              ot-tag="menu_Withdrawal_T" style="opacity: 1; transform: translate(0px, 0px);" [style]="{'background':themeData?.sidebarBg}"><a
+              class="ng-tns-c3392045011-3"><span class="ng-tns-c3392045011-3"
+              style="mask-image: url(/assets/newimg/icon-withdrawal.svg);background: var(--sideIconColor);"
+            [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
+            <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">Withdrawal</p>
+          </a>
+        </li>
+      }
+    }
+  </ul>
+}
+<ul class="main-box">
+  <li class="ng-tns-c3392045011-3 game-nav-item ng-star-inserted"
+    [style]="{'background':themeData?.sidebarBg}" [class]="activeMenu == 'sports' ? 'active' : ''"
+    data-category-type-id="0" (click)="menuTabs('sports')" gallery-image-key="ICON_SPORT"><a
+    class="ng-tns-c3392045011-3"><span class="item-icon"
+    style="mask-image: url(/assets/newimg/icon-sport.svg);background: var(--sideIconColor);"
+  [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
+  <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
+    <font style="vertical-align: inherit;">
+      <font style="vertical-align: inherit;">{{'SPORTS' | transloco}}</font>
+    </font>
+  </p>
+</a></li>
+<li class="ng-tns-c3392045011-3 game-nav-item ng-star-inserted"
+  [style]="{'background':themeData?.sidebarBg}" [class]="activeMenu == 'casino' ? 'active' : ''"
+  data-category-type-id="0" gallery-image-key="ICON_CASINO"><a (click)="menuTabs('casino')"
+  class="ng-tns-c3392045011-3"><span class="item-icon"
+  style="mask-image: url(/assets/newimg/icon-casino.svg);background: var(--sideIconColor);"
+[style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
+<p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
+  <font style="vertical-align: inherit;">
+    <font style="vertical-align: inherit;">{{'LIVECASINO' | transloco}}</font>
+  </font>
+</p>
+</a></li>
+<li class="ng-tns-c3392045011-3 game-nav-item ng-star-inserted"
+  [style]="{'background':themeData?.sidebarBg}" data-category-type-id="0"
+  [class]="activeMenu == 'slot' ? 'active' : ''" gallery-image-key="ICON_SLOT">
+  <a (click)="menuTabs('slot')" class="ng-tns-c3392045011-3"><span class="item-icon"
+    style="mask-image: url(/assets/newimg/icon-slot.svg);background: var(--sideIconColor);"
+  [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
+  <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
+    <font style="vertical-align: inherit;">
+      <font style="vertical-align: inherit;">{{'SLOTS' | transloco}}</font>
+    </font>
+  </p>
+</a>
+</li>
+<li class="ng-tns-c3392045011-3 game-nav-item ng-star-inserted"
+  [style]="{'background':themeData?.sidebarBg}" data-category-type-id="0"
+  [class]="activeMenu == 'table' ? 'active' : ''" gallery-image-key="ICON_TABLE"><a
+  (click)="menuTabs('table')" class="ng-tns-c3392045011-3"><span class="item-icon"
+  style="mask-image: url(/assets/newimg/icon-table.svg);background: var(--sideIconColor);"
+[style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
+<p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
+  <font style="vertical-align: inherit;">
+    <font style="vertical-align: inherit;">{{'TABLE' | transloco}}</font>
+  </font>
+</p>
+</a></li>
+<li class="ng-tns-c3392045011-3 game-nav-item ng-star-inserted"
+  [style]="{'background':themeData?.sidebarBg}" data-category-type-id="0"
+  [class]="activeMenu == 'fishing' ? 'active' : ''" gallery-image-key="ICON_FISH"
+  style="opacity: 1; transform: translate(0px, 0px);"><a (click)="menuTabs('fishing')"
+  class="ng-tns-c3392045011-3"><span class="item-icon"
+  style="mask-image: url(/assets/newimg/icon-fish.svg);background: var(--sideIconColor);"
+[style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
+<p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
+  <font style="vertical-align: inherit;">
+    <font style="vertical-align: inherit;">{{'FISHING' | transloco}}</font>
+  </font>
+</p>
+</a></li>
+<li class="ng-tns-c3392045011-3 game-nav-item ng-star-inserted"
+  [style]="{'background':themeData?.sidebarBg}" data-category-type-id="0" gallery-image-key="ICON_LOTTERY"
+  (click)="menuTabs('lottery')" [class]="activeMenu == 'lottery' ? 'active' : ''"
+  style="opacity: 1; transform: translate(0px, 0px);" [style]="{'background':themeData?.sidebarBg}"><a class="ng-tns-c3392045011-3"><span
+  class="item-icon"
+  style="mask-image: url(/assets/newimg/icon-lottery.svg);background: var(--sideIconColor);"
+[style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
+<p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
+  <font style="vertical-align: inherit;">
+    <font style="vertical-align: inherit;">{{'LOTTERY' | transloco}}</font>
+  </font>
+</p>
+</a></li>
+</ul>
+@if (isB2c) {
+  <ul class="item-box" style="opacity: 1; transform: translate(0px, 0px);" [style]="{'background':themeData?.sidebarBg}">
+    @if (isPromotion) {
+      <li data-category="promotion" class="ng-tns-c3392045011-3">
+        <a class="ng-tns-c3392045011-3" routerLink="/promotions" (click)="closeSidebar()"><span
+          class="ng-tns-c3392045011-3"
+          style="mask-image: url(/assets/newimg/icon-promotion.svg);background: var(--sideIconColor);"
+        [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
+        <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
+          <font style="vertical-align: inherit;">
+            <font style="vertical-align: inherit;">{{'PROMOTIONS' | transloco}} </font>
+          </font>
+        </p>
+      </a>
+    </li>
+  }
+  @if (isReferral) {
+    <li data-category="promotion" class="ng-tns-c3392045011-3">
+      <a class="ng-tns-c3392045011-3" routerLink="/referral" (click)="closeSidebar()"><span
+        class="ng-tns-c3392045011-3"
+        style="mask-image: url(/assets/images/left-menu-icon-bottom/referal.svg);background: var(--sideIconColor);"
+      [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
+      <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
+        <font style="vertical-align: inherit;">
+          <font style="vertical-align: inherit;">{{'REFERRALPROGRAM' | transloco}}</font>
+        </font>
+      </p>
+    </a>
+  </li>
+}
+@if (isVip) {
+  <li data-category="promotion" class="ng-tns-c3392045011-3">
+    <a class="ng-tns-c3392045011-3" routerLink="/vip" (click)="closeSidebar()"><span
+      class="ng-tns-c3392045011-3"
+      style="mask-image: url(/assets/images/left-menu-icon-bottom/vip.svg?v=1.01);background: var(--sideIconColor);"
+    [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
+    <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
+      <font style="vertical-align: inherit;">
+        <font style="vertical-align: inherit;">{{'VIP' |
+        transloco}}</font>
+      </font>
+    </p>
+  </a>
+</li>
+}
+</ul>
+}
+<ul class="contact-box" style="opacity: 1; transform: translate(0px, 0px);" [style]="{'background':themeData?.sidebarBg}">
+  <li class="ng-tns-c3392045011-3 telegram ng-star-inserted" data-category="telegram"
+    (click)="openAffiliate()"><a class="ng-tns-c3392045011-3"><span
+    class="ng-tns-c3392045011-3 ng-star-inserted"
+    style="mask-image: url(/assets/images/left-menu-icon-bottom/affiliate.svg?v=1.01);background: var(--sideIconColor);"
+  [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
+  <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
+    <font style="vertical-align: inherit;">
+      <font style="vertical-align: inherit;">{{'AFFILIATE' | transloco}}</font>
+    </font>
+  </p>
+</a></li>
+<li class="ng-tns-c3392045011-3 telegram ng-star-inserted" data-category="telegram"
+  (click)="navigateTochatbot()"><a target="_blank" class="ng-tns-c3392045011-3"><span
+  class="ng-tns-c3392045011-3 ng-star-inserted"
+  style="mask-image: url(/assets/images/left-menu-icon-bottom/chat.svg?v=1.01);background: var(--sideIconColor);"
+[style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
+<p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
+  <font style="vertical-align: inherit;">
+    <font style="vertical-align: inherit;">{{'LIVECHAT' | transloco}}
+      <!-- <span>{{'LIVECHATD' |
+    transloco}}</span> -->
+  </font>
+</font>
+</p>
+</a></li>
+<li class="ng-tns-c3392045011-3 imo ng-star-inserted" data-category="imo" (click)="openforum()"><a
+  target="_blank" class="ng-tns-c3392045011-3"><span class="ng-tns-c3392045011-3 ng-star-inserted"
+  style="mask-image: url(/assets/images/left-menu-icon-bottom/forum.svg?v=1.01);background: var(--sideIconColor);"
+[style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
+<p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
+  <font style="vertical-align: inherit;">
+    <font style="vertical-align: inherit;">{{'FORUM' | transloco}}</font>
+  </font>
+</p>
+</a>
+</li>
+</ul>
+<ul class="home-box" style="opacity: 1; transform: translate(0px, 0px);" [style]="{'background':themeData?.sidebarBg}">
+  <li data-category="home" class="ng-tns-c3392045011-3"><a class="ng-tns-c3392045011-3"
+    routerLink="/home"><span class="ng-tns-c3392045011-3"
+    style="mask-image: url(/assets/newimg/icon-home.svg);background: var(--sideIconColor);"
+  [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
+  <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
+    <font style="vertical-align: inherit;">
+      <font style="vertical-align: inherit;">{{'HOME'
+      | transloco}}</font>
+    </font>
+  </p>
+</a></li>
+@if (beforeLogin) {
+  <li data-category="login" class="ng-tns-c3392045011-3 ng-star-inserted">
+    <a class="ng-tns-c3392045011-3" routerLink="/login" (click)="closeSidebar()">
+      <span class="ng-tns-c3392045011-3"
+        style="mask-image: url(/assets/newimg/icon-login.svg);background: var(--sideIconColor);"
+      [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
+      <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
+        <font style="vertical-align: inherit;">
+          <font style="vertical-align: inherit;">Log in</font>
+        </font>
+      </p>
+    </a>
+  </li>
+}
+@if (afterLogin) {
+  <li class="ng-tns-c3392045011-3 ng-star-inserted">
+    <a class="ng-tns-c3392045011-3" (click)="logout()" (click)="closeSidebar()">
+      <span class="ng-tns-c3392045011-3"
+        style="mask-image: url(/assets/newimg/icon-login.svg);background: var(--sideIconColor);"
+      [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
+      <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
+        <font style="vertical-align: inherit;">
+          <font style="vertical-align: inherit;">Logout</font>
+        </font>
+      </p>
+    </a>
+  </li>
+}
+</ul>
+</div>
+</div>
+</div>
+<div class="menu-second ng-tns-c41-5">
+  @if (sportsmenu) {
+    <ul class="menu-second-ul ng-tns-c41-5 ng-star-inserted sportsmenu" [class.active]="activeMenu === 'sports'">
+      <li class="ng-tns-c41-5 ng-star-inserted">
+        <a tabindex="-1" class="ng-tns-c41-5" (click)="navigateToExch()">
+          <div class="ng-tns-c41-5 icon-sport exchange ng-star-inserted"></div>
+          <p class="ng-tns-c41-5" [style]="{'color':themeData?.sidebarTextColor}">Exchange</p>
+        </a>
+      </li>
+      <li class="ng-tns-c41-5 ng-star-inserted">
+        <a tabindex="-1" class="ng-tns-c41-5" (click)="opensabagamesmob('sabaSports/1/3/gn001')">
+          <div class="ng-tns-c41-5 icon-sport sportbook ng-star-inserted"></div>
+          <p class="ng-tns-c41-5" [style]="{'color':themeData?.sidebarTextColor}">Sportsbook</p>
+        </a>
+      </li>
+      <li class="ng-tns-c41-5 ng-star-inserted">
+        <a tabindex="-1" class="ng-tns-c41-5" (click)="opensabagamesmob('sabaSports/179/3/gn001')">
+          <div class="ng-tns-c41-5 icon-sport virtual ng-star-inserted"></div>
+          <p class="ng-tns-c41-5" [style]="{'color':themeData?.sidebarTextColor}">Virtual</p>
+        </a>
+      </li>
+      <li class="ng-tns-c41-5 ng-star-inserted">
+        <a tabindex="-1" class="ng-tns-c41-5">
+          <div class="ng-tns-c41-5 icon-sport horsebook ng-star-inserted"></div>
+          <p class="ng-tns-c41-5" [style]="{'color':themeData?.sidebarTextColor}">Horse Racing</p>
+        </a>
+      </li>
+    </ul>
+  }
+  @if (casinomenu) {
+    <ul class="menu-second-ul ng-tns-c41-5 ng-star-inserted casinomenu" [class.active]="activeMenu === 'casino'">
+      <li class="ng-star-inserted" (click)="navigateToGames('LIVE', 'EVOLUTION')">
+        <a tabindex="-1" vender="Evo">
+          <img fetchpriority="high"  alt="provider-evo" src="/assets/images/games/EVOLUTION.webp" loading="lazy" class="ng-star-inserted">
+          <p [style]="{'color':themeData?.sidebarTextColor}">Evo</p>
+        </a>
+      </li>
+      <li class="ng-star-inserted" (click)="navigateToGames('LIVE', 'SEXY')">
+        <a tabindex="-1" vender="Sexy">
+          <img fetchpriority="high"  alt="provider-awcmsexy" src="/assets/images/games/SEXY.webp" loading="lazy" class="ng-star-inserted">
+          <p [style]="{'color':themeData?.sidebarTextColor}">Sexy</p>
+        </a>
+      </li>
+      <li class="ng-star-inserted" (click)="navigateToGames('LIVE', 'PRAGMATICPLAY')">
+        <a tabindex="-1" vender="PP">
+          <img fetchpriority="high"  alt="provider-awcmpp" src="/assets/images/games/PRAGMATICPLAY.webp" loading="lazy"
+            class="ng-star-inserted">
+            <p [style]="{'color':themeData?.sidebarTextColor}">PP</p>
+          </a>
+        </li>
+        <li class="ng-star-inserted" (click)="navigateToGames('LIVE', 'PLAYTECH')">
+          <a tabindex="-1" vender="PT">
+            <img fetchpriority="high"  alt="provider-awcmpt" src="/assets/images/games/PLAYTECH.webp" loading="lazy"
+              class="ng-star-inserted">
+              <p [style]="{'color':themeData?.sidebarTextColor}">PT</p>
+            </a>
+          </li>
+        </ul>
+      }
+
+      @if (slotmenu) {
+        <ul class="menu-second-ul ng-tns-c41-5 ng-star-inserted slotmenu" [class.active]="activeMenu === 'slot'">
+          <li class="ng-star-inserted" (click)="navigateToGames('SLOT', 'JILI')">
+            <a tabindex="-1" vender="PT">
+              <img fetchpriority="high"  alt="provider-awcmpt" src="/assets/images/games/JILI.webp" loading="lazy" class="ng-star-inserted">
+              <p [style]="{'color':themeData?.sidebarTextColor}">JILI</p>
+            </a>
+          </li>
+          <li class="ng-star-inserted" (click)="navigateToGames('SLOT', 'JDB')">
+            <a tabindex="-1" vender="PT">
+              <img fetchpriority="high"  alt="provider-awcmpt" src="/assets/images/games/JDB.webp" loading="lazy" class="ng-star-inserted">
+              <p [style]="{'color':themeData?.sidebarTextColor}">JDB</p>
+            </a>
+          </li>
+          <li class="ng-star-inserted" (click)="navigateToGames('SLOT', 'REDTIGER')">
+            <a tabindex="-1" vender="PT">
+              <img fetchpriority="high"  alt="provider-awcmpt" src="/assets/images/games/REDTIGER.webp" loading="lazy"
+                class="ng-star-inserted">
+                <p [style]="{'color':themeData?.sidebarTextColor}">RT</p>
+              </a>
+            </li>
+            <li class="ng-star-inserted" (click)="navigateToGames('SLOT', 'FC')">
+              <a tabindex="-1" vender="PT">
+                <img fetchpriority="high"  alt="provider-awcmpt" src="/assets/images/games/FC.webp" loading="lazy" class="ng-star-inserted">
+                <p [style]="{'color':themeData?.sidebarTextColor}">FC</p>
+              </a>
+            </li>
+            <li class="ng-star-inserted" (click)="navigateToGames('SLOT', 'PRAGMATICPLAY')">
+              <a tabindex="-1" vender="PP">
+                <img fetchpriority="high"  alt="provider-awcmpp" src="/assets/images/games/PRAGMATICPLAY.webp" loading="lazy"
+                  class="ng-star-inserted">
+                  <p [style]="{'color':themeData?.sidebarTextColor}">PP</p>
+                </a>
+              </li>
+              <li class="ng-star-inserted" (click)="navigateToGames('SLOT', 'PLAYTECH')">
+                <a tabindex="-1" vender="PT">
+                  <img fetchpriority="high"  alt="provider-awcmpt" src="/assets/images/games/PLAYTECH.webp" loading="lazy"
+                    class="ng-star-inserted">
+                    <p [style]="{'color':themeData?.sidebarTextColor}">PT</p>
+                  </a>
+                </li>
+              </ul>
+            }
+            @if (tablemenu) {
+              <ul class="menu-second-ul ng-tns-c41-5 ng-star-inserted tablemenu" [class.active]="activeMenu === 'table'">
+                <li class="ng-star-inserted" (click)="navigateToGames('TABLE', 'JILI')">
+                  <a tabindex="-1" vender="PT">
+                    <img fetchpriority="high"  alt="provider-awcmpt" src="/assets/images/games/JILI.webp" loading="lazy" class="ng-star-inserted">
+                    <p [style]="{'color':themeData?.sidebarTextColor}">JILI</p>
+                  </a>
+                </li>
+                <li class="ng-star-inserted" (click)="navigateToGames('TABLE', 'KINGMAKER')">
+                  <a tabindex="-1" vender="PT">
+                    <img fetchpriority="high"  alt="provider-awcmpt" src="/assets/images/games/KINGMAKER.webp" loading="lazy"
+                      class="ng-star-inserted">
+                      <p [style]="{'color':themeData?.sidebarTextColor}">KM</p>
+                    </a>
+                  </li>
+                  <li class="ng-star-inserted" (click)="navigateToGames('TABLE', 'FC')">
+                    <a tabindex="-1" vender="PT">
+                      <img fetchpriority="high"  alt="provider-awcmpt" src="/assets/images/games/FC.webp" loading="lazy" class="ng-star-inserted">
+                      <p [style]="{'color':themeData?.sidebarTextColor}">FC</p>
+                    </a>
+                  </li>
+                  <li class="ng-star-inserted" (click)="navigateToGames('TABLE', 'SPRIBE')">
+                    <a tabindex="-1" vender="PT">
+                      <img fetchpriority="high"  alt="provider-awcmpt" src="/assets/images/games/SPRIBE.webp" loading="lazy" class="ng-star-inserted">
+                      <p [style]="{'color':themeData?.sidebarTextColor}">SPRIBE</p>
+                    </a>
+                  </li>
+                  <li class="ng-star-inserted" (click)="navigateToGames('TABLE', 'REDTIGER')">
+                    <a tabindex="-1" vender="PT">
+                      <img fetchpriority="high"  alt="provider-awcmpt" src="/assets/images/games/REDTIGER.webp" loading="lazy"
+                        class="ng-star-inserted">
+                        <p [style]="{'color':themeData?.sidebarTextColor}">RT</p>
+                      </a>
+                    </li>
+
+                  </ul>
+                }
+                @if (fishingmenu) {
+                  <ul class="menu-second-ul ng-tns-c41-5 ng-star-inserted fishingmenu" [class.active]="activeMenu === 'fishing'">
+                    <li class="ng-star-inserted" (click)="navigateToGames('FH', 'JILI')">
+                      <a tabindex="-1" vender="PT">
+                        <img fetchpriority="high"  alt="provider-awcmpt" src="/assets/images/games/JILI.webp" loading="lazy" class="ng-star-inserted">
+                        <p [style]="{'color':themeData?.sidebarTextColor}">JILI</p>
+                      </a>
+                    </li>
+                    <li class="ng-star-inserted" (click)="navigateToGames('FH', 'FC')">
+                      <a tabindex="-1" vender="PT">
+                        <img fetchpriority="high"  alt="provider-awcmpt" src="/assets/images/games/FC.webp" loading="lazy" class="ng-star-inserted">
+                        <p [style]="{'color':themeData?.sidebarTextColor}">FC</p>
+                      </a>
+                    </li>
+                  </ul>
+                }
+                @if (lotterymenu) {
+                  <ul class="menu-second-ul ng-tns-c41-5 ng-star-inserted lotterymenu" [class.active]="activeMenu === 'lottery'">
+                    <li class="ng-tns-c41-5 ng-star-inserted">
+                      <a (click)="navigateToGames('LIVE', 'ALL')" class="ng-tns-c41-5">
+                        <img fetchpriority="high"  class="ng-tns-c41-5 ng-star-inserted" alt="provider-number"
+                          src="/assets/images/games/provider-number.png?v=.01" loading="lazy">
+                          <p class="ng-tns-c41-5" [style]="{'color':themeData?.sidebarTextColor}">Number</p>
+                        </a>
+                      </li>
+                    </ul>
+                  }
+                </div>
+              </div>
+              <div class="menu-mask ng-trigger ng-trigger-popBgTriggerAni ng-star-inserted"
+              style="display: block;opacity: 1;"></div>
+            </div>
+          }
+        </main>
+        <!-- <div class="main-caro"> -->
+        <div class="owlCaro">
+          <!-- <owl-carousel-o  [options]="customOptions">
+          <ng-template carouselSlide>
+            <img fetchpriority="high"  src="/assets/images/sponser-icons/sunrisers-eastern-cape.png" alt="">
+          </ng-template>
+          <ng-template carouselSlide>
+            <img fetchpriority="high"  src="/assets/images/sponser-icons/afc-bournemouth.png" alt="">
+          </ng-template>
+          <ng-template carouselSlide>
+            <img fetchpriority="high"  src="/assets/images/sponser-icons/quetta-gladiators (1).png" alt="">
+          </ng-template>
+          <ng-template carouselSlide>
+            <img fetchpriority="high"  src="/assets/images/sponser-icons/deccan-gladiators (1).png" alt="">
+          </ng-template>
+          <ng-template carouselSlide>
+            <img fetchpriority="high"  src="/assets/images/sponser-icons/bologna-fc-1909 (1).png" alt="">
+          </ng-template>
+        </owl-carousel-o> -->
+      </div>
+    <!-- </div> -->
+    @if (showErrPopup) {
+      <div class="cdk-overlay-container">
+        <div class="cdk-overlay-backdrop dialog-backdrop cdk-overlay-backdrop-showing"></div>
+        <div class="cdk-global-overlay-wrapper" dir="ltr" style="justify-content: center; align-items: center;">
+          <div id="cdk-overlay-0" class="cdk-overlay-pane dialog-panel" style="position: static;">
+            <div class="popup" id="dialog-0">
+              <div class="popup__header"></div>
+              <div class="popup__content">
+                <div
+                  class="pop-wrap pop-login-fail active ng-trigger ng-trigger-dialogAlertTriggerAni ng-tns-c3883022425-5 ng-star-inserted">
+                  <div class="login-fail-tip ng-tns-c3883022425-5">
+                    <div class="login-fail-icon ng-tns-c3883022425-5"
+                    style="mask-image: url('/assets/images/icon-warning.svg');"></div><span class="ng-tns-c3883022425-5">{{
+                  errMsg }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+
+  @if (matchWallet && checkSports) {
+    <div class="custom-modal ng-star-inserted">
+      <div class="modal-overlay">
+        <div class="modal-dialog">
+          <div class="modal-header position-relative selectwallet">
+            <p class="select-pay">Select Wallet To Play</p>
+            <button (click)="closeMatch()" class="close">✕</button>
+          </div>
+          <div id="service" class="modal-body cs-agents-box">
+            <div class="support-agents d-flex">
+              <button class="tiny-buttons"  [ngClass]="disabled?'btn-disable':''" [ngClass]="{'realsportActive': selectedWallet == '-1'}">
+                <a class="text-white" (click)="updateBal('-1')">REAL WALLET</a>
+              </button>
+              @for ( item of walletsList; track $index ;let i= $index;) {
+                @if (item?.walletId == 1755086397759) {
+                  <button class="tiny-buttons"  [ngClass]="disabled?'btn-disable':''"
+                    [ngClass]="{'realsportActive': selectedWallet == item?.walletId}">
+                    <a class="text-white" (click)="updateBal(item?.walletId)">{{item?.walletName}}</a>
+                  </button>
+                }
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }

@@ -1,0 +1,122 @@
+<div id="matchBetSlip" style="position: absolute;">
+  <div class="absolute top-0 w-full h-full z-40"></div>
+  <div class="bet-slip fixed z-40 container bottom-0 shadow-top rounded-t-xl">
+    <div class="relative bg-white pt-2 rounded-t-xl">
+      <header class="relative font-bold mb-2" style="display: flex;justify-content: center;align-items: center;">
+        <p class="global-font-on-light text-18 text-center p-2">Bet Slip</p>
+        <div class="" style="position: absolute;right: 20px;color: black;" (click)="cancelBet()"><i class="fa fa-times"
+            aria-hidden="true"></i>
+        </div>
+      </header>
+      <div class="divide-y divide-black-300">
+        <div class="item1 max-h-72 overflow-y-scroll" id="parlayBetSlipInnerList">
+          @for ( item of betsList ; track $index) {
+          <div class="w-full mb-2 px-2">
+            <div class="px-1 w-full flex items-center bg-black-300 rounded-t-lg">
+              <div class="text-black py-2 px-1 w-full text-13">
+                <span
+                  class="leading-tight">{{item.sportId=='4'?'Cricket':item.sportId=='2'?'Tennis':'Soccer'}}</span><span><i
+                    class="icon-triangle-black-600 text-8 inline-block align-middle"></i></span>
+                <span class="break-all leading-16px">{{item.matchName}}</span>
+              </div>
+              <i class="self-center inline-block px-1.5 text-18 text-black-600 fas fa-trash-alt"
+                (click)="removeParlayBet(item.eventId)"></i>
+            </div>
+            <div class="p-2 w-full bg-black-100 rounded-b-lg">
+              <div class="relative mb-2 flex justify-between items-center">
+                <p class="w-10/12 text-15 text-black font-bold break-all">{{item.selectionName}}</p>
+                <div
+                  class="relative w-48px h-27px flex justify-center items-center text-15 text-center font-bold bg-black-300 rounded">
+                  <span class="text-global-font-on-light" id="parlay1Odds-107455442081621274">{{item.odds}}</span>
+                </div>
+              </div>
+              <p class="text-10 text-black">{{item.sourceName}}</p>
+            </div>
+          </div>
+          }
+        </div>
+
+        <div class="item2 px-2 ">
+          <div class="py-2 flex justify-between">
+            <div class="flex justify-center items-center">
+              <span class="mr-2 text-13 text-black font-bold">Total Odds</span>
+              <span class="mr-2 text-13 text-warning font-bold" id="parlayTotOdds">{{this.totalOdds | number :
+                '.2-2'}}</span>
+              <i class="fa fa-angle-left rotate-180 ml-2px text-6 text-parlay-up"></i>
+              <span class="text-10 text-parlay-up font-bold" id="parlayStakes">0</span>
+            </div>
+            <div class="flex justify-center items-center" id="stakeTap">
+              <span class="mr-2 text-13 text-black font-bold">Stake</span>
+              <div class="flex w-90px h-27px text-center leading-normal rounded"><span name="stake"
+                  (click)="showNumpad()" class="input-field is-default" style="color: #000"
+                  id="parlayStakeValue">{{showStake > 0 ? showStake : '' }}</span></div>
+            </div>
+          </div>
+          @if (numPadd) {
+          <div class="mb-2 flex parlayStakeDive">
+            <div class="flex flex-1 justify-between">
+              <button (click)="addStaticStake(30)"
+                class="parlaySumStake btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-80px h-30px border-0"
+                type="button" value="30">
+                +30
+              </button>
+              <button (click)="addStaticStake(100)"
+                class="parlaySumStake btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-80px h-30px border-0"
+                type="button" value="100">
+                +100
+              </button>
+              <button (click)="addStaticStake(300)"
+                class="parlaySumStake btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-80px h-30px border-0"
+                type="button" value="300">
+                +300
+              </button>
+              <button (click)="addStaticStake(500)"
+                class="parlaySumStake btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-80px h-30px border-0"
+                type="button" value="500">
+                +500
+              </button>
+            </div>
+          </div>
+          <div class="flex parlayStakeDive">
+            <div class="flex flex-1 flex-wrap">
+              @for ( num of numPadArr ; track $index) {
+              <button
+                class="w-2/12 h-40px flex justify-center items-center font-normal border border-white bg-black-100 rounded parlaySstake color-black"
+                type="button" value="1" (click)="addStaticVal1(num, true)">{{num}}</button>
+              }
+              <button
+                class="icon-backspace w-2/12 h-40px flex justify-center items-center font-normal border border-white bg-black-100 rounded clearStake"
+                (click)="deleteLastNum()"></button>
+            </div>
+            <button type="button"
+              class="flex justify-center items-center w-20 text-base font-bold border-solid border-l border-white rounded bg-black-100 color-black"
+              id="stakeOk" (click)="hideNumPad()"> OK </button>
+          </div>
+          }
+        </div>
+        <div class="item3 px-2 py-3 flex justify-between items-center">
+          <div class="py-1">
+            <div class="mb-0.5 k">
+              <span class="mr-2 text-18 font-normal">Total Stakes</span>
+              <span class="text-16 font-bold" id="parlayStake">{{showStake}}</span>
+            </div>
+            <div class="text-base">
+              <span class="mr-2 font-normal">Max Profit</span>
+              <span class="font-bold" id="parlayProf">{{totalProfit | number : '.2-2'}}</span>
+            </div>
+          </div>
+          <button
+            class="parlayBetButton btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-181px h-50px flex justify-center items-center rounded-md bg-button-normal"
+            [disabled]="!enableBtn" (click)="placeBetFunc()" type="submit">
+            Place Bet
+          </button>
+        </div>
+      </div>
+      @if (loading) {
+      <div
+        class="loading absolute z-10 top-0 left-0 w-full h-full flex items-center justify-center bg-black-800 bg-opacity-87 rounded-t-xl">
+        <img fetchpriority="high"  width="147" height="124" src="../../../assets/images/loading-bet.webp" alt=""></div>
+      }
+    </div>
+  </div>
+</div>

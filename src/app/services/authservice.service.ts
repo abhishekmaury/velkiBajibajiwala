@@ -13,8 +13,8 @@ import { IntercomService } from './intercom.service';
   providedIn: 'root'
 })
 export class AuthserviceService implements OnInit,OnDestroy {
-  //baseUrl = `https://ag.9xbet9.live/api-V2`;
-  baseUrl = `https://ag.${window.location.hostname}/api-V2`;
+  baseUrl = `https://ag.9xbet9.live/api-V2`;
+  // baseUrl = `https://ag.${window.location.hostname}/api-V2`;
   secretKey = environment.secretKey;
   sendLoggedData: BehaviorSubject<any> = new BehaviorSubject('abc')
   sendLoggedData1 = new Subject<any>()

@@ -1,0 +1,23 @@
+<!-- loader -->
+<div class="sport-loader ng-star-inserted" style="z-index: 9999;">
+   <svg>
+      <defs>
+         <filter id="goo" width="200%" height="200%" x="-50%" y="-50%" color-interpolation-filters="sRGB">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"></feGaussianBlur>
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 20 -9" result="goo">
+            </feColorMatrix>
+         </filter>
+      </defs>
+      <g filter="url(#goo)">
+         <circle r="9" cx="50%" cy="50%" class="target"></circle>
+         <circle r="12" cx="40%" cy="50%"></circle>
+         <circle r="12" cx="50%" cy="50%"></circle>
+         <circle r="12" cx="60%" cy="50%"></circle>
+      </g>
+   </svg>
+   <ul class="ball-wrap">
+      <li class="basketball" style="background-image: url(/assets/images/icon-set/icon-basketball.svg);"></li>
+      <li class="soccer" style="background-image: url(/assets/images/icon-set/icon-soccer.svg);"></li>
+      <li class="cricket" style="background-image: url(/assets/images/icon-set/icon-cricket.svg);"></li>
+   </ul>
+</div>

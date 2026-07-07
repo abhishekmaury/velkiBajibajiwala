@@ -1,0 +1,76 @@
+<div class="wrap">
+    <div class="wrap-inner">
+        <div class="content cricket">
+            <div class="ng-tns-c389869152-1 ng-trigger ng-trigger-routeLayoutPageAni">
+                <div id="vueWebComponent" class="cricket-container">
+                    <div id="s-app-container" class="s-app s-space-y-px s-default">
+                        <div class="s-main-container-wrapper">
+                            <section id="s-main-container" class="s-min-h-full-with-header s-mx-auto s-bg-body">
+                                <main>
+                                    <div class="s-popup s-popup-setting s-bottom-0 s-rounded-t-5px s-px-3px s-bg-pop-title-bg s-fixed s-w-full"
+                                        style="--3c9266ff: 301;">
+                                        <div>
+                                            <div 
+                                                class="s-py-12px s-leading-5 s-text-14px s-flex s-items-center s-justify-center s-font-bold s-text-pop-title-text">
+                                                Setting<span (click)="closeSearch()"
+                                                    class="s-icon-close s-text-14px s-absolute s-right-5"></span>
+                                            </div>
+                                            <div
+                                                class="s-px-4px s-bg-betSlip-light dark:s-bg-black-800 s-divide-y s-text-global-font-default-light dark:s-text-global-font-default-dark s-rounded-t-5px s-divide-black-300 dark:s-divide-black-900 s-min-h-[68vw]">
+                                                <div class="s-px-10px s-py-14px s-flex s-justify-start s-items-center">
+                                                    <span class="s-mr-5 s-w-9/12 s-text-13px">Highlight when odds
+                                                        change</span>
+                                                    <div class="s-btn-switch"><input id="settingOdds" type="checkbox"
+                                                            class="s-btn-switch__tgl s-btn-switch__tgl-ios"><label
+                                                            for="settingOdds"
+                                                            class="s-p-px s-rounded-full s-left-1/2 s-w-48px s-h-27px s-btn-switch__tgl-label"></label>
+                                                    </div>
+                                                </div>
+                                                <div class="s-px-10px s-py-14px s-flex s-justify-start s-items-center">
+                                                    <span class="s-mr-5 s-w-9/12 s-text-13px">Show Events Widget in
+                                                        Full-Markets</span>
+                                                    <div class="s-btn-switch"><input id="settingEventsWidget"
+                                                            type="checkbox"
+                                                            class="s-btn-switch__tgl s-btn-switch__tgl-ios"><label
+                                                            for="settingEventsWidget"
+                                                            class="s-p-px s-rounded-full s-left-1/2 s-w-48px s-h-27px s-btn-switch__tgl-label"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="s-px-4px s-bg-betSlip-light dark:s-bg-betSlip-dark">
+                                                <div
+                                                    class="s-px-3px s-py-7px s-flex s-justify-start s-items-center s-border-t s-border-black-300 dark:s-border-black-900">
+                                                    <button onclick="updateOddsSetting()"
+                                                        class="btn s-btn-normal s-relative s-text-14px s-p-3 s-font-bold s-rounded s-flex s-justify-center s-items-center disabled:s-bg-black-300 dark:disabled:s-bg-black-700 disabled:s-text-black-600 dark:disabled:s-text-black-600 disabled:s-cursor-not-allowed s-overflow-hidden a active:s-bg-opacity-10 s-w-full s-h-40px s-rounded-5px">
+                                                        <div class="wrapper s-w-full s-h-full s-absolute s-overflow-hidden s-top-0 s-left-0 s-z-10"
+                                                            style="--0b879273: 0;"><span
+                                                                class="mask s-w-full s-h-full s-opacity-10 s-bg-black-900 s-absolute s-left-0 s-top-0"
+                                                                style="display: none;"></span><span
+                                                                class="feedback s-block s-bg-white s-bg-opacity-25 s-rounded-full s-mix-blend-overlay s-absolute"
+                                                                style="display: none;"></span></div>Submit
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </main>
+                            </section>
+                            <div class="s-fixed s-top-0 s-left-0 s-w-full s-h-full s-z-40" style="display: none;">
+                            </div>
+                            <div class="s-loading s-w-full s-h-full s-z-[300] s-flex s-justify-center s-items-center s-text-xl s-text-center s-text-primary s-fixed s-left-0 s-top-0"
+                                style="display: none; --42467982: 300;">
+                                <div
+                                    class="s-loading-box s-flex s-justify-center s-items-center s-border s-border-solid s-border-primary-dark-200 s-rounded-lg s-w-28 s-h-28">
+                                    <div class="s-loading-spinner s-relative s-w-1/2 s-h-20px"></div>
+                                </div>
+                            </div>
+                            <div id="testLMT" class="s-hidden"></div>
+                            <div class="s-relative -s-bottom-4px"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div></div>
+    </div>
+</div>

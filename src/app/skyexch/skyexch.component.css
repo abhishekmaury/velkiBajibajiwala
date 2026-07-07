@@ -1,0 +1,167 @@
+@import url(./exStyles.css);
+
+.s-fixed {
+  position: fixed;
+}
+
+.s-bottom-0 {
+  bottom: 0px;
+}
+
+.s-left-1\/2 {
+  left: 50%;
+}
+
+.s-z-10 {
+  z-index: 10;
+}
+
+.s-m-auto {
+  margin: auto;
+}
+
+.s-w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.-s-translate-x-1\/2 {
+  --tw-translate-x: -50%;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.s-flex {
+  display: flex;
+}
+
+.s-items-center {
+  align-items: center;
+}
+
+.s-justify-center {
+  justify-content: center;
+}
+
+.s-relative {
+  position: relative;
+}
+
+.s-h-39px {
+  height: 10.4vw;
+}
+
+.s-w-42px {
+  width: 11.2vw;
+}
+
+.s-rounded-t-md {
+  border-top-left-radius: 1.4vw;
+  border-top-right-radius: 1.4vw;
+}
+
+.s-bg-betSlip-icon-light {
+  --tw-bg-opacity: 1;
+  background-color: rgb(90 94 98 / var(--tw-bg-opacity));
+}
+
+.s-text-global-font-on-dark {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.s-absolute {
+  position: absolute;
+}
+
+.s-text-22px {
+  font-size: 5.866666666666666vw;
+}
+
+/* .s-icon-list:before {
+  content: "\e918";
+} */
+
+.-s-left-4 {
+  left: -3.7333333333333333333vw;
+}
+
+.s-w-14px {
+  width: 3.7333333333333334vw;
+}
+
+.s-h-14px {
+  height: 3.7333333333333334vw;
+}
+
+.s-right-0 {
+  right: 0px;
+}
+
+.s-h-7px {
+  height: 1.8666666666666667vw;
+}
+
+.s-w-7px {
+  width: 1.8666666666666667vw;
+}
+
+.s-fill-betSlip-icon-light {
+  fill: #5a5e62;
+}
+
+.s--right-4 {
+  right: -3.7333333333333333333vw;
+}
+
+.s-left-0 {
+  left: 0px;
+}
+
+@media(min-width:768px) {
+  .s-h-39px {
+    height: 49.92px;
+  }
+
+  .s-w-42px {
+    width: 53.76px;
+  }
+
+  .s-rounded-t-md {
+    border-top-left-radius: 6.72px;
+    border-top-right-radius: 6.72px;
+  }
+
+  .s-text-22px {
+    font-size: 28.16px;
+  }
+
+  .-s-left-4 {
+    left: -17.92px;
+  }
+
+  .s-w-14px {
+    width: 17.92px;
+  }
+
+  .s-h-14px {
+    height: 17.92px;
+  }
+
+  .s-h-7px {
+    height: 8.96px;
+  }
+
+  .s-w-7px {
+    width: 8.96px;
+  }
+
+  .s--right-4 {
+    right: -17.92px;
+  }
+}

@@ -1,0 +1,32 @@
+@import url(../../exStyles.css);
+@media (min-width:768px) {
+    #PrivacyPolicyPopup {
+        width: 480px;
+    }
+
+    .s-app .s-text-base {
+        font-size: 15.8891px;
+    }
+
+    .s-app .s-py-4 {
+        padding-top: 15.8891px;
+        padding-bottom: 15.8891px;
+    }
+
+    .s-app .s-leading-6 {
+        line-height: 23.8336px;
+    }
+
+    .s-app .s-pt-14px {
+        padding-top: 15.8891px;
+    }
+
+    .s-app .s-px-24px {
+        padding-left: 27.2384px;
+        padding-right: 27.2384px;
+    }
+
+    .s-app .s-text-17px {
+        font-size: 19.2939px;
+    }
+}
