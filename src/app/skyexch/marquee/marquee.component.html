@@ -3,17 +3,19 @@
     <div class="marquee">
       <ul style="display: flex; width:100%; ">
         <marquee>
-          @for ( item of usermessage;let i=$index; track $index) {
-          <li>
-            <span>
-              <p>
-                <strong id="loginMarquee"><a style="color:white"><span>{{item.day+' '+item.month+' '+item.year}}</span>
-                    {{item.title}} :-
-                    {{item.message}} </a></strong>
-              </p>
-            </span>
-          </li>
-          }
+          <ng-container *ngFor="let item of usermessage;let i = index;">
+            <li>
+              <span>
+                <p>
+                  <strong id="loginMarquee"><a style="color:white"><span>{{item.day+' '+item.month+'
+                        '+item.year}}</span>
+                      {{item.title}} :-
+                      {{item.message}} </a></strong>
+                </p>
+              </span>
+            </li>
+          </ng-container>
+
         </marquee>
 
       </ul>

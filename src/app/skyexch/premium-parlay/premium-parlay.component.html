@@ -3,8 +3,7 @@
     <div class="content cricket">
       <div class="cricket-container">
         <div class="s-app s-space-y-px s-default">
-          @if (showBetMsg) {
-          <div class="s-bottom-20px s-z-40 s-flex s-justify-center s-w-full s-fixed">
+          <div *ngIf="showBetMsg" class="s-bottom-20px s-z-40 s-flex s-justify-center s-w-full s-fixed">
             <!-- Bet Alert popup -->
             <div class="s-alert s-w-335px s-text-center s-flex s-justify-center s-p-3px s-rounded-5px s-mx-auto"
               [ngClass]="betSuccess[2].type !== 'success' ? 's-bg-error-light dark:s-bg-error-dark' : 's-bg-success-light dark:s-bg-success-dark'">
@@ -21,7 +20,6 @@
               </div>
             </div>
           </div>
-          }
           <div class="s-main-container-wrapper">
             <section class="s-min-h-full-with-header s-mx-auto s-bg-body">
               <main>
@@ -33,15 +31,13 @@
                           class="s-absolute s-w-44px s-h-full s-flex s-justify-center s-items-center"><span
                             class="s-icon-arrow-left s-w-14px s-h-14px s-text-14px s-text-white"></span></div>
                         <div class="s-w-full s-h-full s-flex s-justify-center s-items-end">
-                          @if (isLogin) {
-                          <div (click)="scoreTvTabs('tv')"
+                          <div *ngIf="isLogin" (click)="scoreTvTabs('tv')"
                             class="s-mode-tab livetvTab s-relative s-w-90px s-h-27px s-flex s-justify-center s-items-center s-text-center s-rounded-tl-md s-rounded-tr-md first:s--mr-2.5px last:s--ml-2.5px is-active s-bg-scoreboard-tab-bg s-text-scoreboard-tab-text s-z-40"
                             [ngClass]="showTabs == 'tv' ? 's-bg-scoreboard-tab-bg-active s-text-scoreboard-tab-text-active' : ''">
                             <span
                               class="s-icon-live-tv s-block s-mr-4px s-text-17px s-text-scoreboard-tab-text s-text-scoreboard-tab-text-active"></span>
                             <span class="s-leading-27px s-text-14px">TV</span>
                           </div>
-                          }
                           <!-- s-bg-scoreboard-tab-bg-active s-text-scoreboard-tab-text-active -->
                           <div (click)="scoreTvTabs('scrd')"
                             class="s-mode-tab scorecardTab s-relative s-w-90px s-h-27px s-flex s-justify-center s-items-center s-text-center s-rounded-tl-md s-rounded-tr-md first:s--mr-2.5px last:s--ml-2.5px s-bg-scoreboard-tab-bg s-text-scoreboard-tab-text s-z-30"
@@ -56,14 +52,12 @@
                     </div>
                     <div class="s-bg-secondary" style="height: auto;">
                       <!-- scorecard -->
-                      @if (showTabs == 'scrd') {
-                      <div class="s-justify-center s-items-center scoremin scorecard-container">
-                        <iframe [src]="urlSafe" allowfullscreen="true"
-                          style="width: 100%; border:none;" class="scoreheight"></iframe>
+                      <div *ngIf="showTabs == 'scrd'"
+                        class="s-justify-center s-items-center scoremin scorecard-container">
+                        <iframe [src]="urlSafe" allowfullscreen="true" style="width: 100%; border:none;"
+                          class="scoreheight"></iframe>
                       </div>
-                      }
-                      @if (showTabs == 'tv') {
-                      <div class="tv-wrap">
+                      <div class="tv-wrap" *ngIf="showTabs == 'tv'">
                         <div id="streamContainer" class="tv-box">
                           <div id="tv" class="tv" style="height: 0px;">
                             <div class="zoomed_mode" id="zoomdrag" style="left: 117.144px; top: 327.217px;">
@@ -78,7 +72,6 @@
                           </div>
                         </div>
                       </div>
-                      }
                     </div>
                   </div>
                   <section class="s-pt-2 s-px-12px s-bg-primary s-rounded-t-5px">
@@ -116,8 +109,7 @@
                       </div><!---->
                     </div>
                   </section>
-                  @if (showFancy) {
-                  <div class="sportBook">
+                  <div *ngIf="showFancy" class="sportBook">
                     <div class="s-flex s-items-center" isshowsportsbook="true"
                       style="--066c3991: 42px; --5625d3df: translateX(18px);">
                       <div
@@ -144,8 +136,8 @@
                       </div>
                     </div>
                     <div class="s-p-2 s-bg-betSlip-light dark:s-bg-betSlip-dark s-rounded-b-5px">
-                      @for ( item of PFancyData; let i = $index; track trackByFn(i,item)) {
-                      <div class="s-p-2 s-bg-betSlip-light s-rounded-b-5px dark:s-bg-betSlip-dark">
+                      <div class="s-p-2 s-bg-betSlip-light s-rounded-b-5px dark:s-bg-betSlip-dark"
+                        *ngFor="let item of PFancyData; let i = index; trackBy: trackByFn">
                         <div class="s-mb-3px" id="">
                           <div>
                             <div (click)="collapseData(i)"
@@ -170,58 +162,54 @@
                             </div>
                             <div class="s-grid s-grid-cols-2 s-gap-0.5 s-relatives" [class]="i>=3?'d-none':''"
                               id="sportSelData{{i}}">
-                              @for ( pfancydata of sortPFancyData(PFancyData[i].sportsBookSelection); let j = $index; track trackByFn(j,PFancyData)) {
-                                <div>
-                                  <div id="premiumOddsDiv2036199901"
-                                    (click)="openPreFancyBetPlace('Premium', [{isBack : true, selectionId : pfancydata.id, selectionName : pfancydata.selectionName, odds : pfancydata.odds, matchName : eventData.matchname, eventId : eventId, sourceId : PFancyData[i].id, sourceName : item.marketName, sourceBetType : 'Premium', sportId : sportId}])"
-                                    class="betslipopen s-py-1.5 s-text-center s-flex s-flex-col s-justify-center s-items-center s-bg-back-200 dark:s-bg-back-400-dark s-min-0 s-relative s-overflow-hidden s-rounded-b-md s-min-h-53px spark"
-                                    title="back">
-                                    <div class="wrapper s-w-full s-h-full s-overflow-hidden s-top-0 s-left-0 s-z-10"
-                                      style="--0b879273: 0;">
-                                      <span
-                                        class="mask s-w-full s-h-full s-opacity-10 s-bg-black-900 s-absolute s-left-0 s-top-0"
-                                        style="display: none;"></span>
-                                      <span
-                                        class="feedback s-block s-bg-white s-bg-opacity-25 s-rounded-full s-mix-blend-overlay s-absolute"
-                                        style="display: none;"></span>
-                                    </div>
-                                    <p class="s-text-15px s-px-1 s-text-black-900 namecolor" id="">
-                                      {{pfancydata.selectionName}}</p>
-                                    <p class="s-text-10px s-text-black-900 oddcolor" id="premiumOdds2036199901">
-                                      {{pfancydata.odds}}</p>
-                                    @for ( pitem of PremiumfancyLiability; track $index) {
-                                    @if (pitem.sourceId==PFancyData[i].id) {
-                                    <div class="s-rounded-full s-px-2 s-mt-0.5 s-bg-white s-bg-opacity-40">
-                                      @for ( pitemdata of pitem.multiLiab; track $index) {
-                                      @if (pitemdata.selectionid==pfancydata.id) {
-                                      <div [class]="pitemdata.pnl >= 0 ? 'bookgreencolor' : 'bookredcolor'"
-                                        class="s-forecast s-sportsbook-forecast s-text-10px s-leading-normal s-flex s-font-bold s-font-bold"
-                                        data-testid="forecast">
-                                        <span class="s-single-winner-forecast-context s-flex s-items-center"
-                                          data-bet-type="SPORTSBOOK">
-                                          <span class="s-rotate-180 s-flex s-text-6px s-mx-0.5"></span>
-                                          ({{pitemdata.pnl | number :'1.0-2'}})
-                                        </span>
-                                      </div>
-                                      }
-                                      }
-                                    </div>
-                                    }
-                                    }
+                              <div
+                                *ngFor="let pfancydata of sortPFancyData(PFancyData[i].sportsBookSelection); let j = index; trackBy: trackByFn">
+                                <div id="premiumOddsDiv2036199901"
+                                  (click)="openPreFancyBetPlace('Premium', [{isBack : true, selectionId : pfancydata.id, selectionName : pfancydata.selectionName, odds : pfancydata.odds, matchName : eventData.matchname, eventId : eventId, sourceId : PFancyData[i].id, sourceName : item.marketName, sourceBetType : 'Premium', sportId : sportId}])"
+                                  class="betslipopen s-py-1.5 s-text-center s-flex s-flex-col s-justify-center s-items-center s-bg-back-200 dark:s-bg-back-400-dark s-min-0 s-relative s-overflow-hidden s-rounded-b-md s-min-h-53px spark"
+                                  title="back">
+                                  <div class="wrapper s-w-full s-h-full s-overflow-hidden s-top-0 s-left-0 s-z-10"
+                                    style="--0b879273: 0;">
+                                    <span
+                                      class="mask s-w-full s-h-full s-opacity-10 s-bg-black-900 s-absolute s-left-0 s-top-0"
+                                      style="display: none;"></span>
+                                    <span
+                                      class="feedback s-block s-bg-white s-bg-opacity-25 s-rounded-full s-mix-blend-overlay s-absolute"
+                                      style="display: none;"></span>
                                   </div>
+                                  <p class="s-text-15px s-px-1 s-text-black-900 namecolor" id="">
+                                    {{pfancydata.selectionName}}</p>
+                                  <p class="s-text-10px s-text-black-900 oddcolor" id="premiumOdds2036199901">
+                                    {{pfancydata.odds}}</p>
+                                  <ng-container *ngFor="let pitem of PremiumfancyLiability; let i = index">
+                                    <div *ngIf="pitem.sourceId==PFancyData[i].id"
+                                      class="s-rounded-full s-px-2 s-mt-0.5 s-bg-white s-bg-opacity-40">
+                                      <ng-container *ngFor="let pitemdata of pitem.multiLiab; let j = index">
+                                        <div *ngIf="pitemdata.selectionid==pfancydata.id"
+                                          [class]="pitemdata.pnl >= 0 ? 'bookgreencolor' : 'bookredcolor'"
+                                          class="s-forecast s-sportsbook-forecast s-text-10px s-leading-normal s-flex s-font-bold s-font-bold"
+                                          data-testid="forecast">
+                                          <span class="s-single-winner-forecast-context s-flex s-items-center"
+                                            data-bet-type="SPORTSBOOK">
+                                            <span class="s-rotate-180 s-flex s-text-6px s-mx-0.5"></span>
+                                            ({{pitemdata.pnl | number :'1.0-2'}})
+                                          </span>
+                                        </div>
+                                      </ng-container>
+                                    </div>
+                                  </ng-container>
                                 </div>
-                              }
+                              </div>
+
                             </div>
                           </div>
                         </div>
                         <dl id="premiumfancyBetBoard563027855" class="bet_slip-wrap back" style="display: none;">
                         </dl>
                       </div>
-                      }
 
                     </div>
                   </div>
-                  }
                   <!-- </ng-container> -->
                   <div
                     class="s-w-full s-max-w-[480px] s-fixed s-bottom-0 s-left-1/2 s-z-30 s-transition-all s-duration-300"
@@ -248,6 +236,5 @@
     </span>
   </div>
 </div>
-@if (openBetSlip) {
-<app-parlay-bet-place (closeDt)="closeParlyBet($event)" style="position: absolute;"></app-parlay-bet-place>
-}
+<app-parlay-bet-place *ngIf="openBetSlip" (closeDt)="closeParlyBet($event)"
+  style="position: absolute;"></app-parlay-bet-place>

@@ -228,12 +228,11 @@
                                       <p class="s-break-all">{{list?.matchname}}</p>
                                       <div class="s-flex s-justify-start s-items-center">
                                         <div class="s-flex s-items-center">
-                                          @if (list.matchType == 'virtual1' && mainTabs == 2) {
-                                          <div class="s-icon-vr-electronic s-event-icons s-mr-4px" style="display:flex">
+                                          <div *ngIf="list.matchType == 'virtual1' && mainTabs == 2"
+                                            class="s-icon-vr-electronic s-event-icons s-mr-4px" style="display:flex">
                                             <span class="path1"></span>
                                             <span class="path2"></span>
                                           </div>
-                                          }
                                           <p class="s-leading-14px s-text-12px s-text-black-600 s-mr-3px s-mt-1px">
                                             Matched <span class="">{{list?.matchedPte == undefined ? '0.00' :
                                               list?.matchedPte | number : '.2-2'}}</span></p>
@@ -552,12 +551,11 @@
                                   <p class="s-break-all">{{list.matchname}}</p>
                                   <div class="s-flex s-justify-start s-items-center">
                                     <div class="s-flex s-items-center">
-                                      @if (list.matchType == 'virtual1') {
-                                      <div class="s-icon-vr-electronic s-event-icons s-mr-4px" style="display:flex">
+                                      <div *ngIf="list.matchType == 'virtual1'"
+                                        class="s-icon-vr-electronic s-event-icons s-mr-4px" style="display:flex">
                                         <span class="path1"></span>
                                         <span class="path2"></span>
                                       </div>
-                                      }
                                       <p class="s-leading-14px s-text-12px s-text-black-600 s-mr-3px s-mt-1px">
                                         Matched <span class="">{{list?.matchedPte == undefined ? '0.00' :
                                           list?.matchedPte | number : '.2-2'}}</span></p>
@@ -615,12 +613,11 @@
                                               {{list.day | DatePipe}}</span>
                                           </div>
                                         </div>
-                                        @if (list.matchType == 'virtual1') {
-                                        <div class="s-icon-vr-electronic s-event-icons s-mr-4px" style="display:flex">
+                                        <div *ngIf="list.matchType == 'virtual1'"
+                                          class="s-icon-vr-electronic s-event-icons s-mr-4px" style="display:flex">
                                           <span class="path1"></span>
                                           <span class="path2"></span>
                                         </div>
-                                        }
                                       </div>
                                       <p class="s-leading-14px s-text-12px s-text-black-600 s-mr-3px s-mt-3px">
                                         Matched <span class="">{{list?.matchedPte == undefined ? '0.00' :
@@ -695,8 +692,8 @@
 
                   </div>
                   }
-                  @if (isLoading) {
-                  <app-loader></app-loader>
+                  @if () {
+                  <app-loader *ngIf="isLoading"></app-loader>
                   }
                   @if (mainTabs==2) {
                   <div id="LeaguesTab" class="tab-content active ng-star-inserted">
@@ -720,19 +717,19 @@
                                     class="s-icon-arrow-down s-transform s-text-10px s-transition-transform s-origin-center s-duration-300 s-mx-1 s-text-sort-by-icon"></span>
                                 </div>
                               </button>
-                              @if (timeByCompi) {
-                              <div class="s-drop-down s-w-full s-left-0 s-text-15px s-absolute s-top-8 -s-mt-1 s-z-10"
+                              <div *ngIf="timeByCompi"
+                                class="s-drop-down s-w-full s-left-0 s-text-15px s-absolute s-top-8 -s-mt-1 s-z-10"
                                 id="asidebar">
                                 <div
                                   class="s-options1 s-flex s-flex-col s-sort-Filter s-rounded s-rounded-t-none s-whitespace-nowrap s-bg-filter-background-light dark:s-bg-filter-background-dark">
                                   <p (click)="byTimeDefault(byActive != 'time' ? 'time': 'compi')"
                                     class="bytime s-item s-flex s-items-center s-pt-5px s-pb-7px s-px-6 s-cursor-pointer s-text-global-font-default-light dark:s-text-global-font-default-dark"
-                                    value="2"><span class="s-item-text s-relative s-text-11px"> {{byActive != 'time' ?
+                                    value="2">
+                                    <span class="s-item-text s-relative s-text-11px"> {{byActive != 'time' ?
                                       'by Time': 'by Compition'}}</span>
                                   </p>
                                 </div>
                               </div>
-                              }
                             </div>
                             @if (mainTabs == 2 && byActive == 'time') {
                             <div
@@ -751,14 +748,13 @@
                             </div>
                             }
                           </div>
-                          @if (byActive == 'compi') {
-                          <div (click)="collapseItem()"
+                          <div (click)="collapseItem()" *ngIf="byActive == 'compi'"
                             class="s-sort-Filter toggleMatch s-inline-flex s-items-center s-p-2 s-text-11px s-rounded-5px s-cursor-pointer s-bg-filter-background-light dark:s-bg-filter-background-dark s-text-global-font-default-light dark:s-text-global-font-default-dark ng-star-inserted">
-                            <span class="s-mr-1 s-leading-tight">Collapse</span><span
+                            <span class="s-mr-1 s-leading-tight">Collapse</span>
+                            <span
                               class="s-icon-arrow-double s-text-14px s-transition-transform s-origin-center s-duration-300 s-text-sort-by-icon s-transform s-rotate-180"
                               [ngClass]="collapseItm?'':'rotate180'"></span>
                           </div>
-                          }
                         </div>
                       </div>
                       <div class="s-min-h-full-with-header s-pb-20px s-px-2">
@@ -792,16 +788,14 @@
                                   <div [ngClass]="inPlayMatches(list.day) ? '' : ''">
                                     <div class="s-inline-flex s-items-center">
                                       <!-- inplay -->
-                                      @if (inPlayM) {
-                                      <div
+                                      <div *ngIf="inPlayM"
                                         class="s-overflow-hidden s-flex s-flex-col s-rounded-3px s-h-32px s-w-40px s-mx-7px">
                                         <div
                                           class="s-px-2px s-leading-14px s-flex s-items-center s-justify-center s-bg-inPlay-light dark:s-bg-inPlay-dark s-text-black s-flex-1 s-leading-16px">
                                           <span class="s-text-10px">In-play</span>
                                         </div>
                                       </div>
-                                      }@else {
-                                      <div
+                                      <div *ngIf="!inPlayM"
                                         class="s-overflow-hidden s-flex s-flex-col s-rounded-3px s-h-32px s-w-41px s-mx-7px">
                                         <div
                                           class="s-time-block s-flex s-items-center s-justify-center s-flex-1 s-leading-14px s-flex-col s-bg-today-light dark:s-bg-today-dark">
@@ -809,7 +803,6 @@
                                             DatePipe}}</span>
                                         </div>
                                       </div>
-                                      }
                                       <!--above-->
                                     </div>
                                   </div>
@@ -1471,8 +1464,7 @@
 
                             <div class="s-relative" (click)="openMatch(list?.sportid,list?.marketid,list?.iscupWinner)">
                               <div class="s-space-y-px">
-                                @for ( name of uniqueMatchNames?.[i] ; track $index) {
-                                <div class="s-text-13px">
+                                <div class="s-text-13px" *ngFor="let name of uniqueMatchNames?.[i] ; let i = index">
                                   <div class="s-flex s-justify-between s-bg-black-100 dark:s-bg-main-block-dark">
                                     <p
                                       class="s-px-2 s-flex s-flex-1 s-flex-col s-justify-center s-break-all s-text-global-font-default-light dark:s-text-global-font-default-dark s-text-14px">
@@ -1523,8 +1515,6 @@
                                   </div>
 
                                 </div>
-                                }
-
                               </div>
                             </div>
                           </div>
@@ -1573,20 +1563,18 @@
                           <div class="s-mt-14px s-mb-7px s-text-category-title s-text-15px s-leading-snug">
                             Popular
                           </div>
-                          @if (showSeries) {
-                          <div id="leaguesData4" [style]="legueDt ? 'display:none;' : ''">
-                            @for (item of organizedData ; track $index) {
-                            <div (click)="onSeriesName(item)"
-                              class="leaguematches-section s-flex s-py-10px s-px-14px s-justify-between s-items-center s-bg-white dark:s-bg-main-block-dark s-rounded-5px s-text-15px s-shadow-sm s-mb-1px ng-star-inserted">
-                              <span
-                                class="s-icon-top s-text-16px s-mr-8px dark:s-text-global-font-default-dark"></span><span
-                                class="s-leading-18px s-flex-1 s-break-all dark:s-text-global-font-default-dark s-line-clamp-1">
-                                {{item.seriesname}}</span><span
-                                class="s-icon-arrow-left s-transform s-rotate-180 s-text-12px s-text-black-500 dark:s-text-black-600 s-pr-14px"></span>
-                            </div>
-                            }
+                          <div *ngIf="showSeries" id="leaguesData4" [style]="legueDt ? 'display:none;' : ''">
+                            <ng-container *ngFor="let item of organizedData; let i = index">
+                              <div (click)="onSeriesName(item)"
+                                class="leaguematches-section s-flex s-py-10px s-px-14px s-justify-between s-items-center s-bg-white dark:s-bg-main-block-dark s-rounded-5px s-text-15px s-shadow-sm s-mb-1px ng-star-inserted">
+                                <span
+                                  class="s-icon-top s-text-16px s-mr-8px dark:s-text-global-font-default-dark"></span><span
+                                  class="s-leading-18px s-flex-1 s-break-all dark:s-text-global-font-default-dark s-line-clamp-1">
+                                  {{item.seriesname}}</span><span
+                                  class="s-icon-arrow-left s-transform s-rotate-180 s-text-12px s-text-black-500 dark:s-text-black-600 s-pr-14px"></span>
+                              </div>
+                            </ng-container>
                           </div>
-                          }
                           <div class="s-mt-14px s-mb-7px s-text-category-title s-text-15px s-leading-snug"
                             style="display: none;">Rest Of The World</div>
                           <div
@@ -1602,74 +1590,75 @@
                     </div>
                   </div>
                 </section>
-                @if (!showSeries) {
-                <div id="leagueHeader" [style]="!legueDt ? 'display:none;' : ''">
-                  <input type="hidden" id="spVal">
-                  <div
-                    class="s-px-3 s-bg-white dark:s-bg-main-block-dark s-text-global-font-default-light dark:s-text-global-font-default-dark s-text-14px s-flex s-items-center s-justify-center s-shadow-sm">
-                    <div class="s-icon-arrow-left s-left-4 s-mr-3" (click)="showLeagues()">
+                <ng-container *ngIf="!showSeries">
+                  <div id="leagueHeader" [style]="!legueDt ? 'display:none;' : ''">
+                    <input type="hidden" id="spVal">
+                    <div
+                      class="s-px-3 s-bg-white dark:s-bg-main-block-dark s-text-global-font-default-light dark:s-text-global-font-default-dark s-text-14px s-flex s-items-center s-justify-center s-shadow-sm">
+                      <div class="s-icon-arrow-left s-left-4 s-mr-3" (click)="showLeagues()">
+                      </div>
+                      <div class="s-flex-1 s-py-12px s-leading-20px s-text-center" id="lsName">
+                        American Premier League</div>
                     </div>
-                    <div class="s-flex-1 s-py-12px s-leading-20px s-text-center" id="lsName">
-                      American Premier League</div>
                   </div>
-                </div>
 
-                <div>
-                  <div (click)="onBack()">
-                    <div id="leagueHeader" class="ng-star-inserted"><input type="hidden" id="spVal">
-                      <div
-                        class="s-px-3 s-bg-white dark:s-bg-main-block-dark s-text-global-font-default-light dark:s-text-global-font-default-dark s-text-14px s-flex s-items-center s-justify-center s-shadow-sm">
-                        <div class="s-icon-arrow-left s-left-4 s-mr-3"></div>
-                        <div id="lsName" class="s-flex-1 s-py-12px s-leading-20px s-text-center">
-                          {{showleaguematches?.seriesname}}</div>
+                  <div>
+                    <div (click)="onBack()">
+                      <div id="leagueHeader" class="ng-star-inserted"><input type="hidden" id="spVal">
+                        <div
+                          class="s-px-3 s-bg-white dark:s-bg-main-block-dark s-text-global-font-default-light dark:s-text-global-font-default-dark s-text-14px s-flex s-items-center s-justify-center s-shadow-sm">
+                          <div class="s-icon-arrow-left s-left-4 s-mr-3"></div>
+                          <div id="lsName" class="s-flex-1 s-py-12px s-leading-20px s-text-center">
+                            {{showleaguematches?.seriesname}}</div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                @for ( item of showleaguematches?.matches ; track $index) {
-                <div class="ng-star-inserted">
-                  <section (click)="openMatch(item.sportid,item.marketid,item.iscupWinner)"
-                    class="s-px-4 s-my-14px s-text-global-font-default-light dark:s-text-global-font-default-dark ng-star-inserted">
-                    <div
-                      class="s-bg-white dark:s-bg-main-block-dark s-rounded-5px s-text-15px s-divide-y s-divide-black-300 dark:s-divide-black-900 s-shadow-sm">
-                      <div id="leagueDetails">
-                        <div class="legauematchdetail-section">
-                          <div
-                            class="s-event-row s-grid s-justify-between s-items-center s-gap-2 s-py-7px s-pr-10px s-pl-14px s-min-h-45px">
-                            <div>
+                  @for ( item of showleaguematches?.matches ; track $index) {
+                  <div class="ng-star-inserted">
+                    <section (click)="openMatch(item.sportid,item.marketid,item.iscupWinner)"
+                      class="s-px-4 s-my-14px s-text-global-font-default-light dark:s-text-global-font-default-dark ng-star-inserted">
+                      <div
+                        class="s-bg-white dark:s-bg-main-block-dark s-rounded-5px s-text-15px s-divide-y s-divide-black-300 dark:s-divide-black-900 s-shadow-sm">
+                        <div id="leagueDetails">
+                          <div class="legauematchdetail-section">
+                            <div
+                              class="s-event-row s-grid s-justify-between s-items-center s-gap-2 s-py-7px s-pr-10px s-pl-14px s-min-h-45px">
                               <div>
-                                <div
-                                  class="s-text-14px s-leading-17px s-text-global-font-default-light dark:s-text-global-font-default-dark"
-                                  tabindex="0" ng-reflect-router-link="/match/4/-10771497"><span
-                                    class="s-leading-17px">{{item.selectionnames}}</span></div>
-                              </div>
-                              <div class="s-flex s-leading-14px">
-                                <div class="s-inline-flex s-items-center">
-                                  <div class="s-overflow-hidden s-flex s-flex-col s-rounded-3px s-mr-4px">
-                                    <div
-                                      class="s-time-block s-flex s-items-center s-justify-center s-flex-1 s-leading-14px s-bg-tomorrow-light dark:s-bg-tomorrow-dark">
-                                      <span
-                                        class="s-text-10px s-text-black s-text-center s-whitespace-nowrap s-px-3px s-py-0">{{
-                                        item.openTimestamp| date:'MMM dd HH:mm'}}</span>
+                                <div>
+                                  <div
+                                    class="s-text-14px s-leading-17px s-text-global-font-default-light dark:s-text-global-font-default-dark"
+                                    tabindex="0" ng-reflect-router-link="/match/4/-10771497"><span
+                                      class="s-leading-17px">{{item.selectionnames}}</span></div>
+                                </div>
+                                <div class="s-flex s-leading-14px">
+                                  <div class="s-inline-flex s-items-center">
+                                    <div class="s-overflow-hidden s-flex s-flex-col s-rounded-3px s-mr-4px">
+                                      <div
+                                        class="s-time-block s-flex s-items-center s-justify-center s-flex-1 s-leading-14px s-bg-tomorrow-light dark:s-bg-tomorrow-dark">
+                                        <span
+                                          class="s-text-10px s-text-black s-text-center s-whitespace-nowrap s-px-3px s-py-0">{{
+                                          item.openTimestamp| date:'MMM dd HH:mm'}}</span>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="s-flex s-justify-end s-items-center">
-                              <div tabindex="0" ng-reflect-router-link="/match/4/-10771497"><i
-                                  class="s-block s-icon-arrow-left s-self-center s-text-12px s-text-black-400 s-rotate-180 dark:s-text-black-600"></i>
+                              <div class="s-flex s-justify-end s-items-center">
+                                <div tabindex="0" ng-reflect-router-link="/match/4/-10771497"><i
+                                    class="s-block s-icon-arrow-left s-self-center s-text-12px s-text-black-400 s-rotate-180 dark:s-text-black-600"></i>
+                                </div>
                               </div>
                             </div>
                           </div>
+                          <div></div>
                         </div>
-                        <div></div>
                       </div>
-                    </div>
-                  </section>
-                </div>
-                }
-                }
+                    </section>
+                  </div>
+                  }
+                </ng-container>
+
                 <ng-container style="display: none;">
                   <div id="leagueHeader" [style]="!legueDt ? 'display:none;' : ''">
                     <input type="hidden" id="spVal">
@@ -1713,9 +1702,6 @@
     </div>
 
   </div>
-</div>
-<div>
-
 </div>
 </div>
 </div>

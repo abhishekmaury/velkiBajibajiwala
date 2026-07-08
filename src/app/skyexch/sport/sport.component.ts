@@ -7,13 +7,12 @@ import { CommonModule } from '@angular/common';
 import { AuthserviceService } from '../../services/authservice.service';
 import { SocketServiceService } from '../../services/socket-service.service';
 import { DatePipePipe } from "../pipes/datepipe.pipe";
-import { LoaderComponent } from '../loader/loader.component';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 
 @Component({
   selector: 'app-sport',
   standalone: true,
-  imports: [CommonModule, DatePipePipe,RouterLink,LoaderComponent],
+  imports: [CommonModule, DatePipePipe,RouterLink],
   templateUrl: './sport.component.html',
   styleUrls: ['./sport.component.css'],
   encapsulation: ViewEncapsulation.None
