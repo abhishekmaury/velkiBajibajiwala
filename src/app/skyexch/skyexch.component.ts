@@ -1,15 +1,11 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, HostListener, ViewEncapsulation } from '@angular/core';
-import { DatahandlerService } from '../services/datahandler.service';
 import { AuthserviceService } from '../services/authservice.service';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { MyBetsComponent } from './my-bets/my-bets.component';
+import { DataHandlerService } from '../services/datahandler.service';
 
 @Component({
   selector: 'app-skyexch',
-  imports: [HeaderComponent, RouterOutlet, FooterComponent, MyBetsComponent],
   templateUrl: './skyexch.component.html',
   styleUrls: ['./skyexch.component.css'],
   // encapsulation: ViewEncapsulation.Emulated
@@ -35,7 +31,7 @@ export class SkyexchComponent implements OnInit {
   navigator = true;
   myBets=false;
 
-  constructor(private dataserve: DatahandlerService, private authServe: AuthserviceService,private router: Router) { }
+  constructor(private dataserve: DataHandlerService, private authServe: AuthserviceService,private router: Router) { }
   ngOnInit(): void {
 
     this.dataserve.betSuccessMsg.subscribe((res)=>{
@@ -54,47 +50,47 @@ export class SkyexchComponent implements OnInit {
 
     let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
 
-    this.dataserve.verifyUser(data).subscribe((res: any) => {
-    }, (error) => {
-      if (error.status == 200) {
-        this.validateapi = this.dataserve.decryptData(error.error.text);
-        if (this.validateapi.data.type == 'success') {
-          this.authServe.getUserDetails(data).subscribe((res: any) => {
-          }, (error) => {
-            if (error.status == 200) {
-              let gms = this.dataserve.decryptData(error.error.text);
-              this.loggedData.data.user.myBalance = gms?.data.balance
-              this.userBalance = this.loggedData?.data?.user?.myBalance;
-              this.userLiability = gms?.data?.liability;
-              localStorage.setItem("userData", JSON.stringify(this.loggedData))
-              this.updBal = true;
-            }
-          })
+    // this.dataserve.verifyUser(data).subscribe((res: any) => {
+    // }, (error) => {
+    //   if (error.status == 200) {
+    //     this.validateapi = this.dataserve.decryptData(error.error.text);
+    //     if (this.validateapi.data.type == 'success') {
+    //       this.authServe.getUserDetails(data).subscribe((res: any) => {
+    //       }, (error) => {
+    //         if (error.status == 200) {
+    //           let gms = this.dataserve.decryptData(error.error.text);
+    //           this.loggedData.data.user.myBalance = gms?.data.balance
+    //           this.userBalance = this.loggedData?.data?.user?.myBalance;
+    //           this.userLiability = gms?.data?.liability;
+    //           localStorage.setItem("userData", JSON.stringify(this.loggedData))
+    //           this.updBal = true;
+    //         }
+    //       })
 
-        }
-      }
-    })
+    //     }
+    //   }
+    // })
 
     let sectime2 = this.dataserve.getTimeStamp();
 
     let data2 = { "timeStamp": sectime2.timeStamp, "secretKey": sectime2.secretKey }
 
-    this.dataserve.verifyUser(data2).subscribe((res: any) => {
-    }, (error) => {
-      if (error.status == 200) {
-        this.validateapi = this.dataserve.decryptData(error.error.text);
-        if (this.validateapi.data.type == 'success') {
-          this.authServe.getUsersStake(data2).subscribe((res: any) => {
-          }, (error) => {
-            if (error.status == 200) {
-              this.stake = this.dataserve.decryptData(error.error.text);
-              localStorage.setItem("userStake", JSON.stringify(this.stake))
-            }
-          })
+    // this.dataserve.verifyUser(data2).subscribe((res: any) => {
+    // }, (error) => {
+    //   if (error.status == 200) {
+    //     this.validateapi = this.dataserve.decryptData(error.error.text);
+    //     if (this.validateapi.data.type == 'success') {
+    //       this.authServe.getUsersStake(data2).subscribe((res: any) => {
+    //       }, (error) => {
+    //         if (error.status == 200) {
+    //           this.stake = this.dataserve.decryptData(error.error.text);
+    //           localStorage.setItem("userStake", JSON.stringify(this.stake))
+    //         }
+    //       })
 
-        }
-      }
-    })
+    //     }
+    //   }
+    // })
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -161,26 +157,26 @@ export class SkyexchComponent implements OnInit {
 
       let data =  { "timeStamp":sectime.timeStamp,"secretKey":sectime.secretKey }
 
-      this.dataserve.verifyUser(data).subscribe((res : any)=>{
-      },(error)=>{
-        if(error.status==200){
-          this.validateapi = this.dataserve.decryptData(error.error.text);
-          if(this.validateapi.data.type=='success'){
-            this.authServe.getUserDetails(data).subscribe((res : any)=>{
-            },(error)=>{
-              if(error.status==200){
-                let gms = this.dataserve.decryptData(error.error.text);
-                this.loggedData.data.user.myBalance = gms.data.balance
-                this.userLiability = gms.data.liability;
-                this.userBalance = this.loggedData.data.user.myBalance;
-                localStorage.setItem("userData", JSON.stringify(this.loggedData))
+      // this.dataserve.verifyUser(data).subscribe((res : any)=>{
+      // },(error)=>{
+      //   if(error.status==200){
+      //     this.validateapi = this.dataserve.decryptData(error.error.text);
+      //     if(this.validateapi.data.type=='success'){
+      //       this.authServe.getUserDetails(data).subscribe((res : any)=>{
+      //       },(error)=>{
+      //         if(error.status==200){
+      //           let gms = this.dataserve.decryptData(error.error.text);
+      //           this.loggedData.data.user.myBalance = gms.data.balance
+      //           this.userLiability = gms.data.liability;
+      //           this.userBalance = this.loggedData.data.user.myBalance;
+      //           localStorage.setItem("userData", JSON.stringify(this.loggedData))
 
-              }
-            })
+      //         }
+      //       })
 
-          }
-        }
-      })
+      //     }
+      //   }
+      // })
   }
 
   numberOnly(event: any):any {

@@ -287,10 +287,10 @@ export class HomeComponent1 {
     //     }
     //   }
     // })
-    
+
     this.dataserve.changeTheme$.subscribe((res: any) => {
       let classicTheme = res;
-      
+
       if (classicTheme == true) {
         this.router.navigate(['/classichome'])
       } else {
@@ -299,10 +299,10 @@ export class HomeComponent1 {
     })
     let theme = localStorage.getItem('clssaicTheme');
     if (theme == 'true') {
-        this.router.navigate(['/classichome'])
-      } else {
-        this.router.navigate(['/home'])
-      }
+      this.router.navigate(['/classichome'])
+    } else {
+      this.router.navigate(['/home'])
+    }
   }
 
   setupMarquee() {
@@ -378,7 +378,7 @@ export class HomeComponent1 {
     let token = localStorage.getItem('token')
     if (token) {
       this.isLoading = true;
-      // navigate to exch
+      this.router.navigate(['/exchange/sport'])
     } else {
       this.router.navigate(['/login'])
     }

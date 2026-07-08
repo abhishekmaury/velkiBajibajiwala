@@ -46,8 +46,8 @@ style="background-image: url(&quot;/assets/images/icon-cross-type01.svg?v=172657
   </div>
   <div class="logo headLogo logoImp" tabindex="0" routerLink="/home" style="background-image: url('{{headerLogo}}');">
   </div>
-  @if (beforeLogin) {
-    <div class="header-btn-group ng-star-inserted">
+  <!-- @if (beforeLogin) { -->
+    <!-- <div class="header-btn-group ng-star-inserted">
       <a class="login header-link ng-star-inserted" routerLink="/login"
         [style]="{'background':themeData?.loginButtonBackground,'color':themeData?.loginButtonTextColor}">
         <font style="vertical-align: inherit;">
@@ -61,9 +61,9 @@ style="background-image: url(&quot;/assets/images/icon-cross-type01.svg?v=172657
     </a>
     <div class="language-select" (click)="openPopup()"><img fetchpriority="high"  alt="IN" src="/assets/images/IN.png" loading="lazy">
     </div>
-  </div>
-}
-@if (afterLogin) {
+  </div> -->
+<!-- } -->
+<!-- @if (afterLogin) { -->
   <div class="header-right-btn-group ng-star-inserted">
     <div class="wall" >
       <a class="ui-link" (click)="walletOpen()" style="display: flex; justify-content: center; align-items: center; ">
@@ -79,7 +79,7 @@ style="background-image: url(&quot;/assets/images/icon-cross-type01.svg?v=172657
       <div class="exp"> EXP <span id="exposureMob">{{exposure | number : '.2-2'}}</span>
     </div>
   </div>
-}
+<!-- } -->
 <div class="header-right-btn-group" style="display: none;">
   <a class="app-download ng-star-inserted" routerLink="/Mappdownload">
     <svg width="4.33vw" height="4.33vw" viewBox="0 0 16 18" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -136,8 +136,8 @@ style="background-image: url(&quot;/assets/images/icon-cross-type01.svg?v=172657
 </header>
 
 <main>
-  @if (isSidebarOpen) {
-    <div id="menubox">
+  <!-- @if (isSidebarOpen) { -->
+    <div id="menubox" *ngIf="isSidebarOpen">
       <div id="menu" class="menu show ng-star-inserted active">
         <div class="btn-close" style="mask-image: url(/assets/images/icon-set/icon-close.svg);">
         </div>
@@ -145,15 +145,16 @@ style="background-image: url(&quot;/assets/images/icon-cross-type01.svg?v=172657
           <div class="menu-top" style="opacity: 1; transform: translate(0px, 0px);">
             <div class="menu-header" [style.--headerBgmain]="themeData?.masterBgColor1">
               <img fetchpriority="high"  src="/assets/images/profile.png" alt="">
-              @if (beforeLogin) {
+              <!-- @if (beforeLogin) {
                 <div class="member-name ng-star-inserted" [style]="{'color':themeData?.masterTextColor1}"><span
                   class="ng-tns-c3392045011-3 ng-star-inserted">
                   <font style="vertical-align: inherit;">
                     <font style="vertical-align: inherit;">Hi, welcome.</font>
                   </font>
-                </span></div>
-              }
-              @if (afterLogin) {
+                </span>
+              </div>
+              } -->
+              <!-- @if (afterLogin) { -->
                 <div class="member-name ng-tns-c3392045011-16 ng-star-inserted">
                   <div id="account" class="account ng-tns-c3392045011-16 ng-star-inserted"><!----><!----></div><!---->
                   <p id="profile_text" class="ng-tns-c3392045011-16" [style]="{'color':themeData?.masterTextColor1}"
@@ -168,9 +169,9 @@ style="background-image: url(&quot;/assets/images/icon-cross-type01.svg?v=172657
                   [style]="{'background':themeData?.masterTextColor1}"
                   style="mask-image: url(/assets/newimg/icon-arrow-type01.svg); display: flex;">
                 </div>
-              }
+              <!-- } -->
             </div>
-            @if (beforeLogin) {
+            <!-- @if (beforeLogin) {
               <div class="beforelogin ng-star-inserted" [style]="{'background':themeData?.homenavsvgbgcolor}">
                 <div class="login-button">
                   <span [style]="{'background':themeData?.homenavsvgtextcolor}"
@@ -195,7 +196,7 @@ style="background-image: url(&quot;/assets/images/icon-cross-type01.svg?v=172657
                 </div>
               </div>
             }
-            @if (afterLogin) {
+            @if (afterLogin) { -->
               <div class="afterlogin marquee ng-tns-c3392045011-16 ng-star-inserted"
                 [style]="{'background':themeData?.homenavsvgbgcolor}">
                 <div class="main-wallet ng-tns-c3392045011-16">
@@ -218,11 +219,11 @@ style="background-image: url(&quot;/assets/images/icon-cross-type01.svg?v=172657
                   </div>
                 </div>
               </div>
-            }
+            <!-- } -->
           </div>
           <div class="menu-item">
             <div class="ng-tns-c3392045011-3">
-              @if (afterLogin) {
+              <!-- @if (afterLogin) {
                 <ul class="wallet-box ng-tns-c3392045011-3 ng-star-inserted">
                   @if (country=='India') {
                     @if (agentType==1) {
@@ -263,7 +264,7 @@ style="background-image: url(&quot;/assets/images/icon-cross-type01.svg?v=172657
       }
     }
   </ul>
-}
+} -->
 <ul class="main-box">
   <li class="ng-tns-c3392045011-3 game-nav-item ng-star-inserted"
     [style]="{'background':themeData?.sidebarBg}" [class]="activeMenu == 'sports' ? 'active' : ''"
@@ -341,7 +342,7 @@ style="background-image: url(&quot;/assets/images/icon-cross-type01.svg?v=172657
 </p>
 </a></li>
 </ul>
-@if (isB2c) {
+<!-- @if (isB2c) {
   <ul class="item-box" style="opacity: 1; transform: translate(0px, 0px);" [style]="{'background':themeData?.sidebarBg}">
     @if (isPromotion) {
       <li data-category="promotion" class="ng-tns-c3392045011-3">
@@ -387,7 +388,7 @@ style="background-image: url(&quot;/assets/images/icon-cross-type01.svg?v=172657
 </li>
 }
 </ul>
-}
+} -->
 <ul class="contact-box" style="opacity: 1; transform: translate(0px, 0px);" [style]="{'background':themeData?.sidebarBg}">
   <li class="ng-tns-c3392045011-3 telegram ng-star-inserted" data-category="telegram"
     (click)="openAffiliate()"><a class="ng-tns-c3392045011-3"><span
@@ -438,7 +439,7 @@ style="background-image: url(&quot;/assets/images/icon-cross-type01.svg?v=172657
     </font>
   </p>
 </a></li>
-@if (beforeLogin) {
+<!-- @if (beforeLogin) {
   <li data-category="login" class="ng-tns-c3392045011-3 ng-star-inserted">
     <a class="ng-tns-c3392045011-3" routerLink="/login" (click)="closeSidebar()">
       <span class="ng-tns-c3392045011-3"
@@ -452,7 +453,7 @@ style="background-image: url(&quot;/assets/images/icon-cross-type01.svg?v=172657
     </a>
   </li>
 }
-@if (afterLogin) {
+@if (afterLogin) { -->
   <li class="ng-tns-c3392045011-3 ng-star-inserted">
     <a class="ng-tns-c3392045011-3" (click)="logout()" (click)="closeSidebar()">
       <span class="ng-tns-c3392045011-3"
@@ -465,14 +466,14 @@ style="background-image: url(&quot;/assets/images/icon-cross-type01.svg?v=172657
       </p>
     </a>
   </li>
-}
+<!-- } -->
 </ul>
 </div>
 </div>
 </div>
 <div class="menu-second ng-tns-c41-5">
-  @if (sportsmenu) {
-    <ul class="menu-second-ul ng-tns-c41-5 ng-star-inserted sportsmenu" [class.active]="activeMenu === 'sports'">
+  <!-- @if (sportsmenu) { -->
+    <ul *ngIf="sportsmenu" class="menu-second-ul ng-tns-c41-5 ng-star-inserted sportsmenu" [class.active]="activeMenu === 'sports'">
       <li class="ng-tns-c41-5 ng-star-inserted">
         <a tabindex="-1" class="ng-tns-c41-5" (click)="navigateToExch()">
           <div class="ng-tns-c41-5 icon-sport exchange ng-star-inserted"></div>
@@ -498,9 +499,9 @@ style="background-image: url(&quot;/assets/images/icon-cross-type01.svg?v=172657
         </a>
       </li>
     </ul>
-  }
-  @if (casinomenu) {
-    <ul class="menu-second-ul ng-tns-c41-5 ng-star-inserted casinomenu" [class.active]="activeMenu === 'casino'">
+  <!-- }
+  @if (casinomenu) { -->
+    <ul *ngIf="casinomenu" class="menu-second-ul ng-tns-c41-5 ng-star-inserted casinomenu" [class.active]="activeMenu === 'casino'">
       <li class="ng-star-inserted" (click)="navigateToGames('LIVE', 'EVOLUTION')">
         <a tabindex="-1" vender="Evo">
           <img fetchpriority="high"  alt="provider-evo" src="/assets/images/games/EVOLUTION.webp" loading="lazy" class="ng-star-inserted">
@@ -528,10 +529,10 @@ style="background-image: url(&quot;/assets/images/icon-cross-type01.svg?v=172657
             </a>
           </li>
         </ul>
-      }
+      <!-- }
 
-      @if (slotmenu) {
-        <ul class="menu-second-ul ng-tns-c41-5 ng-star-inserted slotmenu" [class.active]="activeMenu === 'slot'">
+      @if (slotmenu) { -->
+        <ul *ngIf="slotmenu" class="menu-second-ul ng-tns-c41-5 ng-star-inserted slotmenu" [class.active]="activeMenu === 'slot'">
           <li class="ng-star-inserted" (click)="navigateToGames('SLOT', 'JILI')">
             <a tabindex="-1" vender="PT">
               <img fetchpriority="high"  alt="provider-awcmpt" src="/assets/images/games/JILI.webp" loading="lazy" class="ng-star-inserted">
@@ -572,9 +573,9 @@ style="background-image: url(&quot;/assets/images/icon-cross-type01.svg?v=172657
                   </a>
                 </li>
               </ul>
-            }
-            @if (tablemenu) {
-              <ul class="menu-second-ul ng-tns-c41-5 ng-star-inserted tablemenu" [class.active]="activeMenu === 'table'">
+            <!-- }
+            @if (tablemenu) { -->
+              <ul *ngIf="tablemenu" class="menu-second-ul ng-tns-c41-5 ng-star-inserted tablemenu" [class.active]="activeMenu === 'table'">
                 <li class="ng-star-inserted" (click)="navigateToGames('TABLE', 'JILI')">
                   <a tabindex="-1" vender="PT">
                     <img fetchpriority="high"  alt="provider-awcmpt" src="/assets/images/games/JILI.webp" loading="lazy" class="ng-star-inserted">
@@ -609,9 +610,9 @@ style="background-image: url(&quot;/assets/images/icon-cross-type01.svg?v=172657
                     </li>
 
                   </ul>
-                }
-                @if (fishingmenu) {
-                  <ul class="menu-second-ul ng-tns-c41-5 ng-star-inserted fishingmenu" [class.active]="activeMenu === 'fishing'">
+                <!-- }
+                @if (fishingmenu) { -->
+                  <ul *ngIf="fishingmenu" class="menu-second-ul ng-tns-c41-5 ng-star-inserted fishingmenu" [class.active]="activeMenu === 'fishing'">
                     <li class="ng-star-inserted" (click)="navigateToGames('FH', 'JILI')">
                       <a tabindex="-1" vender="PT">
                         <img fetchpriority="high"  alt="provider-awcmpt" src="/assets/images/games/JILI.webp" loading="lazy" class="ng-star-inserted">
@@ -625,9 +626,9 @@ style="background-image: url(&quot;/assets/images/icon-cross-type01.svg?v=172657
                       </a>
                     </li>
                   </ul>
-                }
-                @if (lotterymenu) {
-                  <ul class="menu-second-ul ng-tns-c41-5 ng-star-inserted lotterymenu" [class.active]="activeMenu === 'lottery'">
+                <!-- }
+                @if (lotterymenu) { -->
+                  <ul *ngIf="lotterymenu" class="menu-second-ul ng-tns-c41-5 ng-star-inserted lotterymenu" [class.active]="activeMenu === 'lottery'">
                     <li class="ng-tns-c41-5 ng-star-inserted">
                       <a (click)="navigateToGames('LIVE', 'ALL')" class="ng-tns-c41-5">
                         <img fetchpriority="high"  class="ng-tns-c41-5 ng-star-inserted" alt="provider-number"
@@ -636,13 +637,13 @@ style="background-image: url(&quot;/assets/images/icon-cross-type01.svg?v=172657
                         </a>
                       </li>
                     </ul>
-                  }
+                  <!-- } -->
                 </div>
               </div>
               <div class="menu-mask ng-trigger ng-trigger-popBgTriggerAni ng-star-inserted"
               style="display: block;opacity: 1;"></div>
             </div>
-          }
+          <!-- } -->
         </main>
         <!-- <div class="main-caro"> -->
         <div class="owlCaro">
@@ -665,8 +666,8 @@ style="background-image: url(&quot;/assets/images/icon-cross-type01.svg?v=172657
         </owl-carousel-o> -->
       </div>
     <!-- </div> -->
-    @if (showErrPopup) {
-      <div class="cdk-overlay-container">
+    <!-- @if (showErrPopup) { -->
+      <div class="cdk-overlay-container" *ngIf="showErrPopup">
         <div class="cdk-overlay-backdrop dialog-backdrop cdk-overlay-backdrop-showing"></div>
         <div class="cdk-global-overlay-wrapper" dir="ltr" style="justify-content: center; align-items: center;">
           <div id="cdk-overlay-0" class="cdk-overlay-pane dialog-panel" style="position: static;">
@@ -686,10 +687,10 @@ style="background-image: url(&quot;/assets/images/icon-cross-type01.svg?v=172657
         </div>
       </div>
     </div>
-  }
+  <!-- } -->
 
 
-  @if (matchWallet && checkSports) {
+  <!-- @if (matchWallet && checkSports) {
     <div class="custom-modal ng-star-inserted">
       <div class="modal-overlay">
         <div class="modal-dialog">
@@ -715,4 +716,4 @@ style="background-image: url(&quot;/assets/images/icon-cross-type01.svg?v=172657
         </div>
       </div>
     </div>
-  }
+  } -->

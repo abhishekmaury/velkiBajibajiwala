@@ -1,19 +1,14 @@
 import { Component, HostListener, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import moment from 'moment';
+import * as moment from 'moment';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { CommonModule } from '@angular/common';
 import { AuthserviceService } from '../../services/authservice.service';
 import { SocketServiceService } from '../../services/socket-service.service';
-import { DatePipePipe } from "../pipes/datepipe.pipe";
-import { LoaderComponent } from '../loader/loader.component';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 
 @Component({
   selector: 'app-sport',
-  standalone: true,
-  imports: [CommonModule, DatePipePipe,RouterLink,LoaderComponent],
   templateUrl: './sport.component.html',
   styleUrls: ['./sport.component.css'],
   encapsulation: ViewEncapsulation.None

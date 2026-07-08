@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: 'edit/:fname/:lname/:email', component: EditProfileComponent, data: { animation: 'EditPage' }, canActivate: [AuthGuardGuard] },
   { path: 'info', loadChildren : ()=> import('./components/footer-pages/footer-pages.module').then(c =>(c.FooterPagesModule)) },
   { path: 'menu', loadChildren: () => import('./components/dashboard/dashboard.module').then(m => m.DashboardModule), canActivate : [AuthGuardGuard] },
-  { path: 'exchange', loadChildren: () => import('./skyexch/skyexch.routers').then(c => (c.exchRoute)), canActivate: [AuthGuardGuard] },
+  { path: 'exchange', loadChildren: () => import('./skyexch/skyexch.module').then(c => (c.ExchangeModule)), canActivate: [AuthGuardGuard] },
 ]
 
 
