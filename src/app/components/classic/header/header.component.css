@@ -5626,3 +5626,19 @@ header .logo {
 .togglebtn p {
   font-size:12px;
 }
+
+.toggle-container {
+  margin-top:.8rem;
+  display:flex;
+  gap:1rem;
+  align-items:center;
+
+    padding: 1.0666666667vw;
+    transition: all .3s;
+    border-radius: 2.6666666667vw;
+    background: linear-gradient(45deg, #302d2d 0%, #000000 100%);
+    box-shadow: 0 2.1333333333vw 2.6666666667vw color-mix(in srgb, rgba(0, 0, 0, .2), transparent 70%), inset .2666666667vw .2666666667vw color-mix(in srgb, #ffff, transparent 80%);
+    font-size: 2.9333333333vw;
+    text-align: center;
+    overflow: hidden;
+}

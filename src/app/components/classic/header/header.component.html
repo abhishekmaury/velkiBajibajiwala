@@ -47,29 +47,19 @@
   <div class="logo headLogo" tabindex="0" routerLink="/home" style="background-image: url('https://b2bcasinoimagesupplybackend2.ctfcgames.com/images/178237509378913/Logo?v=1');">
   </div>
 
-  <div class="togglebtn">
-      <div class="toggle-box__inner ng-tns-c357405858-3">
-          <input type="checkbox" class="toggle-box__input ng-tns-c357405858-3" [checked]="isToggled"
-              (change)="toggleSwitch()" id="switch-mode-1">
-          <label class="toggle-box__switch ng-tns-c357405858-3" for="switch-mode-1">
-              <div class="toggle-box__disc ng-tns-c357405858-3"> </div>
-          </label>
-      </div>
-      <p>Classic Version </p>
-  </div>
-  <div *ngIf="beforeLogin" class="header-btn-group ng-star-inserted">
+  <div *ngIf="!loggedIn" class="header-btn-group ng-star-inserted">
     <a class="login header-link ng-star-inserted"
       [style]="{'background':themeData?.loginButtonBackground,'color':themeData?.loginButtonTextColor}"
       routerLink="/login">
       <font style="vertical-align: inherit;">
-        <font style="vertical-align: inherit;">{{"Login" }}</font>
+        <font style="vertical-align: inherit;">{{"LOGIN" | transloco }}</font>
       </font>
     </a>
     <a *ngIf="footerLinkss?.signUpOn != 'true'" class="register header-link ng-star-inserted"
       [style]="{'background':themeData?.signupButtonBackground,'color':themeData?.signupButtonTextColor}"
       routerLink="/signup">
       <font style="vertical-align: inherit;">
-        <font style="vertical-align: inherit;">{{"Sign Up" }}</font>
+        <font style="vertical-align: inherit;">{{"SIGNUP" | transloco }}</font>
       </font>
     </a>
     <div class="language-select" (click)="selectLang()">
@@ -77,19 +67,13 @@
         loading="lazy">
     </div>
   </div>
-  <div *ngIf="afterLogin" class="header-right-btn-group ng-star-inserted">
-    <!-- <div class="wall" >
-      <a class="ui-link" (click)="walletOpen()" style="display: flex; justify-content: center; align-items: center; ">
-        <img fetchpriority="high"  loading="lazy" src="/assets/exchange/Wallet.svg">
-        <span>wallet</span>
-      </a>
-    </div> -->
+  <div *ngIf="loggedIn" class="header-right-btn-group ng-star-inserted">
     <div class="cricket-money">
-      <div (click)="updateBal(selectedWallet)" class="icon-refresh"
+      <div (click)="upDateBalance()" class="icon-refresh"
         style="mask-image: url('../../../assets/bjimage/icons/icon-refresh-type01.svg'); -webkit-mask-image: url('../../../assets/bjimage/icons/icon-refresh-type01.svg');">
-      </div> ₹&nbsp;<span class="mainBalance">{{userBalance | number : '.2-2'}}</span>
+      </div> ₹&nbsp;<span class="mainBalance">{{balInfo | number : '.2-2'}}</span>
     </div>
-    <div class="exp" style="margin-right: 7px;"> EXP <span id="exposureMob">{{exposure | number : '.2-2'}}</span>
+    <div class="exp" style="margin-right: 7px;"> EXP <span id="exposureMob">{{expoInfo | number : '.2-2'}}</span>
     </div>
     <div routerLink="/account"><img fetchpriority="high" src="/assets/images/account-icons/profile.svg" alt="image"
         class="svg-icons"
@@ -159,59 +143,59 @@
         <div class="menu-top" style="opacity: 1; transform: translate(0px, 0px);">
           <div class="menu-header" [style.--headerBgmain]="themeData?.masterBgColor1">
             <img fetchpriority="high" src="/assets/images/profile.png" alt="">
-            <div *ngIf="beforeLogin" class="member-name ng-star-inserted" [style]="{'color':themeData?.masterTextColor1}"><span
+            <div *ngIf="!loggedIn" class="member-name ng-star-inserted" [style]="{'color':themeData?.masterTextColor1}"><span
                 class="ng-tns-c3392045011-3 ng-star-inserted">
                 <font style="vertical-align: inherit;">
                   <font style="vertical-align: inherit;">Hi, welcome.</font>
                 </font>
               </span></div>
-            <div *ngIf="afterLogin" class="member-name ng-tns-c3392045011-16 ng-star-inserted">
+            <div *ngIf="loggedIn" class="member-name ng-tns-c3392045011-16 ng-star-inserted">
               <div id="account" class="account ng-tns-c3392045011-16 ng-star-inserted"><!----><!----></div><!---->
               <p id="profile_text" class="ng-tns-c3392045011-16" [style]="{'color':themeData?.masterTextColor1}"
-                routerLink="/account" (click)="closeSidebar()" style="display: flex;">
+                routerLink="/account" (click)="close()" style="display: flex;">
                 <font style="vertical-align: inherit;">
                   <font style="vertical-align: inherit;">{{ "PROFILE" }}</font>
                 </font>
               </p>
             </div>
-            <div routerLink="/account" (click)="closeSidebar()"
+            <div routerLink="/account" (click)="close()"
               class="icon-arrow ng-tns-c3392045011-16 ng-star-inserted"
               [style]="{'background':themeData?.masterTextColor1}"
-              style="mask-image: url(/assets/newimg/icon-arrow-type01.svg); display: flex;">
+              style="mask-image: url(/assets/images/icon-set/icon-arrow-type01.svg); display: flex;">
             </div>
           </div>
-          <div *ngIf="beforeLogin" class="beforelogin ng-star-inserted" [style]="{'background':themeData?.homenavsvgbgcolor}">
+          <div *ngIf="!loggedIn" class="beforelogin ng-star-inserted" [style]="{'background':themeData?.homenavsvgbgcolor}">
             <div class="login-button">
               <span [style]="{'background':themeData?.homenavsvgtextcolor}"
-                style="-webkit-mask-image: url(/assets/newimg/icon-login.svg);" class="ng-tns-c3392045011-3">
+                style="-webkit-mask-image: url(/assets/images/icon-set/icon-login.svg);" class="ng-tns-c3392045011-3">
               </span>
               <a class="ng-tns-c3392045011-3" [style]="{'color':themeData?.homenavsvgtextcolor}" routerLink="/login"
-                (click)="closeSidebar()">
+                (click)="close()">
                 <font style="vertical-align: inherit;">
-                  <font style="vertical-align: inherit;">{{"Login" }}</font>
+                  <font style="vertical-align: inherit;">{{"LOGIN" | transloco }}</font>
                 </font>
               </a>
             </div>
-            <div class="register-button" routerLink="/signup" (click)="closeSidebar()">
+            <div class="register-button" routerLink="/signup" (click)="close()">
               <span [style]="{'background':themeData?.homenavsvgtextcolor}"
-                style="-webkit-mask-image: url(/assets/newimg/icon-register.svg);" class="ng-tns-c3392045011-3">
+                style="-webkit-mask-image: url(/assets/images/icon-set/icon-register.svg);" class="ng-tns-c3392045011-3">
               </span>
               <a class="ng-tns-c3392045011-3" [style]="{'color':themeData?.homenavsvgtextcolor}">
                 <font style="vertical-align: inherit;">
-                  <font style="vertical-align: inherit;">{{"Sign Up"}}</font>
+                  <font style="vertical-align: inherit;">{{"SIGNUP" | transloco}}</font>
                 </font>
               </a>
             </div>
           </div>
-          <div *ngIf="afterLogin" class="afterlogin marquee ng-tns-c3392045011-16 ng-star-inserted"
+          <div *ngIf="loggedIn" class="afterlogin marquee ng-tns-c3392045011-16 ng-star-inserted"
             [style]="{'background':themeData?.homenavsvgbgcolor}">
             <div class="main-wallet ng-tns-c3392045011-16">
               <div class="wallet ng-tns-c3392045011-16" [style]="{'color':themeData?.homenavsvgtextcolor}">
                 <font style="vertical-align: inherit;">
-                  <font style="vertical-align: inherit;">{{"MAINWALLET" }}</font>
+                  <font style="vertical-align: inherit;">{{"MAINWALLET" | transloco }}</font>
                 </font>
                 <div class="icon-refresh ng-tns-c3392045011-16" [class]="spinner ? 'active' : ''"
-                  [style]="{'background':themeData?.homenavsvgtextcolor}" (click)="updateBal(selectedWallet)"
+                  [style]="{'background':themeData?.homenavsvgtextcolor}" (click)="upDateBalance()"
                   style="mask-image: url(/assets/images/icon-refresh-type01.svg);">
                 </div>
               </div>
@@ -219,100 +203,34 @@
                 <span class="amount ng-tns-c3392045011-16" [style]="{'color':themeData?.homenavsvgtextcolor}"><i
                     class="ng-tns-c3392045011-16">
                     <font style="vertical-align: inherit;">
-                      <font style="vertical-align: inherit;">₹&nbsp;{{userBalance | number : '.2-2'}}</font>
+                      <font style="vertical-align: inherit;">₹&nbsp;{{balInfo | number : '.2-2'}}</font>
                     </font>
                   </i></span>
               </div>
             </div>
           </div>
         </div>
+        <div class="toggle-container">
+          <div class="togglebtn">
+                <div class="toggle-box__inner ng-tns-c357405858-3">
+                    <input type="checkbox" class="toggle-box__input ng-tns-c357405858-3" [checked]="isToggled"
+                        (change)="toggleSwitch()" id="switch-mode-1">
+                    <label class="toggle-box__switch ng-tns-c357405858-3" for="switch-mode-1">
+                        <div class="toggle-box__disc ng-tns-c357405858-3"> </div>
+                    </label>
+                </div>
+            </div>
+            <p>Classic Version </p>
+        </div>
         <div class="menu-item">
           <div class="ng-tns-c3392045011-3">
-            <ul *ngIf="afterLogin" class="wallet-box ng-tns-c3392045011-3 ng-star-inserted">
-
-              <ng-container *ngIf="country == 'India'">
-                <ng-container *ngIf="agentType == 1; else normalBankRoutes">
-
-                  <li id="deposit" class="ng-tns-c3392045011-3" tabindex="0" routerLink="/bank/depositInManual"
-                    (click)="closeSidebar()" ot-tag="menu_Deposit_T"
-                    style="opacity: 1; transform: translate(0px, 0px);"
-                    [style]="{'background':themeData?.sidebarBg}">
-                    <a class="ng-tns-c3392045011-3">
-                      <span class="ng-tns-c3392045011-3"
-                        style="mask-image: url(/assets/newimg/icon-deposit.svg); background: var(--sideIconColor);"
-                        [style.--sideIconColor]="themeData?.sidemenusvgicocolor">
-                      </span>
-                      <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
-                        {{ "DEPOSIT"}}
-                      </p>
-                    </a>
-                  </li>
-
-                  <li id="withdrawal" class="ng-tns-c3392045011-3"
-                    routerLink="/bank/withdrawalInManual"
-                    (click)="closeSidebar()" ot-tag="menu_Withdrawal_T"
-                    style="opacity: 1; transform: translate(0px, 0px);"
-                    [style]="{'background':themeData?.sidebarBg}">
-                    <a class="ng-tns-c3392045011-3">
-                      <span class="ng-tns-c3392045011-3"
-                        style="mask-image: url(/assets/newimg/icon-withdrawal.svg);background: var(--sideIconColor);"
-                        [style.--sideIconColor]="themeData?.sidemenusvgicocolor">
-                      </span>
-                      <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
-                        {{ "WITHDRAWAL"}}
-                      </p>
-                    </a>
-                  </li>
-
-                </ng-container>
-
-                <ng-template #normalBankRoutes>
-
-                  <li id="deposit" class="ng-tns-c3392045011-3" tabindex="0"
-                    routerLink="/bank/depositIn"
-                    (click)="closeSidebar()" ot-tag="menu_Deposit_T"
-                    style="opacity: 1; transform: translate(0px, 0px);"
-                    [style]="{'background':themeData?.sidebarBg}">
-                    <a class="ng-tns-c3392045011-3">
-                      <span class="ng-tns-c3392045011-3"
-                        style="mask-image: url(/assets/newimg/icon-deposit.svg);background: var(--sideIconColor);"
-                        [style.--sideIconColor]="themeData?.sidemenusvgicocolor">
-                      </span>
-                      <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
-                        {{ "DEPOSIT" }}
-                      </p>
-                    </a>
-                  </li>
-
-                  <li id="withdrawal" class="ng-tns-c3392045011-3"
-                    routerLink="/bank/withdrawalIn"
-                    (click)="closeSidebar()"
-                    ot-tag="menu_Withdrawal_T"
-                    style="opacity: 1; transform: translate(0px, 0px);"
-                    [style]="{'background':themeData?.sidebarBg}">
-                    <a class="ng-tns-c3392045011-3">
-                      <span class="ng-tns-c3392045011-3"
-                        style="mask-image: url(/assets/newimg/icon-withdrawal.svg);background: var(--sideIconColor);"
-                        [style.--sideIconColor]="themeData?.sidemenusvgicocolor">
-                      </span>
-                      <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
-                        {{ "WITHDRAWAL"}}
-                      </p>
-                    </a>
-                  </li>
-
-                </ng-template>
-              </ng-container>
-            </ul>
-
-
 
             <ul class="main-box">
               <li class="ng-tns-c3392045011-3 game-nav-item ng-star-inserted"
                 [style]="{'background':themeData?.sidebarBg}" [class]="activeMenu == 'sports' ? 'active' : ''"
                 data-category-type-id="0" (click)="menuTabs('sports')" gallery-image-key="ICON_SPORT"><a
                   class="ng-tns-c3392045011-3"><span class="item-icon"
-                    style="mask-image: url(/assets/newimg/icon-sport.svg);background: var(--sideIconColor);"
+                    style="mask-image: url(/assets/images/icon-set/icon-sport.svg);background: var(--sideIconColor);"
                     [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
                   <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
                     <font style="vertical-align: inherit;">
@@ -324,7 +242,7 @@
                 [style]="{'background':themeData?.sidebarBg}" [class]="activeMenu == 'casino' ? 'active' : ''"
                 data-category-type-id="0" gallery-image-key="ICON_CASINO"><a (click)="menuTabs('casino')"
                   class="ng-tns-c3392045011-3"><span class="item-icon"
-                    style="mask-image: url(/assets/newimg/icon-casino.svg);background: var(--sideIconColor);"
+                    style="mask-image: url(/assets/images/icon-set/icon-casino.svg);background: var(--sideIconColor);"
                     [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
                   <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
                     <font style="vertical-align: inherit;">
@@ -336,7 +254,7 @@
                 [style]="{'background':themeData?.sidebarBg}" data-category-type-id="0"
                 [class]="activeMenu == 'slot' ? 'active' : ''" gallery-image-key="ICON_SLOT">
                 <a (click)="menuTabs('slot')" class="ng-tns-c3392045011-3"><span class="item-icon"
-                    style="mask-image: url(/assets/newimg/icon-slot.svg);background: var(--sideIconColor);"
+                    style="mask-image: url(/assets/images/icon-set/icon-slot.svg);background: var(--sideIconColor);"
                     [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
                   <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
                     <font style="vertical-align: inherit;">
@@ -349,7 +267,7 @@
                 [style]="{'background':themeData?.sidebarBg}" data-category-type-id="0"
                 [class]="activeMenu == 'table' ? 'active' : ''" gallery-image-key="ICON_TABLE"><a
                   (click)="menuTabs('table')" class="ng-tns-c3392045011-3"><span class="item-icon"
-                    style="mask-image: url(/assets/newimg/icon-table.svg);background: var(--sideIconColor);"
+                    style="mask-image: url(/assets/images/icon-set/icon-table.svg);background: var(--sideIconColor);"
                     [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
                   <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
                     <font style="vertical-align: inherit;">
@@ -362,7 +280,7 @@
                 [class]="activeMenu == 'fishing' ? 'active' : ''" gallery-image-key="ICON_FISH"
                 style="opacity: 1; transform: translate(0px, 0px);"><a (click)="menuTabs('fishing')"
                   class="ng-tns-c3392045011-3"><span class="item-icon"
-                    style="mask-image: url(/assets/newimg/icon-fish.svg);background: var(--sideIconColor);"
+                    style="mask-image: url(/assets/images/icon-set/icon-fish.svg);background: var(--sideIconColor);"
                     [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
                   <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
                     <font style="vertical-align: inherit;">
@@ -375,7 +293,7 @@
                 (click)="menuTabs('lottery')" [class]="activeMenu == 'lottery' ? 'active' : ''"
                 style="opacity: 1; transform: translate(0px, 0px);"><a class="ng-tns-c3392045011-3"><span
                     class="item-icon"
-                    style="mask-image: url(/assets/newimg/icon-lottery.svg);background: var(--sideIconColor);"
+                    style="mask-image: url(/assets/images/icon-set/icon-lottery.svg);background: var(--sideIconColor);"
                     [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
                   <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
                     <font style="vertical-align: inherit;">
@@ -383,46 +301,6 @@
                     </font>
                   </p>
                 </a></li>
-            </ul>
-            <ul *ngIf="isB2c" class="item-box" style="opacity: 1; transform: translate(0px, 0px);"
-              [style]="{'background':themeData?.sidebarBg}">
-              <li *ngIf="isPromotion" data-category="promotion" class="ng-tns-c3392045011-3">
-                <a class="ng-tns-c3392045011-3" routerLink="/promotions" (click)="closeSidebar()"><span
-                    class="ng-tns-c3392045011-3"
-                    style="mask-image: url(/assets/newimg/icon-promotion.svg);background: var(--sideIconColor);"
-                    [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
-                  <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
-                    <font style="vertical-align: inherit;">
-                      <font style="vertical-align: inherit;">{{'PROMOTIONS'}} </font>
-                    </font>
-                  </p>
-                </a>
-              </li>
-              <li *ngIf="isReferral" data-category="promotion" class="ng-tns-c3392045011-3">
-                <a class="ng-tns-c3392045011-3" routerLink="/referral" (click)="closeSidebar()"><span
-                    class="ng-tns-c3392045011-3"
-                    style="mask-image: url(/assets/images/left-menu-icon-bottom/referal.svg);background: var(--sideIconColor);"
-                    [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
-                  <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
-                    <font style="vertical-align: inherit;">
-                      <font style="vertical-align: inherit;">{{'REFERRALPROGRAM'}}</font>
-                    </font>
-                  </p>
-                </a>
-              </li>
-              <li *ngIf="isVip" data-category="promotion" class="ng-tns-c3392045011-3">
-                <a class="ng-tns-c3392045011-3" routerLink="/vip" (click)="closeSidebar()"><span
-                    class="ng-tns-c3392045011-3"
-                    style="mask-image: url(/assets/images/left-menu-icon-bottom/vip.svg?v=1.01);background: var(--sideIconColor);"
-                    [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
-                  <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
-                    <font style="vertical-align: inherit;">
-                      <font style="vertical-align: inherit;">{{'VIP'
-                        }}</font>
-                    </font>
-                  </p>
-                </a>
-              </li>
             </ul>
             <ul class="contact-box" style="opacity: 1; transform: translate(0px, 0px);"
               [style]="{'background':themeData?.sidebarBg}">
@@ -467,7 +345,7 @@
               [style]="{'background':themeData?.sidebarBg}">
               <li data-category="home" class="ng-tns-c3392045011-3"><a class="ng-tns-c3392045011-3"
                   routerLink="/home"><span class="ng-tns-c3392045011-3"
-                    style="mask-image: url(/assets/newimg/icon-home.svg);background: var(--sideIconColor);"
+                    style="mask-image: url(/assets/images/icon-set/icon-home.svg);background: var(--sideIconColor);"
                     [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
                   <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
                     <font style="vertical-align: inherit;">
@@ -476,26 +354,26 @@
                     </font>
                   </p>
                 </a></li>
-              <li *ngIf="beforeLogin" data-category="login" class="ng-tns-c3392045011-3 ng-star-inserted">
-                <a class="ng-tns-c3392045011-3" routerLink="/login" (click)="closeSidebar()">
+              <li *ngIf="!loggedIn" data-category="login" class="ng-tns-c3392045011-3 ng-star-inserted">
+                <a class="ng-tns-c3392045011-3" routerLink="/login" (click)="close()">
                   <span class="ng-tns-c3392045011-3"
-                    style="mask-image: url(/assets/newimg/icon-login.svg);background: var(--sideIconColor);"
+                    style="mask-image: url(/assets/images/icon-set/icon-login.svg);background: var(--sideIconColor);"
                     [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
                   <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
                     <font style="vertical-align: inherit;">
-                      <font style="vertical-align: inherit;">{{"Login" }}</font>
+                      <font style="vertical-align: inherit;">{{"LOGIN" | transloco }}</font>
                     </font>
                   </p>
                 </a>
               </li>
-              <li *ngIf="afterLogin" class="ng-tns-c3392045011-3 ng-star-inserted">
-                <a class="ng-tns-c3392045011-3" (click)="logout()" (click)="closeSidebar()">
+              <li *ngIf="loggedIn" class="ng-tns-c3392045011-3 ng-star-inserted">
+                <a class="ng-tns-c3392045011-3" (click)="logout()" (click)="close()">
                   <span class="ng-tns-c3392045011-3"
-                    style="mask-image: url(/assets/newimg/icon-login.svg);background: var(--sideIconColor);"
+                    style="mask-image: url(/assets/images/icon-set/icon-login.svg);background: var(--sideIconColor);"
                     [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
                   <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
                     <font style="vertical-align: inherit;">
-                      <font style="vertical-align: inherit;">{{"LOGOUT" }}</font>
+                      <font style="vertical-align: inherit;">{{"LOGOUT" | transloco }}</font>
                     </font>
                   </p>
                 </a>

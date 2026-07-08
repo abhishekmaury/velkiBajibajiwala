@@ -190,7 +190,13 @@
 
 .togglebtn {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
   align-items: center;
+  gap:.8rem;
+}
+
+.toggle-container {
+    border: 1px solid #e0dede;
+    border-radius: .75em;
+    padding: .3em;
 }

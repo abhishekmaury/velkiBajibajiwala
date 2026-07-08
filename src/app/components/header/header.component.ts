@@ -219,7 +219,7 @@ export class HeaderComponent implements OnInit{
       link.id = 'newer-style';
       link.href = './assets/css/main.css?v=1.10';
     }
-    
+
     document.head.appendChild(link);
   }
 }

@@ -121,6 +121,22 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.dataServe.changeTheme$.subscribe((res: any) => {
+      let classicTheme = res;
+
+      if (classicTheme == true) {
+        this.router.navigate(['/classichome'])
+      } else {
+        this.router.navigate(['/home'])
+      }
+    })
+    let theme = localStorage.getItem('clssaicTheme');
+    if (theme == 'true') {
+      this.router.navigate(['/classichome'])
+    } else {
+      this.router.navigate(['/home'])
+    }
+
     let data = localStorage.getItem('userData');
     if (data) {
       this.userData = JSON.parse(data)
@@ -282,7 +298,7 @@ export class AppComponent implements OnInit {
 
     this.dataServe.changeTheme$.subscribe((res: any) => {
       this.classicTheme = res;
-      
+
       if (this.classicTheme == true) {
         this.router.navigate(['/classichome'])
       } else {
