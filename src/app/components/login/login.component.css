@@ -1,12 +1,15 @@
-.member-error{
+.member-error {
   margin: 0px !important;
 }
+
 .h-full {
   height: 100%;
 }
-.newimgwidth{
+
+.newimgwidth {
   width: 100%;
 }
+
 /* img[src] {
   visibility: hidden;
 } */
@@ -60,21 +63,33 @@
   }
 } */
 
-.bg-checkbox-checked{
-    background-color: #ffc800 !important;
+.bg-checkbox-checked {
+  background-color: #ffc800 !important;
 }
+
 .text-checkbox-icon {
-    color: #000000;
+  color: #000000;
 }
-.bg-checkbox-background{
-    background-color: #fff4c1;
+
+.bg-checkbox-background {
+  background-color: #fff4c1;
 }
 
 input.has-error {
- border-color: #e20000;
-    border-width: 1px;
+  border-color: #e20000;
+  border-width: 1px;
 }
 
-[class*=" icon-"]{
+[class*=" icon-"] {
   z-index: 1000;
+}
+
+.validCode {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  right: 3%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  font-weight: 700;
 }

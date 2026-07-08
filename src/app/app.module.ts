@@ -46,6 +46,8 @@ import { StakeSettingsComponent } from './components/stake-settings/stake-settin
 import { GetSocketUrlService } from './services/get-socket-url.service';
 import { SharedModule } from './directives/shared.module';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { ClassicHeaderComponent } from './components/classic/header/header.component';
+import { TranslocoRootModule } from './transloco-root.module';
 
 register();
 export function initApp(configService: GetSocketUrlService) {
@@ -58,6 +60,7 @@ export function initApp(configService: GetSocketUrlService) {
     HomeComponent,
     LoginComponent,
     HeaderComponent,
+    ClassicHeaderComponent,
     SportsComponent,
     FooterComponent,
     CasinoComponent,
@@ -104,8 +107,10 @@ export function initApp(configService: GetSocketUrlService) {
       }
     }),
     LoaderModule,
-    CarouselModule
+    CarouselModule,
+    TranslocoRootModule
   ],
+  exports : [TranslocoRootModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

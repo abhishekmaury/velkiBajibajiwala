@@ -51,6 +51,22 @@ export class HomeComponent implements OnInit {
   constructor(private popupService: HandlerService, private dataserve: DataHandlerService, private router: Router) { }
 
   ngOnInit() {
+
+    this.dataserve.changeTheme$.subscribe((res: any) => {
+      let classicTheme = res;
+
+      if (classicTheme == true) {
+        this.router.navigate(['/classichome'])
+      } else {
+        this.router.navigate(['/home'])
+      }
+    })
+    let theme = localStorage.getItem('clssaicTheme');
+    if (theme == 'true') {
+      this.router.navigate(['/classichome'])
+    } else {
+      this.router.navigate(['/home'])
+    }
     let wData = localStorage.getItem("webData")
     if (wData) {
       let d1 = JSON.parse(wData)
@@ -366,7 +382,7 @@ export class HomeComponent implements OnInit {
     } else if (route.startsWith('casino')) {
       this.dataserve.emitRouteActive.next(1)
       this.router.navigate([`/${route}`])
-    }else{
+    } else {
       this.dataserve.emitRouteActive.next(2)
       this.router.navigate([`/${route}`])
     }

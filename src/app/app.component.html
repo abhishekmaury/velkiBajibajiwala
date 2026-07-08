@@ -7,7 +7,8 @@
     </div>
     <section id="main-container" [@routeAnimations]="prepareRoute(outlet)"
       class="relative col-start-2 col-end-2 container h-screen mx-auto overflow-y-scroll overflow-x-hidden bg-black-100 ">
-      <app-header *ngIf="hideMarqueeHeader() && showHeader" [countData]="count"></app-header>
+      <app-header *ngIf="!classicTheme && hideMarqueeHeader() && showHeader" [countData]="count"></app-header>
+      <app-classic-header *ngIf="classicTheme && hideMarqueeHeader() && showHeader"></app-classic-header>
       <main class="min-h-full-with-header">
         <router-outlet #outlet="outlet"></router-outlet>
       </main>

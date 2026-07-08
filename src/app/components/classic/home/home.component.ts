@@ -2,11 +2,12 @@ import { HttpResponse } from '@angular/common/http';
 import { ChangeDetectorRef, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { OwlOptions } from 'ngx-owl-carousel-o';
+import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
 import { Observable } from 'rxjs';
 import { AuthserviceService } from 'src/app/services/authservice.service';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 import { FingerprintService } from 'src/app/services/fingerprint.service';
+import Swiper from 'swiper';
 
 @Component({
   selector: 'app-home',
@@ -14,8 +15,8 @@ import { FingerprintService } from 'src/app/services/fingerprint.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent1 {
-//  @ViewChild('promoCarousel', { static: false }) promoCarousel!: CarouselComponent;
-//   @ViewChild('promo2Carousel', { static: false }) promo2Carousel!: CarouselComponent;
+  @ViewChild('promoCarousel', { static: false }) promoCarousel!: CarouselComponent;
+  @ViewChild('promo2Carousel', { static: false }) promo2Carousel!: CarouselComponent;
   @ViewChild('marqueeList') marqueeList!: ElementRef;
 
   loggedData: any;
@@ -38,7 +39,7 @@ export class HomeComponent1 {
   launchUrl: any;
   showErrPopup = false;
   errMsg: any;
-  banners: any;
+  // banners: any;
   domainName: any;
   themeData: any;
   uniqueProviderNames: any;
@@ -73,24 +74,6 @@ export class HomeComponent1 {
     private dataserve: DataHandlerService, private fingerprintService: FingerprintService,
     private router: Router, private sanitizer: DomSanitizer,
     private cdr: ChangeDetectorRef) { }
-
-  // customOptions: any = {
-  //   loop: true,
-  //   margin: 10,
-  //   autoplay: true,
-  //   dots: true,
-  //   responsive: {
-  //     0: {
-  //       items: 1
-  //     },
-  //     600: {
-  //       items: 1
-  //     },
-  //     1000: {
-  //       items: 1
-  //     }
-  //   }
-  // };
 
   customOptions: OwlOptions = {
     loop: true,
@@ -129,16 +112,24 @@ export class HomeComponent1 {
       }
     }
   };
+  banners = [
+    '/assets/banner/evolution.webp',
+    '/assets/banner/sexy.webp',
+    '/assets/banner/netent.webp',
+    '/assets/banner/kv-hotroad.webp',
+    '/assets/banner/kv-smartsoft.webp',
+    '/assets/banner/jdb.webp'
+  ];
   ngOnInit(): void {
     let lsData = localStorage.getItem('userData');
     if (lsData) {
       this.loggedData = JSON.parse(lsData);
-      this.username = this.loggedData.data.user.userId;
-      this.userBalance = this.loggedData.data.user.myBalance;
-      if (this.loggedData.data.login == true) {
-        this.isLogin = true;
-        this.apiddaatta();
-      }
+      // this.username = this.loggedData.data.user.userId;
+      // this.userBalance = this.loggedData.data.user.myBalance;
+      // if (this.loggedData.data.login == true) {
+      //   this.isLogin = true;
+      //   this.apiddaatta();
+      // }
     }
     // this.getDeviceId();
     // this.authServe.logut.subscribe((res: any) => {
@@ -146,20 +137,22 @@ export class HomeComponent1 {
     //     this.isLogin = false;
     //   }
     // })
-    // this.dataserve.sendWebData.subscribe((res: any) => {
-    //   this.banners = res?.banner
-    //   this.domainName = res?.domain
-    //   this.themeData = res?.theme;
-    //   this.headerLogo = res?.logo;
-    //   this.exclusiveData = res?.exclusiveGames;
-    //   this.featuredGames = res?.featuredGames;
-    //   this.casinoGames = res?.CasinoImages;
-    // })
-    let webdata = localStorage.getItem("webData");
+    this.dataserve.sendWebData.subscribe((res: any) => {
+      // this.banners = res?.banner
+      this.domainName = res?.domain
+      this.themeData = res?.theme;
+      this.headerLogo = res?.logo;
+      this.exclusiveData = res?.exclusiveGames;
+      this.featuredGames = res?.featuredGames;
+      this.casinoGames = res?.CasinoImages;
+    })
+    let webdata = localStorage.getItem("webData1");
     if (webdata) {
       let formatedDt = JSON.parse(webdata)
-      this.banners = formatedDt?.banner;
+      // this.banners = formatedDt?.banner;
       this.domainName = formatedDt?.domain
+      // console.log(this.banners);
+
       this.themeData = formatedDt?.theme;
       this.headerLogo = formatedDt?.logo;
       this.exclusiveData = formatedDt?.exclusiveGames;
@@ -172,16 +165,11 @@ export class HomeComponent1 {
     this.getPlatFormList();
     this.IndianCasino();
 
-    let whatdt = localStorage.getItem('footerLinks');
-    if (whatdt) {
-      this.whatsData = JSON.parse(whatdt);
-    } else {
-      this.gefooterLinks();
-    }
+
   }
 
   navigateToGames(gmnm: any, tab: any) {
-    this.router.navigate([`/games/${gmnm}/${tab}`])
+    this.router.navigate([`/casino/${gmnm}/${tab}`])
   }
   // async getDeviceId() {
   //   const comps = await this.fingerprintService.collect();
@@ -260,6 +248,23 @@ export class HomeComponent1 {
 
 
   ngAfterViewInit(): void {
+    new Swiper('.swiper-container', {
+      slidesPerView: 1.4,
+      centeredSlides: true,
+      spaceBetween: 10,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      loop: true,
+      pagination: {
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.custom-swiper-button-next',
+        prevEl: '.custom-swiper-button-prev',
+      },
+    });
     let sectime = this.dataserve.getTimeStamp();
     let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
 
@@ -275,19 +280,35 @@ export class HomeComponent1 {
     //           this.usermessage = msd.data.data; 
     //           // ✅ Wait for Angular to render <li> items
     //           this.cdr.detectChanges();
-              
+
     //           setTimeout(() => this.setupMarquee(), 0);
     //         }
     //       })
     //     }
     //   }
     // })
+    
+    this.dataserve.changeTheme$.subscribe((res: any) => {
+      let classicTheme = res;
+      
+      if (classicTheme == true) {
+        this.router.navigate(['/classichome'])
+      } else {
+        this.router.navigate(['/home'])
+      }
+    })
+    let theme = localStorage.getItem('clssaicTheme');
+    if (theme == 'true') {
+        this.router.navigate(['/classichome'])
+      } else {
+        this.router.navigate(['/home'])
+      }
   }
 
   setupMarquee() {
     const listEl = this.marqueeList.nativeElement;
     // console.log(listEl);
-    
+
     // Duplicate content once
     if (listEl.dataset['duplicated'] !== 'true') {
       listEl.innerHTML += listEl.innerHTML;
@@ -357,93 +378,13 @@ export class HomeComponent1 {
     let token = localStorage.getItem('token')
     if (token) {
       this.isLoading = true;
-      let sectime = this.dataserve.getTimeStamp();
-      let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
-
-      // this.dataserve.verifyUser(data).subscribe((res: any) => {
-      // }, (error) => {
-      //   if (error.status == 200) {
-      //     this.validateapi = this.dataserve.decryptData(error.error.text);
-      //     if (this.validateapi.data.type == 'success') {
-      //       this.dataserve.checkSportsPlay(data).subscribe((res: any) => {
-      //       }, (error) => {
-      //         if (error.status == 200) {
-      //           this.isLoading = false;
-      //           let msd = this.dataserve.decryptData(error.error.text);
-      //           this.router.navigate(['/exchange/sport'])
-      //         } else {
-      //           let msd = this.dataserve.decryptData(error.error.text);
-      //           this.showErrPopup = true;
-      //           this.errMsg = 'Suspicious Exchange Play Found';
-      //           this.isLoading = false;
-      //         }
-      //       })
-      //     }
-      //   }
-      // })
-
-      setTimeout(() => {
-        this.showErrPopup = false;
-        this.errMsg = '';
-      }, 3000)
+      // navigate to exch
     } else {
       this.router.navigate(['/login'])
     }
   }
-  navigateToExhcDesk() {
-    let token = localStorage.getItem('token')
-    if (token) {
-      this.isLoading = true;
-      let sectime = this.dataserve.getTimeStamp();
-      let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
 
-      // this.dataserve.verifyUser(data).subscribe((res: any) => {
-      // }, (error) => {
-      //   if (error.status == 200) {
-      //     this.validateapi = this.dataserve.decryptData(error.error.text);
-      //     if (this.validateapi.data.type == 'success') {
-      //       this.dataserve.checkSportsPlay(data).subscribe((res: any) => {
-      //       }, (error) => {
-      //         if (error.status == 200) {
-      //           this.isLoading = false;
-      //           let msd = this.dataserve.decryptData(error.error.text);
-      //           this.router.navigate(['/exchange/match/4/'])
-      //         } else {
-      //           let msd = this.dataserve.decryptData(error.error.text);
-      //           this.showErrPopup = true;
-      //           this.errMsg = 'Suspicious Exchange Play Found';
-      //           this.isLoading = false;
-      //         }
-      //       })
-      //     }
-      //   }
-      // })
 
-      setTimeout(() => {
-        this.showErrPopup = false;
-        this.errMsg = '';
-      }, 3000)
-    } else {
-      this.loginPopup = true
-    }
-  }
-
-  // navigateToExch() {
-  //   let token = localStorage.getItem('token')
-  //   if (token) {
-  //     this.router.navigate(['/exchange/sport'])
-  //   } else {
-  //     this.router.navigate(['/login'])
-  //   }
-  // }
-  // navigateToExhcDesk() {
-  //   let token = localStorage.getItem('token')
-  //   if (token) {
-  //     this.router.navigate(['/exchange/match/4/'])
-  //   } else {
-  //     this.loginPopup = true;
-  //   }
-  // }
   LoginPopup1(data: any) {
     if (data.data?.login == true) {
       setTimeout(() => {
@@ -511,62 +452,38 @@ export class HomeComponent1 {
     //   }
     // })
   }
-  opencasinogamesmob(CasUrl: any) {
-    let token = localStorage.getItem('token')
+
+  opencasinogamesmob(data: any) {
+    let token = localStorage.getItem('token');
     if (token) {
-      this.CasUrl = CasUrl;
-      this.isLoading = true;
-      let sectime = this.dataserve.getTimeStamp();
-      let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
+      this.dataserve.LaunchCasinoGames(data.image_url).subscribe(
+        (response: HttpResponse<any>) => {
+          if (response.status == 200) {
+            const res = response.body;
+            this.launchUrl = res.launchUrl;
+            window.location.href = this.launchUrl;
 
-      // this.dataserve.verifyUser(data).subscribe((res: any) => {
-      // }, (error) => {
-      //   if (error.status == 200) {
-      //     this.validateapi = this.dataserve.decryptData(error.error.text);
-      //     if (this.validateapi.data.type == 'success') {
-      //       this.dataserve.checkUserCasinoWallet(data).subscribe((res: any) => {
-      //       }, (error) => {
-      //         let msd = this.dataserve.decryptData(error.error.text);
-      //         if (error.status == 200) {
-      //           this.isLoading = false;
-      //           if (msd.data.wallet == false) {
-      //             this.updateUserCasinoWallet('-1', this.CasUrl);
-      //           } else {
-      //             this.CaswalletList = JSON.parse(msd.data.walletsList);
-      //             this.CaswalletIDSelect = true;
-      //           }
-      //         }
-      //       })
-      //     }
-      //   }
-      // })
+          } else {
+            const res = response.body;
+            this.showErrPopup = true;
+            this.errMsg = res.message;
+          }
+        },
+        (error: any) => {
+          this.showErrPopup = true;
+          this.errMsg = error.message;
+        }
+      );
     } else {
-      this.router.navigate(['/login'])
+      this.router.navigate(['/login']);
     }
+    setTimeout(() => {
+      this.showErrPopup = false;
+      this.errMsg = '';
+    }, 3000)
   }
 
-  updateUserCasinoWallet(walletId: any, CasUrl: any) {
-    this.CasUrl = '';
-    let sectime = this.dataserve.getTimeStamp();
-    let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey, "walletId": walletId }
-    // this.dataserve.verifyUser(data).subscribe((res: any) => {
-    // }, (error) => {
-    //   if (error.status == 200) {
-    //     this.validateapi = this.dataserve.decryptData(error.error.text);
-    //     if (this.validateapi.data.type == 'success') {
-    //       this.dataserve.updateUserCasinoWallet(data).subscribe((res: any) => {
-    //       }, (error) => {
-    //         let msd = this.dataserve.decryptData(error.error.text);
-    //         if (error.status == 200) {
-    //           this.isLoading = false;
-    //           this.CaswalletIDSelect = false;
-    //           this.opencasinogames(CasUrl);
-    //         }
-    //       })
-    //     }
-    //   }
-    // })
-  }
+
 
 
   opencasinogames(data: any) {
@@ -647,40 +564,27 @@ export class HomeComponent1 {
     this.activegame = game;
     this.activeTab = game === 'Sports' ? 0 : 1; // Update index based on active game
   }
-  opensabagamesmob(link: any) {
-    let sectime = this.dataserve.getTimeStamp();
-
-    this.data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
+  opensabagamesmob(url: any) {
     let token = localStorage.getItem('token')
     if (token) {
-      // this.dataserve.verifyUser(this.data).subscribe((res: any) => {
-      // }, (error) => {
-      //   if (error.status == 200) {
-      //     this.validateapi = this.dataserve.decryptData(error.error.text);
-      //     if (this.validateapi.data.type == 'success') {
-      //       this.dataserve.LaunchSabagms(this.data, link).subscribe((res: any) => {
-      //         if (res.gameUrl == '') {
-      //           this.showErrPopup = true;
-      //           this.errMsg = 'URL not provided in response data.'
-      //         } else if (res.type !== 'error') {
-      //           this.launchUrl = res.gameUrl;
-      //           window.location.href = this.launchUrl;
-      //         } else {
-      //           this.showErrPopup = true;
-      //           this.errMsg = res.message
-      //         }
-      //       }, (error) => {
-      //         // if(error.status==200){
-      //         // let gms = this.dataserve.decryptData(error.error.text);
-      //         // console.log(error)
+      this.dataserve.LaunchCasinoGames(url).subscribe(
+        (response: HttpResponse<any>) => {
+          if (response.status == 200) {
+            const res = response.body;
+            this.launchUrl = res.launchUrl;
+            window.location.href = this.launchUrl;
+          } else {
+            const res = response.body;
+            this.showErrPopup = true;
+            this.errMsg = res.message;
+          }
+        },
+        (error: any) => {
+          this.showErrPopup = true;
+          this.errMsg = error.message;
 
-
-      //         // }
-      //       })
-
-      //     }
-      //   }
-      // })
+        }
+      );
     } else {
       this.router.navigate(['/login'])
     }
@@ -724,18 +628,18 @@ export class HomeComponent1 {
   closePopup() {
     this.inboxpopup = false;
   }
-  // goToPrevious() {
-  //   this.promoCarousel.prev();
-  // }
-  // goToNext() {
-  //   this.promoCarousel.next();
-  // }
-  // goPrevious() {
-  //   this.promo2Carousel.prev();
-  // }
-  // goNext() {
-  //   this.promo2Carousel.next();
-  // }
+  goToPrevious() {
+    this.promoCarousel.prev();
+  }
+  goToNext() {
+    this.promoCarousel.next();
+  }
+  goPrevious() {
+    this.promo2Carousel.prev();
+  }
+  goNext() {
+    this.promo2Carousel.next();
+  }
   IndianCasino() {
     this.data = {
       "provider": 'ROYALGAMING',
@@ -768,32 +672,5 @@ export class HomeComponent1 {
     }
   }
 
-  gefooterLinks() {
-    let sectime = this.dataserve.getTimeStamp();
 
-    let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
-
-    // this.dataserve.verifyUser(data).subscribe((res: any) => {
-    // }, (error) => {
-    //   if (error.status == 200) {
-    //     this.validateapi = this.dataserve.decryptData(error.error.text);
-    //     if (this.validateapi.data.type == 'success') {
-    //       this.dataserve.getWebsiteLinks(data).subscribe((res: any) => {
-    //       }, (error) => {
-    //         if (error.status == 200) {
-    //           let gms = this.dataserve.decryptData(error.error.text);
-    //           let ddaattaa = JSON.parse(gms?.data.data)
-    //           this.whatsData = ddaattaa
-
-    //         }
-    //       })
-
-    //     }
-    //   }
-    // })
-  }
-
-  whatsapps() {
-    this.whatsappsupport = !this.whatsappsupport;
-  }
 }

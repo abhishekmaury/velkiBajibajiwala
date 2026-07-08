@@ -104,7 +104,7 @@ export class AppComponent implements OnInit {
     if (currentUrl.startsWith('/edit')) {
       return false;
     }
-    const hiddenRoutes = ['/home', '/edit', '/menu/upline-whatsapp-number', '/menu/change-password', '/login', '/menu/current-bets', '/menu/balance', '/menu/activeLog', '/menu/profile', '/menu/account-statement', '/change-password', '/toss-parlay', '/annoucement', '/menu/settings', '/menu/deposit', '/menu/withdrawal', '/menu/p2ptransfer', '/menu/p2ptransferLog', '/edit/user1/Test/user1@gmail.com', '/sign-up'];
+    const hiddenRoutes = ['/home', '/classichome', '/edit', '/menu/upline-whatsapp-number', '/menu/change-password', '/login', '/menu/current-bets', '/menu/balance', '/menu/activeLog', '/menu/profile', '/menu/account-statement', '/change-password', '/toss-parlay', '/annoucement', '/menu/settings', '/menu/deposit', '/menu/withdrawal', '/menu/p2ptransfer', '/menu/p2ptransferLog', '/edit/user1/Test/user1@gmail.com', '/sign-up'];
     const currentRoute = this.route.url;
     const isBetHistoryRoute = currentRoute.startsWith('/bet-history/') && currentRoute.split('/').length === 3;
     const isMarketRoute = currentRoute.startsWith('/market/');
@@ -153,6 +153,30 @@ export class AppComponent implements OnInit {
           this.count = res.length
         })
       }
+    })
+    // halfbaji
+
+    let domain = 'wfh247.vip'
+    this.dataServe.getWebsiteData1(domain).subscribe((res: any) => {
+      localStorage.setItem("webData1", JSON.stringify(res?.data));
+      // this.isSekeleton = false
+      this.dataServe.getWebData(res?.data);
+      // let favicon = res?.data?.favicon;
+      // this.chaticon = res?.data?.chatIcon;
+      // this.dataserve.updateFavicon(favicon)
+      // this.themeData = res?.data?.theme;
+      // this.headData = res?.data?.headData;
+      // this.headerLogo = res?.data.logo;
+      // this.bodyData = res?.data?.bodyData;
+      // this.head?.applyHeadHTML(this.headData);
+      // this.head?.prependToBodyHTML(this.bodyData);
+
+      // const titleFromAPI = this.domainName;
+      // if (titleFromAPI) {
+      //   this.setTitle(titleFromAPI);
+      // }
+    }, (error) => {
+      // this.isSekeleton = false
     })
 
     let data1 = localStorage.getItem('webData');
@@ -252,13 +276,12 @@ export class AppComponent implements OnInit {
     })
     this.themeToggleFun();
   }
-  
+
 
   themeToggleFun() {
 
     this.dataServe.changeTheme$.subscribe((res: any) => {
       this.classicTheme = res;
-      console.log(res);
       
       if (this.classicTheme == true) {
         this.router.navigate(['/classichome'])

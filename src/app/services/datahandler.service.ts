@@ -37,11 +37,13 @@ export class DataHandlerService implements OnInit {
 
   base64EncodedString = environment.base64EncodedString
   decodedKey = CryptoJS.enc.Base64.parse(this.base64EncodedString);
-  
+
   private themeFlag = new Subject<any>();
   public changeTheme$ = this.themeFlag.asObservable();
+  sendWebData = new Subject<any>()
 
-  constructor(private http: HttpClient, private router: Router, private jwtHelper: JwtHelperService,private intercom: IntercomService) { }
+
+  constructor(private http: HttpClient, private router: Router, private jwtHelper: JwtHelperService, private intercom: IntercomService) { }
 
   ngOnInit(): void {
   }
@@ -87,43 +89,43 @@ export class DataHandlerService implements OnInit {
   validateLogin(obj: any) {
     return this.http.post(`${this.baseUrl}/validateLogin`, obj).subscribe({
       next: (res: any) => {
-      if (res.type !== 'error') {
-        this.sendLoggedData.next(res)
-        localStorage.setItem('loginTime', new Date().getTime().toString());
-        localStorage.setItem('token', res.password)
-        localStorage.setItem('userData', JSON.stringify(res))
+        if (res.type !== 'error') {
+          this.sendLoggedData.next(res)
+          localStorage.setItem('loginTime', new Date().getTime().toString());
+          localStorage.setItem('token', res.password)
+          localStorage.setItem('userData', JSON.stringify(res))
 
-        if (!res?.ispasswordChanged) {
-          this.router.navigate(['/change-password'])
-        } else if (res?.loginStamp == null || res?.loginStamp == 0) {
-          // let ddt = this.decodejwt(res.password)
-          // let dontshowagn = localStorage.getItem('DoNotShowAnnouncement');
-          // if (dontshowagn === 'yes') {
-             this.router.navigate(['/home'])
-          // } else {
-          //this.router.navigate(['/annoucement'])
-          //}
+          if (!res?.ispasswordChanged) {
+            this.router.navigate(['/change-password'])
+          } else if (res?.loginStamp == null || res?.loginStamp == 0) {
+            // let ddt = this.decodejwt(res.password)
+            // let dontshowagn = localStorage.getItem('DoNotShowAnnouncement');
+            // if (dontshowagn === 'yes') {
+            this.router.navigate(['/home'])
+            // } else {
+            //this.router.navigate(['/annoucement'])
+            //}
+          } else {
+            // let ddt = this.decodejwt(res.password)
+            // let dontshowagn = localStorage.getItem('DoNotShowAnnouncement');
+            // if (dontshowagn === 'yes') {
+            this.router.navigate(['/home'])
+            // }
+          }
+
+          let dataa = this.decodejwt(res?.password)
+          const date = new Date(dataa.exp * 1000);
+          let convertedDate = this.formatDate(date);
+          let expTkn = new Date(convertedDate)
+          let checkExpToken = expTkn.getTime()
+          this.init(checkExpToken)
+          setTimeout(() => {
+            window.location.reload()
+          }, 100);
         } else {
-          // let ddt = this.decodejwt(res.password)
-          // let dontshowagn = localStorage.getItem('DoNotShowAnnouncement');
-          // if (dontshowagn === 'yes') {
-          this.router.navigate(['/home'])
-          // }
+          this.sendLoggedData2.next(res.message)
         }
-
-        let dataa = this.decodejwt(res?.password)
-        const date = new Date(dataa.exp * 1000);
-        let convertedDate = this.formatDate(date);
-        let expTkn = new Date(convertedDate)
-        let checkExpToken = expTkn.getTime()
-        this.init(checkExpToken)
-        setTimeout(() => {
-          window.location.reload()
-        }, 100);
-      } else {
-        this.sendLoggedData2.next(res.message)
-      }
-    } , error: (err: any) => {
+      }, error: (err: any) => {
         if (err?.error?.message) {
           this.sendLoggedData2.next(err.error.message);
         } else {
@@ -495,7 +497,7 @@ export class DataHandlerService implements OnInit {
     return this.http.post(`${this.baseUrl}/saveOneClickBetData`, data)
   }
 
-  getSocketPath(){
+  getSocketPath() {
     return this.http.post(`${this.baseUrl}/getUserSocketDetails`, {})
   }
 
@@ -678,10 +680,13 @@ export class DataHandlerService implements OnInit {
   getIntercomData() {
     return this.http.post(`${this.baseUrl}/getChatToken`, {})
   }
-  getThemeFlag(data : any){
+  getThemeFlag(data: any) {
     this.themeFlag.next(data)
   }
-    getWebsiteData1(domain: any) {
+  getWebData(data: any) {
+    this.sendWebData.next(data)
+  }
+  getWebsiteData1(domain: any) {
     return this.http.get(`https://designapi.ctfcgames.com/api/v1/website/details/${domain}`)
   }
 }
