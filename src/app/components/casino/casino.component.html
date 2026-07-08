@@ -257,44 +257,41 @@
               class="ng-tns-c84-5 ng-trigger ng-trigger-staggerFadeAnimation tab search-tab ng-star-inserted mobile-tab"
               bis_skin_checked="1" style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);">
               <ul  id="providers" class="item-ani ng-tns-c84-5">
-                <li  class="condition-groups proCl"
+                <li  class="condition-groups proCl" (click)="setActiveSlide(0)"   [ngClass]="activeIndex === 0 ? 'condition-groups-active' : 'condition-groups-active-white'"
                   style="background: rgb(102, 102, 102); color: rgb(250, 250, 250);"><label 
                     for="sort_recommend">ALL</label></li>
-                <li  class="condition-groups proCl"
+                <li  class="condition-groups proCl" (click)="setActiveSlide(1)" [ngClass]="activeIndex === 1 ? 'condition-groups-active' : 'condition-groups-active-white'"
                   style="background: rgb(102, 102, 102); color: rgb(250, 250, 250);"><label 
                     for="sort_recommend">HOTROAD</label></li>
-                <li  class="condition-groups proCl"
+                <li  class="condition-groups proCl" (click)="setActiveSlide(2)" [ngClass]="activeIndex === 2 ? 'condition-groups-active' : 'condition-groups-active-white'"
                   style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%); color: rgb(255, 255, 255);">
                   <label  for="sort_recommend">JILI</label></li>
-                <li  class="condition-groups proCl"
+                <li  class="condition-groups proCl" (click)="setActiveSlide(3)" [ngClass]="activeIndex === 3 ? 'condition-groups-active' : 'condition-groups-active-white'"
                   style="background: rgb(102, 102, 102); color: rgb(250, 250, 250);"><label 
                     for="sort_recommend">JDB</label></li>
-                <li  class="condition-groups proCl"
+                <li  class="condition-groups proCl" (click)="setActiveSlide(4)" [ngClass]="activeIndex === 4 ? 'condition-groups-active' : 'condition-groups-active-white'"
                   style="background: rgb(102, 102, 102); color: rgb(250, 250, 250);"><label 
                     for="sort_recommend">PLAY8</label></li>
-                <li  class="condition-groups proCl"
+                <li  class="condition-groups proCl" (click)="setActiveSlide(5)" [ngClass]="activeIndex === 5 ? 'condition-groups-active' : 'condition-groups-active-white'"
                   style="background: rgb(102, 102, 102); color: rgb(250, 250, 250);"><label 
                     for="sort_recommend">EVOLUTION</label></li>
-                <li  class="condition-groups proCl"
+                <li  class="condition-groups proCl" (click)="setActiveSlide(6)" [ngClass]="activeIndex === 6 ? 'condition-groups-active' : 'condition-groups-active-white'"
                   style="background: rgb(102, 102, 102); color: rgb(250, 250, 250);"><label 
                     for="sort_recommend">SPADEGAMING</label></li>
-                <li  class="condition-groups proCl"
+                <li  class="condition-groups proCl" (click)="setActiveSlide(7)" [ngClass]="activeIndex === 7 ? 'condition-groups-active' : 'condition-groups-active-white'"
                   style="background: rgb(102, 102, 102); color: rgb(250, 250, 250);"><label 
                     for="sort_recommend">YESBINGO</label></li>
-                <li  class="condition-groups proCl"
+                <li  class="condition-groups proCl" (click)="setActiveSlide(8)" [ngClass]="activeIndex === 8 ? 'condition-groups-active' : 'condition-groups-active-white'"
                   style="background: rgb(102, 102, 102); color: rgb(250, 250, 250);"><label 
                     for="sort_recommend">KINGMAKER</label></li>
-                <li  class="condition-groups proCl"
-                  style="background: rgb(102, 102, 102); color: rgb(250, 250, 250);"><label 
-                    for="sort_recommend">PGSOFT</label></li>
-                <li  class="condition-groups proCl"
-                  style="background: rgb(102, 102, 102); color: rgb(250, 250, 250);"><label 
+                <li  class="condition-groups proCl" (click)="setActiveSlide(9)" [ngClass]="activeIndex === 9 ? 'condition-groups-active' : 'condition-groups-active-white'"
+                  style="background: rgb(102, 102, 102); color: rgb(250, 250, 250);"><label
                     for="sort_recommend">DRAGONSOFT</label></li>
-                <li  class="condition-groups proCl"
+                <li  class="condition-groups proCl" (click)="setActiveSlide(10)" [ngClass]="activeIndex === 10 ? 'condition-groups-active' : 'condition-groups-active-white'"
                   style="background: rgb(102, 102, 102); color: rgb(250, 250, 250);"><label 
                     for="sort_recommend">FASTSPIN</label></li>
-                <li  class="condition-groups proCl"
-                  style="background: rgb(102, 102, 102); color: rgb(250, 250, 250);"><label 
+                <li  class="condition-groups proCl" (click)="setActiveSlide(11)" [ngClass]="activeIndex === 11 ? 'condition-groups-active' : 'condition-groups-active-white'"
+                  style="background: rgb(102, 102, 102); color: rgb(250, 250, 250);"><label
                     for="sort_recommend">EVOPLAY</label></li>
               </ul>
               <div  class="btn search-btn ng-tns-c84-5 ng-star-inserted searchpagebutton"
@@ -391,13 +388,13 @@
                 </div>
               </div><!---->
             </div>
-            <div  id="gamesList" class="games-main" bis_skin_checked="1">
-              <div 
+            <div  id="gamesList" class="games-main" bis_skin_checked="1" *ngFor="let items of liveData">
+              <div *ngFor="let game of items?.game_ids"
                 class="games-box ng-tns-c2286114882-6 ng-trigger ng-trigger-staggerFadeAnimation" bis_skin_checked="1">
-                <div  class="pic item-ani ng-tns-c2286114882-6" bis_skin_checked="1"><a
-                    ><img  fetchpriority="high" loading="lazy"
+                <div  class="pic item-ani ng-tns-c2286114882-6" bis_skin_checked="1" (click)="opencasinogamesmob(game)"><a
+                    ><img  fetchpriority="high" loading="lazy" 
                       alt="Agent Ace"
-                      src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/10a06024-7f6c-4e4f-d44c-2d0ee7aa0c00/public"></a>
+                      [src]="game?.image"></a>
                 </div>
                 <div  class="mask" bis_skin_checked="1">
                   <div  class="mask-inner" bis_skin_checked="1"><span
@@ -406,11 +403,11 @@
                 </div>
                 <div  class="text item-ani" bis_skin_checked="1"
                   style="background: rgb(41, 41, 41);">
-                  <h3  style="color: rgb(250, 250, 250);">Agent Ace</h3>
+                  <h3  style="color: rgb(250, 250, 250);">{{game?.name}}</h3>
                   <div  class="like" bis_skin_checked="1"></div>
                 </div>
               </div>
-              <div 
+              <!-- <div 
                 class="games-box ng-tns-c2286114882-6 ng-trigger ng-trigger-staggerFadeAnimation" bis_skin_checked="1">
                 <div  class="pic item-ani ng-tns-c2286114882-6" bis_skin_checked="1"><a
                     ><img  fetchpriority="high" loading="lazy"
@@ -751,7 +748,7 @@
                   <h3  style="color: rgb(250, 250, 250);">Crazy Pusher</h3>
                   <div  class="like" bis_skin_checked="1"></div>
                 </div>
-              </div><!---->
+              </div> -->
             </div>
             <div  style="height: 10px; visibility: hidden;" bis_skin_checked="1">anchor
             </div>

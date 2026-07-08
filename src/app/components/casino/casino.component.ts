@@ -269,7 +269,24 @@ export class CasinoComponent implements AfterViewInit, OnInit {
     else if (index == 4) this.router.navigate([`/casino/FH/ALL`]);
     else if (index == 5) this.router.navigate([`/casino/EGAME/ALL`]);
   }
+  
 
+  //   setActiveSlide(index: number) {
+  //   this.currentPage = 1;
+  //   this.activeIndex = index;
+  //   if (index == 0) this.router.navigate([`/casino/SLOT/ALL`]);
+  //   else if (index == 1) this.router.navigate([`/casino/SLOT/HOTROAD`]);
+  //   else if (index == 2) this.router.navigate([`/casino/SLOT/JILI`]);
+  //   else if (index == 3) this.router.navigate([`/casino/SLOT/JDB`]);
+  //   else if (index == 4) this.router.navigate([`/casino/SLOT/PLAY8`]);
+  //   else if (index == 5) this.router.navigate([`/casino/SLOT/EVOLUTION`]);
+  //   else if (index == 6) this.router.navigate([`/casino/SLOT//SPADEGAMING`]);
+  //   else if (index == 7) this.router.navigate([`/casino/SLOT/YESBINGO`]);
+  //   else if (index == 8) this.router.navigate([`/casino/SLOT/KINGMAKER`]);
+  //   else if (index == 9) this.router.navigate([`/casino/SLOT/PGSOFT`]);
+  //   else if (index == 10) this.router.navigate([`/casino/SLOT/DRAGONSOFT`]);
+  //   else if (index == 11) this.router.navigate([`/casino/SLOT/FASTSPIN`]);
+  // }
   setActiveTab(tabId: number) {
     this.activeTabId = tabId;
     if (tabId == 1) {
