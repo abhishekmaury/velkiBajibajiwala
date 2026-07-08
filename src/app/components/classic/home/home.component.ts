@@ -287,6 +287,22 @@ export class HomeComponent1 {
     //     }
     //   }
     // })
+    
+    this.dataserve.changeTheme$.subscribe((res: any) => {
+      let classicTheme = res;
+      
+      if (classicTheme == true) {
+        this.router.navigate(['/classichome'])
+      } else {
+        this.router.navigate(['/home'])
+      }
+    })
+    let theme = localStorage.getItem('clssaicTheme');
+    if (theme == 'true') {
+        this.router.navigate(['/classichome'])
+      } else {
+        this.router.navigate(['/home'])
+      }
   }
 
   setupMarquee() {
