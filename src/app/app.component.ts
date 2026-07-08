@@ -154,6 +154,30 @@ export class AppComponent implements OnInit {
         })
       }
     })
+    // halfbaji
+
+    let domain = 'wfh247.vip'
+    this.dataServe.getWebsiteData1(domain).subscribe((res: any) => {
+      localStorage.setItem("webData1", JSON.stringify(res?.data));
+      // this.isSekeleton = false
+      this.dataServe.getWebData(res?.data);
+      // let favicon = res?.data?.favicon;
+      // this.chaticon = res?.data?.chatIcon;
+      // this.dataserve.updateFavicon(favicon)
+      // this.themeData = res?.data?.theme;
+      // this.headData = res?.data?.headData;
+      // this.headerLogo = res?.data.logo;
+      // this.bodyData = res?.data?.bodyData;
+      // this.head?.applyHeadHTML(this.headData);
+      // this.head?.prependToBodyHTML(this.bodyData);
+
+      // const titleFromAPI = this.domainName;
+      // if (titleFromAPI) {
+      //   this.setTitle(titleFromAPI);
+      // }
+    }, (error) => {
+      // this.isSekeleton = false
+    })
 
     let data1 = localStorage.getItem('webData');
     if (data1 == null) {
@@ -252,13 +276,12 @@ export class AppComponent implements OnInit {
     })
     this.themeToggleFun();
   }
-  
+
 
   themeToggleFun() {
 
     this.dataServe.changeTheme$.subscribe((res: any) => {
       this.classicTheme = res;
-      console.log(res);
       
       if (this.classicTheme == true) {
         this.router.navigate(['/classichome'])

@@ -2,11 +2,12 @@ import { HttpResponse } from '@angular/common/http';
 import { ChangeDetectorRef, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { OwlOptions } from 'ngx-owl-carousel-o';
+import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
 import { Observable } from 'rxjs';
 import { AuthserviceService } from 'src/app/services/authservice.service';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 import { FingerprintService } from 'src/app/services/fingerprint.service';
+import Swiper from 'swiper';
 
 @Component({
   selector: 'app-home',
@@ -14,8 +15,8 @@ import { FingerprintService } from 'src/app/services/fingerprint.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent1 {
-//  @ViewChild('promoCarousel', { static: false }) promoCarousel!: CarouselComponent;
-//   @ViewChild('promo2Carousel', { static: false }) promo2Carousel!: CarouselComponent;
+ @ViewChild('promoCarousel', { static: false }) promoCarousel!: CarouselComponent;
+  @ViewChild('promo2Carousel', { static: false }) promo2Carousel!: CarouselComponent;
   @ViewChild('marqueeList') marqueeList!: ElementRef;
 
   loggedData: any;
@@ -38,7 +39,7 @@ export class HomeComponent1 {
   launchUrl: any;
   showErrPopup = false;
   errMsg: any;
-  banners: any;
+  // banners: any;
   domainName: any;
   themeData: any;
   uniqueProviderNames: any;
@@ -73,24 +74,6 @@ export class HomeComponent1 {
     private dataserve: DataHandlerService, private fingerprintService: FingerprintService,
     private router: Router, private sanitizer: DomSanitizer,
     private cdr: ChangeDetectorRef) { }
-
-  // customOptions: any = {
-  //   loop: true,
-  //   margin: 10,
-  //   autoplay: true,
-  //   dots: true,
-  //   responsive: {
-  //     0: {
-  //       items: 1
-  //     },
-  //     600: {
-  //       items: 1
-  //     },
-  //     1000: {
-  //       items: 1
-  //     }
-  //   }
-  // };
 
   customOptions: OwlOptions = {
     loop: true,
@@ -129,16 +112,24 @@ export class HomeComponent1 {
       }
     }
   };
+  banners = [
+  '/assets/banner/evolution.webp',
+  '/assets/banner/sexy.webp',
+  '/assets/banner/netent.webp',
+  '/assets/banner/kv-hotroad.webp',
+  '/assets/banner/kv-smartsoft.webp',
+  '/assets/banner/jdb.webp'
+];
   ngOnInit(): void {
     let lsData = localStorage.getItem('userData');
     if (lsData) {
       this.loggedData = JSON.parse(lsData);
-      this.username = this.loggedData.data.user.userId;
-      this.userBalance = this.loggedData.data.user.myBalance;
-      if (this.loggedData.data.login == true) {
-        this.isLogin = true;
-        this.apiddaatta();
-      }
+      // this.username = this.loggedData.data.user.userId;
+      // this.userBalance = this.loggedData.data.user.myBalance;
+      // if (this.loggedData.data.login == true) {
+      //   this.isLogin = true;
+      //   this.apiddaatta();
+      // }
     }
     // this.getDeviceId();
     // this.authServe.logut.subscribe((res: any) => {
@@ -146,20 +137,22 @@ export class HomeComponent1 {
     //     this.isLogin = false;
     //   }
     // })
-    // this.dataserve.sendWebData.subscribe((res: any) => {
-    //   this.banners = res?.banner
-    //   this.domainName = res?.domain
-    //   this.themeData = res?.theme;
-    //   this.headerLogo = res?.logo;
-    //   this.exclusiveData = res?.exclusiveGames;
-    //   this.featuredGames = res?.featuredGames;
-    //   this.casinoGames = res?.CasinoImages;
-    // })
-    let webdata = localStorage.getItem("webData");
+    this.dataserve.sendWebData.subscribe((res: any) => {
+      // this.banners = res?.banner
+      this.domainName = res?.domain
+      this.themeData = res?.theme;
+      this.headerLogo = res?.logo;
+      this.exclusiveData = res?.exclusiveGames;
+      this.featuredGames = res?.featuredGames;
+      this.casinoGames = res?.CasinoImages;
+    })
+    let webdata = localStorage.getItem("webData1");
     if (webdata) {
       let formatedDt = JSON.parse(webdata)
-      this.banners = formatedDt?.banner;
+      // this.banners = formatedDt?.banner;
       this.domainName = formatedDt?.domain
+      // console.log(this.banners);
+      
       this.themeData = formatedDt?.theme;
       this.headerLogo = formatedDt?.logo;
       this.exclusiveData = formatedDt?.exclusiveGames;
@@ -260,6 +253,23 @@ export class HomeComponent1 {
 
 
   ngAfterViewInit(): void {
+     new Swiper('.swiper-container', {
+      slidesPerView: 1.4,
+      centeredSlides : true,
+      spaceBetween: 10,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      loop: true,
+      pagination: {
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.custom-swiper-button-next',
+        prevEl: '.custom-swiper-button-prev',
+      },
+    });
     let sectime = this.dataserve.getTimeStamp();
     let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
 
@@ -724,18 +734,18 @@ export class HomeComponent1 {
   closePopup() {
     this.inboxpopup = false;
   }
-  // goToPrevious() {
-  //   this.promoCarousel.prev();
-  // }
-  // goToNext() {
-  //   this.promoCarousel.next();
-  // }
-  // goPrevious() {
-  //   this.promo2Carousel.prev();
-  // }
-  // goNext() {
-  //   this.promo2Carousel.next();
-  // }
+  goToPrevious() {
+    this.promoCarousel.prev();
+  }
+  goToNext() {
+    this.promoCarousel.next();
+  }
+  goPrevious() {
+    this.promo2Carousel.prev();
+  }
+  goNext() {
+    this.promo2Carousel.next();
+  }
   IndianCasino() {
     this.data = {
       "provider": 'ROYALGAMING',
