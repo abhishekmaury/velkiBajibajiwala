@@ -63,9 +63,19 @@ export class CasinoComponent implements AfterViewInit, OnInit {
   launchUrl1: any;
   searchHistory: string[] = [];
   isRefreshing = false;
+  classicTheme = false;
   constructor(private popupService: HandlerService, private activeRoute: ActivatedRoute, private dataserve: DataHandlerService, private router: Router, private elementRef: ElementRef) { }
 
   ngOnInit(): void {
+    this.dataserve.changeTheme$.subscribe((res: any) => {
+      this.classicTheme = res;
+    })
+    let theme = localStorage.getItem('clssaicTheme');
+    if (theme == 'true') {
+        this.classicTheme = true;
+      } else {
+        this.classicTheme = false;
+      }
     this.gameslist = [];
     let wData = localStorage.getItem("webData")
     if (wData) {

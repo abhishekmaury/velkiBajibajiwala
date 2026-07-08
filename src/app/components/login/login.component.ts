@@ -29,15 +29,27 @@ export class LoginComponent implements OnInit{
   validShowing='true';
   backgroundImg = '';
   innrrImg : any = '';
+  img : any = '';
   submitted = false;
   fingerprint: any;
   isRefreshing = false;
+  classicTheme = false;
 
   constructor(
     private location: Location,private fingerprintService: FingerprintService,
     private dataServe: DataHandlerService, private router: Router, private activeRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    
+    this.dataServe.changeTheme$.subscribe((res: any) => {
+      this.classicTheme = res;
+    })
+    let theme = localStorage.getItem('clssaicTheme');
+    if (theme == 'true') {
+        this.classicTheme = true;
+      } else {
+        this.classicTheme = false;
+      }
     this.fingerprintService.getFingerprint().then(visitorId => {
       this.fingerprint = visitorId;
     });
@@ -47,6 +59,7 @@ export class LoginComponent implements OnInit{
       let d1 = JSON.parse(wData)
       this.webdata = d1;
       this.backgroundImg = this.webdata?.imageData?.headers?.[0]?.mobile_login_image;
+      this.img = this.webdata?.imageData?.headers?.[0]?.logo?.replace(' ', '%20')
       this.innrrImg = this.webdata?.imageData?.headers?.[0]?.web_login_image;
       this.jsonWebdt = JSON.parse(d1?.theme)
       this.jsonWeblinksdt = JSON.parse(d1?.links)
