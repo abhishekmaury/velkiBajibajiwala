@@ -1,0 +1,1266 @@
+<div class="ng-tns-c70-0 ng-trigger ng-trigger-routeFullPageAni"
+    style="background: rgb(32, 32, 32);" bis_skin_checked="1">
+    <div id="importantmsgmodal" class="cdk-overlay-container" style="display: none;"
+        bis_skin_checked="1">
+        <div class="cdk-overlay-backdrop dialog-backdrop cdk-overlay-backdrop-showing"
+            bis_skin_checked="1"></div>
+        <div dir="ltr" class="cdk-global-overlay-wrapper"
+            style="justify-content: center; align-items: center;" bis_skin_checked="1">
+            <div id="cdk-overlay-0" class="cdk-overlay-pane dialog-panel"
+                style="position: static;" bis_skin_checked="1">
+                <div id="dialog-0" class="popup" bis_skin_checked="1">
+                    <div class="popup__header" bis_skin_checked="1"></div>
+                    <div class="popup__content" bis_skin_checked="1">
+                        <div  
+                            class="pop-wrap promotion-pop new ng-tns-c1925162093-6 ng-trigger ng-trigger-popWrapTriggerAni ani show ng-star-inserted"
+                            bis_skin_checked="1"><a onclick="closeNotPop()"
+                                class="btn-close ng-tns-c1925162093-6"></a>
+                            <div class="pop-title ng-tns-c1925162093-6 ng-star-inserted"
+                                style="min-height: 14vw;" bis_skin_checked="1">
+                                <h3 class="ng-tns-c1925162093-6">Important Message</h3>
+                            </div>
+                            <div  
+                                class="pop-inner content-style ng-tns-c1925162093-6 ng-star-inserted"
+                                style="padding: 0;" bis_skin_checked="1">
+                                <div class="ng-tns-c1925162093-6"
+                                    style="position: relative;" bis_skin_checked="1"><img  
+                                        fetchpriority="high" id="notImg" style="width: 100%;"></div>
+                            </div>
+                            <div  
+                                class="notshow-checkbox ng-tns-c1925162093-6 ng-star-inserted"
+                                style="position: relative; background: #333132; align-items: center; display: flex; padding: 5px; line-height: 15px; line-height: 20px; height: auto;"
+                                bis_skin_checked="1">
+                                <p id="notCon" class="text ng-tns-c1925162093-6">
+                                    cdk-overlay-backdrop dialog-backdrop cdk-overlay-backdrop-showing</p>
+                            </div>
+                        </div>
+                        <div  
+                            class="pop-bg ng-trigger ng-trigger-popBgTriggerAni ng-tns-c1925162093-6 ng-star-inserted"
+                            style="display: block;" bis_skin_checked="1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="newsmodal" class="cdk-overlay-container" style="display: none;"
+        bis_skin_checked="1">
+        <div class="cdk-overlay-backdrop dialog-backdrop cdk-overlay-backdrop-showing"
+            bis_skin_checked="1"></div>
+        <div dir="ltr" class="cdk-global-overlay-wrapper"
+            style="justify-content: center; align-items: center;" bis_skin_checked="1">
+            <div id="cdk-overlay-0" class="cdk-overlay-pane dialog-panel"
+                style="position: static;" bis_skin_checked="1">
+                <div id="dialog-0" class="popup" bis_skin_checked="1">
+                    <div class="popup__header" bis_skin_checked="1"></div>
+                    <div class="popup__content" bis_skin_checked="1">
+                        <div  
+                            class="pop-wrap promotion-pop new ng-tns-c1925162093-6 ng-trigger ng-trigger-popWrapTriggerAni ani show ng-star-inserted"
+                            bis_skin_checked="1"><a onclick="closeannouncementmodal()"
+                                class="btn-close ng-tns-c1925162093-6"></a>
+                            <div class="pop-title ng-tns-c1925162093-6 ng-star-inserted"
+                                style="min-height: 14vw;" bis_skin_checked="1">
+                                <h3 class="ng-tns-c1925162093-6">Website Annnouncement</h3>
+                            </div>
+                            <div id="announcementContentMob"
+                                class="pop-inner content-style ng-tns-c1925162093-6 ng-star-inserted"
+                                bis_skin_checked="1"></div>
+                            <div bis_skin_checked="1">
+                                <ul id="pageNumberContent" class="pages"
+                                    style="padding: 0;"></ul>
+                            </div>
+                        </div>
+                        <div  
+                            class="pop-bg ng-trigger ng-trigger-popBgTriggerAni ng-tns-c1925162093-6 ng-star-inserted"
+                            style="display: block;" bis_skin_checked="1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <div class="wrap ng-tns-c57-1" bis_skin_checked="1">
+        <div class="content mobile-content ng-tns-c57-1 removehh" style="min-height: auto;"
+            bis_skin_checked="1">
+            <div class="ng-tns-c57-1 ng-trigger ng-trigger-routeLayoutPageAni"
+                bis_skin_checked="1">
+                <div  
+                    class="top-banner-wrapper custom-banner-wrapper custom-banner-wrapper--shrink unit-1"
+                    bis_skin_checked="1">
+                    <div class="banner nextevent-v1 slider slick-initialized slick-slider"
+                        bis_skin_checked="1">
+                        <owl-carousel-o [options]="customOptions" class="mob-banner">
+                            <!-- @for ( image of banners; let i = $index ; track $index) { -->
+                                <ng-template carouselSlide *ngFor="let image of banners; let i = index">
+                                <img fetchpriority="high"  [src]="image?.image" style="width:100%;border-radius:10px;" alt="baajiwale" loading="lazy"
+                                    class="desktop-banner">
+                                </ng-template>
+                                <!-- } -->
+                            </owl-carousel-o>
+                        <!-- <owl-carousel-o class="mob-banner"
+                            _nghost-ng-c3444938404="">
+                            <div _ngcontent-ng-c3444938404="" role="region" aria-label="Carousel"
+                                class="owl-carousel owl-theme owl-loaded owl-responsive owl-drag" bis_skin_checked="1">
+                                <div _ngcontent-ng-c3444938404="" class="owl-carousel-inner" bis_skin_checked="1">
+                                     
+                                    <div _ngcontent-ng-c3444938404="" class="owl-stage-outer" bis_skin_checked="1">
+                                        <owl-stage _ngcontent-ng-c3444938404="">
+                                            <div bis_skin_checked="1">
+                                                <div class="owl-stage"
+                                                    style="width: 4992px; transform: translate3d(-1794px, 0px, 0px); transition: 0.25s;"
+                                                    bis_skin_checked="1">
+                                                    <div role="group" class="owl-item cloned" id="cloned-owl-slide-4"
+                                                        aria-label="Slide 5 of 8" aria-hidden="true"
+                                                        style="width: 302px; margin-right: 10px;" bis_skin_checked="1">
+                                                        <img fetchpriority="high"
+                                                            alt="baajiwale" loading="lazy" class="desktop-banner"
+                                                            style="width: 100%; border-radius: 10px;"
+                                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/647543e4-9e29-4855-5e75-c20206857c00/public">  
+                                                    </div>
+                                                    <div role="group" class="owl-item cloned" id="cloned-owl-slide-5"
+                                                        aria-label="Slide 6 of 8" aria-hidden="true"
+                                                        style="width: 302px; margin-right: 10px;" bis_skin_checked="1">
+                                                        <img fetchpriority="high"
+                                                            alt="baajiwale" loading="lazy" class="desktop-banner"
+                                                            style="width: 100%; border-radius: 10px;"
+                                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/a6dd2344-af90-4eb8-c72d-7ca2c4334600/public">  
+                                                    </div>
+                                                    <div role="group" class="owl-item cloned" id="cloned-owl-slide-6"
+                                                        aria-label="Slide 7 of 8" aria-hidden="true"
+                                                        style="width: 302px; margin-right: 10px;" bis_skin_checked="1">
+                                                        <img fetchpriority="high"
+                                                            alt="baajiwale" loading="lazy" class="desktop-banner"
+                                                            style="width: 100%; border-radius: 10px;"
+                                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/00fe2b61-b4e5-4aef-3e7e-18a8545c6200/public">  
+                                                    </div>
+                                                    <div role="group" class="owl-item cloned" id="cloned-owl-slide-7"
+                                                        aria-label="Slide 8 of 8"
+                                                        style="width: 302px; margin-right: 10px;" bis_skin_checked="1"
+                                                        aria-hidden="true"><img  
+                                                            fetchpriority="high" alt="baajiwale" loading="lazy"
+                                                            class="desktop-banner"
+                                                            style="width: 100%; border-radius: 10px;"
+                                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/45fe873d-c331-4c61-57d9-949713380800/public">  
+                                                    </div>
+                                                    <div role="group" class="owl-item" id="owl-slide-0"
+                                                        aria-label="Slide 1 of 8"
+                                                        style="width: 302px; margin-right: 10px;" bis_skin_checked="1"
+                                                        aria-hidden="true"><img  
+                                                            fetchpriority="high" alt="baajiwale" loading="lazy"
+                                                            class="desktop-banner"
+                                                            style="width: 100%; border-radius: 10px;"
+                                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/217c0edb-695e-4831-1a98-fdf1c53f4500/public">  
+                                                    </div>
+                                                    <div role="group" class="owl-item active" id="owl-slide-1"
+                                                        aria-label="Slide 2 of 8"
+                                                        style="width: 302px; margin-right: 10px;" bis_skin_checked="1">
+                                                        <img fetchpriority="high"
+                                                            alt="baajiwale" loading="lazy" class="desktop-banner"
+                                                            style="width: 100%; border-radius: 10px;"
+                                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/e95a73e3-fdae-4888-e7aa-510df8ea9300/public">  
+                                                    </div>
+                                                    <div role="group" class="owl-item active center" id="owl-slide-2"
+                                                        aria-label="Slide 3 of 8"
+                                                        style="width: 302px; margin-right: 10px;" bis_skin_checked="1">
+                                                        <img fetchpriority="high"
+                                                            alt="baajiwale" loading="lazy" class="desktop-banner"
+                                                            style="width: 100%; border-radius: 10px;"
+                                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/3bc1b331-cdef-4861-30c8-32a9c4db0500/public">  
+                                                    </div>
+                                                    <div role="group" class="owl-item active" id="owl-slide-3"
+                                                        aria-label="Slide 4 of 8"
+                                                        style="width: 302px; margin-right: 10px;" bis_skin_checked="1">
+                                                        <img fetchpriority="high"
+                                                            alt="baajiwale" loading="lazy" class="desktop-banner"
+                                                            style="width: 100%; border-radius: 10px;"
+                                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/10ed36bb-88f7-4ccb-db55-98192dcc7a00/public">  
+                                                    </div>
+                                                    <div role="group" class="owl-item" id="owl-slide-4"
+                                                        aria-label="Slide 5 of 8"
+                                                        style="width: 302px; margin-right: 10px;" bis_skin_checked="1"
+                                                        aria-hidden="true"><img  
+                                                            fetchpriority="high" alt="baajiwale" loading="lazy"
+                                                            class="desktop-banner"
+                                                            style="width: 100%; border-radius: 10px;"
+                                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/647543e4-9e29-4855-5e75-c20206857c00/public">  
+                                                    </div>
+                                                    <div role="group" class="owl-item" id="owl-slide-5"
+                                                        aria-label="Slide 6 of 8"
+                                                        style="width: 302px; margin-right: 10px;" bis_skin_checked="1"
+                                                        aria-hidden="true"><img  
+                                                            fetchpriority="high" alt="baajiwale" loading="lazy"
+                                                            class="desktop-banner"
+                                                            style="width: 100%; border-radius: 10px;"
+                                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/a6dd2344-af90-4eb8-c72d-7ca2c4334600/public">  
+                                                    </div>
+                                                    <div role="group" class="owl-item" id="owl-slide-6"
+                                                        aria-label="Slide 7 of 8"
+                                                        style="width: 302px; margin-right: 10px;" bis_skin_checked="1"
+                                                        aria-hidden="true"><img  
+                                                            fetchpriority="high" alt="baajiwale" loading="lazy"
+                                                            class="desktop-banner"
+                                                            style="width: 100%; border-radius: 10px;"
+                                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/00fe2b61-b4e5-4aef-3e7e-18a8545c6200/public">  
+                                                    </div>
+                                                    <div role="group" class="owl-item" id="owl-slide-7"
+                                                        aria-label="Slide 8 of 8"
+                                                        style="width: 302px; margin-right: 10px;" bis_skin_checked="1"
+                                                        aria-hidden="true"><img  
+                                                            fetchpriority="high" alt="baajiwale" loading="lazy"
+                                                            class="desktop-banner"
+                                                            style="width: 100%; border-radius: 10px;"
+                                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/45fe873d-c331-4c61-57d9-949713380800/public">  
+                                                    </div>
+                                                    <div role="group" class="owl-item cloned"
+                                                        id="cloned-owl-slide-0-append" aria-label="Slide 1 of 8"
+                                                        style="width: 302px; margin-right: 10px;" bis_skin_checked="1"
+                                                        aria-hidden="true"><img  
+                                                            fetchpriority="high" alt="baajiwale" loading="lazy"
+                                                            class="desktop-banner"
+                                                            style="width: 100%; border-radius: 10px;"
+                                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/217c0edb-695e-4831-1a98-fdf1c53f4500/public">  
+                                                    </div>
+                                                    <div role="group" class="owl-item cloned"
+                                                        id="cloned-owl-slide-1-append" aria-label="Slide 2 of 8"
+                                                        aria-hidden="true" style="width: 302px; margin-right: 10px;"
+                                                        bis_skin_checked="1"><img  
+                                                            fetchpriority="high" alt="baajiwale" loading="lazy"
+                                                            class="desktop-banner"
+                                                            style="width: 100%; border-radius: 10px;"
+                                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/e95a73e3-fdae-4888-e7aa-510df8ea9300/public">  
+                                                    </div>
+                                                    <div role="group" class="owl-item cloned"
+                                                        id="cloned-owl-slide-2-append" aria-label="Slide 3 of 8"
+                                                        aria-hidden="true" style="width: 302px; margin-right: 10px;"
+                                                        bis_skin_checked="1"><img  
+                                                            fetchpriority="high" alt="baajiwale" loading="lazy"
+                                                            class="desktop-banner"
+                                                            style="width: 100%; border-radius: 10px;"
+                                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/3bc1b331-cdef-4861-30c8-32a9c4db0500/public">  
+                                                    </div>
+                                                    <div role="group" class="owl-item cloned"
+                                                        id="cloned-owl-slide-3-append" aria-label="Slide 4 of 8"
+                                                        aria-hidden="true" style="width: 302px; margin-right: 10px;"
+                                                        bis_skin_checked="1"><img  
+                                                            fetchpriority="high" alt="baajiwale" loading="lazy"
+                                                            class="desktop-banner"
+                                                            style="width: 100%; border-radius: 10px;"
+                                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/10ed36bb-88f7-4ccb-db55-98192dcc7a00/public">  
+                                                    </div> 
+                                                </div>
+                                            </div>
+                                        </owl-stage></div>  
+                                </div>
+                                <div _ngcontent-ng-c3444938404="" aria-label="Carousel Dots Pagination" class="owl-dots"
+                                    bis_skin_checked="1"><button _ngcontent-ng-c3444938404="" type="button"
+                                        class="owl-dot" id="dot-0" aria-label="Carousel Dot 1" tabindex="-1"
+                                        fdprocessedid="niv57o"><span
+                                            _ngcontent-ng-c3444938404=""></span></button><button
+                                        _ngcontent-ng-c3444938404="" type="button" class="owl-dot" id="dot-1"
+                                        aria-label="Carousel Dot 2" tabindex="-1" fdprocessedid="1awsta"><span
+                                            _ngcontent-ng-c3444938404=""></span></button><button
+                                        _ngcontent-ng-c3444938404="" type="button" class="owl-dot active" id="dot-2"
+                                        aria-label="Carousel Dot 3" tabindex="0" fdprocessedid="n2to5c"
+                                        aria-current="true"><span _ngcontent-ng-c3444938404=""></span></button><button
+                                        _ngcontent-ng-c3444938404="" type="button" class="owl-dot" id="dot-3"
+                                        aria-label="Carousel Dot 4" tabindex="-1" fdprocessedid="c1hpv"><span
+                                            _ngcontent-ng-c3444938404=""></span></button><button
+                                        _ngcontent-ng-c3444938404="" type="button" class="owl-dot" id="dot-4"
+                                        aria-label="Carousel Dot 5" tabindex="-1" fdprocessedid="46dfp"><span
+                                            _ngcontent-ng-c3444938404=""></span></button><button
+                                        _ngcontent-ng-c3444938404="" type="button" class="owl-dot" id="dot-5"
+                                        aria-label="Carousel Dot 6" tabindex="-1" fdprocessedid="myx0sq"><span
+                                            _ngcontent-ng-c3444938404=""></span></button><button
+                                        _ngcontent-ng-c3444938404="" type="button" class="owl-dot" id="dot-6"
+                                        aria-label="Carousel Dot 7" tabindex="-1" fdprocessedid="9mpfa"><span
+                                            _ngcontent-ng-c3444938404=""></span></button><button
+                                        _ngcontent-ng-c3444938404="" type="button" class="owl-dot" id="dot-7"
+                                        aria-label="Carousel Dot 8" tabindex="-1" fdprocessedid="6jcbo"><span
+                                            _ngcontent-ng-c3444938404=""></span></button> </div> 
+                            </div>
+                        </owl-carousel-o> -->
+                    </div>
+                </div>
+                <div class="announcement-row" bis_skin_checked="1">
+                    <div class="announceImg" style="background: rgb(255, 255, 255);"
+                        bis_skin_checked="1"></div>
+                    <div class="marquee-wrapper" bis_skin_checked="1">
+                        <div class="announcement-row" bis_skin_checked="1"> 
+                            <marquee scrollamount="4">
+                                <ul style="display: flex; width: fit-content;">
+                                    <li class="ng-star-inserted"
+                                        style="padding-left: 5px;"><span  >
+                                            <p  ><span  
+                                                    style="color: rgb(255, 255, 255);">--</span></p>
+                                        </span></li>
+                                </ul>
+                            </marquee> 
+                        </div>
+                    </div>
+                </div>
+                <div id="nav" class="nav category-nav nav-column ng-star-inserted nav-auto"
+                    style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);"
+                    bis_skin_checked="1">
+                    <div data-category-type-id="0"
+                        class="btn slick-slide slick-active slick-current" style="--homeActiveNavBg: #030303;"
+                        bis_skin_checked="1"><span  
+                            style="mask-image: url(&quot;/assets/images/icon-set/icon-sport.svg&quot;); background: var(--activeIcon); --activeIcon: #fff;"></span>
+                        <p  
+                            style="--homeActiveNavText: #ff1a1a; --homeInctiveNavText: #ffffff;">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Sports</font>
+                            </font>
+                        </p>
+                    </div>
+                    <div data-category-type-id="0" data-tab-current=""
+                        class="btn slick-slide ng-star-inserted" style="--homeActiveNavBg: #030303;"
+                        bis_skin_checked="1"><span  
+                            style="mask-image: url(&quot;/assets/images/icon-set/icon-casino.svg&quot;); background: var(--activeIcon); --activeIcon: #fff;"></span>
+                        <p  
+                            style="--homeActiveNavText: #ff1a1a; --homeInctiveNavText: #ffffff;">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Casino</font>
+                            </font>
+                        </p>
+                    </div>
+                    <div data-category-type-id="0" data-tab-current=""
+                        class="btn slick-slide ng-star-inserted" style="--homeActiveNavBg: #030303;"
+                        bis_skin_checked="1"><span  
+                            style="mask-image: url(&quot;/assets/images/icon-set/icon-crash.svg&quot;); background: var(--activeIcon); --activeIcon: #fff;"></span>
+                        <p  
+                            style="--homeActiveNavText: #ff1a1a; --homeInctiveNavText: #ffffff;">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Exclusive</font>
+                            </font>
+                        </p>
+                    </div>
+                    <div data-category-type-id="0" data-tab-current=""
+                        class="btn slick-slide ng-star-inserted" style="--homeActiveNavBg: #030303;"
+                        bis_skin_checked="1"><span  
+                            style="mask-image: url(&quot;/assets/images/icon-set/icon-slot.svg&quot;); background: var(--activeIcon); --activeIcon: #fff;"></span>
+                        <p  
+                            style="--homeActiveNavText: #ff1a1a; --homeInctiveNavText: #ffffff;">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Slots</font>
+                            </font>
+                        </p>
+                    </div>
+                    <div data-category-type-id="0" data-tab-current=""
+                        class="btn slick-slide ng-star-inserted" style="--homeActiveNavBg: #030303;"
+                        bis_skin_checked="1"><span  
+                            style="mask-image: url(&quot;/assets/images/type.svg&quot;); background: var(--activeIcon); --activeIcon: #fff;"></span>
+                        <p  
+                            style="--homeActiveNavText: #ff1a1a; --homeInctiveNavText: #ffffff;">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Type</font>
+                            </font>
+                        </p>
+                    </div>
+                    <div data-category-type-id="0" data-tab-current=""
+                        class="btn slick-slide ng-star-inserted" style="--homeActiveNavBg: #030303;"
+                        bis_skin_checked="1"><span  
+                            style="mask-image: url(&quot;/assets/images/icon-set/icon-arcade.svg&quot;); background: var(--activeIcon); --activeIcon: #fff;"></span>
+                        <p  
+                            style="--homeActiveNavText: #ff1a1a; --homeInctiveNavText: #ffffff;">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Live</font>
+                            </font>
+                        </p>
+                    </div>
+                    <div data-category-type-id="0" data-tab-current=""
+                        class="btn slick-slide ng-star-inserted" style="--homeActiveNavBg: #030303;"
+                        bis_skin_checked="1"><span  
+                            style="mask-image: url(&quot;/assets/images/icon-set/icon-table.svg&quot;); background: var(--activeIcon); --activeIcon: #fff;"></span>
+                        <p  
+                            style="--homeActiveNavText: #ff1a1a; --homeInctiveNavText: #ffffff;">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Table</font>
+                            </font>
+                        </p>
+                    </div>
+                    <div data-category-type-id="0" data-tab-current=""
+                        class="btn slick-slide ng-star-inserted" style="--homeActiveNavBg: #030303;"
+                        bis_skin_checked="1"><span  
+                            style="mask-image: url(&quot;/assets/images/icon-set/icon-fish.svg&quot;); background: var(--activeIcon); --activeIcon: #fff;"></span>
+                        <p  
+                            style="--homeActiveNavText: #ff1a1a; --homeInctiveNavText: #ffffff;">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Fishing</font>
+                            </font>
+                        </p>
+                    </div>
+                    <div data-category-type-id="0" data-tab-current=""
+                        class="btn slick-slide ng-star-inserted" style="--homeActiveNavBg: #030303;"
+                        bis_skin_checked="1"><span  
+                            style="mask-image: url(&quot;/assets/images/icon-set/icon-lottery.svg&quot;); background: var(--activeIcon); --activeIcon: #fff;"></span>
+                        <p  
+                            style="--homeActiveNavText: #ff1a1a; --homeInctiveNavText: #ffffff;">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Lottery</font>
+                            </font>
+                        </p>
+                    </div>
+                </div> 
+                <div class="nav-wrap ng-star-inserted" bis_skin_checked="1">
+                    <div id="nav-title" class="content-title" bis_skin_checked="1">
+                        <h2 class="sportheading"><span  
+                                class="verticleLinee"
+                                style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);"></span><span
+                                style="color: rgb(255, 255, 255);">Sports</span></h2>
+                    </div>
+                    <div  
+                        class="nav-content-wrap fortextcolr animate__animated animate__faster 500ms animate__slideInLeft"
+                        bis_skin_checked="1">
+                        <div class="nav-content-inner"
+                            style="transform: translate(0%, 0px);" bis_skin_checked="1">
+                            <div class="content-box ng-star-inserted sportslider"
+                                bis_skin_checked="1">
+                                <div class="layout-brand ng-star-inserted"
+                                    bis_skin_checked="1">
+                                    <div class="card2" bis_skin_checked="1">
+                                        <ul  >
+                                            <li class="ng-star-inserted"
+                                                style="background: rgb(32, 32, 32); border: 0.59vw solid rgb(32, 32, 32);">
+                                                <a tabindex="-1"><img
+                                                        fetchpriority="high"
+                                                        src="/assets/images/newimg/exchange.webp?v=1.01" loading="lazy"
+                                                        class="ng-star-inserted"></a></li>
+                                            <li class="ng-star-inserted"
+                                                style="background: rgb(32, 32, 32); border: 0.59vw solid rgb(32, 32, 32);">
+                                                <a tabindex="-1"><img
+                                                        fetchpriority="high"
+                                                        src="/assets/images/newimg/sportsbook.webp?v=1.01"
+                                                        loading="lazy" class="ng-star-inserted"></a></li>
+                                            <li class="ng-star-inserted"
+                                                style="background: rgb(32, 32, 32); border: 0.59vw solid rgb(32, 32, 32);">
+                                                <a tabindex="-1" vender="Virtual"><img
+                                                        fetchpriority="high"
+                                                        src="/assets/images/newimg/virtual.webp?v=1.01" loading="lazy"
+                                                        class="ng-star-inserted"></a></li>
+                                            <li class="ng-star-inserted"
+                                                style="background: rgb(32, 32, 32); border: 0.59vw solid rgb(32, 32, 32);">
+                                                <a tabindex="-1" vender="Horse Racing"><img
+                                                        fetchpriority="high"
+                                                        src="/assets/images/newimg/horseracing.webp?v=1.01"
+                                                        loading="lazy" class="ng-star-inserted"></a></li>
+                                            <li class="ng-star-inserted"
+                                                style="background: rgb(32, 32, 32); border: 0.59vw solid rgb(32, 32, 32);">
+                                                <a tabindex="-1"><img
+                                                        fetchpriority="high"
+                                                        src="/assets/images/newimg/cmd.webp?v=1.01" loading="lazy"
+                                                        class="ng-star-inserted"></a></li>
+                                            <li class="ng-star-inserted"
+                                                style="background: rgb(32, 32, 32); border: 0.59vw solid rgb(32, 32, 32);">
+                                                <a tabindex="-1"><img
+                                                        fetchpriority="high"
+                                                        src="/assets/images/newimg/bti.webp?v=1.01" loading="lazy"
+                                                        class="ng-star-inserted"></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>        
+                <div class="recommend ng-star-inserted"
+                    style="background: rgb(32, 32, 32);" bis_skin_checked="1">
+                    <div class="recommend-title" style="display: flex;"
+                        bis_skin_checked="1"><span class="recommendLine"
+                            style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);"></span>
+                        <h2 style="color: rgb(255, 255, 255);">Featured Games</h2>
+                    </div>
+                    <div class="recommend-bg" bis_skin_checked="1">
+                        <div id="spFeaGame" class="recommend-main" bis_skin_checked="1">
+                            <div class="recommend-card ng-star-inserted"
+                                bis_skin_checked="1"><a  ><img  
+                                        fetchpriority="high"
+                                        alt="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/b1459690-3d17-4cf6-51ab-1dcd338a1100/public"
+                                        src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/b1459690-3d17-4cf6-51ab-1dcd338a1100/public"></a>
+                            </div>
+                            <div class="recommend-card ng-star-inserted"
+                                bis_skin_checked="1"><a  ><img  
+                                        fetchpriority="high"
+                                        alt="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/a8fb9518-4206-4280-d55c-866079486500/public"
+                                        src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/a8fb9518-4206-4280-d55c-866079486500/public"></a>
+                            </div> 
+                        </div>
+                    </div>
+                </div> 
+                <div class="recommend ng-star-inserted"
+                    style="background: rgb(32, 32, 32);" bis_skin_checked="1">
+                    <div class="recommend-title" style="display: flex;"
+                        bis_skin_checked="1"><span class="recommendLine"
+                            style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);"></span>
+                        <h2 style="color: rgb(255, 255, 255);">Hot Casino Games</h2>
+                    </div>
+                    <div class="recommend-bg games" bis_skin_checked="1">
+                        <div id="featuredGames" class="recommend-main games-main"
+                            bis_skin_checked="1">
+                            <div class="games-box ng-star-inserted" bis_skin_checked="1">
+                                <div class="pic" bis_skin_checked="1"><a
+                                         ><img  
+                                            fetchpriority="high" loading="lazy"
+                                            alt="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/d1af5909-b0a6-4fa5-ef92-2fdbd8b47400/public"
+                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/d1af5909-b0a6-4fa5-ef92-2fdbd8b47400/public"></a>
+                                </div>
+                                <div class="text" bis_skin_checked="1">Avaitor</div>
+                            </div>
+                            <div class="games-box ng-star-inserted" bis_skin_checked="1">
+                                <div class="pic" bis_skin_checked="1"><a
+                                         ><img  
+                                            fetchpriority="high" loading="lazy"
+                                            alt="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/837207e4-1449-452d-8d6b-4787cc44fa00/public"
+                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/837207e4-1449-452d-8d6b-4787cc44fa00/public"></a>
+                                </div>
+                                <div class="text" bis_skin_checked="1">Crazy Time</div>
+                            </div>
+                            <div class="games-box ng-star-inserted" bis_skin_checked="1">
+                                <div class="pic" bis_skin_checked="1"><a
+                                         ><img  
+                                            fetchpriority="high" loading="lazy"
+                                            alt="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/e7c16848-4b9c-4553-3f68-4d23e8b9c700/public"
+                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/e7c16848-4b9c-4553-3f68-4d23e8b9c700/public"></a>
+                                </div>
+                                <div class="text" bis_skin_checked="1">Funky Time</div>
+                            </div>
+                            <div class="games-box ng-star-inserted" bis_skin_checked="1">
+                                <div class="pic" bis_skin_checked="1"><a
+                                         ><img  
+                                            fetchpriority="high" loading="lazy"
+                                            alt="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/1aec21b7-ba69-4d38-8c62-b01a78a80c00/public"
+                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/1aec21b7-ba69-4d38-8c62-b01a78a80c00/public"></a>
+                                </div>
+                                <div class="text" bis_skin_checked="1">AWC Lobby</div>
+                            </div>
+                            <div class="games-box ng-star-inserted" bis_skin_checked="1">
+                                <div class="pic" bis_skin_checked="1"><a
+                                         ><img  
+                                            fetchpriority="high" loading="lazy"
+                                            alt="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/628ea734-f138-4631-1833-7b90b59ddb00/public"
+                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/628ea734-f138-4631-1833-7b90b59ddb00/public"></a>
+                                </div>
+                                <div class="text" bis_skin_checked="1">Cricket King18</div>
+                            </div>
+                            <div class="games-box ng-star-inserted" bis_skin_checked="1">
+                                <div class="pic" bis_skin_checked="1"><a
+                                         ><img  
+                                            fetchpriority="high" loading="lazy"
+                                            alt="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/d8400141-1cab-41e8-d627-cdaf5d24da00/public"
+                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/d8400141-1cab-41e8-d627-cdaf5d24da00/public"></a>
+                                </div>
+                                <div class="text" bis_skin_checked="1">Super Ace</div>
+                            </div>
+                            <div class="games-box ng-star-inserted" bis_skin_checked="1">
+                                <div class="pic" bis_skin_checked="1"><a
+                                         ><img  
+                                            fetchpriority="high" loading="lazy"
+                                            alt="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/32e42c4a-b892-4f77-19ad-2571cd63b200/public"
+                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/32e42c4a-b892-4f77-19ad-2571cd63b200/public"></a>
+                                </div>
+                                <div class="text" bis_skin_checked="1">Crazy FaFaFa</div>
+                            </div>
+                            <div class="games-box ng-star-inserted" bis_skin_checked="1">
+                                <div class="pic" bis_skin_checked="1"><a
+                                         ><img  
+                                            fetchpriority="high" loading="lazy"
+                                            alt="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/ef7f16ae-b333-46ff-6e9a-8c41f7b4f200/public"
+                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/ef7f16ae-b333-46ff-6e9a-8c41f7b4f200/public"></a>
+                                </div>
+                                <div class="text" bis_skin_checked="1">Cricket Sah75</div>
+                            </div>
+                            <div class="games-box ng-star-inserted" bis_skin_checked="1">
+                                <div class="pic" bis_skin_checked="1"><a
+                                         ><img  
+                                            fetchpriority="high" loading="lazy"
+                                            alt="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/10fc83c3-4494-406f-b9fd-e93d61633300/public"
+                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/10fc83c3-4494-406f-b9fd-e93d61633300/public"></a>
+                                </div>
+                                <div class="text" bis_skin_checked="1">Coin Toss</div>
+                            </div>
+                            <div class="games-box ng-star-inserted" bis_skin_checked="1">
+                                <div class="pic" bis_skin_checked="1"><a
+                                         ><img  
+                                            fetchpriority="high" loading="lazy"
+                                            alt="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/7d3a2344-9053-4a98-d40a-2920ae768600/public"
+                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/7d3a2344-9053-4a98-d40a-2920ae768600/public"></a>
+                                </div>
+                                <div class="text" bis_skin_checked="1">Sicbo</div>
+                            </div>
+                            <div class="games-box ng-star-inserted" bis_skin_checked="1">
+                                <div class="pic" bis_skin_checked="1"><a
+                                         ><img  
+                                            fetchpriority="high" loading="lazy"
+                                            alt="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/4afd5aed-e9f2-49d2-cbdd-e585c7a0e600/public"
+                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/4afd5aed-e9f2-49d2-cbdd-e585c7a0e600/public"></a>
+                                </div>
+                                <div class="text" bis_skin_checked="1">Number Matka</div>
+                            </div>
+                            <div class="games-box ng-star-inserted" bis_skin_checked="1">
+                                <div class="pic" bis_skin_checked="1"><a
+                                         ><img  
+                                            fetchpriority="high" loading="lazy"
+                                            alt="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/97966b54-85fe-462b-cb76-f4a939aea500/public"
+                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/97966b54-85fe-462b-cb76-f4a939aea500/public"></a>
+                                </div>
+                                <div class="text" bis_skin_checked="1">NumberKing</div>
+                            </div>
+                            <div class="games-box ng-star-inserted" bis_skin_checked="1">
+                                <div class="pic" bis_skin_checked="1"><a
+                                         ><img  
+                                            fetchpriority="high" loading="lazy"
+                                            alt="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/31bf49e9-d505-44ca-f514-1b55b750d800/public"
+                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/31bf49e9-d505-44ca-f514-1b55b750d800/public"></a>
+                                </div>
+                                <div class="text" bis_skin_checked="1">Ander Bahar</div>
+                            </div>
+                            <div class="games-box ng-star-inserted" bis_skin_checked="1">
+                                <div class="pic" bis_skin_checked="1"><a
+                                         ><img  
+                                            fetchpriority="high" loading="lazy"
+                                            alt="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/b8d59170-b8cb-4eca-01ed-2b0f5a7e3b00/public"
+                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/b8d59170-b8cb-4eca-01ed-2b0f5a7e3b00/public"></a>
+                                </div>
+                                <div class="text" bis_skin_checked="1">Super Ace 2</div>
+                            </div>
+                            <div class="games-box ng-star-inserted" bis_skin_checked="1">
+                                <div class="pic" bis_skin_checked="1"><a
+                                         ><img  
+                                            fetchpriority="high" loading="lazy"
+                                            alt="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/910653ed-4dd2-4506-4c0e-68db764c5e00/public"
+                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/910653ed-4dd2-4506-4c0e-68db764c5e00/public"></a>
+                                </div>
+                                <div class="text" bis_skin_checked="1">Super Ace Deluxe
+                                </div>
+                            </div>
+                            <div class="games-box ng-star-inserted" bis_skin_checked="1">
+                                <div class="pic" bis_skin_checked="1"><a
+                                         ><img  
+                                            fetchpriority="high" loading="lazy"
+                                            alt="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/25d3072d-3223-4468-e797-edcf5e285600/public"
+                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/25d3072d-3223-4468-e797-edcf5e285600/public"></a>
+                                </div>
+                                <div class="text" bis_skin_checked="1">Super Ace Joker
+                                </div>
+                            </div>
+                            <div class="games-box ng-star-inserted" bis_skin_checked="1">
+                                <div class="pic" bis_skin_checked="1"><a
+                                         ><img  
+                                            fetchpriority="high" loading="lazy"
+                                            alt="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/b3cbe547-21af-44a3-7c88-4f1af87abc00/public"
+                                            src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/b3cbe547-21af-44a3-7c88-4f1af87abc00/public"></a>
+                                </div>
+                                <div class="text" bis_skin_checked="1">AWC Lobby</div>
+                            </div> 
+                        </div>
+                    </div>
+                </div> 
+                <div class="nav-wrap ng-star-inserted" bis_skin_checked="1">
+                    <div class="nav-content-wrap" style="padding-top: 10px;"
+                        bis_skin_checked="1">
+                        <div class="nav-content-inner" bis_skin_checked="1">
+                            <div class="content-box ng-star-inserted" bis_skin_checked="1">
+                                <div class="layout-brand" bis_skin_checked="1">
+                                    <div class="card2" bis_skin_checked="1">
+                                        <div class="side-menu-games-grid"
+                                            bis_skin_checked="1">
+                                            <div  
+                                                class="side-menu-games-grid-cell ng-star-inserted"
+                                                style="color: rgb(255, 255, 255);" bis_skin_checked="1">
+                                                <div  
+                                                    class="side-menu-games-grid-cell__icon" bis_skin_checked="1"><img
+                                                        fetchpriority="high"
+                                                        alt="icon-casino"
+                                                        src="/assets/images/icon-casino.png?v=1734668315484"
+                                                        loading="lazy"></div>
+                                                <div  
+                                                    class="side-menu-games-grid-cell__text" bis_skin_checked="1"> Indian
+                                                    Casino </div>
+                                            </div>
+                                            <div  
+                                                class="side-menu-games-grid-cell ng-star-inserted"
+                                                style="background-color: rgb(102, 102, 102); color: rgb(250, 250, 250);"
+                                                bis_skin_checked="1">
+                                                <div  
+                                                    class="side-menu-games-grid-cell__icon" bis_skin_checked="1"><img
+                                                        fetchpriority="high"
+                                                        alt="icon-casino"
+                                                        src="/assets/images/icon-casino.png?v=1734668315484"
+                                                        loading="lazy"></div>
+                                                <div  
+                                                    class="side-menu-games-grid-cell__text" bis_skin_checked="1"> Casino
+                                                    Providers </div>
+                                            </div>
+                                        </div>
+                                        <ul  >
+                                            <li web-category-type="VENDOR" game-type="2"
+                                                class="ng-star-inserted"><a tabindex="-1"
+                                                    style="border-radius: 5px; border: 2px solid rgb(13, 13, 13);"><img
+                                                        fetchpriority="high"
+                                                        alt="ROYALGAMING"
+                                                        src="/assets/images/games/CasinoNew/lobby.webp"
+                                                        loading="lazy"></a></li>
+                                            <li web-category-type="VENDOR" game-type="2"
+                                                class="ng-star-inserted"><a tabindex="-1"
+                                                    style="border-radius: 5px; border: 2px solid rgb(13, 13, 13);"><img
+                                                        fetchpriority="high" loading="lazy"
+                                                        src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/62f6b07b-8965-4f65-7910-e61c532bd400/public"></a>
+                                            </li>
+                                            <li web-category-type="VENDOR" game-type="2"
+                                                class="ng-star-inserted"><a tabindex="-1"
+                                                    style="border-radius: 5px; border: 2px solid rgb(13, 13, 13);"><img
+                                                        fetchpriority="high" loading="lazy"
+                                                        src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/27717d3e-24d1-4bbb-773f-71b883efed00/public"></a>
+                                            </li>
+                                            <li web-category-type="VENDOR" game-type="2"
+                                                class="ng-star-inserted"><a tabindex="-1"
+                                                    style="border-radius: 5px; border: 2px solid rgb(13, 13, 13);"><img
+                                                        fetchpriority="high" loading="lazy"
+                                                        src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/5641ae75-2b94-4fb4-59ab-0cad94a00200/public"></a>
+                                            </li>
+                                            <li web-category-type="VENDOR" game-type="2"
+                                                class="ng-star-inserted"><a tabindex="-1"
+                                                    style="border-radius: 5px; border: 2px solid rgb(13, 13, 13);"><img
+                                                        fetchpriority="high" loading="lazy"
+                                                        src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/51805e0c-a1b4-4561-4981-ac17eef1f700/public"></a>
+                                            </li>
+                                            <li web-category-type="VENDOR" game-type="2"
+                                                class="ng-star-inserted"><a tabindex="-1"
+                                                    style="border-radius: 5px; border: 2px solid rgb(13, 13, 13);"><img
+                                                        fetchpriority="high" loading="lazy"
+                                                        src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/80a39298-af26-4034-aa95-4a2a13462200/public"></a>
+                                            </li>
+                                            <li web-category-type="VENDOR" game-type="2"
+                                                class="ng-star-inserted"><a tabindex="-1"
+                                                    style="border-radius: 5px; border: 2px solid rgb(13, 13, 13);"><img
+                                                        fetchpriority="high" loading="lazy"
+                                                        src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/5fecd9cb-c01e-4f07-b03d-21b03c4adf00/public"></a>
+                                            </li>
+                                            <li web-category-type="VENDOR" game-type="2"
+                                                class="ng-star-inserted"><a tabindex="-1"
+                                                    style="border-radius: 5px; border: 2px solid rgb(13, 13, 13);"><img
+                                                        fetchpriority="high" loading="lazy"
+                                                        src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/33d2d7e4-20b6-4985-977f-a1e482ed6800/public"></a>
+                                            </li>
+                                            <li web-category-type="VENDOR" game-type="2"
+                                                class="ng-star-inserted"><a tabindex="-1"
+                                                    style="border-radius: 5px; border: 2px solid rgb(13, 13, 13);"><img
+                                                        fetchpriority="high" loading="lazy"
+                                                        src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/40a08272-7125-4bb8-c1d9-8961aed8b600/public"></a>
+                                            </li>
+                                            <li web-category-type="VENDOR" game-type="2"
+                                                class="ng-star-inserted"><a tabindex="-1"
+                                                    style="border-radius: 5px; border: 2px solid rgb(13, 13, 13);"><img
+                                                        fetchpriority="high" loading="lazy"
+                                                        src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/b11545df-2586-4d5e-b9ab-08288120a000/public"></a>
+                                            </li>
+                                            <li web-category-type="VENDOR" game-type="2"
+                                                class="ng-star-inserted"><a tabindex="-1"
+                                                    style="border-radius: 5px; border: 2px solid rgb(13, 13, 13);"><img
+                                                        fetchpriority="high" loading="lazy"
+                                                        src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/b49c7fdd-ccea-460a-fe62-348650372b00/public"></a>
+                                            </li>
+                                            <li web-category-type="VENDOR" game-type="2"
+                                                class="ng-star-inserted"><a tabindex="-1"
+                                                    style="border-radius: 5px; border: 2px solid rgb(13, 13, 13);"><img
+                                                        fetchpriority="high" loading="lazy"
+                                                        src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/50367c67-8c03-47ea-18d9-ec27b253c800/public"></a>
+                                            </li>
+                                            <li web-category-type="VENDOR" game-type="2"
+                                                class="ng-star-inserted"><a tabindex="-1"
+                                                    style="border-radius: 5px; border: 2px solid rgb(13, 13, 13);"><img
+                                                        fetchpriority="high" loading="lazy"
+                                                        src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/539e9a53-45bc-40f4-a46f-a072f701cd00/public"></a>
+                                            </li>
+                                            <li web-category-type="VENDOR" game-type="2"
+                                                class="ng-star-inserted"><a tabindex="-1"
+                                                    style="border-radius: 5px; border: 2px solid rgb(13, 13, 13);"><img
+                                                        fetchpriority="high" loading="lazy"
+                                                        src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/71d693e0-d3be-4f24-37e0-b388e0d18b00/public"></a>
+                                            </li>
+                                            <li web-category-type="VENDOR" game-type="2"
+                                                class="ng-star-inserted"><a tabindex="-1"
+                                                    style="border-radius: 5px; border: 2px solid rgb(13, 13, 13);"><img
+                                                        fetchpriority="high" loading="lazy"
+                                                        src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/fdd9adff-4767-45d7-3788-7f1fa3806300/public"></a>
+                                            </li>
+                                            <li web-category-type="VENDOR" game-type="2"
+                                                class="ng-star-inserted"><a tabindex="-1"
+                                                    style="border-radius: 5px; border: 2px solid rgb(13, 13, 13);"><img
+                                                        fetchpriority="high" loading="lazy"
+                                                        src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/05bf6278-27d5-4f02-190e-a34f15a62000/public"></a>
+                                            </li>
+                                            <li web-category-type="VENDOR" game-type="2"
+                                                class="ng-star-inserted"><a tabindex="-1"
+                                                    style="border-radius: 5px; border: 2px solid rgb(13, 13, 13);"><img
+                                                        fetchpriority="high" loading="lazy"
+                                                        src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/b1581af1-6b19-421d-706d-75dd97976c00/public"></a>
+                                            </li>
+                                            <li web-category-type="VENDOR" game-type="2"
+                                                class="ng-star-inserted"><a tabindex="-1"
+                                                    style="border-radius: 5px; border: 2px solid rgb(13, 13, 13);"><img
+                                                        fetchpriority="high" loading="lazy"
+                                                        src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/3afc3296-7c7e-4a96-90b6-75b19eda3300/public"></a>
+                                            </li>
+                                            <li web-category-type="VENDOR" game-type="2"
+                                                class="ng-star-inserted"><a tabindex="-1"
+                                                    style="border-radius: 5px; border: 2px solid rgb(13, 13, 13);"><img
+                                                        fetchpriority="high" loading="lazy"
+                                                        src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/90907cdb-4903-498f-a32d-7a5e9719b500/public"></a>
+                                            </li>
+                                            <li web-category-type="VENDOR" game-type="2"
+                                                class="ng-star-inserted"><a tabindex="-1"
+                                                    style="border-radius: 5px; border: 2px solid rgb(13, 13, 13);"><img
+                                                        fetchpriority="high" loading="lazy"
+                                                        src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/885278de-83fa-460a-e0bd-a4eace749a00/public"></a>
+                                            </li>
+                                            <li web-category-type="VENDOR" game-type="2"
+                                                class="ng-star-inserted"><a tabindex="-1"
+                                                    style="border-radius: 5px; border: 2px solid rgb(13, 13, 13);"><img
+                                                        fetchpriority="high" loading="lazy"
+                                                        src="https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/74eed0c1-8b72-4ccb-095f-0d3153cfed00/public"></a>
+                                            </li> 
+                                        </ul>  
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><app-footer _nghost-ng-c1613245550="">
+            <div _ngcontent-ng-c1613245550=""
+                class="mobile-footer ng-tns-c57-1 ng-trigger ng-trigger-footerFadeInAni ng-star-inserted"
+                style="background: rgb(164, 42, 47);" bis_skin_checked="1">
+                <footer _ngcontent-ng-c1613245550="" class="footer ng-star-inserted"
+                    style="background: rgb(164, 42, 47);">
+                    <div _ngcontent-ng-c1613245550="" class="footer-seo-content-wrapper ng-star-inserted folded"
+                        bis_skin_checked="1">
+                        <div _ngcontent-ng-c1613245550="" bis_skin_checked="1">
+                            <div id="footerSeoContent" class="description-container">
+                                <div class="title"><span class="title-text">wfh247.vip India - Explore Top Online Gaming
+                                        Platforms in India: A World of Excitement Awaits </span></div>
+                                <div class="main-landing-page-content">
+                                    <p><a href="https://wfh247.fun/home" target="_blank"
+                                            rel="noopener noreferrer">India's online gaming</a> landscape is booming,
+                                        offering a diverse array of platforms where players can indulge in everything
+                                        from sports betting to casino games. Whether you’re into <a
+                                            class="waffle-rich-text-link"
+                                            style="text-decoration: underline; color: #ffb80a !important; font-family: Arial; font-size: 13px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; text-decoration-skip-ink: none;">cricket</a>,
+                                        football, or prefer the thrill of a <a class="waffle-rich-text-link"
+                                            style="text-decoration: underline; color: #ffb80a !important; font-family: Arial; font-size: 13px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; text-decoration-skip-ink: none;">
+                                            live casino</a>, India’s leading gaming platforms have you covered. These
+                                        sites partner with top game providers to deliver an unparalleled experience,
+                                        ensuring every player finds something to enjoy. Ready to dive into the action?
+                                        Let’s explore what India’s top online gaming platforms have to offer.</p>
+                                    <p><strong>Diverse Gaming Options for Every Player</strong><br> India's gaming
+                                        platforms are renowned for their variety, catering to players with different
+                                        tastes and preferences. From traditional sports betting to modern <a
+                                            class="waffle-rich-text-link"
+                                            style="text-decoration: underline; color: #ffb80a !important; font-family: Arial; font-size: 13px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; text-decoration-skip-ink: none;">online
+                                            casino games</a>, the options are endless. With providers like Microgaming,
+                                        Evolution, and NETENT at the forefront, you can expect high-quality games with
+                                        engaging graphics and seamless gameplay.</p>
+                                    <p>&nbsp;</p>
+                                    <p>● Sports Betting and Exchange Betting: For sports enthusiasts, platforms powered
+                                        by providers like I-Sports, <a class="waffle-rich-text-link"
+                                            style="text-decoration: underline; color: #ffb80a !important; font-family: Arial; font-size: 13px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; text-decoration-skip-ink: none;">SBO
+                                            Sports</a>, and BJ Sports offer an array of betting options. Whether it’s
+                                        cricket, football, or horse racing, you’ll find markets &nbsp; &nbsp; &nbsp;
+                                        &nbsp;&nbsp;<br> covering every major event. Betting exchanges, where you bet
+                                        against other players, are also gaining popularity. Providers like Exchange and
+                                        Horsebook are leading the way in offering dynamic and interactive betting
+                                        experiences.&nbsp;<br> ● &nbsp;Live Casino: If you crave the excitement of a
+                                        live casino, you’ll find plenty to enjoy. With Evolution and Sexy leading the
+                                        charge, Indian platforms offer live dealer games that bring the casino
+                                        experience to your screen. From <a class="waffle-rich-text-link"
+                                            style="text-decoration: underline; color: #ffb80a !important; font-family: Arial; font-size: 13px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; text-decoration-skip-ink: none;">blackjack
+                                            to roulette</a>, you can enjoy real-time gaming with professional dealers,
+                                        all from the comfort of your home.<br> ● &nbsp;<a class="waffle-rich-text-link"
+                                            style="text-decoration: underline; color: #ffb80a !important; font-family: Arial; font-size: 13px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; text-decoration-skip-ink: none;">Slot
+                                            Games</a>: Slots remain a favorite among online gamers, and India’s
+                                        platforms do not disappoint. Providers like <a class="waffle-rich-text-link"
+                                            style="text-decoration: underline; color: #ffb80a !important; font-family: Arial; font-size: 13px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; text-decoration-skip-ink: none;">JILI</a>,
+                                        <a class="waffle-rich-text-link"
+                                            style="text-decoration: underline; color: #ffb80a !important; font-family: Arial; font-size: 13px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; text-decoration-skip-ink: none;">Pocket
+                                            Games</a>, and <a class="waffle-rich-text-link"
+                                            style="text-decoration: underline; color: #ffb80a !important; font-family: Arial; font-size: 13px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; text-decoration-skip-ink: none;">RICH88</a>
+                                        offer a wide selection of slot games, each with unique themes, bonus features,
+                                        and the potential for big wins. Whether you prefer classic slots or more modern
+                                        video slots, there’s something for everyone.<br> ● &nbsp;<a
+                                            class="waffle-rich-text-link"
+                                            style="text-decoration: underline; color: #ffb80a !important; font-family: Arial; font-size: 13px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; text-decoration-skip-ink: none;">Table
+                                            Games</a>: For those who enjoy strategy-based games, table games from
+                                        providers like PT, WorldMatch, and FastSpin are a must-try. You’ll find
+                                        everything from poker to baccarat, each offering a unique challenge and the
+                                        chance to test your skills.<br> ● &nbsp;Specialty Games: India’s platforms also
+                                        cater to niche gaming interests. Providers like SPRIBE and <a
+                                            class="waffle-rich-text-link"
+                                            style="text-decoration: underline; color: #ffb80a !important; font-family: Arial; font-size: 13px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; text-decoration-skip-ink: none;">Yellow
+                                            Bat</a> offer specialty games that include <a class="waffle-rich-text-link"
+                                            style="text-decoration: underline; color: #ffb80a !important; font-family: Arial; font-size: 13px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; text-decoration-skip-ink: none;">crash
+                                            games</a>, bingo, and more. These games provide a break from the traditional
+                                        options and offer something fresh and exciting.</p>
+                                    <p>&nbsp;</p>
+                                    <p><strong>Safe and Secure Gaming Environment</strong><br> When it comes to online
+                                        gaming, security is a top concern for players. India’s leading platforms
+                                        prioritize player safety by partnering with trusted providers like NETENT,
+                                        WorldMatch, and Microgaming. These platforms utilize advanced encryption
+                                        technologies to protect your personal and financial information, ensuring a
+                                        secure gaming experience.</p>
+                                    <p>In addition to security, fairness is also a priority. Games are powered by
+                                        certified random number generators (RNGs) to ensure that every outcome is
+                                        unbiased and transparent. This commitment to fair play has made these platforms
+                                        trusted names in the industry, providing players with peace of mind as they
+                                        enjoy their favorite games.</p>
+                                    <p>&nbsp;</p>
+                                    <p><strong>Bonuses and Promotions to Boost Your Gameplay</strong><br> One of the
+                                        biggest draws of online gaming is the variety of bonuses and promotions on
+                                        offer. India’s top platforms are no exception, offering generous welcome
+                                        bonuses, cashback offers, and more. Providers like <a
+                                            class="waffle-rich-text-link"
+                                            style="text-decoration: underline; color: #ffb80a !important; font-family: Arial; font-size: 13px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; text-decoration-skip-ink: none;">JDB</a>,
+                                        RedTiger, and <a class="waffle-rich-text-link"
+                                            style="text-decoration: underline; color: #ffb80a !important; font-family: Arial; font-size: 13px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; text-decoration-skip-ink: none;">KingMaker</a>
+                                        are known for their exciting promotions, giving you more chances to play and
+                                        win.</p>
+                                    <p>&nbsp;</p>
+                                    <p>Be sure to take advantage of these offers to maximize your gameplay. Whether
+                                        you’re a new player or a regular on the platform, there are always promotions to
+                                        enhance your experience. Keep an eye out for special events and seasonal offers,
+                                        which often come with exclusive rewards and bonuses.</p>
+                                    <p>&nbsp;</p>
+                                    <p>● <a class="waffle-rich-text-link"
+                                            style="text-decoration: underline; color: #ffb80a !important; font-family: Arial; font-size: 13px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; text-decoration-skip-ink: none;">Referral
+                                            Programs</a>: Share the Fun and Earn Rewards<br> Online gaming is even more
+                                        fun when you can share it with friends. Many of India’s top platforms offer
+                                        referral programs that allow you to invite friends to join the action. When your
+                                        friends sign up and start playing, you’ll earn bonus credits or other rewards.
+                                        It’s a great way to build a gaming community while also earning extra perks for
+                                        yourself.<br> ● Mobile Gaming: Play Anytime, Anywhere<br> In today’s fast-paced
+                                        world, the ability to game on the go is essential. India’s leading platforms
+                                        understand this and have optimized their games for mobile play. Whether you’re
+                                        commuting, on a break, or simply relaxing at home, you can enjoy a seamless
+                                        gaming experience on your smartphone or tablet. Providers like PlayStar, Ludo,
+                                        and KA have designed their games to be mobile-friendly, ensuring that you never
+                                        miss out on the action, no matter where you are.</p>
+                                    <p>&nbsp;</p>
+                                    <p><strong>Join India’s Leading Gaming Platforms Today</strong><br> With such a
+                                        diverse range of options and top-notch providers, there’s never been a better
+                                        time to join India’s <a class="waffle-rich-text-link"
+                                            style="text-decoration: underline; color: #ffb80a !important; font-family: Arial; font-size: 13px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; text-decoration-skip-ink: none;">online
+                                            gaming community</a>. Whether you’re a seasoned player or new to the scene,
+                                        these platforms offer something for everyone. Sign up today and start exploring
+                                        the endless possibilities that await. Don’t forget to refer your friends and
+                                        take advantage of the generous bonuses and promotions available. Your next big
+                                        win could be just a click away!</p>
+                                </div>
+                            </div>
+                        </div><button _ngcontent-ng-c1613245550=""
+                            class="fold-btn button btn-secondary ng-star-inserted" fdprocessedid="nenvkf">Show
+                            More</button>
+                    </div> 
+                    <div _ngcontent-ng-c1613245550="" class="footer-top" style="justify-content: space-between;"
+                        bis_skin_checked="1">
+                        <div _ngcontent-ng-c1613245550="" class="list list--sponsor-data" bis_skin_checked="1">
+                            <div _ngcontent-ng-c1613245550="" class="list__title" style="color: rgb(255, 255, 255);"
+                                bis_skin_checked="1"> Sponsorships </div>
+                            <div _ngcontent-ng-c1613245550="" class="list__wrap" bis_skin_checked="1">
+                                <div _ngcontent-ng-c1613245550="" class="list__item item" bis_skin_checked="1">
+                                    <div _ngcontent-ng-c1613245550="" routerlink="/sponser/sponser-1" class="item__icon"
+                                        tabindex="0" bis_skin_checked="1"><img _ngcontent-ng-c1613245550=""
+                                            fetchpriority="high" alt="icon-sponsor"
+                                            src="/assets/images/sponser-icons/afc-bournemouth.png" loading="lazy">
+                                        <div _ngcontent-ng-c1613245550="" class="item__content" bis_skin_checked="1">
+                                            <div _ngcontent-ng-c1613245550="" class="txt"
+                                                style="color: rgb(255, 219, 219);" bis_skin_checked="1">AFC Bournemouth
+                                            </div>
+                                            <div _ngcontent-ng-c1613245550="" class="sub-txt"
+                                                style="color: rgb(255, 219, 219);" bis_skin_checked="1"><span
+                                                    _ngcontent-ng-c1613245550=""> Front Of Shirt Partner </span><span
+                                                    _ngcontent-ng-c1613245550=""> 2024 - 2025 </span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div _ngcontent-ng-c1613245550="" class="list__item item" bis_skin_checked="1">
+                                    <div _ngcontent-ng-c1613245550="" routerlink="/sponser/sponser-2" class="item__icon"
+                                        tabindex="0" bis_skin_checked="1"><img _ngcontent-ng-c1613245550=""
+                                            fetchpriority="high" alt="icon-sponsor"
+                                            src="/assets/images/sponser-icons/bologna-fc-1909 (1).png" loading="lazy">
+                                        <div _ngcontent-ng-c1613245550="" class="item__content" bis_skin_checked="1">
+                                            <div _ngcontent-ng-c1613245550="" class="txt"
+                                                style="color: rgb(255, 219, 219);" bis_skin_checked="1">Bologna FC 1909
+                                            </div>
+                                            <div _ngcontent-ng-c1613245550="" class="sub-txt"
+                                                style="color: rgb(255, 219, 219);" bis_skin_checked="1"><span
+                                                    _ngcontent-ng-c1613245550="">Betting Partner </span><span
+                                                    _ngcontent-ng-c1613245550=""> 2023 - 2024 </span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div _ngcontent-ng-c1613245550="" class="list__item item" bis_skin_checked="1">
+                                    <div _ngcontent-ng-c1613245550="" routerlink="/sponser/sponser-3" class="item__icon"
+                                        tabindex="0" bis_skin_checked="1"><img _ngcontent-ng-c1613245550=""
+                                            fetchpriority="high" alt="icon-sponsor"
+                                            src="/assets/images/sponser-icons/quetta-gladiators (1).png" loading="lazy">
+                                        <div _ngcontent-ng-c1613245550="" class="item__content" bis_skin_checked="1">
+                                            <div _ngcontent-ng-c1613245550="" class="txt"
+                                                style="color: rgb(255, 219, 219);" bis_skin_checked="1">Quetta
+                                                Gladiators</div>
+                                            <div _ngcontent-ng-c1613245550="" class="sub-txt"
+                                                style="color: rgb(255, 219, 219);" bis_skin_checked="1"><span
+                                                    _ngcontent-ng-c1613245550="">Titanium Sponsor</span><span
+                                                    _ngcontent-ng-c1613245550=""> 2023 </span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div _ngcontent-ng-c1613245550="" class="list__item item" bis_skin_checked="1">
+                                    <div _ngcontent-ng-c1613245550="" routerlink="/sponser/sponser-4" class="item__icon"
+                                        tabindex="0" bis_skin_checked="1"><img _ngcontent-ng-c1613245550=""
+                                            fetchpriority="high" alt="icon-sponsor"
+                                            src="/assets/images/sponser-icons/sunrisers-eastern-cape.png"
+                                            loading="lazy">
+                                        <div _ngcontent-ng-c1613245550="" class="item__content" bis_skin_checked="1">
+                                            <div _ngcontent-ng-c1613245550="" class="txt"
+                                                style="color: rgb(255, 219, 219);" bis_skin_checked="1">Sunrisers
+                                                Eastern Cape</div>
+                                            <div _ngcontent-ng-c1613245550="" class="sub-txt"
+                                                style="color: rgb(255, 219, 219);" bis_skin_checked="1"><span
+                                                    _ngcontent-ng-c1613245550="">Title Sponsor</span><span
+                                                    _ngcontent-ng-c1613245550=""> 2023 - 2024 </span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div _ngcontent-ng-c1613245550="" class="list__item item" bis_skin_checked="1">
+                                    <div _ngcontent-ng-c1613245550="" routerlink="/sponser/sponser-5" class="item__icon"
+                                        tabindex="0" bis_skin_checked="1"><img _ngcontent-ng-c1613245550=""
+                                            fetchpriority="high" alt="icon-sponsor"
+                                            src="/assets/images/sponser-icons/deccan-gladiators (1).png" loading="lazy">
+                                        <div _ngcontent-ng-c1613245550="" class="item__content" bis_skin_checked="1">
+                                            <div _ngcontent-ng-c1613245550="" class="txt"
+                                                style="color: rgb(255, 219, 219);" bis_skin_checked="1">Deccan
+                                                Gladiators</div>
+                                            <div _ngcontent-ng-c1613245550="" class="sub-txt"
+                                                style="color: rgb(255, 219, 219);" bis_skin_checked="1"><span
+                                                    _ngcontent-ng-c1613245550="">Title Sponsor</span><span
+                                                    _ngcontent-ng-c1613245550=""> 2023 - 2024 </span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <div _ngcontent-ng-c1613245550="" class="list list--ambassador-data" bis_skin_checked="1">
+                            <div _ngcontent-ng-c1613245550="" class="list__title" style="color: rgb(255, 255, 255);"
+                                bis_skin_checked="1">Brand Ambassadors</div>
+                            <div _ngcontent-ng-c1613245550="" class="list__wrap" bis_skin_checked="1">
+                                <div _ngcontent-ng-c1613245550="" routerlink="/ambassador/ambassador-1"
+                                    class="list__item item" tabindex="0" bis_skin_checked="1"><img
+                                        _ngcontent-ng-c1613245550="" fetchpriority="high"
+                                        mcdsrc="/assets/images/footer/ambassador_signature/mia-k.png" alt="mia-k"
+                                        src="/assets/desktop/footer/mia-k.png" loading="lazy" class="list__item--img"
+                                        style="filter: invert(0);">
+                                    <div _ngcontent-ng-c1613245550="" class="item__content" bis_skin_checked="1">
+                                        <div _ngcontent-ng-c1613245550="" class="txt" style="color: rgb(255, 219, 219);"
+                                            bis_skin_checked="1">Mia Khalifa</div>
+                                        <div _ngcontent-ng-c1613245550="" class="sub-txt"
+                                            style="color: rgb(255, 219, 219);" bis_skin_checked="1"><span
+                                                _ngcontent-ng-c1613245550=""> 2024 </span></div>
+                                    </div>
+                                </div>
+                                <div _ngcontent-ng-c1613245550="" routerlink="/ambassador/ambassador-2"
+                                    class="list__item item" tabindex="0" bis_skin_checked="1"><img
+                                        _ngcontent-ng-c1613245550="" fetchpriority="high"
+                                        mcdsrc="/assets/images/footer/ambassador_signature/kevin-pietersen.png"
+                                        alt="kevin-pietersen" src="/assets/desktop/footer/kevin-pietersen.png"
+                                        loading="lazy" class="list__item--img" style="filter: invert(0);">
+                                    <div _ngcontent-ng-c1613245550="" class="item__content" bis_skin_checked="1">
+                                        <div _ngcontent-ng-c1613245550="" class="txt" style="color: rgb(255, 219, 219);"
+                                            bis_skin_checked="1">Kevin Pietersen</div>
+                                        <div _ngcontent-ng-c1613245550="" class="sub-txt"
+                                            style="color: rgb(255, 219, 219);" bis_skin_checked="1"><span
+                                                _ngcontent-ng-c1613245550=""> 2024 - 2026 </span></div>
+                                    </div>
+                                </div>
+                                <div _ngcontent-ng-c1613245550="" routerlink="/ambassador/ambassador-3"
+                                    class="list__item item" tabindex="0" bis_skin_checked="1"><img
+                                        _ngcontent-ng-c1613245550="" fetchpriority="high"
+                                        mcdsrc="/assets/images/footer/ambassador_signature/amy-jacson.png"
+                                        alt="amy-jacson" src="/assets/desktop/footer/amy-jacson.png" loading="lazy"
+                                        class="list__item--img" style="filter: invert(0);">
+                                    <div _ngcontent-ng-c1613245550="" class="item__content" bis_skin_checked="1">
+                                        <div _ngcontent-ng-c1613245550="" class="txt" style="color: rgb(255, 219, 219);"
+                                            bis_skin_checked="1">Amy Jackson</div>
+                                        <div _ngcontent-ng-c1613245550="" class="sub-txt"
+                                            style="color: rgb(255, 219, 219);" bis_skin_checked="1"><span
+                                                _ngcontent-ng-c1613245550=""> 2023 - 2024 </span></div>
+                                    </div>
+                                </div>
+                                <div _ngcontent-ng-c1613245550="" routerlink="/ambassador/ambassador-4"
+                                    class="list__item item" tabindex="0" bis_skin_checked="1"><img
+                                        _ngcontent-ng-c1613245550="" fetchpriority="high"
+                                        mcdsrc="/assets/images/footer/ambassador_signature/hansika.png" alt="hansika"
+                                        src="/assets/desktop/footer/hansika.png" loading="lazy" class="list__item--img"
+                                        style="filter: invert(0);">
+                                    <div _ngcontent-ng-c1613245550="" class="item__content" bis_skin_checked="1">
+                                        <div _ngcontent-ng-c1613245550="" class="txt" style="color: rgb(255, 219, 219);"
+                                            bis_skin_checked="1">Hansika Motwani</div>
+                                        <div _ngcontent-ng-c1613245550="" class="sub-txt"
+                                            style="color: rgb(255, 219, 219);" bis_skin_checked="1"><span
+                                                _ngcontent-ng-c1613245550=""> 2023 - 2024 </span></div>
+                                    </div>
+                                </div>
+                                <div _ngcontent-ng-c1613245550="" routerlink="/ambassador/ambassador-5"
+                                    class="list__item item" tabindex="0" bis_skin_checked="1"><img
+                                        _ngcontent-ng-c1613245550="" fetchpriority="high"
+                                        mcdsrc="/assets/images/footer/ambassador_signature/wasim-s.svg" alt="wasim-s"
+                                        src="/assets/desktop/footer/wasim-s.svg" loading="lazy" class="list__item--img"
+                                        style="filter: invert(0);">
+                                    <div _ngcontent-ng-c1613245550="" class="item__content" bis_skin_checked="1">
+                                        <div _ngcontent-ng-c1613245550="" class="txt" style="color: rgb(255, 219, 219);"
+                                            bis_skin_checked="1">Wasim Akram</div>
+                                        <div _ngcontent-ng-c1613245550="" class="sub-txt"
+                                            style="color: rgb(255, 219, 219);" bis_skin_checked="1"><span
+                                                _ngcontent-ng-c1613245550=""> 2024 - 2025 </span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <div _ngcontent-ng-c1613245550="" class="pay ng-star-inserted" bis_skin_checked="1">
+                            <h2 _ngcontent-ng-c1613245550="" style="color: rgb(255, 255, 255);">Payment Methods</h2>
+                            <ul _ngcontent-ng-c1613245550="">
+                                <li _ngcontent-ng-c1613245550="" class="ng-star-inserted"><img
+                                        _ngcontent-ng-c1613245550="" fetchpriority="high" alt="pay16"
+                                        src="/assets/images/pay16.png" loading="lazy" class="ng-star-inserted"
+                                        style="filter: invert(0);"></li>
+                                <li _ngcontent-ng-c1613245550="" class="ng-star-inserted"><img
+                                        _ngcontent-ng-c1613245550="" fetchpriority="high" alt="pay22"
+                                        src="/assets/images/pay22.png?v='1.01'" loading="lazy" class="ng-star-inserted"
+                                        style="filter: invert(0);"></li>
+                                <li _ngcontent-ng-c1613245550="" class="ng-star-inserted"><img
+                                        _ngcontent-ng-c1613245550="" fetchpriority="high" alt="pay33"
+                                        src="/assets/images/pay33.png?v='1.01'" loading="lazy" class="ng-star-inserted"
+                                        style="filter: invert(0);"></li>
+                                <li _ngcontent-ng-c1613245550="" class="ng-star-inserted"><img
+                                        _ngcontent-ng-c1613245550="" fetchpriority="high" alt="pay34"
+                                        src="/assets/images/pay34.png?v='1.01'" loading="lazy" class="ng-star-inserted"
+                                        style="filter: invert(0);"></li>
+                                <li _ngcontent-ng-c1613245550="" class="ng-star-inserted"><img
+                                        _ngcontent-ng-c1613245550="" fetchpriority="high" alt="pay45"
+                                        src="/assets/images/pay45.png?v='1.01'" loading="lazy" class="ng-star-inserted"
+                                        style="filter: invert(0);"></li>
+                                <li _ngcontent-ng-c1613245550="" class="ng-star-inserted"><img
+                                        _ngcontent-ng-c1613245550="" fetchpriority="high" alt="pay17"
+                                        src="/assets/images/pay17.png" loading="lazy" class="ng-star-inserted"
+                                        style="filter: invert(0);"></li>
+                                <li _ngcontent-ng-c1613245550="" class="ng-star-inserted"><img
+                                        _ngcontent-ng-c1613245550="" fetchpriority="high" alt="pay18"
+                                        src="/assets/images/pay18.png" loading="lazy" class="ng-star-inserted"
+                                        style="filter: invert(0);"></li>
+                                <li _ngcontent-ng-c1613245550="" class="ng-star-inserted"><img
+                                        _ngcontent-ng-c1613245550="" fetchpriority="high" alt="pay20"
+                                        src="/assets/images/pay20.png" loading="lazy" class="ng-star-inserted"
+                                        style="filter: invert(0);"></li>
+                                <li _ngcontent-ng-c1613245550="" class="ng-star-inserted"><img
+                                        _ngcontent-ng-c1613245550="" fetchpriority="high" alt="pay47"
+                                        src="/assets/images/pay47.png" loading="lazy" class="ng-star-inserted"
+                                        style="filter: invert(0);"></li>
+                            </ul>
+                        </div>
+                        <div _ngcontent-ng-c1613245550="" class="safe ng-star-inserted" style="margin-bottom: 0;"
+                            bis_skin_checked="1">
+                            <h2 _ngcontent-ng-c1613245550="" style="color: rgb(255, 255, 255);">Responsible Gaming</h2>
+                            <ul _ngcontent-ng-c1613245550="">
+                                <li _ngcontent-ng-c1613245550="" class="ng-star-inserted"><a
+                                        _ngcontent-ng-c1613245550="" class="ng-star-inserted"><img
+                                            _ngcontent-ng-c1613245550="" fetchpriority="high"
+                                            alt="Betting Responsibility" src="/assets/images/gamcare.png" loading="lazy"
+                                            style="filter: invert(0);"></a></li>
+                                <li _ngcontent-ng-c1613245550="" class="ng-star-inserted"><a
+                                        _ngcontent-ng-c1613245550="" class="ng-star-inserted"><img
+                                            _ngcontent-ng-c1613245550="" fetchpriority="high"
+                                            alt="Betting Responsibility" src="/assets/images/age-limit.png"
+                                            loading="lazy" style="filter: invert(0);"></a></li>
+                                <li _ngcontent-ng-c1613245550="" class="ng-star-inserted"><a
+                                        _ngcontent-ng-c1613245550="" class="ng-star-inserted"><img
+                                            _ngcontent-ng-c1613245550="" fetchpriority="high"
+                                            alt="Betting Responsibility" src="/assets/images/regulations.png"
+                                            loading="lazy" style="filter: invert(0);"></a></li>
+                            </ul>
+                        </div>  
+                    </div>
+                    <div _ngcontent-ng-c1613245550="" class="verticlll" style="top: -7px;" bis_skin_checked="1"></div>
+                    <div _ngcontent-ng-c1613245550="" class="footer-middle adjust-pos" style="top: -15px;"
+                        bis_skin_checked="1">
+                        <div _ngcontent-ng-c1613245550="" class="gaming-license" bis_skin_checked="1">
+                            <h2 _ngcontent-ng-c1613245550="" class="ng-star-inserted"
+                                style="color: rgb(255, 255, 255);">Gaming License </h2>
+                            <ul _ngcontent-ng-c1613245550="" class="ng-star-inserted">
+                                <li _ngcontent-ng-c1613245550="" class="ng-star-inserted"><img
+                                        _ngcontent-ng-c1613245550="" fetchpriority="high" alt="Gaming License"
+                                        src="/assets/images/gaming_license.png" loading="lazy"
+                                        style="filter: drop-shadow(0px 1px 0px #000);"></li>
+                            </ul>
+                        </div> 
+                    </div>
+                    <div _ngcontent-ng-c1613245550="" class="footer-license adjust-pos" bis_skin_checked="1">
+                        <h1 _ngcontent-ng-c1613245550="" class="license-title" style="color: rgb(255, 255, 255);">
+                            wfh247.vip About Us</h1>
+                        <p _ngcontent-ng-c1613245550="" style="color: rgb(255, 219, 219);">At wfh247.vip, we're not just
+                            another gaming platform; we are a thriving and rapidly growing fantasy platform that's
+                            making waves in the gaming world. With over 100,000 active users and counting, we have
+                            emerged as a true leader in the realm of fantasy gaming.</p><br
+                            _ngcontent-ng-c1613245550="">
+                        <h1 _ngcontent-ng-c1613245550="" class="license-title" style="color: rgb(255, 255, 255);">Our
+                            Commitment to Excellence</h1>
+                        <p _ngcontent-ng-c1613245550="" style="color: rgb(255, 219, 219);">What sets us apart is our
+                            unwavering commitment to providing you with an unparalleled gaming experience. Our prize
+                            pools are not just impressive; they are the stuff dreams are made of. When you play with
+                            wfh247.vip, you're not just playing a game; you're embarking on an exciting journey filled
+                            with possibilities. </p><br _ngcontent-ng-c1613245550="">
+                        <h1 _ngcontent-ng-c1613245550="" class="license-title" style="color: rgb(255, 255, 255);">Fair
+                            play is our priority</h1>
+                        <p _ngcontent-ng-c1613245550="" style="color: rgb(255, 219, 219);">We understand that trust is
+                            paramount in the gaming world. That's why we take great pride in our international
+                            certification, which ensures that you can enjoy our games with the peace of mind that
+                            fairness and integrity are at the core of everything we do. When you play on our platform,
+                            you can be confident that it's a level playing field for all. </p><br
+                            _ngcontent-ng-c1613245550="">
+                        <h1 _ngcontent-ng-c1613245550="" class="license-title" style="color: rgb(255, 255, 255);">
+                            Beating Boredom, One Game at a Time </h1>
+                        <p _ngcontent-ng-c1613245550="" style="color: rgb(255, 219, 219);">But wfh247.vip is more than
+                            just a place to play games; it's your way to have fun and escape from the everyday routine.
+                            We're here to make sure you never feel bored. Our platform is all about giving you a
+                            thrilling experience, lots of enjoyment, and the opportunity to win great prizes. </p><br
+                            _ngcontent-ng-c1613245550="">
+                        <h1 _ngcontent-ng-c1613245550="" class="license-title" style="color: rgb(255, 255, 255);">
+                            Top-notch fantasy cricket games</h1>
+                        <p _ngcontent-ng-c1613245550="" style="color: rgb(255, 219, 219);">If cricket is your passion,
+                            you're in the right place. We offer a range of top-notch fantasy cricket games that put you
+                            in the midst of the action. Rub virtual shoulders with professional players and experience
+                            the thrill of the game like never before. </p><br _ngcontent-ng-c1613245550="">
+                        <h1 _ngcontent-ng-c1613245550="" class="license-title" style="color: rgb(255, 255, 255);">
+                            Enhancing Skills Through Gaming</h1>
+                        <p _ngcontent-ng-c1613245550="" style="color: rgb(255, 219, 219);">We believe that gaming should
+                            be more than just fun; it should be a tool for personal growth. Playing fantasy cricket on
+                            our platform is not just about luck; it's a strategy game that enhances your analytical and
+                            decision-making skills. It's about picking the right players, creating winning teams, and
+                            earning maximum points. </p>
+                        <p _ngcontent-ng-c1613245550="" style="color: rgb(255, 219, 219);">So, whether you're a seasoned
+                            gamer or new to the world of fantasy gaming, wfh247.vip has something for everyone. Join us
+                            on this incredible journey and experience the magic of gaming like never before. </p>
+                        <p _ngcontent-ng-c1613245550="" style="color: rgb(255, 219, 219);">Welcome to wfh247.vip, where
+                            winning is not just a possibility; it's a way of life.</p>
+                    </div>
+                    <div _ngcontent-ng-c1613245550="" class="footer-bottom adjust-pos" bis_skin_checked="1">
+                        <div _ngcontent-ng-c1613245550="" class="logo headLogo"
+                            style="background-image: url(&quot;https://imagedelivery.net/HUCIz1_hKgf2q2UoNlOq1w/e700f2ba-dfe7-4010-ee3d-1f2efadf6a00/public&quot;);"
+                            bis_skin_checked="1"></div>
+                        <div _ngcontent-ng-c1613245550="" class="text" bis_skin_checked="1">
+                            <div _ngcontent-ng-c1613245550="" class="title" style="color: rgb(255, 255, 255);"
+                                bis_skin_checked="1">Best Quality Platform</div>
+                            <p _ngcontent-ng-c1613245550="" style="color: rgb(255, 219, 219);">@ 2023 wfh247.vip
+                                Copyrights. All Rights Reserved</p>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </app-footer>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon/question</title>
+    <g id="Referral" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="BJ-Referral-Program" transform="translate(-229, -1023)">
+            <g id="Reward-Details" transform="translate(11, 958)">
+                <g id="Active-Downline" transform="translate(124.5, 64)">
+                    <g id="icon/question" transform="translate(93.5, 1)">
+                        <circle id="Oval" fill="#EBEBEB" cx="6" cy="6" r="6"></circle>
+                        <path d="M5.08815789,7.61131124 L6.61578947,7.61131124 C6.47368421,6.19668588 8.25,5.75684438 8.25,4.28278098 C8.25,2.88004323 7.27894737,2.25 6.01184211,2.25 C5.08815789,2.25 4.30657895,2.6898415 3.75,3.33177233 L4.70921053,4.21145533 C5.02894737,3.89048991 5.34868421,3.66462536 5.78684211,3.66462536 C6.26052632,3.66462536 6.58026316,3.92615274 6.58026316,4.41354467 C6.58026316,5.30511527 4.85131579,5.98270893 5.08815789,7.61131124 Z M5.84605263,10.5 C6.45,10.5 6.9,10.0244957 6.9,9.40634006 C6.9,8.77629683 6.45,8.30079251 5.84605263,8.30079251 C5.24210526,8.30079251 4.80394737,8.77629683 4.80394737,9.40634006 C4.80394737,10.0244957 5.24210526,10.5 5.84605263,10.5 Z" id="Shape" fill="#878E92" fill-rule="nonzero"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

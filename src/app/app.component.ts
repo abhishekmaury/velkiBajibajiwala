@@ -250,14 +250,18 @@ export class AppComponent implements OnInit {
     this.dataServe.emitRouteActive.subscribe((res: any) => {
       this.activeIndex = res;
     })
+    this.themeToggleFun();
   }
+  
 
   themeToggleFun() {
 
     this.dataServe.changeTheme$.subscribe((res: any) => {
       this.classicTheme = res;
+      console.log(res);
+      
       if (this.classicTheme == true) {
-        this.router.navigate(['/sports'])
+        this.router.navigate(['/classichome'])
       } else {
         this.router.navigate(['/home'])
       }

@@ -681,5 +681,8 @@ export class DataHandlerService implements OnInit {
   getThemeFlag(data : any){
     this.themeFlag.next(data)
   }
+    getWebsiteData1(domain: any) {
+    return this.http.get(`https://designapi.ctfcgames.com/api/v1/website/details/${domain}`)
+  }
 }
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="5px" viewBox="0 0 22 5" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon-editor</title>
+    <g id="icon-set最新整理" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="images/h5/icon-set" transform="translate(-742.000000, -616.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <g id="icon-editor" transform="translate(742.000000, 616.000000)">
+                <path d="M2.5,0 C3.88071187,0 5,1.11928813 5,2.5 C5,3.88071187 3.88071187,5 2.5,5 C1.11928813,5 0,3.88071187 0,2.5 C0,1.11928813 1.11928813,0 2.5,0 Z M11,0 C12.3807119,0 13.5,1.11928813 13.5,2.5 C13.5,3.88071187 12.3807119,5 11,5 C9.61928813,5 8.5,3.88071187 8.5,2.5 C8.5,1.11928813 9.61928813,0 11,0 Z M19.5,0 C20.8807119,0 22,1.11928813 22,2.5 C22,3.88071187 20.8807119,5 19.5,5 C18.1192881,5 17,3.88071187 17,2.5 C17,1.11928813 18.1192881,0 19.5,0 Z" id="形状结合"></path>
+            </g>
+        </g>
+    </g>
+</svg>

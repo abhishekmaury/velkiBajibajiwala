@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon-cross-type01</title>
+    <g id="icon-set最新整理" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="images/h5/icon-set" transform="translate(-61.000000, -179.000000)" fill-rule="nonzero">
+            <g id="icon-cross-type01" transform="translate(61.000000, 179.000000)">
+                <rect id="Rectangle" fill="#000000" transform="translate(14.993706, 14.999289) rotate(-45.000000) translate(-14.993706, -14.999289) " x="-5.01129404" y="14.7942893" width="40.01" height="1"></rect>
+                <polygon id="Path" fill="#FFFFFF" points="29 0 0 29 1 30 30 1 29 0"></polygon>
+                <rect id="Rectangle" fill="#000000" transform="translate(14.993706, 14.999289) rotate(-45.000000) translate(-14.993706, -14.999289) " x="14.788706" y="-5.00571068" width="1" height="40.01"></rect>
+                <polygon id="Path" fill="#FFFFFF" points="1 0 0 1 29 30 30 29 1 0"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

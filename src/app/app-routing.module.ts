@@ -14,10 +14,12 @@ import { MarketPremiumParlayComponent } from './components/market-premium-parlay
 import { MarketTossParlayComponent } from './components/market-toss-parlay/market-toss-parlay.component';
 import { AnouncementPopupComponent } from './components/anouncement-popup/anouncement-popup.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { HomeComponent1 } from './components/classic/home/home.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, data: { animation: 'HomePage' } },
+  { path: 'classichome', component: HomeComponent1 },
   { path: 'login', component: LoginComponent, data: { animation: 'LoginPage' } },
   { path: 'sign-up', component: SignUpComponent, data: { animation: 'LoginPage' } },
   { path: 'sports/:type/:stype', component: SportsComponent, data: { animation: 'SportsPage' } },

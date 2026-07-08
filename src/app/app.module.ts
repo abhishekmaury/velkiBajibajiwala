@@ -4,6 +4,7 @@ import { AuthInterceptorInterceptor } from './authInterceptor.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
+import { HomeComponent1 } from './components/classic/home/home.component';
 import { register } from 'swiper/element/bundle';
 import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -44,6 +45,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { StakeSettingsComponent } from './components/stake-settings/stake-settings.component';
 import { GetSocketUrlService } from './services/get-socket-url.service';
 import { SharedModule } from './directives/shared.module';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 register();
 export function initApp(configService: GetSocketUrlService) {
@@ -80,6 +82,7 @@ export function initApp(configService: GetSocketUrlService) {
     SearchCasinoComponent,
     SignUpComponent,
     StakeSettingsComponent,
+    HomeComponent1
   ],
   imports: [
     BrowserModule,
@@ -100,7 +103,8 @@ export function initApp(configService: GetSocketUrlService) {
         }
       }
     }),
-    LoaderModule
+    LoaderModule,
+    CarouselModule
   ],
   providers: [
     {

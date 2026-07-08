@@ -28,6 +28,7 @@
     "moment": "^2.30.1",
     "moment-timezone": "^0.5.46",
     "msgpack-lite": "^0.1.26",
+    "ngx-owl-carousel-o": "^16.0.1",
     "pako": "^2.1.0",
     "rxjs": "~7.8.0",
     "socket.io-client": "^4.8.1",

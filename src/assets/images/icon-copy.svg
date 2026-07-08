@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon-set/icon-copy</title>
+    <defs>
+        <linearGradient x1="97.7808194%" y1="18.6097756%" x2="0%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FFBF44" offset="0%"></stop>
+            <stop stop-color="#FFBF44" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="icon-set-Web最新整理" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="images" transform="translate(-1432.000000, -583.000000)" fill="url(#linearGradient-1)" fill-rule="nonzero">
+            <g id="icon-set/icon-copy" transform="translate(1432.000000, 583.000000)">
+                <path d="M16.2,0 L7.2,0 C6.722613,0 6.264774,0.189639 5.927211,0.527211 C5.589639,0.864774 5.4,1.322613 5.4,1.8 L5.4,3.6 L12.6,3.6 C13.07736,3.6 13.53519,3.789639 13.87278,4.127211 C14.21037,4.464774 14.4,4.922613 14.4,5.4 L14.4,12.6 L16.2,12.6 C16.67736,12.6 17.13519,12.41037 17.47278,12.07278 C17.81037,11.73519 18,11.27736 18,10.8 L18,1.8 C18,1.322613 17.81037,0.864774 17.47278,0.527211 C17.13519,0.189639 16.67736,0 16.2,0 Z" id="Path"></path>
+                <path d="M1.8,18 L10.8,18 C11.7927,18 12.6,17.1927 12.6,16.2 L12.6,7.2 C12.6,6.2073 11.7927,5.4 10.8,5.4 L1.8,5.4 C0.8073,5.4 0,6.2073 0,7.2 L0,16.2 C0,17.1927 0.8073,18 1.8,18 Z M3.6,9 L9,9 L9,10.8 L3.6,10.8 L3.6,9 Z M3.6,12.6 L9,12.6 L9,14.4 L3.6,14.4 L3.6,12.6 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
