@@ -4,14 +4,15 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import  moment from 'moment';
 import { Subscription } from 'rxjs';
-import { DatahandlerService } from '../../services/datahandler.service';
 import { SocketServiceService } from '../../services/socket-service.service';
 import { ParlayBetPlaceComponent } from '../parlay-bet-place/parlay-bet-place.component';
 import { GetSocketUrlService } from '../../services/get-socket-url.service';
+import { DataHandlerService } from 'src/app/services/datahandler.service';
 
 
 @Component({
   selector: 'app-toss-parlay',
+  standalone: true,
   imports:[CommonModule,ParlayBetPlaceComponent],
   templateUrl: './toss-parlay.component.html',
   styleUrls: ['./toss-parlay.component.css']
@@ -58,7 +59,7 @@ export class TossParlayComponent {
   tossodd = 0.95
   isLoading = true;
 
-  constructor(private dataServe: DatahandlerService, private socket: SocketServiceService, private getSocketPath: GetSocketUrlService,
+  constructor(private dataServe: DataHandlerService, private socket: SocketServiceService, private getSocketPath: GetSocketUrlService,
               private route: ActivatedRoute, public sanitizer: DomSanitizer,private elRef: ElementRef,private renderer: Renderer2) {
                }
 
@@ -99,24 +100,24 @@ export class TossParlayComponent {
     let sectimed = this.dataServe.getTimeStamp();
     let mddata = {"sportid":4,"timeStamp": sectimed.timeStamp, "secretKey": sectimed.secretKey }
 
-    this.dataServe.verifyUser(mddata).subscribe((res: any) => {
-    }, (error) => {
-      if (error.status == 200) {
-        this.validateapi = this.dataServe.decryptData(error.error.text);
-        if (this.validateapi.data.type == 'success') {
-          this.dataServe.getUserSportMatches(mddata).subscribe((res: any) => {
-          }, (error) => {
-            if (error.status == 200) {
-              let res = this.dataServe.decryptData(error.error.text);
-              let cricdata = res.data.results;
-              this.cricketList = cricdata.sort((a:any, b:any) => a.openTimestamp - b.openTimestamp);
-              this.getOddsData(this.cricketList)
-              this.isLoading = false;
-            }
-          })
-        }
-      }
-    })
+    // this.dataServe.verifyUser(mddata).subscribe((res: any) => {
+    // }, (error) => {
+    //   if (error.status == 200) {
+    //     this.validateapi = this.dataServe.decryptData(error.error.text);
+    //     if (this.validateapi.data.type == 'success') {
+    //       this.dataServe.getUserSportMatches(mddata).subscribe((res: any) => {
+    //       }, (error) => {
+    //         if (error.status == 200) {
+    //           let res = this.dataServe.decryptData(error.error.text);
+    //           let cricdata = res.data.results;
+    //           this.cricketList = cricdata.sort((a:any, b:any) => a.openTimestamp - b.openTimestamp);
+    //           this.getOddsData(this.cricketList)
+    //           this.isLoading = false;
+    //         }
+    //       })
+    //     }
+    //   }
+    // })
   }
 
   getOddsData(data: any) {

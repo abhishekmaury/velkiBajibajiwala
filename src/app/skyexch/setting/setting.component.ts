@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-setting',
+  standalone: true,
   imports: [],
   templateUrl: './setting.component.html',
   styleUrls: ['./setting.component.css']

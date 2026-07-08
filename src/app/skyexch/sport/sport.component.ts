@@ -5,14 +5,15 @@ import moment from 'moment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { AuthserviceService } from '../../services/authservice.service';
-import { DatahandlerService } from '../../services/datahandler.service';
 import { SocketServiceService } from '../../services/socket-service.service';
 import { DatePipePipe } from "../pipes/datepipe.pipe";
 import { LoaderComponent } from '../loader/loader.component';
+import { DataHandlerService } from 'src/app/services/datahandler.service';
 
 @Component({
   selector: 'app-sport',
-    imports: [CommonModule, DatePipePipe,RouterLink,LoaderComponent],
+  standalone: true,
+  imports: [CommonModule, DatePipePipe,RouterLink,LoaderComponent],
   templateUrl: './sport.component.html',
   styleUrls: ['./sport.component.css'],
   encapsulation: ViewEncapsulation.None
@@ -85,7 +86,7 @@ export class SportComponent implements OnInit, OnDestroy {
   expandedSectionsOrgdata: Set<number> = new Set<number>();
   gameslist2 : any;
 
-  constructor(private authServe: AuthserviceService, private socket: SocketServiceService, private dataServe: DatahandlerService, private activeRoute: ActivatedRoute, private router: Router) { }
+  constructor(private authServe: AuthserviceService, private socket: SocketServiceService, private dataServe: DataHandlerService, private activeRoute: ActivatedRoute, private router: Router) { }
 
   customOptions: OwlOptions = {
     loop: true,
@@ -130,74 +131,74 @@ export class SportComponent implements OnInit, OnDestroy {
     let sectime = this.dataServe.getTimeStamp();
     let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
 
-    this.dataServe.verifyUser(data).subscribe((res: any) => {
-    }, (error) => {
-      if (error.status == 200) {
-        this.validateapi = this.dataServe.decryptData(error.error.text);
-        if (this.validateapi.data.type == 'success') {
-          this.dataServe.getInPlayMatches(data).subscribe((res: any) => {
-          }, (error) => {
-            if (error.status == 200) {
-              this.GamelistData = this.dataServe.decryptData(error.error.text);
-              this.gameListDataSubject.next(this.GamelistData);
-              this.isLoading = false;
-            }
-          });
-        }
-      }
-    })
+    // this.dataServe.verifyUser(data).subscribe((res: any) => {
+    // }, (error) => {
+    //   if (error.status == 200) {
+    //     this.validateapi = this.dataServe.decryptData(error.error.text);
+    //     if (this.validateapi.data.type == 'success') {
+    //       this.dataServe.getInPlayMatches(data).subscribe((res: any) => {
+    //       }, (error) => {
+    //         if (error.status == 200) {
+    //           this.GamelistData = this.dataServe.decryptData(error.error.text);
+    //           this.gameListDataSubject.next(this.GamelistData);
+    //           this.isLoading = false;
+    //         }
+    //       });
+    //     }
+    //   }
+    // })
   }
 
   getSportsData() {
     let sectime = this.dataServe.getTimeStamp();
     let data = {"timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
-    this.dataServe.verifyUser(data).subscribe((res: any) => {
-    }, (error) => {
-      if (error.status == 200) {
-        this.validateapi = this.dataServe.decryptData(error.error.text);
-        if (this.validateapi.data.type == 'success') {
-          this.dataServe.getTodayMatches(data).subscribe((res: any) => {
-          }, (error) => {
-            if (error.status == 200) {
-              let msd = this.dataServe.decryptData(error.error.text);
-              let ddt = msd.data.results;
+    // this.dataServe.verifyUser(data).subscribe((res: any) => {
+    // }, (error) => {
+    //   if (error.status == 200) {
+    //     this.validateapi = this.dataServe.decryptData(error.error.text);
+    //     if (this.validateapi.data.type == 'success') {
+    //       this.dataServe.getTodayMatches(data).subscribe((res: any) => {
+    //       }, (error) => {
+    //         if (error.status == 200) {
+    //           let msd = this.dataServe.decryptData(error.error.text);
+    //           let ddt = msd.data.results;
 
-              let sectime1 = this.dataServe.getTimeStamp();
-              let data1 = {"timeStamp": sectime1.timeStamp, "secretKey": sectime1.secretKey }
-              this.dataServe.verifyUser(data1).subscribe((res: any) => {
-              }, (error) => {
-                if (error.status == 200) {
-                  this.validateapi = this.dataServe.decryptData(error.error.text);
-                  if (this.validateapi.data.type == 'success') {
-                    this.dataServe.getTomorrowMatches(data1).subscribe((res: any) => {
-                    }, (error) => {
-                      if (error.status == 200) {
-                        let msd1 = this.dataServe.decryptData(error.error.text);
-                        let ddt1 = msd1.data.results;
-                        let ddt2 = [...ddt, ...ddt1];
+    //           let sectime1 = this.dataServe.getTimeStamp();
+    //           let data1 = {"timeStamp": sectime1.timeStamp, "secretKey": sectime1.secretKey }
+    //           this.dataServe.verifyUser(data1).subscribe((res: any) => {
+    //           }, (error) => {
+    //             if (error.status == 200) {
+    //               this.validateapi = this.dataServe.decryptData(error.error.text);
+    //               if (this.validateapi.data.type == 'success') {
+    //                 this.dataServe.getTomorrowMatches(data1).subscribe((res: any) => {
+    //                 }, (error) => {
+    //                   if (error.status == 200) {
+    //                     let msd1 = this.dataServe.decryptData(error.error.text);
+    //                     let ddt1 = msd1.data.results;
+    //                     let ddt2 = [...ddt, ...ddt1];
 
-                        ddt2.sort((a: any, b: any) => {
-                          const dateA = new Date(a.day);
-                          const dateB = new Date(b.day);
-                          return dateA.getTime() - dateB.getTime();
-                        })
-                        let newsdt = ddt2.map((r: any) => {
-                          r.multi = !this.multiList.includes(r.marketid);
-                          return r;
-                        });
-                        this.gameslist2 = [...newsdt];
-                        this.gameListDataSubject2.next(this.gameslist2);
-                      }
-                    })
-                  }
-                }
-              })
+    //                     ddt2.sort((a: any, b: any) => {
+    //                       const dateA = new Date(a.day);
+    //                       const dateB = new Date(b.day);
+    //                       return dateA.getTime() - dateB.getTime();
+    //                     })
+    //                     let newsdt = ddt2.map((r: any) => {
+    //                       r.multi = !this.multiList.includes(r.marketid);
+    //                       return r;
+    //                     });
+    //                     this.gameslist2 = [...newsdt];
+    //                     this.gameListDataSubject2.next(this.gameslist2);
+    //                   }
+    //                 })
+    //               }
+    //             }
+    //           })
 
-            }
-          })
-        }
-      }
-    })
+    //         }
+    //       })
+    //     }
+    //   }
+    // })
 
   }
 
@@ -563,24 +564,24 @@ export class SportComponent implements OnInit, OnDestroy {
     this.isLoading = true;
 
     let data1 = { "timeStamp": sectime1.timeStamp, "secretKey": sectime1.secretKey }
-    this.dataServe.verifyUser(data1).subscribe((res: any) => {
-    }, (error) => {
-      if (error.status == 200) {
+//     this.dataServe.verifyUser(data1).subscribe((res: any) => {
+//     }, (error) => {
+//       if (error.status == 200) {
 
-        this.validateapi = this.dataServe.decryptData(error.error.text);
-        if (this.validateapi.data.type == 'success') {
-          this.dataServe.getActiveMultiMarket(data1).subscribe((res: any) => {
-          }, (error) => {
-            if (error.status == 202) {
-              let msd = this.dataServe.decryptData(error.error.text);
-              this.multiList = msd.data.data;
-                this.getAllInplayList();
-this.isLoading = false;
-            }
-          })
-        }
-      }
-    })
+//         this.validateapi = this.dataServe.decryptData(error.error.text);
+//         if (this.validateapi.data.type == 'success') {
+//           this.dataServe.getActiveMultiMarket(data1).subscribe((res: any) => {
+//           }, (error) => {
+//             if (error.status == 202) {
+//               let msd = this.dataServe.decryptData(error.error.text);
+//               this.multiList = msd.data.data;
+//                 this.getAllInplayList();
+// this.isLoading = false;
+//             }
+//           })
+//         }
+//       }
+//     })
   }
 
   addToMultimarket(id: any) {
@@ -588,24 +589,24 @@ this.isLoading = false;
     let idd = id.matchid || id.marketid
     let sectime = this.dataServe.getTimeStamp();
     let data = { "matchId": idd, "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
-    this.dataServe.verifyUser(data).subscribe((res: any) => {
-    }, (error) => {
-      if (error.status == 200) {
-        this.validateapi = this.dataServe.decryptData(error.error.text);
-        if (this.validateapi.data.type == 'success') {
-          this.dataServe.mutltiMatchUser(data).subscribe((res: any) => {
-          }, (error) => {
-            if (error.status == 202) {
-              let msd = this.dataServe.decryptData1(error.error.text)
-              this.getMarketData();
-            } else {
-              this.getMarketData();
-              this.isLoading = false;
-            }
-          })
-        }
-      }
-    })
+    // this.dataServe.verifyUser(data).subscribe((res: any) => {
+    // }, (error) => {
+    //   if (error.status == 200) {
+    //     this.validateapi = this.dataServe.decryptData(error.error.text);
+    //     if (this.validateapi.data.type == 'success') {
+    //       this.dataServe.mutltiMatchUser(data).subscribe((res: any) => {
+    //       }, (error) => {
+    //         if (error.status == 202) {
+    //           let msd = this.dataServe.decryptData1(error.error.text)
+    //           this.getMarketData();
+    //         } else {
+    //           this.getMarketData();
+    //           this.isLoading = false;
+    //         }
+    //       })
+    //     }
+    //   }
+    // })
   }
 
   filterBySportId(sportId: number): any[] {

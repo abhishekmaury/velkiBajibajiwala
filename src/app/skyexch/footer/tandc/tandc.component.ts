@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@ang
 import { Location } from '@angular/common';
 @Component({
   selector: 'app-tandc',
+  standalone: true,
   imports: [],
   templateUrl: './tandc.component.html',
   styleUrls: ['./tandc.component.css'],

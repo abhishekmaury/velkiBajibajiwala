@@ -5,15 +5,16 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import moment from 'moment';
 import 'moment-timezone';
 import { CommonModule } from '@angular/common';
-import { DatahandlerService } from '../../services/datahandler.service';
 import { SocketServiceService } from '../../services/socket-service.service';
 import { BetPlaceComponent } from '../bet-place/bet-place.component';
 import { HttpResponse } from '@angular/common/http';
 import { FingerprintService } from '../../services/fingerprint.service';
 import { GetSocketUrlService } from '../../services/get-socket-url.service';
+import { DataHandlerService } from 'src/app/services/datahandler.service';
 
 @Component({
   selector: 'app-match',
+  standalone: true,
   imports: [CommonModule, BetPlaceComponent],
   templateUrl: './match.component.html',
   styleUrls: ['./match.component.css'],
@@ -207,7 +208,7 @@ export class MatchComponent implements OnInit, OnDestroy {
   demoUser = false;
   intervalIdTime: any;
 
-  constructor(private dataServe: DatahandlerService, private getSocketPath: GetSocketUrlService, private socket: SocketServiceService, private fingerprintService: FingerprintService,
+  constructor(private dataServe: DataHandlerService, private getSocketPath: GetSocketUrlService, private socket: SocketServiceService, private fingerprintService: FingerprintService,
     private route: ActivatedRoute, public sanitizer: DomSanitizer, private elRef: ElementRef, private renderer: Renderer2) { }
 
   async ngOnInit() {
@@ -254,82 +255,82 @@ export class MatchComponent implements OnInit, OnDestroy {
         let sectime = this.dataServe.getTimeStamp();
         let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
 
-        this.dataServe.verifyUser(data).subscribe((res: any) => {
-        }, (error) => {
-          if (error.status == 200) {
+        // this.dataServe.verifyUser(data).subscribe((res: any) => {
+        // }, (error) => {
+        //   if (error.status == 200) {
 
-            this.validateapi = this.dataServe.decryptData(error.error.text);
-            if (this.validateapi.data.type == 'success') {
-              this.dataServe.getUserMarketBook(this.eventId, data).subscribe((res: any) => {
-              }, (error) => {
-                if (error.status == 200) {
+        //     this.validateapi = this.dataServe.decryptData(error.error.text);
+        //     if (this.validateapi.data.type == 'success') {
+        //       this.dataServe.getUserMarketBook(this.eventId, data).subscribe((res: any) => {
+        //       }, (error) => {
+        //         if (error.status == 200) {
 
-                  this.newbookdata = this.dataServe.decryptData(error.error.text);
-                  let res = this.bookFilter(this.newbookdata, 'Odds')
+        //           this.newbookdata = this.dataServe.decryptData(error.error.text);
+        //           let res = this.bookFilter(this.newbookdata, 'Odds')
 
-                  if (res) {
-                    this.betOddResult = res;
-                    this.oddsPnlArray = [res.pnl1, res.pnl2, res.pnl3];
-                    this.bmPnlArray = [res.bmPnl1, res.bmPnl2, res.bmPnl3];
-                    this.getMatcBkData = true;
-                  } else {
-                    this.getMatcBkData = false;
-                    this.oddsPnlArray = [0, 0, 0];
-                    this.bmPnlArray = [0, 0, 0];
-                  }
+        //           if (res) {
+        //             this.betOddResult = res;
+        //             this.oddsPnlArray = [res.pnl1, res.pnl2, res.pnl3];
+        //             this.bmPnlArray = [res.bmPnl1, res.bmPnl2, res.bmPnl3];
+        //             this.getMatcBkData = true;
+        //           } else {
+        //             this.getMatcBkData = false;
+        //             this.oddsPnlArray = [0, 0, 0];
+        //             this.bmPnlArray = [0, 0, 0];
+        //           }
 
-                  this.showBackSelectToss = null;
-                  this.showToss = null;
+        //           this.showBackSelectToss = null;
+        //           this.showToss = null;
 
-                  let res1 = this.bookFilter(this.newbookdata, 'toss')
-                  if (res1) {
-                    this.getTossBkData = true;
-                    this.tossPnlArray = [res1.pnl1, res1.pnl2, res1.pnl3];
-                  } else {
-                    this.getTossBkData = false;
-                    this.tossPnlArray = [0, 0, 0];
-                  }
+        //           let res1 = this.bookFilter(this.newbookdata, 'toss')
+        //           if (res1) {
+        //             this.getTossBkData = true;
+        //             this.tossPnlArray = [res1.pnl1, res1.pnl2, res1.pnl3];
+        //           } else {
+        //             this.getTossBkData = false;
+        //             this.tossPnlArray = [0, 0, 0];
+        //           }
 
-                  let res2 = this.fancybookFilter(this.newbookdata, 'Fancy')
-                  if (res2) {
-                    this.fancyLiability = res2
-                  } else {
-                    this.fancyLiability = []
-                  }
+        //           let res2 = this.fancybookFilter(this.newbookdata, 'Fancy')
+        //           if (res2) {
+        //             this.fancyLiability = res2
+        //           } else {
+        //             this.fancyLiability = []
+        //           }
 
-                  let res22 = this.fancybookFilter(this.newbookdata, 'Fancy1')
-                  if (res22) {
-                    this.fancy1Liability = res22
-                  } else {
-                    this.fancy1Liability = []
-                  }
+        //           let res22 = this.fancybookFilter(this.newbookdata, 'Fancy1')
+        //           if (res22) {
+        //             this.fancy1Liability = res22
+        //           } else {
+        //             this.fancy1Liability = []
+        //           }
 
-                  let res3 = this.fancybookFilter(this.newbookdata, 'premium')
-                  if (res3) {
-                    this.PremiumfancyLiability = res3
-                  } else {
-                    this.PremiumfancyLiability = [];
-                  }
+        //           let res3 = this.fancybookFilter(this.newbookdata, 'premium')
+        //           if (res3) {
+        //             this.PremiumfancyLiability = res3
+        //           } else {
+        //             this.PremiumfancyLiability = [];
+        //           }
 
-                  let res4 = this.fancybookFilter(this.newbookdata, 'Other')
-                  if (res4) {
-                    this.omPnlArray = res4;
-                  } else {
-                    this.omPnlArray = [];
-                  }
+        //           let res4 = this.fancybookFilter(this.newbookdata, 'Other')
+        //           if (res4) {
+        //             this.omPnlArray = res4;
+        //           } else {
+        //             this.omPnlArray = [];
+        //           }
 
 
-                } else {
-                  this.getMatcBkData = false;
-                  this.oddsPnlArray = [0, 0, 0];
-                  this.bmPnlArray = [0, 0, 0];
-                  this.getTossBkData = false;
-                  this.tossPnlArray = [0, 0, 0];
-                }
-              })
-            }
-          }
-        })
+        //         } else {
+        //           this.getMatcBkData = false;
+        //           this.oddsPnlArray = [0, 0, 0];
+        //           this.bmPnlArray = [0, 0, 0];
+        //           this.getTossBkData = false;
+        //           this.tossPnlArray = [0, 0, 0];
+        //         }
+        //       })
+        //     }
+        //   }
+        // })
 
 
         this.betsuccessstatus = this.betSuccess[0];
@@ -358,116 +359,116 @@ export class MatchComponent implements OnInit, OnDestroy {
         let sectimed = this.dataServe.getTimeStamp();
         let mddata = { "eventId": this.eventId, "timeStamp": sectimed.timeStamp, "secretKey": sectimed.secretKey }
 
-        this.dataServe.verifyUser(mddata).subscribe((res: any) => {
-        }, (error) => {
-          if (error.status == 200) {
-            this.validateapi = this.dataServe.decryptData(error.error.text);
-            if (this.validateapi.data.type == 'success') {
-              this.dataServe.getUserMatcheDetail(mddata).subscribe((res: any) => {
-              }, (error) => {
-                if (error.status == 200) {
-                  let res = this.dataServe.decryptData(error.error.text);
-                  this.eventData = res.data;
-                  this.urlSafe = this.getScore(this.eventData.scoreBase, this.eventId)
-                  if (this.eventData?.onlyPremium) {
-                    this.onlyPremium = this.eventData?.onlyPremium;
-                  } else {
-                    this.onlyPremium = false;
-                  }
-                  if (this.sportId == 2 || this.sportId == 1) {
-                    this.showFancy = false
-                    this.hideFancyForST = false
-                    this.toggleFancy = false
-                    // if(this.sportId==1){
-                    //   this.launchPremium(552001,this.eventId)
-                    // } else if(this.sportId==2){
-                    //   this.launchPremium(552002,this.eventId)
-                    // } else if(this.sportId==4){
-                    //   this.launchPremium(552003,this.eventId)
-                    // }
-                  } else if (this.sportId == 4) {
-                    if (this.eventData.gameType == 'virtual1' || this.onlyPremium) {
-                      this.showFancy = false
-                      this.hideFancyForST = false
-                      this.toggleFancy = false
+        // this.dataServe.verifyUser(mddata).subscribe((res: any) => {
+        // }, (error) => {
+        //   if (error.status == 200) {
+        //     this.validateapi = this.dataServe.decryptData(error.error.text);
+        //     if (this.validateapi.data.type == 'success') {
+        //       this.dataServe.getUserMatcheDetail(mddata).subscribe((res: any) => {
+        //       }, (error) => {
+        //         if (error.status == 200) {
+        //           let res = this.dataServe.decryptData(error.error.text);
+        //           this.eventData = res.data;
+        //           this.urlSafe = this.getScore(this.eventData.scoreBase, this.eventId)
+        //           if (this.eventData?.onlyPremium) {
+        //             this.onlyPremium = this.eventData?.onlyPremium;
+        //           } else {
+        //             this.onlyPremium = false;
+        //           }
+        //           if (this.sportId == 2 || this.sportId == 1) {
+        //             this.showFancy = false
+        //             this.hideFancyForST = false
+        //             this.toggleFancy = false
+        //             // if(this.sportId==1){
+        //             //   this.launchPremium(552001,this.eventId)
+        //             // } else if(this.sportId==2){
+        //             //   this.launchPremium(552002,this.eventId)
+        //             // } else if(this.sportId==4){
+        //             //   this.launchPremium(552003,this.eventId)
+        //             // }
+        //           } else if (this.sportId == 4) {
+        //             if (this.eventData.gameType == 'virtual1' || this.onlyPremium) {
+        //               this.showFancy = false
+        //               this.hideFancyForST = false
+        //               this.toggleFancy = false
 
-                      //   if(this.sportId==1){
-                      //   this.launchPremium(552001,this.eventId)
-                      // } else if(this.sportId==2){
-                      //   this.launchPremium(552002,this.eventId)
-                      // } else if(this.sportId==4){
-                      //   this.launchPremium(552003,this.eventId)
-                      // }
-                    } else {
-                      this.toggleFancy = true
-                      this.showFancy = true
-                      this.hideFancyForST = true
-                    }
-                  }
+        //               //   if(this.sportId==1){
+        //               //   this.launchPremium(552001,this.eventId)
+        //               // } else if(this.sportId==2){
+        //               //   this.launchPremium(552002,this.eventId)
+        //               // } else if(this.sportId==4){
+        //               //   this.launchPremium(552003,this.eventId)
+        //               // }
+        //             } else {
+        //               this.toggleFancy = true
+        //               this.showFancy = true
+        //               this.hideFancyForST = true
+        //             }
+        //           }
 
-                  this.url2 = res.data.tvurl;
-                  localStorage.setItem('tvurl', this.url2)
-                  this.oddspermission = this.eventData?.isOdds;
-                  this.bmpermission = this.eventData?.isBook;
-                  this.fancypermission = this.eventData?.isFancy;
-                  this.otpermisssion = this.eventData?.isOther;
-                  this.prempermission = this.eventData?.isPrem;
-                  // console.log(this.prempermission);
+        //           this.url2 = res.data.tvurl;
+        //           localStorage.setItem('tvurl', this.url2)
+        //           this.oddspermission = this.eventData?.isOdds;
+        //           this.bmpermission = this.eventData?.isBook;
+        //           this.fancypermission = this.eventData?.isFancy;
+        //           this.otpermisssion = this.eventData?.isOther;
+        //           this.prempermission = this.eventData?.isPrem;
+        //           // console.log(this.prempermission);
 
 
-                  this.tosscheck = this.hideTossbefor2HrFun(this.eventData)
-                  this.inplaystatus = this.inPlayMatches(this.eventData.matchDate);
-                  this.intervalIdTime = setInterval(() => {
-                    this.inplaystatus = this.inPlayMatches(this.eventData.matchDate);
-                  }, 10000);
-                  if (this.sportId !== '4' && this.inplaystatus == false) {
-                    this.layBet = false;
-                  }
+        //           this.tosscheck = this.hideTossbefor2HrFun(this.eventData)
+        //           this.inplaystatus = this.inPlayMatches(this.eventData.matchDate);
+        //           this.intervalIdTime = setInterval(() => {
+        //             this.inplaystatus = this.inPlayMatches(this.eventData.matchDate);
+        //           }, 10000);
+        //           if (this.sportId !== '4' && this.inplaystatus == false) {
+        //             this.layBet = false;
+        //           }
 
-                  if (this.eventData.team3 != undefined) {
-                    this.matchrunners.push(this.eventData.team1, this.eventData.team2, this.eventData.team3);
-                    this.matchrunnerssid.push(this.eventData.id1, this.eventData.id2, this.eventData.id3);
-                  } else {
-                    this.matchrunners.push(this.eventData.team1, this.eventData.team2);
-                    this.matchrunnerssid.push(this.eventData.id1, this.eventData.id2);
-                  }
+        //           if (this.eventData.team3 != undefined) {
+        //             this.matchrunners.push(this.eventData.team1, this.eventData.team2, this.eventData.team3);
+        //             this.matchrunnerssid.push(this.eventData.id1, this.eventData.id2, this.eventData.id3);
+        //           } else {
+        //             this.matchrunners.push(this.eventData.team1, this.eventData.team2);
+        //             this.matchrunnerssid.push(this.eventData.id1, this.eventData.id2);
+        //           }
 
-                  document.addEventListener('visibilitychange', () => {
-                    if (!document.hidden) {
-                      this.inplaystatus = this.inPlayMatches(this.eventData.matchDate);
-                    }
-                  });
-                  window.addEventListener('focus', () => {
-                    this.inplaystatus = this.inPlayMatches(this.eventData.matchDate);
-                  });
-                  
-                  this.preMatchMarket = JSON.parse(this.eventData.preMatchMarket).map((market: any) => {
-                    if (market.name) {
-                      market.pSelection = JSON.parse(market.pSelection);
-                    }
-                    return market;
-                  });
+        //           document.addEventListener('visibilitychange', () => {
+        //             if (!document.hidden) {
+        //               this.inplaystatus = this.inPlayMatches(this.eventData.matchDate);
+        //             }
+        //           });
+        //           window.addEventListener('focus', () => {
+        //             this.inplaystatus = this.inPlayMatches(this.eventData.matchDate);
+        //           });
 
-                  //Toss Code Start
-                  if (this.tosscheck == true) {
-                    this.socket.setToss(this.eventId);
-                    this.socket.getToss(this.eventId);
-                    this.oddsub3 = this.socket.getUpdate3MessageListner().subscribe((res: any) => {
-                      this.tosssocketdata = res.message3;
-                      if (this.tosssocketdata.data.status === 'OPEN') {
-                        this.showhidetoss = true;
-                      } else {
-                        this.showhidetoss = false;
-                      }
-                    })
-                  }
-                  //Toss Code End
+        //           this.preMatchMarket = JSON.parse(this.eventData.preMatchMarket).map((market: any) => {
+        //             if (market.name) {
+        //               market.pSelection = JSON.parse(market.pSelection);
+        //             }
+        //             return market;
+        //           });
 
-                }
-              })
-            }
-          }
-        })
+        //           //Toss Code Start
+        //           if (this.tosscheck == true) {
+        //             this.socket.setToss(this.eventId);
+        //             this.socket.getToss(this.eventId);
+        //             this.oddsub3 = this.socket.getUpdate3MessageListner().subscribe((res: any) => {
+        //               this.tosssocketdata = res.message3;
+        //               if (this.tosssocketdata.data.status === 'OPEN') {
+        //                 this.showhidetoss = true;
+        //               } else {
+        //                 this.showhidetoss = false;
+        //               }
+        //             })
+        //           }
+        //           //Toss Code End
+
+        //         }
+        //       })
+        //     }
+        //   }
+        // })
 
 
 
@@ -484,75 +485,75 @@ export class MatchComponent implements OnInit, OnDestroy {
           let sectime = this.dataServe.getTimeStamp();
           let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
 
-          this.dataServe.verifyUser(data).subscribe((res: any) => {
-          }, (error) => {
-            if (error.status == 200) {
+          // this.dataServe.verifyUser(data).subscribe((res: any) => {
+          // }, (error) => {
+          //   if (error.status == 200) {
 
-              this.validateapi = this.dataServe.decryptData(error.error.text);
-              if (this.validateapi.data.type == 'success') {
-                this.dataServe.getUserMarketBook(this.eventId, data).subscribe((res: any) => {
-                }, (error) => {
-                  if (error.status == 200) {
-                    this.newbookdata = this.dataServe.decryptData(error.error.text);
-                    let res = this.bookFilter(this.newbookdata, 'Odds')
-                    if (res) {
-                      this.betOddResult = res;
-                      this.oddsPnlArray = [res.pnl1, res.pnl2, res.pnl3];
-                      this.bmPnlArray = [res.bmPnl1, res.bmPnl2, res.bmPnl3];
-                    } else {
-                      this.getMatcBkData = false;
-                      this.oddsPnlArray = [0, 0, 0];
-                      this.bmPnlArray = [0, 0, 0];
-                    }
+          //     this.validateapi = this.dataServe.decryptData(error.error.text);
+          //     if (this.validateapi.data.type == 'success') {
+          //       this.dataServe.getUserMarketBook(this.eventId, data).subscribe((res: any) => {
+          //       }, (error) => {
+          //         if (error.status == 200) {
+          //           this.newbookdata = this.dataServe.decryptData(error.error.text);
+          //           let res = this.bookFilter(this.newbookdata, 'Odds')
+          //           if (res) {
+          //             this.betOddResult = res;
+          //             this.oddsPnlArray = [res.pnl1, res.pnl2, res.pnl3];
+          //             this.bmPnlArray = [res.bmPnl1, res.bmPnl2, res.bmPnl3];
+          //           } else {
+          //             this.getMatcBkData = false;
+          //             this.oddsPnlArray = [0, 0, 0];
+          //             this.bmPnlArray = [0, 0, 0];
+          //           }
 
-                    let res1 = this.bookFilter(this.newbookdata, 'toss')
-                    if (res1) {
-                      this.getTossBkData = true;
-                      this.tossPnlArray = [res1.pnl1, res1.pnl2, res1.pnl3];
-                    } else {
-                      this.getTossBkData = false;
-                      this.tossPnlArray = [0, 0, 0];
-                    }
+          //           let res1 = this.bookFilter(this.newbookdata, 'toss')
+          //           if (res1) {
+          //             this.getTossBkData = true;
+          //             this.tossPnlArray = [res1.pnl1, res1.pnl2, res1.pnl3];
+          //           } else {
+          //             this.getTossBkData = false;
+          //             this.tossPnlArray = [0, 0, 0];
+          //           }
 
-                    let res2 = this.fancybookFilter(this.newbookdata, 'Fancy')
-                    if (res2) {
-                      this.fancyLiability = res2
+          //           let res2 = this.fancybookFilter(this.newbookdata, 'Fancy')
+          //           if (res2) {
+          //             this.fancyLiability = res2
 
-                    } else {
-                      this.fancyLiability = []
-                    }
+          //           } else {
+          //             this.fancyLiability = []
+          //           }
 
-                    let res22 = this.fancybookFilter(this.newbookdata, 'Fancy1')
-                    if (res22) {
-                      this.fancy1Liability = res22
-                    } else {
-                      this.fancy1Liability = []
-                    }
+          //           let res22 = this.fancybookFilter(this.newbookdata, 'Fancy1')
+          //           if (res22) {
+          //             this.fancy1Liability = res22
+          //           } else {
+          //             this.fancy1Liability = []
+          //           }
 
-                    let res3 = this.fancybookFilter(this.newbookdata, 'premium')
-                    if (res3) {
-                      this.PremiumfancyLiability = res3
-                    } else {
-                      this.PremiumfancyLiability = [];
-                    }
+          //           let res3 = this.fancybookFilter(this.newbookdata, 'premium')
+          //           if (res3) {
+          //             this.PremiumfancyLiability = res3
+          //           } else {
+          //             this.PremiumfancyLiability = [];
+          //           }
 
-                    let res4 = this.fancybookFilter(this.newbookdata, 'Other')
-                    if (res4) {
-                      this.omPnlArray = res4;
-                    } else {
-                      this.omPnlArray = [];
-                    }
+          //           let res4 = this.fancybookFilter(this.newbookdata, 'Other')
+          //           if (res4) {
+          //             this.omPnlArray = res4;
+          //           } else {
+          //             this.omPnlArray = [];
+          //           }
 
-                  } else {
-                    this.getMatcBkData = false;
-                    this.bmPnlArray = [0, 0, 0];
-                    this.getTossBkData = false;
-                    this.tossPnlArray = [0, 0, 0];
-                  }
-                })
-              }
-            }
-          })
+          //         } else {
+          //           this.getMatcBkData = false;
+          //           this.bmPnlArray = [0, 0, 0];
+          //           this.getTossBkData = false;
+          //           this.tossPnlArray = [0, 0, 0];
+          //         }
+          //       })
+          //     }
+          //   }
+          // })
 
         }
 
@@ -560,88 +561,88 @@ export class MatchComponent implements OnInit, OnDestroy {
         let sectimeds = this.dataServe.getTimeStamp();
         let mddatas = { "eventId": this.eventId, "timeStamp": sectimeds.timeStamp, "secretKey": sectimeds.secretKey }
 
-        this.dataServe.verifyUser(mddatas).subscribe((res: any) => {
-        }, (error) => {
-          if (error.status == 200) {
-            this.validateapi = this.dataServe.decryptData(error.error.text);
-            if (this.validateapi.data.type == 'success') {
-              this.dataServe.getPreLoadData(mddatas, this.eventId).subscribe((res: any) => {
-              }, (error) => {
-                if (error.status == 200) {
-                  let res1 = this.dataServe.decryptData(error.error.text);
-                  let res = res1.data;
-                  this.eventData2 = res;
-                  if (this.eventData2) {
-                    // code for odds start
-                    if (this.eventData2.oddsProvider === 'Tiger') {
-                      this.totalMatched = res.odds?.[0]?.totalMatched;
-                      this.runnersList = res.odds?.[0]?.runners;
-                    }
-                    else if (this.eventData2.oddsProvider === 'Neeraj') {
-                      this.totalMatched = res.odds?.[0]?.totalMatched;
-                      this.runnersList = res.odds?.[0]?.runners;
-                    }
-                    // code for odds End
+        // this.dataServe.verifyUser(mddatas).subscribe((res: any) => {
+        // }, (error) => {
+        //   if (error.status == 200) {
+        //     this.validateapi = this.dataServe.decryptData(error.error.text);
+        //     if (this.validateapi.data.type == 'success') {
+        //       this.dataServe.getPreLoadData(mddatas, this.eventId).subscribe((res: any) => {
+        //       }, (error) => {
+        //         if (error.status == 200) {
+        //           let res1 = this.dataServe.decryptData(error.error.text);
+        //           let res = res1.data;
+        //           this.eventData2 = res;
+        //           if (this.eventData2) {
+        //             // code for odds start
+        //             if (this.eventData2.oddsProvider === 'Tiger') {
+        //               this.totalMatched = res.odds?.[0]?.totalMatched;
+        //               this.runnersList = res.odds?.[0]?.runners;
+        //             }
+        //             else if (this.eventData2.oddsProvider === 'Neeraj') {
+        //               this.totalMatched = res.odds?.[0]?.totalMatched;
+        //               this.runnersList = res.odds?.[0]?.runners;
+        //             }
+        //             // code for odds End
 
-                    // code for bookmaker Start
-                    if (this.eventData2.bmProvider === 'Diamond') {
-                      let runnersd = (((this.eventData2.bookMaker).map((d: any) => (d.bm1))).flat()).filter((rd: any) => {
-                        if (rd?.mname == this.eventData?.bookheader) {
-                          return rd;
-                        }
-                      });
+        //             // code for bookmaker Start
+        //             if (this.eventData2.bmProvider === 'Diamond') {
+        //               let runnersd = (((this.eventData2.bookMaker).map((d: any) => (d.bm1))).flat()).filter((rd: any) => {
+        //                 if (rd?.mname == this.eventData?.bookheader) {
+        //                   return rd;
+        //                 }
+        //               });
 
-                      let bm = runnersd.map((dt: any) => ({
-                        ...dt,
-                        ordering: this.eventData?.bookt1 == dt.nat ? '1' : this.eventData?.bookt2 == dt.nat ? '2' : this.eventData?.bookt3 == dt.nat ? '3' : '',
-                        status: dt.s == 'SUSPENDED' ? 'Suspended' : dt.s == 'ACTIVE' ? 'Active' : dt.s,
-                        backOddsInfo: [dt.b1, dt.b2, dt.b3],
-                        layOddsInfo: [dt.l1, dt.l2, dt.l3]
-                      })
-                      );
+        //               let bm = runnersd.map((dt: any) => ({
+        //                 ...dt,
+        //                 ordering: this.eventData?.bookt1 == dt.nat ? '1' : this.eventData?.bookt2 == dt.nat ? '2' : this.eventData?.bookt3 == dt.nat ? '3' : '',
+        //                 status: dt.s == 'SUSPENDED' ? 'Suspended' : dt.s == 'ACTIVE' ? 'Active' : dt.s,
+        //                 backOddsInfo: [dt.b1, dt.b2, dt.b3],
+        //                 layOddsInfo: [dt.l1, dt.l2, dt.l3]
+        //               })
+        //               );
 
-                      bm?.sort((a: any, b: any) => a.ordering.localeCompare(b.ordering))
-                      this.runnersList2 = { bookmaker: bm, events: this.eventData };
-                    }
-                    else if (this.eventData2.bmProvider === 'Sky') {
-                      let bm = this.eventData2.bookMaker[0].map((dt: any) => ({
-                        ...dt,
-                        ordering: this.eventData?.bookt1 == dt.runnerName ? '1' : this.eventData?.bookt2 == dt.runnerName ? '2' : this.eventData?.bookt3 == dt.runnerName ? '3' : '',
-                        status: dt.status == '2' ? 'Suspended' : dt.status == '1' ? 'Active' : dt.status,
-                        backOddsInfo: JSON.parse(dt.backOddsInfo).map(Number),
-                        layOddsInfo: JSON.parse(dt.layOddsInfo).map(Number)
-                      }));
+        //               bm?.sort((a: any, b: any) => a.ordering.localeCompare(b.ordering))
+        //               this.runnersList2 = { bookmaker: bm, events: this.eventData };
+        //             }
+        //             else if (this.eventData2.bmProvider === 'Sky') {
+        //               let bm = this.eventData2.bookMaker[0].map((dt: any) => ({
+        //                 ...dt,
+        //                 ordering: this.eventData?.bookt1 == dt.runnerName ? '1' : this.eventData?.bookt2 == dt.runnerName ? '2' : this.eventData?.bookt3 == dt.runnerName ? '3' : '',
+        //                 status: dt.status == '2' ? 'Suspended' : dt.status == '1' ? 'Active' : dt.status,
+        //                 backOddsInfo: JSON.parse(dt.backOddsInfo).map(Number),
+        //                 layOddsInfo: JSON.parse(dt.layOddsInfo).map(Number)
+        //               }));
 
-                      bm?.sort((a: any, b: any) => a.ordering.localeCompare(b.ordering))
+        //               bm?.sort((a: any, b: any) => a.ordering.localeCompare(b.ordering))
 
-                      this.runnersList2 = { bookmaker: bm, events: this.eventData };
-                    }
-                    else if (this.eventData2.bmProvider === 'World') {
-                      let runnersdw = (this.eventData2.bookMaker).filter((rd: any) => {
-                        if (rd?.mname == this.eventData?.bookheader) {
-                          return rd;
-                        }
-                      });
+        //               this.runnersList2 = { bookmaker: bm, events: this.eventData };
+        //             }
+        //             else if (this.eventData2.bmProvider === 'World') {
+        //               let runnersdw = (this.eventData2.bookMaker).filter((rd: any) => {
+        //                 if (rd?.mname == this.eventData?.bookheader) {
+        //                   return rd;
+        //                 }
+        //               });
 
-                      let bm = runnersdw?.[0]?.section.map((dt: any) => ({
-                        ...dt,
-                        ordering: this.eventData?.bookt1 == dt.nat ? '1' : this.eventData?.bookt2 == dt.nat ? '2' : this.eventData?.bookt3 == dt.nat ? '3' : '',
-                        status: dt.gstatus == 'SUSPENDED' ? 'Suspended' : dt.gstatus == 'ACTIVE' ? 'Active' : dt.gstatus,
-                        backOddsInfo: dt.odds.filter((o: any) => o.otype == 'back').reverse().map((m: any) => m.odds),
-                        layOddsInfo: dt.odds.filter((o: any) => o.otype == 'lay').map((m: any) => m.odds)
-                      }));
+        //               let bm = runnersdw?.[0]?.section.map((dt: any) => ({
+        //                 ...dt,
+        //                 ordering: this.eventData?.bookt1 == dt.nat ? '1' : this.eventData?.bookt2 == dt.nat ? '2' : this.eventData?.bookt3 == dt.nat ? '3' : '',
+        //                 status: dt.gstatus == 'SUSPENDED' ? 'Suspended' : dt.gstatus == 'ACTIVE' ? 'Active' : dt.gstatus,
+        //                 backOddsInfo: dt.odds.filter((o: any) => o.otype == 'back').reverse().map((m: any) => m.odds),
+        //                 layOddsInfo: dt.odds.filter((o: any) => o.otype == 'lay').map((m: any) => m.odds)
+        //               }));
 
-                      bm?.sort((a: any, b: any) => a.ordering.localeCompare(b.ordering))
+        //               bm?.sort((a: any, b: any) => a.ordering.localeCompare(b.ordering))
 
-                      this.runnersList2 = { bookmaker: bm, events: this.eventData };
-                    }
-                    // code for bookmaker End
-                  }
-                }
-              })
-            }
-          }
-        })
+        //               this.runnersList2 = { bookmaker: bm, events: this.eventData };
+        //             }
+        //             // code for bookmaker End
+        //           }
+        //         }
+        //       })
+        //     }
+        //   }
+        // })
 
         // Odds Code Start
         this.socket.setOdds(this.eventId);
@@ -1025,13 +1026,13 @@ export class MatchComponent implements OnInit, OnDestroy {
   }
 
   async getDeviceId() {
-    const comps = await this.fingerprintService.collect();
+    // const comps = await this.fingerprintService.collect();
 
-    this.dataServe.getIdentify(comps).subscribe((res: any) => {
-      if (res) {
-        this.deviceId = res?.uuid;
-      }
-    })
+    // this.dataServe.getIdentify(comps).subscribe((res: any) => {
+    //   if (res) {
+    //     this.deviceId = res?.uuid;
+    //   }
+    // })
   }
 
   openfnacyBook(fancyId: any) {
@@ -1041,49 +1042,49 @@ export class MatchComponent implements OnInit, OnDestroy {
     let sectime = this.dataServe.getTimeStamp();
     let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
 
-    this.dataServe.verifyUser(data).subscribe((res: any) => {
-    }, (error) => {
-      if (error.status == 200) {
-        this.validateapi = this.dataServe.decryptData(error.error.text);
-        if (this.validateapi.data.type == 'success') {
-          this.dataServe.getUserActiveFancyBook(fancyId, data).subscribe((res: any) => {
-          }, (error) => {
-            if (error.status == 200) {
-              let msd = this.dataServe.decryptData(error.error.text);
-              this.fancybookdata = msd.data;
+    // this.dataServe.verifyUser(data).subscribe((res: any) => {
+    // }, (error) => {
+    //   if (error.status == 200) {
+    //     this.validateapi = this.dataServe.decryptData(error.error.text);
+    //     if (this.validateapi.data.type == 'success') {
+    //       this.dataServe.getUserActiveFancyBook(fancyId, data).subscribe((res: any) => {
+    //       }, (error) => {
+    //         if (error.status == 200) {
+    //           let msd = this.dataServe.decryptData(error.error.text);
+    //           this.fancybookdata = msd.data;
 
-              var length = this.fancybookdata.length;
+    //           var length = this.fancybookdata.length;
 
-              for (var i = 0; i < length; i++) {
-                if (!this.bookList.includes(this.fancybookdata[i].runs - 1)) {
-                  this.bookList.push(this.fancybookdata[i].runs - 1);
-                  this.pnlList.push(0.00);
-                }
-                if (!this.bookList.includes(this.fancybookdata[i].runs)) {
-                  this.bookList.push(this.fancybookdata[i].runs);
-                  this.pnlList.push(0.00);
-                }
-                if (!this.bookList.includes(this.fancybookdata[i].runs + 1)) {
-                  this.bookList.push(this.fancybookdata[i].runs + 1);
-                  this.pnlList.push(0.00);
-                }
-              }
+    //           for (var i = 0; i < length; i++) {
+    //             if (!this.bookList.includes(this.fancybookdata[i].runs - 1)) {
+    //               this.bookList.push(this.fancybookdata[i].runs - 1);
+    //               this.pnlList.push(0.00);
+    //             }
+    //             if (!this.bookList.includes(this.fancybookdata[i].runs)) {
+    //               this.bookList.push(this.fancybookdata[i].runs);
+    //               this.pnlList.push(0.00);
+    //             }
+    //             if (!this.bookList.includes(this.fancybookdata[i].runs + 1)) {
+    //               this.bookList.push(this.fancybookdata[i].runs + 1);
+    //               this.pnlList.push(0.00);
+    //             }
+    //           }
 
-              for (var i = 0; i < this.bookList.length; i++) {
-                for (var j = 0; j < length; j++) {
-                  if (this.bookList[i] < this.fancybookdata[j].runs) {
-                    this.pnlList[i] = this.pnlList[i] + this.fancybookdata[j].belowBook
-                  } else {
-                    this.pnlList[i] = this.pnlList[i] + this.fancybookdata[j].equalGreaterBook
-                  }
-                }
-              }
+    //           for (var i = 0; i < this.bookList.length; i++) {
+    //             for (var j = 0; j < length; j++) {
+    //               if (this.bookList[i] < this.fancybookdata[j].runs) {
+    //                 this.pnlList[i] = this.pnlList[i] + this.fancybookdata[j].belowBook
+    //               } else {
+    //                 this.pnlList[i] = this.pnlList[i] + this.fancybookdata[j].equalGreaterBook
+    //               }
+    //             }
+    //           }
 
-            }
-          })
-        }
-      }
-    })
+    //         }
+    //       })
+    //     }
+    //   }
+    // })
 
     this.openFanBook = true
     // this.ngOnInit()
@@ -1093,27 +1094,27 @@ export class MatchComponent implements OnInit, OnDestroy {
     let sectimed = this.dataServe.getTimeStamp();
     let mddata = { "eventId": this.eventId, "timeStamp": sectimed.timeStamp, "secretKey": sectimed.secretKey }
 
-    this.dataServe.verifyUser(mddata).subscribe((res: any) => {
-    }, (error) => {
-      if (error.status == 200) {
-        this.validateapi = this.dataServe.decryptData(error.error.text);
-        if (this.validateapi.data.type == 'success') {
-          this.dataServe.getUserMatcheDetail(mddata).subscribe((res: any) => {
-          }, (error) => {
-            if (error.status == 200) {
-              let res = this.dataServe.decryptData(error.error.text);
-              this.eventData = res.data;
-              this.oddspermission = this.eventData?.isOdds;
-              this.bmpermission = this.eventData?.isBook;
-              this.fancypermission = this.eventData?.isFancy;
-              this.otpermisssion = this.eventData?.isOther;
-              this.prempermission = this.eventData?.isPrem;
+    // this.dataServe.verifyUser(mddata).subscribe((res: any) => {
+    // }, (error) => {
+    //   if (error.status == 200) {
+    //     this.validateapi = this.dataServe.decryptData(error.error.text);
+    //     if (this.validateapi.data.type == 'success') {
+    //       this.dataServe.getUserMatcheDetail(mddata).subscribe((res: any) => {
+    //       }, (error) => {
+    //         if (error.status == 200) {
+    //           let res = this.dataServe.decryptData(error.error.text);
+    //           this.eventData = res.data;
+    //           this.oddspermission = this.eventData?.isOdds;
+    //           this.bmpermission = this.eventData?.isBook;
+    //           this.fancypermission = this.eventData?.isFancy;
+    //           this.otpermisssion = this.eventData?.isOther;
+    //           this.prempermission = this.eventData?.isPrem;
 
-            }
-          })
-        }
-      }
-    })
+    //         }
+    //       })
+    //     }
+    //   }
+    // })
   }
 
 
@@ -1237,7 +1238,7 @@ export class MatchComponent implements OnInit, OnDestroy {
     if (this.intervalIdTime) {
       clearInterval(this.intervalIdTime);
     }
-    
+
     this.socket.destorySocket(this.eventId);
     if (this.oddsub) {
       this.oddsub.unsubscribe();

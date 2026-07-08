@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output, ViewEncapsulation } from '@angular/cor
 import { Location } from '@angular/common';
 @Component({
   selector: 'app-responsible-gaming',
+  standalone:true,
   imports: [],
   templateUrl: './responsible-gaming.component.html',
   styleUrls: ['./responsible-gaming.component.css'],

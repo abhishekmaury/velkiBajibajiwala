@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output, ViewEncapsulation } from '@angular/cor
 import { Location } from '@angular/common';
 @Component({
   selector: 'app-rules-and-reg',
+  standalone: true,
   imports: [],
   templateUrl: './rules-and-reg.component.html',
   styleUrls: ['./rules-and-reg.component.css'],

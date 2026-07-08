@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output, ViewEncapsulation } from '@angular/cor
 import { Location } from '@angular/common';
 @Component({
   selector: 'app-privacy-policy',
+  standalone: true,
   imports: [],
   templateUrl: './privacy-policy.component.html',
   styleUrls: ['./privacy-policy.component.css'],

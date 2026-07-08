@@ -4,15 +4,16 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import moment from 'moment';
 import { Subscription } from 'rxjs';
-import { DatahandlerService } from '../../services/datahandler.service';
 import { SocketServiceService } from '../../services/socket-service.service';
 import { ParlayBetPlaceComponent } from '../parlay-bet-place/parlay-bet-place.component';
 import { GetSocketUrlService } from '../../services/get-socket-url.service';
+import { DataHandlerService } from 'src/app/services/datahandler.service';
 
 
 
 @Component({
   selector: 'app-premium-parlay',
+  standalone: true,
   imports:[CommonModule,ParlayBetPlaceComponent],
   templateUrl: './premium-parlay.component.html',
   styleUrls: ['./premium-parlay.component.css']
@@ -131,7 +132,7 @@ export class PremiumParlayComponent {
 
 
 
-  constructor(private dataServe: DatahandlerService, private socket: SocketServiceService, private getSocketPath: GetSocketUrlService,
+  constructor(private dataServe: DataHandlerService, private socket: SocketServiceService, private getSocketPath: GetSocketUrlService,
     private route: ActivatedRoute, public sanitizer: DomSanitizer, private elRef: ElementRef, private renderer: Renderer2) {
   }
 
@@ -191,43 +192,43 @@ export class PremiumParlayComponent {
         let sectimed = this.dataServe.getTimeStamp();
         let mddata = { "eventId": this.eventId, "timeStamp": sectimed.timeStamp, "secretKey": sectimed.secretKey }
 
-        this.dataServe.verifyUser(mddata).subscribe((res: any) => {
-        }, (error) => {
-          if (error.status == 200) {
-            this.validateapi = this.dataServe.decryptData(error.error.text);
-            if (this.validateapi.data.type == 'success') {
-              this.dataServe.getUserMatcheDetail(mddata).subscribe((res: any) => {
-              }, (error) => {
-                if (error.status == 200) {
-                  let res = this.dataServe.decryptData(error.error.text);
-                  this.eventData = res.data;
-                  this.prempermission = this.eventData?.isPrem;
+        // this.dataServe.verifyUser(mddata).subscribe((res: any) => {
+        // }, (error) => {
+        //   if (error.status == 200) {
+        //     this.validateapi = this.dataServe.decryptData(error.error.text);
+        //     if (this.validateapi.data.type == 'success') {
+        //       this.dataServe.getUserMatcheDetail(mddata).subscribe((res: any) => {
+        //       }, (error) => {
+        //         if (error.status == 200) {
+        //           let res = this.dataServe.decryptData(error.error.text);
+        //           this.eventData = res.data;
+        //           this.prempermission = this.eventData?.isPrem;
 
-                  this.inplaystatus = this.inPlayMatches(this.eventData.matchDate);
-                  if (this.sportId !== '4' && this.inplaystatus == false) {
-                    this.layBet = false;
-                  }
+        //           this.inplaystatus = this.inPlayMatches(this.eventData.matchDate);
+        //           if (this.sportId !== '4' && this.inplaystatus == false) {
+        //             this.layBet = false;
+        //           }
 
-                  if (this.eventData.team3 != undefined) {
-                    this.matchrunners.push(this.eventData.team1, this.eventData.team2, this.eventData.team3);
-                    this.matchrunnerssid.push(this.eventData.id1, this.eventData.id2, this.eventData.id3);
-                  } else {
-                    this.matchrunners.push(this.eventData.team1, this.eventData.team2);
-                    this.matchrunnerssid.push(this.eventData.id1, this.eventData.id2);
-                  }
+        //           if (this.eventData.team3 != undefined) {
+        //             this.matchrunners.push(this.eventData.team1, this.eventData.team2, this.eventData.team3);
+        //             this.matchrunnerssid.push(this.eventData.id1, this.eventData.id2, this.eventData.id3);
+        //           } else {
+        //             this.matchrunners.push(this.eventData.team1, this.eventData.team2);
+        //             this.matchrunnerssid.push(this.eventData.id1, this.eventData.id2);
+        //           }
 
-                  this.preMatchMarket = JSON.parse(this.eventData.preMatchMarket).map((market: any) => {
-                    if (market.name) {
-                      market.pSelection = JSON.parse(market.pSelection);
-                    }
-                    return market;
-                  });
+        //           this.preMatchMarket = JSON.parse(this.eventData.preMatchMarket).map((market: any) => {
+        //             if (market.name) {
+        //               market.pSelection = JSON.parse(market.pSelection);
+        //             }
+        //             return market;
+        //           });
 
-                }
-              })
-            }
-          }
-        })
+        //         }
+        //       })
+        //     }
+        //   }
+        // })
         this.oddsub = this.socket.getUpdateMessageListner().subscribe((res: any) => {
           this.tvchannel = res.message.banglaTV;
 
@@ -284,23 +285,23 @@ export class PremiumParlayComponent {
     let sectimed = this.dataServe.getTimeStamp();
     let mddata = { "eventId": this.eventId, "timeStamp": sectimed.timeStamp, "secretKey": sectimed.secretKey }
 
-    this.dataServe.verifyUser(mddata).subscribe((res: any) => {
-    }, (error) => {
-      if (error.status == 200) {
-        this.validateapi = this.dataServe.decryptData(error.error.text);
-        if (this.validateapi.data.type == 'success') {
-          this.dataServe.getUserMatcheDetail(mddata).subscribe((res: any) => {
-          }, (error) => {
-            if (error.status == 200) {
-              let res = this.dataServe.decryptData(error.error.text);
-              this.eventData = res.data;
-              this.prempermission = this.eventData?.isPrem;
+    // this.dataServe.verifyUser(mddata).subscribe((res: any) => {
+    // }, (error) => {
+    //   if (error.status == 200) {
+    //     this.validateapi = this.dataServe.decryptData(error.error.text);
+    //     if (this.validateapi.data.type == 'success') {
+    //       this.dataServe.getUserMatcheDetail(mddata).subscribe((res: any) => {
+    //       }, (error) => {
+    //         if (error.status == 200) {
+    //           let res = this.dataServe.decryptData(error.error.text);
+    //           this.eventData = res.data;
+    //           this.prempermission = this.eventData?.isPrem;
 
-            }
-          })
-        }
-      }
-    })
+    //         }
+    //       })
+    //     }
+    //   }
+    // })
   }
 
 

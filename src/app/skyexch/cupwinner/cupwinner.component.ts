@@ -4,13 +4,14 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import  moment from 'moment';
 import { Subscription } from 'rxjs';
-import { DatahandlerService } from '../../services/datahandler.service';
 import { SocketServiceService } from '../../services/socket-service.service';
 import { PlaceBetCupwinnerComponent } from '../place-bet-cupwinner/place-bet-cupwinner.component';
 import { GetSocketUrlService } from '../../services/get-socket-url.service';
+import { DataHandlerService } from 'src/app/services/datahandler.service';
 
 @Component({
   selector: 'app-cupwinner',
+  standalone: true,
   imports:[CommonModule,PlaceBetCupwinnerComponent],
   templateUrl: './cupwinner.component.html',
   styleUrls: ['./cupwinner.component.css']
@@ -99,15 +100,15 @@ export class CupwinnerComponent {
   private intervalId!: any;
   themeData:any;
 
-  constructor(private dataServe: DatahandlerService, private getSocketPath: GetSocketUrlService, private socket: SocketServiceService,
+  constructor(private dataServe: DataHandlerService, private getSocketPath: GetSocketUrlService, private socket: SocketServiceService,
               private route: ActivatedRoute, public sanitizer: DomSanitizer,private elRef: ElementRef,private renderer: Renderer2) {
                }
 
   async ngOnInit() {
     await this.getSocketPath.getSocketUrl();
-    this.dataServe.sendWebData.subscribe((res: any) => {
-      this.themeData = res?.theme;
-    })
+    // this.dataServe.sendWebData.subscribe((res: any) => {
+    //   this.themeData = res?.theme;
+    // })
     let webdata = localStorage.getItem("webData");
     if (webdata) {
       let formatedDt = JSON.parse(webdata)
@@ -132,26 +133,26 @@ export class CupwinnerComponent {
         let sectime = this.dataServe.getTimeStamp();
         let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
 
-        this.dataServe.verifyUser(data).subscribe((res: any) => {
-        }, (error) => {
-          if (error.status == 200) {
+        // this.dataServe.verifyUser(data).subscribe((res: any) => {
+        // }, (error) => {
+        //   if (error.status == 200) {
 
-            this.validateapi = this.dataServe.decryptData(error.error.text);
-            if (this.validateapi.data.type == 'success') {
-              this.dataServe.getUserActiveFancyBook(this.eventId,data).subscribe((res: any) => {
-              }, (error) => {
-                let res = this.dataServe.decryptData(error.error.text);
-                if(error.status == 200) {
-                  this.betOddResult = res.data;
-                  this.bookgenerate();
-                  this.getMatcBkData = true;
-                } else {
-                  this.getMatcBkData = false;
-                }
-              })
-            }
-          }
-        })
+        //     this.validateapi = this.dataServe.decryptData(error.error.text);
+        //     if (this.validateapi.data.type == 'success') {
+        //       this.dataServe.getUserActiveFancyBook(this.eventId,data).subscribe((res: any) => {
+        //       }, (error) => {
+        //         let res = this.dataServe.decryptData(error.error.text);
+        //         if(error.status == 200) {
+        //           this.betOddResult = res.data;
+        //           this.bookgenerate();
+        //           this.getMatcBkData = true;
+        //         } else {
+        //           this.getMatcBkData = false;
+        //         }
+        //       })
+        //     }
+        //   }
+        // })
 
 
         this.betsuccessstatus = this.betSuccess[0];
@@ -176,58 +177,58 @@ export class CupwinnerComponent {
         let sectimed = this.dataServe.getTimeStamp();
         let mddata = {"eventId":this.eventId,"timeStamp": sectimed.timeStamp, "secretKey": sectimed.secretKey }
 
-        this.dataServe.verifyUser(mddata).subscribe((res: any) => {
-        }, (error) => {
-          if (error.status == 200) {
-            this.validateapi = this.dataServe.decryptData(error.error.text);
-            if (this.validateapi.data.type == 'success') {
-              this.dataServe.getUserMatcheDetail(mddata).subscribe((res: any) => {
-              }, (error) => {
-                if (error.status == 200) {
-                  let res = this.dataServe.decryptData(error.error.text);
-                  this.eventData = res.data;
-                  this.oddspermission=this.eventData?.isOdds;
+        // this.dataServe.verifyUser(mddata).subscribe((res: any) => {
+        // }, (error) => {
+        //   if (error.status == 200) {
+        //     this.validateapi = this.dataServe.decryptData(error.error.text);
+        //     if (this.validateapi.data.type == 'success') {
+        //       this.dataServe.getUserMatcheDetail(mddata).subscribe((res: any) => {
+        //       }, (error) => {
+        //         if (error.status == 200) {
+        //           let res = this.dataServe.decryptData(error.error.text);
+        //           this.eventData = res.data;
+        //           this.oddspermission=this.eventData?.isOdds;
 
-                  this.inplaystatus = this.inPlayMatches(this.eventData.matchDate);
-                  if(this.sportId!=='4' && this.inplaystatus==false){
-                    this.layBet = false;
-                  }
+        //           this.inplaystatus = this.inPlayMatches(this.eventData.matchDate);
+        //           if(this.sportId!=='4' && this.inplaystatus==false){
+        //             this.layBet = false;
+        //           }
 
-                  this.matchrunners = JSON.parse(this.eventData.selctionids)
+        //           this.matchrunners = JSON.parse(this.eventData.selctionids)
 
-                }
-              })
-            }
-          }
-        })
+        //         }
+        //       })
+        //     }
+        //   }
+        // })
 
 
         if(token){
           let sectime = this.dataServe.getTimeStamp();
           let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
 
-          this.dataServe.verifyUser(data).subscribe((res: any) => {
-          }, (error) => {
-            if (error.status == 200) {
-              this.validateapi = this.dataServe.decryptData(error.error.text);
-              if (this.validateapi.data.type == 'success') {
-                this.dataServe.getUserActiveFancyBook(this.eventId,data).subscribe((res: any) => {
-                }, (error) => {
-                  if (error.status == 200) {
-                    let res = this.dataServe.decryptData(error.error.text);
-                    this.betOddResult = res.data;
-                    this.getMatcBkData = true;
+          // this.dataServe.verifyUser(data).subscribe((res: any) => {
+          // }, (error) => {
+          //   if (error.status == 200) {
+          //     this.validateapi = this.dataServe.decryptData(error.error.text);
+          //     if (this.validateapi.data.type == 'success') {
+          //       this.dataServe.getUserActiveFancyBook(this.eventId,data).subscribe((res: any) => {
+          //       }, (error) => {
+          //         if (error.status == 200) {
+          //           let res = this.dataServe.decryptData(error.error.text);
+          //           this.betOddResult = res.data;
+          //           this.getMatcBkData = true;
 
-                    setTimeout(() => {
-                      this.bookgenerate();
-                    }, 1000);
-                  } else {
-                    this.getMatcBkData = false;
-                  }
-                })
-              }
-            }
-          })
+          //           setTimeout(() => {
+          //             this.bookgenerate();
+          //           }, 1000);
+          //         } else {
+          //           this.getMatcBkData = false;
+          //         }
+          //       })
+          //     }
+          //   }
+          // })
 
         }
 
@@ -235,36 +236,36 @@ export class CupwinnerComponent {
         let sectimeds = this.dataServe.getTimeStamp();
         let mddatas = {"eventId":this.eventId,"timeStamp": sectimeds.timeStamp, "secretKey": sectimeds.secretKey }
 
-        this.dataServe.verifyUser(mddatas).subscribe((res: any) => {
-        }, (error) => {
-          if (error.status == 200) {
-            this.validateapi = this.dataServe.decryptData(error.error.text);
-            if (this.validateapi.data.type == 'success') {
-              this.dataServe.getPreLoadData(mddatas,this.eventId).subscribe((res: any) => {
-              }, (error) => {
-                if (error.status == 200) {
-                  let res1 = this.dataServe.decryptData(error.error.text);
-                  let res = res1.data;
-                  this.eventData2 = res;
-                  if(this.eventData2){
-                    // code for odds start
-                    if(this.eventData2.oddsProvider==='Tiger')
-                    {
-                      this.totalMatched = res.odds[0].totalMatched;
-                      this.runnersList = res.odds[0].runners;
-                    }
-                    else if(this.eventData2.oddsProvider==='Neeraj')
-                    {
-                      this.totalMatched = res.odds[0].totalMatched;
-                      this.runnersList = res.odds[0].runners;
-                    }
-                    // code for odds End
-                  }
-                }
-              })
-            }
-          }
-        })
+        // this.dataServe.verifyUser(mddatas).subscribe((res: any) => {
+        // }, (error) => {
+        //   if (error.status == 200) {
+        //     this.validateapi = this.dataServe.decryptData(error.error.text);
+        //     if (this.validateapi.data.type == 'success') {
+        //       this.dataServe.getPreLoadData(mddatas,this.eventId).subscribe((res: any) => {
+        //       }, (error) => {
+        //         if (error.status == 200) {
+        //           let res1 = this.dataServe.decryptData(error.error.text);
+        //           let res = res1.data;
+        //           this.eventData2 = res;
+        //           if(this.eventData2){
+        //             // code for odds start
+        //             if(this.eventData2.oddsProvider==='Tiger')
+        //             {
+        //               this.totalMatched = res.odds[0].totalMatched;
+        //               this.runnersList = res.odds[0].runners;
+        //             }
+        //             else if(this.eventData2.oddsProvider==='Neeraj')
+        //             {
+        //               this.totalMatched = res.odds[0].totalMatched;
+        //               this.runnersList = res.odds[0].runners;
+        //             }
+        //             // code for odds End
+        //           }
+        //         }
+        //       })
+        //     }
+        //   }
+        // })
 
         // Odds Code Start
         this.socket.setOdds(this.eventId);

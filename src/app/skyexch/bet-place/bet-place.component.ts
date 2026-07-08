@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { DatahandlerService } from '../../services/datahandler.service';
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
 import { FingerprintService } from '../../services/fingerprint.service';
+import { DataHandlerService } from 'src/app/services/datahandler.service';
 
 
 @Component({
   selector: 'app-bet-place',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './bet-place.component.html',
   styleUrls: ['./bet-place.component.css'],
@@ -56,7 +57,7 @@ export class BetPlaceComponent implements OnInit {
   numPadArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '00']
   enableBtn = false
 
-  constructor(private router: Router, private dataServe: DatahandlerService, private fingerprintService: FingerprintService) { }
+  constructor(private router: Router, private dataServe: DataHandlerService, private fingerprintService: FingerprintService) { }
 
   ngOnInit(): void {
     this.profit.push(this.data)
@@ -89,14 +90,14 @@ export class BetPlaceComponent implements OnInit {
   }
 
   async getFingerprintHash() {
-    const comps = await this.fingerprintService.collect();
+    // const comps = await this.fingerprintService.collect();
 
-    this.dataServe.getIdentify(comps).subscribe((res: any) => {
-      if (res) {
-        this.fingerprintHash = res?.uuid;
-        this.fingerData = res;
-      }
-    })
+    // this.dataServe.getIdentify(comps).subscribe((res: any) => {
+    //   if (res) {
+    //     this.fingerprintHash = res?.uuid;
+    //     this.fingerData = res;
+    //   }
+    // })
   }
   addStakValue(val: any, tr: any) {
     this.enableBtn = tr
@@ -169,7 +170,7 @@ export class BetPlaceComponent implements OnInit {
       this.selectedodds = this.data[0].odds;
 
       if (this.data[0].sourceBetType === '') {
-        
+
         if(this.totalMatched>this.lowLiquidity){
           if (this.socketEventData.status == true) {
 
@@ -203,33 +204,33 @@ export class BetPlaceComponent implements OnInit {
 
                     if ((this.updOddsBack >= this.data[0].odds) && ((this.updOddsBack - this.data[0].odds) <= 0.05)) {
 
-                      this.dataServe.setMatchOddsBet(this.data[0], this.counterBet, this.fingerprintHash, this.deviceId, this.fingerData).subscribe((res: any) => {
-                      }, (error: any) => {
-                        if (error.status == 200) {
-                          let res1 = this.dataServe.decryptData(error.error.text);
-                          let res = res1.data
-                          if (res.type === 'success') {
-                            this.closeBet = false;
-                            this.successBet = true;
-                            this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
-                          } else {
-                            this.closeBet = false;
-                            this.loading = false;
-                            this.successBet = false;
-                            this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
-                          }
+                      // this.dataServe.setMatchOddsBet(this.data[0], this.counterBet, this.fingerprintHash, this.deviceId, this.fingerData).subscribe((res: any) => {
+                      // }, (error: any) => {
+                      //   if (error.status == 200) {
+                      //     let res1 = this.dataServe.decryptData(error.error.text);
+                      //     let res = res1.data
+                      //     if (res.type === 'success') {
+                      //       this.closeBet = false;
+                      //       this.successBet = true;
+                      //       this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                      //     } else {
+                      //       this.closeBet = false;
+                      //       this.loading = false;
+                      //       this.successBet = false;
+                      //       this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                      //     }
 
-                        } else {
-                          let res1 = this.dataServe.decryptData(error.error.text);
-                          let res = res1.data
+                      //   } else {
+                      //     let res1 = this.dataServe.decryptData(error.error.text);
+                      //     let res = res1.data
 
-                          this.closeBet = false;
-                          this.loading = false;
-                          this.successBet = false;
-                          this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                      //     this.closeBet = false;
+                      //     this.loading = false;
+                      //     this.successBet = false;
+                      //     this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
 
-                        }
-                      })
+                      //   }
+                      // })
 
                     } else {
 
@@ -246,33 +247,33 @@ export class BetPlaceComponent implements OnInit {
 
                     if ((this.updOddsLay <= this.data[0].odds) && (this.data[0].odds - this.updOddsLay) <= 0.05) {
 
-                      this.dataServe.setMatchOddsBet(this.data[0], this.counterBet, this.fingerprintHash, this.deviceId, this.fingerData).subscribe((res: any) => {
-                      }, (error: any) => {
-                        if (error.status == 200) {
-                          let res1 = this.dataServe.decryptData(error.error.text);
-                          let res = res1.data
-                          if (res.type === 'success') {
-                            this.closeBet = false;
-                            this.successBet = true;
-                            this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
-                          } else {
-                            this.closeBet = false;
-                            this.loading = false;
-                            this.successBet = false;
-                            this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
-                          }
+                      // this.dataServe.setMatchOddsBet(this.data[0], this.counterBet, this.fingerprintHash, this.deviceId, this.fingerData).subscribe((res: any) => {
+                      // }, (error: any) => {
+                      //   if (error.status == 200) {
+                      //     let res1 = this.dataServe.decryptData(error.error.text);
+                      //     let res = res1.data
+                      //     if (res.type === 'success') {
+                      //       this.closeBet = false;
+                      //       this.successBet = true;
+                      //       this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                      //     } else {
+                      //       this.closeBet = false;
+                      //       this.loading = false;
+                      //       this.successBet = false;
+                      //       this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                      //     }
 
-                        } else {
-                          let res1 = this.dataServe.decryptData(error.error.text);
-                          let res = res1.data
+                      //   } else {
+                      //     let res1 = this.dataServe.decryptData(error.error.text);
+                      //     let res = res1.data
 
-                          this.closeBet = false;
-                          this.loading = false;
-                          this.successBet = false;
-                          this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                      //     this.closeBet = false;
+                      //     this.loading = false;
+                      //     this.successBet = false;
+                      //     this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
 
-                        }
-                      })
+                      //   }
+                      // })
 
                     } else {
                       this.closeBet = false;
@@ -360,33 +361,33 @@ export class BetPlaceComponent implements OnInit {
 
                   if ((this.updOddsBack >= this.data[0].odds) && ((this.updOddsBack - this.data[0].odds) <= 0.05)) {
 
-                    this.dataServe.setMatchOddsBet(this.data[0], this.counterBet, this.fingerprintHash, this.deviceId, this.fingerData).subscribe((res: any) => {
-                    }, (error: any) => {
-                      if (error.status == 200) {
-                        let res1 = this.dataServe.decryptData(error.error.text);
-                        let res = res1.data
-                        if (res.type === 'success') {
-                          this.closeBet = false;
-                          this.successBet = true;
-                          this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
-                        } else {
-                          this.closeBet = false;
-                          this.loading = false;
-                          this.successBet = false;
-                          this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
-                        }
+                    // this.dataServe.setMatchOddsBet(this.data[0], this.counterBet, this.fingerprintHash, this.deviceId, this.fingerData).subscribe((res: any) => {
+                    // }, (error: any) => {
+                    //   if (error.status == 200) {
+                    //     let res1 = this.dataServe.decryptData(error.error.text);
+                    //     let res = res1.data
+                    //     if (res.type === 'success') {
+                    //       this.closeBet = false;
+                    //       this.successBet = true;
+                    //       this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                    //     } else {
+                    //       this.closeBet = false;
+                    //       this.loading = false;
+                    //       this.successBet = false;
+                    //       this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                    //     }
 
-                      } else {
-                        let res1 = this.dataServe.decryptData(error.error.text);
-                        let res = res1.data
+                    //   } else {
+                    //     let res1 = this.dataServe.decryptData(error.error.text);
+                    //     let res = res1.data
 
-                        this.closeBet = false;
-                        this.loading = false;
-                        this.successBet = false;
-                        this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                    //     this.closeBet = false;
+                    //     this.loading = false;
+                    //     this.successBet = false;
+                    //     this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
 
-                      }
-                    })
+                    //   }
+                    // })
 
                   } else {
                     this.closeBet = false;
@@ -401,33 +402,33 @@ export class BetPlaceComponent implements OnInit {
 
                   if ((this.updOddsLay <= this.data[0].odds) && (this.data[0].odds - this.updOddsLay) <= 0.05) {
 
-                    this.dataServe.setMatchOddsBet(this.data[0], this.counterBet, this.fingerprintHash, this.deviceId, this.fingerData).subscribe((res: any) => {
-                    }, (error: any) => {
-                      if (error.status == 200) {
-                        let res1 = this.dataServe.decryptData(error.error.text);
-                        let res = res1.data
-                        if (res.type === 'success') {
-                          this.closeBet = false;
-                          this.successBet = true;
-                          this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
-                        } else {
-                          this.closeBet = false;
-                          this.loading = false;
-                          this.successBet = false;
-                          this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
-                        }
+                    // this.dataServe.setMatchOddsBet(this.data[0], this.counterBet, this.fingerprintHash, this.deviceId, this.fingerData).subscribe((res: any) => {
+                    // }, (error: any) => {
+                    //   if (error.status == 200) {
+                    //     let res1 = this.dataServe.decryptData(error.error.text);
+                    //     let res = res1.data
+                    //     if (res.type === 'success') {
+                    //       this.closeBet = false;
+                    //       this.successBet = true;
+                    //       this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                    //     } else {
+                    //       this.closeBet = false;
+                    //       this.loading = false;
+                    //       this.successBet = false;
+                    //       this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                    //     }
 
-                      } else {
-                        let res1 = this.dataServe.decryptData(error.error.text);
-                        let res = res1.data
+                    //   } else {
+                    //     let res1 = this.dataServe.decryptData(error.error.text);
+                    //     let res = res1.data
 
-                        this.closeBet = false;
-                        this.loading = false;
-                        this.successBet = false;
-                        this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                    //     this.closeBet = false;
+                    //     this.loading = false;
+                    //     this.successBet = false;
+                    //     this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
 
-                      }
-                    })
+                    //   }
+                    // })
 
                   } else {
                     this.closeBet = false;
@@ -504,33 +505,33 @@ export class BetPlaceComponent implements OnInit {
               if (this.oddsLimit >= this.selectedodds) {
                 if (this.data[0].isBack == true) {
 
-                  this.dataServe.setTossMatchBet(this.data[0], this.counterBet, this.fingerprintHash, this.deviceId, this.fingerData).subscribe((res: any) => {
-                  }, (error: any) => {
-                    if (error.status == 200) {
-                      let res1 = this.dataServe.decryptData(error.error.text);
-                      let res = res1.data
-                      if (res.type === 'success') {
-                        this.closeBet = false;
-                        this.successBet = true;
-                        this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
-                      } else {
-                        this.closeBet = false;
-                        this.loading = false;
-                        this.successBet = false
-                        this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
-                      }
+                  // this.dataServe.setTossMatchBet(this.data[0], this.counterBet, this.fingerprintHash, this.deviceId, this.fingerData).subscribe((res: any) => {
+                  // }, (error: any) => {
+                  //   if (error.status == 200) {
+                  //     let res1 = this.dataServe.decryptData(error.error.text);
+                  //     let res = res1.data
+                  //     if (res.type === 'success') {
+                  //       this.closeBet = false;
+                  //       this.successBet = true;
+                  //       this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                  //     } else {
+                  //       this.closeBet = false;
+                  //       this.loading = false;
+                  //       this.successBet = false
+                  //       this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                  //     }
 
-                    } else {
-                      let res1 = this.dataServe.decryptData(error.error.text);
-                      let res = res1.data
+                  //   } else {
+                  //     let res1 = this.dataServe.decryptData(error.error.text);
+                  //     let res = res1.data
 
-                      this.closeBet = false;
-                      this.loading = false;
-                      this.successBet = false;
-                      this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                  //     this.closeBet = false;
+                  //     this.loading = false;
+                  //     this.successBet = false;
+                  //     this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
 
-                    }
-                  })
+                  //   }
+                  // })
 
 
                 }
@@ -601,61 +602,61 @@ export class BetPlaceComponent implements OnInit {
 
                   if (this.updOddsBack == this.data[0].odds) {
                     if (this.data[0].sourceBetType === 'Fancy1') {
-                      this.dataServe.setFancy1MatchBet(this.data[0], this.counterBet, this.fingerprintHash, this.deviceId, this.fingerData).subscribe((res: any) => {
-                      }, (error: any) => {
-                        if (error.status == 200) {
-                          let res1 = this.dataServe.decryptData(error.error.text);
-                          let res = res1.data;
-                          if (res.type === 'success') {
-                            this.closeBet = false;
-                            this.successBet = true;
-                            this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
-                          } else {
-                            this.closeBet = false;
-                            this.loading = false;
-                            this.successBet = false
-                            this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
-                          }
-                        } else {
-                          let res1 = this.dataServe.decryptData(error.error.text);
-                          let res = res1.data
+                      // this.dataServe.setFancy1MatchBet(this.data[0], this.counterBet, this.fingerprintHash, this.deviceId, this.fingerData).subscribe((res: any) => {
+                      // }, (error: any) => {
+                      //   if (error.status == 200) {
+                      //     let res1 = this.dataServe.decryptData(error.error.text);
+                      //     let res = res1.data;
+                      //     if (res.type === 'success') {
+                      //       this.closeBet = false;
+                      //       this.successBet = true;
+                      //       this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                      //     } else {
+                      //       this.closeBet = false;
+                      //       this.loading = false;
+                      //       this.successBet = false
+                      //       this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                      //     }
+                      //   } else {
+                      //     let res1 = this.dataServe.decryptData(error.error.text);
+                      //     let res = res1.data
 
-                          this.closeBet = false;
-                          this.loading = false;
-                          this.successBet = false;
-                          this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                      //     this.closeBet = false;
+                      //     this.loading = false;
+                      //     this.successBet = false;
+                      //     this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
 
-                        }
+                      //   }
 
-                      })
+                      // })
                     } else {
-                      this.dataServe.setFancyMatchBet(this.data[0], this.counterBet, this.fingerprintHash, this.deviceId, this.fingerData).subscribe((res: any) => {
-                      }, (error: any) => {
-                        if (error.status == 200) {
-                          let res1 = this.dataServe.decryptData(error.error.text);
-                          let res = res1.data;
-                          if (res.type === 'success') {
-                            this.closeBet = false;
-                            this.successBet = true;
-                            this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
-                          } else {
-                            this.closeBet = false;
-                            this.loading = false;
-                            this.successBet = false
-                            this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
-                          }
-                        } else {
-                          let res1 = this.dataServe.decryptData(error.error.text);
-                          let res = res1.data
+                      // this.dataServe.setFancyMatchBet(this.data[0], this.counterBet, this.fingerprintHash, this.deviceId, this.fingerData).subscribe((res: any) => {
+                      // }, (error: any) => {
+                      //   if (error.status == 200) {
+                      //     let res1 = this.dataServe.decryptData(error.error.text);
+                      //     let res = res1.data;
+                      //     if (res.type === 'success') {
+                      //       this.closeBet = false;
+                      //       this.successBet = true;
+                      //       this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                      //     } else {
+                      //       this.closeBet = false;
+                      //       this.loading = false;
+                      //       this.successBet = false
+                      //       this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                      //     }
+                      //   } else {
+                      //     let res1 = this.dataServe.decryptData(error.error.text);
+                      //     let res = res1.data
 
-                          this.closeBet = false;
-                          this.loading = false;
-                          this.successBet = false;
-                          this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                      //     this.closeBet = false;
+                      //     this.loading = false;
+                      //     this.successBet = false;
+                      //     this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
 
-                        }
+                      //   }
 
-                      })
+                      // })
                     }
                   } else {
                     this.closeBet = false;
@@ -670,46 +671,46 @@ export class BetPlaceComponent implements OnInit {
 
                   if (this.updOddsLay == this.data[0].odds) {
                     if (this.data[0].sourceBetType === 'Fancy1') {
-                      this.dataServe.setFancy1MatchBet(this.data[0], this.counterBet, this.fingerprintHash, this.deviceId, this.fingerData).subscribe((res: any) => {
-                        if (res.type === 'success') {
-                          this.closeBet = false;
-                          this.successBet = true;
-                          this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
-                        } else {
-                          this.closeBet = false;
-                          this.loading = false;
-                          this.successBet = false
-                          this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
-                        }
-                      })
+                      // this.dataServe.setFancy1MatchBet(this.data[0], this.counterBet, this.fingerprintHash, this.deviceId, this.fingerData).subscribe((res: any) => {
+                      //   if (res.type === 'success') {
+                      //     this.closeBet = false;
+                      //     this.successBet = true;
+                      //     this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                      //   } else {
+                      //     this.closeBet = false;
+                      //     this.loading = false;
+                      //     this.successBet = false
+                      //     this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                      //   }
+                      // })
                     } else {
-                      this.dataServe.setFancyMatchBet(this.data[0], this.counterBet, this.fingerprintHash, this.deviceId, this.fingerData).subscribe((res: any) => {
-                      }, (error: any) => {
-                        if (error.status == 200) {
-                          let res1 = this.dataServe.decryptData(error.error.text);
-                          let res = res1.data;
-                          if (res.type === 'success') {
-                            this.closeBet = false;
-                            this.successBet = true;
-                            this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
-                          } else {
-                            this.closeBet = false;
-                            this.loading = false;
-                            this.successBet = false
-                            this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
-                          }
-                        } else {
-                          let res1 = this.dataServe.decryptData(error.error.text);
-                          let res = res1.data
+                      // this.dataServe.setFancyMatchBet(this.data[0], this.counterBet, this.fingerprintHash, this.deviceId, this.fingerData).subscribe((res: any) => {
+                      // }, (error: any) => {
+                      //   if (error.status == 200) {
+                      //     let res1 = this.dataServe.decryptData(error.error.text);
+                      //     let res = res1.data;
+                      //     if (res.type === 'success') {
+                      //       this.closeBet = false;
+                      //       this.successBet = true;
+                      //       this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                      //     } else {
+                      //       this.closeBet = false;
+                      //       this.loading = false;
+                      //       this.successBet = false
+                      //       this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                      //     }
+                      //   } else {
+                      //     let res1 = this.dataServe.decryptData(error.error.text);
+                      //     let res = res1.data
 
-                          this.closeBet = false;
-                          this.loading = false;
-                          this.successBet = false;
-                          this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                      //     this.closeBet = false;
+                      //     this.loading = false;
+                      //     this.successBet = false;
+                      //     this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
 
-                        }
+                      //   }
 
-                      })
+                      // })
                     }
                   } else {
                     this.closeBet = false;
@@ -788,42 +789,42 @@ export class BetPlaceComponent implements OnInit {
               if (this.oddsLimit >= this.selectedodds) {
                 if (this.updOddsBack == this.data[0].odds) {
 
-                  this.dataServe.setPremiumMatchBet(this.data[0], this.counterBet, this.fingerprintHash, this.deviceId, this.fingerData).subscribe((res: any) => {
-                  }, (error: any) => {
-                    if (error.status == 200) {
-                      let res1 = this.dataServe.decryptData(error.error.text);
-                      let res = res1.data
-                      if (res.type === 'success') {
-                        this.closeBet = false;
-                        this.successBet = true;
-                        this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
-                      } else {
-                        this.closeBet = false;
-                        this.loading = false;
-                        this.successBet = false
-                        this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
-                      }
+                  // this.dataServe.setPremiumMatchBet(this.data[0], this.counterBet, this.fingerprintHash, this.deviceId, this.fingerData).subscribe((res: any) => {
+                  // }, (error: any) => {
+                  //   if (error.status == 200) {
+                  //     let res1 = this.dataServe.decryptData(error.error.text);
+                  //     let res = res1.data
+                  //     if (res.type === 'success') {
+                  //       this.closeBet = false;
+                  //       this.successBet = true;
+                  //       this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                  //     } else {
+                  //       this.closeBet = false;
+                  //       this.loading = false;
+                  //       this.successBet = false
+                  //       this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                  //     }
 
-                    } else if (error.status == 503) {
-                      // let res1 = this.dataServe.decryptData1(error.error);
-                      // let res = res1.data
-                      // console.log(res, error);
-                      let res = { "type": "error", "message": "Please Wait for some time", "title": "Oops..." }
-                      this.closeBet = false;
-                      this.loading = false;
-                      this.successBet = false;
-                      this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
-                    } else {
-                      let res1 = this.dataServe.decryptData(error.error.text);
-                      let res = res1.data
+                  //   } else if (error.status == 503) {
+                  //     // let res1 = this.dataServe.decryptData1(error.error);
+                  //     // let res = res1.data
+                  //     // console.log(res, error);
+                  //     let res = { "type": "error", "message": "Please Wait for some time", "title": "Oops..." }
+                  //     this.closeBet = false;
+                  //     this.loading = false;
+                  //     this.successBet = false;
+                  //     this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                  //   } else {
+                  //     let res1 = this.dataServe.decryptData(error.error.text);
+                  //     let res = res1.data
 
-                      this.closeBet = false;
-                      this.loading = false;
-                      this.successBet = false;
-                      this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                  //     this.closeBet = false;
+                  //     this.loading = false;
+                  //     this.successBet = false;
+                  //     this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
 
-                    }
-                  })
+                  //   }
+                  // })
 
 
                 } else {
@@ -909,33 +910,33 @@ export class BetPlaceComponent implements OnInit {
 
                   if ((this.updOddsBack >= this.data[0].odds) && ((this.updOddsBack - this.data[0].odds) <= 0.05)) {
 
-                    this.dataServe.setOtherMarketBet(this.data[0], this.counterBet, this.fingerprintHash, this.deviceId, this.fingerData).subscribe((res: any) => {
-                    }, (error: any) => {
-                      if (error.status == 200) {
-                        let res1 = this.dataServe.decryptData(error.error.text);
-                        let res = res1.data
-                        if (res.type === 'success') {
-                          this.closeBet = false;
-                          this.successBet = true;
-                          this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
-                        } else {
-                          this.closeBet = false;
-                          this.loading = false;
-                          this.successBet = false;
-                          this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
-                        }
+                    // this.dataServe.setOtherMarketBet(this.data[0], this.counterBet, this.fingerprintHash, this.deviceId, this.fingerData).subscribe((res: any) => {
+                    // }, (error: any) => {
+                    //   if (error.status == 200) {
+                    //     let res1 = this.dataServe.decryptData(error.error.text);
+                    //     let res = res1.data
+                    //     if (res.type === 'success') {
+                    //       this.closeBet = false;
+                    //       this.successBet = true;
+                    //       this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                    //     } else {
+                    //       this.closeBet = false;
+                    //       this.loading = false;
+                    //       this.successBet = false;
+                    //       this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                    //     }
 
-                      } else {
-                        let res1 = this.dataServe.decryptData(error.error.text);
-                        let res = res1.data
+                    //   } else {
+                    //     let res1 = this.dataServe.decryptData(error.error.text);
+                    //     let res = res1.data
 
-                        this.closeBet = false;
-                        this.loading = false;
-                        this.successBet = false;
-                        this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                    //     this.closeBet = false;
+                    //     this.loading = false;
+                    //     this.successBet = false;
+                    //     this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
 
-                      }
-                    })
+                    //   }
+                    // })
 
                   } else {
                     this.closeBet = false;
@@ -949,33 +950,33 @@ export class BetPlaceComponent implements OnInit {
 
                   if ((this.updOddsLay <= this.data[0].odds) && (this.data[0].odds - this.updOddsLay) <= 0.05) {
 
-                    this.dataServe.setOtherMarketBet(this.data[0], this.counterBet, this.fingerprintHash, this.deviceId, this.fingerData).subscribe((res: any) => {
-                    }, (error: any) => {
-                      if (error.status == 200) {
-                        let res1 = this.dataServe.decryptData(error.error.text);
-                        let res = res1.data
-                        if (res.type === 'success') {
-                          this.closeBet = false;
-                          this.successBet = true;
-                          this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
-                        } else {
-                          this.closeBet = false;
-                          this.loading = false;
-                          this.successBet = false;
-                          this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
-                        }
+                    // this.dataServe.setOtherMarketBet(this.data[0], this.counterBet, this.fingerprintHash, this.deviceId, this.fingerData).subscribe((res: any) => {
+                    // }, (error: any) => {
+                    //   if (error.status == 200) {
+                    //     let res1 = this.dataServe.decryptData(error.error.text);
+                    //     let res = res1.data
+                    //     if (res.type === 'success') {
+                    //       this.closeBet = false;
+                    //       this.successBet = true;
+                    //       this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                    //     } else {
+                    //       this.closeBet = false;
+                    //       this.loading = false;
+                    //       this.successBet = false;
+                    //       this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                    //     }
 
-                      } else {
-                        let res1 = this.dataServe.decryptData(error.error.text);
-                        let res = res1.data
+                    //   } else {
+                    //     let res1 = this.dataServe.decryptData(error.error.text);
+                    //     let res = res1.data
 
-                        this.closeBet = false;
-                        this.loading = false;
-                        this.successBet = false;
-                        this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
+                    //     this.closeBet = false;
+                    //     this.loading = false;
+                    //     this.successBet = false;
+                    //     this.dataServe.betSuccess(this.successBet, this.data[0], this.counterBet, res)
 
-                      }
-                    })
+                    //   }
+                    // })
 
                   } else {
                     this.closeBet = false;
@@ -1035,18 +1036,18 @@ export class BetPlaceComponent implements OnInit {
   getCount() {
     let sectime = this.dataServe.getTimeStamp();
     let data = { "eventId": this.data[0].eventId, "sourceType": this.data[0].sourceBetType, "sourceId": this.data[0].sourceId, "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
-    this.dataServe.verifyUser(data).subscribe((res: any) => {
-    }, (error) => {
-      if (error.status == 200) {
-        this.validateapi = this.dataServe.decryptData(error.error.text);
-        if (this.validateapi.data.type == 'success') {
-          this.dataServe.updateUserModalCount(data).subscribe((res: any) => {
-          }, (error) => {
-            let msd = this.dataServe.decryptData(error.error.text);
-          })
-        }
-      }
-    })
+    // this.dataServe.verifyUser(data).subscribe((res: any) => {
+    // }, (error) => {
+    //   if (error.status == 200) {
+    //     this.validateapi = this.dataServe.decryptData(error.error.text);
+    //     if (this.validateapi.data.type == 'success') {
+    //       this.dataServe.updateUserModalCount(data).subscribe((res: any) => {
+    //       }, (error) => {
+    //         let msd = this.dataServe.decryptData(error.error.text);
+    //       })
+    //     }
+    //   }
+    // })
   }
 
 

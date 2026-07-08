@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output, ViewEncapsulation } from '@angular/cor
 import { Location } from '@angular/common';
 @Component({
   selector: 'app-kyc',
+  standalone: true,
   imports: [],
   templateUrl: './kyc.component.html',
   styleUrls: ['./kyc.component.css'],
