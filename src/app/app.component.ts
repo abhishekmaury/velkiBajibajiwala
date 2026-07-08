@@ -104,7 +104,7 @@ export class AppComponent implements OnInit {
     if (currentUrl.startsWith('/edit')) {
       return false;
     }
-    const hiddenRoutes = ['/home', '/edit', '/menu/upline-whatsapp-number', '/menu/change-password', '/login', '/menu/current-bets', '/menu/balance', '/menu/activeLog', '/menu/profile', '/menu/account-statement', '/change-password', '/toss-parlay', '/annoucement', '/menu/settings', '/menu/deposit', '/menu/withdrawal', '/menu/p2ptransfer', '/menu/p2ptransferLog', '/edit/user1/Test/user1@gmail.com', '/sign-up'];
+    const hiddenRoutes = ['/home', '/classichome', '/edit', '/menu/upline-whatsapp-number', '/menu/change-password', '/login', '/menu/current-bets', '/menu/balance', '/menu/activeLog', '/menu/profile', '/menu/account-statement', '/change-password', '/toss-parlay', '/annoucement', '/menu/settings', '/menu/deposit', '/menu/withdrawal', '/menu/p2ptransfer', '/menu/p2ptransferLog', '/edit/user1/Test/user1@gmail.com', '/sign-up'];
     const currentRoute = this.route.url;
     const isBetHistoryRoute = currentRoute.startsWith('/bet-history/') && currentRoute.split('/').length === 3;
     const isMarketRoute = currentRoute.startsWith('/market/');

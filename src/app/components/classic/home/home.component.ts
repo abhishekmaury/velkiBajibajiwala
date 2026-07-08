@@ -15,7 +15,7 @@ import Swiper from 'swiper';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent1 {
- @ViewChild('promoCarousel', { static: false }) promoCarousel!: CarouselComponent;
+  @ViewChild('promoCarousel', { static: false }) promoCarousel!: CarouselComponent;
   @ViewChild('promo2Carousel', { static: false }) promo2Carousel!: CarouselComponent;
   @ViewChild('marqueeList') marqueeList!: ElementRef;
 
@@ -113,13 +113,13 @@ export class HomeComponent1 {
     }
   };
   banners = [
-  '/assets/banner/evolution.webp',
-  '/assets/banner/sexy.webp',
-  '/assets/banner/netent.webp',
-  '/assets/banner/kv-hotroad.webp',
-  '/assets/banner/kv-smartsoft.webp',
-  '/assets/banner/jdb.webp'
-];
+    '/assets/banner/evolution.webp',
+    '/assets/banner/sexy.webp',
+    '/assets/banner/netent.webp',
+    '/assets/banner/kv-hotroad.webp',
+    '/assets/banner/kv-smartsoft.webp',
+    '/assets/banner/jdb.webp'
+  ];
   ngOnInit(): void {
     let lsData = localStorage.getItem('userData');
     if (lsData) {
@@ -152,7 +152,7 @@ export class HomeComponent1 {
       // this.banners = formatedDt?.banner;
       this.domainName = formatedDt?.domain
       // console.log(this.banners);
-      
+
       this.themeData = formatedDt?.theme;
       this.headerLogo = formatedDt?.logo;
       this.exclusiveData = formatedDt?.exclusiveGames;
@@ -165,16 +165,11 @@ export class HomeComponent1 {
     this.getPlatFormList();
     this.IndianCasino();
 
-    let whatdt = localStorage.getItem('footerLinks');
-    if (whatdt) {
-      this.whatsData = JSON.parse(whatdt);
-    } else {
-      this.gefooterLinks();
-    }
+
   }
 
   navigateToGames(gmnm: any, tab: any) {
-    this.router.navigate([`/games/${gmnm}/${tab}`])
+    this.router.navigate([`/casino/${gmnm}/${tab}`])
   }
   // async getDeviceId() {
   //   const comps = await this.fingerprintService.collect();
@@ -253,9 +248,9 @@ export class HomeComponent1 {
 
 
   ngAfterViewInit(): void {
-     new Swiper('.swiper-container', {
+    new Swiper('.swiper-container', {
       slidesPerView: 1.4,
-      centeredSlides : true,
+      centeredSlides: true,
       spaceBetween: 10,
       autoplay: {
         delay: 3000,
@@ -285,7 +280,7 @@ export class HomeComponent1 {
     //           this.usermessage = msd.data.data; 
     //           // ✅ Wait for Angular to render <li> items
     //           this.cdr.detectChanges();
-              
+
     //           setTimeout(() => this.setupMarquee(), 0);
     //         }
     //       })
@@ -297,7 +292,7 @@ export class HomeComponent1 {
   setupMarquee() {
     const listEl = this.marqueeList.nativeElement;
     // console.log(listEl);
-    
+
     // Duplicate content once
     if (listEl.dataset['duplicated'] !== 'true') {
       listEl.innerHTML += listEl.innerHTML;
@@ -367,93 +362,13 @@ export class HomeComponent1 {
     let token = localStorage.getItem('token')
     if (token) {
       this.isLoading = true;
-      let sectime = this.dataserve.getTimeStamp();
-      let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
-
-      // this.dataserve.verifyUser(data).subscribe((res: any) => {
-      // }, (error) => {
-      //   if (error.status == 200) {
-      //     this.validateapi = this.dataserve.decryptData(error.error.text);
-      //     if (this.validateapi.data.type == 'success') {
-      //       this.dataserve.checkSportsPlay(data).subscribe((res: any) => {
-      //       }, (error) => {
-      //         if (error.status == 200) {
-      //           this.isLoading = false;
-      //           let msd = this.dataserve.decryptData(error.error.text);
-      //           this.router.navigate(['/exchange/sport'])
-      //         } else {
-      //           let msd = this.dataserve.decryptData(error.error.text);
-      //           this.showErrPopup = true;
-      //           this.errMsg = 'Suspicious Exchange Play Found';
-      //           this.isLoading = false;
-      //         }
-      //       })
-      //     }
-      //   }
-      // })
-
-      setTimeout(() => {
-        this.showErrPopup = false;
-        this.errMsg = '';
-      }, 3000)
+      // navigate to exch
     } else {
       this.router.navigate(['/login'])
     }
   }
-  navigateToExhcDesk() {
-    let token = localStorage.getItem('token')
-    if (token) {
-      this.isLoading = true;
-      let sectime = this.dataserve.getTimeStamp();
-      let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
 
-      // this.dataserve.verifyUser(data).subscribe((res: any) => {
-      // }, (error) => {
-      //   if (error.status == 200) {
-      //     this.validateapi = this.dataserve.decryptData(error.error.text);
-      //     if (this.validateapi.data.type == 'success') {
-      //       this.dataserve.checkSportsPlay(data).subscribe((res: any) => {
-      //       }, (error) => {
-      //         if (error.status == 200) {
-      //           this.isLoading = false;
-      //           let msd = this.dataserve.decryptData(error.error.text);
-      //           this.router.navigate(['/exchange/match/4/'])
-      //         } else {
-      //           let msd = this.dataserve.decryptData(error.error.text);
-      //           this.showErrPopup = true;
-      //           this.errMsg = 'Suspicious Exchange Play Found';
-      //           this.isLoading = false;
-      //         }
-      //       })
-      //     }
-      //   }
-      // })
 
-      setTimeout(() => {
-        this.showErrPopup = false;
-        this.errMsg = '';
-      }, 3000)
-    } else {
-      this.loginPopup = true
-    }
-  }
-
-  // navigateToExch() {
-  //   let token = localStorage.getItem('token')
-  //   if (token) {
-  //     this.router.navigate(['/exchange/sport'])
-  //   } else {
-  //     this.router.navigate(['/login'])
-  //   }
-  // }
-  // navigateToExhcDesk() {
-  //   let token = localStorage.getItem('token')
-  //   if (token) {
-  //     this.router.navigate(['/exchange/match/4/'])
-  //   } else {
-  //     this.loginPopup = true;
-  //   }
-  // }
   LoginPopup1(data: any) {
     if (data.data?.login == true) {
       setTimeout(() => {
@@ -521,62 +436,38 @@ export class HomeComponent1 {
     //   }
     // })
   }
-  opencasinogamesmob(CasUrl: any) {
-    let token = localStorage.getItem('token')
+
+  opencasinogamesmob(data: any) {
+    let token = localStorage.getItem('token');
     if (token) {
-      this.CasUrl = CasUrl;
-      this.isLoading = true;
-      let sectime = this.dataserve.getTimeStamp();
-      let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
+      this.dataserve.LaunchCasinoGames(data.image_url).subscribe(
+        (response: HttpResponse<any>) => {
+          if (response.status == 200) {
+            const res = response.body;
+            this.launchUrl = res.launchUrl;
+            window.location.href = this.launchUrl;
 
-      // this.dataserve.verifyUser(data).subscribe((res: any) => {
-      // }, (error) => {
-      //   if (error.status == 200) {
-      //     this.validateapi = this.dataserve.decryptData(error.error.text);
-      //     if (this.validateapi.data.type == 'success') {
-      //       this.dataserve.checkUserCasinoWallet(data).subscribe((res: any) => {
-      //       }, (error) => {
-      //         let msd = this.dataserve.decryptData(error.error.text);
-      //         if (error.status == 200) {
-      //           this.isLoading = false;
-      //           if (msd.data.wallet == false) {
-      //             this.updateUserCasinoWallet('-1', this.CasUrl);
-      //           } else {
-      //             this.CaswalletList = JSON.parse(msd.data.walletsList);
-      //             this.CaswalletIDSelect = true;
-      //           }
-      //         }
-      //       })
-      //     }
-      //   }
-      // })
+          } else {
+            const res = response.body;
+            this.showErrPopup = true;
+            this.errMsg = res.message;
+          }
+        },
+        (error: any) => {
+          this.showErrPopup = true;
+          this.errMsg = error.message;
+        }
+      );
     } else {
-      this.router.navigate(['/login'])
+      this.router.navigate(['/login']);
     }
+    setTimeout(() => {
+      this.showErrPopup = false;
+      this.errMsg = '';
+    }, 3000)
   }
 
-  updateUserCasinoWallet(walletId: any, CasUrl: any) {
-    this.CasUrl = '';
-    let sectime = this.dataserve.getTimeStamp();
-    let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey, "walletId": walletId }
-    // this.dataserve.verifyUser(data).subscribe((res: any) => {
-    // }, (error) => {
-    //   if (error.status == 200) {
-    //     this.validateapi = this.dataserve.decryptData(error.error.text);
-    //     if (this.validateapi.data.type == 'success') {
-    //       this.dataserve.updateUserCasinoWallet(data).subscribe((res: any) => {
-    //       }, (error) => {
-    //         let msd = this.dataserve.decryptData(error.error.text);
-    //         if (error.status == 200) {
-    //           this.isLoading = false;
-    //           this.CaswalletIDSelect = false;
-    //           this.opencasinogames(CasUrl);
-    //         }
-    //       })
-    //     }
-    //   }
-    // })
-  }
+
 
 
   opencasinogames(data: any) {
@@ -657,40 +548,27 @@ export class HomeComponent1 {
     this.activegame = game;
     this.activeTab = game === 'Sports' ? 0 : 1; // Update index based on active game
   }
-  opensabagamesmob(link: any) {
-    let sectime = this.dataserve.getTimeStamp();
-
-    this.data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
+  opensabagamesmob(url: any) {
     let token = localStorage.getItem('token')
     if (token) {
-      // this.dataserve.verifyUser(this.data).subscribe((res: any) => {
-      // }, (error) => {
-      //   if (error.status == 200) {
-      //     this.validateapi = this.dataserve.decryptData(error.error.text);
-      //     if (this.validateapi.data.type == 'success') {
-      //       this.dataserve.LaunchSabagms(this.data, link).subscribe((res: any) => {
-      //         if (res.gameUrl == '') {
-      //           this.showErrPopup = true;
-      //           this.errMsg = 'URL not provided in response data.'
-      //         } else if (res.type !== 'error') {
-      //           this.launchUrl = res.gameUrl;
-      //           window.location.href = this.launchUrl;
-      //         } else {
-      //           this.showErrPopup = true;
-      //           this.errMsg = res.message
-      //         }
-      //       }, (error) => {
-      //         // if(error.status==200){
-      //         // let gms = this.dataserve.decryptData(error.error.text);
-      //         // console.log(error)
+      this.dataserve.LaunchCasinoGames(url).subscribe(
+        (response: HttpResponse<any>) => {
+          if (response.status == 200) {
+            const res = response.body;
+            this.launchUrl = res.launchUrl;
+            window.location.href = this.launchUrl;
+          } else {
+            const res = response.body;
+            this.showErrPopup = true;
+            this.errMsg = res.message;
+          }
+        },
+        (error: any) => {
+          this.showErrPopup = true;
+          this.errMsg = error.message;
 
-
-      //         // }
-      //       })
-
-      //     }
-      //   }
-      // })
+        }
+      );
     } else {
       this.router.navigate(['/login'])
     }
@@ -778,32 +656,5 @@ export class HomeComponent1 {
     }
   }
 
-  gefooterLinks() {
-    let sectime = this.dataserve.getTimeStamp();
 
-    let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
-
-    // this.dataserve.verifyUser(data).subscribe((res: any) => {
-    // }, (error) => {
-    //   if (error.status == 200) {
-    //     this.validateapi = this.dataserve.decryptData(error.error.text);
-    //     if (this.validateapi.data.type == 'success') {
-    //       this.dataserve.getWebsiteLinks(data).subscribe((res: any) => {
-    //       }, (error) => {
-    //         if (error.status == 200) {
-    //           let gms = this.dataserve.decryptData(error.error.text);
-    //           let ddaattaa = JSON.parse(gms?.data.data)
-    //           this.whatsData = ddaattaa
-
-    //         }
-    //       })
-
-    //     }
-    //   }
-    // })
-  }
-
-  whatsapps() {
-    this.whatsappsupport = !this.whatsappsupport;
-  }
 }
