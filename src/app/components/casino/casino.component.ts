@@ -269,7 +269,9 @@ export class CasinoComponent implements AfterViewInit, OnInit {
     else if (index == 4) this.router.navigate([`/casino/FH/ALL`]);
     else if (index == 5) this.router.navigate([`/casino/EGAME/ALL`]);
   }
+  
 
+ 
   setActiveTab(tabId: number) {
     this.activeTabId = tabId;
     if (tabId == 1) {
