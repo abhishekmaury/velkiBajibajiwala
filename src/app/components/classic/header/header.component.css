@@ -5520,6 +5520,9 @@ header .logo {
 
 @media (min-width:768px) {
   header .logo {
-    transform:translate(-20%) !important;
+    transform:translate(0%) !important;
+    max-height:34px;
+    background-position:left;
+    background-size:contain;
   }
 }
