@@ -599,7 +599,7 @@
                                                   <div
                                                     class="s-h-full s-flex s-justify-center s-items-center s-mr-9px s-ml-10px">
                                                     <span
-                                                      routerLink="/exchange/match/{{list?.sportid}}/{{list?.marketid}}"
+                                                      (click)="openMatch(list?.sportid,list?.marketid,list?.iscupWinner)"
                                                       class="s-icon-arrow-left s-transform s-rotate-180 s-text-12px s-text-black-400 dark:s-text-black-600"></span>
                                                   </div>
                                                 </div>
