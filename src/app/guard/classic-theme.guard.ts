@@ -21,8 +21,10 @@ export class ClassicThemeGuard implements CanActivate {
   ) {
     if (
       state.url.includes('exchange') &&
-      this.dataServe.isClassicTheme()
+      !this.dataServe.isClassicTheme()
     ) {
+      return this.router.createUrlTree(['/home'])
+    } else if(state.url.includes('sports') && this.dataServe.isClassicTheme()){
       return this.router.createUrlTree(['/home'])
     }
     return true;
