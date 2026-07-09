@@ -42,8 +42,7 @@
                       <div class="tab-content active cricketTab ng-star-inserted">
                         <div class="s-min-h-full-with-header s-pb-20px s-px-2 s-app s-py-10px">
                           <div>
-                            @for ( item of cricketList; let i = $index ; track $index) {
-                            <div id="100008MatchList" class="s-mb-12px ng-star-inserted">
+                            <div id="100008MatchList" class="s-mb-12px ng-star-inserted" *ngFor="let item of cricketList; let i = index">
                               <div
                                 class="s-relative s-py-2 s-px-10px s-rounded-5px s-cursor-pointer s-transition-all s-duration-300 s-bg-main-collapse s-text-event-tab s-rounded-t-5px s-rounded-b-none">
                                 <h1
@@ -102,9 +101,7 @@
                                           </div>
                                         </div>
                                         <div class="s-relative" tabindex="0">
-                                          @for ( selection of item.selectionnames.split(','); let j = $index ; track
-                                          $index) {
-                                          <div class="s-space-y-px">
+                                          <div class="s-space-y-px"  *ngFor="let selection of item.selectionnames.split(','); let j = index; trackBy: trackByIndex">
                                             <div class="s-text-13px">
                                               <div
                                                 class="s-flex s-justify-between s-bg-black-100 dark:s-bg-main-block-dark">
@@ -152,7 +149,6 @@
                                               </div>
                                             </div>
                                           </div>
-                                          }
                                         </div>
                                       </div>
                                       <div class="s-bg-black-300 dark:s-bg-white dark:s-bg-opacity-5 -mx-4 mt-2">
@@ -171,7 +167,6 @@
                                 </div>
                               </div>
                             </div>
-                            }
                           </div>
                         </div>
                       </div>
