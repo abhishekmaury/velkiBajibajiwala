@@ -2,15 +2,15 @@ import { AfterViewInit, Component, OnDestroy, OnInit, HostListener, ViewEncapsul
 import { AuthserviceService } from '../services/authservice.service';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 
-import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MyBetsComponent } from './my-bets/my-bets.component';
 import { DataHandlerService } from '../services/datahandler.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-skyexch',
   standalone: true,
-  imports: [HeaderComponent, RouterOutlet, FooterComponent, MyBetsComponent],
+  imports: [CommonModule, RouterOutlet, FooterComponent, MyBetsComponent],
   templateUrl: './skyexch.component.html',
   styleUrls: ['./skyexch.component.css'],
   // encapsulation: ViewEncapsulation.Emulated
