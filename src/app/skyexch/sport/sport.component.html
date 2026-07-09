@@ -513,7 +513,6 @@
                                           </div>
                                       </div>
                                         </ng-container>
-                                        @else {
                                         <ng-template #els1>
                                       <ng-container *ngIf="mainTabs == 1">
                                       <div
@@ -695,7 +694,7 @@
 
                   </div>
                     </ng-container>
-                  <app-loader *ngIf="isLoading"></app-loader>
+                  <!-- <app-loader *ngIf="isLoading"></app-loader> -->
                   <ng-container *ngIf="mainTabs==2">
                   <div id="LeaguesTab" class="tab-content active ng-star-inserted">
                     <ng-container *ngIf="activeTab != 'multi'">
