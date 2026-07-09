@@ -53,7 +53,7 @@ export class LeagueComponent implements OnInit {
       this.gameList = res;
       setTimeout(() => {
         this.isloading = false;
-        
+
       }, 1000);
       this.organizedData()
     })

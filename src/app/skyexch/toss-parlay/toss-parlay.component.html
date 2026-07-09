@@ -4,8 +4,7 @@
       <div class="ng-tns-c389869152-1 ng-trigger ng-trigger-routeLayoutPageAni">
         <div id="vueWebComponent" class="cricket-container">
           <div id="s-app-container" class="s-app s-space-y-px s-default">
-            @if (showBetMsg) {
-            <div class="s-bottom-20px s-z-40 s-flex s-justify-center s-w-full s-fixed popupset">
+            <div *ngIf="showBetMsg" class="s-bottom-20px s-z-40 s-flex s-justify-center s-w-full s-fixed popupset">
               <!-- Bet Alert popup -->
               <div
                 class="s-alert s-w-335px s-text-center s-flex s-justify-center s-p-3px s-rounded-5px s-mx-auto erropop"
@@ -23,7 +22,6 @@
                 </div>
               </div>
             </div>
-            }
             <div class="s-main-container-wrapper">
               <section id="s-main-container" class="s-min-h-full-with-header s-mx-auto s-bg-body">
                 <main>
@@ -101,7 +99,7 @@
                                           </div>
                                         </div>
                                         <div class="s-relative" tabindex="0">
-                                          <div class="s-space-y-px"  *ngFor="let selection of item.selectionnames.split(','); let j = index; trackBy: trackByIndex">
+                                          <div class="s-space-y-px"  *ngFor="let selection of item.selectionnames.split(','); let j = index">
                                             <div class="s-text-13px">
                                               <div
                                                 class="s-flex s-justify-between s-bg-black-100 dark:s-bg-main-block-dark">
@@ -212,6 +210,4 @@
     </div>
   </div>
 </div>
-@if (openBetSlip) {
-<app-parlay-bet-place (closeDt)="closeParlyBet($event)" style="position: absolute;"></app-parlay-bet-place>
-}
+<app-parlay-bet-place *ngIf="openBetSlip" (closeDt)="closeParlyBet($event)" style="position: absolute;"></app-parlay-bet-place>

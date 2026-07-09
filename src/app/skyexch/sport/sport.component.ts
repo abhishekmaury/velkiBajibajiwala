@@ -1,7 +1,7 @@
 import { Component, HostListener, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import moment from 'moment';
+import * as moment from 'moment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { AuthserviceService } from '../../services/authservice.service';

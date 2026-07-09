@@ -3,8 +3,7 @@
     <div class="content cricket">
       <div class="cricket-container">
         <div class="s-app s-space-y-px s-default">
-          @if (showBetMsg) {
-          <div class="s-bottom-20px s-z-40 s-flex s-justify-center s-w-full s-fixed">
+          <div *ngIf="showBetMsg" class="s-bottom-20px s-z-40 s-flex s-justify-center s-w-full s-fixed">
             <!-- Bet Alert popup -->
             <div class="s-alert s-w-335px s-text-center s-flex s-justify-center s-p-3px s-rounded-5px s-mx-auto"
               [ngClass]="betsuccessstatus ? 's-bg-warning-light dark:s-bg-warning-dark' : 's-bg-error-light dark:s-bg-error-dark'">
@@ -21,7 +20,6 @@
               </div>
             </div>
           </div>
-          }
           <div class="s-main-container-wrapper">
             <section class="s-min-h-full-with-header s-mx-auto s-bg-body">
               <main>
@@ -118,20 +116,18 @@
                             <div>
                               <div class="s-relative">
                                 <div class="s-space-y-px">
-                                  @for (item of matchrunners; let j = $index; track $index) {
-                                  <div class="s-bg-black-100 dark:s-bg-black-700">
+                                  <div *ngFor="let item of matchrunners; let j = index;"
+                                    class="s-bg-black-100 dark:s-bg-black-700">
                                     <div class="s-flex s-justify-start s-items-center">
                                       <p
                                         class="s-px-2.5 s-flex-1 s-h-full s-leading-5 s-text-14px s-flex s-flex-col s-justify-center s-break-all s-text-global-font-default-light dark:s-text-global-font-default-dark">
                                         <span>{{item.runnerName}}</span>
-                                        @if (getMatcBkData) {
-                                        <span style="display:flex">
+                                        <span *ngIf="getMatcBkData" style="display:flex">
                                           <span
                                             [class]="bookfilter(item.selectionid) > 0   ? 'bookgreencolor' : 'bookredcolor'"
                                             class="s-forecast s-sportsbook-forecast s-text-10px s-leading-normal s-flex s-font-bold">{{bookfilter(item.selectionid)
                                             | number :'1.0-2'}}</span>
                                         </span>
-                                        }
                                       </p>
                                       <div
                                         class="s-w-131px s-relative s-grid s-gap-0.5 s-grid-cols-2 s-self-start dark:s-text-black-900">
@@ -171,17 +167,16 @@
                                         </div>
                                       </div>
                                     </div>
-                                    @if (showOdd == j && backTrue == true) {
-                                    <app-place-bet-cupwinner [clsClr]="classclrforlayBack" [data]="oddPrice"
+                                    <app-place-bet-cupwinner *ngIf="showOdd == j && backTrue == true"
+                                      [clsClr]="classclrforlayBack" [data]="oddPrice"
                                       [updOddsBack]="runnersList[j]?.ex?.availableToBack[0]?.price"
                                       [updOddsLay]="runnersList[j]?.ex?.availableToLay[0]?.price"
                                       [socketEventData]="socketEventOdds" [isInplay]="inplaystatus"
                                       (betResult)="getOddsCalculation($event)"
                                       (stopTimer)="stopTimeout($event)"></app-place-bet-cupwinner>
-                                    }
 
                                   </div>
-                                  }
+
 
                                   <div id="fullMarketSuspendedDiv" data-testid="fancybet-market-status"
                                     class="s-absolute s-right-0 s-top-0 s-flex s-justify-center s-items-center s-w-full s-h-full s-bg-black-600 dark:s-bg-black-800 s-opacity-80 s-text-11px s-text-white s-rounded-3px s-z-20 s-w-131px"

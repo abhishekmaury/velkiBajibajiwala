@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import  moment from 'moment';
+import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { SocketServiceService } from '../../services/socket-service.service';
 import { PlaceBetCupwinnerComponent } from '../place-bet-cupwinner/place-bet-cupwinner.component';

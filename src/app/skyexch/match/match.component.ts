@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild, HostListener, ElementRef, Rend
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription, Subject } from 'rxjs';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import moment from 'moment';
+import * as moment from 'moment';
 import 'moment-timezone';
 import { CommonModule } from '@angular/common';
 import { SocketServiceService } from '../../services/socket-service.service';

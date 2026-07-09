@@ -1,5 +1,4 @@
-@if (closeBet) {
-<div class="wrap">
+<div class="wrap" *ngIf="closeBet">
   <div class="wrap-inner">
     <div class="content cricket">
       <div class="ng-tns-c389869152-1 ng-trigger ng-trigger-routeLayoutPageAni">
@@ -13,25 +12,19 @@
                     <div class="s-bg-betSlip-light dark:s-bg-betSlip-dark s-relative s-p-2 s-rounded-t-5px s-z-10"
                       id="betSLip">
                       <div class="s-flex s-items-center s-font-bold s-mb-2">
-                        @if (data[0].isBack) {
-                        <span
+                        <span *ngIf="data[0]?.isBack"
                           class="s-relative s-w-50px s-py-2 s-inline-block s-font-bold s-text-center s-text-13px s-rounded-3px s-shrink-0 s-bg-back dark:s-bg-back-500"
                           id="backbetType">Back</span>
-                        } @else {
-                        <span
+                        <span *ngIf="!data[0]?.isBack"
                           class="s-relative s-w-50px s-py-2 s-inline-block s-font-bold s-text-center s-text-13px s-rounded-3px s-shrink-0 s-bg-lay dark:s-bg-lay-500"
                           id="laybetType">Lay</span>
-                        }
 
-                        @if (data[0].sourceBetType == 'Fancy' || data[0].sourceBetType == 'Fancy1') {
-                        <span
+                        <span *ngIf="data[0].sourceBetType == 'Fancy' || data[0].sourceBetType == 'Fancy1'"
                           class="s-inline-block s-text-global-font-default-light dark:s-text-global-font-default-dark s-text-18px s-align-text-bottom s-p-2 s-mr-6 s-break-all s-grow"
                           id="betSourceName">{{ data[0].fancyName }}</span>
-                        } @else {
-                        <span
+                        <span *ngIf="data[0].sourceBetType != 'Fancy' && data[0].sourceBetType != 'Fancy1'"
                           class="s-inline-block s-text-global-font-default-light dark:s-text-global-font-default-dark s-text-18px s-align-text-bottom s-p-2 s-mr-6 s-break-all s-grow"
                           id="betSourceName">{{ data[0].selectionName }}</span>
-                        }
                         <div
                           class="s-icon-close s-absolute s-right-2 s-mr-2 s-text-global-font-default-light dark:s-text-global-font-default-dark s-text-base s-flex s-justify-center s-items-center s-cursor-pointer"
                           id="closeBetPopup" (click)="cancelBet()"></div>
@@ -55,15 +48,14 @@
                               </div>
                               <span class="s-icon-minus s-text-black-600"></span>
                             </button>
-                            @if (data[0].sourceBetType == 'Fancy' || data[0].sourceBetType == 'Fancy1') {
-                            <span name="odds" class="s-input-field is-default" id="selectedOdds">
+                            <span *ngIf="data[0].sourceBetType == 'Fancy' || data[0].sourceBetType == 'Fancy1'"
+                              name="odds" class="s-input-field is-default" id="selectedOdds">
                               {{ data[0].odds | number:'1.0-0' }}/{{ data[0].selectionName | number:'1.0-0' }}
                             </span>
-                            } @else {
-                            <span name="odds" class="s-input-field is-default" id="selectedOdds">
+                            <span *ngIf="data[0].sourceBetType != 'Fancy' && data[0].sourceBetType != 'Fancy1'"
+                              name="odds" class="s-input-field is-default" id="selectedOdds">
                               {{ data[0].odds }}
                             </span>
-                            }
 
                             <button
                               class="btn s-btn-normal s-relative s-text-14px s-p-3 s-font-bold s-rounded s-flex s-justify-center s-items-center disabled:s-bg-black-300 dark:disabled:s-bg-black-700 disabled:s-text-black-600 dark:disabled:s-text-black-600 disabled:s-cursor-not-allowed s-overflow-hidden a active:s-bg-opacity-10"
@@ -150,26 +142,26 @@
                         </div>
                         <div class="s-flex">
                           <div class="s-flex s-flex-1 s-flex-wrap s-text-14px numpadd">
-                            @for (num of numPadArr; track num) {
-                            <button (click)="addStaticVal1(num, true)" class="numberInput btn s-btn-normal s-relative s-text-14px s-p-3 s-font-bold s-rounded
-                              s-flex s-justify-center s-items-center disabled:s-bg-black-300 dark:disabled:s-bg-black-700
-                              disabled:s-text-black-600 dark:disabled:s-text-black-600 disabled:s-cursor-not-allowed s-overflow-hidden
-                              a active:s-bg-opacity-10 s-w-2/12 s-h-40px s-flex s-justify-center s-items-center s-font-normal s-border
-                              s-border-white s-bg-black-100 dark:s-border-black-900 dark:s-bg-black-700 s-text-global-font-default-light
-                              dark:s-text-global-font-default-dark s-rounded" type="button">
-                              <div
-                                class="wrapper s-w-full s-h-full s-absolute s-overflow-hidden s-top-0 s-left-0 s-z-10"
-                                style="--0b879273: 0;">
-                                <span
-                                  class="mask s-w-full s-h-full s-opacity-10 s-bg-black-900 s-absolute s-left-0 s-top-0"
-                                  style="display: none;"></span>
-                                <span
-                                  class="feedback s-block s-bg-white s-bg-opacity-25 s-rounded-full s-mix-blend-overlay s-absolute"
-                                  style="display: none;"></span>
-                              </div>
-                              {{ num }}
-                            </button>
-                            }
+                            <ng-container *ngFor="let num of numPadArr;">
+                              <button (click)="addStaticVal1(num, true)" class="numberInput btn s-btn-normal s-relative s-text-14px s-p-3 s-font-bold s-rounded
+                                  s-flex s-justify-center s-items-center disabled:s-bg-black-300 dark:disabled:s-bg-black-700
+                                  disabled:s-text-black-600 dark:disabled:s-text-black-600 disabled:s-cursor-not-allowed s-overflow-hidden
+                                  a active:s-bg-opacity-10 s-w-2/12 s-h-40px s-flex s-justify-center s-items-center s-font-normal s-border
+                                  s-border-white s-bg-black-100 dark:s-border-black-900 dark:s-bg-black-700 s-text-global-font-default-light
+                                  dark:s-text-global-font-default-dark s-rounded" type="button">
+                                <div
+                                  class="wrapper s-w-full s-h-full s-absolute s-overflow-hidden s-top-0 s-left-0 s-z-10"
+                                  style="--0b879273: 0;">
+                                  <span
+                                    class="mask s-w-full s-h-full s-opacity-10 s-bg-black-900 s-absolute s-left-0 s-top-0"
+                                    style="display: none;"></span>
+                                  <span
+                                    class="feedback s-block s-bg-white s-bg-opacity-25 s-rounded-full s-mix-blend-overlay s-absolute"
+                                    style="display: none;"></span>
+                                </div>
+                                {{ num }}
+                              </button>
+                            </ng-container>
 
                           </div>
                           <button (click)="deleteLastNum()"
@@ -205,17 +197,16 @@
                             style="display: none;"></span>
                         </div>Place Bet
                       </button>
-                      @if (loading) {
-                      <div id="betPlacingLoader">
+                      <div id="betPlacingLoader" *ngIf="loading">
                         <div
                           class="s-absolute s-z-10 s-top-0 s-left-0 s-w-full s-h-full s-bg-black-800 s-opacity-80 s-rounded-t-5px">
                         </div>
                         <div
                           class="s-absolute s-z-10 s-top-0 s-left-0 s-w-full s-h-full s-flex s-items-center s-justify-center">
-                          <img fetchpriority="high"  width="147" height="124" src="../../../assets/images/loading-bet.webp" alt="">
+                          <img fetchpriority="high" width="147" height="124"
+                            src="../../../assets/images/loading-bet.webp" alt="">
                         </div>
                       </div>
-                      }
 
                     </div>
                     <div
@@ -246,4 +237,3 @@
     </div>
   </div>
 </div>
-}
