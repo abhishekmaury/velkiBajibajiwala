@@ -12,7 +12,7 @@ import { DataHandlerService } from 'src/app/services/datahandler.service';
 @Component({
   selector: 'app-sport',
   standalone: true,
-  imports: [CommonModule, DatePipePipe,RouterLink],
+  imports: [CommonModule, DatePipePipe, RouterLink],
   templateUrl: './sport.component.html',
   styleUrls: ['./sport.component.css'],
   encapsulation: ViewEncapsulation.None
@@ -83,7 +83,7 @@ export class SportComponent implements OnInit, OnDestroy {
   soccerMatches: any;
   expandedSectiongame: Set<number> = new Set<number>();
   expandedSectionsOrgdata: Set<number> = new Set<number>();
-  gameslist2 : any;
+  gameslist2: any;
 
   constructor(private authServe: AuthserviceService, private socket: SocketServiceService, private dataServe: DataHandlerService, private activeRoute: ActivatedRoute, private router: Router) { }
 
@@ -119,36 +119,23 @@ export class SportComponent implements OnInit, OnDestroy {
     // }
 
     // this.getMarketData();
-    // this.getData();
+    this.getData();
     // this.getSportsData();
 
-    // this.changeCount(1);
+    this.changeCount(1);
   }
 
   async getData() {
     this.isLoading = true;
     this.GamelistData = await this.dataServe.getInPlayGames().toPromise() as any[];
-    // this.dataServe.verifyUser(data).subscribe((res: any) => {
-    // }, (error) => {
-    //   if (error.status == 200) {
-    //     this.validateapi = this.dataServe.decryptData(error.error.text);
-    //     if (this.validateapi.data.type == 'success') {
-    //       this.dataServe.getInPlayMatches(data).subscribe((res: any) => {
-    //       }, (error) => {
-    //         if (error.status == 200) {
-    //           this.GamelistData = this.dataServe.decryptData(error.error.text);
-    //           this.gameListDataSubject.next(this.GamelistData);
-              this.isLoading = false;
-    //         }
-    //       });
-    //     }
-    //   }
-    // })
+    this.gameListDataSubject.next(this.GamelistData);
+    this.isLoading = false;
+
   }
 
   getSportsData() {
     let sectime = this.dataServe.getTimeStamp();
-    let data = {"timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
+    let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
     // this.dataServe.verifyUser(data).subscribe((res: any) => {
     // }, (error) => {
     //   if (error.status == 200) {
@@ -206,11 +193,12 @@ export class SportComponent implements OnInit, OnDestroy {
     this.sportsTab(this.activeTab)
     if (this.mainTabs == 1) {
       this.gameListData$.subscribe((res) => {
-        let lists = res?.data?.results;
+        let lists = res;
         if (this.byActive == 'compi') {
           this.isToday = true
         }
-        let inplylists = lists
+        let inplylists = lists;
+
         this.ccount = inplylists?.filter((re: any) => {
           return re.sportid == '4'
         })
@@ -232,8 +220,8 @@ export class SportComponent implements OnInit, OnDestroy {
       this.gameListData2$.subscribe((res) => {
         if (this.byActive == 'compi') {
           this.isToday = true
-        }else{
-        this.tomorrowsData = []
+        } else {
+          this.tomorrowsData = []
         }
         this.ccount = res.filter((match: any) => match.sportid == 4);
         this.tcount = res.filter((match: any) => match.sportid == 2);
@@ -281,28 +269,30 @@ export class SportComponent implements OnInit, OnDestroy {
 
   getAllInplayList() {
     this.gameListData$.subscribe((res) => {
-      this.gameList = res?.data?.results
+      this.gameList = res;
       if (this.mainTabs == 1) {
         this.leagues = false;
         if (this.activeTab == '4') {
           this.gameList = this.gameList?.filter((re: any) => {
             return re.sportid == '4';
           })
-          this.gameList = this.gameList?.sort((a:any, b:any) => a.openTimestamp - b.openTimestamp);
+          this.gameList = this.gameList?.sort((a: any, b: any) => a.openTimestamp - b.openTimestamp);
           this.organizedData = this.dataServe.getOrganizedDataBySeriesname(this.gameList);
+          console.log(this.organizedData);
+          
           this.getOddsData(this.organizedData)
         } else if (this.activeTab == '2') {
           this.gameList = this.gameList.filter((re: any) => {
             return re.sportid == '2';
           })
-          this.gameList = this.gameList?.sort((a:any, b:any) => a.openTimestamp - b.openTimestamp);
+          this.gameList = this.gameList?.sort((a: any, b: any) => a.openTimestamp - b.openTimestamp);
           this.organizedData = this.dataServe.getOrganizedDataBySeriesname(this.gameList);
           this.getOddsData(this.organizedData)
         } else if (this.activeTab == '1') {
           this.gameList = this.gameList?.filter((re: any) => {
             return re.sportid == '1';
           })
-          this.gameList = this.gameList?.sort((a:any, b:any) => a.openTimestamp - b.openTimestamp);
+          this.gameList = this.gameList?.sort((a: any, b: any) => a.openTimestamp - b.openTimestamp);
           this.organizedData = this.dataServe.getOrganizedDataBySeriesname(this.gameList);
           this.getOddsData(this.organizedData)
         } else {
@@ -311,12 +301,12 @@ export class SportComponent implements OnInit, OnDestroy {
             this.uniqueMatchNames = Array.from(new Set(matchNames));
           }
         }
-      } else if(this.mainTabs == 2) {
+      } else if (this.mainTabs == 2) {
         this.gameListData2$.subscribe((res) => {
           if (this.byActive == 'compi') {
             this.isToday = true
-          }else{
-          this.tomorrowsData = []
+          } else {
+            this.tomorrowsData = []
           }
           this.ccount = res.filter((match: any) => match.sportid == 4);
           this.tcount = res.filter((match: any) => match.sportid == 2);
@@ -440,8 +430,8 @@ export class SportComponent implements OnInit, OnDestroy {
       this.gameListData2$.subscribe((res) => {
         if (this.byActive == 'compi') {
           this.isToday = true
-        }else{
-        this.tomorrowsData = []
+        } else {
+          this.tomorrowsData = []
         }
         this.ccount = res.filter((match: any) => match.sportid == 4);
         this.tcount = res.filter((match: any) => match.sportid == 2);
@@ -561,24 +551,24 @@ export class SportComponent implements OnInit, OnDestroy {
     this.isLoading = true;
 
     let data1 = { "timeStamp": sectime1.timeStamp, "secretKey": sectime1.secretKey }
-//     this.dataServe.verifyUser(data1).subscribe((res: any) => {
-//     }, (error) => {
-//       if (error.status == 200) {
+    //     this.dataServe.verifyUser(data1).subscribe((res: any) => {
+    //     }, (error) => {
+    //       if (error.status == 200) {
 
-//         this.validateapi = this.dataServe.decryptData(error.error.text);
-//         if (this.validateapi.data.type == 'success') {
-//           this.dataServe.getActiveMultiMarket(data1).subscribe((res: any) => {
-//           }, (error) => {
-//             if (error.status == 202) {
-//               let msd = this.dataServe.decryptData(error.error.text);
-//               this.multiList = msd.data.data;
-//                 this.getAllInplayList();
-// this.isLoading = false;
-//             }
-//           })
-//         }
-//       }
-//     })
+    //         this.validateapi = this.dataServe.decryptData(error.error.text);
+    //         if (this.validateapi.data.type == 'success') {
+    //           this.dataServe.getActiveMultiMarket(data1).subscribe((res: any) => {
+    //           }, (error) => {
+    //             if (error.status == 202) {
+    //               let msd = this.dataServe.decryptData(error.error.text);
+    //               this.multiList = msd.data.data;
+    //                 this.getAllInplayList();
+    // this.isLoading = false;
+    //             }
+    //           })
+    //         }
+    //       }
+    //     })
   }
 
   addToMultimarket(id: any) {
@@ -611,7 +601,7 @@ export class SportComponent implements OnInit, OnDestroy {
   }
 
   openMatch(sportid: any, marketid: any, iscupwinner: any) {
-    if(iscupwinner) {
+    if (iscupwinner) {
       this.router.navigate(['/exchange/cupwinner/' + sportid + '/' + marketid]);
     } else {
       this.router.navigate(['/exchange/match/' + sportid + '/' + marketid]);
