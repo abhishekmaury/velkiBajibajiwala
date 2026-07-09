@@ -680,6 +680,9 @@ export class DataHandlerService implements OnInit {
   getIntercomData() {
     return this.http.post(`${this.baseUrl}/getChatToken`, {})
   }
+  isClassicTheme() {
+    return !!localStorage.getItem('clssaicTheme');
+  }
   getThemeFlag(data: any) {
     this.themeFlag.next(data)
   }

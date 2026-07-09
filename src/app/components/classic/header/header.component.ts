@@ -58,6 +58,7 @@ export class ClassicHeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.isToggled = this.dataServe.isClassicTheme();
     this.isMarketRoute =
     this.router.url.includes('/market') ||
     this.router.url.includes('/mob-match-cupwinner') ||
