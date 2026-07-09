@@ -8448,3 +8448,58 @@ html {
     transform: translateX(-50%);
   }
 }
+
+
+.hk-toggle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 40px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.hk-toggle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.hk-toggle span {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.hk-toggle input {
+  display: none;
+}
+.hk-toggle label {
+  width: 48px;
+  height: 28px;
+  border-radius: 40px;
+  position: relative;
+  cursor: pointer;
+}
+.hk-toggle label::after {
+  content: "";
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  top: 2.5px;
+  left: 4px;
+  border-radius: 50%;
+  transition: 0.35s;
+}
+
+/* 2 iOS */
+.hk-tg-2 label {
+  background: #3a3f45;
+}
+.hk-tg-2 label::after {
+  background: #fff;
+}
+.hk-tg-2 input:checked + label {
+  background: #a42a2f;
+}
+.hk-tg-2 input:checked + label::after {
+  transform: translateX(19px);
+}
