@@ -202,6 +202,10 @@ export class ClassicHeaderComponent implements OnInit {
 
     document.head.appendChild(link);
     this.openSidebar();
+
+    if(this.router.url.includes('exchange')) {
+      this.router.navigate(['/home']);
+    }
   }
 
 

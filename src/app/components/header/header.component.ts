@@ -221,6 +221,9 @@ export class HeaderComponent implements OnInit{
     }
 
     document.head.appendChild(link);
+    if(this.router.url.includes('sports')) {
+      this.router.navigate(['/home']);
+    }
   }
 }
 
