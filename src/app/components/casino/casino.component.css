@@ -260,6 +260,26 @@ span.highlight {
     background: var(--BlackBG);
     -webkit-overflow-scrolling: touch;
 }
+.searchpage.inactive {
+    opacity: 0;
+    right: -100%;
+    transition: right .3s, opacity 0s .3s !important;
+}
+.searchpage.active {
+    right: 0;
+    opacity: 1;
+    transition: right .3s, opacity 0s 0s !important;
+}
+.serachpage-provider{
+    border-radius: 4px !important;
+    background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%) !important;
+    color: rgb(255, 255, 255) !important;
+}
+.serachpage-provider-default{
+    border-radius: 4px !important; 
+    background: rgb(102, 102, 102) !important;
+     color: rgb(250, 250, 250) !important;
+}
 
 @media (max-width: 768px) {
   .listBox-position {
