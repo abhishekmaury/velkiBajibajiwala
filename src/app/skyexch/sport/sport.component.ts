@@ -108,28 +108,26 @@ export class SportComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    let lsData = localStorage.getItem('userData');
-    if (lsData) {
-      this.loggedData = JSON.parse(lsData);
-      if (this.loggedData.password !== undefined) {
-        this.isLogin = true;
-      } else {
-        this.isLogin = false
-      }
-    }
+    // let lsData = localStorage.getItem('userData');
+    // if (lsData) {
+    //   this.loggedData = JSON.parse(lsData);
+    //   if (this.loggedData.password !== undefined) {
+    //     this.isLogin = true;
+    //   } else {
+    //     this.isLogin = false
+    //   }
+    // }
 
-    this.getMarketData();
-    this.getData();
-    this.getSportsData();
+    // this.getMarketData();
+    // this.getData();
+    // this.getSportsData();
 
-    this.changeCount(1);
+    // this.changeCount(1);
   }
 
-  getData() {
+  async getData() {
     this.isLoading = true;
-    let sectime = this.dataServe.getTimeStamp();
-    let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
-
+    this.GamelistData = await this.dataServe.getInPlayGames().toPromise() as any[];
     // this.dataServe.verifyUser(data).subscribe((res: any) => {
     // }, (error) => {
     //   if (error.status == 200) {
@@ -140,7 +138,7 @@ export class SportComponent implements OnInit, OnDestroy {
     //         if (error.status == 200) {
     //           this.GamelistData = this.dataServe.decryptData(error.error.text);
     //           this.gameListDataSubject.next(this.GamelistData);
-    //           this.isLoading = false;
+              this.isLoading = false;
     //         }
     //       });
     //     }
