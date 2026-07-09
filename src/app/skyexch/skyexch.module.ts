@@ -5,6 +5,7 @@ import { SharedModule } from 'src/app/directives/shared.module';
 import { SkyexchComponent } from './skyexch.component';
 import { HeaderComponent } from './header/header.component';
 import { TranslocoModule } from '@ngneat/transloco';
+import { SearchComponent } from './search/search.component';
 // import { FooterComponent } from './footer/footer.component';
 
 export const exchRoute: Routes = [
@@ -16,9 +17,9 @@ export const exchRoute: Routes = [
             // { path: 'sports-parlay', loadComponent: () => import('./parlay/parlay.component').then(m => m.ParlayComponent) },
             // { path: 'premium-parlay/:sportId/:eventId', loadComponent: () => import('./premium-parlay/premium-parlay.component').then(m => m.PremiumParlayComponent) },
             // { path: 'cupwinner/:sportId/:eventId', loadComponent: () => import('./cupwinner/cupwinner.component').then(m => m.CupwinnerComponent) },
-            // { path: 'toss-parlay', loadComponent: () => import('./toss-parlay/toss-parlay.component').then(m => m.TossParlayComponent) },
-            // { path: "search", loadComponent: () => import('./search/search.component').then(m => m.SearchComponent) },
-            // { path: "setting", loadComponent: () => import('./setting/setting.component').then(m => m.SettingComponent) },
+            { path: 'toss-parlay', loadComponent: () => import('./toss-parlay/toss-parlay.module').then(m => m.TossParlayModule) },
+            { path: "search", component : SearchComponent },
+            { path: "setting", loadComponent: () => import('./setting/setting.module').then(m => m.SettingModule) },
             // { path: "privacy-policy", loadComponent: () => import('./footer/privacy-policy/privacy-policy.component').then(m => m.PrivacyPolicyComponent) },
             // { path: "kyc", loadComponent: () => import('./footer/kyc/kyc.component').then(m => m.KycComponent) },
             // { path: "rule-reg", loadComponent: () => import('./footer/rules-and-reg/rules-and-reg.component').then(m => m.RulesAndRegComponent) },
@@ -32,6 +33,7 @@ export const exchRoute: Routes = [
   declarations: [
     SkyexchComponent,
     HeaderComponent,
+    SearchComponent
     // FooterComponent
   ],
   imports: [

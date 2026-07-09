@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
 import { FingerprintService } from '../../services/fingerprint.service';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
@@ -8,8 +7,6 @@ import { DataHandlerService } from 'src/app/services/datahandler.service';
 
 @Component({
   selector: 'app-parlay-bet-place',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './parlay-bet-place.component.html',
   styleUrls: ['./parlay-bet-place.component.css']
 })

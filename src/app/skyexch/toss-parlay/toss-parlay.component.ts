@@ -1,19 +1,15 @@
-import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import  moment from 'moment';
+import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { SocketServiceService } from '../../services/socket-service.service';
-import { ParlayBetPlaceComponent } from '../parlay-bet-place/parlay-bet-place.component';
 import { GetSocketUrlService } from '../../services/get-socket-url.service';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 
 
 @Component({
   selector: 'app-toss-parlay',
-  standalone: true,
-  imports:[CommonModule,ParlayBetPlaceComponent],
   templateUrl: './toss-parlay.component.html',
   styleUrls: ['./toss-parlay.component.css']
 })

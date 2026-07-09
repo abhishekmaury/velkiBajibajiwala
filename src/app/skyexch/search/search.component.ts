@@ -4,8 +4,6 @@ import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-search',
-  standalone: true,
-  imports: [],
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
