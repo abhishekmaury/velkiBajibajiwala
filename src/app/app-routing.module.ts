@@ -14,6 +14,7 @@ import { MarketTossParlayComponent } from './components/market-toss-parlay/marke
 import { AnouncementPopupComponent } from './components/anouncement-popup/anouncement-popup.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { HomeComponent } from './components/home/home.component';
+import { ClassicThemeGuard } from './guard/classic-theme.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -32,7 +33,7 @@ const routes: Routes = [
   { path: 'edit/:fname/:lname/:email', component: EditProfileComponent, data: { animation: 'EditPage' }, canActivate: [AuthGuardGuard] },
   { path: 'info', loadChildren : ()=> import('./components/footer-pages/footer-pages.module').then(c =>(c.FooterPagesModule)) },
   { path: 'menu', loadChildren: () => import('./components/dashboard/dashboard.module').then(m => m.DashboardModule), canActivate : [AuthGuardGuard] },
-  { path: 'exchange', loadChildren: () => import('./skyexch/skyexch.routers').then(c => (c.exchRoute)), canActivate: [AuthGuardGuard] },
+  { path: 'exchange', loadChildren: () => import('./skyexch/skyexch.routers').then(c => (c.exchRoute)), canActivate: [AuthGuardGuard,ClassicThemeGuard] },
 ]
 
 
