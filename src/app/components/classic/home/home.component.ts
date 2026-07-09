@@ -224,29 +224,6 @@ export class HomeComponent1 {
     })
   }
 
-  // marqueeText() {
-
-  //   let sectime = this.dataserve.getTimeStamp();
-  //   let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
-
-  //   this.dataserve.verifyUser(data).subscribe((res: any) => {
-  //   }, (error) => {
-  //     if (error.status == 200) {
-  //       this.validateapi = this.dataserve.decryptData(error.error.text);
-  //       if (this.validateapi.data.type == 'success') {
-  //         this.dataserve.getMessageWebsite(data).subscribe((res: any) => {
-  //         }, (error) => {
-  //           if (error.status == 200) {
-  //             let msd = this.dataserve.decryptData(error.error.text);
-  //             this.usermessage = msd.data.data;
-  //           }
-  //         })
-  //       }
-  //     }
-  //   })
-  // }
-
-
   ngAfterViewInit(): void {
     new Swiper('.swiper-container', {
       slidesPerView: 1.4,
@@ -265,32 +242,15 @@ export class HomeComponent1 {
         prevEl: '.custom-swiper-button-prev',
       },
     });
-    let sectime = this.dataserve.getTimeStamp();
-    let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
+    this.dataserve.getMessageData().subscribe((res: any) => {
+      this.usermessage = res?.data || [];
+      this.cdr.detectChanges();
+      setTimeout(() => this.setupMarquee(), 0);
+    });
 
-    // this.dataserve.verifyUser(data).subscribe((res: any) => {
-    // }, (error) => {
-    //   if (error.status == 200) {
-    //     this.validateapi = this.dataserve.decryptData(error.error.text);
-    //     if (this.validateapi.data.type == 'success') {
-    //       this.dataserve.getMessageWebsite(data).subscribe((res: any) => {
-    //       }, (error) => {
-    //         if (error.status == 200) {
-    //           let msd = this.dataserve.decryptData(error.error.text);
-    //           this.usermessage = msd.data.data; 
-    //           // ✅ Wait for Angular to render <li> items
-    //           this.cdr.detectChanges();
-
-    //           setTimeout(() => this.setupMarquee(), 0);
-    //         }
-    //       })
-    //     }
-    //   }
-    // })
-    
     this.dataserve.changeTheme$.subscribe((res: any) => {
       let classicTheme = res;
-      
+
       if (classicTheme == true) {
         this.router.navigate(['/classichome'])
       } else {
@@ -307,8 +267,6 @@ export class HomeComponent1 {
 
   setupMarquee() {
     const listEl = this.marqueeList.nativeElement;
-    // console.log(listEl);
-
     // Duplicate content once
     if (listEl.dataset['duplicated'] !== 'true') {
       listEl.innerHTML += listEl.innerHTML;
@@ -672,6 +630,5 @@ export class HomeComponent1 {
       }
     }
   }
-
 
 }
