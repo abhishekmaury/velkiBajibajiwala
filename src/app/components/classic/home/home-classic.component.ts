@@ -10,10 +10,10 @@ import Swiper from 'swiper';
 
 @Component({
   selector: 'app-home-classic',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  templateUrl: './home-classic.component.html',
+  styleUrls: ['./home-classic.component.css']
 })
-export class HomeComponent1 {
+export class HomeClassicComponent {
   @ViewChild('promoCarousel', { static: false }) promoCarousel!: CarouselComponent;
   @ViewChild('promo2Carousel', { static: false }) promo2Carousel!: CarouselComponent;
   @ViewChild('marqueeList') marqueeList!: ElementRef;

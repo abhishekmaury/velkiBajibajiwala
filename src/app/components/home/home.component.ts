@@ -8,7 +8,7 @@ template:`
   <app-home-original *ngIf="!isClassicTheme"></app-home-original>
 `,
 })
-export class HomeWrapperComponent {
+export class HomeComponent {
   isClassicTheme = false;
   dataServe = inject(DataHandlerService);
 

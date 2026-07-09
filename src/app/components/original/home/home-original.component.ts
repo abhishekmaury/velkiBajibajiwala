@@ -9,10 +9,10 @@ SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 @Component({
   selector: 'app-home-original',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  templateUrl: './home-original.component.html',
+  styleUrls: ['./home-original.component.css'],
 })
-export class HomeComponent implements OnInit {
+export class HomeOriginalComponent implements OnInit {
 
   livetab: number = 1;
   tabeltab: number = 1;
