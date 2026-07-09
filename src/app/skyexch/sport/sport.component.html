@@ -310,7 +310,7 @@
                                         <ng-container *ngFor="let list of series.matches; let k = index;">
                                           <div class="s-rounded-t-5px">
                                             <ng-container
-                                              *ngIf="k < 2 && list.matchType !=='virtual' && list.matchType !=='virtual1' && list.b1 !==undefined && list.priorityNo !==undefined;then els1">
+                                              *ngIf="k < 2 && list.matchType !=='virtual' && list.matchType !=='virtual1' && list.b1 !==undefined && list.priorityNo !==undefined; else els1">
                                               <div>
                                                 <div class="11678489MatchesUP s-shadow-2sm matchDetail"
                                                   style="display: block; margin-bottom: 5px;">
@@ -599,7 +599,7 @@
                                                   <div
                                                     class="s-h-full s-flex s-justify-center s-items-center s-mr-9px s-ml-10px">
                                                     <span
-                                                      routerLink="/exchange/match/{{list?.sportid}}/{{list?.marketid}}"
+                                                      (click)="openMatch(list?.sportid,list?.marketid,list?.iscupWinner)"
                                                       class="s-icon-arrow-left s-transform s-rotate-180 s-text-12px s-text-black-400 dark:s-text-black-600"></span>
                                                   </div>
                                                 </div>
@@ -932,7 +932,7 @@
                                             <div [ngClass]="inPlayMatches(list.day) ? '' : ''">
                                               <div class="s-inline-flex s-items-center">
                                                 <!-- inplay -->
-                                                <ng-container *ngIf="inPlayM;then els4">
+                                                <ng-container *ngIf="inPlayM;else els4">
                                                   <div
                                                     class="s-overflow-hidden s-flex s-flex-col s-rounded-3px s-h-32px s-w-40px s-mx-7px">
                                                     <div
@@ -1042,7 +1042,7 @@
                                         <ng-container *ngFor="let list of series.matches; let k = index;">
                                           <div class="s-rounded-t-5px">
                                             <ng-container
-                                              *ngIf="k < 2 && list.matchType !=='virtual' && list.matchType !=='virtual1' && list.b1 !==undefined && list.priorityNo !==undefined;then els3">
+                                              *ngIf="k < 2 && list.matchType !=='virtual' && list.matchType !=='virtual1' && list.b1 !==undefined && list.priorityNo !==undefined;else els3">
                                               <div>
                                                 <div class="11678489MatchesUP s-shadow-2sm matchDetail"
                                                   style="display: block; margin-bottom: 5px;">
@@ -1285,7 +1285,7 @@
                                                   <div [ngClass]="inPlayMatches(list.day) ? '' : ''">
                                                     <div class="s-inline-flex s-items-center">
                                                       <!-- inplay -->
-                                                      <ng-container *ngIf="inPlayM;then els2;">
+                                                      <ng-container *ngIf="inPlayM;else els2;">
                                                         <div
                                                           class="s-overflow-hidden s-flex s-flex-col s-rounded-3px s-h-32px s-w-40px s-mx-7px">
                                                           <div

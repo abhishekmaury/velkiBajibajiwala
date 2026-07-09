@@ -2,7 +2,7 @@ import { Component, HostListener, OnInit, OnDestroy, ViewEncapsulation } from '@
 import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import * as moment from 'moment';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { AuthserviceService } from '../../services/authservice.service';
 import { SocketServiceService } from '../../services/socket-service.service';
@@ -118,9 +118,9 @@ export class SportComponent implements OnInit, OnDestroy {
     //   }
     // }
 
-    // this.getMarketData();
+    this.getMarketData();
     this.getData();
-    // this.getSportsData();
+    this.getSportsData();
 
     this.changeCount(1);
   }
@@ -133,56 +133,29 @@ export class SportComponent implements OnInit, OnDestroy {
 
   }
 
-  getSportsData() {
-    let sectime = this.dataServe.getTimeStamp();
-    let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
-    // this.dataServe.verifyUser(data).subscribe((res: any) => {
-    // }, (error) => {
-    //   if (error.status == 200) {
-    //     this.validateapi = this.dataServe.decryptData(error.error.text);
-    //     if (this.validateapi.data.type == 'success') {
-    //       this.dataServe.getTodayMatches(data).subscribe((res: any) => {
-    //       }, (error) => {
-    //         if (error.status == 200) {
-    //           let msd = this.dataServe.decryptData(error.error.text);
-    //           let ddt = msd.data.results;
+  async getSportsData() {
+    
+    const [
+      multiMarketResponse,
+      todayGamesResponse,
+      tomorrowGamesResponse
+    ] = await forkJoin([
+      this.dataServe.getUserWiseMultiMarket(),
+      this.dataServe.getTodayGames(),
+      this.dataServe.getTomorrowGames()
+    ]).toPromise() as any;
 
-    //           let sectime1 = this.dataServe.getTimeStamp();
-    //           let data1 = {"timeStamp": sectime1.timeStamp, "secretKey": sectime1.secretKey }
-    //           this.dataServe.verifyUser(data1).subscribe((res: any) => {
-    //           }, (error) => {
-    //             if (error.status == 200) {
-    //               this.validateapi = this.dataServe.decryptData(error.error.text);
-    //               if (this.validateapi.data.type == 'success') {
-    //                 this.dataServe.getTomorrowMatches(data1).subscribe((res: any) => {
-    //                 }, (error) => {
-    //                   if (error.status == 200) {
-    //                     let msd1 = this.dataServe.decryptData(error.error.text);
-    //                     let ddt1 = msd1.data.results;
-    //                     let ddt2 = [...ddt, ...ddt1];
+    this.multiList = (multiMarketResponse as any[]).map((rs: any) => rs.matchid);
 
-    //                     ddt2.sort((a: any, b: any) => {
-    //                       const dateA = new Date(a.day);
-    //                       const dateB = new Date(b.day);
-    //                       return dateA.getTime() - dateB.getTime();
-    //                     })
-    //                     let newsdt = ddt2.map((r: any) => {
-    //                       r.multi = !this.multiList.includes(r.marketid);
-    //                       return r;
-    //                     });
-    //                     this.gameslist2 = [...newsdt];
-    //                     this.gameListDataSubject2.next(this.gameslist2);
-    //                   }
-    //                 })
-    //               }
-    //             }
-    //           })
-
-    //         }
-    //       })
-    //     }
-    //   }
-    // })
+    // Merge Today + Tomorrow games
+    this.gameslist2 = [
+      ...(todayGamesResponse as any[]),
+      ...(tomorrowGamesResponse as any[])
+    ].map((r: any) => ({
+      ...r,
+      multi: !this.multiList.includes(r.eventid)
+    }))
+    this.gameListDataSubject2.next(this.gameslist2);
 
   }
 
@@ -279,7 +252,7 @@ export class SportComponent implements OnInit, OnDestroy {
           this.gameList = this.gameList?.sort((a: any, b: any) => a.openTimestamp - b.openTimestamp);
           this.organizedData = this.dataServe.getOrganizedDataBySeriesname(this.gameList);
           console.log(this.organizedData);
-          
+
           this.getOddsData(this.organizedData)
         } else if (this.activeTab == '2') {
           this.gameList = this.gameList.filter((re: any) => {

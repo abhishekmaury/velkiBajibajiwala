@@ -31,17 +31,6 @@
                           class="s-absolute s-w-44px s-h-full s-flex s-justify-center s-items-center">
                           <span class="s-icon-arrow-left s-w-14px s-h-14px s-text-14px s-text-white"></span>
                         </div>
-                        <!-- <div class="s-w-full s-h-full s-flex s-justify-center s-items-end">
-                                                    <div class="s-mode-tab livetvTab s-relative s-w-90px s-h-27px s-flex s-justify-center s-items-center s-text-center s-rounded-tl-md s-rounded-tr-md first:s--mr-2.5px last:s--ml-2.5px is-active s-bg-scoreboard-tab-bg s-text-scoreboard-tab-text s-z-40 s-bg-scoreboard-tab-bg-active s-text-scoreboard-tab-text-active"
-                                                        ng-reflect-ng-class="s-bg-scoreboard-tab-bg-active "><span
-                                                            class="s-icon-live-tv s-block s-mr-4px s-text-17px s-text-scoreboard-tab-text s-text-scoreboard-tab-text-active"></span><span
-                                                            class="s-leading-27px s-text-14px">TV</span></div>
-                                                    <div class="s-mode-tab scorecardTab s-relative s-w-90px s-h-27px s-flex s-justify-center s-items-center s-text-center s-rounded-tl-md s-rounded-tr-md first:s--mr-2.5px last:s--ml-2.5px s-bg-scoreboard-tab-bg s-text-scoreboard-tab-text s-z-30"
-                                                        ng-reflect-ng-class=""><span
-                                                            class="s-icon-live-tv s-block s-mr-4px s-text-17px s-text-scoreboard-tab-text"
-                                                            style="display: none;"></span><span
-                                                            class="s-leading-27px s-text-14px">Scoreboard</span></div>
-                                                </div> -->
                       </div>
                       <div class="s-w-full s-h-4px s-bg-scoreboard-tab-bg-active"></div>
                     </div>
@@ -132,10 +121,9 @@
                                       <div
                                         class="s-w-131px s-relative s-grid s-gap-0.5 s-grid-cols-2 s-self-start dark:s-text-black-900">
                                         <div title="BACK"
-                                          (click)="openOddBetPlace(j, 'back', [{isBack : true, selectionId : item.selectionid, selectionName : item.runnerName, odds : runnersList[j]?.ex?.availableToBack[0]?.price, matchName : eventData.matchname, eventId : eventId, sourceId : eventId, sourceBetType : '', sportId : sportId}])"
+                                          (click)="openOddBetPlace(j, 'back', [{isBack : true, selectionId : item.selectionid, selectionName : item.runnerName, odds : runnersList[j]?.ex?.availableToBack[0]?.price, matchName : eventData.matchname, eventId : eventId, sourceId : eventId, sourceBetType : 'Odds', sportId : sportId}])"
                                           class="back12954260 s-py-1.5 s-flex s-flex-col s-text-center s-rounded-3px s-min-h-39px s-relative s-overflow-hidden s-bg-back-300 dark:s-bg-back-400-dark"
-                                          ng-reflect-ng-class=""
-                                          [ngClass]="(runnersList[j]?.ex?.availableToLay[0]?.price) ? '' : 'disabled'">
+                                          [ngClass]="{'disabled': !(runnersList[j]?.ex?.availableToBack[0]?.price) || (runnersList[j]?.ex?.availableToBack[0]?.price > socketEventOdds?.markets?.[0]?.limit?.[0].oddsLimit) || (runnersList[j]?.ex?.availableToBack[0]?.price <= 0)}">
                                           <div
                                             class="wrapper s-w-full s-h-full s-absolute s-overflow-hidden s-top-0 s-left-0 s-z-10"
                                             style="--0b879273: 0;"><span
@@ -176,33 +164,9 @@
                                       (stopTimer)="stopTimeout($event)"></app-place-bet-cupwinner>
 
                                   </div>
-
-
-                                  <div id="fullMarketSuspendedDiv" data-testid="fancybet-market-status"
-                                    class="s-absolute s-right-0 s-top-0 s-flex s-justify-center s-items-center s-w-full s-h-full s-bg-black-600 dark:s-bg-black-800 s-opacity-80 s-text-11px s-text-white s-rounded-3px s-z-20 s-w-131px"
-                                    style="display: none;">Suspended</div>
                                 </div>
                               </div>
-                              <div class="s-pt-1 s-flex s-justify-between s-items-center s-min-h-30px">
-                                <!-- <div
-                                                                    class="marketDepth s-inline-flex s-justify-center s-items-center s-rounded s-bg-secondary s-text-global-font-on-dark s-px-3px s-py-1.5">
-                                                                    <span
-                                                                        class="s-icon-graph s-pl-3px s-pr-0.5 s-text-14px"></span><span
-                                                                        class="s-px-3px s-text-14px"> Market Depth
-                                                                    </span>
-                                                                </div> -->
-                                <!-- <div data-testid="betLimit"
-                                                                    class="s-flex s-items-center s-text-black-600 dark:s-text-black-400">
-                                                                    <span
-                                                                        class="s-icon-min-max s-px-1 s-mt-0.5 s-text-11px"></span><span
-                                                                        class="s-px-0.5 s-text-11px">Min/Max</span><span
-                                                                        class="s-px-1 s-text-11px s-font-bold ominMaxInfo">10
-                                                                        / 10000</span>
-                                                                </div> -->
-                              </div>
                             </div>
-                          </div>
-                          <div class="overunderTab -s-mx-2 s-py-1 s-px-2 s-bg-white dark:s-bg-black-800 s-shadow-2sm">
                           </div>
                         </div>
                       </div>

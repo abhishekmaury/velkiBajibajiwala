@@ -108,10 +108,11 @@ export class AppComponent implements OnInit {
     const currentRoute = this.route.url;
     const isBetHistoryRoute = currentRoute.startsWith('/bet-history/') && currentRoute.split('/').length === 3;
     const isMarketRoute = currentRoute.startsWith('/market/');
+    const isExch = currentRoute.startsWith('/exchange/');
     const isMarketPremiumRoute = currentRoute.startsWith('/premium-parlay/');
     const isCupwinner = currentRoute.startsWith('/mob-match-cupwinner/');
     const isProfitRoute = currentRoute.startsWith('/profitLoss/') && currentRoute.split('/').length === 3;
-    return !hiddenRoutes.includes(this.route.url) && !isBetHistoryRoute && !isProfitRoute && !isMarketRoute && !isCupwinner && !isMarketPremiumRoute;
+    return !hiddenRoutes.includes(this.route.url) && !isBetHistoryRoute && !isProfitRoute && !isMarketRoute && !isCupwinner && !isMarketPremiumRoute && !isExch;
   }
 
   hidefoot(): boolean {

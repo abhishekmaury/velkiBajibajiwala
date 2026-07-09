@@ -538,12 +538,12 @@ export class DataHandlerService implements OnInit {
   getOrganizedDataBySeriesname(gameList: any[]): { seriesname: string, matches: any[] }[] {
     const organizedData: { seriesname: string, matches: any[] }[] = [];
     const seriesMap = new Map<string, any[]>();
-
-    gameList.forEach(item => {
-      if (!seriesMap.has(item.seriesname)) {
-        seriesMap.set(item.seriesname, []);
+    
+    gameList?.forEach(item => {
+      if (!seriesMap.has(item?.seriesname)) {
+        seriesMap.set(item?.seriesname, []);
       }
-      seriesMap.get(item.seriesname)?.push(item);
+      seriesMap.get(item?.seriesname)?.push(item);
     });
 
     seriesMap.forEach((matches, seriesname) => {
