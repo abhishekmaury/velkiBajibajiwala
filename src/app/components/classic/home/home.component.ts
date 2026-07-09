@@ -3,14 +3,13 @@ import { ChangeDetectorRef, Component, ElementRef, HostListener, ViewChild } fro
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
-import { Observable } from 'rxjs';
 import { AuthserviceService } from 'src/app/services/authservice.service';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 import { FingerprintService } from 'src/app/services/fingerprint.service';
 import Swiper from 'swiper';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-home-classic',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
@@ -247,22 +246,6 @@ export class HomeComponent1 {
       this.cdr.detectChanges();
       setTimeout(() => this.setupMarquee(), 0);
     });
-
-    this.dataserve.changeTheme$.subscribe((res: any) => {
-      let classicTheme = res;
-
-      if (classicTheme == true) {
-        this.router.navigate(['/classichome'])
-      } else {
-        this.router.navigate(['/home'])
-      }
-    })
-    let theme = localStorage.getItem('clssaicTheme');
-    if (theme == 'true') {
-        this.router.navigate(['/classichome'])
-      } else {
-        this.router.navigate(['/home'])
-      }
   }
 
   setupMarquee() {

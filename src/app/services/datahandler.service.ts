@@ -38,7 +38,7 @@ export class DataHandlerService implements OnInit {
   base64EncodedString = environment.base64EncodedString
   decodedKey = CryptoJS.enc.Base64.parse(this.base64EncodedString);
 
-  private themeFlag = new Subject<any>();
+  private themeFlag = new BehaviorSubject<any>(false);
   public changeTheme$ = this.themeFlag.asObservable();
   sendWebData = new Subject<any>()
 
@@ -680,8 +680,8 @@ export class DataHandlerService implements OnInit {
   getIntercomData() {
     return this.http.post(`${this.baseUrl}/getChatToken`, {})
   }
-  isClassicTheme() {
-    return !!localStorage.getItem('clssaicTheme');
+  isClassicTheme():boolean {
+    return JSON.parse(localStorage.getItem('clssaicTheme') || 'false');
   }
   getThemeFlag(data: any) {
     this.themeFlag.next(data)

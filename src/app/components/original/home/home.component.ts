@@ -8,7 +8,7 @@ import SwiperCore, { Autoplay, Pagination, Navigation, SwiperOptions, Swiper } f
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-home-original',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
@@ -51,22 +51,6 @@ export class HomeComponent implements OnInit {
   constructor(private popupService: HandlerService, private dataserve: DataHandlerService, private router: Router) { }
 
   ngOnInit() {
-
-    this.dataserve.changeTheme$.subscribe((res: any) => {
-      let classicTheme = res;
-
-      if (classicTheme == true) {
-        this.router.navigate(['/classichome'])
-      } else {
-        this.router.navigate(['/home'])
-      }
-    })
-    let theme = localStorage.getItem('clssaicTheme');
-    if (theme == 'true') {
-      this.router.navigate(['/classichome'])
-    } else {
-      this.router.navigate(['/home'])
-    }
     let wData = localStorage.getItem("webData")
     if (wData) {
       let d1 = JSON.parse(wData)

@@ -122,20 +122,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataServe.changeTheme$.subscribe((res: any) => {
-      let classicTheme = res;
-
-      if (classicTheme == true) {
-        this.router.navigate(['/classichome'])
-      } else {
-        this.router.navigate(['/home'])
-      }
+      this.classicTheme = res;
     })
-    let theme = localStorage.getItem('clssaicTheme');
-    if (theme == 'true') {
-      this.router.navigate(['/classichome'])
-    } else {
-      this.router.navigate(['/home'])
-    }
 
     let data = localStorage.getItem('userData');
     if (data) {
@@ -295,17 +283,12 @@ export class AppComponent implements OnInit {
 
 
   themeToggleFun() {
+    const isClassicTheme = this.dataServe.isClassicTheme();
+    this.dataServe.getThemeFlag(isClassicTheme);
 
     this.dataServe.changeTheme$.subscribe((res: any) => {
       this.classicTheme = res;
-
-      if (this.classicTheme == true) {
-        this.router.navigate(['/classichome'])
-      } else {
-        this.router.navigate(['/home'])
-      }
     })
-    let theme = localStorage.getItem('clssaicTheme');
     const classic = document.getElementById('classic-style') as HTMLLinkElement;
     const modern = document.getElementById('newer-style') as HTMLLinkElement;
 
@@ -314,7 +297,7 @@ export class AppComponent implements OnInit {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
 
-    if (theme == 'true') {
+    if (isClassicTheme) {
       this.classicTheme = true;
       link.id = 'classic-style';
       link.href = './assets/css/halfbaji.css?v=1.10';

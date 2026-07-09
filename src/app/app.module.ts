@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AuthInterceptorInterceptor } from './authInterceptor.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
 import { HomeComponent1 } from './components/classic/home/home.component';
 import { register } from 'swiper/element/bundle';
 import { LoginComponent } from './components/login/login.component';
@@ -48,6 +47,8 @@ import { SharedModule } from './directives/shared.module';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ClassicHeaderComponent } from './components/classic/header/header.component';
 import { TranslocoRootModule } from './transloco-root.module';
+import { HomeWrapperComponent } from './components/home/home-wrapper.component';
+import { HomeComponent } from './components/original/home/home.component';
 
 register();
 export function initApp(configService: GetSocketUrlService) {
@@ -57,7 +58,7 @@ export function initApp(configService: GetSocketUrlService) {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    HomeWrapperComponent,
     LoginComponent,
     HeaderComponent,
     ClassicHeaderComponent,
@@ -85,7 +86,8 @@ export function initApp(configService: GetSocketUrlService) {
     SearchCasinoComponent,
     SignUpComponent,
     StakeSettingsComponent,
-    HomeComponent1
+    HomeComponent,
+    HomeComponent1,
   ],
   imports: [
     BrowserModule,
