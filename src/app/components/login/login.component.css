@@ -93,3 +93,158 @@ input.has-error {
   font-size: 18px;
   font-weight: 700;
 }
+
+
+@media (min-width: 768px) {
+  header.member {
+    width: 480px;
+    height: 64px;
+    border-bottom: 1.28px solid rgba(153, 153, 153, .3);
+  }
+
+  header.member .header-title {
+    font-size: 20px;
+  }
+
+  header.member .back-btn {
+    width: 64px;
+    height: 64px;
+  }
+
+  .content {
+    padding: 64px 0 0;
+  }
+
+
+  .logo-box {
+    width: 256px;
+    height: 57.6px;
+    margin: 19.2px auto 6.4px;
+  }
+
+  .radius {
+    margin: 12.8px;
+  }
+
+
+  .inputbox label {
+    left: 25.6px;
+    font-size: 16.64px;
+  }
+
+  .inputbox input {
+    height: 64px;
+    font-size: 16.64px;
+    padding: 0 51.2px 0 140.8px;
+  }
+
+  .radius div:first-of-type input.input,
+  .radius div:first-of-type select {
+    border-top-left-radius: 3.84px;
+    border-top-right-radius: 3.84px;
+  }
+
+  .inputbox .clear {
+    right: 12.8px;
+    height: 19.2px;
+    border-radius: 25.6px;
+    padding: 0;
+  }
+
+  .inputbox input.clear {
+    background: none;
+    width: 20px !important;
+
+  }
+
+  .eyes {
+    width: 51.2px;
+    height: 51.2px;
+  }
+
+  .radius div:last-of-type input.input,
+  .radius div:last-of-type select {
+    border-bottom-left-radius: 3.84px;
+    border-bottom-right-radius: 3.84px;
+  }
+
+  .inputbox.password .clear {
+    right: 64px;
+  }
+
+  .inputbox input {
+    background: none;
+    color: none;
+  }
+
+  .login-info-box {
+    margin: 0 12.8px;
+  }
+
+  .forgetpassword-buttn {
+    font-size: 16.64px;
+  }
+
+  .forgetpassword-buttn a {
+    padding: 6.4px;
+    border-radius: 3.84px;
+  }
+
+  .member-content .button,
+  .login-biometric-content .button {
+    width: 454.4px;
+    height: 57.6px;
+    font-size: 19.2px;
+  }
+
+  .login-biometric-content .button {
+    margin: 12.8px 10px;
+  }
+
+  .member-content .button,
+  .login-biometric-content .button {
+    line-height: 38.4px;
+  }
+
+  .member-content p,
+  .login-biometric-content p {
+    padding: 6.4px 12.8px 19.2px;
+  }
+
+  .member-content .signup,
+  .login-biometric-content .signup {
+    font-size: 16.64px;
+  }
+
+
+
+  .member-error {
+    padding: 9.6px 12.8px;
+    font-size: 15.36px;
+  }
+
+  .member-error:before {
+    width: 20.48px;
+    height: 20.48px;
+    margin-right: 6.4px;
+    border-radius: 25.6px;
+    font-size: 15.36px;
+    line-height: 20.48px;
+  }
+
+  .pop-wrap {
+    left: 18%;
+  }
+
+  .button {
+    border-radius: 5px;
+  }
+
+  .figetpassborder {
+    border: 1.28px solid rgb(17, 12, 24);
+  }
+}
+
+.btn-disable {
+  pointer-events: none;
+}
