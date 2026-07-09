@@ -1,5 +1,5 @@
 <div class="wrap" #wrap>
-  <div class="wrap-inner">
+  <div class="wrap-inner" (scroll)="onScroll($event)">
     <div class="content cricket">
       <div class="cricket-container">
         <div class="s-app s-space-y-px s-default">
@@ -61,7 +61,7 @@
                     <ng-container *ngIf="eventData?.gameType!=='virtual1'">
                     <div class="s-bg-secondary" style="height: auto;">
                       <!-- scorecard -->
-                      <ng-container *ngIf="showTabs == 'scrd' && !onlyPremium">
+                      <ng-container *ngIf="showTabs == 'scrd'">
                       <div class="s-justify-center s-items-center scoremin scorecard-container">
                         <iframe #iframeRef [src]="urlSafe" allowfullscreen="true" style="width: 100%; border:none; "
                           class="scoreheight"></iframe>
@@ -89,7 +89,7 @@
                         <div id="streamContainer" class="tv-box">
                           <div id="tv" class="tv">
 
-                            <ng-container *ngIf="!demoUser; else demoUserMessage">
+                            <!-- <ng-container *ngIf="!demoUser; else demoUserMessage">
                               <div class="zoomed_mode" id="zoomdrag" style="left: 0; top: 0;">
                                 <span
                                   style="position:absolute;z-index:99;display:flex;width:100%;justify-content:end;font-size:20px;">
@@ -106,11 +106,11 @@
                                   class="zoomed_mode zoomed_modetv">
                                 </iframe>
                               </div>
-                            </ng-container>
+                            </ng-container> -->
 
-<ng-template #demoUserMessage>
+<!-- <ng-template #demoUserMessage>
   <p class="video-text">You need to register to access TV feature</p>
-</ng-template>
+</ng-template> -->
 
                           </div>
                         </div>
@@ -130,7 +130,7 @@
                               <div class="">
                                 <span class="s-mr-1 s-text-11px s-text-market-exchange-tip s-opacity-85">Matched</span>
                                 <span class="s-text-11px s-text-market-exchange-tip s-font-bold" id="MatchedVolume">
-                                  {{currency}} {{totalMatched}}
+                                  {{'PBU'}} {{totalMatched}}
                                 </span>
                               </div>
                               <span
@@ -138,7 +138,7 @@
                                 style="display: none;"> Low </span>
                             </div>
                           </div>
-                          <ng-container *ngIf="oddspermission || otpermisssion">
+                          <ng-container *ngIf="oddspermission || otherpermission">
                           <div class="s--mx-2 market-wrapper s-h-40px s-relative s-bg-primary s-overflow-y-hidden"
                             style="--69bae85a: 92px; --3d1c2e7c: translateX(7px);">
                             <div class="s-h-full s-inline-block">
@@ -163,7 +163,7 @@
 
                                 </ng-container>
 
-                                <ng-container *ngIf="otpermisssion">
+                                <ng-container *ngIf="otherpermission">
                                   <ng-container *ngFor="let preitem of preMatchMarket">
                                     <ng-container *ngFor="let item of MOddsDataOther">
                                       <ng-container *ngIf="preitem.id == item.marketId">
@@ -258,7 +258,7 @@
                                         <div
                                           class="s-w-131px s-relative s-grid s-gap-0.5 s-grid-cols-2 s-self-start dark:s-text-black-900">
                                           <div
-                                            (click)="openOddBetPlace(j, 'back', [{isBack : true, selectionId : [j+1], selectionName : matchrunners?.[j], odds : runnersList?.[j]?.ex?.availableToBack?.[0]?.price, matchName : eventData.matchname, eventId : eventId, sourceId : eventId, sourceBetType : '', sportId : sportId}])"
+                                            (click)="openOddBetPlace(j, 'back', [{isBack : true, selectionId : runnersList[j].selectionId, selectionName : matchrunners[j], odds : runnersList[j]?.ex?.availableToBack[0]?.price, matchName : eventData.matchname, eventId : eventId, sourceId : eventId, sourceBetType : 'Odds', sportId : sportId}])"
                                             class="back12954260 s-py-1.5 s-flex s-flex-col s-text-center s-rounded-3px s-min-h-39px s-relative s-overflow-hidden s-bg-back-300 dark:s-bg-back-400-dark"
                                             [ngClass]="(runnersList?.[j]?.ex?.availableToBack?.[0]?.price) ? '' : 'disabled'"
                                             [ngClass]="(runnersList[j]?.ex?.availableToBack?.[0]?.price > socketEventOdds?.markets?.[0]?.limit?.[1]?.b2CoddsLimit || socketEventOdds?.markets?.[0]?.limit?.[1]?.b2CshowOddsDIv==false || eventData?.lowLiquidity>=totalMatched)?'disabled':''"
@@ -279,7 +279,7 @@
                                               {{(runnersList?.[j]?.ex?.availableToBack?.[0]?.size) ?? '--'}}</p>
                                           </div>
                                           <div
-                                            (click)="openOddBetPlace(j, 'lay', [{isBack : false, selectionId : [j+1], selectionName : matchrunners?.[j], odds : runnersList?.[j]?.ex?.availableToLay?.[0]?.price, matchName : eventData.matchname, eventId : eventId, sourceId : eventId, sourceBetType : '', sportId : sportId}])"
+                                            (click)="openOddBetPlace(j, 'lay', [{isBack : false, selectionId : runnersList[j].selectionId, selectionName : matchrunners[j], odds : runnersList[j]?.ex?.availableToLay[0]?.price, matchName : eventData.matchname, eventId : eventId, sourceId : eventId, sourceBetType : 'Odds', sportId : sportId}])"
                                             class="lay12954260 s-py-1.5 s-flex s-flex-col s-text-center s-rounded-3px s-min-h-39px s-relative s-overflow-hidden s-bg-lay-300 dark:s-bg-lay-400-dark"
                                             [ngClass]="(runnersList[j]?.ex?.availableToLay[0]?.price) ? '' : 'disabled'"
                                             [ngClass]="(runnersList[j]?.ex?.availableToLay?.[0]?.price > socketEventOdds?.markets?.[0]?.limit?.[1]?.b2CoddsLimit || socketEventOdds?.markets?.[0]?.limit?.[1]?.b2CshowOddsDIv==false || eventData?.lowLiquidity>=totalMatched)?'disabled':''"
@@ -302,20 +302,18 @@
                                         </div>
                                       </div>
                                       <ng-container *ngIf="showOdd == j && backTrue == true">
-                                      <app-bet-place [clsClr]="classclrforlayBack" [data]="oddPrice"
-                                        [updOddsBack]="runnersList?.[j]?.ex?.availableToBack?.[0]?.price"
-                                        [updOddsLay]="runnersList?.[j]?.ex?.availableToLay?.[0]?.price"
-                                        [lowLiquidity]="eventData?.lowLiquidity" [totalMatched]="totalMatched"
-                                        [socketEventData]="socketEventOdds" [isInplay]="inplaystatus"
+                                      <app-bet-place [clsClr]="classclrforlayBack"
+                                        [data]="oddPrice" [updOddsBack]="runnersList[j]?.ex?.availableToBack[0]?.price"
+                                        [updOddsLay]="runnersList[j]?.ex?.availableToLay[0]?.price" [socketEventData]="socketEventOdds"
+                                        [isInplay]="inplaystatus" [minLimit]="oddMin" [maxLimit]="oddMax" [lowLiquidity]="eventData?.lowLiquidity" [totalMatched]="totalMatched"
                                         (betResult)="getOddsCalculation($event)" (stopTimer)="stopTimeout($event)"
                                         style="position: absolute;z-index: 99999;"></app-bet-place>
                                       </ng-container>
                                       <ng-container *ngIf="showOdd == j && backTrue == false">
-                                      <app-bet-place [clsClr]="classclrforlayBack" [data]="oddPrice"
-                                        [updOddsBack]="runnersList?.[j]?.ex?.availableToBack?.[0]?.price"
-                                        [updOddsLay]="runnersList?.[j]?.ex?.availableToLay?.[0]?.price"
-                                        [lowLiquidity]="eventData?.lowLiquidity" [totalMatched]="totalMatched"
-                                        [socketEventData]="socketEventOdds" [isInplay]="inplaystatus"
+                                      <app-bet-place [clsClr]="classclrforlayBack"
+                                        [data]="oddPrice" [updOddsBack]="runnersList[j]?.ex?.availableToBack[0]?.price"
+                                        [updOddsLay]="runnersList[j]?.ex?.availableToLay[0]?.price" [socketEventData]="socketEventOdds"
+                                        [isInplay]="inplaystatus" [minLimit]="oddMin" [maxLimit]="oddMax" [lowLiquidity]="eventData?.lowLiquidity" [totalMatched]="totalMatched"
                                         (betResult)="getOddsCalculation($event)" (stopTimer)="stopTimeout($event)"
                                         style="position:absolute;z-index: 99999;"></app-bet-place>
                                       </ng-container>
@@ -338,21 +336,21 @@
                                   <span class="s-icon-min-max s-px-1 s-mt-0.5 s-text-11px"></span>
                                   <span class="s-px-0.5 s-text-11px">Min/Max</span>
 
-                                  <ng-container *ngIf="LocalLimit.currency == 'BDT'; else nonBDT">
-                                    <ng-container *ngIf="inplaystatus; else bdtPreMaxStake">
+                                  <!-- <ng-container *ngIf="LocalLimit.currency == 'BDT'; else nonBDT">
+                                    <ng-container *ngIf="inplaystatus; else bdtPreMaxStake"> -->
                                       <span class="s-px-1 s-text-11px s-font-bold ominMaxInfo">
-                                        10 / {{ socketEventOdds?.markets?.[0].limit?.[2]?.b2CmaxStake }}
+                                        {{oddMin}} / {{oddMax | number:'1.0-0'}}
                                       </span>
-                                    </ng-container>
+                                    <!-- </ng-container>
 
                                     <ng-template #bdtPreMaxStake>
                                       <span class="s-px-1 s-text-11px s-font-bold ominMaxInfo">
                                         10 / {{ socketEventOdds?.markets?.[0].limit?.[2]?.b2CpreMaxStake }}
                                       </span>
                                     </ng-template>
-                                  </ng-container>
+                                  </ng-container> -->
 
-                                  <ng-template #nonBDT>
+                                  <!-- <ng-template #nonBDT>
                                     <ng-container *ngIf="inplaystatus; else nonBdtPreMaxStake">
                                       <span class="s-px-1 s-text-11px s-font-bold ominMaxInfo">
                                         10 / {{ socketEventOdds?.markets?.[0].limit?.[1]?.b2CmaxStake }}
@@ -364,7 +362,7 @@
                                         10 / {{ socketEventOdds?.markets?.[0].limit?.[1]?.b2CpreMaxStake }}
                                       </span>
                                     </ng-template>
-                                  </ng-template>
+                                  </ng-template> -->
 
                                 </div>
                               </div>
@@ -372,7 +370,7 @@
                             </ng-container>
                           </div>
                           </ng-container>
-                          <ng-container *ngIf="otpermisssion">
+                          <ng-container *ngIf="otherpermission">
                           <div class="overunderTab -s-mx-2 s-py-1 s-px-2 s-bg-white dark:s-bg-black-800 s-shadow-2sm">
                             <ng-container *ngFor="let preitem of preMatchMarket; let i = index;">
                               <ng-container *ngIf="TopMenuselectedItem==preitem.name">
@@ -433,7 +431,7 @@
                                               class="s-py-1.5 s-flex s-flex-col s-text-center s-rounded-3px s-min-h-39px s-relative s-overflow-hidden s-bg-lay-300 dark:s-bg-lay-400-dark"
                                               title="LAY">
                                               <div
-                                                (click)="openOtherBetPlace(j, 'lay', [{isBack : false, selectionId : preitemdata.id, selectionName : preitemdata.selectionName, odds : MOddsDataOther[i]?.runners[j]?.ex?.availableToLay?.[0]?.price, matchName : eventData.matchname, eventId : eventId, sourceId : preitem.fancyid, sourceBetType : 'Other', sportId : sportId, marketName:preitem.name}])"
+                                                (click)="openOtherBetPlace(j, 'lay', [{isBack : false, selectionId : preitemdata.id, selectionName : preitemdata.selectionName, odds : MOddsDataOther[i]?.runners[j]?.ex?.availableToLay[0]?.price, matchName : eventData.matchname, eventId : eventId, sourceId : preitem.fancyid, sourceBetType : 'Other', sportId : sportId, marketName:preitem.name}])"
                                                 class="wrapper s-w-full s-h-full s-absolute s-overflow-hidden s-top-0 s-left-0 s-z-10"
                                                 style="--0b879273: 0;"><span
                                                   class="mask s-w-full s-h-full s-opacity-10 s-bg-black-900 s-absolute s-left-0 s-top-0"
@@ -451,10 +449,10 @@
                                         </div>
                                         <ng-container *ngIf="showOther == j">
                                         <app-bet-place [clsClr]="classclrforlayBack" [data]="oddPrice"
-                                          [updOddsBack]="MOddsDataOther[i]?.runners?.[j]?.ex?.availableToBack?.[0]?.price"
-                                          [updOddsLay]="MOddsDataOther[i]?.runners?.[j]?.ex?.availableToLay?.[0]?.price"
-                                          [socketEventData]="MOddsAllData.events" [isInplay]="inplaystatus"
-                                          (betResult)="getOddsCalculation($event)"
+                                          [updOddsBack]="MOddsDataOther[i]?.runners[j]?.ex?.availableToBack[0]?.price"
+                                          [updOddsLay]="MOddsDataOther[i]?.runners[j]?.ex?.availableToLay[0]?.price"
+                                          [socketEventData]="MOddsAllData.events" [minLimit]="otherMin" [maxLimit]="otherMax"
+                                          [isInplay]="inplaystatus" (betResult)="getOddsCalculation($event)"
                                           style="position:absolute;z-index: 99999;"></app-bet-place>
                                         </ng-container>
                                       </div>
@@ -471,8 +469,8 @@
                                     data-testid="betLimit"><span
                                       class="s-icon-min-max s-px-1 s-mt-0.5 s-text-11px"></span><span
                                       class="s-px-0.5 s-text-11px">Min/Max</span><span
-                                      class="s-px-1 s-text-11px s-font-bold" id="otherMinMax227886181">10 /
-                                      50000</span>
+                                      class="s-px-1 s-text-11px s-font-bold" id="otherMinMax227886181">{{otherMin}} /
+                                      {{otherMax | number:'1.0-0'}}</span>
                                   </div>
                                 </div>
                               </div>
@@ -553,7 +551,7 @@
                                         <div
                                           class="s-bg-book-market s-w-131px s-relative s-grid s-grid-cols-2 s-gap-x-2 s-p-1 s-rounded-3px s-self-start s-h-39px">
                                           <div
-                                            (click)="openBMBetPlace(i, 'back', [{isBack : true, selectionId : [i+1], selectionName : matchrunners[i], odds : runnersList2.bookmaker[i]?.backOddsInfo?.[0], matchName : eventData.matchname, eventId : eventId, sourceId : eventId, sourceBetType : 'book', sportId : sportId}])"
+                                            (click)="openBMBetPlace(i, 'back', [{isBack : true, selectionId : matchrunnerssid[i], selectionName : matchrunners[i], odds : runnersList2.bookmaker[i]?.backOddsInfo[0], matchName : eventData.matchname, eventId : eventId, sourceId : eventId, sourceBetType : 'BooKMaker', sportId : sportId}])"
                                             class="s-h-33px s-text-center s-rounded-3px s-border s-border-white s-flex s-items-center s-justify-center s-relative s-overflow-hidden s-bg-back-300 dark:s-bg-back-400-dark"
                                             title="BACK">
                                             <div
@@ -570,7 +568,7 @@
                                               (runnersList2?.bookmaker?.[i]?.backOddsInfo?.[0]) || '0' }}</h3>
                                           </div>
                                           <div
-                                            (click)="openBMBetPlace(i, 'lay', [{isBack : false, selectionId : [i+1], selectionName : matchrunners[i], odds : runnersList2.bookmaker[i]?.layOddsInfo?.[0], matchName : eventData.matchname, eventId : eventId, sourceId : eventId, sourceBetType : 'book', sportId : sportId}])"
+                                            (click)="openBMBetPlace(i, 'lay', [{isBack : false, selectionId : matchrunnerssid[i], selectionName : matchrunners[i], odds : runnersList2.bookmaker[i]?.layOddsInfo[0], matchName : eventData.matchname, eventId : eventId, sourceId : eventId, sourceBetType : 'BooKMaker', sportId : sportId}])"
                                             class="s-h-33px s-text-center s-rounded-3px s-border s-border-white s-flex s-items-center s-justify-center s-relative s-overflow-hidden s-bg-lay-300 dark:s-bg-lay-400-dark"
                                             title="LAY">
                                             <div
@@ -596,21 +594,21 @@
 
                                       <ng-container *ngIf="showBM == i && backTrue == true && runnersList2.bookmaker[i]?.status=='Active'">
                                       <app-bet-place [clsClr]="classclrforlayBack" [data]="oddPrice"
-                                        [updOddsBack]="runnersList2.bookmaker[i]?.backOddsInfo?.[0]"
-                                        [updOddsLay]="runnersList2.bookmaker[i]?.layOddsInfo?.[0]"
+                                        [updOddsBack]="runnersList2.bookmaker[i]?.backOddsInfo[0]"
+                                        [updOddsLay]="runnersList2.bookmaker[i]?.layOddsInfo[0]"
                                         [socketEventData]="runnersList2.events" [isInplay]="inplaystatus"
-                                        [bmLimit]="bookmakerLimit" [minLimit]="runnersList2?.details?.min"
-                                        [maxLimit]="runnersList2?.details?.max" (betResult)="getOddsCalculation($event)"
+                                        [minLimit]="runnersList2.min" [maxLimit]="runnersList2?.max"
+                                        (betResult)="getOddsCalculation($event)"
                                         style="position:absolute;z-index: 99999;"></app-bet-place>
                                       </ng-container>
 
                                       <ng-container *ngIf="showBM == i && backTrue == false && runnersList2.bookmaker[i]?.status=='Active'">
                                       <app-bet-place [clsClr]="classclrforlayBack" [data]="oddPrice"
-                                        [updOddsBack]="runnersList2.bookmaker[i]?.backOddsInfo?.[0]"
-                                        [updOddsLay]="runnersList2.bookmaker[i]?.layOddsInfo?.[0]"
+                                        [updOddsBack]="runnersList2.bookmaker[i]?.backOddsInfo[0]"
+                                        [updOddsLay]="runnersList2.bookmaker[i]?.layOddsInfo[0]"
                                         [socketEventData]="runnersList2.events" [isInplay]="inplaystatus"
-                                        [bmLimit]="bookmakerLimit" [minLimit]="runnersList2?.details?.min"
-                                        [maxLimit]="runnersList2?.details?.max" (betResult)="getOddsCalculation($event)"
+                                        [minLimit]="runnersList2.min" [maxLimit]="runnersList2.max"
+                                        (betResult)="getOddsCalculation($event)"
                                         style="position:absolute;z-index: 99999;"></app-bet-place>
                                       </ng-container>
                                     </div>
@@ -626,13 +624,14 @@
                                       <span class="s-icon-min-max s-px-1 s-mt-0.5 s-text-11px"></span>
                                       <span class="s-px-0.5 s-text-11px">Min/Max</span>
 
-                                      <ng-container *ngIf="LocalLimit.currency !== 'BDT'">
+                                      <!-- <ng-container *ngIf="LocalLimit.currency !== 'BDT'">
                                         <ng-container *ngIf="!bookmakerLimit; else bookmakerMaxLimit">
-                                          <ng-container *ngIf="inplaystatus; else preMaxStake">
+                                          <ng-container *ngIf="inplaystatus; else preMaxStake"> -->
                                             <span class="s-px-1 s-text-11px s-font-bold ominMaxInfo">
-                                              10 / {{ runnersList2?.events?.markets?.[0].limit?.[1]?.b2CmaxStake }}
+                                             {{ runnersList2?.min ? (runnersList2.min) : '' }} / {{
+                                              runnersList2?.max ? ((runnersList2.max) | number:'1.0-0') : '' }}
                                             </span>
-                                          </ng-container>
+                                          <!-- </ng-container>
 
                                           <ng-template #preMaxStake>
                                             <span class="s-px-1 s-text-11px s-font-bold ominMaxInfo">
@@ -646,7 +645,7 @@
                                             10 / {{ runnersList2?.details?.max }}
                                           </span>
                                         </ng-template>
-                                      </ng-container>
+                                      </ng-container> -->
 
                                     </div>
                                   </div>
@@ -723,7 +722,7 @@
                                         <div
                                           class="s-bg-bookmaker-market s-w-131px s-relative s-grid s-grid-cols-2 s-gap-x-2 s-p-1 s-rounded-3px s-self-start s-h-39px">
                                           <div
-                                            (click)="openTossBetPlace(i, 'back', [{isBack : true, selectionId : matchrunnerssid[i], selectionName : matchrunners[i], odds : '0.95', matchName : eventData.matchname, eventId : eventId, sourceId : eventId, sourceBetType : 'toss', sportId : sportId}])"
+                                            (click)="openTossBetPlace(i, 'back', [{isBack : true, selectionId : matchrunnerssid[i], selectionName : matchrunners[i], odds : '0.95', matchName : eventData.matchname, eventId : eventId, sourceId : eventId, sourceBetType : 'Toss', sportId : sportId}])"
                                             class="s-h-33px s-text-center s-rounded-3px s-border s-border-white s-flex s-items-center s-justify-center s-relative s-overflow-hidden s-bg-back-300 dark:s-bg-back-400-dark"
                                             title="BACK">
                                             <div
@@ -750,9 +749,10 @@
                                         </div>
                                     </div>
                                     <ng-container *ngIf="showToss == i">
-                                    <app-bet-place [clsClr]="classclrforlayBack" [data]="oddPrice" [updOddsBack]="0.95"
-                                      [updOddsLay]="0.95" [socketEventData]="tosssocketdata.events"
-                                      [isInplay]="inplaystatus" (betResult)="getOddsCalculation($event)"
+                                    <app-bet-place [clsClr]="classclrforlayBack" [data]="oddPrice"
+                                      [updOddsBack]="0.95" [updOddsLay]="0.95" [socketEventData]="tosssocketdata.events"
+                                      [isInplay]="inplaystatus" [minLimit]="tossMin" [maxLimit]="tossMax"
+                                      (betResult)="getOddsCalculation($event)"
                                       style="position:absolute;z-index: 99999;"></app-bet-place>
                                     </ng-container>
 
@@ -769,12 +769,12 @@
                                     <span class="s-icon-min-max s-px-1 s-mt-0.5 s-text-11px"></span>
                                     <span class="s-px-0.5 s-text-11px">Min/Max</span>
 
-                                    <ng-container *ngIf="LocalLimit.currency == 'BDT'; else nonBDT">
-                                      <ng-container *ngIf="inplaystatus; else bdtPreMaxStake">
+                                    <!-- <ng-container *ngIf="LocalLimit.currency == 'BDT'; else nonBDT">
+                                      <ng-container *ngIf="inplaystatus; else bdtPreMaxStake"> -->
                                         <span class="s-px-2 s-text-11px s-font-bold ominMaxInfo">
-                                          10 / {{ tosssocketdata?.events?.markets?.[-1]?.limit?.[2]?.b2CmaxStake }}
+                                          {{tossMin}} / {{tossMax | number:'1.0-0'}}
                                         </span>
-                                      </ng-container>
+                                      <!-- </ng-container>
 
                                       <ng-template #bdtPreMaxStake>
                                         <span class="s-px-2 s-text-11px s-font-bold ominMaxInfo">
@@ -795,7 +795,7 @@
                                           10 / {{ tosssocketdata?.events?.markets?.[-1]?.limit?.[1]?.b2CpreMaxStake }}
                                         </span>
                                       </ng-template>
-                                    </ng-template>
+                                    </ng-template> -->
 
                                   </div>
                                 </div>
@@ -896,28 +896,28 @@
                   <div class="s-overflow-x-scroll s-mr-2 s--ml-0.5">
                     <div class="s-relative s-inline-block">
                       <div class="s-w-full s-h-30px s-flex s-justify-center">
-                        <div [ngClass]="{'select': fancyselectedTab === 'all'}" (click)="displayFancy('all')"
+                        <div [ngClass]="{'select': fancyselectedTab === 'all'}" (click)="displayFancy(0)"
                           class="s-text-13px s-py-2 s-px-4 s-mx-1 s-mt-px s-text-center s-text-market-sub-text">
                           All</div>
-                        <div [ngClass]="{'select': fancyselectedTab === 'normal'}" (click)="displayFancy('normal')"
+                        <div [ngClass]="{'select': fancyselectedTab === 'normal'}" (click)="displayFancy(1)"
                           class="s-text-13px s-py-2 s-px-4 s-mx-1 s-mt-px s-text-center s-text-market-sub-text">
                           Normal</div>
-                        <div [ngClass]="{'select': fancyselectedTab === 'fancy1'}" (click)="displayFancy('fancy1')"
+                        <div [ngClass]="{'select': fancyselectedTab === 'fancy1'}" (click)="displayFancy(2)"
                           class="s-text-13px s-py-2 s-px-4 s-mx-1 s-mt-px s-text-center s-text-market-sub-text">
                           Fancy1</div>
-                        <div [ngClass]="{'select': fancyselectedTab === 'over'}" (click)="displayFancy('over')"
+                        <div [ngClass]="{'select': fancyselectedTab === 'over'}" (click)="displayFancy(3)"
                           class="s-text-13px s-py-2 s-px-4 s-mx-1 s-mt-px s-text-center s-text-market-sub-text">
                           Over</div>
-                        <div [ngClass]="{'select': fancyselectedTab === 'bbb'}" (click)="displayFancy('bbb')"
+                        <div [ngClass]="{'select': fancyselectedTab === 'bbb'}" (click)="displayFancy(4)"
                           class="s-text-13px s-py-2 s-px-4 s-mx-1 s-mt-px s-text-center s-text-market-sub-text">
                           BallByBall</div>
-                        <div [ngClass]="{'select': fancyselectedTab === 'khadda'}" (click)="displayFancy('khadda')"
+                        <div [ngClass]="{'select': fancyselectedTab === 'khadda'}" (click)="displayFancy(5)"
                           class="s-text-13px s-py-2 s-px-4 s-mx-1 s-mt-px s-text-center s-text-market-sub-text">
                           Khadda</div>
-                        <div [ngClass]="{'select': fancyselectedTab === 'lottery'}" (click)="displayFancy('lottery')"
+                        <div [ngClass]="{'select': fancyselectedTab === 'lottery'}" (click)="displayFancy(6)"
                           class="s-text-13px s-py-2 s-px-4 s-mx-1 s-mt-px s-text-center s-text-market-sub-text">
                           Lottery</div>
-                        <div [ngClass]="{'select': fancyselectedTab === 'oddeven'}" (click)="displayFancy('oddeven')"
+                        <div [ngClass]="{'select': fancyselectedTab === 'oddeven'}" (click)="displayFancy(7)"
                           class="s-text-13px s-py-2 s-px-4 s-mx-1 s-mt-px s-text-center s-text-market-sub-text">
                           Odd/Even</div>
                         <div
@@ -948,7 +948,7 @@
                       <div id="fancy_table_own" class="fbetDiv">
 
                         <ng-container *ngIf="normalFan && normalfancy.length > 0">
-                          <ng-container *ngFor="let item of normalfancy; let i = index;trackByFn trackByFn(i,item)">
+                          <ng-container *ngFor="let item of normalfancy; trackBy: trackByFn; let i = index">
                             <div class="s-relative" id="fancyBetMarket1">
                               <div class="s-flex s-justify-start s-items-center s-bg-black-100 dark:s-bg-black-700">
                                 <div class="s-fav s-text-market-sub-text dark:s-text-market-sub-text s-text-15px s-ml-7px">
@@ -973,7 +973,7 @@
                                           class="to-lose">({{liab.liability}})</span>
                                       </span>
                                     </span>
-                                    <button type="button" (click)="openfnacyBook(liab)" class="bookButton">Book</button>
+                                    <button type="button" (click)="openfnacyBook(liab?.sourceId)" class="bookButton">Book</button>
                                     </ng-container>
                                   </ng-container>
 
@@ -984,7 +984,7 @@
                                   <div
                                     class="placebet-slip fancylay1 s-pb-5px s-text-center s-rounded-3px s-min-h-39px s-flex s-flex-col s-justify-center s-relative s-overflow-hidden s-bg-lay-300 dark:s-bg-lay-400-dark"
                                     title="NO"
-                                    (click)="openFancyBetPlace(item.sid, 'lay', [{isBack : false, selectionId : item.selectionId, selectionName : item.ls1, odds : item.l1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1}])">
+                                    (click)="openFancyBetPlace(item.sid, 'lay', [{isBack : false, selectionId : item.selectionId, selectionName : item.ls1, odds : item.l1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
                                     <div
                                       class="wrapper s-w-full s-h-full s-absolute s-overflow-hidden s-top-0 s-left-0 s-z-10"
                                       style="--0b879273: 0;">
@@ -1006,7 +1006,7 @@
                                   <div
                                     class="s-pt-2 s-pb-5px s-text-center fancyback1 s-rounded-3px s-min-h-39px s-flex s-flex-col s-justify-center s-relative s-overflow-hidden s-bg-back-300 dark:s-bg-back-400-dark"
                                     title="YES"
-                                    (click)="openFancyBetPlace(item.sid, 'back', [{isBack : true, selectionId : item.selectionId, selectionName : item.bs1, odds : item.b1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1}])">
+                                    (click)="openFancyBetPlace(item.sid, 'back', [{isBack : true, selectionId : item.selectionId, selectionName : item.bs1, odds : item.b1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
                                     <div
                                       class="wrapper s-w-full s-h-full s-absolute s-overflow-hidden s-top-0 s-left-0 s-z-10"
                                       style="--0b879273: 0;">
@@ -1044,8 +1044,10 @@
                                     data-testid="betLimit">
                                     <span class="s-icon-min-max s-px-1 s-mt-0.5 s-text-11px"></span>
                                     <span class="s-px-0.5 s-text-11px">Min/Max</span>
-
-                                    <ng-container *ngIf="LocalLimit.currency !== 'BDT'">
+                                  <span class="s-px-1 s-text-11px s-font-bold ominMaxInfo">
+                                            {{item?.fancyMin}} / {{ item?.fancyMax }}
+                                          </span>
+                                    <!-- <ng-container *ngIf="LocalLimit.currency !== 'BDT'">
                                       <ng-container *ngIf="!fancyLimitCheck; else maxLimit">
                                         <ng-container *ngIf="inplaystatus; else preMaxStake">
                                           <span class="s-px-1 s-text-11px s-font-bold ominMaxInfo">
@@ -1065,23 +1067,23 @@
                                           10 / {{ item?.max }}
                                         </span>
                                       </ng-template>
-                                    </ng-container>
+                                    </ng-container> -->
 
                                   </div>
                                 </div>
                               </div>
                               <ng-container *ngIf="showFancyBet == item.sid && backTrue == true">
-                              <app-bet-place [clsClr]="classclrforlayBack" [data]="oddPrice" [updOddsBack]="item.bs1"
-                                [updOddsLay]="item.l1" [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus"
-                                [fancyLimit]="fancyLimitCheck" [minLimit]="item?.min" [maxLimit]="item?.max"
-                                (betResult)="getOddsCalculation($event)"
+                              <app-bet-place [clsClr]="classclrforlayBack"
+                                [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                                [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                                [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
                                 style="position:absolute;z-index: 99999;"></app-bet-place>
                               </ng-container>
                               <ng-container *ngIf="showFancyBet == item.sid && backTrue == false">
-                              <app-bet-place [clsClr]="classclrforlayBack" [data]="oddPrice" [updOddsBack]="item.bs1"
-                                [updOddsLay]="item.l1" [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus"
-                                [fancyLimit]="fancyLimitCheck" [minLimit]="item?.min" [maxLimit]="item?.max"
-                                (betResult)="getOddsCalculation($event)"
+                              <app-bet-place [clsClr]="classclrforlayBack"
+                                [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                                [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                                [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
                                 style="position:absolute;z-index: 99999;"></app-bet-place>
                               </ng-container>
                             </div>
@@ -1089,7 +1091,7 @@
                         </ng-container>
 
                         <ng-container *ngIf="fan1 && fancy1.length > 0">
-                          <ng-container *ngFor="let item of fancy1; let j = index; trackByFn trackByFn(j,item)">
+                          <ng-container *ngFor="let item of fancy1; trackBy: trackByFn; let j = index">
                             <div class="s-relative" id="fancyBetMarket1">
                               <div class="s-flex s-justify-start s-items-center s-bg-black-100 dark:s-bg-black-700">
                                 <div class="s-fav s-text-market-sub-text dark:s-text-market-sub-text s-text-15px s-ml-7px">
@@ -1113,7 +1115,7 @@
                                           class="to-lose">({{liab.liability}})</span>
                                       </span>
                                     </span>
-                                    <button type="button" (click)="openfnacyBook(liab)" class="bookButton">Book</button>
+                                    <button type="button" (click)="openfnacyBook(liab?.sourceId)" class="bookButton">Book</button>
                                     </ng-container>
                                   </ng-container>
                                 </p>
@@ -1123,7 +1125,7 @@
                                   <div
                                     class="s-pt-2 s-pb-5px s-text-center fancyback1 s-rounded-3px s-min-h-39px s-flex s-flex-col s-justify-center s-relative s-overflow-hidden s-bg-back-300 dark:s-bg-back-400-dark"
                                     title="YES"
-                                    (click)="openFancyBetPlace(item.sid, 'back', [{isBack : true, selectionId : item.selectionId, selectionName : item.bs1, odds : item.b1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy1', sportId : sportId, fancyprovider : fancyEventData.Type1}])">
+                                    (click)="openFancyBetPlace(item.sid, 'back', [{isBack : true, selectionId : item.selectionId, selectionName : item.bs1, odds : item.b1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
                                     <div
                                       class="wrapper s-w-full s-h-full s-absolute s-overflow-hidden s-top-0 s-left-0 s-z-10"
                                       style="--0b879273: 0;">
@@ -1143,7 +1145,7 @@
                                   <div
                                     class="placebet-slip fancylay1 s-pb-5px s-text-center s-rounded-3px s-min-h-39px s-flex s-flex-col s-justify-center s-relative s-overflow-hidden s-bg-lay-300 dark:s-bg-lay-400-dark"
                                     title="NO"
-                                    (click)="openFancyBetPlace(item.sid, 'lay', [{isBack : false, selectionId : item.selectionId, selectionName : item.ls1, odds : item.l1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy1', sportId : sportId, fancyprovider : fancyEventData.Type1}])">
+                                    (click)="openFancyBetPlace(item.sid, 'lay', [{isBack : false, selectionId : item.selectionId, selectionName : item.ls1, odds : item.l1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
                                     <div
                                       class="wrapper s-w-full s-h-full s-absolute s-overflow-hidden s-top-0 s-left-0 s-z-10"
                                       style="--0b879273: 0;">
@@ -1183,13 +1185,13 @@
                                     <span class="s-icon-min-max s-px-1 s-mt-0.5 s-text-11px"></span>
                                     <span class="s-px-0.5 s-text-11px">Min/Max</span>
 
-                                    <ng-container *ngIf="LocalLimit.currency !== 'BDT'">
+                                    <!-- <ng-container *ngIf="LocalLimit.currency !== 'BDT'">
                                       <ng-container *ngIf="!fancyLimitCheck; else maxLimit">
-                                        <ng-container *ngIf="inplaystatus; else preMaxStake">
+                                        <ng-container *ngIf="inplaystatus; else preMaxStake"> -->
                                           <span class="s-px-1 s-text-11px s-font-bold ominMaxInfo">
-                                            10 / {{ fancyEventData?.events?.markets?.[0]?.limit?.[1]?.b2CmaxStake }}
+                                            {{item?.fancyMin}} / {{ item?.fancyMax }}
                                           </span>
-                                        </ng-container>
+                                        <!-- </ng-container>
 
                                         <ng-template #preMaxStake>
                                           <span class="s-px-1 s-text-11px s-font-bold ominMaxInfo">
@@ -1203,30 +1205,30 @@
                                           10 / {{ item?.max }}
                                         </span>
                                       </ng-template>
-                                    </ng-container>
+                                    </ng-container> -->
 
                                   </div>
                                 </div>
                               </div>
                               <ng-container *ngIf="showFancyBet == item.sid && backTrue == true">
-                              <app-bet-place [clsClr]="classclrforlayBack" [data]="oddPrice" [updOddsBack]="item.b1"
-                                [updOddsLay]="item.l1" [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus"
-                                [fancyLimit]="fancyLimitCheck" [minLimit]="item?.min" [maxLimit]="item?.max"
-                                (betResult)="getOddsCalculation($event)"
+                              <app-bet-place [clsClr]="classclrforlayBack"
+                                [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                                [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                                [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
                                 style="position:absolute;z-index: 99999;"></app-bet-place>
                               </ng-container>
                               <ng-container *ngIf="showFancyBet == item.sid && backTrue == false">
-                              <app-bet-place [clsClr]="classclrforlayBack" [data]="oddPrice" [updOddsBack]="item.b1"
-                                [updOddsLay]="item.l1" [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus"
-                                [fancyLimit]="fancyLimitCheck" [minLimit]="item?.min" [maxLimit]="item?.max"
-                                (betResult)="getOddsCalculation($event)"
+                              <app-bet-place [clsClr]="classclrforlayBack"
+                                [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                                [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                                [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
                                 style="position:absolute;z-index: 99999;"></app-bet-place>
                               </ng-container>
                             </div>
                           </ng-container>
                         </ng-container>
                         <ng-container *ngIf="overFan && overfancy.length > 0">
-                          <ng-container *ngFor="let item of overfancy; let i = index; trackByFn trackByFn(i,item)">
+                          <ng-container *ngFor="let item of overfancy; trackBy: trackByFn; let j = index">
                             <div class="s-relative" id="fancyBetMarket1">
                               <div class="s-flex s-justify-start s-items-center s-bg-black-100 dark:s-bg-black-700">
                                 <div class="s-fav s-text-market-sub-text dark:s-text-market-sub-text s-text-15px s-ml-7px">
@@ -1252,7 +1254,7 @@
                                       </span>
                                     </span>
 
-                                    <button type="button" (click)="openfnacyBook(liab)" class="bookButton">Book</button>
+                                    <button type="button" (click)="openfnacyBook(liab?.sourceId)" class="bookButton">Book</button>
                                     </ng-container>
                                   </ng-container>
 
@@ -1263,7 +1265,7 @@
                                   <div
                                     class="placebet-slip fancylay1 s-pb-5px s-text-center s-rounded-3px s-min-h-39px s-flex s-flex-col s-justify-center s-relative s-overflow-hidden s-bg-lay-300 dark:s-bg-lay-400-dark"
                                     title="NO"
-                                    (click)="openFancyBetPlace(item.sid, 'lay', [{isBack : false, selectionId : item.selectionId, selectionName : item.ls1, odds : item.l1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1}])">
+                                    (click)="openFancyBetPlace(item.sid, 'lay', [{isBack : false, selectionId : item.selectionId, selectionName : item.ls1, odds : item.l1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
                                     <div
                                       class="wrapper s-w-full s-h-full s-absolute s-overflow-hidden s-top-0 s-left-0 s-z-10"
                                       style="--0b879273: 0;">
@@ -1283,7 +1285,7 @@
                                   <div
                                     class="s-pt-2 s-pb-5px s-text-center fancyback1 s-rounded-3px s-min-h-39px s-flex s-flex-col s-justify-center s-relative s-overflow-hidden s-bg-back-300 dark:s-bg-back-400-dark"
                                     title="YES"
-                                    (click)="openFancyBetPlace(item.sid, 'back', [{isBack : true, selectionId : item.selectionId, selectionName : item.bs1, odds : item.b1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1}])">
+                                    (click)="openFancyBetPlace(item.sid, 'back', [{isBack : true, selectionId : item.selectionId, selectionName : item.bs1, odds : item.b1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
                                     <div
                                       class="wrapper s-w-full s-h-full s-absolute s-overflow-hidden s-top-0 s-left-0 s-z-10"
                                       style="--0b879273: 0;">
@@ -1323,14 +1325,13 @@
                                     <span class="s-icon-min-max s-px-1 s-mt-0.5 s-text-11px"></span>
                                     <span class="s-px-0.5 s-text-11px">Min/Max</span>
 
-                                    <ng-container *ngIf="LocalLimit.currency !== 'BDT'">
+                                    <!-- <ng-container *ngIf="LocalLimit.currency !== 'BDT'">
                                       <ng-container *ngIf="!fancyLimitCheck; else maxLimit">
-                                        <ng-container *ngIf="inplaystatus; else preMaxStake">
+                                        <ng-container *ngIf="inplaystatus; else preMaxStake"> -->
                                           <span class="s-px-1 s-text-11px s-font-bold ominMaxInfo">
-                                            10 /
-                                            {{ fancyEventData?.events?.markets?.[0]?.limit?.[1]?.b2CmaxStake }}
+                                            {{item?.fancyMin}} / {{ item?.fancyMax }}
                                           </span>
-                                        </ng-container>
+                                        <!-- </ng-container>
 
                                         <ng-template #preMaxStake>
                                           <span class="s-px-1 s-text-11px s-font-bold ominMaxInfo">
@@ -1345,23 +1346,23 @@
                                           10 / {{ item?.max }}
                                         </span>
                                       </ng-template>
-                                    </ng-container>
+                                    </ng-container> -->
 
                                   </div>
                                 </div>
                               </div>
                               <ng-container *ngIf="showFancyBet == item.sid && backTrue == true">
-                              <app-bet-place [clsClr]="classclrforlayBack" [data]="oddPrice" [updOddsBack]="item.bs1"
-                                [updOddsLay]="item.l1" [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus"
-                                [fancyLimit]="fancyLimitCheck" [minLimit]="item?.min" [maxLimit]="item?.max"
-                                (betResult)="getOddsCalculation($event)"
+                              <app-bet-place [clsClr]="classclrforlayBack"
+                                [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                                [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                                [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
                                 style="position:absolute;z-index: 99999;"></app-bet-place>
                               </ng-container>
                               <ng-container *ngIf="showFancyBet == item.sid && backTrue == false">
-                              <app-bet-place [clsClr]="classclrforlayBack" [data]="oddPrice" [updOddsBack]="item.bs1"
-                                [updOddsLay]="item.l1" [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus"
-                                [fancyLimit]="fancyLimitCheck" [minLimit]="item?.min" [maxLimit]="item?.max"
-                                (betResult)="getOddsCalculation($event)"
+                              <app-bet-place [clsClr]="classclrforlayBack"
+                                [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                                [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                                [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
                                 style="position:absolute;z-index: 99999;"></app-bet-place>
                               </ng-container>
                             </div>
@@ -1369,7 +1370,7 @@
                         </ng-container>
 
                         <ng-container *ngIf="bbbFan && bbbfancy.length > 0">
-                          <ng-container *ngFor="let item of bbbfancy;let j = index; trackByFn trackByFn(j,item)">
+                          <ng-container *ngFor="let item of bbbfancy; trackBy: trackByFn; let j = index">
                             <div class="s-relative" id="fancyBetMarket1">
                               <div class="s-flex s-justify-start s-items-center s-bg-black-100 dark:s-bg-black-700">
                                 <div class="s-fav s-text-market-sub-text dark:s-text-market-sub-text s-text-15px s-ml-7px">
@@ -1397,7 +1398,7 @@
                                   <div
                                     class="placebet-slip fancylay1 s-pb-5px s-text-center s-rounded-3px s-min-h-39px s-flex s-flex-col s-justify-center s-relative s-overflow-hidden s-bg-lay-300 dark:s-bg-lay-400-dark"
                                     title="NO"
-                                    (click)="openFancyBetPlace(item.sid, 'lay', [{isBack : false, selectionId : item.selectionId, selectionName : item.ls1, odds : item.l1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1}])">
+                                    (click)="openFancyBetPlace(item.sid, 'lay', [{isBack : false, selectionId : item.selectionId, selectionName : item.ls1, odds : item.l1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
                                     <div
                                       class="wrapper s-w-full s-h-full s-absolute s-overflow-hidden s-top-0 s-left-0 s-z-10"
                                       style="--0b879273: 0;">
@@ -1417,7 +1418,7 @@
                                   <div
                                     class="s-pt-2 s-pb-5px s-text-center fancyback1 s-rounded-3px s-min-h-39px s-flex s-flex-col s-justify-center s-relative s-overflow-hidden s-bg-back-300 dark:s-bg-back-400-dark"
                                     title="YES"
-                                    (click)="openFancyBetPlace(item.sid, 'back', [{isBack : true, selectionId : item.selectionId, selectionName : item.bs1, odds : item.b1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1}])">
+                                    (click)="openFancyBetPlace(item.sid, 'back', [{isBack : true, selectionId : item.selectionId, selectionName : item.bs1, odds : item.b1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
                                     <div
                                       class="wrapper s-w-full s-h-full s-absolute s-overflow-hidden s-top-0 s-left-0 s-z-10"
                                       style="--0b879273: 0;">
@@ -1457,14 +1458,13 @@
                                     <span class="s-icon-min-max s-px-1 s-mt-0.5 s-text-11px"></span>
                                     <span class="s-px-0.5 s-text-11px">Min/Max</span>
 
-                                    <ng-container *ngIf="LocalLimit.currency !== 'BDT'">
+                                    <!-- <ng-container *ngIf="LocalLimit.currency !== 'BDT'">
                                       <ng-container *ngIf="!fancyLimitCheck; else maxLimit">
-                                        <ng-container *ngIf="inplaystatus; else preMaxStake">
+                                        <ng-container *ngIf="inplaystatus; else preMaxStake"> -->
                                           <span class="s-px-1 s-text-11px s-font-bold ominMaxInfo">
-                                            10 /
-                                            {{ fancyEventData?.events?.markets?.[0]?.limit?.[1]?.b2CmaxStake }}
+                                           {{item?.fancyMin}} / {{ item?.fancyMax }}
                                           </span>
-                                        </ng-container>
+                                        <!-- </ng-container>
 
                                         <ng-template #preMaxStake>
                                           <span class="s-px-1 s-text-11px s-font-bold ominMaxInfo">
@@ -1479,23 +1479,23 @@
                                           10 / {{ item?.max }}
                                         </span>
                                       </ng-template>
-                                    </ng-container>
+                                    </ng-container> -->
 
                                   </div>
                                 </div>
                               </div>
                               <ng-container *ngIf="showFancyBet == item.sid && backTrue == true">
-                              <app-bet-place [clsClr]="classclrforlayBack" [data]="oddPrice" [updOddsBack]="item.bs1"
-                                [updOddsLay]="item.l1" [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus"
-                                [fancyLimit]="fancyLimitCheck" [minLimit]="item?.min" [maxLimit]="item?.max"
-                                (betResult)="getOddsCalculation($event)"
+                              <app-bet-place [clsClr]="classclrforlayBack"
+                                [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                                [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                                [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
                                 style="position:absolute;z-index: 99999;"></app-bet-place>
                               </ng-container>
                               <ng-container *ngIf="showFancyBet == item.sid && backTrue == false">
-                              <app-bet-place [clsClr]="classclrforlayBack" [data]="oddPrice" [updOddsBack]="item.bs1"
-                                [updOddsLay]="item.l1" [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus"
-                                [fancyLimit]="fancyLimitCheck" [minLimit]="item?.min" [maxLimit]="item?.max"
-                                (betResult)="getOddsCalculation($event)"
+                              <app-bet-place [clsClr]="classclrforlayBack"
+                                [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                                [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                                [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
                                 style="position:absolute;z-index: 99999;"></app-bet-place>
                               </ng-container>
                             </div>
@@ -1503,7 +1503,7 @@
                         </ng-container>
 
                         <ng-container *ngIf="khaddaFan && khaddafancy.length > 0">
-                          <ng-container *ngFor="let item of khaddafancy; let j = index;trackByFn trackByFn(j,item)">
+                          <ng-container  *ngFor="let item of khaddafancy; trackBy: trackByFn; let j = index">
                             <div class="s-relative" id="fancyBetMarket1">
                               <div class="s-flex s-justify-start s-items-center s-bg-black-100 dark:s-bg-black-700">
                                 <div class="s-fav s-text-market-sub-text dark:s-text-market-sub-text s-text-15px s-ml-7px">
@@ -1531,7 +1531,7 @@
                                   <div
                                     class="placebet-slip fancylay1 s-pb-5px s-text-center s-rounded-3px s-min-h-39px s-flex s-flex-col s-justify-center s-relative s-overflow-hidden s-bg-lay-300 dark:s-bg-lay-400-dark"
                                     title="NO"
-                                    (click)="openFancyBetPlace(item.sid, 'lay', [{isBack : false, selectionId : item.selectionId, selectionName : item.ls1, odds : item.l1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1}])">
+                                    (click)="openFancyBetPlace(item.sid, 'lay', [{isBack : false, selectionId : item.selectionId, selectionName : item.ls1, odds : item.l1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
                                     <div
                                       class="wrapper s-w-full s-h-full s-absolute s-overflow-hidden s-top-0 s-left-0 s-z-10"
                                       style="--0b879273: 0;">
@@ -1551,7 +1551,7 @@
                                   <div
                                     class="s-pt-2 s-pb-5px s-text-center fancyback1 s-rounded-3px s-min-h-39px s-flex s-flex-col s-justify-center s-relative s-overflow-hidden s-bg-back-300 dark:s-bg-back-400-dark"
                                     title="YES"
-                                    (click)="openFancyBetPlace(item.sid, 'back', [{isBack : true, selectionId : item.selectionId, selectionName : item.bs1, odds : item.b1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1}])">
+                                    (click)="openFancyBetPlace(item.sid, 'back', [{isBack : true, selectionId : item.selectionId, selectionName : item.bs1, odds : item.b1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
                                     <div
                                       class="wrapper s-w-full s-h-full s-absolute s-overflow-hidden s-top-0 s-left-0 s-z-10"
                                       style="--0b879273: 0;">
@@ -1591,14 +1591,13 @@
                                     <span class="s-icon-min-max s-px-1 s-mt-0.5 s-text-11px"></span>
                                     <span class="s-px-0.5 s-text-11px">Min/Max</span>
 
-                                    <ng-container *ngIf="LocalLimit.currency !== 'BDT'">
+                                    <!-- <ng-container *ngIf="LocalLimit.currency !== 'BDT'">
                                       <ng-container *ngIf="!fancyLimitCheck; else maxLimit">
-                                        <ng-container *ngIf="inplaystatus; else preMaxStake">
+                                        <ng-container *ngIf="inplaystatus; else preMaxStake"> -->
                                           <span class="s-px-1 s-text-11px s-font-bold ominMaxInfo">
-                                            10 /
-                                            {{ fancyEventData?.events?.markets?.[0]?.limit?.[1]?.b2CmaxStake }}
+                                           {{item?.fancyMin}} / {{ item?.fancyMax }}
                                           </span>
-                                        </ng-container>
+                                        <!-- </ng-container>
 
                                         <ng-template #preMaxStake>
                                           <span class="s-px-1 s-text-11px s-font-bold ominMaxInfo">
@@ -1613,23 +1612,23 @@
                                           10 / {{ item?.max }}
                                         </span>
                                       </ng-template>
-                                    </ng-container>
+                                    </ng-container> -->
 
                                   </div>
                                 </div>
                               </div>
                               <ng-container *ngIf="showFancyBet == item.sid && backTrue == true">
-                              <app-bet-place [clsClr]="classclrforlayBack" [data]="oddPrice" [updOddsBack]="item.bs1"
-                                [updOddsLay]="item.l1" [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus"
-                                [fancyLimit]="fancyLimitCheck" [minLimit]="item?.min" [maxLimit]="item?.max"
-                                (betResult)="getOddsCalculation($event)"
+                              <app-bet-place [clsClr]="classclrforlayBack"
+                                [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                                [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                                [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
                                 style="position:absolute;z-index: 99999;"></app-bet-place>
                               </ng-container>
                               <ng-container *ngIf="showFancyBet == item.sid && backTrue == false">
-                              <app-bet-place [clsClr]="classclrforlayBack" [data]="oddPrice" [updOddsBack]="item.bs1"
-                                [updOddsLay]="item.l1" [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus"
-                                [fancyLimit]="fancyLimitCheck" [minLimit]="item?.min" [maxLimit]="item?.max"
-                                (betResult)="getOddsCalculation($event)"
+                              <app-bet-place [clsClr]="classclrforlayBack"
+                                [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                                [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                                [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
                                 style="position:absolute;z-index: 99999;"></app-bet-place>
                               </ng-container>
                             </div>
@@ -1637,7 +1636,7 @@
                         </ng-container>
 
                         <ng-container *ngIf="lotteryFan && lotteryfancy.length > 0">
-                          <ng-container *ngFor="let item of lotteryfancy; let j = index; trackByFn trackByFn(j,item)">
+                          <ng-container *ngFor="let item of lotteryfancy; trackBy: trackByFn; let j = index">
                             <div class="s-relative" id="fancyBetMarket1">
                               <div class="s-flex s-justify-start s-items-center s-bg-black-100 dark:s-bg-black-700">
                                 <div class="s-fav s-text-market-sub-text dark:s-text-market-sub-text s-text-15px s-ml-7px">
@@ -1665,7 +1664,7 @@
                                   <div
                                     class="placebet-slip fancylay1 s-pb-5px s-text-center s-rounded-3px s-min-h-39px s-flex s-flex-col s-justify-center s-relative s-overflow-hidden s-bg-lay-300 dark:s-bg-lay-400-dark"
                                     title="NO"
-                                    (click)="openFancyBetPlace(item.sid, 'lay', [{isBack : false, selectionId : item.selectionId, selectionName : item.ls1, odds : item.l1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1}])">
+                                    (click)="openFancyBetPlace(item.sid, 'lay', [{isBack : false, selectionId : item.selectionId, selectionName : item.ls1, odds : item.l1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
                                     <div
                                       class="wrapper s-w-full s-h-full s-absolute s-overflow-hidden s-top-0 s-left-0 s-z-10"
                                       style="--0b879273: 0;">
@@ -1685,7 +1684,7 @@
                                   <div
                                     class="s-pt-2 s-pb-5px s-text-center fancyback1 s-rounded-3px s-min-h-39px s-flex s-flex-col s-justify-center s-relative s-overflow-hidden s-bg-back-300 dark:s-bg-back-400-dark"
                                     title="YES"
-                                    (click)="openFancyBetPlace(item.sid, 'back', [{isBack : true, selectionId : item.selectionId, selectionName : item.bs1, odds : item.b1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1}])">
+                                    (click)="openFancyBetPlace(item.sid, 'back', [{isBack : true, selectionId : item.selectionId, selectionName : item.bs1, odds : item.b1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
                                     <div
                                       class="wrapper s-w-full s-h-full s-absolute s-overflow-hidden s-top-0 s-left-0 s-z-10"
                                       style="--0b879273: 0;">
@@ -1725,14 +1724,13 @@
                                     <span class="s-icon-min-max s-px-1 s-mt-0.5 s-text-11px"></span>
                                     <span class="s-px-0.5 s-text-11px">Min/Max</span>
 
-                                    <ng-container *ngIf="LocalLimit.currency !== 'BDT'">
+                                    <!-- <ng-container *ngIf="LocalLimit.currency !== 'BDT'">
                                       <ng-container *ngIf="!fancyLimitCheck; else maxLimit">
-                                        <ng-container *ngIf="inplaystatus; else preMaxStake">
+                                        <ng-container *ngIf="inplaystatus; else preMaxStake"> -->
                                           <span class="s-px-1 s-text-11px s-font-bold ominMaxInfo">
-                                            10 /
-                                            {{ fancyEventData?.events?.markets?.[0]?.limit?.[1]?.b2CmaxStake }}
+                                           {{item?.fancyMin}} / {{ item?.fancyMax }}
                                           </span>
-                                        </ng-container>
+                                        <!-- </ng-container>
 
                                         <ng-template #preMaxStake>
                                           <span class="s-px-1 s-text-11px s-font-bold ominMaxInfo">
@@ -1747,30 +1745,30 @@
                                           10 / {{ item?.max }}
                                         </span>
                                       </ng-template>
-                                    </ng-container>
+                                    </ng-container> -->
 
                                   </div>
                                 </div>
                               </div>
                               <ng-container *ngIf="showFancyBet == item.sid && backTrue == true">
-                              <app-bet-place [clsClr]="classclrforlayBack" [data]="oddPrice" [updOddsBack]="item.bs1"
-                                [updOddsLay]="item.l1" [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus"
-                                [fancyLimit]="fancyLimitCheck" [minLimit]="item?.min" [maxLimit]="item?.max"
-                                (betResult)="getOddsCalculation($event)"
+                              <app-bet-place [clsClr]="classclrforlayBack"
+                                [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                                [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                                [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
                                 style="position:absolute;z-index: 99999;"></app-bet-place>
                               </ng-container>
                               <ng-container *ngIf="showFancyBet == item.sid && backTrue == false">
-                              <app-bet-place [clsClr]="classclrforlayBack" [data]="oddPrice" [updOddsBack]="item.bs1"
-                                [updOddsLay]="item.l1" [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus"
-                                [fancyLimit]="fancyLimitCheck" [minLimit]="item?.min" [maxLimit]="item?.max"
-                                (betResult)="getOddsCalculation($event)"
+                              <app-bet-place [clsClr]="classclrforlayBack"
+                                [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                                [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                                [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
                                 style="position:absolute;z-index: 99999;"></app-bet-place>
                               </ng-container>
                             </div>
                           </ng-container>
                         </ng-container>
                         <ng-container *ngIf="oddevenFan && oddevenfancy.length > 0">
-                          <ng-container *ngFor="let item of oddevenfancy;let j = index; trackByFn trackByFn(j,item)">
+                          <ng-container *ngFor="let item of oddevenfancy; trackBy: trackByFn; let j = index">
                             <div class="s-relative" id="fancyBetMarket1">
                               <div class="s-flex s-justify-start s-items-center s-bg-black-100 dark:s-bg-black-700">
                                 <div class="s-fav s-text-market-sub-text dark:s-text-market-sub-text s-text-15px s-ml-7px">
@@ -1798,7 +1796,7 @@
                                   <div
                                     class="placebet-slip fancylay1 s-pb-5px s-text-center s-rounded-3px s-min-h-39px s-flex s-flex-col s-justify-center s-relative s-overflow-hidden s-bg-lay-300 dark:s-bg-lay-400-dark"
                                     title="NO"
-                                    (click)="openFancyBetPlace(item.sid, 'lay', [{isBack : false, selectionId : item.selectionId, selectionName : item.ls1, odds : item.l1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1}])">
+                                    (click)="openFancyBetPlace(item.sid, 'lay', [{isBack : false, selectionId : item.selectionId, selectionName : item.ls1, odds : item.l1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
                                     <div
                                       class="wrapper s-w-full s-h-full s-absolute s-overflow-hidden s-top-0 s-left-0 s-z-10"
                                       style="--0b879273: 0;">
@@ -1818,7 +1816,7 @@
                                   <div
                                     class="s-pt-2 s-pb-5px s-text-center fancyback1 s-rounded-3px s-min-h-39px s-flex s-flex-col s-justify-center s-relative s-overflow-hidden s-bg-back-300 dark:s-bg-back-400-dark"
                                     title="YES"
-                                    (click)="openFancyBetPlace(item.sid, 'back', [{isBack : true, selectionId : item.selectionId, selectionName : item.bs1, odds : item.b1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1}])">
+                                    (click)="openFancyBetPlace(item.sid, 'back', [{isBack : true, selectionId : item.selectionId, selectionName : item.bs1, odds : item.b1, matchName : eventData.matchname, eventId : eventId, sourceId : item.selectionId, sourceBetType : 'Fancy', sportId : sportId, fancyprovider : fancyEventData.Type1, fancyName: item.nat}])">
                                     <div
                                       class="wrapper s-w-full s-h-full s-absolute s-overflow-hidden s-top-0 s-left-0 s-z-10"
                                       style="--0b879273: 0;">
@@ -1858,14 +1856,13 @@
                                     <span class="s-icon-min-max s-px-1 s-mt-0.5 s-text-11px"></span>
                                     <span class="s-px-0.5 s-text-11px">Min/Max</span>
 
-                                    <ng-container *ngIf="LocalLimit.currency !== 'BDT'">
+                                    <!-- <ng-container *ngIf="LocalLimit.currency !== 'BDT'">
                                       <ng-container *ngIf="!fancyLimitCheck; else maxLimit">
-                                        <ng-container *ngIf="inplaystatus; else preMaxStake">
+                                        <ng-container *ngIf="inplaystatus; else preMaxStake"> -->
                                           <span class="s-px-1 s-text-11px s-font-bold ominMaxInfo">
-                                            10 /
-                                            {{ fancyEventData?.events?.markets?.[0]?.limit?.[1]?.b2CmaxStake }}
+                                           {{item?.fancyMin}} / {{ item?.fancyMax }}
                                           </span>
-                                        </ng-container>
+                                        <!-- </ng-container>
 
                                         <ng-template #preMaxStake>
                                           <span class="s-px-1 s-text-11px s-font-bold ominMaxInfo">
@@ -1880,23 +1877,23 @@
                                           10 / {{ item?.max }}
                                         </span>
                                       </ng-template>
-                                    </ng-container>
+                                    </ng-container> -->
 
                                   </div>
                                 </div>
                               </div>
                               <ng-container *ngIf="showFancyBet == item.sid && backTrue == true">
-                              <app-bet-place [clsClr]="classclrforlayBack" [data]="oddPrice" [updOddsBack]="item.bs1"
-                                [updOddsLay]="item.l1" [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus"
-                                [fancyLimit]="fancyLimitCheck" [minLimit]="item?.min" [maxLimit]="item?.max"
-                                (betResult)="getOddsCalculation($event)"
+                              <app-bet-place [clsClr]="classclrforlayBack"
+                                [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                                [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                                [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
                                 style="position:absolute;z-index: 99999;"></app-bet-place>
                               </ng-container>
                               <ng-container *ngIf="showFancyBet == item.sid && backTrue == false">
-                              <app-bet-place [clsClr]="classclrforlayBack" [data]="oddPrice" [updOddsBack]="item.bs1"
-                                [updOddsLay]="item.l1" [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus"
-                                [fancyLimit]="fancyLimitCheck" [minLimit]="item?.min" [maxLimit]="item?.max"
-                                (betResult)="getOddsCalculation($event)"
+                              <app-bet-place [clsClr]="classclrforlayBack"
+                                [data]="oddPrice" [updOddsBack]="item.bs1" [updOddsLay]="item.ls1"
+                                [socketEventData]="fancyEventData.events" [isInplay]="inplaystatus" [minLimit]="item?.fancyMin"
+                                [maxLimit]="item?.fancyMax" (betResult)="getOddsCalculation($event)"
                                 style="position:absolute;z-index: 99999;"></app-bet-place>
                               </ng-container>
                             </div>
@@ -1939,7 +1936,7 @@
                   </div>
                 </div>
                 <div class="s-p-2 s-bg-betSlip-light dark:s-bg-betSlip-dark s-rounded-b-5px">
-                  <ng-container *ngFor="let item of PFancyData; let i = index; trackByFn trackByFn(i,item)">
+                  <ng-container *ngFor="let item of PFancyData; trackBy: trackByFn; let i = index;">
                     <div class="s-p-2 s-bg-betSlip-light s-rounded-b-5px dark:s-bg-betSlip-dark">
                       <div class="s-mb-3px" id="">
                         <div>
@@ -1964,10 +1961,10 @@
                           </div>
                           <div class="s-grid s-grid-cols-2 s-gap-0.5 s-relatives" [class]="i>=3?'d-none':''"
                             id="sportSelData{{i}}">
-                            <ng-container *ngFor="let pfancydata of sortPFancyData(PFancyData[i].sportsBookSelection);let j = index; trackByFn trackByFn(j,pfancydata);">
+                            <ng-container *ngFor="let pfancydata of sortPFancyData(PFancyData[i].sportsBookSelection); trackBy: trackByFn; let j = index;">
                               <div>
                                 <div id="premiumOddsDiv2036199901"
-                                  (click)="openPreFancyBetPlace(pfancydata.id, 'back', [{isBack : true, selectionId : pfancydata.id, selectionName : pfancydata.selectionName, odds : pfancydata.odds, matchName : eventData.matchname, eventId : eventId, sourceId : PFancyData[i].id, sourceBetType : 'premium', sportId : sportId}])"
+                                  (click)="openPreFancyBetPlace(pfancydata.id, 'back', [{isBack : true, selectionId : pfancydata.id, selectionName : pfancydata.selectionName, odds : pfancydata.odds, matchName : eventData.matchname, eventId : eventId, sourceId : PFancyData[i].id, sourceBetType : 'Premium', sportId : sportId}])"
                                   class="betslipopen s-py-1.5 s-text-center s-flex s-flex-col s-justify-center s-items-center s-bg-back-200 dark:s-bg-back-400-dark s-min-0 s-relative s-overflow-hidden s-rounded-b-md s-min-h-53px spark"
                                   title="back">
                                   <div class="wrapper s-w-full s-h-full s-overflow-hidden s-top-0 s-left-0 s-z-10"
@@ -2005,9 +2002,9 @@
                                 </div>
                               </div>
                             <ng-container *ngIf="showPreFancyBet == pfancydata.id">
-                            <app-bet-place [clsClr]="classclrforlayBack" [data]="oddPrice" [updOddsBack]="pfancydata.odds"
-                              [socketEventData]="PFancyAllData.events" [isInplay]="inplaystatus"
-                              (betResult)="getOddsCalculation($event)"
+                            <app-bet-place [clsClr]="classclrforlayBack"
+                              [data]="oddPrice" [updOddsBack]="pfancydata.odds" [socketEventData]="PFancyAllData.events"
+                              [isInplay]="inplaystatus" (betResult)="getOddsCalculation($event)"
                               style="position:absolute;z-index: 99999;"></app-bet-place>
                             </ng-container>
                             </ng-container>
