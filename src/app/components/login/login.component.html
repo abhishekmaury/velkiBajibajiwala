@@ -165,11 +165,11 @@
                 type="button" class="clear">
             </div>
             <div class="inputbox password" bis_skin_checked="1" *ngIf="validShowing=='true'" >
-              <div class="validCode" [style]="{'background':' rgb(250, 250, 250);'}"> {{validationCode}}</div><label for="password"
+              <div class="validCode" [style]="{'background':' rgb(250, 250, 250);'}"> {{validationCode}}</div><label for="validcode"
                 style="display: block; color: rgb(250, 250, 250);">Validation Code</label><input formControlName="validCode" name="verifyCode" 
                 type="text" maxlength="4" (paste)="numberOnly($event)" (focus)="numberOnly($event)" 
                 (keypress)="numberOnly($event)" (input)="numberOnly($event)" appNoEmoji apOnlyNumber
-                class="input ng-untouched ng-pristine ng-invalid" placeholder="Password" id="pxjfkjbey" name="pxjfkjbey"
+                class="input ng-untouched ng-pristine ng-invalid" placeholder="Validation Code" id="pxjfkjbey" id="validcode"
                 style="--mainThemeColor: #fafafa; --resetpasstextColor: #fafafa;" fdprocessedid="oj68h9"><input
                 type="button" class="clear">
             </div>
@@ -177,6 +177,9 @@
           <div class="login-info-box" bis_skin_checked="1">
             <div class="forgetpassword-buttn" bis_skin_checked="1"><a class="figetpassborder"
                 style="color: rgb(13, 13, 13);">Forgot password?</a></div>
+          </div>
+          <div class="member-error" *ngIf="errMsg != ''">
+            <span>{{errMsg}}</span>
           </div>
           <div bis_skin_checked="1"><button id="loginBtn" type="submit" class="button" fdprocessedid="qafuah"
               style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%); color: rgb(255, 255, 255);">

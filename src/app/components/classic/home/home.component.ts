@@ -379,6 +379,7 @@ export class HomeComponent1 {
     if (token) {
       this.isLoading = true;
       // navigate to exch
+      this.router.navigate(['/exchange/sport'])
     } else {
       this.router.navigate(['/login'])
     }

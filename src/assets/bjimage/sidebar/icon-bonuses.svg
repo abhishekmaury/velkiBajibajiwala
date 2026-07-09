@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>leftmenu/funds/icon-bonuses</title>
+    <defs>
+        <linearGradient x1="50%" y1="1.33055874e-13%" x2="50%" y2="104.53891%" id="linearGradient-1">
+            <stop stop-color="#ffb80c" stop-opacity="0.7" offset="0%"></stop>
+            <stop stop-color="#ffb80c" stop-opacity="0.995478029" offset="100%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+            <stop stop-color="#ffb80c" stop-opacity="0.995478029" offset="100%"></stop>
+        </linearGradient>
+        <path d="M23.8695652,10.8999364 L22.3043478,10.8999364 L8.73913043,10.8999364 C7.87304348,10.8999364 7.17391304,10.183754 7.17391304,9.29654295 C7.17391304,8.40933192 7.87304348,7.69314952 8.73913043,7.69314952 L22.3043478,7.69314952 L22.3043478,7.15868505 C22.3043478,5.38960764 21.2608696,4 18.6521739,4 L6.13043478,6.0897561 C4.40347826,6.0897561 3,7.52746554 3,9.29654295 L3,14.1067232 L3,19.451368 L3,22.7062566 C3,24.475334 4.40347826,25.9130435 6.13043478,25.9130435 L23.8695652,25.9130435 C25.5965217,25.9130435 27,24.475334 27,22.7062566 L27,14.1067232 C27,12.3323012 25.6017391,10.8999364 23.8695652,10.8999364 Z M21.7826087,20.5202969 C20.6295652,20.5202969 19.6956522,19.5636055 19.6956522,18.382439 C19.6956522,17.2012725 20.6295652,16.2445811 21.7826087,16.2445811 C22.9356522,16.2445811 23.8695652,17.2012725 23.8695652,18.382439 C23.8695652,19.5636055 22.9356522,20.5202969 21.7826087,20.5202969 Z" id="path-2"></path>
+        <filter x="-16.7%" y="-9.1%" width="133.3%" height="136.5%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.05 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="leftmenu/funds/icon-bonuses" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="bonuses">
+            <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+            <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+        </g>
+    </g>
+</svg>
