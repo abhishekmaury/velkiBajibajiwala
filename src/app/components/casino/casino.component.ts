@@ -125,6 +125,12 @@ export class CasinoComponent implements AfterViewInit, OnInit {
         this.activeTabId = 2;
         this.activesport = this.tabname;
         this.getCasino(this.tabname, this.gamename)
+      } else if (this.gamename == 'ALL'){
+        this.activeIndex = 6;
+        this.activeTabId = 2;
+        this.activesport = this.tabname;
+        this.getCasino(this.tabname, this.gamename)
+
       }
     })
 

@@ -119,43 +119,44 @@
 
 
                 <div class="announcement-row">
-                  <div class="announceImg" [style]="{'background':themeData?.masterTextColor2}"></div>
-                  <div class="marquee-wrapper">
-                    <div class="announcement-row">
-                      <ng-container *ngIf="usermessage && usermessage.length > 0">
-                        <div #marqueeContainer class="marquee-container">
-                          <ul #marqueeList class="marquee-list text-11">
-                              <ng-container *ngFor="let item of usermessage;">
-                                <li class=" mr-5 font-bold cursor-pointer">
-                                  <span>
-                                    <!-- <strong id="loginMarquee"> -->
-                                      <a [style]="{'color':themeData?.masterTextColor2}">
-                                        <span>{{ item.day }} {{ item.month }} {{ item.year }}</span> {{ item.title }} :- {{
-                                        item.message }}
-                                      </a>
-                                    <!-- </strong> -->
-                                  </span>
-                                </li>
-                              </ng-container>
+                    <div class="announceImg" [style]="{'background':themeData?.masterTextColor2}"></div>
+                    <div class="marquee-wrapper">
+                        <div class="announcement-row">
+                            <ng-container *ngIf="usermessage && usermessage.length > 0">
+                                <div #marqueeContainer class="marquee-container">
+                                    <ul #marqueeList class="marquee-list text-11">
+                                        <ng-container *ngFor="let item of usermessage;">
+                                            <li class=" mr-5 font-bold cursor-pointer">
+                                                <span>
+                                                    <!-- <strong id="loginMarquee"> -->
+                                                    <a [style]="{'color':themeData?.masterTextColor2}">
+                                                        <span>{{ item.day }} {{ item.month }} {{ item.year }}</span> {{
+                                                        item.title }} :- {{
+                                                        item.message }}
+                                                    </a>
+                                                    <!-- </strong> -->
+                                                </span>
+                                            </li>
+                                        </ng-container>
 
-                          </ul>
+                                    </ul>
+                                </div>
+                            </ng-container>
+                            <ng-container *ngIf="!usermessage || usermessage.length === 0">
+                                <marquee scrollamount="4">
+                                    <ul style="display: flex; width: fit-content;">
+                                        <li class="ng-star-inserted" style="padding-left: 5px;">
+                                            <span>
+                                                <p>
+                                                    <span [style]="{'color':themeData?.masterTextColor2}">--</span>
+                                                </p>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </marquee>
+                            </ng-container>
                         </div>
-                      </ng-container>
-                      <ng-container *ngIf="!usermessage || usermessage.length === 0">
-                        <marquee scrollamount="4">
-                          <ul style="display: flex; width: fit-content;">
-                            <li class="ng-star-inserted" style="padding-left: 5px;">
-                              <span>
-                                <p>
-                                  <span [style]="{'color':themeData?.masterTextColor2}">--</span>
-                                </p>
-                              </span>
-                            </li>
-                          </ul>
-                        </marquee>
-                      </ng-container>
                     </div>
-                  </div>
                 </div>
                 <div id="nav" class="nav category-nav nav-column ng-star-inserted nav-auto overflow-auto"
                     [style]="{'background':themeData?.homenavsvgbgcolor}" [ngClass]="{'fixed-nav': isFixed}">
@@ -956,9 +957,93 @@
                     </div>
                 </div>
 
+                <div class="nav-wrap ng-star-inserted">
+                    <div class="nav-content-wrap" style="padding-top: 10px;">
+                        <div class="nav-content-inner">
+
+                            <div class="content-box ng-star-inserted">
+                                <div class="layout-brand">
+                                    <div class="card2">
+                                        <div class="side-menu-games-grid">
+                                            <div (click)="activeCasino(1)" [ngStyle]="getLinkStylesCas(activeTabs==1)"
+                                                class="side-menu-games-grid-cell ng-star-inserted">
+                                                <div class="side-menu-games-grid-cell__icon">
+                                                    <img fetchpriority="high" alt="icon-casino"
+                                                        src="/assets/images/icon-casino.png?v=1734668315484"
+                                                        loading="lazy">
+                                                </div>
+                                                <div class="side-menu-games-grid-cell__text"> {{"INDIANCASINO" |
+                                                    transloco}} </div>
+                                            </div>
+                                            <div (click)="activeCasino(2)" [ngStyle]="getLinkStylesCas(activeTabs==2)"
+                                                class="side-menu-games-grid-cell ng-star-inserted">
+                                                <div class="side-menu-games-grid-cell__icon">
+                                                    <img fetchpriority="high" alt="icon-casino"
+                                                        src="/assets/images/icon-casino.png?v=1734668315484"
+                                                        loading="lazy">
+                                                </div>
+                                                <div class="side-menu-games-grid-cell__text"> {{"CASINOPROVIDERS" |
+                                                    transloco}} </div>
+                                            </div>
+                                        </div>
+                                        <!-- @if (activeTabs==1) { -->
+                                        <ul *ngIf="activeTabs==1">
+                                            <li (click)="opencasinogameslobby('/DInterCasinoPage/900000/RG-LIVELOBBY')"
+                                                web-category-type="VENDOR" game-type="2" class="ng-star-inserted">
+                                                <a tabindex="-1" style="border-radius: 5px;"
+                                                    [style]="{'border': '2px solid '+themeData?.masterBgColor1}">
+                                                    <img fetchpriority="high" alt="ROYALGAMING"
+                                                        src="/assets/images/games/CasinoNew/lobby.webp" loading="lazy">
+                                                </a>
+                                            </li>
+                                            <!-- @for ( gam of indiancasinogames ; track $index) { -->
+                                            <li *ngFor="let gam of indiancasinogames ;"
+                                                (click)="opencasinogamesmob(gam)" web-category-type="VENDOR"
+                                                game-type="2" class="ng-star-inserted">
+                                                <a tabindex="-1" style="border-radius: 5px;"
+                                                    [style]="{'border': '2px solid '+themeData?.masterBgColor1}">
+                                                    <img fetchpriority="high" [src]="gam.image" loading="lazy">
+                                                </a>
+                                            </li>
+                                            <!-- } -->
+                                        </ul>
+                                        <!-- }
+                                        @if (activeTabs==2) { -->
+                                        <ul *ngIf="activeTabs==2">
+                                            <li (click)="navigateToGames('ALL', 'ROYALGAMING')"
+                                                web-category-type="VENDOR" game-type="2" class="ng-star-inserted">
+                                                <a tabindex="-1" style="border-radius: 5px;"
+                                                    [style]="{'border': '2px solid '+themeData?.masterBgColor1}">
+                                                    <img fetchpriority="high" alt="ROYALGAMING"
+                                                        src="/assets/images/games/CasinoNew/ROYALGAMING.webp"
+                                                        loading="lazy">
+                                                </a>
+                                            </li>
+                                            <ng-container *ngFor="let prov of uniqueProviderNames">
+
+                                                <li *ngIf="prov!=='ROYALGAMING'" (click)="navigateToGames('ALL', prov)"
+                                                    web-category-type="VENDOR" game-type="2" class="ng-star-inserted">
+                                                    <a tabindex="-1" style="border-radius: 5px;"
+                                                        [style]="{'border': '2px solid '+themeData?.masterBgColor1}">
+                                                        <img fetchpriority="high" alt="{{prov}}"
+                                                            src="/assets/images/games/CasinoNew/{{prov}}.webp?v=1.01"
+                                                            loading="lazy">
+                                                    </a>
+                                                </li>
+                                            </ng-container>
+                                        </ul>
+                                        <!-- } -->
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-      </div>
+    </div>
 </div>
 
 <div class="cdk-overlay-container" *ngIf="showErrPopup">
