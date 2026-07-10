@@ -52,6 +52,7 @@ export class CasinoComponent implements AfterViewInit, OnInit {
   jsonWeblinksdt: any;
   validShowing = 'true';
   storeMsg: any[] = []
+  isSearchPageOpen = false
   openSearch = false
 
   // --
@@ -281,6 +282,9 @@ export class CasinoComponent implements AfterViewInit, OnInit {
     } else if (tabId == 3) {
       this.gameslist.sort((a: any, b: any) => a.name.localeCompare(b.name));
     }
+  }
+  toggleSearchPage(){
+    this.isSearchPageOpen = !this.isSearchPageOpen
   }
   onsearch() {
     // this.popupService.search(this.gameslist)
