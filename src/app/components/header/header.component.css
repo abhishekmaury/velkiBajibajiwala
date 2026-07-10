@@ -160,6 +160,7 @@
   border-radius: 12px;
   padding: 0.5rem 0.75rem;
   width: 100%;
+  gap:.8em;
 }
 
 .toggle-container p {
