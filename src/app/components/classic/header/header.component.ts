@@ -1,4 +1,5 @@
-import { Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
+import { HttpResponse } from '@angular/common/http';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { OwlOptions } from 'ngx-owl-carousel-o';
@@ -11,7 +12,7 @@ import { DataHandlerService } from 'src/app/services/datahandler.service';
   styleUrls: ['./header.component.css']
 })
 export class ClassicHeaderComponent implements OnInit {
-  @Input('countData') countData : any;
+  @Input('countData') countData: any;
   menu = false
   isMarketRoute = false;
   userName: any;
@@ -45,8 +46,8 @@ export class ClassicHeaderComponent implements OnInit {
   isMobile: boolean = false;
   isRefreshing = false
   isToggled = false
-  themeData:any;
-  footerLinkss:any;
+  themeData: any;
+  footerLinkss: any;
   spinner = false;
 
 
@@ -54,15 +55,15 @@ export class ClassicHeaderComponent implements OnInit {
     private dataServe: DataHandlerService,
     private authService: AuthserviceService,
     private router: Router,
-    private Trans:TranslocoService,
+    private Trans: TranslocoService,
   ) { }
 
   ngOnInit(): void {
     this.isToggled = this.dataServe.isClassicTheme();
     this.isMarketRoute =
-    this.router.url.includes('/market') ||
-    this.router.url.includes('/mob-match-cupwinner') ||
-    this.router.url.includes('/premium-parlay');
+      this.router.url.includes('/market') ||
+      this.router.url.includes('/mob-match-cupwinner') ||
+      this.router.url.includes('/premium-parlay');
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -72,13 +73,13 @@ export class ClassicHeaderComponent implements OnInit {
     });
 
     let wData = localStorage.getItem("webData")
-    if(wData){
+    if (wData) {
       let d1 = JSON.parse(wData)
       this.webdata = d1;
       this.img = this.webdata?.imageData?.headers?.[0]?.logo?.replace(' ', '%20')
       this.jsonWebdt = JSON.parse(this.webdata.theme)
       this.jsonWeblinksdt = JSON.parse(this.webdata.links)
-      this.validShowing=this.jsonWeblinksdt?.validShowing;
+      this.validShowing = this.jsonWeblinksdt?.validShowing;
     }
 
     let data = localStorage.getItem('userData');
@@ -108,7 +109,7 @@ export class ClassicHeaderComponent implements OnInit {
       this.loggedIn = false;
     }
   }
-  singupLink(){
+  singupLink() {
     window.open(this.jsonWeblinksdt?.signupContent, '_blank');
   }
 
@@ -163,7 +164,7 @@ export class ClassicHeaderComponent implements OnInit {
   }
 
 
-  numberOnly(event: any):any {
+  numberOnly(event: any): any {
     var regex = new RegExp("^[a-zA-Z0-9]+$");
     var regex2 = new RegExp(/^[0-9]{1,4}$/);
     var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
@@ -205,7 +206,7 @@ export class ClassicHeaderComponent implements OnInit {
     document.head.appendChild(link);
     this.openSidebar();
 
-    if(this.router.url.includes('exchange')) {
+    if (this.router.url.includes('exchange')) {
       this.router.navigate(['/home']).then(() => {
         window.location.reload();
       });
@@ -278,7 +279,7 @@ export class ClassicHeaderComponent implements OnInit {
     this.changeLang = false;
   }
 
-  asideBar =false;
+  asideBar = false;
   openAsideBar() {
     this.asideBar = true;
   }
@@ -292,8 +293,8 @@ export class ClassicHeaderComponent implements OnInit {
 
 
 
-  casinomenu =true;
-  slotmenu =true;
+  casinomenu = true;
+  slotmenu = true;
   tablemenu = true;
   fishingmenu = true;
   lotterymenu = false;
@@ -305,7 +306,7 @@ export class ClassicHeaderComponent implements OnInit {
   }
 
 
-  lang:any;
+  lang: any;
   showlangpop: boolean = false;
   showErrPopup: boolean = false;
 
@@ -323,44 +324,55 @@ export class ClassicHeaderComponent implements OnInit {
 
   // TODO
   sportsmenu = true;
-  openforum() {}
+  openforum() { }
 
   menuTabs(menu: string): void {
     this.activeMenu = menu;
   }
 
 
-  navigateTochatbot() {}
+  navigateTochatbot() { }
   navigateToExch() {
+
+    this.router.navigate(['/exchange/sport'])
     // this.isSidebarOpen = false;
     // let token = localStorage.getItem('token')
     // if (token) {
-    //   this.router.navigate(['/exchange/mob-sport/4'])
     // } else {
     //   this.router.navigate(['/login'])
     // }
   }
 
 
-  opensabagamesmob(link: any) {
-        // this.dataServe.LaunchSabagms(this.data, link).subscribe((res: any) => {
-        //     if (res.gameUrl == '') {
-        //       this.showErrPopup = true;
-        //       this.errMsg = 'URL not provided in response data.'
-        //     } else if (res.type !== 'error') {
-        //       this.launchUrl = res.gameUrl;
-        //       window.location.href = this.launchUrl;
-        //     } else {
-        //       this.showErrPopup = true;
-        //       this.errMsg = res.message
-        //     }
-        //   }, (error) => {
-        //     // if(error.status==200){
-        //     // let gms = this.dataserve.decryptData(error.error.text);
-        //     // console.log(error)
-        //     // }
-        //   })
+  opensabagamesmob(url: any) {
+    let token = localStorage.getItem('token')
+    if (token) {
+      this.dataServe.LaunchCasinoGames(url).subscribe(
+        (response: HttpResponse<any>) => {
+          if (response.status == 200) {
+            const res = response.body;
+            this.launchUrl = res.launchUrl;
+            window.location.href = this.launchUrl;
+          } else {
+            const res = response.body;
+            this.showErrPopup = true;
+            this.errMsg = res.message;
+          }
+        },
+        (error: any) => {
+          this.showErrPopup = true;
+          this.errMsg = error.message;
+
+        }
+      );
+    } else {
+      this.router.navigate(['/login'])
+    }
+    setTimeout(() => {
+      this.showErrPopup = false;
+    }, 3000)
   }
+
 
 }
 

@@ -1,3 +1,5 @@
+
+<ng-container *ngIf="!isClassicTheme">
 <div class="flex justify-center items-center flex-col text-center mt-40px" *ngIf="jsonWeblinksdt?.appShowing == 'true'">
   <a class="inline-block mb-1" [href]="jsonWeblinksdt?.appContent"><img alt="android download" width="115" height="41"
       src="/assets/images/btn-android-dl.webp" class="w-120px h-auto mx-auto"></a><span
@@ -48,4 +50,214 @@
         class="block px-2 text-11 border-r border-black-300 border-none">Responsible Gaming</span>
     </li>
   </ul>
+</div>
+
+</ng-container>
+
+
+<!-- half-baji -->
+<div class="mobile-footer ng-tns-c57-1 ng-trigger ng-trigger-footerFadeInAni ng-star-inserted"
+  [style]="{'background':themeData?.footerbgcolor}" *ngIf="isClassicTheme">
+  <footer class="footer ng-star-inserted" [style]="{'background':themeData?.footerbgcolor}">
+   
+
+
+    <div class="footer-top" style="justify-content: space-between;">
+      <!-- Sponsorships -->
+       
+      <div class="list list--sponsor-data" *ngIf="showSponsor !== true">
+        <div class="list__title" [style]="{'color':themeData?.footermaintextcolor}"> {{"SPONSERSHIP" | transloco}} </div>
+        <div class="list__wrap">
+          <div class="list__item item">
+            <div class="item__icon" routerLink="/sponser/sponser-1"><img fetchpriority="high"  alt="icon-sponsor"
+                src="/assets/images/sponser-icons/afc-bournemouth.png" loading="lazy">
+              <div class="item__content">
+                <div class="txt" [style]="{'color':themeData?.footertextcolor}">AFC Bournemouth</div>
+                <div class="sub-txt" [style]="{'color':themeData?.footertextcolor}"><span> Front Of Shirt
+                    Partner </span><span> 2024 - 2025 </span></div>
+              </div>
+            </div>
+          </div>
+          <div class="list__item item">
+            <div class="item__icon" routerLink="/sponser/sponser-2"><img fetchpriority="high"  alt="icon-sponsor"
+                src="/assets/images/sponser-icons/bologna-fc-1909 (1).png" loading="lazy">
+              <div class="item__content">
+                <div class="txt" [style]="{'color':themeData?.footertextcolor}">Bologna FC 1909</div>
+                <div class="sub-txt" [style]="{'color':themeData?.footertextcolor}"><span>Betting Partner
+                  </span><span> 2023 - 2024 </span></div>
+              </div>
+            </div>
+          </div>
+          <div class="list__item item">
+            <div class="item__icon" routerLink="/sponser/sponser-3"><img fetchpriority="high"  alt="icon-sponsor"
+                src="/assets/images/sponser-icons/quetta-gladiators (1).png" loading="lazy">
+              <div class="item__content">
+                <div class="txt" [style]="{'color':themeData?.footertextcolor}">Quetta Gladiators</div>
+                <div class="sub-txt" [style]="{'color':themeData?.footertextcolor}"><span>Titanium
+                    Sponsor</span><span> 2023 </span></div>
+              </div>
+            </div>
+          </div>
+          <div class="list__item item">
+            <div class="item__icon" routerLink="/sponser/sponser-4"><img fetchpriority="high"  alt="icon-sponsor"
+                src="/assets/images/sponser-icons/sunrisers-eastern-cape.png" loading="lazy">
+              <div class="item__content">
+                <div class="txt" [style]="{'color':themeData?.footertextcolor}">Sunrisers Eastern Cape</div>
+                <div class="sub-txt" [style]="{'color':themeData?.footertextcolor}"><span>Title
+                    Sponsor</span><span> 2023 - 2024 </span></div>
+              </div>
+            </div>
+          </div>
+          <div class="list__item item">
+            <div class="item__icon" routerLink="/sponser/sponser-5"><img fetchpriority="high"  alt="icon-sponsor"
+                src="/assets/images/sponser-icons/deccan-gladiators (1).png" loading="lazy">
+              <div class="item__content">
+                <div class="txt" [style]="{'color':themeData?.footertextcolor}">Deccan Gladiators</div>
+                <div class="sub-txt" [style]="{'color':themeData?.footertextcolor}"><span>Title
+                    Sponsor</span><span> 2023 - 2024 </span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Sponsorships end -->
+      <!-- Ambassadors -->
+      <div class="list list--ambassador-data" *ngIf="showAmbassador !== true">
+        <div class="list__title" [style]="{'color':themeData?.footermaintextcolor}">{{"AMBASSADOR" | transloco}}</div>
+        <div class="list__wrap">
+          <div class="list__item item" routerLink="/ambassador/ambassador-1"><img fetchpriority="high" 
+              mcdsrc="/assets/images/footer/ambassador_signature/mia-k.png" class="list__item--img" alt="mia-k"
+              src="/assets/desktop/footer/mia-k.png" loading="lazy" [style]="{'filter':themeData?.footermainiconcolor}">
+            <div class="item__content">
+              <div class="txt" [style]="{'color':themeData?.footertextcolor}">Mia Khalifa</div>
+              <div class="sub-txt" [style]="{'color':themeData?.footertextcolor}"><span> 2024 </span>
+              </div>
+            </div>
+          </div>
+          <div class="list__item item" routerLink="/ambassador/ambassador-2"><img fetchpriority="high" 
+              mcdsrc="/assets/images/footer/ambassador_signature/kevin-pietersen.png" class="list__item--img"
+              alt="kevin-pietersen" src="/assets/desktop/footer/kevin-pietersen.png" loading="lazy" [style]="{'filter':themeData?.footermainiconcolor}">
+            <div class="item__content">
+              <div class="txt" [style]="{'color':themeData?.footertextcolor}">Kevin Pietersen</div>
+              <div class="sub-txt" [style]="{'color':themeData?.footertextcolor}"><span> 2024 - 2026
+                </span></div>
+            </div>
+          </div>
+          <div class="list__item item" routerLink="/ambassador/ambassador-3"><img fetchpriority="high" 
+              mcdsrc="/assets/images/footer/ambassador_signature/amy-jacson.png" class="list__item--img"
+              alt="amy-jacson" src="/assets/desktop/footer/amy-jacson.png" loading="lazy" [style]="{'filter':themeData?.footermainiconcolor}">
+            <div class="item__content">
+              <div class="txt" [style]="{'color':themeData?.footertextcolor}">Amy Jackson</div>
+              <div class="sub-txt" [style]="{'color':themeData?.footertextcolor}"><span> 2023 - 2024
+                </span></div>
+            </div>
+          </div>
+          <div class="list__item item" routerLink="/ambassador/ambassador-4"><img fetchpriority="high" 
+              mcdsrc="/assets/images/footer/ambassador_signature/hansika.png" class="list__item--img" alt="hansika"
+              src="/assets/desktop/footer/hansika.png" loading="lazy" [style]="{'filter':themeData?.footermainiconcolor}">
+            <div class="item__content">
+              <div class="txt" [style]="{'color':themeData?.footertextcolor}">Hansika Motwani</div>
+              <div class="sub-txt" [style]="{'color':themeData?.footertextcolor}"><span> 2023 - 2024
+                </span></div>
+            </div>
+          </div>
+          <div class="list__item item" routerLink="/ambassador/ambassador-5"><img fetchpriority="high" 
+              mcdsrc="/assets/images/footer/ambassador_signature/wasim-s.svg" class="list__item--img" alt="wasim-s"
+              src="/assets/desktop/footer/wasim-s.svg" loading="lazy" [style]="{'filter':themeData?.footermainiconcolor}">
+            <div class="item__content">
+              <div class="txt" [style]="{'color':themeData?.footertextcolor}">Wasim Akram</div>
+              <div class="sub-txt" [style]="{'color':themeData?.footertextcolor}"><span> 2024 - 2025
+                </span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Ambassadors end -->
+    
+      <div class="safe ng-star-inserted" style="margin-bottom: 0;">
+        <h2 [style]="{'color':themeData?.footermaintextcolor}">{{'RESPONSIBLEGAMING' | transloco}}</h2>
+        <ul>
+          <li class="ng-star-inserted">
+            <a class="ng-star-inserted">
+              <img fetchpriority="high"  alt="Betting Responsibility" src="/assets/images/gamcare.png" loading="lazy" [style]="{'filter':themeData?.footermainiconcolor}">
+            </a>
+          </li>
+          <li class="ng-star-inserted">
+            <a class="ng-star-inserted">
+              <img fetchpriority="high"  alt="Betting Responsibility" src="/assets/images/age-limit.png" loading="lazy" [style]="{'filter':themeData?.footermainiconcolor}">
+            </a>
+          </li>
+          <li class="ng-star-inserted">
+            <a class="ng-star-inserted">
+              <img fetchpriority="high"  alt="Betting Responsibility" src="/assets/images/regulations.png" loading="lazy" [style]="{'filter':themeData?.footermainiconcolor}">
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+    
+    </div>
+    <div class="verticlll" style="top: -7px;"></div>
+  
+    <div class="footer-license adjust-pos">
+      <h1 class="license-title" [style]="{'color':themeData?.footermaintextcolor}">{{domainName}} About Us</h1>
+      <p [style]="{'color':themeData?.footertextcolor}">At {{domainName}}, we're not just another gaming platform; we
+        are a thriving and rapidly growing fantasy
+        platform that's making waves in the gaming world. With over 100,000 active users and counting, we have emerged
+        as a true leader in the realm of fantasy gaming.</p>
+      <br>
+      <h1 class="license-title" [style]="{'color':themeData?.footermaintextcolor}">Our Commitment to Excellence</h1>
+      <p [style]="{'color':themeData?.footertextcolor}">What sets us apart is our unwavering commitment to providing you
+        with an unparalleled gaming experience. Our
+        prize pools are not just impressive; they are the stuff dreams are made of. When you play with {{domainName}},
+        you're not just playing a game; you're embarking on an exciting journey filled with possibilities.
+      </p>
+      <br>
+      <h1 class="license-title" [style]="{'color':themeData?.footermaintextcolor}">Fair play is our priority</h1>
+      <p [style]="{'color':themeData?.footertextcolor}">We understand that trust is paramount in the gaming world.
+        That's why we take great pride in our international
+        certification, which ensures that you can enjoy our games with the peace of mind that fairness and integrity are
+        at the core of everything we do. When you play on our platform, you can be confident that it's a level playing
+        field for all.
+      </p>
+      <br>
+      <h1 class="license-title" [style]="{'color':themeData?.footermaintextcolor}">Beating Boredom, One Game at a Time
+      </h1>
+      <p [style]="{'color':themeData?.footertextcolor}">But {{domainName}} is more than just a place to play games; it's
+        your way to have fun and escape from the
+        everyday routine. We're here to make sure you never feel bored. Our platform is all about giving you a thrilling
+        experience, lots of enjoyment, and the opportunity to win great prizes.
+      </p>
+      <br>
+      <h1 class="license-title" [style]="{'color':themeData?.footermaintextcolor}">Top-notch fantasy cricket games</h1>
+      <p [style]="{'color':themeData?.footertextcolor}">If cricket is your passion, you're in the right place. We offer
+        a range of top-notch fantasy cricket games that
+        put you in the midst of the action. Rub virtual shoulders with professional players and experience the thrill of
+        the game like never before.
+      </p>
+      <br>
+      <h1 class="license-title" [style]="{'color':themeData?.footermaintextcolor}">Enhancing Skills Through Gaming</h1>
+      <p [style]="{'color':themeData?.footertextcolor}">We believe that gaming should be more than just fun; it should
+        be a tool for personal growth. Playing fantasy
+        cricket on our platform is not just about luck; it's a strategy game that enhances your analytical and
+        decision-making skills. It's about picking the right players, creating winning teams, and earning maximum
+        points.
+      </p>
+      <p [style]="{'color':themeData?.footertextcolor}">So, whether you're a seasoned gamer or new to the world of
+        fantasy gaming, {{domainName}} has something for
+        everyone. Join us on this incredible journey and experience the magic of gaming like never before.
+      </p>
+      <p [style]="{'color':themeData?.footertextcolor}">Welcome to {{domainName}}, where winning is not just a
+        possibility; it's a way of life.</p>
+    </div>
+    <div class="footer-bottom adjust-pos">
+      <div class="logo headLogo" style="background-image: url('{{img}}');"></div>
+      <div class="text">
+        <div class="title" [style]="{'color':themeData?.footermaintextcolor}">{{'FOOTERDIS5' | transloco}}</div>
+        <p [style]="{'color':themeData?.footertextcolor}">&#64; 2023 {{domainName}} Copyrights. All Rights Reserved</p>
+      </div>
+    </div>
+  </footer>
 </div>

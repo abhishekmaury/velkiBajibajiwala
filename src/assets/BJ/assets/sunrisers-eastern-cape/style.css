@@ -1,0 +1,604 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Righteous&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    color: #dbbe95;
+}
+
+body {
+    background-color: #0b0b0b;
+    overflow: hidden;
+}
+
+h4 {
+    text-align: center !important;
+    font-size: 24px !important;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif !important;
+    font-stretch: ultra-condensed;
+    color: transparent !important;
+    background-clip: text;
+    padding-bottom: 20px;
+    background-image: linear-gradient(90deg, #c38934 25%, #eed997);
+}
+
+h3 {
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #c38934 0%, #eed997 102.72%);
+    color: transparent;
+    background-clip: text;
+    font-family: Poppins;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 45px;
+    letter-spacing: 0.15em;
+    text-align: center;
+}
+
+h2 {
+    color: white !important;
+    font-family: 'Righteous', sans-serif;
+    font-size: 75px;
+    font-weight: 500;
+    transition-duration: 0.3s;
+}
+
+.redSpan {
+    color: #ee3945;
+}
+
+.h2Span {
+    color: white;
+}
+
+p,
+h3,
+h4,
+img,
+iframe,
+body {
+    opacity: 1;
+}
+
+@keyframes cssAnim {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+        &::after {
+            content: ' ';
+            opacity: 0 !important;
+        }
+        &::before {
+            content: ' ';
+            opacity: 0 !important;
+        }
+    }
+    50% {
+        opacity: 0.5;
+        &::after {
+            content: ' ';
+            opacity: 0.5 !important;
+        }
+        &::before {
+            content: ' ';
+            opacity: 0.5 !important;
+        }
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        &::after {
+            opacity: 1 !important;
+        }
+        &::before {
+            opacity: 1 !important;
+        }
+    }
+}
+
+.cssAnims {
+    animation-name: cssAnim;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+h1 {
+    font-family: Poppins;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 10px;
+    color: #dbbe95;
+    transition-duration: 0.3s;
+}
+
+.text-container>h3 {
+    font-family: Poppins;
+    font-size: 34px;
+    font-weight: 500;
+    line-height: 41px;
+    text-align: center;
+    max-width: 1121px;
+    height: 75px;
+    top: 803px;
+    left: 400px;
+    gap: 0px;
+    opacity: 0px;
+    letter-spacing: normal;
+}
+
+.text-container>p {
+    font-family: Poppins;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 28px;
+    text-align: center;
+}
+
+.ambassador-banner {
+    background-image: url('/assets/BJ/assets/sunrisers-eastern-cape/src/img/MAIN\ PHOTO\ BANNER.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 611px 0 0 0;
+    position: relative;
+    border-bottom: 2px solid;
+    border-image: linear-gradient(90deg, transparent 0.5%, #d6ac60 53%, transparent 100%);
+    border-image-slice: 1;
+    background-color: #c6431f;
+}
+
+.ambassador-banner>video {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.ambassador-intro {
+    background-image: linear-gradient(90deg, #c6431f3d 10%, black 55%, #c6431f3d);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 78px 0 78px;
+    border-bottom: 2px solid;
+    border-image: linear-gradient(90deg, #04070d 0.5%, #d6ac60 53%, #04070d 100%);
+    border-image-slice: 1;
+}
+
+.sponsor-expectations {
+    background-image: url('/assets/BJ/assets/sunrisers-eastern-cape/src/img/SECOND\ PHOTO.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 230px 0 65px 0;
+}
+
+.sponsor-expectations>div {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+}
+
+.sponsor-expectations>div>p {
+    text-align: center;
+    max-width: 800px;
+    margin: auto;
+}
+
+.sponsor-logo {
+    width: 162px;
+    height: auto;
+    margin: auto;
+}
+
+.ambassador-text-container {
+    display: flex;
+    flex-direction: column;
+    height: inherit;
+    justify-content: center;
+    align-items: center;
+}
+
+.achievements-text-container {
+    padding: 60px 60px;
+    background: #801b2894;
+    border: 1px solid #c38934;
+    border-radius: 10px;
+    max-width: 890px;
+}
+
+.ambassador-achievements>div>div {
+    padding-right: 80px;
+}
+
+.highlights-container {
+    max-width: 490px;
+}
+
+.row>.col-5:first-child {
+    border-right: 1px solid #e8cf8970;
+}
+
+.awards-tr>td {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.awards-tr>td:first-child {
+    font-family: Poppins;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 23px;
+    text-align: left;
+    color: #e9c556;
+    width: auto;
+}
+
+td p {
+    position: relative;
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 20px;
+    text-align: left;
+    margin-bottom: 0;
+    margin-left: 25px;
+    padding: 5px 20px;
+    text-transform: uppercase;
+    &:before {
+        content: '';
+        background-image: url('/assets/BJ/assets/sunrisers-eastern-cape/src/img/star.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        position: absolute;
+        width: 15px;
+        height: 20px;
+        left: 0;
+        top: 50%;
+        transform: translatey(-50%);
+    }
+}
+
+.gallery-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-images {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.highlights-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.highlights-column-parent {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.highlights-column-parent:first-child {
+    border-right: 2px solid #e8cf8970;
+}
+
+.highlights-column {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.highlights-container>p {
+    font-family: Poppins;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 22px;
+    text-align: justify;
+}
+
+.ambassador-gallery {
+    margin: 0;
+    padding: 80px 0 80px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 2px solid;
+    border-image: linear-gradient(90deg, #d6ac60 0.5%, #08080800 53%, #d6ac60 100%);
+    border-image-slice: 1;
+}
+
+.ambassador-gallery>div>h3 {
+    position: absolute;
+    top: -25px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.ambassador-container {
+    overflow: hidden;
+    background-color: #150306;
+    padding-top: 60px;
+    margin: auto;
+}
+
+.ambassador-image {
+    padding: 38px;
+}
+
+.gallery-images li {
+    text-decoration: none;
+    list-style: none;
+    will-change: transform;
+}
+
+.img-button {
+    overflow: hidden;
+    transition-delay: 0.1s;
+    transition-duration: 0.3s;
+}
+
+.img-button>img {
+    height: 720px !important;
+    width: 500px !important;
+}
+
+.active {
+    transform: scale(1.1);
+    transition-delay: 0.1s;
+    transition-duration: 0.3s;
+}
+
+.mia-mobile-footer-image>img {
+    display: none;
+}
+
+.ambassador-video-iframe {
+    position: relative;
+    padding: 5px;
+    margin: auto;
+}
+
+.ambassador-video-iframe>iframe {
+    height: 720px;
+    width: 100%;
+    border: 2px solid #e9c556;
+    border-radius: 10px;
+}
+
+.ambassador-video {
+    background: linear-gradient(360deg, #251700, transparent);
+    padding: 80px 0;
+}
+
+@media screen and (max-width: 1024px) {
+    .ambassador-video-iframe {
+        position: relative;
+        padding: 5px;
+        margin: auto;
+    }
+    .ambassador-video-iframe>iframe {
+        height: 600px;
+        width: 100%;
+        border: 2px solid #e9c556;
+        border-radius: 10px;
+    }
+    .ambassador-achievements {
+        background: none;
+    }
+    .ambassador-achievements>div>div {
+        padding-left: 80px !important;
+        margin: auto;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    h4 {
+        font-size: 12px !important;
+        font-weight: 500;
+        line-height: 22px;
+        letter-spacing: 0.1em;
+        text-align: center;
+    }
+    h3 {
+        font-size: 14px;
+        line-height: normal !important;
+    }
+    h2 {
+        font-size: 24px;
+        line-height: 19px;
+        margin: 0;
+    }
+    h1 {
+        font-size: 7px;
+        line-height: 20px;
+    }
+    p.text-center {
+        text-align: justify !important;
+        padding: 0 !important;
+        font-family: Poppins;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 15px;
+        text-align: justified;
+    }
+    .h2Span {
+        display: none;
+    }
+    .ambassador-banner {
+        background-size: cover;
+        background-position: top;
+        padding: 164px 0 20px 0px;
+    }
+    .ambassador-intro {
+        padding-top: 25px;
+        padding-bottom: 25px;
+    }
+    .text-container>h3 {
+        font-size: 14px;
+        line-height: 16px;
+        margin-bottom: 20px !important;
+        padding: 0;
+        height: auto;
+    }
+    .ambassador-highlights {
+        padding: 30px 0 30px 0;
+    }
+    .highlights-container>p {
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 16px;
+        letter-spacing: -0.01em;
+    }
+    h3.p-4 {
+        padding: 0 !important;
+    }
+    h4.p-4 {
+        padding: 0 !important;
+    }
+    .empty {
+        display: none;
+    }
+    .ambassador-achievements {
+        padding: 40px 0 !important;
+    }
+    .ambassador-achievements>div>div {
+        padding-left: 0 !important;
+        margin: auto;
+    }
+    .ambassador-achievements>div {
+        padding: 0 40px;
+        padding-bottom: 40px;
+    }
+    .ambassador-achievements>div>div {
+        padding: 0;
+    }
+    .ambassador-achievements>div>div>div {
+        padding: 0;
+        justify-content: center !important;
+    }
+    div.gap-5 {
+        gap: 0 !important;
+        padding: 0 !important;
+    }
+    .img-button>img {
+        height: 185px !important;
+        width: 122px !important;
+    }
+    .ambassador-image {
+        padding: 12px;
+    }
+    .ambassador-gallery>div {
+        padding: 0;
+    }
+    .achievements-text-container {
+        padding: 24px 20px 100px 20px;
+    }
+    .awards-tr>td:first-child {
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 15px;
+    }
+    td p {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 17px;
+        text-align: justify !important;
+        &::before {
+            top: 35%;
+        }
+    }
+    .awards-tr>td {
+        padding: 10px 0;
+    }
+    .ambassador-achievements {
+        background-image: none;
+        overflow: hidden;
+        position: relative;
+        padding-bottom: 200px;
+    }
+    .mia-mobile-footer-image>img {
+        width: 100vw !important;
+        height: inherit;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+    .ambassador-video-iframe {
+        position: relative;
+        padding: 5px;
+        margin: auto;
+    }
+    .ambassador-video-iframe>iframe {
+        height: 400px;
+        width: 100%;
+        border: 2px solid #e9c556;
+        border-radius: 10px;
+    }
+    .ambassador-video {
+        padding: 30px 0;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .ambassador-video-iframe {
+        position: relative;
+        padding: 5px;
+        margin: auto;
+    }
+    .ambassador-gallery {
+        padding: 30px 0 !important;
+    }
+    .ambassador-video-iframe>iframe {
+        height: 230px;
+        width: 100%;
+        border: 2px solid #e9c556;
+        border-radius: 10px;
+    }
+    .mia-mobile-footer-image>img {
+        width: 100vw !important;
+        height: inherit;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: block;
+    }
+    .ambassador-achievements>div {
+        padding: 0 20px;
+        padding-bottom: 150px;
+    }
+    .ambassador-gallery>div>h3 {
+        top: -10px;
+    }
+    .ambassador-gallery,
+    .ambassador-achievements,
+    .ambassador-intro,
+    .ambassador-banner,
+    .ambassador-highlights {
+        border-bottom: 0.5px solid !important;
+    }
+    .ambassador-intro {
+        border-top: 0.5px solid !important;
+    }
+    .sponsor-expectations {
+        padding-top: 100px;
+    }
+}
