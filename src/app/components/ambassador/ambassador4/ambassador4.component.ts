@@ -5,9 +5,10 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-ambassador4',
-    imports: [CarouselModule, RouterLink],
+  imports: [CarouselModule, RouterLink],
   templateUrl: './ambassador4.component.html',
-  styleUrls: ['./ambassador4.component.css']
+  styleUrls: ['./ambassador4.component.css'],
+  standalone:true,
 })
 export class Ambassador4Component {
   customOptions :OwlOptions= {

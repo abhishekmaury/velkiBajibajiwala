@@ -37,6 +37,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
+    AmbassadorComponent
   ],
   imports: [
     CommonModule,

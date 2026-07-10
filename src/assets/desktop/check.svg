@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="45px" height="37px" viewBox="0 0 45 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon-set/check</title>
+    <defs>
+        <filter x="-24.9%" y="-32.0%" width="149.8%" height="164.0%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.250600962 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="icon-set-Web最新整理" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="images" transform="translate(-56.000000, -66.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <g id="icon-set/check" filter="url(#filter-1)" transform="translate(62.000000, 72.000000)">
+                <path d="M12.3081061,24.5183799 C12.0012821,24.8275198 11.5826681,25 11.147826,25 C10.7129839,25 10.2943692,24.8275198 9.9875452,24.5183799 L0.721230787,15.2351511 C-0.240410262,14.2719107 -0.240410262,12.7099563 0.721230787,11.7485221 L1.88151158,10.5860113 C2.84345305,9.62277099 4.40101117,9.62277099 5.36265222,10.5860113 L11.147826,16.3811061 L26.7802049,0.722430268 C27.7421464,-0.240810089 29.3012074,-0.240810089 30.2613463,0.722430268 L31.4216264,1.88494098 C32.3832674,2.84818134 32.3832674,4.40983463 31.4216264,5.37156991 L12.3081061,24.5183799 Z" id="Path"></path>
+            </g>
+        </g>
+    </g>
+</svg>

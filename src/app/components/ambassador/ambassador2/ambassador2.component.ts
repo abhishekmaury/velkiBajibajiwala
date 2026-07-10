@@ -7,7 +7,8 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
   selector: 'app-ambassador2',
   imports: [CarouselModule, RouterLink],
   templateUrl: './ambassador2.component.html',
-  styleUrls: ['./ambassador2.component.css']
+  styleUrls: ['./ambassador2.component.css'],
+  standalone:true
 })
 export class Ambassador2Component {
 
