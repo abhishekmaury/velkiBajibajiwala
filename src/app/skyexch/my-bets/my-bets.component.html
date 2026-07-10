@@ -94,7 +94,7 @@
                         </div>
                         <!-- /// Exchange Tab -->
                         <ng-container *ngIf="activeTab == 'exchange'">
-                          <div *ngIf="betDetails" class="exchangeMatches s-bg-pop-title-bg s-text-pop-title-text s-flex-1 s-flex
+                          <div *ngIf="betDetails && !betListInfo" class="exchangeMatches s-bg-pop-title-bg s-text-pop-title-text s-flex-1 s-flex
                             s-flex-col s-overflow-y-scroll s-px-3px s-pb-3px s-rounded-5px">
                             <div id="betsData">
                               <ng-container *ngFor="let list of exchange;let i = index">
