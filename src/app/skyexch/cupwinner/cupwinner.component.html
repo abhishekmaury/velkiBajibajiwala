@@ -161,7 +161,8 @@
                                       [updOddsLay]="runnersList[j]?.ex?.availableToLay[0]?.price"
                                       [socketEventData]="socketEventOdds" [isInplay]="inplaystatus"
                                       (betResult)="getOddsCalculation($event)"
-                                      (stopTimer)="stopTimeout($event)"></app-place-bet-cupwinner>
+                                      (stopTimer)="stopTimeout($event)"
+                                      style="position: absolute;z-index: 99999;"></app-place-bet-cupwinner>
 
                                   </div>
                                 </div>
