@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: 'premium-parlay/:sportId/:eventId', component: MarketPremiumParlayComponent, data: { animation: 'MarketPremiumPage' }},
   { path: 'mob-match-cupwinner/:sportId/:eventId', component: CupwinnerComponent, data: { animation: 'MarketPage' }},
   { path: 'edit/:fname/:lname/:email', component: EditProfileComponent, data: { animation: 'EditPage' }, canActivate: [AuthGuardGuard] },
-  { path: 'sponser', loadChildren: () => import('./components/sponser/sponser.module').then(m => m.SponserModule) },
+  { path: 'sponser', loadChildren: () => import('./components/sponser/sponsor-routing.module').then(m => m.routes) },
   { path: 'ambassador', loadChildren: () => import('./components/ambassador/ambassador.module').then(m => m.AmbassadorModule) },
   { path: 'info', loadChildren : ()=> import('./components/footer-pages/footer-pages.module').then(c =>(c.FooterPagesModule)) },
   { path: 'menu', loadChildren: () => import('./components/dashboard/dashboard.module').then(m => m.DashboardModule), canActivate : [AuthGuardGuard] },

@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
-import { FooterComponent } from '../../footer/footer.component';
 
 @Component({
   selector: 'app-sponser2',
   templateUrl: './sponser2.component.html',
-  styleUrls: ['./sponser2.component.css']
+  styleUrls: ['./sponser2.component.css'],
+  imports:[CarouselModule,RouterLink],
+  standalone:true,
 })
 export class Sponser2Component {
 
