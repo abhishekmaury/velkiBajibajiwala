@@ -295,7 +295,7 @@ export class SportsComponent implements OnInit {
         this.marketList.push(eventId);
         id.multi = true;
       }
-    }
+    }    
   }
 
   async addToMultimarket1(id: any): Promise<void> {

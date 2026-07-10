@@ -202,7 +202,7 @@
                                                 <div
                                                   class="s-fav s-text-icon-dark dark:s-text-global-font-default-dark s-relative s-pl-5px s-text-15px">
                                                   <div class="s-star-line-box s-relative s-icon-star starIcon"
-                                                    [ngClass]="list.isMulti == true? 's-icon-star-solid' : ''"
+                                                    [ngClass]="list.isMulti != true? 's-icon-star-solid' : ''"
                                                     id="starIconbt-10647759" (click)="addToMultimarket(list)">
                                                     <span
                                                       class="s-rating-star-line s-bg-icon-dark dark:s-bg-global-font-default-dark"></span>
@@ -321,7 +321,7 @@
                                                         class="s-fav s-text-market-star-icon dark:s-text-market-star-icon s-text-16px s-mr-10px"
                                                         (click)="addToMultimarket(list)">
                                                         <div class="s-star-line-box s-relative s-icon-star starIcon"
-                                                          [ngClass]="list.isMulti == true? 's-icon-star-solid' : ''"
+                                                          [ngClass]="list.isMulti != true? 's-icon-star-solid' : ''"
                                                           id="starIcon33293820">
                                                           <span
                                                             class="s-rating-star-line s-bg-market-star-icon dark:s-bg-market-star-icon"></span>
@@ -541,7 +541,7 @@
                                                       <div
                                                         class="s-fav s-text-icon-dark dark:s-text-global-font-default-dark s-relative s-pl-5px s-text-15px">
                                                         <div class="s-star-line-box s-relative s-icon-star starIcon"
-                                                          [ngClass]="list.isMulti == true? 's-icon-star-solid' : ''"
+                                                          [ngClass]="list.isMulti != true? 's-icon-star-solid' : ''"
                                                           id="starIconbt-10647759" (click)="addToMultimarket(list)">
                                                           <span
                                                             class="s-rating-star-line s-bg-icon-dark dark:s-bg-global-font-default-dark"></span>
@@ -615,7 +615,7 @@
                                                   <div
                                                     class="s-fav s-text-black-300 dark:s-opacity-15 s-text-16px s-mr-10px">
                                                     <div class="s-star-line-box s-relative s-icon-star starIcon"
-                                                      [ngClass]="list.isMulti == true? 's-icon-star-solid' : ''"
+                                                      [ngClass]="list.isMulti != true? 's-icon-star-solid' : ''"
                                                       id="starIcon33316877" (click)="addToMultimarket(list)">
                                                       <span
                                                         class="s-rating-star-line s-bg-icon-dark dark:s-bg-global-font-default-dark"></span><span
@@ -807,7 +807,7 @@
                                                 <div
                                                   class="s-fav s-text-icon-dark dark:s-text-global-font-default-dark s-relative s-pl-5px s-text-15px">
                                                   <div class="s-star-line-box s-relative s-icon-star starIcon"
-                                                    [ngClass]="list.isMulti == true? 's-icon-star-solid' : ''"
+                                                    [ngClass]="list.isMulti != true? 's-icon-star-solid' : ''"
                                                     id="starIconbt-10647759" (click)="addToMultimarket(list)">
                                                     <span
                                                       class="s-rating-star-line s-bg-icon-dark dark:s-bg-global-font-default-dark"></span>
@@ -1053,7 +1053,7 @@
                                                         class="s-fav s-text-market-star-icon dark:s-text-market-star-icon s-text-16px s-mr-10px"
                                                         (click)="addToMultimarket(list)">
                                                         <div class="s-star-line-box s-relative s-icon-star starIcon"
-                                                          [ngClass]="list.isMulti == true? 's-icon-star-solid' : ''"
+                                                          [ngClass]="list.isMulti != true? 's-icon-star-solid' : ''"
                                                           id="starIcon33293820">
                                                           <span
                                                             class="s-rating-star-line s-bg-market-star-icon dark:s-bg-market-star-icon"></span>
@@ -1270,7 +1270,7 @@
                                                       <div
                                                         class="s-fav s-text-icon-dark dark:s-text-global-font-default-dark s-relative s-pl-5px s-text-15px">
                                                         <div class="s-star-line-box s-relative s-icon-star starIcon"
-                                                          [ngClass]="list.isMulti == true? 's-icon-star-solid' : ''"
+                                                          [ngClass]="list.isMulti != true? 's-icon-star-solid' : ''"
                                                           id="starIconbt-10647759" (click)="addToMultimarket(list)">
                                                           <span
                                                             class="s-rating-star-line s-bg-icon-dark dark:s-bg-global-font-default-dark"></span>
@@ -1357,7 +1357,7 @@
                                                     <div
                                                       class="s-fav s-text-black-300 dark:s-opacity-15 s-text-16px s-mr-10px">
                                                       <div class="s-star-line-box s-relative s-icon-star starIcon"
-                                                        [ngClass]="list.isMulti == true? 's-icon-star-solid' : ''"
+                                                        [ngClass]="list.isMulti != true? 's-icon-star-solid' : ''"
                                                         id="starIcon33316877" (click)="addToMultimarket(list)">
                                                         <span
                                                           class="s-rating-star-line s-bg-icon-dark dark:s-bg-global-font-default-dark"></span><span
@@ -1487,7 +1487,7 @@
                               <div class="s-px-2 s-py-5px s-flex s-justify-between"></div>
                             </div>
                             <div>
-                              <ng-container *ngFor="let list of multiList; let i = index;">
+                              <ng-container *ngFor="let list of marketList; let i = index;">
                                 <div
                                   class="s-px-3px s-mb-2 s-rounded-5px s-bg-white dark:s-bg-black-800 s-text-global-font-default-light dark:s-text-global-font-default-dark s-shadow-2sm">
                                   <div class="s-py-10px s-px-2 s-relative">
@@ -1514,7 +1514,7 @@
                                         <div
                                           class="s-flex s-justify-start s-items-center s s-text-base s-text-market-name s-font-normal">
                                           <i class="s-text-15px s-icon-star-solid s-text-market-name s-h-25px s-flex s-items-center s-mr-5px s-pb-2px"
-                                            (click)="addToMultimarket(list)"></i>
+                                            (click)="addToMultimarket1(list?.matchid)"></i>
                                           <div><span class="s-pr-2 s-text-14px">Match
                                               Odds</span>
                                             <!-- <span class="s-pr-1 s-text-12px s-text-market-match-amount">Matched</span>
