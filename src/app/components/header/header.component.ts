@@ -205,6 +205,8 @@ export class HeaderComponent implements OnInit{
     this.isToggled = !this.isToggled;
     this.dataServe.getThemeFlag(this.isToggled)
     localStorage.setItem('clssaicTheme', JSON.stringify(this.isToggled))
+
+    document.documentElement.style.display = 'none';
     const classic = document.getElementById('classic-style') as HTMLLinkElement;
     const modern = document.getElementById('newer-style') as HTMLLinkElement;
 
@@ -221,8 +223,12 @@ export class HeaderComponent implements OnInit{
     }
 
     document.head.appendChild(link);
-    if(this.router.url.includes('sports')) {
-      this.router.navigate(['/home']);
+    if (this.router.url.includes('sports')) {
+      this.router.navigate(['/home']).then(() => {
+        window.location.reload();
+      });
+    } else {
+      window.location.reload();
     }
   }
 }

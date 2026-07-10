@@ -316,14 +316,13 @@ export class HomeClassicComponent {
     }
   }
   navigateToExch() {
-    let token = localStorage.getItem('token')
-    if (token) {
-      this.isLoading = true;
-      // navigate to exch
-      this.router.navigate(['/exchange/sport'])
-    } else {
-      this.router.navigate(['/login'])
-    }
+    this.router.navigate(['/exchange/sport'])
+    // let token = localStorage.getItem('token')
+    // if (token) {
+    //   this.isLoading = true;
+    // } else {
+    //   this.router.navigate(['/login'])
+    // }
   }
 
 

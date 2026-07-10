@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="10px" viewBox="0 0 20 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon-set/icon-angle-down_hover</title>
+    <g id="icon-set-Web最新整理" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="images" transform="translate(-299.000000, -864.000000)">
+            <g id="icon-set/icon-angle-down_hover" transform="translate(299.000000, 864.000000)">
+                <polygon id="Clip-2" points="0 0 20 0 20 10 0 10"></polygon>
+                <path d="M18.70725,0.29325 C18.31625,-0.09775 17.68425,-0.09775 17.29325,0.29325 L10.00025,7.58625 L2.70725,0.29325 C2.31625,-0.09775 1.68425,-0.09775 1.29325,0.29325 C0.90225,0.68425 0.90225,1.31625 1.29325,1.70725 L9.29325,9.70725 C9.48825,9.90225 9.74425,10.00025 10.00025,10.00025 C10.25625,10.00025 10.51225,9.90225 10.70725,9.70725 L18.70725,1.70725 C19.09825,1.31625 19.09825,0.68425 18.70725,0.29325" id="Fill-1" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>

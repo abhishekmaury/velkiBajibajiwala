@@ -31,9 +31,13 @@ const routes: Routes = [
   { path: 'premium-parlay/:sportId/:eventId', component: MarketPremiumParlayComponent, data: { animation: 'MarketPremiumPage' }},
   { path: 'mob-match-cupwinner/:sportId/:eventId', component: CupwinnerComponent, data: { animation: 'MarketPage' }},
   { path: 'edit/:fname/:lname/:email', component: EditProfileComponent, data: { animation: 'EditPage' }, canActivate: [AuthGuardGuard] },
+  { path: 'sponser', loadChildren: () => import('./components/sponser/sponsor-routing.module').then(m => m.routes) },
+  { path: 'ambassador', loadChildren: () => import('./components/ambassador/ambassador.module').then(m => m.AmbassadorModule) },
   { path: 'info', loadChildren : ()=> import('./components/footer-pages/footer-pages.module').then(c =>(c.FooterPagesModule)) },
   { path: 'menu', loadChildren: () => import('./components/dashboard/dashboard.module').then(m => m.DashboardModule), canActivate : [AuthGuardGuard] },
   { path: 'exchange', loadChildren: () => import('./skyexch/skyexch.routers').then(c => (c.exchRoute)), canActivate: [AuthGuardGuard,ClassicThemeGuard] },
+  { path: "account", loadComponent: () => import('./components/classic/account/account.component').then(m => m.AccountComponent) },
+  { path: "change-password", loadComponent: () => import('./components/classic/change-password/change-password.component').then(m => m.ChangePasswordComponent) },
 ]
 
 

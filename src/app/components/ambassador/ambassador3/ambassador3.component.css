@@ -1,0 +1,251 @@
+@import url('../../../../assets/BJ/assets/amy-jackson/style.css');
+@import url('../../../../assets/BJ/navi.css');
+
+
+p.text-center {
+  text-align: justify !important;
+  padding: 0 !important;
+  font-family: Poppins;
+  font-size: 12px !important;
+  font-weight: 400;
+  line-height: 15px !important;
+  text-align: justified;
+  margin-bottom: 1rem !important;
+}
+
+.container {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  width: 100%;
+  padding-right: calc(var(--bs-gutter-x)* .5);
+  padding-left: calc(var(--bs-gutter-x)* .5);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.expectp {
+  line-height: 22px;
+}
+
+.ambassador-banner {
+  background-image: none;
+}
+
+p,
+h3,
+h4,
+img,
+iframe,
+body {
+  opacity: 1;
+}
+
+
+::ng-deep .owl-carousel .owl-item img {
+  display: block;
+  /* width: 28vw; */
+}
+
+::ng-deep .owl-item.center {
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+  /* Smooth transition */
+}
+
+.ambassador-gallery {
+  padding: 30px !important;
+  border-bottom: none !important;
+}
+
+::ng-deep .owl-carousel .owl-item img {
+  width: 100%;
+}
+
+.bodytop {
+  padding-top: 13vw;
+}
+@media (min-width: 768px) {
+  .bodytop {
+    padding-top: 62.4px;
+  }
+
+  h4 {
+    font-size: 12px !important;
+    font-weight: 500;
+    line-height: 22px;
+    letter-spacing: 0.1em;
+    text-align: center;
+  }
+
+  h3 {
+    font-size: 14px;
+    line-height: normal !important;
+  }
+
+  h2 {
+    font-size: 24px;
+    text-align: left !important;
+    line-height: 19px;
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 7px;
+    line-height: 20px;
+  }
+
+  p.text-center {
+    text-align: justify !important;
+    padding: 0 !important;
+    font-family: Poppins;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    text-align: justified;
+  }
+
+  .h2Span {
+    display: none;
+  }
+
+  .ambassador-banner {
+    background-size: cover;
+    background-position: top;
+    padding: 69\px45px;
+  }
+
+  .ambassador-intro {
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+
+  .ambassador-text-container {
+    justify-content: start;
+    align-items: start;
+  }
+
+  .text-container>h3 {
+    font-size: 14px;
+    line-height: 16px;
+    margin-bottom: 20px !important;
+    padding: 0;
+    height: auto;
+  }
+
+  .ambassador-highlights {
+    padding: 30px 0 30px 0;
+  }
+
+  .highlights-container>p {
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  h3.p-4 {
+    padding: 0 !important;
+  }
+
+  h4.p-4 {
+    padding: 0 !important;
+  }
+
+  .empty {
+    display: none;
+  }
+
+  .ambassador-achievements {
+    padding: 40px 0 !important;
+    background-position: left;
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 200px;
+  }
+
+  .ambassador-achievements>div>div {
+    padding-left: 0 !important;
+    margin: auto;
+  }
+
+  .ambassador-achievements>div {
+    padding: 0 40px;
+    padding-bottom: 40px;
+  }
+
+  .ambassador-achievements>div>div {
+    padding: 0;
+  }
+
+  .ambassador-achievements>div>div>div {
+    padding: 0;
+    justify-content: center !important;
+  }
+
+  div.gap-5 {
+    gap: 0 !important;
+    padding: 0 !important;
+  }
+
+  .img-button>img {
+    height: 185px !important;
+    width: 122px !important;
+  }
+
+  .ambassador-image {
+    padding: 12px;
+  }
+
+  .ambassador-gallery>div {
+    padding: 0;
+  }
+
+  .achievements-text-container {
+    padding: 24px 20px 100px 20px;
+  }
+
+  .awards-tr>td:first-child {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 15px;
+  }
+
+  td p {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 17px;
+    text-align: justify !important;
+
+    &::before {
+      top: 35%;
+    }
+  }
+
+  .awards-tr>td {
+    padding: 10px 0;
+  }
+
+  .mia-mobile-footer-image>img {
+    height: inherit;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  .ambassador-video-iframe {
+    position: relative;
+    padding: 5px;
+    margin: auto;
+  }
+
+  .ambassador-video-iframe>iframe {
+    height: 400px;
+    width: 100%;
+    border: 2px solid #e9c556;
+    border-radius: 10px;
+  }
+
+  .ambassador-video {
+    padding: 30px 0;
+  }
+}

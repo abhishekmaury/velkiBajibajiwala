@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="6px" height="10px" viewBox="0 0 6 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon-set/icon-left</title>
+    <g id="icon-set-Web最新整理" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="images" transform="translate(-562.000000, -864.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <g id="icon-set/icon-left" transform="translate(562.000000, 864.000000)">
+                <g id="arrow-point-to-right" transform="translate(2.849220, 4.998308) scale(-1, 1) translate(-2.849220, -4.998308) ">
+                    <path d="M5.49341814,5.49319137 L1.19503319,9.79144358 C0.921603983,10.0650055 0.478285399,10.0650055 0.204988938,9.79144358 C-0.0683296459,9.518125 -0.0683296459,9.07482854 0.204988938,8.80153208 L4.00839602,4.99823562 L0.205099558,1.1950719 C-0.0682190265,0.921642699 -0.0682190265,0.478390487 0.205099558,0.205071903 C0.478418142,-0.068357301 0.921714602,-0.068357301 1.1951438,0.205071903 L5.49352876,4.50339049 C5.63018805,4.64011615 5.69844026,4.81912057 5.69844026,4.99821349 C5.69844026,5.17739491 5.63005531,5.35653208 5.49341814,5.49319137 Z" id="Path"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

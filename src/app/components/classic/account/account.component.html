@@ -1,0 +1,213 @@
+<div class="member-menu ng-star-inserted active" style="background: rgb(32, 32, 32);">
+  <div routerLink="/home" class="close ng-star-inserted" tabindex="0" style="background: rgb(13, 13, 13);"></div>
+  <div class="member-header bonuswallet ng-star-inserted">
+    <div class="home-icon" style="background: rgb(13, 13, 13);"><img fetchpriority="high"
+        src="/assets/images/account-icons/header-profile100transparent.png" alt="" class="svg-icons001"
+        style="width: 100%; position: relative; top: 0vw; mix-blend-mode: multiply;"></div>
+    <div class="member-header-content">
+      <div id="userIdFirst" class="pic">{{userName.charAt(0).toUpperCase()}}</div>
+      <div class="infor">
+        <div class="account"><span>{{userName}}</span></div>
+        <div class="vip-points active ng-star-inserted"> VIP Points
+          (VP) <span id="vipPoints">8.01</span><a routerLink="/vipClub/VipPointsExchange" class="myvip-text"
+            href="/vipClub/VipPointsExchange"> My VIP </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="member-menu-content bonuswallet ng-star-inserted">
+    <div class="member-menu-box balance-box ng-star-inserted" style="background: rgb(41, 41, 41);">
+      <div class="balance balance-row">
+        <div class="text" style="color: rgb(250, 250, 250);"> Main
+          Wallet
+          <div class="icon refresh" style="background: rgb(250, 250, 250);" (click)="upDateBalance()"
+            [class]="refreshBtn ? 'active' : ''" [ngClass]="isRefreshing?'btn-disable':''">
+          </div>
+          <div id="hideShow" class="icon eyes" [ngClass]="{'active': showamount}" (click)="showpwd()"
+            style="background: rgb(250, 250, 250);"></div>
+        </div>
+        <ng-container *ngIf="showamount; else hideAmount">
+          <span id="mainBalance" class="amount totalBalanceWallet">
+            <i style="padding-right: 5px;">₹</i>{{balInfo | number:'1.0-2'}}</span>
+        </ng-container>
+        <ng-template #hideAmount>
+
+          <span class="amount" id="mainBalanceStar" style="font-weight:bold;font-size:30px">
+            ****
+          </span>
+        </ng-template>
+      </div>
+    </div>
+    <div class="member-menu-box member-list ng-star-inserted" style="background: rgb(41, 41, 41);">
+      <div class="title">
+        <h2><span class="member-menu-boxLine"
+            style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);"></span><span
+            style="color: rgb(250, 250, 250);">Funds</span></h2>
+      </div>
+      <ul class="align-center">
+        <li routerLink="/bank/depositIn" class="deposit ng-star-inserted" tabindex="0">
+          <div class="home-ico" style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);"><img
+              fetchpriority="high" src="/assets/images/account-icons/depositeicon.svg" alt="image" class="svg-icons"
+              style="filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(107deg) brightness(108%) contrast(101%);"><span
+              class="dot-position" style="top: 61%; left: 66%; background: rgba(237, 31, 35, 0.8);"></span></div><a>
+            <p style="color: rgb(250, 250, 250);">Deposit</p>
+          </a>
+        </li>
+        <li routerLink="/bank/Mdispute" class="deposit ng-star-inserted" tabindex="0">
+          <div class="home-ico" style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);"><img
+              fetchpriority="high" src="/assets/images/account-icons/depositeicon.svg" alt="image" class="svg-icons"
+              style="filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(107deg) brightness(108%) contrast(101%);"><span
+              class="dot-position" style="top: 61%; left: 66%; background: rgba(237, 31, 35, 0.8);"></span></div><a>
+            <p style="color: rgb(250, 250, 250);">Dispute</p>
+          </a>
+        </li>
+        <li routerLink="/bank/wallet" class="deposit ng-star-inserted" tabindex="0">
+          <div class="home-ico" style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);"><img
+              fetchpriority="high" src="/assets/images/account-icons/depositeicon.svg" alt="image" class="svg-icons"
+              style="filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(107deg) brightness(108%) contrast(101%);"><span
+              class="dot-position" style="top: 61%; left: 66%; background: rgba(237, 31, 35, 0.8);"></span></div><a>
+            <p style="color: rgb(250, 250, 250);">My Wallet</p>
+          </a>
+        </li>
+        <li routerLink="/bank/withdrawalIn" class="withdrawal ng-star-inserted" tabindex="0">
+          <div class="home-ico" style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);"><img
+              fetchpriority="high" src="/assets/images/account-icons/withdrawal-icon.svg" alt="image" class="svg-icons"
+              style="filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(107deg) brightness(108%) contrast(101%);"><span
+              class="dot-position" style="top: 61%; left: 66%; background: rgba(237, 31, 35, 0.8);"></span></div><a>
+            <p style="color: rgb(250, 250, 250);">Withdrawal</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="member-menu-box member-list ng-star-inserted" style="background: rgb(41, 41, 41);">
+      <div class="title">
+        <h2><span class="member-menu-boxLine"
+            style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);"></span><span
+            style="color: rgb(250, 250, 250);">My P&amp;L</span></h2>
+      </div>
+      <ul class="align-center">
+        <li routerLink="/bank/turnover/-1/REAL WALLET" class="water ng-star-inserted" tabindex="0">
+          <div class="home-ico" style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);"><img
+              fetchpriority="high" src="/assets/images/account-icons/turnover.svg" alt="image" class="svg-icons"
+              style="filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(107deg) brightness(108%) contrast(101%);"><span
+              class="dot-position" style="top: 61%; left: 66%; background: rgba(237, 31, 35, 0.8);"></span></div><a>
+            <p style="color: rgb(250, 250, 250);">Turnover</p>
+          </a>
+        </li>
+        <li routerLink="/bank/myrewards" class="water ng-star-inserted" tabindex="0">
+          <div class="home-ico" style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);"><img
+              fetchpriority="high" src="/assets/images/account-icons/myrewards.svg" alt="image" class="svg-icons"
+              style="filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(107deg) brightness(108%) contrast(101%);"><span
+              class="dot-position" style="top: 61%; left: 66%; background: rgba(237, 31, 35, 0.8);"></span></div><a>
+            <p style="color: rgb(250, 250, 250);">My Rewards</p>
+          </a>
+        </li>
+        <li routerLink="/bank/profitloss/-1/REAL WALLET" class="account ng-star-inserted" tabindex="0">
+          <div class="home-ico" style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);"><img
+              fetchpriority="high" src="/assets/images/account-icons/profile.svg" alt="image" class="svg-icons"
+              style="filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(107deg) brightness(108%) contrast(101%);"><span
+              class="dot-position" style="top: 71%; left: 66%; background: rgba(237, 31, 35, 0.8);"></span></div><a>
+            <p style="color: rgb(250, 250, 250);">P&amp;L</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="member-menu-box member-list ng-star-inserted" style="background: rgb(41, 41, 41);">
+      <div class="title">
+        <h2><span class="member-menu-boxLine"
+            style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);"></span><span
+            style="color: rgb(250, 250, 250);">History</span></h2>
+      </div>
+      <ul class="align-center">
+        <li routerLink="/bank/bettingrecord" class="total ng-star-inserted" tabindex="0">
+          <div class="home-ico" style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);"><img
+              fetchpriority="high" src="/assets/images/account-icons/betting-rec.svg" alt="image" class="svg-icons"
+              style="filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(107deg) brightness(108%) contrast(101%);"><span
+              class="dot-position" style="top: 50%; left: 60%; background: rgba(237, 31, 35, 0.8);"></span></div><a>
+            <p style="color: rgb(250, 250, 250);">Betting Records</p>
+          </a>
+        </li>
+        <li routerLink="/bank/parlaybettingrecord" class="total ng-star-inserted" tabindex="0">
+          <div class="home-ico" style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);"><img
+              fetchpriority="high" src="/assets/images/account-icons/betting-rec.svg" alt="image" class="svg-icons"
+              style="filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(107deg) brightness(108%) contrast(101%);"><span
+              class="dot-position" style="top: 50%; left: 60%; background: rgba(237, 31, 35, 0.8);"></span></div><a>
+            <p style="color: rgb(250, 250, 250);">Parlay Records</p>
+          </a>
+        </li>
+        <li routerLink="/bank/transactionrecord" class="history ng-star-inserted" tabindex="0">
+          <div class="home-ico" style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);"><img
+              fetchpriority="high" src="/assets/images/account-icons/trans-rec.svg" alt="image" class="svg-icons"
+              style="filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(107deg) brightness(108%) contrast(101%);"><span
+              class="dot-position" style="top: 63%; left: 40%; background: rgba(237, 31, 35, 0.8);"></span></div><a>
+            <p style="color: rgb(250, 250, 250);">Transaction Records</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="member-menu-box member-list ng-star-inserted" style="background: rgb(41, 41, 41);">
+      <div class="title">
+        <h2><span class="member-menu-boxLine"
+            style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);"></span><span
+            style="color: rgb(250, 250, 250);">Profile</span></h2>
+      </div>
+      <ul>
+        <li routerLink="/profile/Mprofile" class="account ng-star-inserted width1" tabindex="0">
+          <div class="home-ico" style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);"><img
+              fetchpriority="high" src="/assets/images/account-icons/profile.svg" alt="image" class="svg-icons"
+              style="filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(107deg) brightness(108%) contrast(101%);"><span
+              class="dot-position" style="top: 71%; left: 66%; background: rgba(237, 31, 35, 0.8);"></span></div><a>
+            <p style="color: rgb(250, 250, 250);">Personal Info</p>
+          </a>
+        </li>
+        <li routerLink="/change-password" class="resetpasswords ng-star-inserted width1" tabindex="0">
+          <div class="home-ico" style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);"><img
+              fetchpriority="high" src="/assets/images/account-icons/reset-pass.svg" alt="image" class="svg-icons"
+              style="filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(107deg) brightness(108%) contrast(101%);"><span
+              class="dot-position" style="top: 49%; left: 66%; background: rgba(237, 31, 35, 0.8);"></span></div><a>
+            <p style="color: rgb(250, 250, 250);">Reset password</p>
+          </a>
+        </li>
+        <li routerLink="/profile/inbox" class="mail ng-star-inserted width1" tabindex="0">
+          <div class="home-ico" style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);"><img
+              fetchpriority="high" src="/assets/images/account-icons/inbox.svg" alt="image" class="svg-icons"
+              style="filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(107deg) brightness(108%) contrast(101%);"><span
+              class="dot-position" style="top: 64%; left: 31%; background: rgba(237, 31, 35, 0.8);"></span></div><a>
+            <p style="color: rgb(250, 250, 250);">Inbox</p>
+          </a>
+        </li>
+        <li routerLink="/referral" class="recommendfriend ng-star-inserted width1" tabindex="0">
+          <div class="home-ico" style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);"><img
+              fetchpriority="high" src="/assets/images/account-icons/referral.svg" alt="image" class="svg-icons"
+              style="filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(107deg) brightness(108%) contrast(101%);"><span
+              class="dot-position" style="top: 34%; left: 36%; background: rgba(237, 31, 35, 0.8);"></span></div><a>
+            <p style="color: rgb(250, 250, 250);">Referral</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="member-menu-box member-list csicons ng-star-inserted" style="background: rgb(41, 41, 41);">
+      <div class="title">
+        <h2><span class="member-menu-boxLine"
+            style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);"></span><span
+            style="color: rgb(250, 250, 250);">Contact Us</span></h2>
+      </div>
+      <ul class="align-center">
+        <li class="email ng-star-inserted"><a class="home-ico"
+            style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);"><img fetchpriority="high"
+              src="/assets/images/account-icons/inbox-icon.svg" alt="image" class="svg-icons"
+              style="filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(107deg) brightness(108%) contrast(101%);"><span
+              class="dot-position" style="top: 70%; left: 50%; background: rgba(237, 31, 35, 0.8);"></span></a><a
+            target="_blank" id="emailContent">
+            <p style="color: rgb(250, 250, 250);">Email</p>
+          </a></li>
+      </ul>
+    </div>
+    <div class="member-menu-logout" style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);"><a
+        style="--iconsBg: #ffffff;">
+        <div class="text">
+          <p style="color: rgb(255, 255, 255);">Log out</p>
+        </div>
+      </a></div>
+  </div>
+</div>

@@ -108,7 +108,7 @@ export class AppComponent implements OnInit {
     const currentRoute = this.route.url;
     const isBetHistoryRoute = currentRoute.startsWith('/bet-history/') && currentRoute.split('/').length === 3;
     const isMarketRoute = currentRoute.startsWith('/market/');
-    const isExch = currentRoute.startsWith('/exchange/');
+    const isExch = currentRoute.startsWith('/exchange/') || currentRoute.startsWith('/sponser') || currentRoute.startsWith('/ambassador');
     const isMarketPremiumRoute = currentRoute.startsWith('/premium-parlay/');
     const isCupwinner = currentRoute.startsWith('/mob-match-cupwinner/');
     const isProfitRoute = currentRoute.startsWith('/profitLoss/') && currentRoute.split('/').length === 3;
