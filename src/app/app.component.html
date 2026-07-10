@@ -12,7 +12,7 @@
       <main class="min-h-full-with-header">
         <router-outlet #outlet="outlet"></router-outlet>
       </main>
-      <app-footer *ngIf="hidefooter() &&hidefoot() && showFooter" [countData]="count" [avtiveData]="activeIndex"></app-footer>
+      <app-footer *ngIf="hidefooter() && hidefoot() && showFooter && !classicTheme" [countData]="count" [avtiveData]="activeIndex"></app-footer>
       <app-my-bets></app-my-bets>
       <app-region *ngIf="isRegion"></app-region>
       <!-- <app-search *ngIf="isSearch" [gameslist]="gameslist"></app-search> -->
