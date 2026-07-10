@@ -1239,7 +1239,7 @@ input {
 
 @media (min-width: 768px) {
   .content {
-    padding: 30px 0 0;
+    padding: 60px 0 0;
   }
 
   .tab.search-tab {
@@ -1392,3 +1392,5 @@ input {
 .btn-disable {
   pointer-events: none;
 }
+
+
