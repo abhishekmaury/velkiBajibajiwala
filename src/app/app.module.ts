@@ -67,7 +67,6 @@ export function initApp(configService: GetSocketUrlService) {
     CasinoComponent,
     MarketComponent,
     LeagueComponent,
-    MainFooterComponent,
     MyBetsComponent,
     EditProfileComponent,
     RegionComponent,
@@ -111,7 +110,9 @@ export function initApp(configService: GetSocketUrlService) {
     }),
     LoaderModule,
     CarouselModule,
-    TranslocoRootModule
+    TranslocoRootModule,
+    MainFooterComponent,
+
   ],
   exports : [TranslocoRootModule],
   providers: [

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10px" height="15px" viewBox="0 0 10 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon-set/phone-w</title>
+    <g id="icon-set-Web最新整理" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" fill-opacity="0.98">
+        <g id="images" transform="translate(-490.000000, -728.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <g id="icon-set/phone-w" transform="translate(490.000000, 728.000000)">
+                <path d="M9,0.4 L9,0.4 C8.8,0.2 8.4,0 8,0 L1.4,0 C0.7,0 0,0.6 0,1.4 L0,13.5 C0,13.9 0.2,14.2 0.4,14.5 C0.7,14.8 1,14.9 1.4,14.9 L8,14.9 C8.4,14.9 8.7,14.7 9,14.5 C9.3,14.2 9.4,13.9 9.4,13.5 L9.4,1.4 C9.5,1 9.3,0.7 9,0.4 Z M4.7,14 L4.7,14 C4.5,14 4.3,13.8 4.3,13.6 C4.3,13.4 4.5,13.2 4.7,13.2 C4.9,13.2 5.1,13.4 5.1,13.6 C5.1,13.8 5,14 4.7,14 Z M8.3,11.6 C8.3,12.1 7.9,12.5 7.4,12.5 L2.1,12.5 C1.6,12.5 1.2,12.1 1.2,11.6 L1.2,2.6 C1.2,2.1 1.6,1.7 2.1,1.7 L7.4,1.7 C7.9,1.7 8.3,2.1 8.3,2.6 L8.3,11.6 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

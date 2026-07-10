@@ -123,39 +123,35 @@
 </section>
 
 <!-- halfbaji -->
-<header *ngIf="classicTheme" id="signupheader" class="ng-star-inserted member"
-  style="background: rgb(13, 13, 13);">
-  <div (click)="goBack()" class="header-left-btn-group" tabindex="0" bis_skin_checked="1">
-    <div  mcdprevious="" class="back-btn" bis_skin_checked="1"
-      style="background: rgb(255, 255, 255);"></div>
-    <div  class="menu-btn" bis_skin_checked="1">
-      <ul >
-        <li ></li>
-        <li ></li>
-        <li ></li>
+<header *ngIf="classicTheme" id="signupheader" class="ng-star-inserted member" style="background: rgb(13, 13, 13);">
+  <div (click)="goBack()" class="header-left-btn-group" tabindex="0">
+    <div mcdprevious="" class="back-btn" style="background: rgb(255, 255, 255);"></div>
+    <div class="menu-btn">
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
       </ul>
     </div>
   </div>
-  <div  class="header-title" bis_skin_checked="1" style="color: rgb(255, 255, 255);">Login
+  <div class="header-title" style="color: rgb(255, 255, 255);">Login
   </div>
 </header>
-<div *ngIf="classicTheme" class="wrap ng-tns-c57-1" style="background: rgb(32, 32, 32);" bis_skin_checked="1">
-  <div class="content ng-tns-c57-1 login-biometric-content mobile-content" style="min-height: 100vh;"
-    bis_skin_checked="1">
-    <div class="ng-tns-c57-1 ng-trigger ng-trigger-routeLayoutPageAni" bis_skin_checked="1">
-      <div class="ng-star-inserted" bis_skin_checked="1">
-        <div class="logo-box ng-star-inserted headLogo" style="background-image: url({{img}});" bis_skin_checked="1">
+<div *ngIf="classicTheme" class="wrap ng-tns-c57-1" style="background: rgb(32, 32, 32);">
+  <div class="content ng-tns-c57-1 login-biometric-content mobile-content" style="min-height: 100vh;">
+    <div class="ng-tns-c57-1 ng-trigger ng-trigger-routeLayoutPageAni">
+      <div class="ng-star-inserted">
+        <div class="logo-box ng-star-inserted headLogo" style="background-image: url({{img}});">
         </div>
         <form novalidate="" [formGroup]="loggedData" (ngSubmit)="login()"
           class="ng-untouched ng-pristine ng-invalid ng-star-inserted">
-          <div class="member-box radius" style="background: rgb(41, 41, 41);" bis_skin_checked="1">
-            <div class="inputbox" bis_skin_checked="1"><label for="userId"
-                style="display: block; color: rgb(250, 250, 250);">User Id</label><input type="text"
-                formControlName="userId" maxlength="25" appNoEmoji appNoSpace appNoSpecialChar
-                class="input ng-untouched ng-pristine ng-invalid" placeholder="User Id" name="uxjfkjbey" id="uxjfkjbey"
-                style="--mainThemeColor: #fafafa; --resetpasstextColor: #fafafa;" fdprocessedid="ciptww"><input
-                type="button" class="clear"></div>
-            <div class="inputbox password" bis_skin_checked="1">
+          <div class="member-box radius" style="background: rgb(41, 41, 41);">
+            <div class="inputbox"><label for="userId" style="display: block; color: rgb(250, 250, 250);">User
+                Id</label><input type="text" formControlName="userId" maxlength="25" appNoEmoji appNoSpace
+                appNoSpecialChar class="input ng-untouched ng-pristine ng-invalid" placeholder="User Id"
+                name="uxjfkjbey" id="uxjfkjbey" style="--mainThemeColor: #fafafa; --resetpasstextColor: #fafafa;"
+                fdprocessedid="ciptww"><input type="button" class="clear"></div>
+            <div class="inputbox password">
               <div class="eyes" [style]="{'background':' rgb(250, 250, 250);'}" [ngClass]="{'active': showpwrd}"
                 (click)="showpwd()"></div><label for="password"
                 style="display: block; color: rgb(250, 250, 250);">Password</label><input
@@ -164,36 +160,26 @@
                 style="--mainThemeColor: #fafafa; --resetpasstextColor: #fafafa;" fdprocessedid="oj68h9"><input
                 type="button" class="clear">
             </div>
-            <div class="inputbox password" bis_skin_checked="1" *ngIf="validShowing=='true'" >
-              <div class="validCode" [style]="{'background':' rgb(250, 250, 250);'}"> {{validationCode}}</div><label for="validcode"
-                style="display: block; color: rgb(250, 250, 250);">Validation Code</label><input formControlName="validCode" name="verifyCode" 
-                type="text" maxlength="4" (paste)="numberOnly($event)" (focus)="numberOnly($event)" 
-                (keypress)="numberOnly($event)" (input)="numberOnly($event)" appNoEmoji apOnlyNumber
-                class="input ng-untouched ng-pristine ng-invalid" placeholder="Validation Code" id="pxjfkjbey" id="validcode"
-                style="--mainThemeColor: #fafafa; --resetpasstextColor: #fafafa;" fdprocessedid="oj68h9"><input
-                type="button" class="clear">
+            <div class="inputbox password" *ngIf="validShowing=='true'">
+              <div class="validCode" [style]="{'background':' rgb(250, 250, 250);'}"> {{validationCode}}</div><label
+                for="validcode" style="display: block; color: rgb(250, 250, 250);">Validation Code</label><input
+                formControlName="validCode" name="verifyCode" type="text" maxlength="4" (paste)="numberOnly($event)"
+                (focus)="numberOnly($event)" (keypress)="numberOnly($event)" (input)="numberOnly($event)" appNoEmoji
+                apOnlyNumber class="input ng-untouched ng-pristine ng-invalid" placeholder="Validation Code"
+                id="pxjfkjbey" id="validcode" style="--mainThemeColor: #fafafa; --resetpasstextColor: #fafafa;"
+                fdprocessedid="oj68h9"><input type="button" class="clear">
             </div>
-          </div>
-          <div class="login-info-box" bis_skin_checked="1">
-            <div class="forgetpassword-buttn" bis_skin_checked="1"><a class="figetpassborder"
-                style="color: rgb(13, 13, 13);">Forgot password?</a></div>
           </div>
           <div class="member-error" *ngIf="errMsg != ''">
             <span>{{errMsg}}</span>
           </div>
-          <div bis_skin_checked="1"><button id="loginBtn" type="submit" class="button" fdprocessedid="qafuah"
+          <div><button id="loginBtn" type="submit" class="button" fdprocessedid="qafuah"
               style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%); color: rgb(255, 255, 255);">
               Login</button></div>
-          <div bis_skin_checked="1"><button id="demoLoginBtn" type="button" class="button" fdprocessedid="gk4mze"
-              style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%); color: rgb(255, 255, 255);">
-              Demo Login</button></div>
-          <p class="signup" style="color: rgb(38, 38, 38);"><span style="color: rgb(255, 255, 255);">Do not have an
-              account? </span><a style="color: rgb(13, 13, 13);">Sign
-              up</a></p>
         </form>
       </div>
     </div>
   </div>
 
-  <div class="ng-tns-c57-1 ng-trigger ng-trigger-footerFadeInAni ng-star-inserted" bis_skin_checked="1"></div>
+  <div class="ng-tns-c57-1 ng-trigger ng-trigger-footerFadeInAni ng-star-inserted"></div>
 </div>

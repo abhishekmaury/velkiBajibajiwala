@@ -1,0 +1,284 @@
+.home-icon {
+  position: relative;
+  width: 100%;
+  height: 45.3333333333vw;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: 100%;
+  border-radius: 100% 0 60% 49% / 0% 41% 67% 66%;
+  /* background-color: aliceblue; */
+}
+
+.svg-icons {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+  padding: 0 !important;
+  transition: all .3s;
+  border-radius: 10.6666666667vw;
+  opacity: 1;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+}
+
+.home-ico {
+  display: block;
+  /* padding: .5vw 1.5vw; */
+  width: 10vw;
+  height: 10vw;
+  margin: 0 auto 1.8666666667vw;
+  transition: all .3s;
+  border-radius: 10.6666666667vw;
+  opacity: 1;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  background-size: 30px;
+  position: relative;
+  /* text-align: center;
+    width: 10vw;
+    height: 10vw;
+    border-radius: 50%;
+    margin: 0 auto; */
+}
+
+.dot-position {
+  border-radius: 50%;
+  position: absolute;
+  width: 3vw;
+  height: 3vw;
+  opacity: 1;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+}
+
+.width1 {
+  width: 25%;
+}
+
+.width2 {
+  width: 33%;
+}
+
+.member-menu-box ul.align-center li {
+  flex: auto;
+  width: 25%;
+}
+
+@media (min-width: 768px) {
+  .member-menu {
+    max-width: 480px;
+    position: fixed;
+    left: unset;
+    padding-bottom: 0;
+    scrollbar-width: none;
+  }
+
+  .member-menu .close {
+    width: 64px;
+    height: 64px;
+  }
+
+  .member-menu .close:before,
+  .member-menu .close:after {
+    width: 25.6px;
+    height: 2.56px;
+    margin: -1.28px 0 0 -12.8px;
+    border-radius: 2.56px;
+  }
+
+  .member-header {
+    height: 217.6px;
+  }
+
+  .home-icon {
+    height: 217.6px;
+  }
+
+  .member-header .member-header-content {
+    bottom: 89.6px;
+    left: 12.8px;
+  }
+
+  .member-header-content .pic {
+    width: 83.2px;
+    height: 83.2px;
+    margin-right: 12.8px;
+    border-radius: 83.2px;
+    font-size: 46.08px;
+    line-height: 83.2px;
+  }
+
+  .member-header-content .infor {
+    display: inline-block;
+    width: 358.4px;
+  }
+
+  .member-header-content .account {
+    margin-bottom: 6.4px;
+    font-size: 20.48px;
+  }
+
+  .member-header-content .account span {
+    width: 100%;
+    max-height: 81.92px;
+    font-size: 20.48px;
+  }
+
+  .member-header-content .vip-points {
+    min-height: 30.72px;
+    padding: 2.56px 12.8px;
+    border-radius: 30.72px;
+    font-size: 15.36px;
+  }
+
+  .member-header-content .vip-points span {
+    margin: 0 0 0 10.24px;
+  }
+
+  .member-header-content .vip-points .myvip-text {
+    font-size: 15.36px;
+  }
+
+  .member-header-content .vip-points .myvip-text:before {
+    width: 1.28px;
+    height: 15.36px;
+    margin: 0 10.24px;
+  }
+
+  .member-header-content .vip-points .myvip-text:after {
+    flex: 0 0 14.08px;
+    width: 14.08px;
+    height: 12.8px;
+    margin: 0 0 0 6.4px;
+  }
+
+  .member-header:after {
+    height: 128px;
+  }
+
+  .member-menu-content {
+    padding: 0 12.8px;
+  }
+
+  .member-menu-content.bonuswallet {
+    margin: -51.2px 0 0;
+  }
+
+  .member-menu-box {
+    margin: 0 0 12.8px;
+    border-radius: 3.84px;
+  }
+
+  .member-menu-box.balance-box .balance {
+    height: 88.32px;
+    padding: 12.8px;
+    font-size: 15.36px;
+  }
+
+  .member-menu-box.balance-box .balance .text {
+    line-height: 23.04px;
+  }
+
+  .member-menu-box.balance-box .balance .icon {
+    width: 28.16px;
+    height: 28.16px;
+    margin-left: 2.56px;
+  }
+
+  .member-menu-box.balance-box .balance .amount {
+    margin-top: 6.4px;
+    max-height: 28.16px;
+    font-size: 20.48px;
+    line-height: 28.16px;
+  }
+
+  .amount:before {
+    margin-right: 3.84px;
+  }
+
+  .member-menu-box .title {
+    padding: 0 12.8px;
+    border-bottom: 1.28px solid rgba(153, 153, 153, .3);
+    line-height: 44.8px;
+  }
+
+  .member-menu-box .title h2 {
+    font-size: 19.2px;
+  }
+
+  .member-menu-boxLine {
+    width: 5.12px;
+    height: 20.48px;
+    margin-right: 6.4px;
+  }
+
+  .member-menu-box ul {
+    padding: 6.4px 0;
+  }
+
+  .member-menu-box ul li {
+    padding: 8.96px 0;
+  }
+
+  .home-ico {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 8.96px;
+    border-radius: 51.2px;
+  }
+
+  .svg-icons {
+    border-radius: 51.2px;
+  }
+
+  .dot-position {
+    width: 14.4px;
+    height: 14.4px;
+  }
+
+  .member-menu-box ul li a p {
+    font-size: 16.64px;
+  }
+
+  .member-menu-box ul li .notice {
+    width: 25.6px;
+    height: 25.6px;
+    border-radius: 25.6px;
+    font-size: 15.36px;
+    font-weight: 700;
+    line-height: 25.6px;
+  }
+
+  .member-menu-box ul li .notice:after {
+    bottom: -3.84px;
+    left: -3.84px;
+    border-width: 5.12px;
+  }
+
+  .member-menu-logout {
+    margin: 0 0 12.8px;
+    border-radius: 3.84px;
+  }
+
+  .member-menu-logout a {
+    padding: 12.8px;
+  }
+
+  .member-menu-logout a:before {
+    width: 25.6px;
+    height: 25.6px;
+    margin: 0 6.4px 0 0;
+  }
+
+  .member-menu-logout a p {
+    font-size: 16.64px;
+  }
+}
+
+.btn-disable {
+  pointer-events: none;
+}
