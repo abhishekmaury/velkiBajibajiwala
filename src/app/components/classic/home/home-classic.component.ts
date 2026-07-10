@@ -317,12 +317,12 @@ export class HomeClassicComponent {
   }
   navigateToExch() {
     this.router.navigate(['/exchange/sport'])
-    // let token = localStorage.getItem('token')
-    // if (token) {
-    //   this.isLoading = true;
-    // } else {
-    //   this.router.navigate(['/login'])
-    // }
+    let token = localStorage.getItem('token')
+    if (token) {
+      this.isLoading = true;
+    } else {
+      this.router.navigate(['/login'])
+    }
   }
 
 
