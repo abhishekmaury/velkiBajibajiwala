@@ -316,10 +316,10 @@ export class HomeClassicComponent {
     }
   }
   navigateToExch() {
-    this.router.navigate(['/exchange/sport'])
     let token = localStorage.getItem('token')
     if (token) {
       this.isLoading = true;
+      this.router.navigate(['/exchange/sport'])
     } else {
       this.router.navigate(['/login'])
     }
