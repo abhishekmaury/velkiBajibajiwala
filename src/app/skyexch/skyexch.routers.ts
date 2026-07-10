@@ -18,6 +18,7 @@ export const exchRoute: Routes = [
             { path: "rule-reg", loadComponent: () => import('./footer/rules-and-reg/rules-and-reg.component').then(m => m.RulesAndRegComponent) },
             { path: "resp-gaming", loadComponent: () => import('./footer/responsible-gaming/responsible-gaming.component').then(m => m.ResponsibleGamingComponent) },
             { path: "term-condition", loadComponent: () => import('./footer/tandc/tandc.component').then(m => m.TandcComponent) },
+            { path: "account", loadComponent: () => import('../components/classic/account/account.component').then(m => m.AccountComponent) },
         ]
     },
 ]
