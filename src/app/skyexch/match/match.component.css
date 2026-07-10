@@ -966,3 +966,7 @@ header .logo {
   margin-top: 19% !important;
   text-align: center;
 }
+
+.s-app .s-text-market-tab-text {
+    color: #111;
+}

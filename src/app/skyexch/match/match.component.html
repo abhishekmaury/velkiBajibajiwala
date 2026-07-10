@@ -815,9 +815,9 @@
                   <div class="s-relative s-text-14px s-z-10"></div>
                   <ng-container *ngIf="fancypermission ">
                   <div class="s-relative s-text-14px s-z-20">
-                    <div (click)="hideFancyBet()" class="fancybetTab">
+                    <div (click)="fBets(0)" class="fancybetTab">
                       <div class="s-relative s-tab s-w-90px s-h-33px s-py-2 s-rounded-t-md"
-                        [class]="showFancy==true ? 's-bg-market-tab-bg-active' : ''">
+                        [class]="bets==0 ? 's-bg-market-tab-bg-active' : ''">
                         <div class="s-absolute -s-left-4 s-bottom-0 s-w-14px s-h-14px">
                           <svg width="8px" height="8px" viewBox="0 0 8 8" version="1.1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -843,17 +843,17 @@
                           </svg>
                         </div>
                       </div>
-                      <span [class]="showFancy==true ? 's-bg-market-tab-bg-active' : ''"
+                      <span [class]="bets==0 ? 's-bg-market-tab-bg-active' : ''"
                         class="s-text-market-tab-text-active fancybetTab s-text-market-tab-text s-left-1/2 s-left-1/2 s-absolute s-top-1/2 s--translate-y-1/2 s--translate-x-1/2"
                         id="showFancyBetBtn">Fancybet</span>
                     </div>
                   </div>
                   </ng-container>
-                  <ng-container *ngIf="prempermission ">
+                  <ng-container >
                   <div class="s-relative s-text-14px s-z-10">
-                    <div (click)="showPreFancy()" class="sportbookTab">
+                    <div (click)="fBets(1)" class="sportbookTab">
                       <div class="s-relative s-tab s-w-90px s-h-33px s-py-2 s-rounded-t-md"
-                        [class]="showFancy!==true ? 's-bg-market-tab-bg-active' : ''">
+                        [class]="bets==1 ? 's-bg-market-tab-bg-active' : ''">
                         <div class="s-absolute -s-left-4 s-bottom-0 s-w-14px s-h-14px">
                           <svg width="8px" height="8px" viewBox="0 0 8 8" version="1.1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -879,7 +879,7 @@
                           </svg>
                         </div>
                       </div>
-                      <span [class]="showFancy!=true ? 's-bg-market-tab-bg-active' : ''"
+                      <span [class]="bets==1 ? 's-bg-market-tab-bg-active' : ''"
                         class="s-text-market-tab-text s-left-1/2 s-left-[51%] s-absolute s-top-1/2 s--translate-y-1/2 s--translate-x-1/2"
                         id="showSportsBookBtn">Sportsbook</span>
                     </div>
@@ -888,7 +888,7 @@
                 </div>
               </section>
 
-              <ng-container *ngIf="fancypermission && fancyDataList.length > 0 && showFancy">
+              <ng-container *ngIf="bets==0 && fancypermission">
               <div class="fancyBet">
                 <div
                   class="s-flex s-items-center s-bg-market-tab-bg-active s-text-market-tab-text-active s-pl-1.5 s-pt-px"
@@ -1908,7 +1908,7 @@
               </div>
               </ng-container>
 
-              <ng-container *ngIf="prempermission && !showFancy">
+              <ng-container *ngIf="bets==1">
               <div class="sportBook">
                 <div class="s-flex s-items-center s-bg-market-tab-bg-active s-text-market-tab-text-active"
                   isshowsportsbook="true" style="--066c3991: 42px; --5625d3df: translateX(18px);">
