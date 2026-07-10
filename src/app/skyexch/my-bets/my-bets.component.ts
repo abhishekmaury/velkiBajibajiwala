@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule, Location } from '@angular/common';
-import { DatahandlerService } from '../../services/datahandler.service';
+import { DataHandlerService } from 'src/app/services/datahandler.service';
 
 @Component({
   selector: 'app-my-bets',
-  imports:[CommonModule],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './my-bets.component.html',
   styleUrls: ['./my-bets.component.css']
 })
@@ -24,20 +25,24 @@ export class MyBetsComponent {
   betsComp = false;
   betList = true;
   betListInfo = false;
-  allActiveLiab : any;
-  parlayActiveLiability : any;
-  selectedList : any;
-  ActiveLiablist : any;
-  validateapi : any;
+  allActiveLiab: any;
+  parlayActiveLiability: any;
+  selectedList: any;
+  ActiveLiablist: any;
+  validateapi: any;
   parlayexch = 1;
   isLoading = false;
-  constructor(private activeRoute: ActivatedRoute, private dataServe : DatahandlerService,private _location: Location) { }
+  count: any;
+  parlayActive: any;
+  betid = '';
+  countEx: any
+  constructor(private activeRoute: ActivatedRoute, private dataServe: DataHandlerService, private _location: Location) { }
   ngOnInit(): void {
 
-    if(this.activeRoute.component?.name !== ' MobBtesComponent'){
+    if (this.activeRoute.component?.name !== ' MobBtesComponent') {
       this.betsComp = true;
       this.dataServe.getloginFlag(this.betsComp)
-    }else{
+    } else {
       this.betsComp = false;
     }
 
@@ -45,117 +50,105 @@ export class MyBetsComponent {
     this.parlayActiveLiab();
   }
 
-  exchangeActiveLiab(){
-    this.isLoading = true;
-    let walletId = localStorage.getItem("walletId");
-    let sectime = this.dataServe.getTimeStamp();
-    let data = {"timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey, "walletId": walletId }
-
-     this.dataServe.verifyUser(data).subscribe((res: any) => {
-     }, (error) => {
-       if (error.status == 200) {
-         this.validateapi = this.dataServe.decryptData(error.error.text);
-         if (this.validateapi.data.type == 'success') {
-           this.dataServe.getActiveLiabUserWise1(data).subscribe((res: any) => {
-           }, (error) => {
-             if (error.status == 200) {
-               let msd = this.dataServe.decryptData(error.error.text);
-               this.exchange = msd.data;
-               this.isLoading = false;
-             }
-           })
-         }
-       }
-     })
-  }
-
-  openListInfo(data : any){
-    this.selectedList = data
-    this.betDetails = false;
-
-    this.betList = false;
-    this.betListInfo = true;
-    this.isLoading = true;
-
-    let sectime = this.dataServe.getTimeStamp();
-    let data1 = {"timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
-
-    this.dataServe.verifyUser(data1).subscribe((res: any) => {
-    }, (error) => {
-      if (error.status == 200) {
-        this.validateapi = this.dataServe.decryptData(error.error.text);
-        if (this.validateapi.data.type == 'success') {
-          this.dataServe.getActiveBetsUserWise1(this.selectedList.eventid,data1).subscribe((res: any) => {
-          }, (error) => {
-            if (error.status == 200) {
-              let msd = this.dataServe.decryptData(error.error.text);
-              this.ActiveLiablist = msd.data;
-              this.isLoading = false;
-            }
+  exchangeActiveLiab() {
+    let token = localStorage.getItem('token')
+    if (token) {
+      this.dataServe.getActiveLiabUserWise().subscribe((res: any) => {
+        this.allActiveLiab = res;
+        this.parlay = this.allActiveLiab.filter((item: any) => item.sportId === 15);
+        this.exchange = this.allActiveLiab.filter((item: any) => item.sportId !== 15)
+        this.count = this.parlay.length
+        this.countEx = this.exchange.length
+      })
+      this.dataServe.betSuccessMsg.subscribe((res: any) => {
+        if (res) {
+          this.dataServe.getActiveLiabUserWise().subscribe((res: any) => {
+            this.allActiveLiab = res;
+            this.parlay = this.allActiveLiab.filter((item: any) => item.sportId === 15);
+            this.exchange = this.allActiveLiab.filter((item: any) => item.sportId !== 15)
+            this.count = this.parlay.length
+            this.countEx = this.exchange.length
           })
         }
-      }
-    })
-  }
-
-  parlayActiveLiab(){
-    let sectime = this.dataServe.getTimeStamp();
-    let data = {"timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
-
-     this.dataServe.verifyUser(data).subscribe((res: any) => {
-     }, (error) => {
-       if (error.status == 200) {
-         this.validateapi = this.dataServe.decryptData(error.error.text);
-         if (this.validateapi.data.type == 'success') {
-           this.dataServe.getActiveParlayLiabUserWise(data).subscribe((res: any) => {
-           }, (error) => {
-             if (error.status == 200) {
-               let msd = this.dataServe.decryptData(error.error.text);
-              this.parlayActiveLiability = msd.data;
-             }
-           })
-         }
-       }
-     })
-  }
-
-  getParlayById(data : any){
-    if(this.openParlayBets==data){
-      this.openParlayBets = '';
-    } else {
-      this.isLoading = true;
-      this.openParlayBets = data;
-      this.parlayLiabData = [];
-      let sectime = this.dataServe.getTimeStamp();
-      let data1 = {"timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
-
-      this.dataServe.verifyUser(data1).subscribe((res: any) => {
-      }, (error) => {
-        if (error.status == 200) {
-          this.validateapi = this.dataServe.decryptData(error.error.text);
-          if (this.validateapi.data.type == 'success') {
-            this.dataServe.getParlayById(data,data1).subscribe((res: any) => {
-            }, (error) => {
-              if (error.status == 200) {
-                let msd = this.dataServe.decryptData(error.error.text);
-                this.parlayLiabData = msd.data;
-                this.isLoading = false;
-              }
-            })
-          }
-        }
       })
+
+
+      // this.dataServe.getUserUnmatchedBets().subscribe((res: any) => {
+      //   this.unmatchedData = res;
+      //   this.exchange01 = this.unmatchedData.filter((item: any) => item.sportId !== 15)
+      //   this.count = this.parlay.length
+      //   this.countEx = this.exchange.length
+      // })
     }
   }
 
-  goBack(){
+  openListInfo(data: any) {
+    if (this.betListInfo == false) {
+      this.betid = data?.id
+      this.selectedList = data
+      this.betList = false;
+      this.betListInfo = true;
+      this.dataServe.getActiveBetsUserWise(this.selectedList.sourceId).subscribe((res: any) => {
+        this.ActiveLiablist = res;
+      })
+    } else {
+      this.betListInfo = false
+    }
+  }
+
+  parlayActiveLiab() {
+    let sectime = this.dataServe.getTimeStamp();
+    let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
+
+    //  this.dataServe.verifyUser(data).subscribe((res: any) => {
+    //  }, (error) => {
+    //    if (error.status == 200) {
+    //      this.validateapi = this.dataServe.decryptData(error.error.text);
+    //      if (this.validateapi.data.type == 'success') {
+    //        this.dataServe.getActiveParlayLiabUserWise(data).subscribe((res: any) => {
+    //        }, (error) => {
+    //          if (error.status == 200) {
+    //            let msd = this.dataServe.decryptData(error.error.text);
+    //           this.parlayActiveLiability = msd.data;
+    //          }
+    //        })
+    //      }
+    //    }
+    //  })
+  }
+
+  getParlayById(data: any) {
+    if (this.openParlayBets == data) {
+      this.openParlayBets = '';
+    } else {
+      this.openParlayBets = data;
+      this.dataServe.getParlayById(data).subscribe((res: any) => {
+        this.parlayActive = res
+      })
+
+    }
+  }
+  openListUnmatchedInfo(data: any) {
+    if (this.betListInfo == false) {
+      this.betid = data?.id
+      this.selectedList = data
+      this.betList = false;
+      this.betListInfo = true;
+      this.dataServe.getUnmatchedBetsUserWise(this.selectedList.sourceId).subscribe((res: any) => {
+        this.ActiveLiablist = res;
+      })
+    } else {
+      this.betListInfo = false
+    }
+  }
+  goBack() {
     this.betList = true;
     this.betListInfo = false;
     this.betDetails = true;
   }
 
-  showExchangeParlay(data:any){
-    this.parlayexch=data;
+  showExchangeParlay(data: any) {
+    this.parlayexch = data;
   }
   closeMybets() {
     this.closeEmiter.emit(false)
@@ -164,8 +157,8 @@ export class MyBetsComponent {
   tabs(data: any) {
     this.activeTab = data;
   }
-  closebet(){
-    this.betListInfo=false;
+  closebet() {
+    this.betListInfo = false;
     this.betDetails = true;
   }
 

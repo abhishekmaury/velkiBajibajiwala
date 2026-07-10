@@ -137,7 +137,8 @@ export class LoginComponent implements OnInit{
       }
     }
     setTimeout(() => {
-      this.isRefreshing = false
+      this.isRefreshing = false;
+      this.errMsg = ''
     }, 1500);
   }
 

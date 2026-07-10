@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { DatahandlerService } from '../../services/datahandler.service';
+import { DataHandlerService } from 'src/app/services/datahandler.service';
 
 @Component({
   selector: 'app-parlay',
+  standalone: true,
   imports:[CommonModule,RouterLink],
   templateUrl: './parlay.component.html',
   styleUrls: ['./parlay.component.css'],
@@ -26,7 +27,7 @@ export class ParlayComponent {
   originalGameList: any[] = [];
 
 
-  constructor(private dataServe: DatahandlerService, private activeRoute: ActivatedRoute) { }
+  constructor(private dataServe: DataHandlerService, private activeRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getSportData();
@@ -41,90 +42,90 @@ export class ParlayComponent {
     let sectime = this.dataServe.getTimeStamp();
     let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
 
-    this.dataServe.verifyUser(data).subscribe((res: any) => {
-    }, (error) => {
-      if (error.status == 200) {
-        this.validateapi = this.dataServe.decryptData(error.error.text);
-        if (this.validateapi.data.type == 'success') {
-          this.dataServe.getInPlayMatches(data).subscribe((res: any) => {
-          }, (error) => {
-            if (error.status == 200) {
-              let msd = this.dataServe.decryptData(error.error.text);
-              this.gameList = msd.data.results;
-              let tcount = this.gameList.filter((res: any) => res.isPremiumData == true)
-              this.totalCount = tcount?.length
-              this.originalGameList = [...this.gameList];
-              if (this.mainTabs == 1) {
-                if (this.activeTab == '4') {
-                  this.gameList = this.gameList.filter((re: any) => {
-                    return re.sportid == '4';
-                  })
-                } else if (this.activeTab == '2') {
-                  this.gameList = this.gameList.filter((re: any) => {
-                    return re.sportid == '2';
-                  })
-                } else if (this.activeTab == '1') {
-                  this.gameList = this.gameList.filter((re: any) => {
-                    return re.sportid == '1';
-                  })
-                }
+    // this.dataServe.verifyUser(data).subscribe((res: any) => {
+    // }, (error) => {
+    //   if (error.status == 200) {
+    //     this.validateapi = this.dataServe.decryptData(error.error.text);
+    //     if (this.validateapi.data.type == 'success') {
+    //       this.dataServe.getInPlayMatches(data).subscribe((res: any) => {
+    //       }, (error) => {
+    //         if (error.status == 200) {
+    //           let msd = this.dataServe.decryptData(error.error.text);
+    //           this.gameList = msd.data.results;
+    //           let tcount = this.gameList.filter((res: any) => res.isPremiumData == true)
+    //           this.totalCount = tcount?.length
+    //           this.originalGameList = [...this.gameList];
+    //           if (this.mainTabs == 1) {
+    //             if (this.activeTab == '4') {
+    //               this.gameList = this.gameList.filter((re: any) => {
+    //                 return re.sportid == '4';
+    //               })
+    //             } else if (this.activeTab == '2') {
+    //               this.gameList = this.gameList.filter((re: any) => {
+    //                 return re.sportid == '2';
+    //               })
+    //             } else if (this.activeTab == '1') {
+    //               this.gameList = this.gameList.filter((re: any) => {
+    //                 return re.sportid == '1';
+    //               })
+    //             }
 
-              }
-              this.isLoading = false;
-              this.updateSportData()
+    //           }
+    //           this.isLoading = false;
+    //           this.updateSportData()
 
-            }
-          })
-        }
-      }
-    })
+    //         }
+    //       })
+    //     }
+    //   }
+    // })
   }
   getMarketData() {
     let sectime1 = this.dataServe.getTimeStamp();
 
     let data1 = { "timeStamp": sectime1.timeStamp, "secretKey": sectime1.secretKey }
 
-    this.dataServe.verifyUser(data1).subscribe((res: any) => {
-    }, (error) => {
-      if (error.status == 200) {
-        this.validateapi = this.dataServe.decryptData(error.error.text);
-        if (this.validateapi.data.type == 'success') {
-          this.dataServe.getActiveMultiMarket(data1).subscribe((res: any) => {
-          }, (error) => {
-            if (error.status == 202) {
-              let msd = this.dataServe.decryptData(error.error.text);
-              // this.marketList = msd.data.data;
-              this.marketList = msd.data.data.map((rs: any) => rs.matchid);
-              // this.getSportData()
-            }
-          })
-        }
-      }
-    })
+    // this.dataServe.verifyUser(data1).subscribe((res: any) => {
+    // }, (error) => {
+    //   if (error.status == 200) {
+    //     this.validateapi = this.dataServe.decryptData(error.error.text);
+    //     if (this.validateapi.data.type == 'success') {
+    //       this.dataServe.getActiveMultiMarket(data1).subscribe((res: any) => {
+    //       }, (error) => {
+    //         if (error.status == 202) {
+    //           let msd = this.dataServe.decryptData(error.error.text);
+    //           // this.marketList = msd.data.data;
+    //           this.marketList = msd.data.data.map((rs: any) => rs.matchid);
+    //           // this.getSportData()
+    //         }
+    //       })
+    //     }
+    //   }
+    // })
   }
   addToMultimarket(id: any) {
     this.isLoading = true;
     let sectime = this.dataServe.getTimeStamp();
     let data = { "matchId": id.marketid, "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
 
-    this.dataServe.verifyUser(data).subscribe((res: any) => {
-    }, (error) => {
-      if (error.status == 200) {
-        this.validateapi = this.dataServe.decryptData(error.error.text);
-        if (this.validateapi.data.type == 'success') {
-          this.dataServe.mutltiMatchUser(data).subscribe((res: any) => {
-          }, (error) => {
-            if (error.status == 202) {
-              let msd = this.dataServe.decryptData(error.error.text);
-              //console.log(msd, 'asdfasdf')
-              this.getMarketData();
-            } else {
-              this.isLoading = false;
-            }
-          })
-        }
-      }
-    })
+    // this.dataServe.verifyUser(data).subscribe((res: any) => {
+    // }, (error) => {
+    //   if (error.status == 200) {
+    //     this.validateapi = this.dataServe.decryptData(error.error.text);
+    //     if (this.validateapi.data.type == 'success') {
+    //       this.dataServe.mutltiMatchUser(data).subscribe((res: any) => {
+    //       }, (error) => {
+    //         if (error.status == 202) {
+    //           let msd = this.dataServe.decryptData(error.error.text);
+    //           //console.log(msd, 'asdfasdf')
+    //           this.getMarketData();
+    //         } else {
+    //           this.isLoading = false;
+    //         }
+    //       })
+    //     }
+    //   }
+    // })
   }
   filterBySportId(sportId: number): any[] {
     return this.originalGameList.filter((res: any) => res.sportid === sportId && res.isPremiumData == true);

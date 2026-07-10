@@ -46,9 +46,8 @@
 
                           </div>
                         </div>
-                        @if (parlayActiveLiability?.length == 0 && activeTab == 'parlay') {
-                        <div
-                          class="exchangeMatches s-bg-pop-title-bg s-text-pop-title-text s-flex-1 s-flex s-flex-col s-overflow-y-scroll s-px-3px s-pb-3px s-rounded-5px">
+                        <div *ngIf="parlayActiveLiability?.length == 0 && activeTab == 'parlay'" class="exchangeMatches s-bg-pop-title-bg s-text-pop-title-text s-flex-1 s-flex
+                          s-flex-col s-overflow-y-scroll s-px-3px s-pb-3px s-rounded-5px">
                           <div id="betsData" style="display: none;"></div>
                           <div id="noBets">
                             <section
@@ -70,10 +69,8 @@
                             </section>
                           </div>
                         </div>
-                        }
-                        @if (exchange?.length == 0 && activeTab == 'exchange') {
-                        <div
-                          class="exchangeMatches s-bg-pop-title-bg s-text-pop-title-text s-flex-1 s-flex s-flex-col s-overflow-y-scroll s-px-3px s-pb-3px s-rounded-5px">
+                        <div *ngIf="exchange?.length == 0 && activeTab == 'exchange'" class="exchangeMatches s-bg-pop-title-bg s-text-pop-title-text s-flex-1 s-flex
+                          s-flex-col s-overflow-y-scroll s-px-3px s-pb-3px s-rounded-5px">
                           <div id="betsData" style="display: none;"></div>
                           <div id="noBets">
                             <section
@@ -95,145 +92,136 @@
                             </section>
                           </div>
                         </div>
-                        }
                         <!-- /// Exchange Tab -->
-                        @if (activeTab == 'exchange') {
-                        @if (betDetails) {
-                        <div
-                          class="exchangeMatches s-bg-pop-title-bg s-text-pop-title-text s-flex-1 s-flex s-flex-col s-overflow-y-scroll s-px-3px s-pb-3px s-rounded-5px">
-                          <div id="betsData">
-                            @for ( list of exchange ; track $index) {
-                            <section (click)="openListInfo(list)"
-                              class="s-list-area s-rounded-t-5px s-bg-white dark:s-bg-black-800 s-flex-1 s-overflow-y-scroll">
-                              <div>
-                                <div
-                                  class="exchangematchlist s-list-group s-border-b-black-300 dark:s-border-black-900 s-border-b s-px-1 s-py-2">
-                                  <div class="s-list s-rounded s-flex s-items-center s-justify-center">
+                        <ng-container *ngIf="activeTab == 'exchange'">
+                          <div *ngIf="betDetails" class="exchangeMatches s-bg-pop-title-bg s-text-pop-title-text s-flex-1 s-flex
+                            s-flex-col s-overflow-y-scroll s-px-3px s-pb-3px s-rounded-5px">
+                            <div id="betsData">
+                              <ng-container *ngFor="let list of exchange;let i = index">
+                                <section (click)="openListInfo(list)"
+                                  class="s-list-area s-rounded-t-5px s-bg-white dark:s-bg-black-800 s-flex-1 s-overflow-y-scroll">
+                                  <div>
                                     <div
-                                      class="s-text-button-normal s-count s-shrink-0 s-h-5 s-w-6 s-flex s-justify-center s-items-center s-text-10px s-mr-1.5 s-ml-1 s-bg-button-normal s-rounded s-font-bold">
-                                      {{list?.betcount}}
-                                    </div>
-                                    <div
-                                      class="s-flex-1 s-whitespace-pre-wrap s-leading-tight s-text-clip s-text-13px s-text-global-font-default-light dark:s-text-global-font-default-dark"
-                                      style="white-space: normal;"><span class="s-font-bold s-mr-1"
-                                        style="white-space: pre-wrap;">{{list?.matchName}}</span>
-                                      <div
-                                        class="s-icon-triangle-black-300 dark:s-border-l-global-dark dark:s-opacity-30 s-inline-block s-align-baseline">
-                                      </div>
-                                      <span> {{list?.sourceName}} -
-                                        {{list?.type}}</span>
-                                    </div>
-                                    <div
-                                      class="s-flex s-flex-grow-0 s-flex-s-shrink-0 s-items-center s-justify-center s-w-25px s-h-25px s-ml-1.5 s-mr-1 s-text-11px s-rounded-3px s-bg-black-300 dark:s-bg-black-700 s-text-global-font-default-light dark:s-text-global-font-default-dark">
-                                      <div class="s-icon-arrow-left s-transform s-rotate-180 s-ml-1px">
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </section>
-                            }
-                          </div>
-
-                        </div>
-                        }
-                        <!-- /// -->
-                        @if (betListInfo) {
-                        <div
-                          class="exchangematchDetail s-text-pop-title-text s-flex-1 s-flex s-flex-col s-overflow-y-scroll s-px-3px s-pb-3px s-rounded-5px">
-                          <div class="s-mybet-title s-flex s-py-12px s-text-13px">
-                            <div (click)="goBack()"
-                              class="s-icon-arrow-left exchange-arrow-left s-flex s-justify-center s-items-center s-ml-2 s-cursor-pointer s-text-14px">
-                            </div>
-                            <div class="s-main-filter s-flex-1">
-                              <ul
-                                class="s-main-filter-ul s-flex s-justify-center s-items-center s-leading-tight s-text-center s-break-all s-text-14px">
-                                <li
-                                  class="s-main-filter-li s-relative s-mx-8 s-justify-center s-items-center s-font-bold s-text-13px">
-                                  <span class="s-font-bold s-mr-1" id="detailMName">{{selectedList.matchName}}</span>
-                                  <div
-                                    class="s-icon-triangle-black-600 dark:s-border-l-global-dark dark:s-opacity-30 s-inline-block s-align-baseline">
-                                  </div>
-                                  <!-- <span class="s-font-normal" id="detailType">{{selectedList?.sourceName}}
-                                            - ({{selectedList?.type}})</span> -->
-                                </li>
-                              </ul>
-                            </div>
-                            <div
-                              class="s-icon-close s-flex s-justify-center s-items-center s-mr-2 s-cursor-pointer s-text-14px"
-                              (click)="closebet()"></div>
-                          </div>
-                          <section
-                            class="s-list-area s-rounded-t-5px s-bg-white dark:s-bg-black-800 s-flex-1 s-overflow-hidden">
-                            <div
-                              class="s-mybet-detail-content s-flex s-flex-col s-h-full s-bg-black-300 s-rounded-t-xl">
-                              <div
-                                class="s-detail-list-area s-overflow-y-scroll s-rounded-t-3px s-bg-white dark:s-bg-black-800 s-flex-1 s-p-4px">
-                                <div class="s-wrapper s-overflow-y-scroll s-h-full" id="dBetData">
-                                  @for ( list of ActiveLiablist ; track $index ) {
-                                  <div
-                                    class="list-s-content s-border s-border-black-300 dark:s-border-black-700 s-rounded-md">
-                                    <div
-                                      class="s-row s-flex s-justify-between s-bg-black-100 dark:s-bg-black-700 s-text-13px s-min-h-40px s-items-center">
-                                      <div class="s-flex s-items-center">
+                                      class="exchangematchlist s-list-group s-border-b-black-300 dark:s-border-black-900 s-border-b s-px-1 s-py-2">
+                                      <div class="s-list s-rounded s-flex s-items-center s-justify-center">
                                         <div
-                                          class="bet-tag s-w-50px s-shrink-0 s-h-8 back s-relative s-flex s-justify-center s-items-center s-mr-2 s-font-bold s-text-center s-rounded-3px s-text-black dark:s-text-black-900"
-                                          [ngClass]="list?.isBack == true ? 's-bg-back dark:s-bg-back-300' : 's-bg-lay dark:s-bg-lay-300'">
-                                          {{list?.isBack == true ? 'Back'
-                                          : 'Lay'}}</div><span
-                                          class="s-flex s-items-center s-text-13px s-font-bold s-min-h-28px s-leading-tight s-break-all">{{list?.selectionName}}</span>
-                                      </div>
-                                    </div>
-                                    <div
-                                      class="s-row s-second s-flex s-border-t s-border-b s-border-black-300 dark:s-border-black-700 s-text-14px">
-                                      <div
-                                        class="s-item odds s-border-r s-border-black-300 dark:s-border-black-700 s-p-2 s-flex-1">
-                                        <div class="s-label s-text-10px">
-                                          Odds</div>
-                                        <div class="s-content s-font-bold s-leading-tight">
-                                          {{list?.odds}}</div>
-                                      </div>
-                                      <div
-                                        class="s-item stake s-border-r s-border-black-300 dark:s-border-black-700 s-p-2 s-flex-1">
-                                        <div class="s-label s-text-10px">
-                                          Stake </div>
-                                        <div class="s-content s-font-bold s-leading-tight">
-                                          {{list?.stake}}</div>
-                                      </div>
-                                      <div class="s-item s-profit s-p-2 s-flex-1">
-                                        <div class="s-label s-text-10px">
-                                          Profit / Liabilty  </div>
-                                        <div class="s-content s-font-bold s-leading-tight">
-                                          <span>{{list?.pnl}}/
-                                            {{list?.liability}}</span>
+                                          class="s-text-button-normal s-count s-shrink-0 s-h-5 s-w-6 s-flex s-justify-center s-items-center s-text-10px s-mr-1.5 s-ml-1 s-bg-button-normal s-rounded s-font-bold">
+                                          {{list?.betcount}}
+                                        </div>
+                                        <div
+                                          class="s-flex-1 s-whitespace-pre-wrap s-leading-tight s-text-clip s-text-13px s-text-global-font-default-light dark:s-text-global-font-default-dark"
+                                          style="white-space: normal;"><span class="s-font-bold s-mr-1"
+                                            style="white-space: pre-wrap;">{{list?.matchName}}</span>
+                                          <div
+                                            class="s-icon-triangle-black-300 dark:s-border-l-global-dark dark:s-opacity-30 s-inline-block s-align-baseline">
+                                          </div>
+                                          <span> {{list?.sourceName}} -
+                                            {{list?.type}}</span>
+                                        </div>
+                                        <div
+                                          class="s-flex s-flex-grow-0 s-flex-s-shrink-0 s-items-center s-justify-center s-w-25px s-h-25px s-ml-1.5 s-mr-1 s-text-11px s-rounded-3px s-bg-black-300 dark:s-bg-black-700 s-text-global-font-default-light dark:s-text-global-font-default-dark">
+                                          <div class="s-icon-arrow-left s-transform s-rotate-180 s-ml-1px">
+                                          </div>
                                         </div>
                                       </div>
                                     </div>
-                                    <div class="s-row s-third">
-                                      <div class="s-flex s-justify-between">
-                                        <span>Ref:
-                                          {{list?.id.slice(0-12)}}</span><span>{{list?.betDate}}
-                                          {{list?.betTime}}</span>
+                                  </div>
+                                </section>
+                              </ng-container>
+                            </div>
+
+                          </div>
+                          <!-- /// -->
+                          <div *ngIf="betListInfo" class="exchangematchDetail s-text-pop-title-text s-flex-1 s-flex
+                            s-flex-col s-overflow-y-scroll s-px-3px s-pb-3px s-rounded-5px">
+                            <div class="s-mybet-title s-flex s-py-12px s-text-13px">
+                              <div (click)="goBack()"
+                                class="s-icon-arrow-left exchange-arrow-left s-flex s-justify-center s-items-center s-ml-2 s-cursor-pointer s-text-14px">
+                              </div>
+                              <div class="s-main-filter s-flex-1">
+                                <ul
+                                  class="s-main-filter-ul s-flex s-justify-center s-items-center s-leading-tight s-text-center s-break-all s-text-14px">
+                                  <li
+                                    class="s-main-filter-li s-relative s-mx-8 s-justify-center s-items-center s-font-bold s-text-13px">
+                                    <span class="s-font-bold s-mr-1" id="detailMName">{{selectedList.matchName}}</span>
+                                    <div
+                                      class="s-icon-triangle-black-600 dark:s-border-l-global-dark dark:s-opacity-30 s-inline-block s-align-baseline">
+                                    </div>
+                                    <!-- <span class="s-font-normal" id="detailType">{{selectedList?.sourceName}}
+                                              - ({{selectedList?.type}})</span> -->
+                                  </li>
+                                </ul>
+                              </div>
+                              <div
+                                class="s-icon-close s-flex s-justify-center s-items-center s-mr-2 s-cursor-pointer s-text-14px"
+                                (click)="closebet()"></div>
+                            </div>
+                            <section
+                              class="s-list-area s-rounded-t-5px s-bg-white dark:s-bg-black-800 s-flex-1 s-overflow-hidden">
+                              <div
+                                class="s-mybet-detail-content s-flex s-flex-col s-h-full s-bg-black-300 s-rounded-t-xl">
+                                <div
+                                  class="s-detail-list-area s-overflow-y-scroll s-rounded-t-3px s-bg-white dark:s-bg-black-800 s-flex-1 s-p-4px">
+                                  <div class="s-wrapper s-overflow-y-scroll s-h-full" id="dBetData">
+                                    <div *ngFor="let list of ActiveLiablist; let i = index"
+                                      class="list-s-content s-border s-border-black-300 dark:s-border-black-700 s-rounded-md">
+                                      <div
+                                        class="s-row s-flex s-justify-between s-bg-black-100 dark:s-bg-black-700 s-text-13px s-min-h-40px s-items-center">
+                                        <div class="s-flex s-items-center">
+                                          <div
+                                            class="bet-tag s-w-50px s-shrink-0 s-h-8 back s-relative s-flex s-justify-center s-items-center s-mr-2 s-font-bold s-text-center s-rounded-3px s-text-black dark:s-text-black-900"
+                                            [ngClass]="list?.isBack == true ? 's-bg-back dark:s-bg-back-300' : 's-bg-lay dark:s-bg-lay-300'">
+                                            {{list?.isBack == true ? 'Back'
+                                            : 'Lay'}}</div><span
+                                            class="s-flex s-items-center s-text-13px s-font-bold s-min-h-28px s-leading-tight s-break-all">{{list?.selectionName}}</span>
+                                        </div>
+                                      </div>
+                                      <div
+                                        class="s-row s-second s-flex s-border-t s-border-b s-border-black-300 dark:s-border-black-700 s-text-14px">
+                                        <div
+                                          class="s-item odds s-border-r s-border-black-300 dark:s-border-black-700 s-p-2 s-flex-1">
+                                          <div class="s-label s-text-10px">
+                                            Odds</div>
+                                          <div class="s-content s-font-bold s-leading-tight">
+                                            {{list?.odds}}</div>
+                                        </div>
+                                        <div
+                                          class="s-item stake s-border-r s-border-black-300 dark:s-border-black-700 s-p-2 s-flex-1">
+                                          <div class="s-label s-text-10px">
+                                            Stake </div>
+                                          <div class="s-content s-font-bold s-leading-tight">
+                                            {{list?.stake}}</div>
+                                        </div>
+                                        <div class="s-item s-profit s-p-2 s-flex-1">
+                                          <div class="s-label s-text-10px">
+                                            Profit / Liabilty </div>
+                                          <div class="s-content s-font-bold s-leading-tight">
+                                            <span>{{list?.pnl}}/
+                                              {{list?.liability}}</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="s-row s-third">
+                                        <div class="s-flex s-justify-between">
+                                          <span>Ref:
+                                            {{list?.id.slice(0-12)}}</span><span>{{list?.betDate}}
+                                            {{list?.betTime}}</span>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
-                                  }
                                 </div>
                               </div>
-                            </div>
-                          </section>
-                        </div>
-                        }
-                        }
-                        <!-- // Patlay Tab -->
-                        @if (activeTab == 'parlay') {
-                        <div [style]="betDetails ? 'display:none' : ''"
+                            </section>
+                          </div>
+                        </ng-container>
+                        <!-- // Parlay Tab -->
+                        <div *ngIf="activeTab == 'parlay'" [style]="betDetails ? 'display:none' : ''"
                           class="exchangeMatches s-bg-pop-title-bg s-text-pop-title-text s-flex-1 s-flex s-flex-col s-overflow-y-scroll s-px-3px s-pb-3px s-rounded-5px">
                           <div id="betsData">
                             <section
                               class="s-list-area s-rounded-t-5px s-bg-white dark:s-bg-black-800 s-flex-1 s-overflow-y-scroll">
-                              @for ( item of parlayActiveLiability ; track $index) {
-                              <section>
+                              <section *ngFor="let item of parlayActiveLiability; let i = index">
                                 <section class="bg-white first:mt-2 mb-2 p-2"><span
                                     class=" flex items-center justify-center rounded-t-lg bg-black-300">
                                     <div class="p-2 flex justify-between leading-tight text-12 w-full">
@@ -261,58 +249,51 @@
                                           <strong>keep</strong> at in-play</span>
                                       </section>
                                     </div>
-                                    @if (openParlayBets==item.parlayId) {
-                                    <section>
-                                      @for ( pd of parlayLiabData ; track $index) {
-                                      <article>
-                                        <span class="flex justify-center items-center bg-black-300">
-                                          <div class="p-2 leading-tight text-10 w-full">
-                                            <span
-                                              class="whitespace-pre-wrap">{{pd.sportId==4?'Cricket':pd.sportId==2?'Tennis':'Soccer'}}</span>
-                                            <i class="icon-triangle-black-600 inline-block"></i>
-                                            <span>
-                                              <strong>{{pd.matchName}}</strong>
-                                            </span>
-                                            <i class="icon-triangle-black-600 inline-block"></i>
-                                            <span>
-                                              <strong>{{pd.selectionName}}</strong>
-                                            </span>
-                                            <i class="icon-triangle-black-600 inline-block"></i>
-                                            <span>{{pd.sourceName}}</span>
-                                          </div>
-                                        </span>
-                                        <section class="p-2 flex justify-between items-center bg-black-100">
-                                          <div class="flex justify-center items-center">
-                                            @if (pd.isActive==false && pd.parlayIswin==true) {
-                                            <div
-                                              class="shrink-0 w-50px h-8 flex mr-2 font-bold justify-center items-center content-between rounded-full text-13 bg-success text-white">
-                                              <div class="bold text-13">Win</div>
+                                    <section *ngIf="openParlayBets==item.parlayId">
+                                      <ng-container *ngFor="let pd of parlayLiabData; let i = index">
+                                        <article>
+                                          <span class="flex justify-center items-center bg-black-300">
+                                            <div class="p-2 leading-tight text-10 w-full">
+                                              <span
+                                                class="whitespace-pre-wrap">{{pd.sportId==4?'Cricket':pd.sportId==2?'Tennis':'Soccer'}}</span>
+                                              <i class="icon-triangle-black-600 inline-block"></i>
+                                              <span>
+                                                <strong>{{pd.matchName}}</strong>
+                                              </span>
+                                              <i class="icon-triangle-black-600 inline-block"></i>
+                                              <span>
+                                                <strong>{{pd.selectionName}}</strong>
+                                              </span>
+                                              <i class="icon-triangle-black-600 inline-block"></i>
+                                              <span>{{pd.sourceName}}</span>
                                             </div>
-                                            }
+                                          </span>
+                                          <section class="p-2 flex justify-between items-center bg-black-100">
+                                            <div class="flex justify-center items-center">
+                                              <div *ngIf="pd.isActive==false && pd.parlayIswin==true"
+                                                class="shrink-0 w-50px h-8 flex mr-2 font-bold justify-center items-center content-between rounded-full text-13 bg-success text-white">
+                                                <div class="bold text-13">Win</div>
+                                              </div>
 
-                                            @if (pd.isActive==false && pd.parlayIswin==false) {
-                                            <div
-                                              class="shrink-0 w-50px h-8 flex mr-2 font-bold justify-center items-center content-between rounded-full text-13 bg-error text-white">
-                                              <div class="bold text-13">Loss</div>
+                                              <div *ngIf="pd.isActive==false && pd.parlayIswin==false"
+                                                class="shrink-0 w-50px h-8 flex mr-2 font-bold justify-center items-center content-between rounded-full text-13 bg-error text-white">
+                                                <div class="bold text-13">Loss</div>
+                                              </div>
+                                              <div *ngIf="pd.isActive==true"
+                                                class="shrink-0 w-50px h-8 flex mr-2 font-bold justify-center items-center content-between bg-black-300 rounded-full text-13"
+                                                style="margin-right: 10px;">
+                                                <div class="dot w-4px mr-1 h-4px bg-black-600 rounded-full"></div>
+                                                <div class="dot w-4px mr-1 h-4px bg-black-600 rounded-full"></div>
+                                                <div class="dot w-4px h-4px bg-black-600 rounded-full"></div>
+                                              </div>
+                                              <div
+                                                class="bg-black-300 text-black text-15 px-3 py-2 rounded-md font-bold">
+                                                {{pd.odds}}</div>
                                             </div>
-                                            }
-                                            @if (pd.isActive==true) {
-                                            <div
-                                              class="shrink-0 w-50px h-8 flex mr-2 font-bold justify-center items-center content-between bg-black-300 rounded-full text-13"
-                                              style="margin-right: 10px;">
-                                              <div class="dot w-4px mr-1 h-4px bg-black-600 rounded-full"></div>
-                                              <div class="dot w-4px mr-1 h-4px bg-black-600 rounded-full"></div>
-                                              <div class="dot w-4px h-4px bg-black-600 rounded-full"></div>
-                                            </div>
-                                            }
-                                            <div class="bg-black-300 text-black text-15 px-3 py-2 rounded-md font-bold">
-                                              {{pd.odds}}</div>
-                                          </div>
-                                        </section>
-                                      </article>
-                                      }
+                                          </section>
+                                        </article>
+                                      </ng-container>
                                     </section>
-                                    }
                                   </section>
                                   <footer>
                                     <div style="background:#000 !important"
@@ -334,11 +315,9 @@
                                   </div>
                                 </section>
                               </section>
-                              }
                             </section>
                           </div>
                         </div>
-                        }
                       </div>
                     </div>
                   </div>

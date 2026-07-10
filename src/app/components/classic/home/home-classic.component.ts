@@ -3,18 +3,17 @@ import { ChangeDetectorRef, Component, ElementRef, HostListener, ViewChild } fro
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
-import { Observable } from 'rxjs';
 import { AuthserviceService } from 'src/app/services/authservice.service';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 import { FingerprintService } from 'src/app/services/fingerprint.service';
 import Swiper from 'swiper';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-home-classic',
+  templateUrl: './home-classic.component.html',
+  styleUrls: ['./home-classic.component.css']
 })
-export class HomeComponent1 {
+export class HomeClassicComponent {
   @ViewChild('promoCarousel', { static: false }) promoCarousel!: CarouselComponent;
   @ViewChild('promo2Carousel', { static: false }) promo2Carousel!: CarouselComponent;
   @ViewChild('marqueeList') marqueeList!: ElementRef;
@@ -224,29 +223,6 @@ export class HomeComponent1 {
     })
   }
 
-  // marqueeText() {
-
-  //   let sectime = this.dataserve.getTimeStamp();
-  //   let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
-
-  //   this.dataserve.verifyUser(data).subscribe((res: any) => {
-  //   }, (error) => {
-  //     if (error.status == 200) {
-  //       this.validateapi = this.dataserve.decryptData(error.error.text);
-  //       if (this.validateapi.data.type == 'success') {
-  //         this.dataserve.getMessageWebsite(data).subscribe((res: any) => {
-  //         }, (error) => {
-  //           if (error.status == 200) {
-  //             let msd = this.dataserve.decryptData(error.error.text);
-  //             this.usermessage = msd.data.data;
-  //           }
-  //         })
-  //       }
-  //     }
-  //   })
-  // }
-
-
   ngAfterViewInit(): void {
     new Swiper('.swiper-container', {
       slidesPerView: 1.4,
@@ -265,50 +241,15 @@ export class HomeComponent1 {
         prevEl: '.custom-swiper-button-prev',
       },
     });
-    let sectime = this.dataserve.getTimeStamp();
-    let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
-
-    // this.dataserve.verifyUser(data).subscribe((res: any) => {
-    // }, (error) => {
-    //   if (error.status == 200) {
-    //     this.validateapi = this.dataserve.decryptData(error.error.text);
-    //     if (this.validateapi.data.type == 'success') {
-    //       this.dataserve.getMessageWebsite(data).subscribe((res: any) => {
-    //       }, (error) => {
-    //         if (error.status == 200) {
-    //           let msd = this.dataserve.decryptData(error.error.text);
-    //           this.usermessage = msd.data.data; 
-    //           // ✅ Wait for Angular to render <li> items
-    //           this.cdr.detectChanges();
-
-    //           setTimeout(() => this.setupMarquee(), 0);
-    //         }
-    //       })
-    //     }
-    //   }
-    // })
-    
-    this.dataserve.changeTheme$.subscribe((res: any) => {
-      let classicTheme = res;
-      
-      if (classicTheme == true) {
-        this.router.navigate(['/classichome'])
-      } else {
-        this.router.navigate(['/home'])
-      }
-    })
-    let theme = localStorage.getItem('clssaicTheme');
-    if (theme == 'true') {
-        this.router.navigate(['/classichome'])
-      } else {
-        this.router.navigate(['/home'])
-      }
+    this.dataserve.getMessageData().subscribe((res: any) => {
+      this.usermessage = res?.data || [];
+      this.cdr.detectChanges();
+      setTimeout(() => this.setupMarquee(), 0);
+    });
   }
 
   setupMarquee() {
     const listEl = this.marqueeList.nativeElement;
-    // console.log(listEl);
-
     // Duplicate content once
     if (listEl.dataset['duplicated'] !== 'true') {
       listEl.innerHTML += listEl.innerHTML;
@@ -379,6 +320,7 @@ export class HomeComponent1 {
     if (token) {
       this.isLoading = true;
       // navigate to exch
+      this.router.navigate(['/exchange/sport'])
     } else {
       this.router.navigate(['/login'])
     }
@@ -671,6 +613,5 @@ export class HomeComponent1 {
       }
     }
   }
-
 
 }

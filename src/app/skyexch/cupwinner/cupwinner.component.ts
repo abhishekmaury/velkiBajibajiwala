@@ -1,23 +1,22 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import  moment from 'moment';
+import * as moment from 'moment';
 import { Subscription } from 'rxjs';
-import { DatahandlerService } from '../../services/datahandler.service';
 import { SocketServiceService } from '../../services/socket-service.service';
 import { PlaceBetCupwinnerComponent } from '../place-bet-cupwinner/place-bet-cupwinner.component';
 import { GetSocketUrlService } from '../../services/get-socket-url.service';
+import { DataHandlerService } from 'src/app/services/datahandler.service';
 
 @Component({
   selector: 'app-cupwinner',
+  standalone: true,
   imports:[CommonModule,PlaceBetCupwinnerComponent],
   templateUrl: './cupwinner.component.html',
   styleUrls: ['./cupwinner.component.css']
 })
 export class CupwinnerComponent {
-
-  @ViewChild('formDataBack') formDataBack: any;
+@ViewChild('formDataBack') formDataBack: any;
   @ViewChild('formDataLay') formDataLay: any;
   @ViewChild('socketEventOdds') formDataEvent: any;
   sub: Subscription = new Subscription();
@@ -31,8 +30,6 @@ export class CupwinnerComponent {
   oddsub: any;
   test: any;
   runnersList: any = [];
-  runnersList2: any = [];
-  runnersList3: any = [];
   matchrunners : any = [];
   matchrunnerssid : any = [];
   selectedRunner: any;
@@ -50,20 +47,15 @@ export class CupwinnerComponent {
   stakeDataLay: any;
   isLogin = false;
   counterBet :number = 0;
-
   show = null
   showOdd = null
   showBackSelect = null
   showLaySelect = null
   classclrforlayBack = ''
   oddPrice : any;
-  closeLTv = true;
-  showhidetoss: boolean = false;
   tosscheck : any;
   eventData2 : any;
   socketEventOdds : any;
-  socketEventMOdds : any;
-  totalMatched : any;
   matchData : any;
   betSuccess : any ;
   betsuccessstatus : boolean = false;
@@ -78,45 +70,42 @@ export class CupwinnerComponent {
   inplaystatus : any;
   getMatcBkData = false;
   oddsPnlArray : any[] = [];
+  tossPnlArray : any = [];
   beforeoddsPnlArray : any[] = [];
   afteroddsPnlArray : any[] = [];
+  beforeoddscal = false;
+  afteroddscal = false;
+  oddpnl1 : any = 0;
+  oddpnl2 : any = 0;
+  oddpnl3 : any = 0;
   backTrue : any;
-  validateapi : any;
-  newbookdata : any;
   oddspermission:any;
   bookList:any =[];
   pnlList:any =[];
   oddtimeout:any;
-  url2:any;
-  urlSafe: SafeResourceUrl | undefined;
-  urlSafe2: SafeResourceUrl | undefined;
-  layBet = true;
-  odlimit = false;
-  collapse1 = false;
-  oddminStake : any;
-  oddmaxStake : any;
-  private mutationObserver!: MutationObserver;
-  private intervalId!: any;
-  themeData:any;
+  odlimit=false;
+  webdata : any;
+  jsonWebdt : any;
 
-  constructor(private dataServe: DatahandlerService, private getSocketPath: GetSocketUrlService, private socket: SocketServiceService,
-              private route: ActivatedRoute, public sanitizer: DomSanitizer,private elRef: ElementRef,private renderer: Renderer2) {
-               }
+  constructor(private dataServe: DataHandlerService, private getSocketPath : GetSocketUrlService, private socket: SocketServiceService,
+              private route: ActivatedRoute,private elRef: ElementRef) {
+             }
 
   async ngOnInit() {
     await this.getSocketPath.getSocketUrl();
-    this.dataServe.sendWebData.subscribe((res: any) => {
-      this.themeData = res?.theme;
-    })
-    let webdata = localStorage.getItem("webData");
-    if (webdata) {
-      let formatedDt = JSON.parse(webdata)
-      this.themeData = formatedDt?.theme;
+    let wData = localStorage.getItem("webData")
+    if (wData) {
+      let d1 = JSON.parse(wData)
+      this.webdata = d1;
+      if (d1?.theme) {
+        this.jsonWebdt = JSON.parse(d1?.theme)
+      }
     }
+
     let token = localStorage.getItem('token')
     if(token){
+      localStorage.setItem('placebetcheck', 'false')
       this.isLogin = true;
-      this.getMatcBkData = true;
       let data = localStorage.getItem('userData')
       if (data) {
         this.loginResData = JSON.parse(data)
@@ -125,34 +114,25 @@ export class CupwinnerComponent {
       this.dataServe.betSuccessMsg.subscribe((res : any)=>{
         this.betSuccess = res;
         this.showBetMsg = true;
-        this.showOdd = null;
-        this.showBackSelect = null;
-        this.showLaySelect = null;
 
-        let sectime = this.dataServe.getTimeStamp();
-        let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
+        if(res[1].sourceBetType === 'Odds'){
+          let type='winner';
 
-        this.dataServe.verifyUser(data).subscribe((res: any) => {
-        }, (error) => {
-          if (error.status == 200) {
+          this.showOdd = null;
+          this.showBackSelect = null;
+          this.showLaySelect = null;
+          this.afteroddscal = false;
 
-            this.validateapi = this.dataServe.decryptData(error.error.text);
-            if (this.validateapi.data.type == 'success') {
-              this.dataServe.getUserActiveFancyBook(this.eventId,data).subscribe((res: any) => {
-              }, (error) => {
-                let res = this.dataServe.decryptData(error.error.text);
-                if(error.status == 200) {
-                  this.betOddResult = res.data;
-                  this.bookgenerate();
-                  this.getMatcBkData = true;
-                } else {
-                  this.getMatcBkData = false;
-                }
-              })
+          this.dataServe.getUserMatchBookData(res[1].eventId, type).subscribe((res : any)=>{
+            if(res){
+              this.betOddResult = res;
+              this.bookgenerate();
+              this.getMatcBkData = true;
+            } else{
+              this.getMatcBkData = false;
             }
-          }
-        })
-
+          })
+        }
 
         this.betsuccessstatus = this.betSuccess[0];
           setTimeout(() => {
@@ -173,96 +153,51 @@ export class CupwinnerComponent {
         this.sportId = paramMap.get('sportId');
         this.eventId = paramMap.get('eventId');
 
-        let sectimed = this.dataServe.getTimeStamp();
-        let mddata = {"eventId":this.eventId,"timeStamp": sectimed.timeStamp, "secretKey": sectimed.secretKey }
-
-        this.dataServe.verifyUser(mddata).subscribe((res: any) => {
-        }, (error) => {
-          if (error.status == 200) {
-            this.validateapi = this.dataServe.decryptData(error.error.text);
-            if (this.validateapi.data.type == 'success') {
-              this.dataServe.getUserMatcheDetail(mddata).subscribe((res: any) => {
-              }, (error) => {
-                if (error.status == 200) {
-                  let res = this.dataServe.decryptData(error.error.text);
-                  this.eventData = res.data;
-                  this.oddspermission=this.eventData?.isOdds;
-
-                  this.inplaystatus = this.inPlayMatches(this.eventData.matchDate);
-                  if(this.sportId!=='4' && this.inplaystatus==false){
-                    this.layBet = false;
-                  }
-
-                  this.matchrunners = JSON.parse(this.eventData.selctionids)
-
-                }
-              })
-            }
-          }
-        })
-
+        localStorage.setItem('selectedEventId', this.eventId)
 
         if(token){
-          let sectime = this.dataServe.getTimeStamp();
-          let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
-
-          this.dataServe.verifyUser(data).subscribe((res: any) => {
-          }, (error) => {
-            if (error.status == 200) {
-              this.validateapi = this.dataServe.decryptData(error.error.text);
-              if (this.validateapi.data.type == 'success') {
-                this.dataServe.getUserActiveFancyBook(this.eventId,data).subscribe((res: any) => {
-                }, (error) => {
-                  if (error.status == 200) {
-                    let res = this.dataServe.decryptData(error.error.text);
-                    this.betOddResult = res.data;
-                    this.getMatcBkData = true;
-
-                    setTimeout(() => {
-                      this.bookgenerate();
-                    }, 1000);
-                  } else {
-                    this.getMatcBkData = false;
-                  }
-                })
-              }
-            }
+          this.dataServe.getEventDataOnLoadnew(this.eventId).subscribe((res: any) => {
+            this.eventData = res;
+            this.oddspermission=this.eventData?.isAutoOdds;
+            this.inplaystatus = this.inPlayMatches(this.eventData?.openDate);
+            this.matchrunners = JSON.parse(this.eventData.selctionids)
           })
 
+          let type='winner';
+          this.dataServe.getUserMatchBookData(this.eventId, type).subscribe((res : any)=>{
+            if(res) {
+              this.betOddResult = res;
+              this.getMatcBkData = true;
+
+              setTimeout(() => {
+                this.bookgenerate();
+              }, 1000);
+            } else {
+              this.getMatcBkData = false;
+            }
+          })
+        } else {
+          this.dataServe.getEventDataOnLoad(this.eventId).subscribe((res: any) => {
+            this.eventData = res;
+            this.oddspermission=this.eventData?.isAutoOdds;
+            this.inplaystatus = this.inPlayMatches(this.eventData?.openDate);
+            this.matchrunners = JSON.parse(this.eventData.selctionids)
+          })
         }
 
-
-        let sectimeds = this.dataServe.getTimeStamp();
-        let mddatas = {"eventId":this.eventId,"timeStamp": sectimeds.timeStamp, "secretKey": sectimeds.secretKey }
-
-        this.dataServe.verifyUser(mddatas).subscribe((res: any) => {
-        }, (error) => {
-          if (error.status == 200) {
-            this.validateapi = this.dataServe.decryptData(error.error.text);
-            if (this.validateapi.data.type == 'success') {
-              this.dataServe.getPreLoadData(mddatas,this.eventId).subscribe((res: any) => {
-              }, (error) => {
-                if (error.status == 200) {
-                  let res1 = this.dataServe.decryptData(error.error.text);
-                  let res = res1.data;
-                  this.eventData2 = res;
-                  if(this.eventData2){
-                    // code for odds start
-                    if(this.eventData2.oddsProvider==='Tiger')
-                    {
-                      this.totalMatched = res.odds[0].totalMatched;
-                      this.runnersList = res.odds[0].runners;
-                    }
-                    else if(this.eventData2.oddsProvider==='Neeraj')
-                    {
-                      this.totalMatched = res.odds[0].totalMatched;
-                      this.runnersList = res.odds[0].runners;
-                    }
-                    // code for odds End
-                  }
-                }
-              })
+        this.dataServe.getEventDataOnLoad2(this.eventId).subscribe((res: any) => {
+          this.eventData2 = res;
+          if(this.eventData2 && this.eventData2!=='OK'){
+            // code for odds start
+            if(this.eventData2.oddsProvider==='Tiger')
+            {
+              this.runnersList = res.odds[0].runners;
             }
+            else if(this.eventData2.oddsProvider==='Neeraj')
+            {
+              this.runnersList = res.odds[0].runners;
+            }
+            // code for odds End
           }
         })
 
@@ -311,54 +246,9 @@ export class CupwinnerComponent {
       }
 
     })
-
-    setTimeout(() => {
-      const dataElement = this.elRef.nativeElement.querySelectorAll('.sparknew');
-      dataElement.forEach((element: HTMLElement, index: number) => {
-        const observer = new MutationObserver((mutations) => {
-          mutations.forEach((mutation) => {
-            if (mutation.type === 'childList' || mutation.type === 'characterData') {
-              this.renderer.addClass(element.parentElement, 'spark');
-              setTimeout(() => {
-                this.renderer.removeClass(element.parentElement, 'spark');
-              }, 500);
-            }
-          });
-        });
-
-        observer.observe(element, {
-          characterData: true,
-          childList: true,
-          subtree: true
-        });
-      });
-
-    }, 3000);
-  }
-
-
-  trackByFn(index: number, item: any): any {
-    return index;
-  }
-
-  openoddslimit(){
-    if(this.odlimit==true){
-      this.odlimit=false;
-    } else {
-      this.odlimit=true;
-    }
-
   }
 
   ngOnDestroy() {
-    if (this.mutationObserver) {
-      this.mutationObserver.disconnect();
-    }
-
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-    }
-
     this.socket.destorySocket(this.eventId);
     if (this.oddsub) {
       this.oddsub.unsubscribe();
@@ -366,7 +256,7 @@ export class CupwinnerComponent {
   }
 
   closeBet(){
-    this.showBetMsg = false
+    this.showBetMsg = false;
   }
 
   cancelBet(){
@@ -383,29 +273,10 @@ export class CupwinnerComponent {
     this.counterBet++
   }
 
-  bookgenerate() {
-    this.pnlList = [];
-    for(var j = 0; j < this.matchrunners.length; j++) {
-      let dt = { [this.matchrunners[j].selectionid] : 0 };
-      this.pnlList.push(dt);
-    }
-
-    for(var i = 0; i < this.betOddResult.length; i++) {
-      for(var j = 0; j < this.matchrunners.length; j++) {
-        let selectionId = this.matchrunners[j].selectionid;
-        let pnlItem = this.pnlList.find((item:any) => item.hasOwnProperty(selectionId));
-        if(selectionId == this.betOddResult[i].runnerId) {
-            pnlItem[selectionId] += this.betOddResult[i].equalGreaterBook;
-        } else {
-            pnlItem[selectionId] += this.betOddResult[i].belowBook;
-        }
-      }
-    }
-  }
-
   openOddBetPlace(i : any, str : any, price : any){
     clearTimeout(this.oddtimeout)
     this.getMatcBkData = true;
+    this.afteroddscal = false;
     this.beforeoddsPnlArray =[0,0,0];
     this.afteroddsPnlArray =[0,0,0];
     this.classclrforlayBack = str
@@ -422,13 +293,13 @@ export class CupwinnerComponent {
       this.showLaySelect = i;
       this.showBackSelect = null;
     }
-    this.oddtimeout = setTimeout(() => {
-      this.showOdd = null
-      this.showBackSelect = null;
-      this.showLaySelect = null;
-    }, 10000);
+    // this.oddtimeout = setTimeout(() => {
+    //   this.afteroddscal = false;
+    //   this.showOdd = null
+    //   this.showBackSelect = null;
+    //   this.showLaySelect = null;
+    // }, 10000);
   }
-
 
   datetimeconvert(data:any){
     const dateTime = new Date(data);
@@ -446,56 +317,160 @@ export class CupwinnerComponent {
     return opendate;
   }
 
-  getOddsCalculation(result : any){
-    if(result==false){
-      this.beforeoddsPnlArray =[0,0,0];
-      this.afteroddsPnlArray =[0,0,0];
-      this.showBackSelect = null;
-      this.showLaySelect = null;
-      this.showOdd = null;
-      if(this.betOddResult != undefined){
-        this.getMatcBkData = true;
-      } else {
-        this.getMatcBkData = false;
+  inPlayMatches(data:any){
+    if(this.sportId==4){
+      let date = this.datetimeconvert(data);
+      let withinHrs = moment(date).subtract(15, 'minutes').format('MM/DD/YYYY HH:mm:ss');
+
+      let date3 = new Date();
+      let currentDate = moment(date3).tz('Asia/Kolkata').format('MM/DD/YYYY HH:mm:ss');
+      if(moment(currentDate).isAfter(withinHrs)){
+        this.inplay = true
+        return this.inplay;
+      }else{
+        this.inplay = false
+        return this.inplay;
       }
     } else {
-      let stake = result[1];
+      let date = this.datetimeconvert(data);
+      let withinHrs = moment(date).format('MM/DD/YYYY HH:mm:ss');
+      let date3 = new Date();
+      let currentDate = moment(date3).tz('Asia/Kolkata').format('MM/DD/YYYY HH:mm:ss');
+      if(moment(currentDate).isAfter(withinHrs) ) {
+        this.inplay = true
+        return this.inplay;
+      }else{
+        this.inplay = false
+        return this.inplay;
+      }
     }
   }
-  toNumber(value: any): number {
-    return typeof value === 'number' ? value : 0;
-  }
-
-  inPlayMatches(data:any){
-    let date = this.datetimeconvert(data);
-    //let withinHrs = moment(date).format('MM/DD/YYYY HH:mm:ss');
-    let withinHrs = moment(date).add(330, 'minutes').format('MM/DD/YYYY HH:mm:ss');
-    let date3 = new Date()
-    let currentDate = moment(date3).tz('Asia/Kolkata').format('MM/DD/YYYY HH:mm:ss');
-    if(moment(currentDate).isAfter(withinHrs) ) {
-      this.inplay = true
-      return this.inplay;
-    }else{
-      this.inplay = false
-      return this.inplay;
-    }
-  }
-
   refreshPage(){
     window.location.reload()
   }
-
   stopTimeout(data:any){
     if(data==true){
       clearTimeout(this.oddtimeout)
     }
   }
 
-  collapseData1(){
-    this.collapse1 = !this.collapse1;
+  bookgenerate() {
+    this.pnlList = [];
+    for(var j = 0; j < this.matchrunners.length; j++) {
+      let dt = { [this.matchrunners[j].selectionid]: 0 };
+      this.pnlList.push(dt);
+    }
+    for(var i = 0; i < this.betOddResult.length; i++) {
+      for(var j = 0; j < this.matchrunners.length; j++) {
+        let selectionId = this.matchrunners[j].selectionid;
+        let pnlItem = this.pnlList.find((item:any) => item.hasOwnProperty(selectionId));
+        if(selectionId == this.betOddResult[i].runs) {
+            pnlItem[selectionId] += this.betOddResult[i].equalGreaterBook;
+        } else {
+            pnlItem[selectionId] += this.betOddResult[i].belowBook;
+        }
+      }
+    }
   }
-  closePopup(){
-    this.collapse1 = false;
+
+  getOddsCalculation(result : any){
+    if(result==false){
+      this.beforeoddsPnlArray =[0,0,0];
+      this.afteroddsPnlArray =[0,0,0];
+      this.beforeoddscal = false;
+      this.afteroddscal = false;
+      this.showBackSelect = null;
+      this.showLaySelect = null;
+      this.showOdd = null;
+      if(this.betOddResult){
+        this.getMatcBkData = true;
+      } else {
+        this.getMatcBkData = false;
+      }
+    } else {
+      let stake = result[1];
+      if(result[0].sourceBetType=='Odds'){
+        if(this.betOddResult?.selection1==result[0].selectionId){
+          this.afteroddscal = true;
+          let respnl = (result[0].odds - 1)*stake;
+          if(result[0].isBack==true){
+            this.oddpnl1 = this.betOddResult.pnl1 + respnl;
+            this.oddpnl2 = this.betOddResult.pnl2 - stake;
+            this.oddpnl3 = this.betOddResult.pnl3 - stake;
+          } else {
+            this.oddpnl1 = this.betOddResult.pnl1 - respnl;
+            this.oddpnl2 = this.betOddResult.pnl2 + stake;
+            this.oddpnl3 = this.betOddResult.pnl3 + stake;
+          }
+          this.afteroddsPnlArray =[ this.oddpnl1, this.oddpnl2, this.oddpnl3];
+        } else if(this.betOddResult?.selection2==result[0].selectionId){
+          this.afteroddscal = true;
+          let respnl = (result[0].odds - 1)*stake;
+          if(result[0].isBack==true){
+            this.oddpnl1 = this.betOddResult.pnl1 - stake;
+            this.oddpnl2 = this.betOddResult.pnl2 + respnl;
+            this.oddpnl3 = this.betOddResult.pnl3 - stake;
+          } else {
+            this.oddpnl1 = this.betOddResult.pnl1 + stake;
+            this.oddpnl2 = this.betOddResult.pnl2 - respnl;
+            this.oddpnl3 = this.betOddResult.pnl3 + stake;
+          }
+          this.afteroddsPnlArray =[ this.oddpnl1, this.oddpnl2, this.oddpnl3];
+        } else if(this.betOddResult?.selection3==result[0].selectionId){
+          this.afteroddscal = true;
+          let respnl = (result[0].odds - 1)*stake;
+          if(result[0].isBack==true){
+            this.oddpnl1 = this.betOddResult.pnl1 - stake;
+            this.oddpnl2 = this.betOddResult.pnl2 - stake;
+            this.oddpnl3 = this.betOddResult.pnl3 + respnl;
+          } else {
+            this.oddpnl1 = this.betOddResult.pnl1 + stake;
+            this.oddpnl2 = this.betOddResult.pnl2 + stake;
+            this.oddpnl3 = this.betOddResult.pnl3 - respnl;
+          }
+          this.afteroddsPnlArray =[ this.oddpnl1, this.oddpnl2, this.oddpnl3];
+        } else {
+          this.getMatcBkData = false;
+          this.afteroddscal = false;
+          this.beforeoddscal = true;
+          if(this.matchrunnerssid[0] == result[0].selectionId){
+            let respnl = (result[0].odds - 1)*stake;
+            if(result[0].isBack==true){
+              this.oddpnl1 = 0 + respnl;
+              this.oddpnl2 = 0 - stake;
+              this.oddpnl3 = 0 - stake;
+            } else {
+              this.oddpnl1 = 0 - respnl;
+              this.oddpnl2 = 0 + stake;
+              this.oddpnl3 = 0 + stake;
+            }
+          } else if(this.matchrunnerssid[1] == result[0].selectionId){
+            let respnl = (result[0].odds - 1)*stake;
+            if(result[0].isBack==true){
+              this.oddpnl1 = 0 - stake;
+              this.oddpnl2 = 0 + respnl;
+              this.oddpnl3 = 0 - stake;
+            } else {
+              this.oddpnl1 = 0 + stake;
+              this.oddpnl2 = 0 - respnl;
+              this.oddpnl3 = 0 + stake;
+            }
+          } else if(this.matchrunnerssid[2] == result[0].selectionId){
+            let respnl = (result[0].odds - 1)*stake;
+            if(result[0].isBack==true){
+              this.oddpnl1 = 0 - stake;
+              this.oddpnl2 = 0 - stake;
+              this.oddpnl3 = 0 + respnl;
+            } else {
+              this.oddpnl1 = 0 + stake;
+              this.oddpnl2 = 0 + stake;
+              this.oddpnl3 = 0 - respnl;
+            }
+          }
+          this.beforeoddsPnlArray =[ this.oddpnl1, this.oddpnl2, this.oddpnl3];
+        }
+      }
+    }
   }
 
   bookfilter(data:any){

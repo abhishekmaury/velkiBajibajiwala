@@ -1,25 +1,85 @@
 import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { Location } from '@angular/common';
+import { DataHandlerService } from 'src/app/services/datahandler.service';
+import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-tandc',
+  standalone: true,
   imports: [],
   templateUrl: './tandc.component.html',
   styleUrls: ['./tandc.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class TandcComponent implements OnInit{
-constructor(private location:Location){}
+export class TandcComponent implements OnInit {
+  domain: any;
+  webdata: any;
+  favicon: any;
+  jsonWeblinksdt: any;
+  loading = true;
+
+  constructor(private location: Location, private dataServe: DataHandlerService, private router: Router, private titleService: Title) { }
+
   @Output() closePopup = new EventEmitter()
-  domainName : any;
+  domainName: any;
   ngOnInit(): void {
     let webdata = localStorage.getItem("webData");
-    if(webdata){
+    if (webdata) {
       let formatedDt = JSON.parse(webdata)
       this.domainName = formatedDt?.domain;
     }
+
+    let data1 = localStorage.getItem('webData');
+    if (data1 == null) {
+      this.dataServe.getWebsiteData().subscribe((res) => {
+        localStorage.setItem("webData", JSON.stringify(res))
+        let d1 = res;
+        this.webdata = d1;
+        this.favicon = this.webdata?.imageData?.headers?.[0]?.favicon;
+        this.jsonWeblinksdt = JSON.parse(this.webdata.links)
+
+        let dt = this.webdata?.imageData?.domain;
+        this.domain = this.getdomain(dt)
+        console.log(this.domain)
+        const titleFromAPI = this.domain;
+        if (titleFromAPI) {
+          this.setTitle(titleFromAPI);
+        }
+
+        this.dataServe.updateFavicon(this.favicon);
+        this.loading = false;
+      })
+    } else {
+      let d1 = JSON.parse(data1);
+      this.webdata = d1;
+      this.favicon = this.webdata?.imageData?.headers?.[0]?.favicon;
+      this.jsonWeblinksdt = JSON.parse(this.webdata.links)
+
+      let dt = this.webdata?.imageData?.domain;
+      this.domain = this.getdomain(dt)
+
+      const titleFromAPI = this.domain;
+      console.log(titleFromAPI)
+      if (titleFromAPI) {
+        this.setTitle(titleFromAPI.toUpperCase());
+      }
+
+      this.dataServe.updateFavicon(this.favicon);
+      this.loading = false;
+    }
   }
-  closePP(){
+  closePP() {
     this.closePopup.emit(false)
     this.location.back()
+  }
+
+  setTitle(newTitle: string): void {
+    this.titleService.setTitle(newTitle);
+  }
+  getdomain(data: string) {
+    const url = new URL(data);
+    const hostnameParts = url.hostname.split('.');
+    const domain = hostnameParts[0];
+    return domain;
   }
 }

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { SportsComponent } from './components/sports/sports.component';
 import { CasinoComponent } from './components/casino/casino.component';
@@ -14,16 +13,16 @@ import { MarketPremiumParlayComponent } from './components/market-premium-parlay
 import { MarketTossParlayComponent } from './components/market-toss-parlay/market-toss-parlay.component';
 import { AnouncementPopupComponent } from './components/anouncement-popup/anouncement-popup.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { HomeComponent1 } from './components/classic/home/home.component';
+import { HomeComponent } from './components/home/home.component';
+import { ClassicThemeGuard } from './guard/classic-theme.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, data: { animation: 'HomePage' } },
-  { path: 'classichome', component: HomeComponent1 },
   { path: 'login', component: LoginComponent, data: { animation: 'LoginPage' } },
   { path: 'sign-up', component: SignUpComponent, data: { animation: 'LoginPage' } },
-  { path: 'sports/:type/:stype', component: SportsComponent, data: { animation: 'SportsPage' } },
-  { path: 'sports/parlay', component: ParlaySportsComponent, data: { animation: 'Parlay' } },
+  { path: 'sports/:type/:stype', component: SportsComponent, data: { animation: 'SportsPage' },canActivate:[ClassicThemeGuard] },
+  { path: 'sports/parlay', component: ParlaySportsComponent, data: { animation: 'Parlay' }, canActivate:[ClassicThemeGuard] },
   { path: 'casino/:gamename/:tabname', component: CasinoComponent, data: { animation: 'CasinoPage' } },
   { path: 'league', component: LeagueComponent, data: { animation: 'LeaguePage' } },
   { path: 'annoucement', component: AnouncementPopupComponent },
@@ -33,7 +32,8 @@ const routes: Routes = [
   { path: 'mob-match-cupwinner/:sportId/:eventId', component: CupwinnerComponent, data: { animation: 'MarketPage' }},
   { path: 'edit/:fname/:lname/:email', component: EditProfileComponent, data: { animation: 'EditPage' }, canActivate: [AuthGuardGuard] },
   { path: 'info', loadChildren : ()=> import('./components/footer-pages/footer-pages.module').then(c =>(c.FooterPagesModule)) },
-  { path: 'menu', loadChildren: () => import('./components/dashboard/dashboard.module').then(m => m.DashboardModule), canActivate : [AuthGuardGuard] }
+  { path: 'menu', loadChildren: () => import('./components/dashboard/dashboard.module').then(m => m.DashboardModule), canActivate : [AuthGuardGuard] },
+  { path: 'exchange', loadChildren: () => import('./skyexch/skyexch.routers').then(c => (c.exchRoute)), canActivate: [AuthGuardGuard,ClassicThemeGuard] },
 ]
 
 

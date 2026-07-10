@@ -1,13 +1,14 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { DatahandlerService } from '../../services/datahandler.service';
 import { CommonModule } from '@angular/common';
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
 import { FingerprintService } from '../../services/fingerprint.service';
+import { DataHandlerService } from 'src/app/services/datahandler.service';
 
 
 @Component({
   selector: 'app-parlay-bet-place',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './parlay-bet-place.component.html',
   styleUrls: ['./parlay-bet-place.component.css']
@@ -34,7 +35,7 @@ export class ParlayBetPlaceComponent {
   fingerData: any;
   MAX_DIGITS = 7;
 
-  constructor(private router: Router, private dataServe: DatahandlerService, private fingerprintService: FingerprintService) { }
+  constructor(private router: Router, private dataServe: DataHandlerService, private fingerprintService: FingerprintService) { }
 
   ngOnInit(): void {
     let btct = localStorage.getItem('parlayOdds')
@@ -53,14 +54,14 @@ export class ParlayBetPlaceComponent {
   }
 
   async getFingerprintHash() {
-    const comps = await this.fingerprintService.collect();
+    // const comps = await this.fingerprintService.collect();
 
-    this.dataServe.getIdentify(comps).subscribe((res: any) => {
-      if (res) {
-        this.fingerprintHash = res?.uuid;
-        this.fingerData = res;
-      }
-    })
+    // this.dataServe.getIdentify(comps).subscribe((res: any) => {
+    //   if (res) {
+    //     this.fingerprintHash = res?.uuid;
+    //     this.fingerData = res;
+    //   }
+    // })
   }
   showNumpad() {
     this.numPadd = true;
@@ -193,47 +194,47 @@ export class ParlayBetPlaceComponent {
     let token = localStorage.getItem('token')
     if (token) {
 
-      if (this.betsList.length >= 2) {
-        this.dataServe.placeParlayBets(this.betsList, this.showStake, this.fingerprintHash, this.deviceId, this.fingerData).subscribe((res: any) => {
-        }, (error: any) => {
-          if (error.status == 200) {
-            let res1 = this.dataServe.decryptData(error.error.text);
-            let res = res1.data
-            if (res.type === 'success') {
-              this.closeBet = false;
-              this.successBet = true;
-              this.cancelBet();
+      // if (this.betsList.length >= 2) {
+      //   this.dataServe.placeParlayBets(this.betsList, this.showStake, this.fingerprintHash, this.deviceId, this.fingerData).subscribe((res: any) => {
+      //   }, (error: any) => {
+      //     if (error.status == 200) {
+      //       let res1 = this.dataServe.decryptData(error.error.text);
+      //       let res = res1.data
+      //       if (res.type === 'success') {
+      //         this.closeBet = false;
+      //         this.successBet = true;
+      //         this.cancelBet();
 
-              localStorage.removeItem('parlayType')
-              localStorage.removeItem('parlayOdds')
-              this.closeDt.emit([])
+      //         localStorage.removeItem('parlayType')
+      //         localStorage.removeItem('parlayOdds')
+      //         this.closeDt.emit([])
 
-              this.dataServe.betSuccessParlay(this.successBet, this.showStake, res)
-            } else {
-              this.closeBet = false;
-              this.loading = false;
-              this.successBet = false;
-              this.cancelBet();
-              this.dataServe.betSuccessParlay(this.successBet, this.showStake, res)
-            }
-          } else {
-            let res1 = this.dataServe.decryptData(error.error.text);
-            let res = res1.data
-            console.log(res);
-            this.cancelBet();
-            this.closeBet = false;
-            this.loading = false;
-            this.successBet = false;
-            this.dataServe.betSuccessParlay(this.successBet, this.showStake, res)
-          }
-        })
-      } else {
-        this.closeBet = false;
-        this.loading = false;
-        this.successBet = false;
-        let ddt = { "type": "error", "message": "Please Select min. 2 Parlay for bet placing", "title": "Oops..." }
-        this.dataServe.betSuccessParlay(this.successBet, this.showStake, ddt)
-      }
+      //         this.dataServe.betSuccessParlay(this.successBet, this.showStake, res)
+      //       } else {
+      //         this.closeBet = false;
+      //         this.loading = false;
+      //         this.successBet = false;
+      //         this.cancelBet();
+      //         this.dataServe.betSuccessParlay(this.successBet, this.showStake, res)
+      //       }
+      //     } else {
+      //       let res1 = this.dataServe.decryptData(error.error.text);
+      //       let res = res1.data
+      //       console.log(res);
+      //       this.cancelBet();
+      //       this.closeBet = false;
+      //       this.loading = false;
+      //       this.successBet = false;
+      //       this.dataServe.betSuccessParlay(this.successBet, this.showStake, res)
+      //     }
+      //   })
+      // } else {
+      //   this.closeBet = false;
+      //   this.loading = false;
+      //   this.successBet = false;
+      //   let ddt = { "type": "error", "message": "Please Select min. 2 Parlay for bet placing", "title": "Oops..." }
+      //   this.dataServe.betSuccessParlay(this.successBet, this.showStake, ddt)
+      // }
     } else {
       this.router.navigate(['/login'])
     }

@@ -108,10 +108,11 @@ export class AppComponent implements OnInit {
     const currentRoute = this.route.url;
     const isBetHistoryRoute = currentRoute.startsWith('/bet-history/') && currentRoute.split('/').length === 3;
     const isMarketRoute = currentRoute.startsWith('/market/');
+    const isExch = currentRoute.startsWith('/exchange/');
     const isMarketPremiumRoute = currentRoute.startsWith('/premium-parlay/');
     const isCupwinner = currentRoute.startsWith('/mob-match-cupwinner/');
     const isProfitRoute = currentRoute.startsWith('/profitLoss/') && currentRoute.split('/').length === 3;
-    return !hiddenRoutes.includes(this.route.url) && !isBetHistoryRoute && !isProfitRoute && !isMarketRoute && !isCupwinner && !isMarketPremiumRoute;
+    return !hiddenRoutes.includes(this.route.url) && !isBetHistoryRoute && !isProfitRoute && !isMarketRoute && !isCupwinner && !isMarketPremiumRoute && !isExch;
   }
 
   hidefoot(): boolean {
@@ -121,6 +122,10 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.dataServe.changeTheme$.subscribe((res: any) => {
+      this.classicTheme = res;
+    })
+
     let data = localStorage.getItem('userData');
     if (data) {
       this.userData = JSON.parse(data)
@@ -279,17 +284,12 @@ export class AppComponent implements OnInit {
 
 
   themeToggleFun() {
+    const isClassicTheme = this.dataServe.isClassicTheme();
+    this.dataServe.getThemeFlag(isClassicTheme);
 
     this.dataServe.changeTheme$.subscribe((res: any) => {
       this.classicTheme = res;
-      
-      if (this.classicTheme == true) {
-        this.router.navigate(['/classichome'])
-      } else {
-        this.router.navigate(['/home'])
-      }
     })
-    let theme = localStorage.getItem('clssaicTheme');
     const classic = document.getElementById('classic-style') as HTMLLinkElement;
     const modern = document.getElementById('newer-style') as HTMLLinkElement;
 
@@ -298,7 +298,7 @@ export class AppComponent implements OnInit {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
 
-    if (theme == 'true') {
+    if (isClassicTheme) {
       this.classicTheme = true;
       link.id = 'classic-style';
       link.href = './assets/css/halfbaji.css?v=1.10';

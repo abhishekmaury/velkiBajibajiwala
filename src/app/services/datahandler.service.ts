@@ -38,7 +38,7 @@ export class DataHandlerService implements OnInit {
   base64EncodedString = environment.base64EncodedString
   decodedKey = CryptoJS.enc.Base64.parse(this.base64EncodedString);
 
-  private themeFlag = new Subject<any>();
+  private themeFlag = new BehaviorSubject<any>(false);
   public changeTheme$ = this.themeFlag.asObservable();
   sendWebData = new Subject<any>()
 
@@ -538,12 +538,12 @@ export class DataHandlerService implements OnInit {
   getOrganizedDataBySeriesname(gameList: any[]): { seriesname: string, matches: any[] }[] {
     const organizedData: { seriesname: string, matches: any[] }[] = [];
     const seriesMap = new Map<string, any[]>();
-
-    gameList.forEach(item => {
-      if (!seriesMap.has(item.seriesname)) {
-        seriesMap.set(item.seriesname, []);
+    
+    gameList?.forEach(item => {
+      if (!seriesMap.has(item?.seriesname)) {
+        seriesMap.set(item?.seriesname, []);
       }
-      seriesMap.get(item.seriesname)?.push(item);
+      seriesMap.get(item?.seriesname)?.push(item);
     });
 
     seriesMap.forEach((matches, seriesname) => {
@@ -679,6 +679,9 @@ export class DataHandlerService implements OnInit {
   }
   getIntercomData() {
     return this.http.post(`${this.baseUrl}/getChatToken`, {})
+  }
+  isClassicTheme():boolean {
+    return JSON.parse(localStorage.getItem('clssaicTheme') || 'false');
   }
   getThemeFlag(data: any) {
     this.themeFlag.next(data)

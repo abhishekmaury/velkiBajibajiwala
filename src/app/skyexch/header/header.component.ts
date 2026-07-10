@@ -1,14 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, HostListener, Input, OnInit, Output, Renderer2, ViewEncapsulation } from '@angular/core'; import { Router, RouterLink } from '@angular/router';
-import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { AuthserviceService } from '../../services/authservice.service';
-import { DatahandlerService } from '../../services/datahandler.service';
 import { FingerprintService } from '../../services/fingerprint.service';
+import { DataHandlerService } from 'src/app/services/datahandler.service';
+import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 
 
 @Component({
   selector: 'app-header',
+  standalone: true,
   imports: [CommonModule, TranslocoModule, RouterLink],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
@@ -93,7 +94,7 @@ export class HeaderComponent implements OnInit {
   fingerData: any;
   disabled = false
 
-  constructor(private authServe: AuthserviceService, private dataserve: DatahandlerService, private router: Router, private Trans: TranslocoService, private fingerprintService: FingerprintService) { }
+  constructor(private authServe: AuthserviceService, private dataserve: DataHandlerService, private router: Router, private Trans: TranslocoService, private fingerprintService: FingerprintService) { }
 
   @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent) {
@@ -114,30 +115,30 @@ export class HeaderComponent implements OnInit {
     let sectime = this.dataserve.getTimeStamp();
     let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey, "walletId": this.selectedWallet }
 
-    this.dataserve.verifyUser(data).subscribe((res: any) => {
-    }, (error) => {
-      if (error.status == 200) {
-        let validateapi = this.dataserve.decryptData(error.error.text);
-        if (validateapi.data.type == 'success') {
-          this.authServe.getUserDetails(data).subscribe((res: any) => {
-          }, (error) => {
-            if (error.status == 200) {
-              let gms = this.dataserve.decryptData(error.error.text);
-              this.selectedWallet = gms?.data?.sportsWallet;
-              this.walletsList = JSON.parse(gms.data.wallets);
-              this.checkSports = this.walletsList?.find((item: { walletId: any; }) => item?.walletId == 1755086397759);
-              this.loggedData.data.user.myBalance = gms?.data.balance
-              this.userBalance = this.loggedData?.data?.user?.myBalance;
-              this.exposure = gms?.data?.liability;
-              localStorage.setItem("userData", JSON.stringify(this.loggedData));
-              localStorage.setItem("walletId", this.selectedWallet);
-              // this.updBal = true;
-            }
-          })
+    // this.dataserve.verifyUser(data).subscribe((res: any) => {
+    // }, (error) => {
+    //   if (error.status == 200) {
+    //     let validateapi = this.dataserve.decryptData(error.error.text);
+    //     if (validateapi.data.type == 'success') {
+    //       this.authServe.getUserDetails(data).subscribe((res: any) => {
+    //       }, (error) => {
+    //         if (error.status == 200) {
+    //           let gms = this.dataserve.decryptData(error.error.text);
+    //           this.selectedWallet = gms?.data?.sportsWallet;
+    //           this.walletsList = JSON.parse(gms.data.wallets);
+    //           this.checkSports = this.walletsList?.find((item: { walletId: any; }) => item?.walletId == 1755086397759);
+    //           this.loggedData.data.user.myBalance = gms?.data.balance
+    //           this.userBalance = this.loggedData?.data?.user?.myBalance;
+    //           this.exposure = gms?.data?.liability;
+    //           localStorage.setItem("userData", JSON.stringify(this.loggedData));
+    //           localStorage.setItem("walletId", this.selectedWallet);
+    //           // this.updBal = true;
+    //         }
+    //       })
 
-        }
-      }
-    })
+    //     }
+    //   }
+    // })
     this.currentUrl = window.location.href;
     this.referralUrl = document.referrer;
     this.identify();
@@ -211,19 +212,19 @@ export class HeaderComponent implements OnInit {
         this.updateBal(this.selectedWallet);
       }
     })
-    this.authServe.loginDt.subscribe((re: any) => {
-      if (re == true) {
-        this.ngOnInit();
-      }
-    })
+    // this.authServe.loginDt.subscribe((re: any) => {
+    //   if (re == true) {
+    //     this.ngOnInit();
+    //   }
+    // })
 
-    this.authServe.logut.subscribe((res: any) => {
-      if (res == 'logout') {
-        this.beforeLogin = true;
-        this.afterLogin = false;
+    // this.authServe.logut.subscribe((res: any) => {
+    //   if (res == 'logout') {
+    //     this.beforeLogin = true;
+    //     this.afterLogin = false;
 
-      }
-    })
+    //   }
+    // })
     this.dataserve.sendWebData.subscribe((res: any) => {
       this.headerLogo = res?.logo
       this.themeData = res?.theme;
@@ -249,39 +250,39 @@ export class HeaderComponent implements OnInit {
     }
   }
   async identify() {
-    const comps = await this.fingerprintService.collect();
-    this.dataserve.getIdentify(comps).subscribe((res: any) => {
-      if (res) {
-        this.fingerprintHash = res?.uuid;
-        this.fingerData = res;
-      }
-    });
+    // const comps = await this.fingerprintService.collect();
+    // this.dataserve.getIdentify(comps).subscribe((res: any) => {
+    //   if (res) {
+    //     this.fingerprintHash = res?.uuid;
+    //     this.fingerData = res;
+    //   }
+    // });
   }
   gefooterLinks() {
     let sectime = this.dataserve.getTimeStamp();
 
     let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
 
-    this.dataserve.verifyUser(data).subscribe((res: any) => {
-    }, (error) => {
-      if (error.status == 200) {
-        this.validateapi = this.dataserve.decryptData(error.error.text);
-        if (this.validateapi.data.type == 'success') {
-          this.dataserve.getWebsiteLinks(data).subscribe((res: any) => {
-          }, (error) => {
-            if (error.status == 200) {
-              let gms = this.dataserve.decryptData(error.error.text);
-              let ddaattaa = JSON.parse(gms?.data.data)
-              this.footerLinkss = ddaattaa
-              // console.log(this.footerLinkss);
+    // this.dataserve.verifyUser(data).subscribe((res: any) => {
+    // }, (error) => {
+    //   if (error.status == 200) {
+    //     this.validateapi = this.dataserve.decryptData(error.error.text);
+    //     if (this.validateapi.data.type == 'success') {
+    //       this.dataserve.getWebsiteLinks(data).subscribe((res: any) => {
+    //       }, (error) => {
+    //         if (error.status == 200) {
+    //           let gms = this.dataserve.decryptData(error.error.text);
+    //           let ddaattaa = JSON.parse(gms?.data.data)
+    //           this.footerLinkss = ddaattaa
+    //           // console.log(this.footerLinkss);
 
-              localStorage.setItem('appLink', this.footerLinkss?.applink)
-            }
-          })
+    //           localStorage.setItem('appLink', this.footerLinkss?.applink)
+    //         }
+    //       })
 
-        }
-      }
-    })
+    //     }
+    //   }
+    // })
   }
   navigateToGames(gmnm: any, tab: any) {
     this.isSidebarOpen = false;
@@ -353,29 +354,29 @@ export class HeaderComponent implements OnInit {
   }
 
   makeUserLogout() {
-    let sectime = this.authServe.getTimeStamp()
-    let ddt = { "fingerprint": this.fingerprintHash, "components": this.fingerData, "pageUrl": this.currentUrl, "refererUrl": this.referralUrl, "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
-    this.dataserve.verifyUser(ddt).subscribe((res: any) => {
-      //console.log('okverify',res);
-    }, (error) => {
-      if (error.status == 200) {
-        this.validateapi = this.dataserve.decryptData(error.error.text);
-        if (this.validateapi.data.type == 'success') {
+    // let sectime = this.authServe.getTimeStamp()
+    // let ddt = { "fingerprint": this.fingerprintHash, "components": this.fingerData, "pageUrl": this.currentUrl, "refererUrl": this.referralUrl, "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
+    // this.dataserve.verifyUser(ddt).subscribe((res: any) => {
+    //   //console.log('okverify',res);
+    // }, (error) => {
+    //   if (error.status == 200) {
+    //     this.validateapi = this.dataserve.decryptData(error.error.text);
+    //     if (this.validateapi.data.type == 'success') {
 
-          this.dataserve.makeUserLogout(ddt).subscribe((res: any) => {
-            // console.log('okGetList', res);
-          }, (error) => {
-            if (error.status == 200) {
-              let gms = this.dataserve.decryptData(error.error.text);
-              localStorage.clear()
-              this.authServe.logout()
-              this.router.navigate(['/home'])
-            }
-          })
+    //       this.dataserve.makeUserLogout(ddt).subscribe((res: any) => {
+    //         // console.log('okGetList', res);
+    //       }, (error) => {
+    //         if (error.status == 200) {
+    //           let gms = this.dataserve.decryptData(error.error.text);
+    //           localStorage.clear()
+    //           this.authServe.logout()
+    //           this.router.navigate(['/home'])
+    //         }
+    //       })
 
-        }
-      }
-    })
+    //     }
+    //   }
+    // })
 
   }
   updateBal(walletId: any) {
@@ -391,79 +392,79 @@ export class HeaderComponent implements OnInit {
 
     let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey, "walletId": walletId }
 
-    this.dataserve.verifyUser(data).subscribe((res: any) => {
-    }, (error) => {
-      if (error.status == 200) {
-        this.validateapi = this.dataserve.decryptData(error.error.text);
-        if (this.validateapi.data.type == 'success') {
-          this.authServe.getUserDetails(data).subscribe((res: any) => {
-          }, (error) => {
-            if (error.status == 200) {
-              let gms = this.dataserve.decryptData(error.error.text);
-              this.loggedData.data.user.myBalance = gms.data.balance
-              this.userBalance = this.loggedData.data.user.myBalance;
-              this.exposure = gms.data.liability;
-              localStorage.setItem("userData", JSON.stringify(this.loggedData))
-              this.updBal = true;
-              this.spinner = false;
+    // this.dataserve.verifyUser(data).subscribe((res: any) => {
+    // }, (error) => {
+    //   if (error.status == 200) {
+    //     this.validateapi = this.dataserve.decryptData(error.error.text);
+    //     if (this.validateapi.data.type == 'success') {
+    //       this.authServe.getUserDetails(data).subscribe((res: any) => {
+    //       }, (error) => {
+    //         if (error.status == 200) {
+    //           let gms = this.dataserve.decryptData(error.error.text);
+    //           this.loggedData.data.user.myBalance = gms.data.balance
+    //           this.userBalance = this.loggedData.data.user.myBalance;
+    //           this.exposure = gms.data.liability;
+    //           localStorage.setItem("userData", JSON.stringify(this.loggedData))
+    //           this.updBal = true;
+    //           this.spinner = false;
 
-              localStorage.setItem("walletId", walletId);
+    //           localStorage.setItem("walletId", walletId);
 
-              this.updateUserMatchWallet(walletId);
-              setTimeout(() => {
-                this.disabled = false;
-              }, 1500);
-            }
-            setTimeout(() => {
-              this.disabled = false;
-            }, 1500);
-          })
+    //           this.updateUserMatchWallet(walletId);
+    //           setTimeout(() => {
+    //             this.disabled = false;
+    //           }, 1500);
+    //         }
+    //         setTimeout(() => {
+    //           this.disabled = false;
+    //         }, 1500);
+    //       })
 
-        }
-      }
-    })
+    //     }
+    //   }
+    // })
   }
 
   openforum() {
     let sectime = this.dataserve.getTimeStamp();
     let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
 
-    this.dataserve.verifyUser(data).subscribe((res: any) => {
-    }, (error) => {
-      if (error.status == 200) {
-        this.validateapi = this.dataserve.decryptData(error.error.text);
-        if (this.validateapi.data.type == 'success') {
-          this.dataserve.LaunchForum(data).subscribe((res: any) => {
-          }, (error) => {
-            if (error.status == 200) {
-              let gms = this.dataserve.decryptData(error.error.text);
-              window.location.href = gms.data.url;
-            }
-          })
-        }
-      }
-    });
+    // this.dataserve.verifyUser(data).subscribe((res: any) => {
+    // }, (error) => {
+    //   if (error.status == 200) {
+    //     this.validateapi = this.dataserve.decryptData(error.error.text);
+    //     if (this.validateapi.data.type == 'success') {
+    //       this.dataserve.LaunchForum(data).subscribe((res: any) => {
+    //       }, (error) => {
+    //         if (error.status == 200) {
+    //           let gms = this.dataserve.decryptData(error.error.text);
+    //           window.location.href = gms.data.url;
+    //         }
+    //       })
+    //     }
+    //   }
+    // });
   }
 
 
   updateUserMatchWallet(walletId: any) {
     let sectime = this.dataserve.getTimeStamp();
     let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey, "walletId": walletId }
-    this.dataserve.verifyUser(data).subscribe((res: any) => {
-    }, (error) => {
-      if (error.status == 200) {
-        this.validateapi = this.dataserve.decryptData(error.error.text);
-        if (this.validateapi.data.type == 'success') {
-          this.dataserve.updateUserMatchWallet(data).subscribe((res: any) => {
-          }, (error) => {
-            let msd = this.dataserve.decryptData(error.error.text);
-            if (error.status == 200) {
+    // this.dataserve.verifyUser(data).subscribe((res: any) => {
+    // }, (error) => {
+    //   if (error.status == 200) {
+    //     this.validateapi = this.dataserve.decryptData(error.error.text);
+    //     if (this.validateapi.data.type == 'success') {
+    //       this.dataserve.updateUserMatchWallet(data).subscribe((res: any) => {
+    //       }, (error) => {
+    //         let msd = this.dataserve.decryptData(error.error.text);
+    //         if (error.status == 200) {
 
-            }
-          })
-        }
-      }
-    })
+    //         }
+    //       })
+    //     }
+    //   }
+    // })
   }
   openSidebar() {
     this.activeMenu = '';
@@ -483,21 +484,21 @@ export class HeaderComponent implements OnInit {
     let sectime = this.dataserve.getTimeStamp();
     let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
 
-    this.dataserve.verifyUser(data).subscribe((res: any) => {
-    }, (error) => {
-      if (error.status == 200) {
-        this.validateapi = this.dataserve.decryptData(error.error.text);
-        if (this.validateapi.data.type == 'success') {
-          this.dataserve.LaunchChatSupport(data).subscribe((res: any) => {
-          }, (error) => {
-            if (error.status == 200) {
-              let gms = this.dataserve.decryptData(error.error.text);
-              window.location.href = gms.data.url;
-            }
-          })
-        }
-      }
-    });
+    // this.dataserve.verifyUser(data).subscribe((res: any) => {
+    // }, (error) => {
+    //   if (error.status == 200) {
+    //     this.validateapi = this.dataserve.decryptData(error.error.text);
+    //     if (this.validateapi.data.type == 'success') {
+    //       this.dataserve.LaunchChatSupport(data).subscribe((res: any) => {
+    //       }, (error) => {
+    //         if (error.status == 200) {
+    //           let gms = this.dataserve.decryptData(error.error.text);
+    //           window.location.href = gms.data.url;
+    //         }
+    //       })
+    //     }
+    //   }
+    // });
   }
 
   navigateToExch() {
@@ -543,34 +544,34 @@ export class HeaderComponent implements OnInit {
     this.data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
     let token = localStorage.getItem('token')
     if (token) {
-      this.dataserve.verifyUser(this.data).subscribe((res: any) => {
-      }, (error) => {
-        if (error.status == 200) {
-          this.validateapi = this.dataserve.decryptData(error.error.text);
-          if (this.validateapi.data.type == 'success') {
-            this.dataserve.LaunchSabagms(this.data, link).subscribe((res: any) => {
-              if (res.gameUrl == '') {
-                this.showErrPopup = true;
-                this.errMsg = 'URL not provided in response data.'
-              } else if (res.type !== 'error') {
-                this.launchUrl = res.gameUrl;
-                window.location.href = this.launchUrl;
-              } else {
-                this.showErrPopup = true;
-                this.errMsg = res.message
-              }
-            }, (error) => {
-              // if(error.status==200){
-              // let gms = this.dataserve.decryptData(error.error.text);
-              // console.log(error)
+      // this.dataserve.verifyUser(this.data).subscribe((res: any) => {
+      // }, (error) => {
+      //   if (error.status == 200) {
+      //     this.validateapi = this.dataserve.decryptData(error.error.text);
+      //     if (this.validateapi.data.type == 'success') {
+      //       this.dataserve.LaunchSabagms(this.data, link).subscribe((res: any) => {
+      //         if (res.gameUrl == '') {
+      //           this.showErrPopup = true;
+      //           this.errMsg = 'URL not provided in response data.'
+      //         } else if (res.type !== 'error') {
+      //           this.launchUrl = res.gameUrl;
+      //           window.location.href = this.launchUrl;
+      //         } else {
+      //           this.showErrPopup = true;
+      //           this.errMsg = res.message
+      //         }
+      //       }, (error) => {
+      //         // if(error.status==200){
+      //         // let gms = this.dataserve.decryptData(error.error.text);
+      //         // console.log(error)
 
 
-              // }
-            })
+      //         // }
+      //       })
 
-          }
-        }
-      })
+      //     }
+      //   }
+      // })
     } else {
       this.router.navigate(['/login'])
     }
@@ -586,29 +587,29 @@ export class HeaderComponent implements OnInit {
     let sectime = this.dataserve.getTimeStamp();
     let data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
 
-    this.dataserve.verifyUser(data).subscribe((res: any) => { }, (err) => {
-      this.dataserve.getParentBlockedList(data).subscribe((res: any) => {
-      }, (error) => {
-        let dt = this.authServe.decryptData(error.error.text);
-        const referralsts = dt.data.find((item: any) => item.sportid == "102");
-        if (referralsts?.status == "OFF") {
-          this.isReferral = false;
-        }
-        const referralsts2 = dt.data.find((item: any) => item.sportid == "103");
-        if (referralsts2?.status == "OFF") {
-          this.isVip = false;
-        }
-        const referralsts1 = dt.data.find((item: any) => item.sportid == "104");
-        if (referralsts1?.status == "OFF") {
-          this.isPromotion = false;
-        }
+    // this.dataserve.verifyUser(data).subscribe((res: any) => { }, (err) => {
+    //   this.dataserve.getParentBlockedList(data).subscribe((res: any) => {
+    //   }, (error) => {
+    //     let dt = this.authServe.decryptData(error.error.text);
+    //     const referralsts = dt.data.find((item: any) => item.sportid == "102");
+    //     if (referralsts?.status == "OFF") {
+    //       this.isReferral = false;
+    //     }
+    //     const referralsts2 = dt.data.find((item: any) => item.sportid == "103");
+    //     if (referralsts2?.status == "OFF") {
+    //       this.isVip = false;
+    //     }
+    //     const referralsts1 = dt.data.find((item: any) => item.sportid == "104");
+    //     if (referralsts1?.status == "OFF") {
+    //       this.isPromotion = false;
+    //     }
 
-        localStorage.setItem("ParentBlocked", JSON.stringify(dt));
-      })
-    })
+    //     localStorage.setItem("ParentBlocked", JSON.stringify(dt));
+    //   })
+    // })
   }
   openPopup() {
-    this.dataserve.openPopup();
+    // this.dataserve.openPopup();
   }
 
   walletOpen() {

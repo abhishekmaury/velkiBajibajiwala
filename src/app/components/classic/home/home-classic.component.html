@@ -70,7 +70,7 @@
                 <div class="top-banner-wrapper custom-banner-wrapper custom-banner-wrapper--shrink unit-1">
                     <div class="banner nextevent-v1 slider slick-initialized slick-slider">
                         <!-- <owl-carousel-o [options]="customOptions" class="mob-banner">
-                         
+
                                 <ng-container *ngFor="let image of banners;">
                             <ng-template carouselSlide>
                                 <img fetchpriority="high" [src]="image" style="width:300px;border-radius:10px;height: 8rem;"
@@ -118,19 +118,44 @@
                 </div>
 
 
-                <div class="announcement-row" bis_skin_checked="1">
-                    <div class="announceImg" style="background: rgb(255, 255, 255);" bis_skin_checked="1"></div>
-                    <div class="marquee-wrapper" bis_skin_checked="1">
-                        <div class="announcement-row" bis_skin_checked="1">
-                            <marquee scrollamount="4">
-                                <ul style="display: flex; width: fit-content;">
-                                    <li class="ng-star-inserted" style="padding-left: 5px;"><span>
-                                            <p><span style="color: rgb(255, 255, 255);">--</span></p>
-                                        </span></li>
-                                </ul>
-                            </marquee>
+                <div class="announcement-row">
+                  <div class="announceImg" [style]="{'background':themeData?.masterTextColor2}"></div>
+                  <div class="marquee-wrapper">
+                    <div class="announcement-row">
+                      <ng-container *ngIf="usermessage && usermessage.length > 0">
+                        <div #marqueeContainer class="marquee-container">
+                          <ul #marqueeList class="marquee-list text-11">
+                              <ng-container *ngFor="let item of usermessage;">
+                                <li class=" mr-5 font-bold cursor-pointer">
+                                  <span>
+                                    <!-- <strong id="loginMarquee"> -->
+                                      <a [style]="{'color':themeData?.masterTextColor2}">
+                                        <span>{{ item.day }} {{ item.month }} {{ item.year }}</span> {{ item.title }} :- {{
+                                        item.message }}
+                                      </a>
+                                    <!-- </strong> -->
+                                  </span>
+                                </li>
+                              </ng-container>
+
+                          </ul>
                         </div>
+                      </ng-container>
+                      <ng-container *ngIf="!usermessage || usermessage.length === 0">
+                        <marquee scrollamount="4">
+                          <ul style="display: flex; width: fit-content;">
+                            <li class="ng-star-inserted" style="padding-left: 5px;">
+                              <span>
+                                <p>
+                                  <span [style]="{'color':themeData?.masterTextColor2}">--</span>
+                                </p>
+                              </span>
+                            </li>
+                          </ul>
+                        </marquee>
+                      </ng-container>
                     </div>
+                  </div>
                 </div>
                 <div id="nav" class="nav category-nav nav-column ng-star-inserted nav-auto overflow-auto"
                     [style]="{'background':themeData?.homenavsvgbgcolor}" [ngClass]="{'fixed-nav': isFixed}">
@@ -704,7 +729,7 @@
                                             </li>
                                             <!-- <li
                                               [style]="{'background':themeData?.masterBgColor6,'border':'.59vw solid'+themeData?.masterBgColor2}"
-                                              class="ng-star-inserted" (click)="navigateToGames('SLOT', 'PGSOFT')"><a tabindex="-1"><img fetchpriority="high" 
+                                              class="ng-star-inserted" (click)="navigateToGames('SLOT', 'PGSOFT')"><a tabindex="-1"><img fetchpriority="high"
                                               loading="lazy" class="ng-star-inserted" alt="PGSOFT"
                                               src="/assets/images/games/CasinoNew/PGSOFT.webp">
                                             </a></li> -->
@@ -773,7 +798,7 @@
                                                 </a></li>
                                             <!-- <li
                                             [style]="{'background':themeData?.masterBgColor6,'border':'.59vw solid'+themeData?.masterBgColor2}"
-                                            class="ng-star-inserted" (click)="navigateToGames('TABLE', 'PGSOFT')"><a tabindex="-1"><img fetchpriority="high" 
+                                            class="ng-star-inserted" (click)="navigateToGames('TABLE', 'PGSOFT')"><a tabindex="-1"><img fetchpriority="high"
                                             loading="lazy" class="ng-star-inserted" alt="PGSOFT"
                                             src="/assets/images/games/CasinoNew/PGSOFT.webp">
                                           </a></li> -->

@@ -10,8 +10,7 @@
       </header>
       <div class="divide-y divide-black-300">
         <div class="item1 max-h-72 overflow-y-scroll" id="parlayBetSlipInnerList">
-          @for ( item of betsList ; track $index) {
-          <div class="w-full mb-2 px-2">
+          <div class="w-full mb-2 px-2" *ngFor="let item of betsList ">
             <div class="px-1 w-full flex items-center bg-black-300 rounded-t-lg">
               <div class="text-black py-2 px-1 w-full text-13">
                 <span
@@ -33,7 +32,6 @@
               <p class="text-10 text-black">{{item.sourceName}}</p>
             </div>
           </div>
-          }
         </div>
 
         <div class="item2 px-2 ">
@@ -52,47 +50,48 @@
                   id="parlayStakeValue">{{showStake > 0 ? showStake : '' }}</span></div>
             </div>
           </div>
-          @if (numPadd) {
-          <div class="mb-2 flex parlayStakeDive">
-            <div class="flex flex-1 justify-between">
-              <button (click)="addStaticStake(30)"
-                class="parlaySumStake btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-80px h-30px border-0"
-                type="button" value="30">
-                +30
-              </button>
-              <button (click)="addStaticStake(100)"
-                class="parlaySumStake btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-80px h-30px border-0"
-                type="button" value="100">
-                +100
-              </button>
-              <button (click)="addStaticStake(300)"
-                class="parlaySumStake btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-80px h-30px border-0"
-                type="button" value="300">
-                +300
-              </button>
-              <button (click)="addStaticStake(500)"
-                class="parlaySumStake btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-80px h-30px border-0"
-                type="button" value="500">
-                +500
-              </button>
+          <ng-container *ngIf="numPadd">
+            <div class="mb-2 flex parlayStakeDive">
+              <div class="flex flex-1 justify-between">
+                <button (click)="addStaticStake(30)"
+                  class="parlaySumStake btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-80px h-30px border-0"
+                  type="button" value="30">
+                  +30
+                </button>
+                <button (click)="addStaticStake(100)"
+                  class="parlaySumStake btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-80px h-30px border-0"
+                  type="button" value="100">
+                  +100
+                </button>
+                <button (click)="addStaticStake(300)"
+                  class="parlaySumStake btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-80px h-30px border-0"
+                  type="button" value="300">
+                  +300
+                </button>
+                <button (click)="addStaticStake(500)"
+                  class="parlaySumStake btn-normal p-3 font-bold rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed w-80px h-30px border-0"
+                  type="button" value="500">
+                  +500
+                </button>
+              </div>
             </div>
-          </div>
-          <div class="flex parlayStakeDive">
-            <div class="flex flex-1 flex-wrap">
-              @for ( num of numPadArr ; track $index) {
-              <button
-                class="w-2/12 h-40px flex justify-center items-center font-normal border border-white bg-black-100 rounded parlaySstake color-black"
-                type="button" value="1" (click)="addStaticVal1(num, true)">{{num}}</button>
-              }
-              <button
-                class="icon-backspace w-2/12 h-40px flex justify-center items-center font-normal border border-white bg-black-100 rounded clearStake"
-                (click)="deleteLastNum()"></button>
+            <div class="flex parlayStakeDive">
+              <div class="flex flex-1 flex-wrap">
+                <ng-container *ngFor="let num of numPadArr">
+                  <button
+                    class="w-2/12 h-40px flex justify-center items-center font-normal border border-white bg-black-100 rounded parlaySstake color-black"
+                    type="button" value="1" (click)="addStaticVal1(num, true)">{{num}}</button>
+                </ng-container>
+                <button
+                  class="icon-backspace w-2/12 h-40px flex justify-center items-center font-normal border border-white bg-black-100 rounded clearStake"
+                  (click)="deleteLastNum()"></button>
+              </div>
+              <button type="button"
+                class="flex justify-center items-center w-20 text-base font-bold border-solid border-l border-white rounded bg-black-100 color-black"
+                id="stakeOk" (click)="hideNumPad()"> OK </button>
             </div>
-            <button type="button"
-              class="flex justify-center items-center w-20 text-base font-bold border-solid border-l border-white rounded bg-black-100 color-black"
-              id="stakeOk" (click)="hideNumPad()"> OK </button>
-          </div>
-          }
+          </ng-container>
+
         </div>
         <div class="item3 px-2 py-3 flex justify-between items-center">
           <div class="py-1">
@@ -112,11 +111,10 @@
           </button>
         </div>
       </div>
-      @if (loading) {
-      <div
+      <div *ngIf="loading"
         class="loading absolute z-10 top-0 left-0 w-full h-full flex items-center justify-center bg-black-800 bg-opacity-87 rounded-t-xl">
-        <img fetchpriority="high"  width="147" height="124" src="../../../assets/images/loading-bet.webp" alt=""></div>
-      }
+        <img fetchpriority="high" width="147" height="124" src="../../../assets/images/loading-bet.webp" alt="">
+      </div>
     </div>
   </div>
 </div>
