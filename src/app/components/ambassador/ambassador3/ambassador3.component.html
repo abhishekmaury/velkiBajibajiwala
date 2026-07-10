@@ -204,36 +204,50 @@
         </div>
     </section>
     <div class="my-gallery" style="padding: 0 20px 60px;">
-    <owl-carousel-o [options]="customOptions">
-        <img fetchpriority="high"  src="/assets/BJ/assets/amy-jackson/src/img/gallery/IMG 42.png" alt="Gallery image 1">
-        <ng-template carouselSlide>
-            <img fetchpriority="high"  src="/assets/BJ/assets/amy-jackson/src/img/gallery/IMG 43.png" alt="Gallery image 1">
-      </ng-template>  
-      <ng-template carouselSlide>
-          <img fetchpriority="high"  src="/assets/BJ/assets/amy-jackson/src/img/gallery/IMG 44.png" alt="Gallery image 1">
-      </ng-template>  
-      <ng-template carouselSlide>
-          <img fetchpriority="high"  src="/assets/BJ/assets/amy-jackson/src/img/gallery/IMG 45.png" alt="Gallery image 1">
-      </ng-template>  
-      <ng-template carouselSlide>
-        <img fetchpriority="high"  src="/assets/BJ/assets/amy-jackson/src/img/gallery/IMG 46.png"  alt="Gallery image 1" >
-      </ng-template>  
-      <ng-template carouselSlide>
-        <img fetchpriority="high"  src="/assets/BJ/assets/amy-jackson/src/img/gallery/Rectangle 7532.png" alt="Gallery image 1" >
-      </ng-template>  
-      <ng-template carouselSlide>
-        <img fetchpriority="high"  src="/assets/BJ/assets/amy-jackson/src/img/gallery/Rectangle 7533.png" alt="Gallery image 1" >
-      </ng-template>  
-      <ng-template carouselSlide>
-        <img fetchpriority="high"  src="/assets/BJ/assets/amy-jackson/src/img/gallery/Rectangle 7534.png" alt="Gallery image 1" >
-      </ng-template>  
-      <ng-template carouselSlide>
-        <img fetchpriority="high"  src="/assets/BJ/assets/amy-jackson/src/img/gallery/Rectangle 7535.png" alt="Gallery image 1" >
-      </ng-template>  
-      <ng-template carouselSlide>
-        <img fetchpriority="high"  src="/assets/BJ/assets/amy-jackson/src/img/gallery/Rectangle 7536.png" alt="Gallery image 1" >
-      </ng-template>  
-    </owl-carousel-o>
+      <div class="swiper-container swiper-initialized swiper-horizontal swiper-backface-hidden">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" style="width: 480px;">
+            <img fetchpriority="high" src="/assets/BJ/assets/amy-jackson/src/img/gallery/IMG 42.png" alt="Gallery image 1">
+          </div>
+
+          <div class="swiper-slide" style="width: 480px;">
+            <img fetchpriority="high" src="/assets/BJ/assets/amy-jackson/src/img/gallery/IMG 43.png" alt="Gallery image 1">
+          </div>
+
+          <div class="swiper-slide" style="width: 480px;">
+            <img fetchpriority="high" src="/assets/BJ/assets/amy-jackson/src/img/gallery/IMG 44.png" alt="Gallery image 1">
+          </div>
+
+          <div class="swiper-slide" style="width: 480px;">
+            <img fetchpriority="high" src="/assets/BJ/assets/amy-jackson/src/img/gallery/IMG 45.png" alt="Gallery image 1">
+          </div>
+
+          <div class="swiper-slide" style="width: 480px;">
+            <img fetchpriority="high" src="/assets/BJ/assets/amy-jackson/src/img/gallery/IMG 46.png" alt="Gallery image 1">
+          </div>
+
+          <div class="swiper-slide" style="width: 480px;">
+            <img fetchpriority="high" src="/assets/BJ/assets/amy-jackson/src/img/gallery/Rectangle 7532.png" alt="Gallery image 1">
+          </div>
+
+          <div class="swiper-slide" style="width: 480px;">
+            <img fetchpriority="high" src="/assets/BJ/assets/amy-jackson/src/img/gallery/Rectangle 7533.png" alt="Gallery image 1">
+          </div>
+
+          <div class="swiper-slide" style="width: 480px;">
+            <img fetchpriority="high" src="/assets/BJ/assets/amy-jackson/src/img/gallery/Rectangle 7534.png" alt="Gallery image 1">
+          </div>
+
+          <div class="swiper-slide" style="width: 480px;">
+            <img fetchpriority="high" src="/assets/BJ/assets/amy-jackson/src/img/gallery/Rectangle 7535.png" alt="Gallery image 1">
+          </div>
+
+          <div class="swiper-slide" style="width: 480px;">
+            <img fetchpriority="high" src="/assets/BJ/assets/amy-jackson/src/img/gallery/Rectangle 7536.png" alt="Gallery image 1">
+          </div>
+
+        </div>
+  </div>
 </div>
     <section class="ambassador-video">
         <div class="container">
@@ -248,3 +262,5 @@
 
 
 </body>
+
+<app-main-footer></app-main-footer>

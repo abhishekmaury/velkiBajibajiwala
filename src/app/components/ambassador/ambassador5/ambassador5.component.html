@@ -293,34 +293,47 @@
         </div>
     </section>
     <div class="my-gallery" style="padding: 0 20px 60px;">
-        <owl-carousel-o [options]="customOptions">
-            <img fetchpriority="high"  src="/assets/BJ/assets/wasim-akram/src/img/GALLERY/IMG 1.png" alt="Gallery image 1">
-            <ng-template carouselSlide>
-                <img fetchpriority="high"  src="/assets/BJ/assets/wasim-akram/src/img/GALLERY/IMG 3.png" alt="Gallery image 1">
-          </ng-template>  
-          <ng-template carouselSlide>
-              <img fetchpriority="high"  src="/assets/BJ/assets/wasim-akram/src/img/GALLERY/IMG 4.png" alt="Gallery image 1">
-          </ng-template>  
-          <ng-template carouselSlide>
-              <img fetchpriority="high"  src="/assets/BJ/assets/wasim-akram/src/img/GALLERY/IMG 21.png" alt="Gallery image 1">
-          </ng-template>  
-          <ng-template carouselSlide>
-            <img fetchpriority="high"  src="/assets/BJ/assets/wasim-akram/src/img/GALLERY/IMG 5.png"  alt="Gallery image 1" >
-          </ng-template>  
-          <ng-template carouselSlide>
-            <img fetchpriority="high"  src="/assets/BJ/assets/wasim-akram/src/img/GALLERY/IMG 47.png" alt="Gallery image 1" >
-          </ng-template>  
-          <ng-template carouselSlide>
-            <img fetchpriority="high"  src="/assets/BJ/assets/wasim-akram/src/img/GALLERY/IMG 48.png" alt="Gallery image 1" >
-          </ng-template>  
-         
-          <ng-template carouselSlide>
-            <img fetchpriority="high"  src="/assets/BJ/assets/wasim-akram/src/img/GALLERY/IMG 50.png" alt="Gallery image 1" >
-          </ng-template>  
-          <ng-template carouselSlide>
-            <img fetchpriority="high"  src="/assets/BJ/assets/wasim-akram/src/img/GALLERY/IMG 51.png" alt="Gallery image 1" >
-          </ng-template>  
-        </owl-carousel-o>
+        <div class="swiper-container swiper-initialized swiper-horizontal swiper-backface-hidden">
+  <div class="swiper-wrapper">
+
+    <div class="swiper-slide" style="width: 480px;">
+      <img fetchpriority="high" src="/assets/BJ/assets/wasim-akram/src/img/GALLERY/IMG 1.png" alt="Gallery image 1">
+    </div>
+
+    <div class="swiper-slide" style="width: 480px;">
+      <img fetchpriority="high" src="/assets/BJ/assets/wasim-akram/src/img/GALLERY/IMG 3.png" alt="Gallery image 1">
+    </div>
+
+    <div class="swiper-slide" style="width: 480px;">
+      <img fetchpriority="high" src="/assets/BJ/assets/wasim-akram/src/img/GALLERY/IMG 4.png" alt="Gallery image 1">
+    </div>
+
+    <div class="swiper-slide" style="width: 480px;">
+      <img fetchpriority="high" src="/assets/BJ/assets/wasim-akram/src/img/GALLERY/IMG 21.png" alt="Gallery image 1">
+    </div>
+
+    <div class="swiper-slide" style="width: 480px;">
+      <img fetchpriority="high" src="/assets/BJ/assets/wasim-akram/src/img/GALLERY/IMG 5.png" alt="Gallery image 1">
+    </div>
+
+    <div class="swiper-slide" style="width: 480px;">
+      <img fetchpriority="high" src="/assets/BJ/assets/wasim-akram/src/img/GALLERY/IMG 47.png" alt="Gallery image 1">
+    </div>
+
+    <div class="swiper-slide" style="width: 480px;">
+      <img fetchpriority="high" src="/assets/BJ/assets/wasim-akram/src/img/GALLERY/IMG 48.png" alt="Gallery image 1">
+    </div>
+
+    <div class="swiper-slide" style="width: 480px;">
+      <img fetchpriority="high" src="/assets/BJ/assets/wasim-akram/src/img/GALLERY/IMG 50.png" alt="Gallery image 1">
+    </div>
+
+    <div class="swiper-slide" style="width: 480px;">
+      <img fetchpriority="high" src="/assets/BJ/assets/wasim-akram/src/img/GALLERY/IMG 51.png" alt="Gallery image 1">
+    </div>
+
+  </div>
+</div>
     </div>
     <section class="ambassador-video">
         <div class="container">
@@ -346,3 +359,5 @@
 
 
 </body>
+
+<app-main-footer></app-main-footer>

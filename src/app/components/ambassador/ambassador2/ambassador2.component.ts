@@ -1,37 +1,34 @@
 
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import Swiper from 'swiper';
+import { MainFooterComponent } from '../../main-footer/main-footer.component';
 
 @Component({
   selector: 'app-ambassador2',
-  imports: [CarouselModule, RouterLink],
+  imports: [RouterLink,MainFooterComponent],
   templateUrl: './ambassador2.component.html',
   styleUrls: ['./ambassador2.component.css'],
   standalone:true
 })
 export class Ambassador2Component {
-
-  customOptions: OwlOptions = {
-    loop: true,
-    center: true,
-    margin: 30,
-    mouseDrag: true,
-    touchDrag: true,
-    dots: false,
-    autoplay: true,
-    autoplayTimeout: 3000,
-    responsive: {
-      0: {
-        items: 3
+  ngAfterViewInit() {
+    new Swiper('.swiper-container', {
+      slidesPerView: 2.84,
+      centeredSlides: true,
+      spaceBetween: 10,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
       },
-      600: {
-        items: 3
+      loop: true,
+      pagination: {
+        clickable: true,
       },
-      1000: {
-        items: 3
-      }
-    }
+      navigation: {
+        nextEl: '.custom-swiper-button-next',
+        prevEl: '.custom-swiper-button-prev',
+      },
+    });
   }
-
 }

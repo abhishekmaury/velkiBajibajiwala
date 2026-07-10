@@ -80,7 +80,7 @@
   <section class="ambassador-gallery">
       <div class="container-fluid">
           <h3>Gallery</h3>
-          
+
           <!-- <div class="gallery-container">
               <div class="gallery-images" style="touch-action: pan-y; cursor: grab; user-select: none;">
                   <div class="ambassador-image">
@@ -134,40 +134,41 @@
 
       </div>
   </section>
-<div class="my-gallery" style="padding: 0 20px 60px;">
-    <owl-carousel-o [options]="customOptions1">
-        <img fetchpriority="high"  src="/assets/BJ/assets/bologna-fc/src/img/gallery/IMG 69.png" alt="Gallery image 1">
-        <ng-template carouselSlide>
-            <img fetchpriority="high"  src="/assets/BJ/assets/bologna-fc/src/img/gallery/IMG 68.png" alt="Gallery image 1">
-      </ng-template>  
-      <ng-template carouselSlide>
+  <div class="my-gallery" style="padding: 0 20px 60px;">
+    <div class="swiper-container swiper-initialized swiper-horizontal swiper-backface-hidden">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" style="width: 480px;">
+          <img fetchpriority="high"  src="/assets/BJ/assets/bologna-fc/src/img/gallery/IMG 69.png" alt="Gallery image 1">
+        </div>
+        <div class="swiper-slide" style="width: 480px;">
+          <img fetchpriority="high"  src="/assets/BJ/assets/bologna-fc/src/img/gallery/IMG 68.png" alt="Gallery image 1">
+        </div>
+        <div class="swiper-slide" style="width: 480px;">
           <img fetchpriority="high"  src="/assets/BJ/assets/bologna-fc/src/img/gallery/IMG 67.png" alt="Gallery image 1">
-      </ng-template>  
-      <ng-template carouselSlide>
+        </div>
+        <div class="swiper-slide" style="width: 480px;">
           <img fetchpriority="high"  src="/assets/BJ/assets/bologna-fc/src/img/gallery/IMG 5.png" alt="Gallery image 1">
-      </ng-template>  
-      <ng-template carouselSlide>
-        <img fetchpriority="high"  src="/assets/BJ/assets/bologna-fc/src/img/gallery/IMG 66.png" alt="Gallery image 1" >
-      </ng-template>  
-      <ng-template carouselSlide>
-        <img fetchpriority="high"  src="/assets/BJ/assets/bologna-fc/src/img/gallery/IMG 4.png" alt="Gallery image 1" >
-      </ng-template>  
-      <ng-template carouselSlide>
-        <img fetchpriority="high"  src="/assets/BJ/assets/bologna-fc/src/img/gallery/IMG 3.png" alt="Gallery image 1" >
-      </ng-template>  
-      <ng-template carouselSlide>
-        <img fetchpriority="high"  src="/assets/BJ/assets/bologna-fc/src/img/gallery/IMG 3-1.png" alt="Gallery image 1" >
-      </ng-template>  
-      <ng-template carouselSlide>
-        <img fetchpriority="high"  src="/assets/BJ/assets/bologna-fc/src/img/gallery/IMG 1.png" alt="Gallery image 1" >
-      </ng-template>  
-    </owl-carousel-o>
-</div>
-
-  
-
-
+        </div>
+        <div class="swiper-slide" style="width: 480px;">
+          <img fetchpriority="high"  src="/assets/BJ/assets/bologna-fc/src/img/gallery/IMG 66.png" alt="Gallery image 1" >
+        </div>
+        <div class="swiper-slide" style="width: 480px;">
+          <img fetchpriority="high"  src="/assets/BJ/assets/bologna-fc/src/img/gallery/IMG 4.png" alt="Gallery image 1" >
+        </div>
+        <div class="swiper-slide" style="width: 480px;">
+          <img fetchpriority="high"  src="/assets/BJ/assets/bologna-fc/src/img/gallery/IMG 3.png" alt="Gallery image 1" >
+        </div>
+        <div class="swiper-slide" style="width: 480px;">
+          <img fetchpriority="high"  src="/assets/BJ/assets/bologna-fc/src/img/gallery/IMG 3-1.png" alt="Gallery image 1" >
+        </div>
+        <div class="swiper-slide" style="width: 480px;">
+          <img fetchpriority="high"  src="/assets/BJ/assets/bologna-fc/src/img/gallery/IMG 1.png" alt="Gallery image 1" >
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 
 <!-- <app-footer></app-footer> -->
+<app-main-footer></app-main-footer>

@@ -145,24 +145,29 @@
   </section>
 
   <div class="my-gallery" style="padding: 0 20px 60px;">
-    <owl-carousel-o [options]="customOptions">
-        <img fetchpriority="high"  src="/assets/BJ/assets/deccan-gladiators/src/img/gallery/IMG 81.png" alt="Gallery image 1">
-        <ng-template carouselSlide>
-            <img fetchpriority="high"  src="/assets/BJ/assets/deccan-gladiators/src/img/gallery/IMG 1.png" alt="Gallery image 1">
-      </ng-template>  
-  
-      <ng-template carouselSlide>
-        <img fetchpriority="high"  src="/assets/BJ/assets/deccan-gladiators/src/img/gallery/IMG 5.png" alt="Gallery image 1" >
-      </ng-template>  
-   
-      <ng-template carouselSlide>
-        <img fetchpriority="high"  src="/assets/BJ/assets/deccan-gladiators/src/img/gallery/IMG 80.png" alt="Gallery image 1" >
-      </ng-template>  
-      <ng-template carouselSlide>
-        <img fetchpriority="high"  src="/assets/BJ/assets/deccan-gladiators/src/img/gallery/IMG 79.png" alt="Gallery image 1" >
-      </ng-template>  
-    </owl-carousel-o>
-</div>
+    <div class="swiper-container swiper-initialized swiper-horizontal swiper-backface-hidden">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" style="width: 480px;">
+          <img fetchpriority="high"  src="/assets/BJ/assets/deccan-gladiators/src/img/gallery/IMG 81.png" alt="Gallery image 1">
+        </div>
+
+        <div class="swiper-slide" style="width: 480px;">
+          <img fetchpriority="high"  src="/assets/BJ/assets/deccan-gladiators/src/img/gallery/IMG 1.png" alt="Gallery image 1">
+        </div>
+
+        <div class="swiper-slide" style="width: 480px;">
+          <img fetchpriority="high"  src="/assets/BJ/assets/deccan-gladiators/src/img/gallery/IMG 5.png" alt="Gallery image 1">
+        </div>
+        <div class="swiper-slide" style="width: 480px;">
+          <img fetchpriority="high"  src="/assets/BJ/assets/deccan-gladiators/src/img/gallery/IMG 80.png" alt="Gallery image 1">
+        </div>
+        <div class="swiper-slide" style="width: 480px;">
+          <img fetchpriority="high"  src="/assets/BJ/assets/deccan-gladiators/src/img/gallery/IMG 79.png" alt="Gallery image 1" >
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
-<!-- <app-main-footer></app-main-footer> -->
+
+<app-main-footer></app-main-footer>

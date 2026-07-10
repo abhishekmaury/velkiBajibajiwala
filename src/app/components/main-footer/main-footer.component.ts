@@ -1,11 +1,15 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { TranslocoPipe } from '@ngneat/transloco';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 
 @Component({
   selector: 'app-main-footer',
   templateUrl: './main-footer.component.html',
-  styleUrls: ['./main-footer.component.css']
+  styleUrls: ['./main-footer.component.css'],
+  imports:[TranslocoPipe,CommonModule,RouterLink],
+  standalone:true,
 })
 export class MainFooterComponent implements OnInit{
   webdata : any;
