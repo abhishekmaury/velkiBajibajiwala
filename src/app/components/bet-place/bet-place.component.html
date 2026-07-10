@@ -1,5 +1,5 @@
 <div data-v-1c2d4b42="" *ngIf="!stakesetting">
-
+<div *ngIf="closeBet" class="modal-backdrop fade show" ></div>
 <div data-v-1c2d4b42="" class="absolute top-0 w-full h-full z-50" [@slideInOut] (click)="closePopup()"></div>
 <div #betComponent *ngIf="closeBet" class="bet-slip fixed z-50 container bottom-0 shadow-top rounded-t-xl" [@slideInOut]
   (click)="$event.stopPropagation()">

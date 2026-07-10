@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 import { HandlerService } from 'src/app/services/handler.service';
@@ -10,7 +10,8 @@ import { HandlerService } from 'src/app/services/handler.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './place-bet-cupwinner.component.html',
-  styleUrls: ['./place-bet-cupwinner.component.css']
+  styleUrls: ['./place-bet-cupwinner.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class PlaceBetCupwinnerComponent {
   @Input() clsClr: any
@@ -43,7 +44,7 @@ export class PlaceBetCupwinnerComponent {
   jsonWebdt: any;
 
   stake = { 'stake1': '10', 'stake2': '20', 'stake3': '50', 'stake4': '100', 'stake5': '500', 'stake6': '1000' };
-  numPadArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '00', '.']
+  numPadArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '00']
   enableBtn = false
   stakeNumPad = [1, 2, 3, 4, 5, 6, 7, 8, 9, '', 0,]
   stakesetting = false;

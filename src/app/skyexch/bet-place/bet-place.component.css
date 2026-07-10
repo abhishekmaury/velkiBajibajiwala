@@ -214,3 +214,24 @@ height: 100%;
 .disable{
   pointer-events: none;
 }
+.wrap{
+  z-index: 9999;
+}
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-backdrop.fade {
+  opacity: 0;
+  transition: opacity 0.15s linear;
+}
+
+.modal-backdrop.show1 {
+  opacity: 1;
+  display: block !important;
+}
