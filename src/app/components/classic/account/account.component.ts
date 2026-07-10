@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { TranslocoModule } from '@ngneat/transloco';
+import { AuthserviceService } from 'src/app/services/authservice.service';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 
 @Component({
@@ -19,7 +20,8 @@ export class AccountComponent {
   showamount = true;
   isRefreshing = false
   refreshBtn = false
-  constructor(
+  loggedIn: boolean = false;
+  constructor(private authService: AuthserviceService,
     private dataServe: DataHandlerService) { }
 
   ngOnInit(): void {
@@ -51,5 +53,11 @@ export class AccountComponent {
       this.isRefreshing = false;
     });
   }
+  logout() {
+    this.authService.sendLoggedData1.subscribe((res: any) => {
+      this.loggedIn = res;
+    })
 
+    this.authService.logout()
+  }
 }
