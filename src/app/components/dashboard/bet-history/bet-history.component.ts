@@ -41,10 +41,14 @@ export class BetHistoryComponent {
   showCalendar = false;
   resultType = 'Settled'
   isRefreshing = false;
+  isClassicTheme = false;
 
   constructor(private location: Location, private dataServe: DataHandlerService, private activeRoute: ActivatedRoute, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
+     this.dataServe.changeTheme$.subscribe({
+      next:(f) => this.isClassicTheme = f,
+    })
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 

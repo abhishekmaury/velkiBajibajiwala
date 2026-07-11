@@ -61,9 +61,12 @@
     --tw-bg-opacity: 1;
     background-color: #202020;
   }
-
+  input{
+  -webkit-tap-highlight-color: #292929;
+  }
   .bg-white,
-  input {
+  input, label, label::before,.effect-20:focus~label.with-icon[data-v-64dd3bfe]:before,.effect-20:focus~label.with-prefix-text[data-v-64dd3bfe]:before,.has-content.effect-20~label.with-icon[data-v-64dd3bfe]:before,.has-content.effect-20~label.with-prefix-text[data-v-64dd3bfe]:before {
+
     --tw-bg-opacity: 1;
     background-color: #292929;
   }
@@ -110,4 +113,14 @@
   .text-button-normal {
     color: #fff;
   }
+}
+@media screen and (min-width : 768px) {
+  .classic {
+  background: rgb(32, 32, 32);
+
+  header {
+    position: static !important;
+    margin-block-start: 62.4px;
+  }
+}
 }

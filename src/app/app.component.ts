@@ -95,7 +95,7 @@ export class AppComponent implements OnInit {
     if (currentUrl.startsWith('/edit')) {
       return false;
     }
-    const hiddenRoutes = ['/login', '/edit', '/change-password', '/annoucement', '/edit/user1/Test/user1@gmail.com', '/sign-up'];
+    const hiddenRoutes = ['/login', '/edit', '/menu/change-password', '/annoucement', '/edit/user1/Test/user1@gmail.com', '/sign-up'];
     return !hiddenRoutes.includes(this.route.url)
   }
 

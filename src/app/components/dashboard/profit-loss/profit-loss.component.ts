@@ -46,11 +46,15 @@ export class ProfitLossComponent {
   selectedStartDate: Date | null = null;
   selectedEndDate: Date | null = null;
   showCalendar = false;
+  isClassicTheme = false;
   constructor(private dataServe: DataHandlerService, private activeRoute: ActivatedRoute, private location: Location,
     private datePipe: DatePipe
   ) { }
 
   ngOnInit(): void {
+     this.dataServe.changeTheme$.subscribe({
+      next:(f) => this.isClassicTheme = f,
+    })
    const today = new Date();
     today.setHours(0, 0, 0, 0);
 

@@ -1,4 +1,4 @@
-<div data-v-f43ca18c="" class=" relative">
+<div data-v-f43ca18c="" class=" relative" [class.classic]="isClassicTheme">
   <div data-v-f00b9242="" style="--0f2e548c: 67px; --88bd2d54: translateX(8px);">
     <header data-v-f00b9242=""
       class="h-12 p-3 bg-secondary text-global-font-on-dark text-14 flex items-center justify-center">Bets History<div
@@ -99,17 +99,17 @@
               {{ selectedStartDate ? (selectedStartDate | date:'dd/MM/yyyy') : 'Start' }} -
               {{ selectedEndDate ? (selectedEndDate | date:'dd/MM/yyyy') : 'End' }}</span>
           </button>
-          <button [style.backgroundImage]="jsonWebdt?.imagesBottomBorderColor"
+          <button [style]="{'background': isClassicTheme ? 'linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%)' : jsonWebdt?.imagesBottomBorderColor}"
             [style.color]="jsonWebdt?.imagesPlayNowTextColor" class="bg-button-normal p-2 shrink rounded font-bold mr-2"
             type="button" (click)="onDuring()">···</button>
-          <button [style.backgroundImage]="jsonWebdt?.imagesBottomBorderColor"
+          <button [style]="{'background': isClassicTheme ? 'linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%)' : jsonWebdt?.imagesBottomBorderColor}"
             [style.color]="jsonWebdt?.imagesPlayNowTextColor" class="bg-button-normal p-2 px-4 rounded font-bold"
             type="submit">Submit</button>
           <div>
             <!-- <div class="fixed left-0 w-full h-full z-50 opacity-30" *ngIf="during"></div> -->
             <div class="fixed w-full z-50 bottom-0 container left-0" *ngIf="during">
               <div class="bg-secondary flex flex-col p-1 pb-0 h-full overscroll-y-none rounded-t-xl shadow-top">
-                <header class="flex py-2">
+                <div class="flex py-2">
                   <div class="main-filter flex-1 text-pop-title">
                     <ul class="main-filter-ul flex justify-center items-center leading-tight text-center">
                       <li class="main-filter-li relative mx-4 pb-1 font-bold">During</li>
@@ -118,17 +118,17 @@
                   <!-- <div (click)="onDuring()"
                     class="icon-close absolute right-2 flex justify-center items-center mr-2 cursor-pointer text-global-font-on-dark text-14">
                   </div> -->
-                </header>
+                </div>
                 <section class="date-picker-area rounded-t-lg bg-white p-2 grid grid-cols-3 gap-2">
                   <button class="bg-button-normal h-40px px-1 rounded font-bold text-13"
-                    [style.backgroundImage]="jsonWebdt?.imagesBottomBorderColor" (click)="justForToday()" type="button"
+                    [style]="{'background': isClassicTheme ? 'linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%)' : jsonWebdt?.imagesBottomBorderColor}" (click)="justForToday()" type="button"
                     [style.color]="jsonWebdt?.imagesPlayNowTextColor">Today</button>
-                  <button type="button" [style.backgroundImage]="jsonWebdt?.imagesBottomBorderColor"
+                  <button type="button" [style]="{'background': isClassicTheme ? 'linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%)' : jsonWebdt?.imagesBottomBorderColor}"
                     [style.color]="jsonWebdt?.imagesPlayNowTextColor"
                     class="bg-button-normal h-40px px-1 rounded font-bold text-13" (click)="fromYesterday()">From
                     Yesterday</button>
                   <button (click)="fromLast7day()" type="button"
-                    [style.backgroundImage]="jsonWebdt?.imagesBottomBorderColor"
+                    [style]="{'background': isClassicTheme ? 'linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%)' : jsonWebdt?.imagesBottomBorderColor}"
                     [style.color]="jsonWebdt?.imagesPlayNowTextColor"
                     class="bg-button-normal h-40px px-1 rounded font-bold text-13">Last 7
                     Days</button>
@@ -145,14 +145,14 @@
     <div data-v-f00b9242="" class="content px-4 py-4 " [ngClass]="during===false?'':'scollable'">
       <ng-container *ngFor="let list of betAllHistory?.betlist; let i=index">
         <section *ngIf="activeTab!=10 && list.type!='Parlay-Premium'" data-v-f00b9242="" class="mb-2">
-          <header class="bg-black-300 flex justify-center items-center rounded-t-lg">
+          <div class="bg-black-300 flex justify-center items-center rounded-t-lg">
             <div class="py-2 px-4 text-center leading-5 break-all"><span class="text-13">
                 {{list.sportId=='4'?'Cricket':list.sportId=='2'?'Tennis':list.sportId=='1'?'Soccer':list.sportId=='11'?'SABA':'Casino'}}</span><i
                 class="icon-triangle-black-600 inline-block align-baseline"></i><span
                 class="text-13 font-bold">{{list.matchName}}
               </span><i class="icon-triangle-black-600 inline-block align-baseline"></i><span
                 class="text-13">{{list.sourceName}}</span></div>
-          </header>
+          </div>
           <section class="bg-white rounded-b-8px">
             <div class="divide-y divide-black-300">
               <div class="p-2 flex items-center">

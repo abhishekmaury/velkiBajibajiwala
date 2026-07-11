@@ -320,7 +320,7 @@
     background:rgb(32, 32, 32);
 
   header {
-    margin-block-start:4rem;
+    margin-block-start:13vw;
     position:static !important;
   }
   .setting-field {
@@ -332,3 +332,13 @@
   }
 }
 
+@media screen and (min-width : 768px) {
+  .classic {
+  background: rgb(32, 32, 32);
+
+  header {
+    position: static !important;
+    margin-block-start: 62.4px;
+  }
+}
+}

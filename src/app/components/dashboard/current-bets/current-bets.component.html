@@ -1,4 +1,4 @@
-<main class="min-h-full-with-header">
+<main class="min-h-full-with-header" [class.classic]="isClassicTheme">
   <div data-v-f43ca18c="" class="pb-20 relative">
     <div data-v-3da282ba="" class="mb-20">
       <header data-v-3da282ba=""
@@ -114,7 +114,7 @@
       <div *ngIf="selectedOption=='Matched'" data-v-3da282ba="" class="content px-4 py-4">
         <div data-v-3da282ba="" *ngFor="let item of exchange;let i =index;">
           <section data-v-3da282ba="" class="mb-2">
-            <header class="bg-black-300 flex justify-center items-center rounded-t-8px">
+            <div class="bg-black-300 flex justify-center items-center rounded-t-8px">
               <div class="py-2 px-4 text-center leading-5 break-all">
                 <span
                   class="text-11">{{item.sportId=='4'?'Cricket':item.sportId=='2'?'Tennis':item.sportId=='1'?'Soccer':item.sportId=='11'?'SABA':'Casino'}}</span>
@@ -123,7 +123,7 @@
                 <i class="icon-triangle-black-600 inline-block align-baseline"></i>
                 <span class="text-11">{{item.sourceName}}</span>
               </div>
-            </header>
+            </div>
             <section class="bg-white">
               <div class="divide-y divide-black-300">
                 <div class="p-2 flex items-center">
@@ -268,12 +268,12 @@
       <div *ngIf="selectedOption=='Unmatched'" data-v-732d8950="" class="content px-4 py-4">
         <div data-v-732d8950="">
           <section data-v-732d8950="" class="rounded-b-lg overflow-hidden mb-2">
-            <header class="bg-black-300 flex justify-center items-center rounded-t-8px">
+            <div class="bg-black-300 flex justify-center items-center rounded-t-8px">
               <div class="py-2 px-4 text-center leading-5 break-all"><span class="text-13">Cricket</span><i
                   class="icon-triangle-black-600 inline-block align-baseline"></i><span class="text-13 font-bold">India
                   v West Indies</span><i class="icon-triangle-black-600 inline-block align-baseline"></i><span
                   class="text-13">Match Odds</span></div>
-            </header>
+            </div>
             <section class="bg-white rounded-b-8px">
               <div class="divide-y divide-black-300">
                 <div class="p-2 flex items-center">

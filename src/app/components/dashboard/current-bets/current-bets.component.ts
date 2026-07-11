@@ -31,6 +31,7 @@ export class CurrentBetsComponent {
   selectTab = false;
   selectedOption = 'Matched';
   unmatchedtest = false
+  isClassicTheme = false
 
   constructor(
     private location: Location,
@@ -48,6 +49,9 @@ export class CurrentBetsComponent {
   }
 
   ngOnInit(): void {
+     this.dataServe.changeTheme$.subscribe({
+      next:(f) => this.isClassicTheme = f,
+    })
     this.dataServe.getUserBets().subscribe((res: any) => {
       this.userBets = res;
       this.loading = false;

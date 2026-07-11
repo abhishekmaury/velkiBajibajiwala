@@ -55,3 +55,13 @@
         border-color: #202020;
     }
 }
+@media screen and (min-width : 768px) {
+  .classic {
+  background: rgb(32, 32, 32);
+
+  header {
+    position: static !important;
+    margin-block-start: 62.4px;
+  }
+}
+}

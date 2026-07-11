@@ -16,10 +16,14 @@ export class ActiveLogComponent {
   loading: boolean = true;
   pages: number[] = [1, 2, 3, 4, 5];
   totalPages: any;
+  isClassicTheme = false;
 
   constructor(private location: Location, private dataServe: DataHandlerService, private meta: Meta) { }
 
   ngOnInit(): void {
+     this.dataServe.changeTheme$.subscribe({
+      next:(f) => this.isClassicTheme = f,
+    })
     this.dataServe.isLoggedIn();
     this.dataServe.getActivityLog(1).subscribe((res: any) => {
       // this.activityLog = res?.data;
