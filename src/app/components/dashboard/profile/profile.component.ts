@@ -17,10 +17,15 @@ export class ProfileComponent implements OnInit{
   jsonWebdt: any;
   jsonWeblinksdt: any;
   validShowing: any;
+  isClassicTheme = false;
+
   constructor(private location: Location,private popupService: HandlerService,private dataServe: DataHandlerService) { }
   ngOnInit(): void {
-   
-  
+
+    this.dataServe.changeTheme$.subscribe({
+next:(isClassicTheme) => this.isClassicTheme = isClassicTheme,
+    })
+
 let wData = localStorage.getItem("webData")
     if(wData){
       let d1 = JSON.parse(wData)
@@ -38,4 +43,6 @@ let wData = localStorage.getItem("webData")
   goBack(): void {
     this.location.back();
   }
+
+
 }
