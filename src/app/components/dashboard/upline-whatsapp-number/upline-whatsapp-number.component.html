@@ -1,4 +1,4 @@
-<main class="min-h-full-with-header">
+<main class="min-h-full-with-header" [class.classic]="isClassicTheme">
   <div data-v-f43ca18c="" class="pb-20 relative">
     <div class="mb-20">
       <header class="h-12 p-3 bg-secondary text-global-font-on-dark text-14 flex items-center justify-center">Upline WhatsApp Number<div class="icon-close text-16 absolute right-4" routerLink="/home"></div>
@@ -7,12 +7,12 @@
         <div class="w-full py-2 text-15">
           <div *ngIf="number?.number!==''">
             <div class="ml-2 text-15 font-bold h-20px mb-8px">WhatsApp Number</div>
-            <div class="h-14 px-2 py-4px bg-white flex justify-between items-center rounded-xl">
+            <div class="number-container h-14 px-2 py-4px bg-white flex justify-between items-center" [class.rounded-xl]="!isClassicTheme">
               <div class="ml-2 flex item-center">
                 <span class="icon-whatsapp whatsapp mr-5px text-16"></span><a
                   href="https://msng.link/o/?{{number?.number}}=wa" class="text-back-600">{{number?.number}}</a>
                 </div>
-                <a href="https://msng.link/o/?{{number?.number}}=wa" class="icon-phone-outgoing text-button-normal bg-button-normal text-18 p-3 rounded-lg disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed" [style.backgroundImage]="jsonWebdt?.imagesBottomBorderColor"></a>
+                <a href="https://msng.link/o/?{{number?.number}}=wa" class="icon-phone-outgoing text-button-normal bg-button-normal text-18 p-3 rounded-lg disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed" [style.backgroundImage]="!isClassicTheme ? jsonWebdt?.imagesBottomBorderColor : 'linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%)'"></a>
             </div>
           </div>
           <div class="mt-13px"></div>
@@ -20,7 +20,7 @@
 
         <div class="content py-2">
           <div class="ml-2 text-15 font-bold mb-8px">Agent Number</div>
-          <div *ngIf="number?.bkashNumber!=='-'" class="h-14 px-2 bg-white flex justify-between items-center rounded-xl mb-2">
+          <div *ngIf="number?.bkashNumber!=='-'" class="number-container h-14 px-2 bg-white flex justify-between items-center mb-2" [class.rounded-xl]="!isClassicTheme">
             <div class="ml-2 flex items-center gap-2">
               <img src="assets/images/payments/bkash.webp" width="22" />
               <span class="text-14">Bkash</span>
@@ -29,11 +29,11 @@
               <span class="px-3 py-3 bg-gray-100 rounded-lg text-17">
                 {{number?.bkashNumber}}
               </span>
-              <a (click)="copyToClipboard(number?.bkashNumber)" class="text-button-normal bg-button-normal text-18 p-3 rounded-lg disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed" [style.backgroundImage]="jsonWebdt?.imagesBottomBorderColor"><i class="fa fa-clone" style="margin-right: 3px;"></i></a>
+              <a (click)="copyToClipboard(number?.bkashNumber)" class="text-button-normal bg-button-normal text-18 p-3 rounded-lg disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed" [style.backgroundImage]="!isClassicTheme ? jsonWebdt?.imagesBottomBorderColor : 'linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%)'"><i class="fa fa-clone" style="margin-right: 3px;"></i></a>
             </div>
           </div>
 
-          <div *ngIf="number?.nagagNumber!=='-'" class="h-14 px-2 bg-white flex justify-between items-center rounded-xl mb-2">
+          <div *ngIf="number?.nagagNumber!=='-'" class="number-container h-14 px-2 bg-white flex justify-between items-center mb-2" [class.rounded-xl]="!isClassicTheme">
             <div class="ml-2 flex items-center gap-2">
               <img src="assets/images/payments/nagad.webp" width="22" />
               <span class="text-14">Nagad</span>
@@ -42,11 +42,11 @@
               <span class="px-3 py-3 bg-gray-100 rounded-lg text-17">
                 {{number?.nagagNumber}}
               </span>
-              <a (click)="copyToClipboard(number?.nagagNumber)" class="text-button-normal bg-button-normal text-18 p-3 rounded-lg disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed" [style.backgroundImage]="jsonWebdt?.imagesBottomBorderColor"><i class="fa fa-clone" style="margin-right: 3px;"></i></a>
+              <a (click)="copyToClipboard(number?.nagagNumber)" class="text-button-normal bg-button-normal text-18 p-3 rounded-lg disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed" [style.backgroundImage]="!isClassicTheme ? jsonWebdt?.imagesBottomBorderColor : 'linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%)'"><i class="fa fa-clone" style="margin-right: 3px;"></i></a>
             </div>
           </div>
 
-          <div *ngIf="number?.rocketNumber!=='-'" class="h-14 px-2 bg-white flex justify-between items-center rounded-xl">
+          <div *ngIf="number?.rocketNumber!=='-'" class="number-container h-14 px-2 bg-white flex justify-between items-center" [class.rounded-xl]="!isClassicTheme">
             <div class="ml-2 flex items-center gap-2">
               <img src="assets/images/payments/rocket.webp" width="22" />
               <span class="text-14">Rocket</span>
@@ -55,7 +55,7 @@
               <span class="px-3 py-3 bg-gray-100 rounded-lg text-17">
                 {{number?.rocketNumber}}
               </span>
-              <a (click)="copyToClipboard(number?.rocketNumber)" class="text-button-normal bg-button-normal text-18 p-3 rounded-lg disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed" [style.backgroundImage]="jsonWebdt?.imagesBottomBorderColor"><i class="fa fa-clone" style="margin-right: 3px;"></i></a>
+              <a (click)="copyToClipboard(number?.rocketNumber)" class="text-button-normal bg-button-normal text-18 p-3 rounded-lg disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed" [style.backgroundImage]="!isClassicTheme ? jsonWebdt?.imagesBottomBorderColor : 'linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%)'"><i class="fa fa-clone" style="margin-right: 3px;"></i></a>
             </div>
           </div>
         </div>

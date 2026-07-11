@@ -16,10 +16,14 @@ export class UplineWhatsappNumberComponent implements OnInit{
   loading=true;
   number:any;
   isCopied = false;
+  isClassicTheme = false;
 
   constructor(private dataServe : DataHandlerService,private location: Location) { }
 
   ngOnInit(): void {
+    this.dataServe.changeTheme$.subscribe({
+      next:(f) => this.isClassicTheme = f,
+    })
     this.dataServe.getBalInfo().subscribe((res : any)=>{
       this.balInfo = res;
     })
@@ -40,6 +44,7 @@ export class UplineWhatsappNumberComponent implements OnInit{
     this.loading = true;
     this.dataServe.getUplineContact().subscribe((res: any) => {
       this.number=res;
+      this.number = '9782349823';
       this.loading = false;
     });
   }

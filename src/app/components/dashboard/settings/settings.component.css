@@ -320,6 +320,7 @@
     background:rgb(32, 32, 32);
 
   header {
+    margin-block-start:4rem;
     position:static !important;
   }
   .setting-field {
