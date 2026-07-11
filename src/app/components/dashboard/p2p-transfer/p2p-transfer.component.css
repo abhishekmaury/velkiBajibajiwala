@@ -37,3 +37,77 @@
   border: 3px solid #c0a024 !important;
   outline: none;
 }
+
+
+.classic {
+  background: rgb(32, 32, 32);
+
+  header {
+    position: static !important;
+    margin-block-start: 13vw;
+  }
+
+  .py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .bg-black-100 {
+    --tw-bg-opacity: 1;
+    background-color: #202020;
+  }
+
+  .bg-white,
+  input {
+    --tw-bg-opacity: 1;
+    background-color: #292929;
+  }
+
+  .bg-black-300 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(90 96 98);
+  }
+
+  .effect-20[_ngcontent-ng-c3172439509]:focus:not(:disabled) {
+    box-shadow: none !important;
+    background-color: #292929 !important;
+  }
+
+  .effect-20:focus:not(:disabled) {
+    box-shadow: none !important;
+    background-color: #292929 !important;
+  }
+
+  .has-content.effect-20~label[data-v-64dd3bfe]:before {
+    background-color: #292929;
+    content: "";
+    z-index: -1;
+  }
+
+  .has-content.effect-20~label[data-v-64dd3bfe]:before {
+    background-color: #333 !important;
+    content: "";
+    z-index: -1;
+  }
+
+  #recipient-wallet-id:focus,
+  #transfer-amount:focus,
+  #remark:focus,
+  #recipient-wallet-id.has-content,
+  #transfer-amount.has-content,
+  #remark.has-content {
+    border: 3px solid #c0a024 !important;
+    outline: none;
+  }
+
+  .btn-outline,
+  .btn-normal,
+  .text-button-normal {
+    color: #fff;
+  }
+}

@@ -1,3 +1,17 @@
 .success-header[data-v-6266c5cb] {
     background-color: #d5f2b8;
 }
+
+
+.classic {
+    background: rgb(32, 32, 32);
+
+    header {
+        position: static !important;
+        margin-block-start: 13vw;
+    }
+
+    .min-h-full-with-header {
+        min-height: calc(100vh - 3.28571rem);
+    }
+}

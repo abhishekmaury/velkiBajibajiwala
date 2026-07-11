@@ -1,4 +1,4 @@
-<main class="min-h-full-with-header">
+<main class="min-h-full-with-header" [class.classic]="isClassicTheme">
   <div data-v-f43ca18c="" class="pb-20 relative">
     <div class="mb-20">
       <header class="h-12 p-3 bg-secondary text-global-font-on-dark text-14 flex items-center justify-center">Balance
@@ -49,10 +49,10 @@
           </div>
         </div> -->
         <section class="mb-2" *ngFor="let list of accountStmt">
-          <header class="bg-black-300 flex justify-center items-center rounded-t-lg">
+          <div class="bg-black-300 flex justify-center items-center rounded-t-lg">
             <div class="px-2 py-5px flex justify-between leading-130% text-12 w-full" bis_skin_checked="1">
               <span>{{ list.createdOn | date:'dd-MM-yyyy hh:mm:ss a' }}</span><span></span></div>
-          </header>
+          </div>
           <section class="bet-info bg-white rounded-b-lg">
             <div class="row flex border-b border-black-300" bis_skin_checked="1">
               <div class="item odds-req border-r border-black-300 p-2 flex-1" bis_skin_checked="1">

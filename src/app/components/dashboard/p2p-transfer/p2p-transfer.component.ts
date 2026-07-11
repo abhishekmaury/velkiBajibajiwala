@@ -20,10 +20,13 @@ export class P2pTransferComponent implements OnInit {
   betsuccessstatus:any;
   message:any;
   isP2P=false;
-
+  isClassicTheme = false
   constructor(private dataServe: DataHandlerService, private location: Location) {}
 
   ngOnInit(): void {
+    this.dataServe.changeTheme$.subscribe({
+      next:(f) => this.isClassicTheme = f,
+    })
     const webData = localStorage.getItem('webData');
     if (webData) {
       const parsed = JSON.parse(webData);

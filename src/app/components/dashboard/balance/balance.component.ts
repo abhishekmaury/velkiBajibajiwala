@@ -14,9 +14,13 @@ export class BalanceComponent implements OnInit{
   jsonWeblinksdt: any;
   validShowing: any;
   accountStmt: any;
+  isClassicTheme = false;
   constructor(private dataServe : DataHandlerService,private location: Location) { }
 
   ngOnInit(): void {
+    this.dataServe.changeTheme$.subscribe({
+      next:(f) => this.isClassicTheme = f,
+    })
     this.dataServe.getBalInfo().subscribe((res : any)=>{
       this.balInfo = res;
     })

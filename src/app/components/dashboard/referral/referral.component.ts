@@ -16,13 +16,17 @@ export class ReferralComponent {
   totalPL: number = 0.0;
   myCommPer: number = 0;
   commEar: number = 0;
-
+  isClassicTheme: boolean = false;
+  
   setTab(tab: string) {
     this.activeTab = tab;
   }
   constructor(private dataserve: DataHandlerService) { }
 
   ngOnInit() {
+     this.dataserve.changeTheme$.subscribe({
+      next:(f) => this.isClassicTheme = f,
+    })
     let data = localStorage.getItem('userData');
     if (data) {
       this.userData = JSON.parse(data)

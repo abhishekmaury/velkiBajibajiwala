@@ -31,12 +31,16 @@ export class RebateComponent {
   validShowing: any;
   indicatorWidth: number = 0;
   indicatorLeft: number = 0;
+  isClassicTheme = false;
   
   constructor(private dataServe: DataHandlerService, private activeRoute: ActivatedRoute, private location: Location,
     private datePipe: DatePipe
   ) { }
 
   ngOnInit(): void {
+     this.dataServe.changeTheme$.subscribe({
+      next:(f) => this.isClassicTheme = f,
+    })
     let wData = localStorage.getItem("webData")
     if (wData) {
       let d1 = JSON.parse(wData)

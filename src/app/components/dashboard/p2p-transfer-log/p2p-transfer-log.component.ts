@@ -16,10 +16,14 @@ export class P2pTransferLogComponent implements OnInit{
   validShowing: any;
   loading=true;
   data:any=[];
+  isClassicTheme=false;
 
   constructor(private dataServe : DataHandlerService,private location: Location) { }
 
   ngOnInit(): void {
+    this.dataServe.changeTheme$.subscribe({
+      next:(f) => this.isClassicTheme = f,
+    })
     this.dataServe.getBalInfo().subscribe((res : any)=>{
       this.balInfo = res;
     })

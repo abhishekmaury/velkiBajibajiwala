@@ -223,3 +223,24 @@ th {
   font-size: 12px;
   letter-spacing: .5px;
 }
+
+.classic {
+  background: rgb(32, 32, 32);
+
+  header {
+    position: static !important;
+    margin-block-start: 13vw;
+  }
+
+  .min-h-full-with-header {
+    min-height: calc(100vh - 3.28571rem);
+  }
+
+  .content p {
+    color: #fff;
+  }
+  .stat, .tab-header, .referral-table thead th {
+  background: #292929;
+  color: #fff;
+  }
+}
