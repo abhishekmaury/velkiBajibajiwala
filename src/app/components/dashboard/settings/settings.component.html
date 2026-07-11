@@ -1,4 +1,4 @@
-<main class="min-h-full-with-header">
+<main class="min-h-full-with-header" [class.classic]="isClassicTheme">
   <div data-v-f43ca18c="" class="pb-20 relative">
     <div>
       <header class="h-12 p-3 bg-secondary text-global-font-on-dark text-14 flex items-center justify-center">Setting
@@ -6,20 +6,22 @@
       </header>
       <div class="px-4">
         <div class="mb-1">
-          <div class="pl-2 py-3 text-15 text-global-font-on-light font-bold">Odds</div>
-          <div class="pl-4 py-2 flex justify-start items-center bg-white rounded-lg"><span
-              class="mr-5 w-9/12 text-15 text-black">Highlight when odds change</span>
-            <div data-v-9a42e1e7="" class="btn-switch"><input data-v-9a42e1e7="" id="settingOdds"
-                class="btn-switch__tgl btn-switch__tgl-ios" type="checkbox" checked><label data-v-9a42e1e7=""
-                class="p-px rounded-2xl w-14 h-8 btn-switch__tgl-label" for="settingOdds"></label></div>
+          <div class="pl-2 py-3 text-15 text-global-font-on-light font-bold" [class.text-white]="isClassicTheme">Odds</div>
+          <div class="pl-4 py-2 flex justify-start items-center bg-white setting-field" [class.rounded-lg]="!isClassicTheme">
+            <span class="mr-5 w-9/12 text-15" [class.text-black]="!isClassicTheme">Highlight when odds change</span>
+            <div data-v-9a42e1e7="" class="btn-switch">
+              <input data-v-9a42e1e7="" id="settingOdds" class="btn-switch__tgl btn-switch__tgl-ios" type="checkbox" checked>
+              <label data-v-9a42e1e7="" class="p-px rounded-2xl w-14 h-8 btn-switch__tgl-label" for="settingOdds"></label>
+            </div>
           </div>
           <div>
-            <div class="pl-2 py-3 text-15 text-global-font-on-light font-bold">Events Widget</div>
-            <div class="pl-4 py-2 flex justify-start items-center bg-white rounded-lg"><span
-                class="mr-5 w-9/12 text-15 text-black">Show in Full-Markets</span>
-              <div data-v-9a42e1e7="" class="btn-switch"><input data-v-9a42e1e7="" checked id="settingEventsWidget"
-                  class="btn-switch__tgl btn-switch__tgl-ios" type="checkbox"><label data-v-9a42e1e7=""
-                  class="p-px rounded-2xl w-14 h-8 btn-switch__tgl-label" for="settingEventsWidget"></label></div>
+            <div class="pl-2 py-3 text-15 text-global-font-on-light font-bold " [class.text-white]="isClassicTheme">Events Widget</div>
+            <div class="pl-4 py-2 flex justify-start items-center bg-white setting-field" [class.rounded-lg]="!isClassicTheme">
+              <span class="mr-5 w-9/12 text-15" [class.text-black]="!isClassicTheme">Show in Full-Markets</span>
+              <div data-v-9a42e1e7="" class="btn-switch">
+                <input data-v-9a42e1e7="" checked id="settingEventsWidget" class="btn-switch__tgl btn-switch__tgl-ios" type="checkbox">
+                <label data-v-9a42e1e7="" class="p-px rounded-2xl w-14 h-8 btn-switch__tgl-label" for="settingEventsWidget"></label>
+              </div>
             </div>
           </div>
         </div>

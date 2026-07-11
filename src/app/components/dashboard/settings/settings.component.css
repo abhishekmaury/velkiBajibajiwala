@@ -315,3 +315,19 @@
 .btn-switch__tgl-ios:checked+.btn-switch__tgl-label-none[data-v-9a42e1e7]:active:after {
   margin-left: 0
 }
+
+.classic {
+    background:rgb(32, 32, 32);
+
+  header {
+    position:static !important;
+  }
+  .setting-field {
+    background-color:rgb(41, 41, 41);
+  }
+
+  .btn-switch__tgl-ios:checked+.btn-switch__tgl-label[data-v-9a42e1e7] {
+    background-color: #e62626;
+  }
+}
+
