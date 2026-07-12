@@ -29,19 +29,17 @@ export class SportComponent implements OnInit, OnDestroy {
   collapseItm = true;
   validateapi: any;
   data: any
-  gameList: any;
   isLoading = false;
   ccount: any;
   tcount: any;
   ssoccer: any;
   mainTabs: any = 1;
   activeTab: any = '4';
-  marketList: any;
   byActive = 'compi'
   timeByCompi = false;
   inPlayM = false;
   seriesData: any;
-  multiList: any;
+
   uniqueMatchNames: any;
   leagues = false;
   legueDt = false;
@@ -66,6 +64,11 @@ export class SportComponent implements OnInit, OnDestroy {
   gameListData2$: Observable<any> = this.gameListDataSubject2.asObservable();
   GamelistData2: any;
 
+  multiList: any[] = [];
+  marketList: any[] = [];
+  gameList: any[] = [];
+  gameslist2: any[] = [];
+
   sportID: any;
   routersportid: any;
   countmatch: any;
@@ -83,7 +86,6 @@ export class SportComponent implements OnInit, OnDestroy {
   soccerMatches: any;
   expandedSectiongame: Set<number> = new Set<number>();
   expandedSectionsOrgdata: Set<number> = new Set<number>();
-  gameslist2: any;
 
   constructor(private authServe: AuthserviceService, private socket: SocketServiceService, private dataServe: DataHandlerService, private activeRoute: ActivatedRoute, private router: Router) { }
 
@@ -107,135 +109,159 @@ export class SportComponent implements OnInit, OnDestroy {
     }
   }
   isRefreshing = false;
-  ngOnInit(): void {
-    // let lsData = localStorage.getItem('userData');
-    // if (lsData) {
-    //   this.loggedData = JSON.parse(lsData);
-    //   if (this.loggedData.password !== undefined) {
-    //     this.isLogin = true;
-    //   } else {
-    //     this.isLogin = false
-    //   }
-    // }
+  async ngOnInit(): Promise<void> {
+    const token = localStorage.getItem('token');
 
-    this.getMarketData();
-    this.getData();
-    this.getSportsData();
+    if (token) {
+      this.getMarketData();
+    }
+
+    await this.getData();
+    await this.getSportsData();
 
     this.changeCount(1);
   }
 
   async getData() {
-    this.isLoading = true;
-    const [multiMarketResponse, inPlayGamesResponse] = await forkJoin([
-      this.dataServe.getUserWiseMultiMarket(),
-      this.dataServe.getInPlayGames()
-    ]).toPromise() as any;
-    this.multiList = (multiMarketResponse as any[]).map((rs: any) => (rs.matchid));
-    this.gameList = inPlayGamesResponse as any[];
-    this.gameList = this.gameList?.map((r: any) => ({
-      ...r,
-      isMulti: !this.multiList?.includes(r?.eventid)
-    }));
-    this.GamelistData = this.gameList
-    this.gameListDataSubject.next(this.GamelistData);
-    this.isLoading = false;
+    try {
+      this.isLoading = true;
 
+      const inPlayGamesResponse: any =
+        await this.dataServe.getInPlayGames().toPromise();
+
+      this.gameList = (inPlayGamesResponse || []).map((r: any) => ({
+        ...r,
+        isMulti: !this.multiList?.includes(r.eventid)
+      }));
+
+      this.GamelistData = this.gameList;
+
+      this.gameListDataSubject.next(this.GamelistData);
+    } catch (error) {
+      console.error('getData error', error);
+    } finally {
+      this.isLoading = false;
+    }
   }
 
   async getSportsData() {
+    // try {
+    //   const [todayGamesResponse, tomorrowGamesResponse] =
+    //     await forkJoin([
+    //       this.dataServe.getTodayGames(),
+    //       this.dataServe.getTomorrowGames()
+    //     ]).toPromise() as any;
 
-    const [
-      multiMarketResponse,
-      todayGamesResponse,
-      tomorrowGamesResponse
-    ] = await forkJoin([
-      this.dataServe.getUserWiseMultiMarket(),
-      this.dataServe.getTodayGames(),
-      this.dataServe.getTomorrowGames()
-    ]).toPromise() as any;
+    //   this.gameslist2 = [
+    //     ...(todayGamesResponse || []),
+    //     ...(tomorrowGamesResponse || [])
+    //   ].map((r: any) => ({
+    //     ...r,
+    //     isMulti: !this.multiList?.includes(r.eventid)
+    //   }));
 
-    this.multiList = (multiMarketResponse as any[]).map((rs: any) => rs.matchid);
-
-    // Merge Today + Tomorrow games
-    this.gameslist2 = [
-      ...(todayGamesResponse as any[]),
-      ...(tomorrowGamesResponse as any[])
-    ].map((r: any) => ({
-      ...r,
-      isMulti: !this.multiList?.includes(r.eventid)
-    }))
-    this.gameListDataSubject2.next(this.gameslist2);
-
+    //   this.gameListDataSubject2.next(this.gameslist2);
+    // } catch (error) {
+    //   console.error('getSportsData error', error);
+    // }
   }
-
   changeCount(data: any) {
     this.mainTabs = data;
-
     this.byActive = 'compi';
-    this.sportsTab(this.activeTab)
+    this.sportsTab(this.activeTab);
+
     if (this.mainTabs == 1) {
-      this.gameListData$.subscribe((res) => {
-        let lists = res;
-        if (this.byActive == 'compi') {
-          this.isToday = true
-        }
-        let inplylists = lists;
+      this.gameListData$.subscribe((res: any[]) => {
+        const lists = res || [];
 
-        this.ccount = inplylists?.filter((re: any) => {
-          return re.sportid == '4'
-        })
-        this.ssoccer = inplylists?.filter((re: any) => {
-          return re.sportid == '1'
-        })
-        this.tcount = inplylists?.filter((re: any) => {
-          return re.sportid == '2'
-        })
-        this.tomorrowsData = []
-        this.gameList = lists?.map((r: any) => ({
+        this.isToday = this.byActive === 'compi';
+
+        this.ccount = lists.filter((re: any) => re.sportid == '4');
+        this.ssoccer = lists.filter((re: any) => re.sportid == '1');
+        this.tcount = lists.filter((re: any) => re.sportid == '2');
+
+        this.tomorrowsData = [];
+
+        this.gameList = lists.map((r: any) => ({
           ...r,
           isMulti: !this.multiList?.includes(r?.eventid)
         }));
-      })
-    } else if (this.mainTabs == 2) {
-      this.gameListData2$.subscribe((res) => {
-        if (this.byActive == 'compi') {
-          this.isToday = true
-        } else {
-          this.tomorrowsData = []
-        }
-        this.ccount = res.filter((match: any) => match.sportid == 4);
-        this.tcount = res.filter((match: any) => match.sportid == 2);
-        this.ssoccer = res.filter((match: any) => match.sportid == 1);
 
-        if (this.activeTab == '4') {
-          this.gameList = this.gameslist2.filter((re: any) => {
-            return re.sportid == '4';
-          })
-          this.organizedData = this.dataServe.getOrganizedDataBySeriesname(this.gameList);
-          this.filterData(this.gameList)
+        this.organizedData =
+          this.dataServe.getOrganizedDataBySeriesname(this.gameList);
+      });
+      if (this.activeTab == '4') {
+        this.gameList = this.gameList.filter(
+          (re: any) => re.sportid == '4'
+        );
+      } else if (this.activeTab == '2') {
+        this.gameList = this.gameList.filter(
+          (re: any) => re.sportid == '2'
+        );
+      } else if (this.activeTab == '1') {
+        this.gameList = this.gameList.filter(
+          (re: any) => re.sportid == '1'
+        );
+      }
+      this.gameList = this.gameList.map((r: any) => ({
+        ...r,
+        isMulti: !this.multiList?.includes(r?.eventid)
+      }));
+
+      this.organizedData =
+        this.dataServe.getOrganizedDataBySeriesname(this.gameList);
+
+    }
+
+    else if (this.mainTabs == 2) {
+      // this.getSportsData();
+
+      this.gameListData2$.subscribe((res: any[]) => {
+        const lists = res || [];
+
+        this.isToday = this.byActive === 'compi';
+
+        if (this.byActive !== 'compi') {
+          this.tomorrowsData = [];
         }
 
-        if (this.activeTab == '2') {
-          this.gameList = this.gameslist2.filter((re: any) => {
-            return re.sportid == '2';
-          })
-          this.organizedData = this.dataServe.getOrganizedDataBySeriesname(this.gameList);
-          this.filterData(this.gameList)
+        this.ccount = lists.filter((match: any) => match.sportid == '4');
+        this.tcount = lists.filter((match: any) => match.sportid == '2');
+        this.ssoccer = lists.filter((match: any) => match.sportid == '1');
+
+        switch (this.activeTab) {
+          case '4':
+            this.gameList = lists.filter(
+              (re: any) => re.sportid == '4'
+            );
+            break;
+
+          case '2':
+            this.gameList = lists.filter(
+              (re: any) => re.sportid == '2'
+            );
+            break;
+
+          case '1':
+            this.gameList = lists.filter(
+              (re: any) => re.sportid == '1'
+            );
+            break;
+
+          default:
+            this.gameList = lists;
         }
-        if (this.activeTab == '1') {
-          this.gameList = this.gameslist2.filter((re: any) => {
-            return re.sportid == '1';
-          })
-          this.organizedData = this.dataServe.getOrganizedDataBySeriesname(this.gameList);
-          this.filterData(this.gameList)
-        }
-        this.gameList = this.gameList?.map((r: any) => ({
+
+        this.gameList = this.gameList.map((r: any) => ({
           ...r,
           isMulti: !this.multiList?.includes(r?.eventid)
         }));
-      })
 
+        this.organizedData =
+          this.dataServe.getOrganizedDataBySeriesname(this.gameList);
+
+        this.filterData(this.gameList);
+      });
     }
   }
 
@@ -257,7 +283,6 @@ export class SportComponent implements OnInit, OnDestroy {
           })
           this.gameList = this.gameList?.sort((a: any, b: any) => a.openTimestamp - b.openTimestamp);
           this.organizedData = this.dataServe.getOrganizedDataBySeriesname(this.gameList);
-
           this.getOddsData(this.organizedData)
         } else if (this.activeTab == '2') {
           this.gameList = this.gameList.filter((re: any) => {
@@ -316,9 +341,9 @@ export class SportComponent implements OnInit, OnDestroy {
         })
       }
       this.gameList = this.gameList?.map((r: any) => ({
-          ...r,
-          isMulti: !this.multiList?.includes(r?.eventid)
-        }));
+        ...r,
+        isMulti: !this.multiList?.includes(r?.eventid)
+      }));
     })
   }
 
@@ -400,6 +425,7 @@ export class SportComponent implements OnInit, OnDestroy {
   }
 
   sportsTab(sportId: any) {
+
     this.activeTab = sportId;
     if (this.mainTabs == 1) {
       this.getAllInplayList()
@@ -532,53 +558,136 @@ export class SportComponent implements OnInit, OnDestroy {
     if (this.isRefreshing) {
       return;
     }
-    this.isRefreshing = true;
-    let token = localStorage.getItem('token');
-    if (token) {
-      let eventId = id.eventid;
-      let addMarket: any;
-      addMarket = await this.dataServe.addToMultmarketList(eventId).toPromise();
-      if (addMarket.type == 'success' && addMarket.message == 'Game Added as Multi Market') {
-        this.multiList.push(Array.from(new Set(eventId)));
-        id.isMulti = false;
-      } else if (addMarket.type == 'success' && addMarket.message == 'Game Removed From Multi Market') {
-        this.multiList.push(Array.from(new Set(eventId)));
-        id.isMulti = true;
-      }
-      if(this.mainTabs == 1){
-        this.getData();
-      }else{
-        this.getSportsData();
-      }
-      this.getMarketData();
+
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      this.router.navigate(['/login']);
+      return;
     }
 
-    setTimeout(() => {
+    this.isRefreshing = true;
+
+    try {
+      const eventId = id.eventid;
+
+      const response: any = await this.dataServe
+        .addToMultmarketList(eventId)
+        .toPromise();
+
+      if (response?.type === 'success') {
+
+        // Add
+        if (response.message === 'Game Added as Multi Market') {
+
+          if (!this.multiList.includes(eventId)) {
+            this.multiList.push(eventId);
+          }
+
+          id.isMulti = false;
+
+          // Turant UI me show karna hai
+          const exists = this.marketList?.some(
+            (x: any) => x.eventid === eventId
+          );
+
+          if (!exists) {
+            this.marketList = [id, ...(this.marketList || [])];
+          }
+        }
+
+        // Remove
+        else if (
+          response.message === 'Game Removed From Multi Market'
+        ) {
+
+          this.multiList = this.multiList.filter(
+            (x: any) => x !== eventId
+          );
+
+          id.isMulti = true;
+
+          this.marketList = (this.marketList || []).filter(
+            (x: any) => x.eventid !== eventId
+          );
+        }
+
+        // Refresh Game List UI
+        this.gameList = this.gameList.map((g: any) => ({
+          ...g,
+          isMulti: !this.multiList.includes(g.eventid)
+        }));
+
+        this.gameslist2 = this.gameslist2.map((g: any) => ({
+          ...g,
+          isMulti: !this.multiList.includes(g.eventid)
+        }));
+
+        this.gameListDataSubject.next(this.gameList);
+        this.gameListDataSubject2.next(this.gameslist2);
+
+        // Server se fresh Multi Market data
+        await this.getMarketData();
+      }
+    } catch (error) {
+      console.error('addToMultimarket error', error);
+    } finally {
       this.isRefreshing = false;
-    }, 1000);
+    }
   }
   async addToMultimarket1(id: any): Promise<void> {
     if (this.isRefreshing) {
       return;
     }
+
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      this.router.navigate(['/login']);
+      return;
+    }
+
     this.isRefreshing = true;
-    let token = localStorage.getItem('token');
-    if (token) {
-      try {
-        let eventId = id;
-        this.multiList = await this.dataServe.addToMultmarketList(eventId).toPromise();
-        if(this.mainTabs == 1){
-          this.getData();
-        }else{
-          this.getSportsData();
+
+    try {
+      const response: any = await this.dataServe
+        .addToMultmarketList(id)
+        .toPromise();
+
+      this.multiList = this.multiList || [];
+
+      if (
+        response?.type === 'success' &&
+        response?.message === 'Game Added as Multi Market'
+      ) {
+        if (!this.multiList.includes(id)) {
+          this.multiList.push(id);
         }
-        this.getMarketData();
-      } finally {
-        setTimeout(() => {
-          this.isRefreshing = false;
-        }, 500);
+      } else if (
+        response?.type === 'success' &&
+        response?.message === 'Game Removed From Multi Market'
+      ) {
+        this.multiList = this.multiList.filter(
+          (x: any) => x !== id
+        );
       }
-    } else {
+
+      // Change detection trigger
+      this.multiList = [...this.multiList];
+
+      // Multi market list refresh
+      await this.getMarketData();
+
+      // Game list refresh
+      if (this.mainTabs == 1) {
+        await this.getData();
+      } else {
+        await this.getSportsData();
+      }
+
+    } catch (error) {
+      console.error('addToMultimarket1 error', error);
+    } finally {
       this.isRefreshing = false;
     }
   }
