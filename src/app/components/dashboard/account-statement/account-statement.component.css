@@ -8,3 +8,16 @@
   color: rgb(222 17 17);
   font-weight: 600;
 }
+.icon-close {
+  position: absolute;
+  z-index: 10;
+  left: unset;
+  width: auto;
+  height: auto;
+  margin: unset;
+  transform: unset;
+}
+
+.classic .icon-close:before {
+  content: "";
+}

@@ -117,6 +117,7 @@ export class ClassicHeaderComponent implements OnInit {
     this.menu = !this.menu
   }
   close() {
+    this.isSidebarOpen=false
     this.menu = false
   }
 

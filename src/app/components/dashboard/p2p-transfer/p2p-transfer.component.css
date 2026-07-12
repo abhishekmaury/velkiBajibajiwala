@@ -61,11 +61,19 @@
     --tw-bg-opacity: 1;
     background-color: #202020;
   }
-  input{
-  -webkit-tap-highlight-color: #292929;
+
+  input {
+    -webkit-tap-highlight-color: #292929;
   }
+
   .bg-white,
-  input, label, label::before,.effect-20:focus~label.with-icon[data-v-64dd3bfe]:before,.effect-20:focus~label.with-prefix-text[data-v-64dd3bfe]:before,.has-content.effect-20~label.with-icon[data-v-64dd3bfe]:before,.has-content.effect-20~label.with-prefix-text[data-v-64dd3bfe]:before {
+  input,
+  label,
+  label::before,
+  .effect-20:focus~label.with-icon[data-v-64dd3bfe]:before,
+  .effect-20:focus~label.with-prefix-text[data-v-64dd3bfe]:before,
+  .has-content.effect-20~label.with-icon[data-v-64dd3bfe]:before,
+  .has-content.effect-20~label.with-prefix-text[data-v-64dd3bfe]:before {
 
     --tw-bg-opacity: 1;
     background-color: #292929;
@@ -114,13 +122,32 @@
     color: #fff;
   }
 }
+
 @media screen and (min-width : 768px) {
   .classic {
-  background: rgb(32, 32, 32);
+    background: rgb(32, 32, 32);
 
-  header {
-    position: static !important;
-    margin-block-start: 62.4px;
+    header {
+      position: static !important;
+      margin-block-start: 62.4px;
+    }
   }
 }
+.classic .effect-20:focus~label[data-v-64dd3bfe]:before,
+.classic .has-content.effect-20~label[data-v-64dd3bfe]:before {
+  background-color: transparent;
+}
+
+.icon-close {
+  position: absolute;
+  z-index: 10;
+  left: unset;
+  width: auto;
+  height: auto;
+  margin: unset;
+  transform: unset;
+}
+
+.classic .icon-close:before {
+  content: "";
 }

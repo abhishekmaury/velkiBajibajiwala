@@ -136,7 +136,7 @@
 
 <main>
   <div *ngIf="isSidebarOpen" id="menubox">
-    <div id="menu" class="menu show ng-star-inserted active">
+    <div id="menu" class="menu show ng-star-inserted" [ngClass]="{'active': isSidebarOpen}">
       <div class="btn-close" style="mask-image: url(/assets/images/icon-set/icon-close.svg);">
       </div>
       <div class="menu-first" (click)="$event.stopPropagation()">
@@ -310,31 +310,6 @@
                     </font>
                   </p>
                 </a></li>
-              <li class="ng-tns-c3392045011-3 telegram ng-star-inserted" data-category="telegram"
-                (click)="navigateTochatbot()"><a target="_blank" class="ng-tns-c3392045011-3"><span
-                    class="ng-tns-c3392045011-3 ng-star-inserted"
-                    style="mask-image: url(/assets/images/left-menu-icon-bottom/chat.svg?v=1.01);background: var(--sideIconColor);mask-repeat:no-repeat;mask-size:90%;"
-                    [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
-                  <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
-                    <font style="vertical-align: inherit;">
-                      <font style="vertical-align: inherit;">{{'LIVECHAT' }}
-                        <!-- <span>{{'LIVECHATD' |
-                          transloco}}</span> -->
-                      </font>
-                    </font>
-                  </p>
-                </a></li>
-              <li class="ng-tns-c3392045011-3 imo ng-star-inserted" data-category="imo" (click)="openforum()"><a
-                  target="_blank" class="ng-tns-c3392045011-3"><span class="ng-tns-c3392045011-3 ng-star-inserted"
-                    style="mask-image: url(/assets/images/left-menu-icon-bottom/forum.svg?v=1.01);background: var(--sideIconColor);mask-repeat:no-repeat;mask-size:90%;"
-                    [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
-                  <p class="ng-tns-c3392045011-3" [style]="{'color':themeData?.sidebarTextColor}">
-                    <font style="vertical-align: inherit;">
-                      <font style="vertical-align: inherit;">{{'FORUM' }}</font>
-                    </font>
-                  </p>
-                </a>
-              </li>
             </ul>
             <ul class="home-box" style="opacity: 1; transform: translate(0px, 0px);"
               [style]="{'background':themeData?.sidebarBg}">
