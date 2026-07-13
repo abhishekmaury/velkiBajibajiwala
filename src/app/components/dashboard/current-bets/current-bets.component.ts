@@ -91,14 +91,14 @@ export class CurrentBetsComponent {
     }
   }
   updateIndicatorPosition(select: any) {
-    const elementList = Array.from(document.querySelectorAll('ul > li'));
+    const elementList = Array.from(document.querySelectorAll('#tab-container > li'));
     const selectedElement = elementList.find((el: any) =>
       el.innerText.trim().toLowerCase().includes(select.toLowerCase())
     );
 
     if (selectedElement) {
       const rect = selectedElement.getBoundingClientRect();
-      const containerRect = document.querySelector('ul')!.getBoundingClientRect();
+      const containerRect = document.querySelector('#tab-container')!.getBoundingClientRect();
 
       this.indicatorWidth = rect.width;
       this.indicatorPosition = rect.left - containerRect.left + 8;

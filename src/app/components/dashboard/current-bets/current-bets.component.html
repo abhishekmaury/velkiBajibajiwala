@@ -3,11 +3,11 @@
     <div data-v-3da282ba="" class="mb-20">
       <header data-v-3da282ba=""
         class="h-12 p-3 bg-secondary text-global-font-on-dark text-14 flex items-center justify-center">Current Bets<div
-          class="icon-close text-16 absolute right-4" routerLink="/home"></div>
+          class="icon-close reset text-16 absolute right-4" routerLink="/home"></div>
       </header>
       <section data-v-3da282ba="" class="tab-wrapper relative bg-black-300 overflow-x-scroll">
         <div data-v-3da282ba="" class="h-full inline-block">
-          <ul #tabsContainer data-v-3da282ba="" class="ml-2 mr-1 w-full h-12 flex flex-nowrap justify-start items-center">
+          <ul id="tab-container" #tabsContainer data-v-3da282ba="" class="ml-2 mr-1 w-full h-12 flex flex-nowrap justify-start items-center">
             <li data-v-3da282ba="" [class.active]="selected === 'Odds'"
               class="text-13 font-bold py-2 mr-6 text-center whitespace-nowrap" (click)="getAllBets('Odds')">Exchange
             </li>
@@ -283,7 +283,7 @@
                         [style]="unmatchedtest === true ? 'background:'+jsonWebdt?.imagesBottomBorderColor+'' : ''"
                         class="flex justify-center items-center border border-solid border-checkbox-boder mr-1.5 w-4 h-4 rounded bg-checkbox-background">
                         <span *ngIf="unmatchedtest === true" data-v-a5fdb595=""
-                          class="icon-check text-checkbox-icon text-8 font-bold">
+                          class="icon-check reset text-checkbox-icon text-8 font-bold">
                         </span></span>
                       <div data-v-b0cd02b4=""> </div>
                     </label></div>
