@@ -72,10 +72,12 @@ export class AppComponent implements OnInit {
   showHeader: boolean = true;
   showFooter: boolean = true;
   classicTheme = true;
+  isExchangeRoute = false;
   constructor(private titleService: Title, private route: Router, private popupService: HandlerService,
-              private dataServe: DataHandlerService, private router: Router,private intercom: IntercomService) {
+    private dataServe: DataHandlerService, private router: Router, private intercom: IntercomService) {
     this.route.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
+        this.checkRoute();
         if (event.url.includes('/deposit-rec')) {
           this.showHeader = false;
           this.showFooter = false;
@@ -86,7 +88,9 @@ export class AppComponent implements OnInit {
       }
     });
   }
-
+  checkRoute() {
+    this.isExchangeRoute = this.router.url.startsWith('/exchange');
+  }
   prepareRoute(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
@@ -140,8 +144,8 @@ export class AppComponent implements OnInit {
     const anonymous_id = crypto.randomUUID();
 
     this.dataServe.getIntercomData().subscribe((res: any) => {
-        this.intercom.boot(res?.user,res?.user_hash,anonymous_id);
-      })
+      this.intercom.boot(res?.user, res?.user_hash, anonymous_id);
+    })
 
     let token = localStorage.getItem('token')
     if (token) {
@@ -314,19 +318,19 @@ export class AppComponent implements OnInit {
   }
 
   removeIntercomLauncher() {
-  const interval = setInterval(() => {
-    const iframe = document.querySelector(
-      'iframe[name="intercom-launcher-frame"]'
-    );
-    const launcher = document.querySelector('.intercom-launcher');
+    const interval = setInterval(() => {
+      const iframe = document.querySelector(
+        'iframe[name="intercom-launcher-frame"]'
+      );
+      const launcher = document.querySelector('.intercom-launcher');
 
-    if (iframe) iframe.remove();
-    if (launcher) launcher.remove();
-  }, 500);
+      if (iframe) iframe.remove();
+      if (launcher) launcher.remove();
+    }, 500);
 
-  // stop after 10 sec
-  setTimeout(() => clearInterval(interval), 10000);
-}
+    // stop after 10 sec
+    setTimeout(() => clearInterval(interval), 10000);
+  }
 
   closePopup() {
     this.popupService.closeProfile();
@@ -367,7 +371,7 @@ export class AppComponent implements OnInit {
 
   goToFrmLogo() {
     if (this.isRefreshing) return;
-      this.isRefreshing = true;
+    this.isRefreshing = true;
     let token = localStorage.getItem('token');
     if (token) {
       this.dataServe.LaunchAWCLobby().subscribe((res: any) => {

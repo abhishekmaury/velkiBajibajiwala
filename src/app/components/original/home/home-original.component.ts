@@ -45,6 +45,7 @@ export class HomeOriginalComponent implements OnInit {
   jsonWeblinksdt: any;
   storeMsg: any[] = []
   backgroundImg: any;
+  isToggled = false
 
   @ViewChildren('tabRef') tabRefs!: QueryList<ElementRef<HTMLDivElement>>;
 
@@ -369,6 +370,36 @@ export class HomeOriginalComponent implements OnInit {
     } else {
       this.dataserve.emitRouteActive.next(2)
       this.router.navigate([`/${route}`])
+    }
+  }
+    toggleSwitch() {
+    this.isToggled = !this.isToggled;
+    this.dataserve.getThemeFlag(this.isToggled)
+    localStorage.setItem('clssaicTheme', JSON.stringify(this.isToggled))
+
+    document.documentElement.style.display = 'none';
+    const classic = document.getElementById('classic-style') as HTMLLinkElement;
+    const modern = document.getElementById('newer-style') as HTMLLinkElement;
+
+    classic?.remove();
+    modern?.remove();
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    if (this.isToggled) {
+      link.id = 'classic-style';
+      link.href = './assets/css/halfbaji.css?v=1.10';
+    } else {
+      link.id = 'newer-style';
+      link.href = './assets/css/main.css?v=1.10';
+    }
+
+    document.head.appendChild(link);
+    if (this.router.url.includes('sports')) {
+      this.router.navigate(['/home']).then(() => {
+        window.location.reload();
+      });
+    } else {
+      window.location.reload();
     }
   }
 }

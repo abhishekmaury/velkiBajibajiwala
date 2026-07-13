@@ -157,7 +157,7 @@
                 </font>
               </p>
             </div>
-            <div routerLink="/account" (click)="close()"
+            <div *ngIf="loggedIn" routerLink="/account" (click)="close()"
               class="icon-arrow ng-tns-c3392045011-16 ng-star-inserted"
               [style]="{'background':themeData?.masterTextColor1}"
               style="mask-image: url(/assets/images/icon-set/icon-arrow-type09.svg); display: flex;width: 3vw;">
@@ -175,7 +175,7 @@
                 </font>
               </a>
             </div>
-            <div class="register-button" routerLink="/signup" (click)="close()">
+            <div class="register-button"  *ngIf="jsonWeblinksdt?.signupShowing == 'true'" (click)="openSignup(jsonWeblinksdt?.signupContent)" (click)="close()">
               <span [style]="{'background':themeData?.homenavsvgtextcolor}"
                 style="-webkit-mask-image: url(/assets/images/icon-set/icon-register.svg);" class="ng-tns-c3392045011-3">
               </span>

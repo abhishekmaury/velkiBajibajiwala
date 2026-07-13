@@ -56,7 +56,7 @@
   <a *ngIf="jsonWeblinksdt?.whatsappShowing == 'true'" [href]="jsonWeblinksdt?.whatsappContent" target="_blank"
     class="block cursor-pointer mx-1"><span class="text-30 icon-whatsapp"></span></a>
 </div> -->
-<div
+<div *ngIf="!isExchangeRoute"
   class="custom-fab stickyRightContainer fixed z-30 right-2 pb-7px flex gap-2 flex-col justify-end items-end"
   (click)="openIntercom()">
 
