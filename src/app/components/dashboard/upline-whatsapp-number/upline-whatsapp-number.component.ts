@@ -44,7 +44,6 @@ export class UplineWhatsappNumberComponent implements OnInit{
     this.loading = true;
     this.dataServe.getUplineContact().subscribe((res: any) => {
       this.number=res;
-      this.number = '9782349823';
       this.loading = false;
     });
   }
