@@ -1,7 +1,7 @@
 @font-face {
   font-family: "icomoon";
-  src: url("https://www.seofmi.live/assets/1.4.4_3-icomoon.38841fa1.eot?50azxb");
-  src: url("https://www.seofmi.live/assets/1.4.4_3-icomoon.38841fa1.eot?50azxb#iefix") format("embedded-opentype"), url("https://www.seofmi.live/assets/1.4.4_3-icomoon.7e7c8d41.ttf?50azxb") format("truetype"), url("https://www.seofmi.live/assets/1.4.4_3-icomoon.24f694b7.woff?50azxb") format("woff"), url("https://www.seofmi.live/assets/1.4.4_3-icomoon.0924e0f6.svg?50azxb#icomoon") format("svg");
+  src: url("/assets/1.4.4_3-icomoon.38841fa1.eot?50azxb");
+  src: url("/assets/1.4.4_3-icomoon.38841fa1.eot?50azxb#iefix") format("embedded-opentype"), url("/assets/1.4.4_3-icomoon.7e7c8d41.ttf?50azxb") format("truetype"), url("/assets/1.4.4_3-icomoon.24f694b7.woff?50azxb") format("woff"), url("https://www.seofmi.live/assets/1.4.4_3-icomoon.0924e0f6.svg?50azxb#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;

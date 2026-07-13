@@ -68,6 +68,21 @@
   width: 25%;
 }
 
+.member-menu-logout {
+  margin: 0 0 2.6666666667vw;
+  border-radius: .8vw;
+}
+
+.member-menu-logout a {
+  padding: 2.6666666667vw;
+}
+
+.member-menu-logout a p {
+  font-size: 3.4666666667vw;
+  line-height: unset;
+  text-shadow: none;
+}
+
 @media (min-width: 768px) {
   .member-menu {
     max-width: 480px;
