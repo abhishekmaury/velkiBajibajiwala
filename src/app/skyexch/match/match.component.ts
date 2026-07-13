@@ -233,15 +233,11 @@ export class MatchComponent implements OnInit, OnDestroy {
 
    constructor(private dataServe: DataHandlerService, private socket: SocketServiceService,
      private route: ActivatedRoute, public sanitizer: DomSanitizer, private getSocketPath : GetSocketUrlService, private authServe: AuthserviceService, private router: Router,
-     private el: ElementRef, private renderer: Renderer2) { }
-
-   async ngOnInit() {
-     if (this.router.url.startsWith('/exchange/match/')) {
+     private el: ElementRef, private renderer: Renderer2) {
+      if (this.router.url.startsWith('/exchange/match/')) {
         this.exchangeStyles.forEach((href, i) => {
           if (!document.getElementById(`exchange-style-${i}`)) {
             const link = document.createElement('link');
-            console.log(link);
-
             link.id = `exchange-style-${i}`;
             link.rel = 'stylesheet';
             link.href = href;
@@ -249,6 +245,9 @@ export class MatchComponent implements OnInit, OnDestroy {
           }
         });
       }
+      }
+
+   async ngOnInit() {
      await this.getSocketPath.SocketUrls;
      this.newSocketData = this.getSocketPath.SocketUrls;
      let wData = localStorage.getItem("webData")

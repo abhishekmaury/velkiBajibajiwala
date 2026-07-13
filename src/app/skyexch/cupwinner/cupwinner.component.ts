@@ -98,8 +98,6 @@ export class CupwinnerComponent {
       this.exchangeStyles.forEach((href, i) => {
         if (!document.getElementById(`exchange-style-${i}`)) {
           const link = document.createElement('link');
-          console.log(link);
-
           link.id = `exchange-style-${i}`;
           link.rel = 'stylesheet';
           link.href = href;
