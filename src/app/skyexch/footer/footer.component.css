@@ -11,9 +11,10 @@ footer {
   width: 100%;
   height: auto;
   padding: 0 2.1333333333vw;
+}
+.footers{
   background-color: var(--bodyBG) !important;
 }
-
 @media (min-width:768px) {
   .footer-top .license {
     margin-right: 10.24px;
