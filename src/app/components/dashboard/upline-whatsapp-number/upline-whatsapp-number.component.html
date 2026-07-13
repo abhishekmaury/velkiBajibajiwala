@@ -26,7 +26,7 @@
               <span class="text-14">Bkash</span>
             </div>
             <div class="flex items-center gap-2">
-              <span class="px-3 py-3 bg-gray-100 rounded-lg text-17">
+              <span class="px-3 py-3 rounded-lg text-17" [class.bg-gray-100]="!isClassicTheme">
                 {{number?.bkashNumber}}
               </span>
               <a (click)="copyToClipboard(number?.bkashNumber)" class="text-button-normal bg-button-normal text-18 p-3 rounded-lg disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed" [style.backgroundImage]="!isClassicTheme ? jsonWebdt?.imagesBottomBorderColor : 'linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%)'"><i class="fa fa-clone" style="margin-right: 3px;"></i></a>
@@ -39,7 +39,7 @@
               <span class="text-14">Nagad</span>
             </div>
             <div class="flex items-center gap-2">
-              <span class="px-3 py-3 bg-gray-100 rounded-lg text-17">
+              <span class="px-3 py-3  rounded-lg text-17" [class.bg-gray-100]="!isClassicTheme">
                 {{number?.nagagNumber}}
               </span>
               <a (click)="copyToClipboard(number?.nagagNumber)" class="text-button-normal bg-button-normal text-18 p-3 rounded-lg disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed" [style.backgroundImage]="!isClassicTheme ? jsonWebdt?.imagesBottomBorderColor : 'linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%)'"><i class="fa fa-clone" style="margin-right: 3px;"></i></a>
@@ -52,7 +52,7 @@
               <span class="text-14">Rocket</span>
             </div>
             <div class="flex items-center gap-2">
-              <span class="px-3 py-3 bg-gray-100 rounded-lg text-17">
+              <span class="px-3 py-3 rounded-lg text-17" [class.bg-gray-100]="!isClassicTheme" >
                 {{number?.rocketNumber}}
               </span>
               <a (click)="copyToClipboard(number?.rocketNumber)" class="text-button-normal bg-button-normal text-18 p-3 rounded-lg disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed" [style.backgroundImage]="!isClassicTheme ? jsonWebdt?.imagesBottomBorderColor : 'linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%)'"><i class="fa fa-clone" style="margin-right: 3px;"></i></a>
