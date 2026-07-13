@@ -52,7 +52,7 @@ export class HomeClassicComponent {
   casinoGames: any;
   isFixed: boolean = false;
   indiancasinogames: any;
-  activeTabs = 1;
+  activeTabs = 2;
   whatsData: any;
   whatsappsupport = false;
   deviceId: string = '';
@@ -119,6 +119,7 @@ export class HomeClassicComponent {
     '/assets/banner/kv-smartsoft.webp',
     '/assets/banner/jdb.webp'
   ];
+  liveData : any;
   ngOnInit(): void {
     let lsData = localStorage.getItem('userData');
     if (lsData) {
@@ -163,6 +164,7 @@ export class HomeClassicComponent {
     // this.startImageRotation();
     this.getPlatFormList();
     this.IndianCasino();
+    this.getLiveData();
 
 
   }
@@ -179,6 +181,14 @@ export class HomeClassicComponent {
   //     }
   //   })
   // }
+
+  getLiveData(){
+    let data = { "category": 'LIVE', "country": 'Bangladesh' };
+      this.dataserve.getLiveData(data).subscribe((res: any) => {
+        this.liveData = res?.result;
+        this.gameslist = this.liveData.flatMap((item: any) => item.game_ids);
+      })
+  }
 
 
   hotgames(gamename: any) {

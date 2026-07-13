@@ -230,7 +230,7 @@ export class ClassicHeaderComponent implements OnInit {
 
   navigateToGames(gmnm: any, tab: any) {
     this.isSidebarOpen = false;
-    this.router.navigate([`/games/${gmnm}/${tab}`])
+    this.router.navigate([`/casino/${gmnm}/${tab}`])
   }
   closelang() {
     this.showlangpop = false;
