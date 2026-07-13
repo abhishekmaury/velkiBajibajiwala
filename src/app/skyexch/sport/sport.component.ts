@@ -8,11 +8,12 @@ import { AuthserviceService } from '../../services/authservice.service';
 import { SocketServiceService } from '../../services/socket-service.service';
 import { DatePipePipe } from "../pipes/datepipe.pipe";
 import { DataHandlerService } from 'src/app/services/datahandler.service';
+import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-sport',
   standalone: true,
-  imports: [CommonModule, DatePipePipe, RouterLink],
+  imports: [CommonModule, DatePipePipe, RouterLink, LoaderComponent],
   templateUrl: './sport.component.html',
   styleUrls: ['./sport.component.css'],
   encapsulation: ViewEncapsulation.None
@@ -163,6 +164,7 @@ export class SportComponent implements OnInit, OnDestroy {
   }
 
   async getSportsData() {
+    this.isLoading = true;
     try {
       const [todayGamesResponse, tomorrowGamesResponse] =
         await forkJoin([
@@ -179,8 +181,10 @@ export class SportComponent implements OnInit, OnDestroy {
       }));
 
       this.gameListDataSubject2.next(this.gameslist2);
+      this.isLoading = false;
     } catch (error) {
       console.error('getSportsData error', error);
+      this.isLoading = false;
     }
   }
   changeCount(data: any) {

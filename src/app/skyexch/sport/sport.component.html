@@ -727,7 +727,7 @@
 
                       </div>
                     </ng-container>
-                    <!-- <app-loader *ngIf="isLoading"></app-loader> -->
+                    <app-loader *ngIf="isLoading"></app-loader>
                     <ng-container *ngIf="mainTabs==2">
                       <div id="LeaguesTab" class="tab-content active ng-star-inserted">
                         <ng-container *ngIf="activeTab != 'multi'">
@@ -1698,7 +1698,7 @@
                                 </div>
                               </div>
                             </div>
-                            <ng-container *ngFor="let item of showleaguematches; ">
+                            <ng-container *ngFor="let item of showleaguematches?.matches; ">
                               <div class="ng-star-inserted">
                                 <section (click)="openMatch(item.sportid,item.marketid,item.iscupWinner)"
                                   class="s-px-4 s-my-14px s-text-global-font-default-light dark:s-text-global-font-default-dark ng-star-inserted">

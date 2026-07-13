@@ -120,7 +120,7 @@ export class LoginComponent implements OnInit{
               this.errMsg = 'Invalid validation code!'
             }
           }else{
-            this.errMsg = 'verifycode cannot be empty'
+            this.errMsg = 'validation code cannot be empty'
           }
         }else{
           this.errMsg = 'password cannot be empty'
