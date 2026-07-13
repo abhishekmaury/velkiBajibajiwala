@@ -35,12 +35,14 @@ export class SkyexchComponent implements OnInit {
   oneClick = false;
   navigator = true;
   myBets = false;
+  isLoggedIn = false;
 
   constructor(private dataserve: DataHandlerService, private authServe: AuthserviceService, private router: Router) { }
-  ngOnInit(): void {
 
-    
+  ngOnInit() {
+     this.isLoggedIn = !!localStorage.getItem('token');
   }
+
 
   openbets() {
     this.myBets = !this.myBets

@@ -6928,9 +6928,9 @@ header .header-title {
   animation: fallin .6s .2s forwards
 }
 
-.icon-check,
-.icon-close,
-.icon-lock {
+.icon-check:not(.reset),
+.icon-close:not(.reset),
+.icon-lock:not(.reset) {
   position: relative;
   z-index: 10;
   left: 50%;
