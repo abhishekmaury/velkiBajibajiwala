@@ -253,8 +253,9 @@
               <div class="h-2 rounded-b-lg transition-colors duration-300 bg-black-300"></div>
               <div [ngClass]="expand==i?'bg-black-300':'bg-black-400'"
                 class="h-4 rounded-b-lg w-90px mx-auto flex justify-center transition-colors duration-300 ">
-                <span (click)="details(i)" [ngClass]="expand==i?'transform rotate-180':''"
-                  class="icon-arrow-down-sencodary relative -top-1 text-black transition-transform origin-center duration-300"></span>
+                <!-- <span (click)="details(i)" [ngClass]="expand==i?'transform rotate-180':''"
+                  class="icon-arrow-down-sencodary relative -top-1 text-black transition-transform origin-center duration-300"></span> -->
+                  <i class="fa-solid fa-angle-down relative -top-1 text-black transition-transform origin-center duration-300" (click)="details(i)" [ngClass]="expand==i?'transform rotate-180':''"></i>
               </div>
             </footer>
           </section>
