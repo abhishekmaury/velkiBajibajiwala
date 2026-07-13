@@ -89,28 +89,17 @@
                         <div id="streamContainer" class="tv-box">
                           <div id="tv" class="tv">
 
-                            <!-- <ng-container *ngIf="!demoUser; else demoUserMessage">
-                              <div class="zoomed_mode" id="zoomdrag" style="left: 0; top: 0;">
-                                <span
-                                  style="position:absolute;z-index:99;display:flex;width:100%;justify-content:end;font-size:20px;">
-                                  <i
-                                    style="position: relative; top: -5px;color: #fff;right: -13px;"
-                                    id="tvFrame"
-                                    class="fa fa-arrows">
-                                  </i>
-                                </span>
-
-                                <iframe
-                                  [src]="urlSafe2"
-                                  allowfullscreen="true"
-                                  class="zoomed_mode zoomed_modetv">
-                                </iframe>
-                              </div>
-                            </ng-container> -->
-
-<!-- <ng-template #demoUserMessage>
-  <p class="video-text">You need to register to access TV feature</p>
-</ng-template> -->
+                            <video id="videoPlayer" poster="/assets/images/livetvimage.jpg?v=1.01" muted autoplay playsinline
+                              disablePictureInPicture class="no-default-controls">
+                            </video>
+                            <div *ngIf="playtv" class="custom-controls" id="customControls">
+                              <button id="muteBtn" (click)="muteVideo()">🔇</button>
+                              <button id="unMuteBtn" (click)="unmuteVideo()">🔊</button>
+                            </div>
+                            <div (click)="closeTv()" [style.display]="isOutside ? 'flex' : 'none'" data-v-5c7611c3=""
+                              class="btn-close w-10 h-10 absolute right-5 top-3 z-50 flex justify-center items-center rounded-full">
+                              <span data-v-5c7611c3="" class="icon-close text-16px text-white"></span>
+                            </div>
 
                           </div>
                         </div>

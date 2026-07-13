@@ -319,13 +319,9 @@ export class ClassicHeaderComponent implements OnInit {
     this.showlangpop = false
   }
 
-  openAffiliate() {
-    window.open('/assets/affiliate/index.html', '_blank');
-  }
 
   // TODO
   sportsmenu = true;
-  openforum() { }
 
   menuTabs(menu: string): void {
     this.activeMenu = menu;

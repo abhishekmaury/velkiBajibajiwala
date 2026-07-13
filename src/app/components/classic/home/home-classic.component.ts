@@ -307,14 +307,7 @@ export class HomeClassicComponent {
       this.router.navigate(['/login'])
     }
   }
-  navigateToSpin() {
-    const screenWidth = window.innerWidth;
-    if (screenWidth < 900) {
-      this.router.navigate(['/simluckywheel'])
-    } else {
-      this.router.navigate(['/luckywheel'])
-    }
-  }
+
   navigateToExch() {
     this.router.navigate(['/exchange/sport'])
     // let token = localStorage.getItem('token')
@@ -325,74 +318,6 @@ export class HomeClassicComponent {
     // }
   }
 
-
-  LoginPopup1(data: any) {
-    if (data.data?.login == true) {
-      setTimeout(() => {
-        this.loginPopup = false;
-      }, 1000);
-    }
-    this.loginPopup = data;
-  }
-  updateBal() {
-    this.updBal = false;
-    this.spinner = true;
-    let sectime = this.dataserve.getTimeStamp();
-
-    this.data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
-
-    // this.dataserve.verifyUser(this.data).subscribe((res: any) => {
-    // }, (error) => {
-    //   if (error.status == 200) {
-    //     this.validateapi = this.dataserve.decryptData(error.error.text);
-    //     if (this.validateapi.data.type == 'success') {
-    //       this.authServe.getUserDetails(this.data).subscribe((res: any) => {
-    //       }, (error) => {
-    //         if (error.status == 200) {
-    //           let gms = this.dataserve.decryptData(error.error.text);
-    //           this.loggedData.data.user.myBalance = gms.data.balance
-    //           this.userBalance = this.loggedData.data.user.myBalance;
-    //           localStorage.setItem("userData", JSON.stringify(this.loggedData))
-    //           this.updBal = true;
-    //           this.spinner = false;
-    //         }
-    //       })
-
-    //     }
-    //   }
-    // })
-  }
-  apiddaatta() {
-
-    let sectime = this.dataserve.getTimeStamp();
-
-    this.data = { "timeStamp": sectime.timeStamp, "secretKey": sectime.secretKey }
-
-    // this.dataserve.verifyUser(this.data).subscribe((res: any) => {
-    // }, (error) => {
-    //   if (error.status == 200) {
-    //     this.validateapi = this.dataserve.decryptData(error.error.text);
-    //     if (this.validateapi.data.type == 'success') {
-    //       this.dataserve.getImageDataForUser(this.data).subscribe((res: any) => {
-    //       }, (error) => {
-    //         if (error.status == 200) {
-    //           let gms = this.dataserve.decryptData(error.error.text);
-    //           this.imagesPop = gms?.data
-    //           let data = sessionStorage.getItem("showHmPop");
-    //           if (data == 'true') {
-    //             this.inboxpopup = true;
-    //             setTimeout(() => {
-    //               sessionStorage.setItem("showHmPop", 'false');
-    //             }, 1000);
-    //           }
-
-    //         }
-    //       })
-
-    //     }
-    //   }
-    // })
-  }
 
   opencasinogamesmob(data: any) {
     let token = localStorage.getItem('token');
