@@ -10,29 +10,45 @@
         class="w-24 h-auto max-h-8 object-contain object-left">
     </div>
     <div data-v-c43df3f1="" class="flex space-x-2">
-        <!-- <div class="toggle-container"> -->
-        <!--   <div class="hk-toggle hk-tg-2"> -->
-        <!--     <input type="checkbox" id="tg2" (change)="toggleSwitch()" [checked]="isToggled"> -->
-        <!--     <label for="tg2"></label> -->
-        <!--   </div> -->
-        <!--     <p>Classic Version </p> -->
-        <!-- </div> -->
-      <div class="togglebtn">
+      <!-- <div class="toggle-container"> -->
+      <!--   <div class="hk-toggle hk-tg-2"> -->
+      <!--     <input type="checkbox" id="tg2" (change)="toggleSwitch()" [checked]="isToggled"> -->
+      <!--     <label for="tg2"></label> -->
+      <!--   </div> -->
+      <!--     <p>Classic Version </p> -->
+      <!-- </div> -->
+      <!-- <div class="togglebtn">
 
           <div class="hk-toggle hk-tg-2">
             <input type="checkbox" id="tg2" (change)="toggleSwitch()" [checked]="isToggled">
             <label for="tg2"></label>
           </div>
-            <p>Classic Version </p>
-      <!-- <div class="toggle-box__inner ng-tns-c357405858-3"> -->
-      <!--     <input type="checkbox" class="toggle-box__input ng-tns-c357405858-3" [checked]="isToggled" -->
-      <!--         (change)="toggleSwitch()" id="switch-mode-1"> -->
-      <!--     <label class="toggle-box__switch ng-tns-c357405858-3" for="switch-mode-1"> -->
-      <!--         <div class="toggle-box__disc ng-tns-c357405858-3"> </div> -->
-      <!--     </label> -->
+            <p>Classic Version </p> -->
+      <!-- <div class="toggle-box__inner ng-tns-c357405858-3">
+          <input type="checkbox" class="toggle-box__input ng-tns-c357405858-3" [checked]="isToggled"
+              (change)="toggleSwitch()" id="switch-mode-1">
+          <label class="toggle-box__switch ng-tns-c357405858-3" for="switch-mode-1">
+              <div class="toggle-box__disc ng-tns-c357405858-3"> </div>
+          </label>
+      </div>
+      <p>Classic Version </p> -->
       <!-- </div> -->
-      <!-- <p>Classic Version </p> -->
-    </div>
+      <div class="classic-switch">
+        <div class="classic-text">
+          <span>Classic</span>
+          <span>Version</span>
+        </div>
+
+        <label class="toggle-pill" [class.active]="isToggled">
+          <input type="checkbox" (change)="toggleSwitch()" [checked]="isToggled" />
+
+          <span class="status">
+            {{ isToggled ? 'ON' : 'OFF' }}
+          </span>
+
+          <span class="circle"></span>
+        </label>
+      </div>
       <button *ngIf="jsonWeblinksdt?.signupShowing == 'true'" (click)="openSignup(jsonWeblinksdt?.signupContent)"
         class="btn-normal p-3 rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed bg-signup text-white h-26px text-13 font-bold self-center">
         <i class="icon-sign-up text-14 w-4 mr-1.5 not-italic"></i>
@@ -108,10 +124,10 @@
       <div data-v-6d6d5fd0="" class="mt-1 mb-2 px-2 flex justify-between"><span data-v-6d6d5fd0=""
           class="font-bold text-15">Menu</span><i data-v-6d6d5fd0="" class="icon-close" (click)="openMenu()"></i></div>
       <div class="toggle-container">
-<div class="hk-toggle hk-tg-2">
-            <input type="checkbox" id="tg2" (change)="toggleSwitch()" [checked]="isToggled">
-            <label for="tg2"></label>
-          </div>
+        <div class="hk-toggle hk-tg-2">
+          <input type="checkbox" id="tg2" (change)="toggleSwitch()" [checked]="isToggled">
+          <label for="tg2"></label>
+        </div>
         <!-- <div class="togglebtn"> -->
         <!--   <div class="toggle-box__inner ng-tns-c357405858-3"> -->
         <!--       <input type="checkbox" class="toggle-box__input ng-tns-c357405858-3" [checked]="isToggled" -->
@@ -120,7 +136,7 @@
         <!--           <div class="toggle-box__disc ng-tns-c357405858-3"> </div> -->
         <!--       </label> -->
         <!--   </div> -->
-          <p>Classic Version </p>
+        <p>Classic Version </p>
         <!-- </div> -->
       </div>
       <!-- <div data-v-6d6d5fd0="" class="item-block">
