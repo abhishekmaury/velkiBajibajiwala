@@ -55,9 +55,8 @@
         <font style="vertical-align: inherit;">{{"LOGIN" | transloco }}</font>
       </font>
     </a>
-    <a *ngIf="footerLinkss?.signUpOn != 'true'" class="register header-link ng-star-inserted"
-      [style]="{'background':themeData?.signupButtonBackground,'color':themeData?.signupButtonTextColor}"
-      routerLink="/signup">
+    <a  *ngIf="jsonWeblinksdt?.signupShowing == 'true'" (click)="openSignup(jsonWeblinksdt?.signupContent)" class="register header-link ng-star-inserted"
+      [style]="{'background':themeData?.signupButtonBackground,'color':themeData?.signupButtonTextColor}">
       <font style="vertical-align: inherit;">
         <font style="vertical-align: inherit;">{{"SIGNUP" | transloco }}</font>
       </font>
@@ -161,7 +160,7 @@
             <div routerLink="/account" (click)="close()"
               class="icon-arrow ng-tns-c3392045011-16 ng-star-inserted"
               [style]="{'background':themeData?.masterTextColor1}"
-              style="mask-image: url(/assets/images/icon-set/icon-arrow-type01.svg); display: flex;">
+              style="mask-image: url(/assets/images/icon-set/icon-arrow-type09.svg); display: flex;width: 3vw;">
             </div>
           </div>
           <div *ngIf="!loggedIn" class="beforelogin ng-star-inserted" [style]="{'background':themeData?.homenavsvgbgcolor}">
@@ -361,13 +360,13 @@
             </a>
           </li>
           <li class="ng-tns-c41-5 ng-star-inserted">
-            <a tabindex="-1" class="ng-tns-c41-5" (click)="opensabagamesmob('sabaSports/1/3/gn001')">
+            <a tabindex="-1" class="ng-tns-c41-5" (click)="opensabagamesmob('/sabaSports/1/3/gn001')">
               <div class="ng-tns-c41-5 icon-sport sportbook ng-star-inserted"></div>
               <p class="ng-tns-c41-5" [style]="{'color':themeData?.sidebarTextColor}">Sportsbook</p>
             </a>
           </li>
           <li class="ng-tns-c41-5 ng-star-inserted">
-            <a tabindex="-1" class="ng-tns-c41-5" (click)="opensabagamesmob('sabaSports/179/3/gn001')">
+            <a tabindex="-1" class="ng-tns-c41-5" (click)="opensabagamesmob('/sabaSports/179/3/gn001')">
               <div class="ng-tns-c41-5 icon-sport virtual ng-star-inserted"></div>
               <p class="ng-tns-c41-5" [style]="{'color':themeData?.sidebarTextColor}">Virtual</p>
             </a>
@@ -389,7 +388,7 @@
           </li>
           <li class="ng-star-inserted" (click)="navigateToGames('LIVE', 'SEXY')">
             <a tabindex="-1" vender="Sexy">
-              <img fetchpriority="high" alt="provider-awcmsexy" src="/assets/images/games/SEXY.webp" loading="lazy"
+              <img fetchpriority="high" alt="provider-awcmsexy" src="/assets/images/games/SEXYBCRT.webp" loading="lazy"
                 class="ng-star-inserted">
               <p [style]="{'color':themeData?.sidebarTextColor}">Sexy</p>
             </a>
@@ -508,9 +507,9 @@
             </a>
           </li>
         </ul>
-        <ul *ngIf="lotterymenu" class="menu-second-ul ng-tns-c41-5 ng-star-inserted lotterymenu" [class.active]="activeMenu === 'lottery'">
+        <ul class="menu-second-ul ng-tns-c41-5 ng-star-inserted lotterymenu" [class.active]="activeMenu == 'lottery'">
           <li class="ng-tns-c41-5 ng-star-inserted">
-            <a (click)="navigateToGames('LIVE', 'ALL')" class="ng-tns-c41-5">
+            <a (click)="opensabagamesmob('/sabaSports/161/3/gn001')" class="ng-tns-c41-5">
               <img fetchpriority="high" class="ng-tns-c41-5 ng-star-inserted" alt="provider-number"
                 src="/assets/images/games/provider-number.png?v=.01" loading="lazy">
               <p class="ng-tns-c41-5" [style]="{'color':themeData?.sidebarTextColor}">Number</p>
