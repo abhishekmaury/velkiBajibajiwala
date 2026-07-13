@@ -1,8 +1,10 @@
 <div data-v-f43ca18c="" class=" relative" [class.classic]="isClassicTheme">
   <div data-v-f00b9242="" style="--0f2e548c: 67px; --88bd2d54: translateX(8px);">
     <header data-v-f00b9242=""
-      class="h-12 p-3 bg-secondary text-global-font-on-dark text-14 flex items-center justify-center">Bets History<div
-        class="icon-close text-16 absolute right-4" routerLink="/home"></div>
+      class="h-12 p-3 bg-secondary text-global-font-on-dark text-14 flex items-center justify-center">Bets History
+      <!-- <div
+        class="icon-close reset text-16 absolute right-4" routerLink="/home"></div> -->
+        <i class="fa-solid fa-xmark text-16 absolute right-4" routerLink="/home" ></i>
     </header>
     <section data-v-f00b9242="" class="tab-wrapper relative bg-black-300 overflow-x-scroll">
       <div data-v-f00b9242="" class="h-full inline-block">
@@ -33,7 +35,7 @@
           <li data-v-f00b9242="" class="tab text-13 font-bold py-2 mr-6 text-center whitespace-nowrap"
             [routerLink]="['/bet-history/casino']" [class.active]="activeTab === 6" (click)="switchTab(6)">Casino Bet
           </li>
-          
+
           <li data-v-f00b9242="" class="tab text-13 font-bold py-2 mr-6 text-center whitespace-nowrap"
             [routerLink]="['/bet-history/Other']" [class.active]="activeTab === 7" (click)="switchTab(7)">Others
           </li>
@@ -41,7 +43,7 @@
             [routerLink]="['/bet-history/SABA SPORTS']" [class.active]="activeTab === 8" (click)="switchTab(8)">SABA
             SPORTS
           </li>
-          
+
           <div data-v-35235b3f="" class="tab-indicator absolute left-0 bottom-1.5 bg-global-font-on-light rounded-full"
             [style.width.px]="indicatorWidth" [style.left.px]="indicatorLeft">
           </div>

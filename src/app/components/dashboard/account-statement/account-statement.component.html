@@ -3,9 +3,10 @@
     <div class="mb-20">
       <header class="h-12 p-3 bg-secondary text-global-font-on-dark text-14 flex items-center justify-center">
         <span>Account Statement</span>
-        <button class="icon-close text-16 absolute right-4" routerLink="/home">
+        <!-- <button class="icon-close text-16 absolute right-4" routerLink="/home">
 
-        </button>
+        </button> -->
+        <i class="fa-solid fa-xmark text-16 absolute right-4" routerLink="/home" ></i>
       </header>
       <div class="overflow-x-auto pb-4 mb-6 text-white w-full" *ngIf="accountStmt?.data?.length > 0">
         <table class="w-full border-collapse border border-gray-700 divide-y divide-gray-700 table-auto">
