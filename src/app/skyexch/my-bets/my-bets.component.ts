@@ -47,7 +47,7 @@ export class MyBetsComponent {
     }
 
     this.exchangeActiveLiab();
-    this.parlayActiveLiab();
+    // this.parlayActiveLiab();
   }
 
   exchangeActiveLiab() {
