@@ -36,12 +36,26 @@ export class SkyexchComponent implements OnInit {
   navigator = true;
   myBets = false;
   isLoggedIn = false;
+  exchangeStyles = [
+   'assets/css/style.css',
+   'assets/css/style2.css',
+   'assets/css/newstyle.css'
+ ];
 
   constructor(private dataserve: DataHandlerService, private authServe: AuthserviceService, private router: Router) { }
 
-  ngOnInit() {
-     this.isLoggedIn = !!localStorage.getItem('token');
-  }
+ ngOnInit() {
+   this.isLoggedIn = !!localStorage.getItem('token');
+   this.exchangeStyles.forEach((href, i) => {
+     if (!document.getElementById(`exchange-style-${i}`)) {
+       const link = document.createElement('link');
+       link.id = `exchange-style-${i}`;
+       link.rel = 'stylesheet';
+       link.href = href;
+       document.head.prepend(link);
+     }
+   });
+ }
 
 
   openbets() {
@@ -52,5 +66,11 @@ export class SkyexchComponent implements OnInit {
     } else {
       this.router.navigate(['/login']);
     }
+  }
+
+  ngOnDestroy() {
+    this.exchangeStyles.forEach((_, i) => {
+      document.getElementById(`exchange-style-${i}`)?.remove();
+    });
   }
 }

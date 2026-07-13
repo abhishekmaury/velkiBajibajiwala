@@ -49,6 +49,11 @@ export class PlaceBetCupwinnerComponent {
   stakeNumPad = [1, 2, 3, 4, 5, 6, 7, 8, 9, '', 0,]
   stakesetting = false;
   stakeFocusnum = 1;
+  exchangeStyles = [
+    'assets/css/style.css',
+    'assets/css/style2.css',
+    'assets/css/newstyle.css'
+  ];
 
   constructor(private router: Router, private dataServe: DataHandlerService, private popupService: HandlerService) { }
 
@@ -73,6 +78,21 @@ export class PlaceBetCupwinnerComponent {
     } else {
       this.stakeArr = this.stake;
     }
+    this.exchangeStyles.forEach((href, i) => {
+      if (!document.getElementById(`exchange-style-${i}`)) {
+        const link = document.createElement('link');
+        link.id = `exchange-style-${i}`;
+        link.rel = 'stylesheet';
+        link.href = href;
+        document.head.prepend(link);
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.exchangeStyles.forEach((_, i) => {
+      document.getElementById(`exchange-style-${i}`)?.remove();
+    });
   }
   addStakValue(val: any, tr: any) {
     this.enableBtn = tr

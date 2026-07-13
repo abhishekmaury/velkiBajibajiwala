@@ -1,4 +1,4 @@
-@import url(../exStyles.css);
+/* @import url(../exStyles.css); */
 
 .scoremin {
   min-height: 125px;
@@ -996,4 +996,7 @@ header .logo {
   padding: 10px 15px;
   border-radius: 10px;
   cursor: pointer;
+}
+.s-app .s-text-market-tab-text {
+    color: #111 !important;
 }

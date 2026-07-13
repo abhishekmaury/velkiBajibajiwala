@@ -225,12 +225,30 @@ export class MatchComponent implements OnInit, OnDestroy {
    isMuted: boolean = false;
    intervalIdTime: any;
    newSocketData: any;
- 
-   constructor(private dataServe: DataHandlerService, private socket: SocketServiceService, 
+  private exchangeStyles = [
+    'assets/css/style.css',
+    'assets/css/style2.css',
+    'assets/css/newstyle.css'
+  ];
+
+   constructor(private dataServe: DataHandlerService, private socket: SocketServiceService,
      private route: ActivatedRoute, public sanitizer: DomSanitizer, private getSocketPath : GetSocketUrlService, private authServe: AuthserviceService, private router: Router,
      private el: ElementRef, private renderer: Renderer2) { }
- 
+
    async ngOnInit() {
+     if (this.router.url.startsWith('/exchange/match/')) {
+        this.exchangeStyles.forEach((href, i) => {
+          if (!document.getElementById(`exchange-style-${i}`)) {
+            const link = document.createElement('link');
+            console.log(link);
+
+            link.id = `exchange-style-${i}`;
+            link.rel = 'stylesheet';
+            link.href = href;
+            document.head.prepend(link);
+          }
+        });
+      }
      await this.getSocketPath.SocketUrls;
      this.newSocketData = this.getSocketPath.SocketUrls;
      let wData = localStorage.getItem("webData")
@@ -244,7 +262,7 @@ export class MatchComponent implements OnInit, OnDestroy {
          this.jsonWeblinksdt = JSON.parse(d1?.links)
        }
      }
- 
+
      this.socket.destorySocket2();
      localStorage.setItem('placebetcheck', 'false')
      let token = localStorage.getItem('token')
@@ -258,17 +276,17 @@ export class MatchComponent implements OnInit, OnDestroy {
        this.dataServe.openLTV.subscribe((res: any) => {
          this.closeLTv = res
        })
- 
+
        this.dataServe.betSuccessMsg.subscribe((res: any) => {
          this.betSuccess = res;
          this.showBetMsg = true;
          if (res[3].type == 'success') {
- 
+
            if (res[1].sourceBetType === 'Fancy' || res[1].sourceBetType === 'Fancy1') {
              this.showFancyBet = null
              this.showBackSelectFancy = null;
              this.showLaySelectFancy = null;
- 
+
              this.dataServe.getUserFancyBookData(res[1].eventId).subscribe((res: any) => {
                if (res) {
                  this.fancyLiability = res;
@@ -277,7 +295,7 @@ export class MatchComponent implements OnInit, OnDestroy {
              })
            } else if (res[1].sourceBetType === 'Odds' || res[1].sourceBetType === 'BooKMaker') {
              let type = 'Match odds';
- 
+
              this.showOdd = null;
              this.showBM = null;
              this.showBackSelect = null;
@@ -288,7 +306,7 @@ export class MatchComponent implements OnInit, OnDestroy {
              this.beforeoddscal = false;
              this.afterBMcal = false;
              this.beforeBMcal = false;
- 
+
              this.dataServe.getUserMatchBookData(res[1].eventId, type).subscribe((res: any) => {
                if (res) {
                  this.betOddResult = res;
@@ -323,7 +341,7 @@ export class MatchComponent implements OnInit, OnDestroy {
                }
              });
            } else if (res[1].sourceBetType === 'Other') {
- 
+
              let type2 = 'Other';
              this.dataServe.getUserMatchBookData(res[1].eventId, type2).subscribe((res: any) => {
                if (res) {
@@ -332,7 +350,7 @@ export class MatchComponent implements OnInit, OnDestroy {
                  this.omPnlArray = [];
                }
              })
- 
+
              this.showOther = null;
              this.showBackSelectOD = null;
              this.showLaySelectOD = null;
@@ -346,20 +364,20 @@ export class MatchComponent implements OnInit, OnDestroy {
            this.showBM = null;
            this.backTrue = false;
          }
- 
+
          this.betsuccessstatus = this.betSuccess[0];
          this.betMsgTimer = setTimeout(() => {
            this.showBetMsg = false;
          }, 5000);
        })
- 
+
      } else {
        this.isLogin = false;
      }
- 
+
      this.socket.connectSocket();
      this.route.paramMap.subscribe((paramMap: ParamMap) => {
- 
+
        if (paramMap.has('sportId') && paramMap.has('eventId')) {
          this.sportId = paramMap.get('sportId');
          this.eventId = paramMap.get('eventId');
@@ -377,35 +395,35 @@ export class MatchComponent implements OnInit, OnDestroy {
            this.showFancy = true
            this.hideFancyForST = true
          }
- 
+
          if (token) {
            this.dataServe.getEventDataOnLoadnew(this.eventId).subscribe((res: any) => {
              this.eventData = res;
              this.urlSafe = this.getScore(this.eventData?.scoreBase, this.eventId);
              this.url2 = res.tvurl;
              localStorage.setItem('tvurl', this.url2)
- 
+
              if (this.eventData.gameType == 'virtual1') {
                this.showTabs = 'scrd';
              } else {
                this.showTabs = 'tv';
              }
- 
+
              if (this.url2) {
              } else {
                this.authServe.logout();
              }
- 
+
              this.oddspermission = this.eventData?.isAutoOdds;
              this.bmpermission = this.eventData?.isBookmakerOdds;
              this.fancypermission = this.eventData?.isAutoFancy;
              this.otherpermission = this.eventData?.isOther;
- 
+
              if (this.eventData?.gameType == 'virtual1' || this.sportId == 2 || this.sportId == 1) {
                this.fancypermission = false;
                this.fBets(1)
              }
- 
+
              this.tosscheck = this.hideTossbefor2HrFun(this.eventData);
              this.inplaystatus = this.inPlayMatches(this.eventData?.openDate);
              this.intervalIdTime = setInterval(() => {
@@ -413,7 +431,7 @@ export class MatchComponent implements OnInit, OnDestroy {
              }, 10000);
              this.matchrunners = this.eventData.selectionIdName.split(',');
              this.matchrunnerssid = this.eventData.selectionId.split(',');
- 
+
              document.addEventListener('visibilitychange', () => {
                if (!document.hidden) {
                  this.inplaystatus = this.inPlayMatches(this.eventData?.openDate);
@@ -422,9 +440,9 @@ export class MatchComponent implements OnInit, OnDestroy {
              window.addEventListener('focus', () => {
                this.inplaystatus = this.inPlayMatches(this.eventData?.openDate);
              });
- 
+
              this.checkLimits = res.limits;
- 
+
              if (this.checkLimits != 'NONE' && this.checkLimits?.commonOddsLimit?.limitProvider == 'Website') {
                if (this.inplaystatus) {
                  this.oddMin = this.checkLimits?.commonOddsLimit?.minLimit;
@@ -434,7 +452,7 @@ export class MatchComponent implements OnInit, OnDestroy {
                  this.oddMax = this.checkLimits?.commonOddsLimit?.premaxLimit;
                }
              }
- 
+
              if (this.checkLimits != 'NONE' && this.checkLimits?.commonBookmakerLimit?.limitProvider == 'Website') {
                if (this.inplaystatus) {
                  this.bmMin = this.checkLimits?.commonBookmakerLimit?.minLimit;
@@ -444,7 +462,7 @@ export class MatchComponent implements OnInit, OnDestroy {
                  this.bmMax = this.checkLimits?.commonBookmakerLimit?.premaxLimit;
                }
              }
- 
+
              if (this.checkLimits != 'NONE' && this.checkLimits?.commonFancyLimit?.limitProvider == 'Website') {
                if (this.inplaystatus) {
                  this.fancyMin = this.checkLimits?.commonFancyLimit?.minLimit;
@@ -458,7 +476,7 @@ export class MatchComponent implements OnInit, OnDestroy {
                  this.tossMax = this.checkLimits?.commonFancyLimit?.premaxLimit;
                }
              }
- 
+
              if (this.checkLimits != 'NONE' && this.checkLimits?.commonOtherLimit?.limitProvider == 'Website') {
                if (this.inplaystatus) {
                  this.otherMin = this.checkLimits?.commonOtherLimit?.minLimit;
@@ -468,27 +486,27 @@ export class MatchComponent implements OnInit, OnDestroy {
                  this.otherMax = this.checkLimits?.commonOtherLimit?.premaxLimit;
                }
              }
- 
+
              this.preMatchMarket = JSON.parse(this.eventData.preMatchMarket).map((market: any) => {
                if (market.name) {
                  market.pSelection = JSON.parse(market.pSelection);
                }
                return market;
              });
- 
+
              //Toss Code Start
              if (this.tosscheck == true) {
                this.socket.setToss(this.eventId);
                this.socket.getToss(this.eventId);
                this.oddsub3 = this.socket.getUpdate3MessageListner().subscribe((res: any) => {
                  this.tosssocketdata = res.message3;
- 
+
                  if (this.tosssocketdata.data.status === 'OPEN') {
                    this.showhidetoss = true;
                  } else {
                    this.showhidetoss = false;
                  }
- 
+
                  if (this.checkLimits == 'NONE') {
                    this.tossMin = res?.message3?.events?.markets[0]?.limit[0]?.preMinStake;
                    this.tossMax = res?.message3?.events?.markets[0]?.limit[0]?.preMaxStake;
@@ -502,24 +520,24 @@ export class MatchComponent implements OnInit, OnDestroy {
                })
              }
              //Toss Code End
- 
+
              this.loading = false;
            })
          } else {
            this.dataServe.getEventDataOnLoad(this.eventId).subscribe((res: any) => {
              this.eventData = res;
              this.urlSafe = this.getScore(this.eventData?.scoreBase, this.eventId);
- 
+
              this.oddspermission = this.eventData?.isAutoOdds;
              this.bmpermission = this.eventData?.isBookmakerOdds;
              this.fancypermission = this.eventData?.isAutoFancy;
              this.otherpermission = this.eventData?.isOther;
- 
+
              if (this.eventData?.gameType == 'virtual1' || this.sportId == 2 || this.sportId == 1) {
                this.fancypermission = false;
                this.fBets(1)
              }
- 
+
              this.tosscheck = this.hideTossbefor2HrFun(this.eventData);
              this.inplaystatus = this.inPlayMatches(this.eventData?.openDate);
              this.intervalIdTime = setInterval(() => {
@@ -527,7 +545,7 @@ export class MatchComponent implements OnInit, OnDestroy {
              }, 10000);
              this.matchrunners = this.eventData.selectionIdName.split(',');
              this.matchrunnerssid = this.eventData.selectionId.split(',');
- 
+
              document.addEventListener('visibilitychange', () => {
                if (!document.hidden) {
                  this.inplaystatus = this.inPlayMatches(this.eventData?.openDate);
@@ -536,9 +554,9 @@ export class MatchComponent implements OnInit, OnDestroy {
              window.addEventListener('focus', () => {
                this.inplaystatus = this.inPlayMatches(this.eventData?.openDate);
              });
- 
+
              this.checkLimits = res.limits;
- 
+
              if (this.checkLimits != 'NONE' && this.checkLimits?.commonOddsLimit?.limitProvider == 'Website') {
                if (this.inplaystatus) {
                  this.oddMin = this.checkLimits?.commonOddsLimit?.minLimit;
@@ -548,7 +566,7 @@ export class MatchComponent implements OnInit, OnDestroy {
                  this.oddMax = this.checkLimits?.commonOddsLimit?.premaxLimit;
                }
              }
- 
+
              if (this.checkLimits != 'NONE' && this.checkLimits?.commonBookmakerLimit?.limitProvider == 'Website') {
                if (this.inplaystatus) {
                  this.bmMin = this.checkLimits?.commonBookmakerLimit?.minLimit;
@@ -558,7 +576,7 @@ export class MatchComponent implements OnInit, OnDestroy {
                  this.bmMax = this.checkLimits?.commonBookmakerLimit?.premaxLimit;
                }
              }
- 
+
              if (this.checkLimits != 'NONE' && this.checkLimits?.commonFancyLimit?.limitProvider == 'Website') {
                if (this.inplaystatus) {
                  this.fancyMin = this.checkLimits?.commonFancyLimit?.minLimit;
@@ -572,7 +590,7 @@ export class MatchComponent implements OnInit, OnDestroy {
                  this.tossMax = this.checkLimits?.commonFancyLimit?.premaxLimit;
                }
              }
- 
+
              if (this.checkLimits != 'NONE' && this.checkLimits?.commonOtherLimit?.limitProvider == 'Website') {
                if (this.inplaystatus) {
                  this.otherMin = this.checkLimits?.commonOtherLimit?.minLimit;
@@ -582,14 +600,14 @@ export class MatchComponent implements OnInit, OnDestroy {
                  this.otherMax = this.checkLimits?.commonOtherLimit?.premaxLimit;
                }
              }
- 
+
              this.preMatchMarket = JSON.parse(this.eventData.preMatchMarket).map((market: any) => {
                if (market.name) {
                  market.pSelection = JSON.parse(market.pSelection);
                }
                return market;
              });
- 
+
              //Toss Code Start
              if (this.tosscheck == true) {
                this.socket.setToss(this.eventId);
@@ -601,7 +619,7 @@ export class MatchComponent implements OnInit, OnDestroy {
                  } else {
                    this.showhidetoss = false;
                  }
- 
+
                  if (this.checkLimits == 'NONE') {
                    this.tossMin = res?.message3?.events?.markets[0]?.limit[0]?.preMinStake;
                    this.tossMax = res?.message3?.events?.markets[0]?.limit[0]?.preMaxStake;
@@ -615,11 +633,11 @@ export class MatchComponent implements OnInit, OnDestroy {
                })
              }
              //Toss Code End
- 
+
              this.loading = false;
            })
          }
- 
+
          if (token) {
            let type = 'Match odds';
            this.dataServe.getUserMatchBookData(this.eventId, type).subscribe((res: any) => {
@@ -633,7 +651,7 @@ export class MatchComponent implements OnInit, OnDestroy {
                this.bmPnlArray = [0, 0, 0];
              }
            })
- 
+
            let type1 = 'Toss';
            this.showBackSelectToss = null;
            this.dataServe.getUserMatchBookData(this.eventId, type1).subscribe((res: any) => {
@@ -645,16 +663,16 @@ export class MatchComponent implements OnInit, OnDestroy {
                this.tossPnlArray = [0, 0, 0];
              }
            });
- 
+
            this.dataServe.getUserFancyBookData(this.eventId).subscribe((res: any) => {
              this.fancyLiability = res
              this.fancyLiab = res?.liability;
            })
- 
+
            this.dataServe.getPremiumFancyBook(this.eventId).subscribe((res: any) => {
              this.PremiumfancyLiability = res
            })
- 
+
            let type2 = 'Other';
            this.dataServe.getUserMatchBookData(this.eventId, type2).subscribe((res: any) => {
              if (res) {
@@ -664,7 +682,7 @@ export class MatchComponent implements OnInit, OnDestroy {
              }
            })
          }
- 
+
          this.dataServe.getEventDataOnLoad2(this.eventId).subscribe((res: any) => {
            this.eventData2 = res;
            if (this.eventData2 && this.eventData2 !== 'OK') {
@@ -678,7 +696,7 @@ export class MatchComponent implements OnInit, OnDestroy {
                this.runnersList = res.odds[0].runners;
              }
              // code for odds End
- 
+
              // code for bookmaker Start
              if (this.eventData2.bmProvider === 'Diamond') {
                let runnersd = (((this.eventData2.bookMaker).map((d: any) => (d.bm1))).flat()).filter((rd: any) => {
@@ -686,7 +704,7 @@ export class MatchComponent implements OnInit, OnDestroy {
                    return rd;
                  }
                });
- 
+
                let bm = runnersd.map((dt: any) => ({
                  ...dt,
                  ordering: this.eventData?.bookt1 == dt.nat ? '1' : this.eventData?.bookt2 == dt.nat ? '2' : this.eventData?.bookt3 == dt.nat ? '3' : '',
@@ -695,7 +713,7 @@ export class MatchComponent implements OnInit, OnDestroy {
                  layOddsInfo: [dt.l1, dt.l2, dt.l3]
                })
                );
- 
+
                bm?.sort((a: any, b: any) => a.ordering.localeCompare(b.ordering))
                this.runnersList2 = { bookmaker: bm, events: this.eventData };
              }
@@ -707,9 +725,9 @@ export class MatchComponent implements OnInit, OnDestroy {
                  backOddsInfo: JSON.parse(dt.backOddsInfo).map(Number),
                  layOddsInfo: JSON.parse(dt.layOddsInfo).map(Number)
                }));
- 
+
                bm?.sort((a: any, b: any) => a.ordering.localeCompare(b.ordering))
- 
+
                this.runnersList2 = { bookmaker: bm, events: this.eventData };
              } else if (this.eventData2.bmProvider === 'World') {
                let runnersdw = (this.eventData2.bookMaker).filter((rd: any) => {
@@ -717,7 +735,7 @@ export class MatchComponent implements OnInit, OnDestroy {
                    return rd;
                  }
                });
- 
+
                let bm = runnersdw?.[0]?.section.map((dt: any) => ({
                  ...dt,
                  ordering: this.eventData?.bookt1 == dt.nat ? '1' : this.eventData?.bookt2 == dt.nat ? '2' : this.eventData?.bookt3 == dt.nat ? '3' : '',
@@ -725,30 +743,30 @@ export class MatchComponent implements OnInit, OnDestroy {
                  backOddsInfo: dt.odds.filter((o: any) => o.otype == 'back').reverse().map((m: any) => m.odds),
                  layOddsInfo: dt.odds.filter((o: any) => o.otype == 'lay').map((m: any) => m.odds)
                }));
- 
+
                bm?.sort((a: any, b: any) => a.ordering.localeCompare(b.ordering))
- 
+
                this.runnersList2 = { bookmaker: bm, events: this.eventData };
              }
              // code for bookmaker End
            }
          })
- 
+
          // Odds Code Start
          this.socket.setOdds(this.eventId);
          this.socket.getOdds(this.eventId);
- 
+
          this.oddsub = this.socket.getUpdateMessageListner().subscribe((res: any) => {
            if(res.message.banglaTV!=''){
              this.tvchannel = res.message.pm3u8+res.message.banglaTV;
            }
            if (res.message['data'].length > 0) {
- 
+
              if (res.message.Type === 'Tiger') {
                this.totalMatched = res.message['data'][0]?.totalMatched;
                this.runnersList = res.message['data'][0].runners;
                this.socketEventOdds = res.message.events;
- 
+
                if (this.checkLimits == 'NONE' || this.checkLimits?.commonOddsLimit?.limitProvider == 'Central') {
                  if (this.inplaystatus) {
                    this.oddMin = res.message.events?.markets[0].limit[0].minStake;
@@ -758,7 +776,7 @@ export class MatchComponent implements OnInit, OnDestroy {
                    this.oddMax = res.message.events?.markets[0].limit[0].preMaxStake;
                  }
                }
- 
+
                if (this.checkLimits == 'NONE' || this.checkLimits?.commonOtherLimit?.limitProvider == 'Central') {
                  if (this.inplaystatus) {
                    this.otherMin = res.message.events?.markets[0].limit[0].minStake;
@@ -773,7 +791,7 @@ export class MatchComponent implements OnInit, OnDestroy {
                this.totalMatched = res.message['data'][0]?.totalMatched;
                this.runnersList = res.message['data'][0].runners;
                this.socketEventOdds = res.message.events;
- 
+
                if (this.checkLimits == 'NONE' || this.checkLimits?.commonOddsLimit?.limitProvider == 'Central') {
                  if (this.inplaystatus) {
                    this.oddMin = res.message.events?.markets[0].limit[0].minStake;
@@ -783,7 +801,7 @@ export class MatchComponent implements OnInit, OnDestroy {
                    this.oddMax = res.message.events?.markets[0].limit[0].preMaxStake;
                  }
                }
- 
+
                if (this.checkLimits == 'NONE' || this.checkLimits?.commonOtherLimit?.limitProvider == 'Central') {
                  if (this.inplaystatus) {
                    this.otherMin = res.message.events?.markets[0].limit[0].minStake;
@@ -794,15 +812,15 @@ export class MatchComponent implements OnInit, OnDestroy {
                  }
                }
              }
- 
+
            }
          })
          // Odds Code End
- 
+
          //BookMaker Code Start
          this.socket.setBookMaker(this.eventId);
          this.socket.getBookMaker(this.eventId);
- 
+
          this.oddsub2 = this.socket.getUpdate2MessageListner().subscribe((res: any) => {
            if (res.message2.Type === 'Diamond') {
              let runnersd = (((res.message2['data']).map((d: any) => (d.bm1))).flat()).filter((rd: any) => {
@@ -810,7 +828,7 @@ export class MatchComponent implements OnInit, OnDestroy {
                  return rd;
                }
              });
- 
+
              let bm = runnersd.map((dt: any) => ({
                ...dt,
                ordering: this.eventData?.bookt1 == dt.nat ? '1' : this.eventData?.bookt2 == dt.nat ? '2' : this.eventData?.bookt3 == dt.nat ? '3' : '',
@@ -819,11 +837,11 @@ export class MatchComponent implements OnInit, OnDestroy {
                layOddsInfo: [dt.l1, dt.l2, dt.l3]
              })
              );
- 
+
              bm?.sort((a: any, b: any) => a.ordering.localeCompare(b.ordering))
- 
+
              this.AllLimits = res.message2.data?.[0];
- 
+
              if (this.checkLimits == 'NONE') {
                this.bmMin = this.AllLimits?.min / 100;
                this.bmMax = this.AllLimits?.max / 100;
@@ -839,7 +857,7 @@ export class MatchComponent implements OnInit, OnDestroy {
                  this.bmMax = res.message2['events']?.markets[0].limit[0].preMaxStake;
                }
              }
- 
+
              this.runnersList2 = { bookmaker: bm, events: res.message2['events'], Limits: this.AllLimits, min: this.bmMin, max: this.bmMax };
            }
            else if (res.message2.Type === 'Sky') {
@@ -851,11 +869,11 @@ export class MatchComponent implements OnInit, OnDestroy {
                  backOddsInfo: JSON.parse(dt.backOddsInfo).map(Number),
                  layOddsInfo: JSON.parse(dt.layOddsInfo).map(Number)
                }));
- 
+
                bm?.sort((a: any, b: any) => a.ordering.localeCompare(b.ordering))
- 
+
                this.AllLimits = res.message2.details?.[0];
- 
+
                if (this.checkLimits == 'NONE') {
                  this.bmMin = this.AllLimits?.min / 100;
                  this.bmMax = this.AllLimits?.max / 100;
@@ -871,7 +889,7 @@ export class MatchComponent implements OnInit, OnDestroy {
                    this.bmMax = res.message2['events']?.markets[0].limit[0].preMaxStake;
                  }
                }
- 
+
                this.runnersList2 = { bookmaker: bm, events: res.message2['events'], Limits: this.AllLimits, min: this.bmMin, max: this.bmMax };
              }
            }
@@ -881,7 +899,7 @@ export class MatchComponent implements OnInit, OnDestroy {
                  return rd;
                }
              });
- 
+
              let bm = runnersdw[0]?.section.map((dt: any) => ({
                ...dt,
                ordering: this.eventData?.bookt1 == dt.nat ? '1' : this.eventData?.bookt2 == dt.nat ? '2' : this.eventData?.bookt3 == dt.nat ? '3' : '',
@@ -889,11 +907,11 @@ export class MatchComponent implements OnInit, OnDestroy {
                backOddsInfo: dt.odds.filter((o: any) => o.otype == 'back').reverse().map((m: any) => m.odds),
                layOddsInfo: dt.odds.filter((o: any) => o.otype == 'lay').map((m: any) => m.odds)
              }));
- 
+
              bm?.sort((a: any, b: any) => a.ordering.localeCompare(b.ordering))
- 
+
              this.AllLimits = res.message2.data?.[0];
- 
+
              if (this.checkLimits == 'NONE') {
                this.bmMin = this.AllLimits?.min / 100;
                this.bmMax = this.AllLimits?.max / 100;
@@ -909,18 +927,18 @@ export class MatchComponent implements OnInit, OnDestroy {
                  this.bmMax = res.message2['events']?.markets[0].limit[0].preMaxStake;
                }
              }
- 
+
              this.runnersList2 = { bookmaker: bm, events: res.message2['events'], Limits: this.AllLimits, min: this.bmMin, max: this.bmMax };
- 
+
            } else if (res.message2.Type === 'Tiger') {
              let runnersdw = (res.message2.data).filter((rd: any) => {
                if (rd.data.name == this.eventData?.bookheader.toUpperCase()) {
                  return rd;
                }
              });
- 
+
              let newrunnersdw = JSON.parse(runnersdw[0].data.runners)
- 
+
              let bm = Object.values(newrunnersdw || {}).map((dt: any) => ({
                ...dt,
                ordering: this.eventData?.bookt1 === dt.name ? '1' : this.eventData?.bookt2 === dt.name ? '2' : this.eventData?.bookt3 === dt.name ? '3' : '',
@@ -928,11 +946,11 @@ export class MatchComponent implements OnInit, OnDestroy {
                backOddsInfo: [dt.back_price, dt.back_1_price, dt.back_2_price],
                layOddsInfo: [dt.lay_price, dt.lay_1_price, dt.lay_2_price]
              }));
- 
+
              bm?.sort((a: any, b: any) => a.ordering.localeCompare(b.ordering))
- 
+
              this.AllLimits = res.message2.data?.[0];
- 
+
              if (this.checkLimits == 'NONE') {
                this.bmMin = this.AllLimits?.min / 100;
                this.bmMax = this.AllLimits?.max / 100;
@@ -948,20 +966,20 @@ export class MatchComponent implements OnInit, OnDestroy {
                  this.bmMax = res.message2['events']?.markets[0].limit[0].preMaxStake;
                }
              }
- 
+
              this.runnersList2 = { bookmaker: bm, events: res.message2['events'], Limits: this.AllLimits, min: this.bmMin, max: this.bmMax };
            }
          });
          //BookMaker Code End
- 
- 
+
+
          //Fancy Code Start
          this.socket.setFancy(this.eventId);
          this.socket.getFancy(this.eventId);
- 
+
          this.oddsub4 = this.socket.getUpdateFancyListner().subscribe((res: any) => {
            this.fancyEventData = res.message4;
- 
+
            if (res.message4.Type1 == 'Diamond') {
              let fancydatas = res.message4.diamond;
              if (fancydatas?.length < 1) {
@@ -989,60 +1007,60 @@ export class MatchComponent implements OnInit, OnDestroy {
                  fancyMin = this.fancyMin;
                  fancyMax = this.fancyMax;
                }
- 
+
                return {
                  ...dt,
                  fancyMin: fancyMin,
                  fancyMax: fancyMax
                };
              });
- 
+
              if (this.fancyDataList.length < 1) {
                this.showFancy = false;
              }
- 
+
              this.normalfancy = this.fancyDataList.filter((re: any) => {
                if (re.ballsess == '1')
                  return re.ballsess
              })
- 
+
              this.fancy1 = this.fancyDataList.filter((re: any) => {
                if (re.gtype == 'fancy1')
                  return re.gtype
              })
- 
+
              this.overfancy = this.fancyDataList.filter((re: any) => {
                if (re.ballsess == '2')
                  return re.ballsess
              })
- 
+
              this.bbbfancy = this.fancyDataList.filter((re: any) => {
                if (re.ballsess == '3')
                  return re.ballsess
              })
- 
+
              this.khaddafancy = this.fancyDataList.filter((re: any) => {
                if (re.gtype == 'khadda')
                  return re.gtype
              })
- 
+
              this.lotteryfancy = this.fancyDataList.filter((re: any) => {
                if (re.gtype == 'lottery')
                  return re.gtype
              })
- 
+
              this.oddevenfancy = this.fancyDataList.filter((re: any) => {
                if (re.gtype == 'oddeven')
                  return re.gtype
              })
- 
+
            } else if (res.message4.Type1 == 'Sky') {
              let fancydatas = res.message4.sky;
              if (fancydatas?.length < 1) {
                this.fancypermission = false;
                this.fBets(1);
              }
- 
+
              this.fancyDataList = fancydatas.map((dt: any) => {
                let fancyMin = 0;
                let fancyMax = 0;
@@ -1064,7 +1082,7 @@ export class MatchComponent implements OnInit, OnDestroy {
                  fancyMin = this.fancyMin;
                  fancyMax = this.fancyMax;
                }
- 
+
                return {
                  ...dt,
                  gstatus: dt.status == '2' ? 'Active' : 'SUSPENDED',
@@ -1079,53 +1097,53 @@ export class MatchComponent implements OnInit, OnDestroy {
                  fancyMax: fancyMax
                };
              });
- 
+
              if (this.fancyDataList.length < 1) {
                this.showFancy = false;
              }
- 
+
              this.normalfancy = this.fancyDataList.filter((re: any) => {
                if (re.marketType == '1' || re.marketType == '2')
                  return re.marketType
              })
- 
+
              this.fancy1 = this.fancyDataList.filter((re: any) => {
                if (re.marketType == 'fancy1')
                  return re.marketType
              })
- 
+
              this.overfancy = this.fancyDataList.filter((re: any) => {
                if (re.marketType == '3')
                  return re.marketType
              })
- 
+
              this.bbbfancy = this.fancyDataList.filter((re: any) => {
                if (re.marketType == '8')
                  return re.marketType
              })
- 
+
              this.khaddafancy = this.fancyDataList.filter((re: any) => {
                if (re.marketType == '4')
                  return re.marketType
              })
- 
+
              this.lotteryfancy = this.fancyDataList.filter((re: any) => {
                if (re.marketType == '5')
                  return re.marketType
              })
- 
+
              this.oddevenfancy = this.fancyDataList.filter((re: any) => {
                if (re.marketType == '6')
                  return re.marketType
              })
- 
+
            } else if (res.message4.Type1 == 'World') {
              let fancydatas = res.message4.world;
              if (fancydatas?.length < 1) {
                this.fancypermission = false;
                this.fBets(1);
              }
- 
+
              this.fancyDataList = fancydatas.map((dt: any) => {
                let fancyMin = 0;
                let fancyMax = 0;
@@ -1147,7 +1165,7 @@ export class MatchComponent implements OnInit, OnDestroy {
                  fancyMin = this.fancyMin;
                  fancyMax = this.fancyMax;
                }
- 
+
                return {
                  ...dt,
                  gstatus: dt.gstatus == 'SUSPENDED' ? 'SUSPENDED' : dt.gstatus == 'ACTIVE' ? 'Active' : dt.gstatus,
@@ -1161,46 +1179,46 @@ export class MatchComponent implements OnInit, OnDestroy {
                  fancyMax: fancyMax
                };
              });
- 
+
              if (this.fancyDataList.length < 1) {
                this.showFancy = false;
              }
- 
+
              this.normalfancy = this.fancyDataList.filter((re: any) => {
                if (re.ballsess == '1')
                  return re.ballsess
              })
- 
+
              this.fancy1 = this.fancyDataList.filter((re: any) => {
                if (re.gtype == 'fancy1')
                  return re.gtype
              })
- 
+
              this.overfancy = this.fancyDataList.filter((re: any) => {
                if (re.ballsess == '2')
                  return re.ballsess
              })
- 
+
              this.bbbfancy = this.fancyDataList.filter((re: any) => {
                if (re.ballsess == '3')
                  return re.ballsess
              })
- 
+
              this.khaddafancy = this.fancyDataList.filter((re: any) => {
                if (re.gtype == 'khadda')
                  return re.gtype
              })
- 
+
              this.lotteryfancy = this.fancyDataList.filter((re: any) => {
                if (re.gtype == 'lottery')
                  return re.gtype
              })
- 
+
              this.oddevenfancy = this.fancyDataList.filter((re: any) => {
                if (re.gtype == 'oddeven')
                  return re.gtype
              })
- 
+
            } else if (res.message4.Type1 == 'Tiger') {
              let fancydatas = res.message4.tiger;
              if (fancydatas?.length < 1) {
@@ -1228,7 +1246,7 @@ export class MatchComponent implements OnInit, OnDestroy {
                  fancyMin = this.fancyMin;
                  fancyMax = this.fancyMax;
                }
- 
+
                return {
                  ...dt,
                  gstatus: (dt.status1 !== 'ACTIVE' || dt.is_active !== '1') ? 'SUSPENDED' : 'Active',
@@ -1244,54 +1262,54 @@ export class MatchComponent implements OnInit, OnDestroy {
                  fancyMax: fancyMax
                };
              });
- 
+
              if (this.fancyDataList.length < 1) {
                this.showFancy = false;
              }
- 
+
              this.normalfancy = this.fancyDataList.filter((re: any) => {
                if (re.ballsess == '1')
                  return re.ballsess
              })
- 
+
              this.fancy1 = this.fancyDataList.filter((re: any) => {
                if (re.gtype == 'fancy1')
                  return re.gtype
              })
- 
+
              this.overfancy = this.fancyDataList.filter((re: any) => {
                if (re.ballsess == '2')
                  return re.ballsess
              })
- 
+
              this.bbbfancy = this.fancyDataList.filter((re: any) => {
                if (re.ballsess == '3')
                  return re.ballsess
              })
- 
+
              this.khaddafancy = this.fancyDataList.filter((re: any) => {
                if (re.gtype == 'khadda')
                  return re.gtype
              })
- 
+
              this.lotteryfancy = this.fancyDataList.filter((re: any) => {
                if (re.gtype == 'lottery')
                  return re.gtype
              })
- 
+
              this.oddevenfancy = this.fancyDataList.filter((re: any) => {
                if (re.gtype == 'oddeven')
                  return re.gtype
              })
- 
+
            }
          })
          //Fancy Code End
- 
+
          //Primium Fancy Code Start
          this.socket.setPremiumFancy(this.eventId);
          this.socket.getPremiumFancy(this.eventId);
- 
+
          this.oddsub5 = this.socket.getUpdatePRMFancyListner().subscribe((res: any) => {
            this.PFancyAllData = res.message5;
            if (res.message5.Type == 'Premium') {
@@ -1299,11 +1317,11 @@ export class MatchComponent implements OnInit, OnDestroy {
            }
          })
          //Primium Fancy Code End
- 
+
          // MOdds Code Start
          this.socket.setmOdds(this.eventId);
          this.socket.getmOdds(this.eventId);
- 
+
          this.oddsub6 = this.socket.getUpdateMessageM1Listner().subscribe((res: any) => {
            if (res.m1message['data'].length > 0) {
              if (res.m1message.Type === 'Tiger') {
@@ -1313,11 +1331,11 @@ export class MatchComponent implements OnInit, OnDestroy {
            }
          })
          // MOdds Code End
- 
+
        }
- 
+
      })
- 
+
      setTimeout(() => {
        this.startPlayer(this.tvchannel)
      }, 3000)
@@ -1334,14 +1352,14 @@ export class MatchComponent implements OnInit, OnDestroy {
              }
            });
          });
- 
+
          observer.observe(element, {
            characterData: true,
            childList: true,
            subtree: true
          });
        });
- 
+
      }, 3000);
      setTimeout(() => {
        const dataElement = this.el.nativeElement.querySelectorAll('.spark-lay');
@@ -1356,17 +1374,17 @@ export class MatchComponent implements OnInit, OnDestroy {
              }
            });
          });
- 
+
          observer.observe(element, {
            characterData: true,
            childList: true,
            subtree: true
          });
        });
- 
+
      }, 3000);
    }
- 
+
    ngAfterViewInit() {
      window.addEventListener('message', (event: MessageEvent) => {
      let height = null;
@@ -1384,24 +1402,24 @@ export class MatchComponent implements OnInit, OnDestroy {
      }
    });
  }
- 
+
    startPlayer(tvchannel: any) {
      const video = document.getElementById('videoPlayer') as HTMLVideoElement;
      const loadingImage = document.getElementById('loadingImage') as HTMLElement;
- 
+
      const muteBtn = document.getElementById('muteBtn');
      const unMuteBtn = document.getElementById('unMuteBtn');
      const controls = document.getElementById('customControls');
- 
+
      const streamUrl = `${tvchannel}/tracks-v1a1/mono.m3u8?ts=${Date.now()}`;
- 
+
      if (!video || !Hls.isSupported()) return;
- 
+
      if (this.hls) {
        this.hls.destroy();
        this.hls = null;
      }
- 
+
      this.hls = new Hls({
        liveSyncDuration: 3,
        liveMaxLatencyDuration: 5,
@@ -1409,33 +1427,33 @@ export class MatchComponent implements OnInit, OnDestroy {
        lowLatencyMode: true,
        backBufferLength: 0
      });
- 
+
      this.hls.loadSource(streamUrl);
      this.hls.attachMedia(video);
- 
+
      this.hls.on(Hls.Events.MANIFEST_PARSED, () => {
        video.muted = true;
        video.currentTime = 0;
        video.play().catch(() => { });
      });
- 
+
      video.onplaying = () => {
        if (loadingImage) loadingImage.style.display = 'none';
        if (controls) controls.style.display = 'flex';
      };
- 
+
      // muteBtn?.addEventListener('click', () => video.muted = true);
      // unMuteBtn?.addEventListener('click', () => {
      //   video.muted = false;
      //   video.volume = 1;
      // });
- 
+
      this.fullScreenHandler = () => {
        if (document.fullscreenElement) document.exitFullscreen();
      };
- 
+
      document.addEventListener('fullscreenchange', this.fullScreenHandler);
- 
+
      // setTimeout(() => {
      //   this.playtv=false;
      // }, 5000)
@@ -1450,7 +1468,7 @@ export class MatchComponent implements OnInit, OnDestroy {
        video.muted = true;
      }
    }
- 
+
    // Simple unmute function
    unmuteVideo(): void {
      const video = document.getElementById('videoPlayer') as HTMLVideoElement;
@@ -1460,7 +1478,7 @@ export class MatchComponent implements OnInit, OnDestroy {
      }
    }
    private fullScreenHandler!: () => void;
- 
+
    getLinkStyles(isActive: boolean): { [key: string]: any } {
      if (isActive) {
        return {
@@ -1478,7 +1496,7 @@ export class MatchComponent implements OnInit, OnDestroy {
          // 'background-image' : this.jsonWebdt?.imagesBottomBorderColor,
          'color': this.jsonWebdt?.imagesPlayNowTextColor
          //  'color' : 'yellow'
- 
+
        };
      } else {
        return {
@@ -1500,9 +1518,9 @@ export class MatchComponent implements OnInit, OnDestroy {
      this.pnlList = [];
      this.dataServe.getListBookData(data).subscribe((res: any) => {
        this.fancybookdata = res;
- 
+
        var length = this.fancybookdata.length;
- 
+
        for (var i = 0; i < length; i++) {
          if (!this.bookList.includes(this.fancybookdata[i].runs - 1)) {
            this.bookList.push(this.fancybookdata[i].runs - 1);
@@ -1517,7 +1535,7 @@ export class MatchComponent implements OnInit, OnDestroy {
            this.pnlList.push(0.00);
          }
        }
- 
+
        for (var i = 0; i < this.bookList.length; i++) {
          for (var j = 0; j < length; j++) {
            if (this.bookList[i] < this.fancybookdata[j].runs) {
@@ -1536,7 +1554,7 @@ export class MatchComponent implements OnInit, OnDestroy {
    trackByFn(index: number, item: any): any {
      return index;
    }
- 
+
    getTodayGameslist(sportId: any) {
      this.dataServe.getTodayGames().subscribe((res: any) => {
        this.gameList = res.filter((res: any) => res.sportid == sportId);
@@ -1553,7 +1571,7 @@ export class MatchComponent implements OnInit, OnDestroy {
        this.omPnlArrayData = [0, 0, 0];
      }
    }
- 
+
    displayFancy(data: any) {
      this.activeTab = data
      if (data == 0) {
@@ -1631,17 +1649,20 @@ export class MatchComponent implements OnInit, OnDestroy {
      }
      this.updateIndicatorPosition();
    }
- 
+
    matchTabs(name: string): void {
      this.TopMenuselectedItem = name;
    }
- 
+
     getScore(socreUrl : any, data: any) {
      let random = Math.floor(1000 + Math.random() * 9000);
      return this.sanitizer.bypassSecurityTrustResourceUrl(socreUrl+data+'?v='+random)
    }
- 
+
    ngOnDestroy() {
+      this.exchangeStyles.forEach((_, i) => {
+    document.getElementById(`exchange-style-${i}`)?.remove();
+  });
      this.socket.destorySocket(this.eventId);
      if (this.oddsub) {
        this.oddsub.unsubscribe();
@@ -1664,34 +1685,34 @@ export class MatchComponent implements OnInit, OnDestroy {
      if (this.oddsub6) {
        this.oddsub6.unsubscribe();
      }
- 
+
      localStorage.removeItem('tvurl')
- 
+
      const video = document.getElementById('videoPlayer') as HTMLVideoElement;
      if (video) {
        video.pause();
        video.removeAttribute('src');
        video.load();
      }
- 
+
      if (this.hls) {
        this.hls.destroy();
        this.hls = null;
      }
- 
+
      localStorage.removeItem('videoTime');
      sessionStorage.clear();
- 
+
      if (this.fullScreenHandler) {
        document.removeEventListener('fullscreenchange', this.fullScreenHandler);
      }
    }
- 
+
    closeBet() {
      this.showBetMsg = false
      clearTimeout(this.betMsgTimer)
    }
- 
+
    scoreTvTabs(dt: any) {
      if(this.showTabs = 'scrd'){
        this.muteVideo();
@@ -1707,7 +1728,7 @@ export class MatchComponent implements OnInit, OnDestroy {
      this.showFancy = false
    }
   //  collapseData(i: any) {
- 
+
   //    document.getElementById('DDR' + i)?.classList.toggle('openar');
   //    document.getElementById('sportSelData' + i)?.classList.toggle('displaydata');
   //  }
@@ -1717,8 +1738,8 @@ export class MatchComponent implements OnInit, OnDestroy {
    hideSelectionData() {
      document.getElementById("sportSelectionData")?.classList.toggle('d-none')
    }
-   
- 
+
+
    cancelBet() {
      this.counterBet = 0
    }
@@ -1795,11 +1816,11 @@ export class MatchComponent implements OnInit, OnDestroy {
        this.afteroddsPnlArray = [0, 0, 0];
        this.classclrforlayBack = str
        this.oddPrice = price
- 
+
        this.showBM = null;
        this.showBackSelectBM = null;
        this.showLaySelectBM = null;
- 
+
        if (str == 'back') {
          this.backTrue = true
          this.showOdd = i;
@@ -1822,19 +1843,19 @@ export class MatchComponent implements OnInit, OnDestroy {
      //   this.showLaySelect = null;
      // }, 10000);
    }
- 
+
    openOtherBetPlace(i: any, str: any, price: any) {
      let token = localStorage.getItem('token');
      if (token) {
        clearTimeout(this.othertimeout)
        this.classclrforlayBack = str
        this.oddPrice = price
- 
+
        if (str == 'back') {
          this.showOther = i;
          this.showBackSelectOD = i;
          this.showLaySelectOD = null;
- 
+
        } else if (str == 'lay') {
          this.showOther = i;
          this.showBackSelectOD = null;
@@ -1849,8 +1870,8 @@ export class MatchComponent implements OnInit, OnDestroy {
      //   this.showLaySelectOD = null;
      // }, 10000);
    }
- 
- 
+
+
    openTossBetPlace(i: any, str: any, price: any) {
      let token = localStorage.getItem('token');
      if (token) {
@@ -1872,7 +1893,7 @@ export class MatchComponent implements OnInit, OnDestroy {
      //   this.showBackSelectToss = null;
      // }, 10000);
    }
- 
+
    openFancyBetPlace(i: any, str: any, price: any) {
      let token = localStorage.getItem('token');
      if (token) {
@@ -1917,7 +1938,7 @@ export class MatchComponent implements OnInit, OnDestroy {
      //   this.showBackSelectPreF = null;
      // }, 10000);
    }
- 
+
    openRulesPopup() {
      this.hideHeader1 = !this.hideHeader1
      if (this.route.component?.name === 'match') {
@@ -1939,14 +1960,14 @@ export class MatchComponent implements OnInit, OnDestroy {
    closeLiveTv() {
      this.closeLTv = false;
    }
- 
+
    hideTossbefor2HrFun(data: any) {
      const dateTime = this.datetimeconvert(data.openDate);
- 
+
      let withinHrs = moment(dateTime).subtract(2, 'hours').format('MM/DD/YYYY HH:mm:ss');
      let date3 = new Date()
      let date2 = moment(date3).format('MM/DD/YYYY HH:mm:ss')
- 
+
      if (moment(date2).isAfter(withinHrs)) {
        return this.hideTossBefore2hr = false
      } else {
@@ -1957,7 +1978,7 @@ export class MatchComponent implements OnInit, OnDestroy {
        }
      }
    }
- 
+
    datetimeconvert(data: any) {
      const dateTime = new Date(data);
      const utcYear = dateTime.getUTCFullYear();
@@ -1966,14 +1987,14 @@ export class MatchComponent implements OnInit, OnDestroy {
      const utcHours = padZero(dateTime.getUTCHours());
      const utcMinutes = padZero(dateTime.getUTCMinutes());
      const utcSeconds = padZero(dateTime.getUTCSeconds());
- 
+
      function padZero(value: any) {
        return value < 10 ? `0${value}` : value;
      }
      const opendate = `${utcYear}-${utcMonth}-${utcDate} ${utcHours}:${utcMinutes}:${utcSeconds}`;
      return opendate;
    }
- 
+
    getOddsCalculation(result: any) {
      if (result == false) {
        this.beforeoddsPnlArray = [0, 0, 0];
@@ -2045,7 +2066,7 @@ export class MatchComponent implements OnInit, OnDestroy {
              this.oddpnl3 = this.betOddResult.pnl3 - respnl;
            }
            this.afteroddsPnlArray = [this.oddpnl1, this.oddpnl2, this.oddpnl3];
- 
+
          } else {
            this.getMatcBkData = false;
            this.afteroddscal = false;
@@ -2169,12 +2190,12 @@ export class MatchComponent implements OnInit, OnDestroy {
        }
      }
    }
- 
+
    inPlayMatches(data: any) {
      if (this.sportId == 4) {
        let date = this.datetimeconvert(data);
        let withinHrs = moment(date).subtract(15, 'minutes').format('MM/DD/YYYY HH:mm:ss');
- 
+
        let date3 = new Date();
        let currentDate = moment(date3).tz('Asia/Kolkata').format('MM/DD/YYYY HH:mm:ss');
        if (moment(currentDate).isAfter(withinHrs)) {
@@ -2198,7 +2219,7 @@ export class MatchComponent implements OnInit, OnDestroy {
        }
      }
    }
- 
+
    refreshPage() {
      window.location.reload()
    }
@@ -2212,7 +2233,7 @@ export class MatchComponent implements OnInit, OnDestroy {
        clearTimeout(this.premtimeout)
      }
    }
- 
+
    sortPFancyData(sportsBookSelection: any[]): any[] {
      return sportsBookSelection?.sort((a, b) => {
        if (a.selectionName < b.selectionName) return -1;
@@ -2220,7 +2241,7 @@ export class MatchComponent implements OnInit, OnDestroy {
        return 0;
      });
    }
- 
+
   //  openBetpop() {
   //    this.popupService.openBetPopup();
   //  }
@@ -2233,11 +2254,11 @@ export class MatchComponent implements OnInit, OnDestroy {
    downarrowToss() {
      this.arroiconToss = !this.arroiconToss
    }
- 
+
    onScroll(event: Event): void {
      const uiEvent = event as UIEvent;
      const container = uiEvent.target as HTMLElement;
- 
+
      const videoWrapperElement = document.querySelector('.video-wrapper');
      const framedetElement = document.querySelector('.framedet') as HTMLElement;
      if (videoWrapperElement) {
@@ -2249,17 +2270,17 @@ export class MatchComponent implements OnInit, OnDestroy {
          videoWrapperElement.classList.remove('is-outside');
          framedetElement.style.transform = '';
          this.isOutside = false;
- 
+
        }
      }
    }
- 
+
    private updateIndicatorPosition(): void {
      const activeTabElement = document.querySelectorAll('.tab')[this.activeTab] as HTMLElement;
      this.indicatorWidth = activeTabElement.offsetWidth;
      this.indicatorLeft = activeTabElement.offsetLeft;
    }
- 
+
    closeTv() {
      const framedetElement = document.querySelector('.framedet') as HTMLElement;
      framedetElement.style.display = 'none';

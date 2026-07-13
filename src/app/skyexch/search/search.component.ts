@@ -22,26 +22,49 @@ export class SearchComponent {
   }
 
   // 🔹 Typing emoji remove
-onInput(event: Event) {
-  const input = event.target as HTMLInputElement;
+  onInput(event: Event) {
+    const input = event.target as HTMLInputElement;
 
-  // split by characters
-  const chars = Array.from(input.value);
+    // split by characters
+    const chars = Array.from(input.value);
 
-  // keep only single-length chars (non-emoji)
-  input.value = chars.filter(c => c.length === 1).join('');
-}
-
-// 🔹 Paste emoji block
-onPaste(event: ClipboardEvent) {
-  const text = event.clipboardData?.getData('text') || '';
-
-  // if any emoji-like char found, stop paste
-  const hasEmoji = Array.from(text).some(c => c.length > 1);
-
-  if (hasEmoji) {
-    event.preventDefault();
+    // keep only single-length chars (non-emoji)
+    input.value = chars.filter(c => c.length === 1).join('');
   }
-}
+
+  // 🔹 Paste emoji block
+  onPaste(event: ClipboardEvent) {
+    const text = event.clipboardData?.getData('text') || '';
+
+    // if any emoji-like char found, stop paste
+    const hasEmoji = Array.from(text).some(c => c.length > 1);
+
+    if (hasEmoji) {
+      event.preventDefault();
+    }
+  }
+  exchangeStyles = [
+    'assets/css/style.css',
+    'assets/css/style2.css',
+    'assets/css/newstyle.css'
+  ];
+
+  ngOnInit() {
+    this.exchangeStyles.forEach((href, i) => {
+      if (!document.getElementById(`exchange-style-${i}`)) {
+        const link = document.createElement('link');
+        link.id = `exchange-style-${i}`;
+        link.rel = 'stylesheet';
+        link.href = href;
+        document.head.prepend(link);
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.exchangeStyles.forEach((_, i) => {
+      document.getElementById(`exchange-style-${i}`)?.remove();
+    });
+  }
 
 }

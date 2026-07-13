@@ -138,7 +138,7 @@
   background-color: transparent;
 }
 
-.icon-close {
+/* .icon-close {
   position: absolute;
   z-index: 10;
   left: unset;
@@ -150,4 +150,4 @@
 
 .classic .icon-close:before {
   content: "";
-}
+} */

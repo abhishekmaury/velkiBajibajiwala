@@ -5,32 +5,45 @@ import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-responsible-gaming',
-  standalone:true,
+  standalone: true,
   imports: [],
   templateUrl: './responsible-gaming.component.html',
   styleUrls: ['./responsible-gaming.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class ResponsibleGamingComponent implements OnInit{
+export class ResponsibleGamingComponent implements OnInit {
 
-    domain: any;
-      webdata: any;
-      favicon: any;
-      jsonWeblinksdt: any;
-      loading = true;
-      
-    constructor(private location: Location , private dataServe: DataHandlerService, private router: Router ,private titleService: Title){}
-  
+  domain: any;
+  webdata: any;
+  favicon: any;
+  jsonWeblinksdt: any;
+  loading = true;
+  exchangeStyles = [
+    'assets/css/style.css',
+    'assets/css/style2.css',
+    'assets/css/newstyle.css'
+  ];
+
+  constructor(private location: Location, private dataServe: DataHandlerService, private router: Router, private titleService: Title) { }
+
   @Output() closePopup = new EventEmitter()
 
-  closePP(){
+  closePP() {
     this.closePopup.emit(false)
     this.location.back()
   }
 
 
   ngOnInit(): void {
- 
+    this.exchangeStyles.forEach((href, i) => {
+      if (!document.getElementById(`exchange-style-${i}`)) {
+        const link = document.createElement('link');
+        link.id = `exchange-style-${i}`;
+        link.rel = 'stylesheet';
+        link.href = href;
+        document.head.prepend(link);
+      }
+    });
     let data1 = localStorage.getItem('webData');
     if (data1 == null) {
       this.dataServe.getWebsiteData().subscribe((res) => {
@@ -70,14 +83,20 @@ export class ResponsibleGamingComponent implements OnInit{
       this.loading = false;
     }
   }
-    setTitle(newTitle: string): void {
+  setTitle(newTitle: string): void {
     this.titleService.setTitle(newTitle);
   }
-   getdomain(data: string) {
+  getdomain(data: string) {
     const url = new URL(data);
     const hostnameParts = url.hostname.split('.');
     const domain = hostnameParts[0];
     return domain;
   }
-  
+
+  ngOnDestroy() {
+    this.exchangeStyles.forEach((_, i) => {
+      document.getElementById(`exchange-style-${i}`)?.remove();
+    });
+  }
+
 }

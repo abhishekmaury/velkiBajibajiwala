@@ -86,6 +86,11 @@ export class SportComponent implements OnInit, OnDestroy {
   soccerMatches: any;
   expandedSectiongame: Set<number> = new Set<number>();
   expandedSectionsOrgdata: Set<number> = new Set<number>();
+  private exchangeStyles = [
+    'assets/css/style.css',
+    'assets/css/style2.css',
+    'assets/css/newstyle.css'
+  ];
 
   constructor(private authServe: AuthserviceService, private socket: SocketServiceService, private dataServe: DataHandlerService, private activeRoute: ActivatedRoute, private router: Router) { }
 
@@ -110,6 +115,19 @@ export class SportComponent implements OnInit, OnDestroy {
   }
   isRefreshing = false;
   async ngOnInit(): Promise<void> {
+    if (this.router.url.startsWith('/exchange/sport')) {
+      this.exchangeStyles.forEach((href, i) => {
+        if (!document.getElementById(`exchange-style-${i}`)) {
+          const link = document.createElement('link');
+          console.log(link);
+
+          link.id = `exchange-style-${i}`;
+          link.rel = 'stylesheet';
+          link.href = href;
+          document.head.prepend(link);
+        }
+      });
+    }
     const token = localStorage.getItem('token');
 
     if (token) {
@@ -394,6 +412,9 @@ export class SportComponent implements OnInit, OnDestroy {
     if (this.oddsub) {
       this.oddsub.unsubscribe();
     }
+    this.exchangeStyles.forEach((_, i) => {
+      document.getElementById(`exchange-style-${i}`)?.remove();
+    });
   }
 
   showLeagues() {
