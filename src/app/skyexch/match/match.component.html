@@ -87,7 +87,7 @@
                       </div> -->
                       <div class="tv-wrap" [style]="showTabs == 'tv' ? 'display: block;' : 'display: none;'">
                         <div id="streamContainer" class="tv-box">
-                          <div id="tv" class="tv">
+                          <div id="tv" class="tv" (click)="showHideIcon()" style="position:relative">
 
                             <video id="videoPlayer" poster="/assets/images/livetvimage.jpg?v=1.01" muted autoplay playsinline
                               disablePictureInPicture class="no-default-controls">

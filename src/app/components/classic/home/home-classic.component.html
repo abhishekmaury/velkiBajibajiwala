@@ -277,7 +277,7 @@
                     </div>
                 </div>
 
-                <div class="nav-wrap" *ngIf="activegame == 'Exclusive'">
+                <!-- <div class="nav-wrap" *ngIf="activegame == 'Exclusive'">
                     <div id="nav-title" class="content-title">
                         <h2 class="sportheading">
                             <span class="verticleLinee"
@@ -295,6 +295,41 @@
                         </li>
 
                     </ul>
+                </div> -->
+                <div class="nav-wrap ng-star-inserted" *ngIf="activegame == 'Exclusive'">
+                    <div id="nav-title" class="content-title">
+                        <h2 class="sportheading">
+                            <span class="verticleLinee"
+                                [style]="{'background':themeData?.loginButtonBackground}"></span>
+                            <span [style]="{'color':themeData?.masterTextColor2}">{{'EXCLUSIVE' | transloco}}</span>
+                        </h2>
+                    </div>
+                    <div class="nav-content-wrap fortextcolr animate__animated animate__faster	500ms"
+                        [ngClass]="currentTab > previousTab ? 'animate__slideInRight' : 'animate__slideInLeft'">
+                        <div class="nav-content-inner" style="transform: translate(0%, 0px);">
+                            <div class="content-box ng-star-inserted sportslider">
+                                <div class="layout-brand ng-star-inserted">
+                                    <div class="card2">
+                                        <ul>
+                                            <li class="ng-star-inserted" *ngFor="let game of gameslist"
+                                                [style]="{'background':themeData?.masterBgColor6,'border':'.59vw solid'+themeData?.masterBgColor2}">
+                                                <a tabindex="-1" (click)="opencasinogamesmob(game)">
+                                                    <img fetchpriority="high" style="height: 8rem;"
+                                                        [src]="game?.image" loading="lazy"
+                                                        class="ng-star-inserted">
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                        <button style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);"  (click)="navigateToGames('LIVE', 'All')"
+                                            class="btn-normal p-3 rounded flex justify-center items-center disabled:bg-black-300 disabled:text-black-600 disabled:cursor-not-allowed text-white font-normal mx-auto mt-4 h-30px px-2">
+                                            <span class="px-2">Show More</span><i class="icon-arrow-left transform rotate-180"></i>
+                                        </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
 
                 <div class="nav-wrap ng-star-inserted" *ngIf="activegame == 'Sports'">
@@ -965,7 +1000,7 @@
                                 <div class="layout-brand">
                                     <div class="card2">
                                         <div class="side-menu-games-grid">
-                                            <div (click)="activeCasino(1)" [ngStyle]="getLinkStylesCas(activeTabs==1)"
+                                            <!-- <div (click)="activeCasino(1)" [ngStyle]="getLinkStylesCas(activeTabs==1)"
                                                 class="side-menu-games-grid-cell ng-star-inserted">
                                                 <div class="side-menu-games-grid-cell__icon">
                                                     <img fetchpriority="high" alt="icon-casino"
@@ -974,7 +1009,7 @@
                                                 </div>
                                                 <div class="side-menu-games-grid-cell__text"> {{"INDIANCASINO" |
                                                     transloco}} </div>
-                                            </div>
+                                            </div> -->
                                             <div (click)="activeCasino(2)" [ngStyle]="getLinkStylesCas(activeTabs==2)"
                                                 class="side-menu-games-grid-cell ng-star-inserted">
                                                 <div class="side-menu-games-grid-cell__icon">
