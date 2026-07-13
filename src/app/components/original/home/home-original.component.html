@@ -173,17 +173,6 @@
           [ngClass]="activeTabId === 4? 'text-menu-active-icon':'text-black-700 group-hover:opacity-50 transition-opacity duration-700'">
           Leagues</p>
       </div>
-      <div class="relative group z-10 flex flex-col justify-center items-center cursor-pointer
-        w-full ">
-        <div class="togglebtn">
-
-          <div class="hk-toggle hk-tg-2">
-            <input type="checkbox" id="tg2" (change)="toggleSwitch()" [checked]="isToggled">
-            <label for="tg2"></label>
-          </div>
-          <p class="pt-2 text-9">Classic Version </p>
-        </div>
-      </div>
 
       <!-- <div (click)="setActiveTab(5)" [ngClass]="activeTabId === 5? 'rounded-lg':''"
         [style.backgroundImage]="activeTabId === 5 ? jsonWebdt?.imagesBottomBorderColor : '' "
