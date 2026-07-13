@@ -24,7 +24,7 @@
   background-size: 100%;
 }
 
-.home-ico {
+.account-home-icon {
   display: block;
   /* padding: .5vw 1.5vw; */
   width: 10vw;
@@ -225,7 +225,7 @@
     padding: 8.96px 0;
   }
 
-  .home-ico {
+  .account-home-icon {
     width: 48px;
     height: 48px;
     margin: 0 auto 8.96px;
