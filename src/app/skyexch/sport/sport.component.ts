@@ -96,13 +96,11 @@ export class SportComponent implements OnInit, OnDestroy {
   constructor(private authServe: AuthserviceService, private socket: SocketServiceService, private dataServe: DataHandlerService, private activeRoute: ActivatedRoute, private router: Router) {
     if (this.router.url.startsWith('/exchange/sport')) {
       this.exchangeStyles.forEach((href, i) => {
-        if (!document.getElementById(`exchange-style-${i}`)) {
           const link = document.createElement('link');
           link.id = `exchange-style-${i}`;
           link.rel = 'stylesheet';
           link.href = href;
           document.head.prepend(link);
-        }
       });
     }
   }

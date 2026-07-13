@@ -260,7 +260,7 @@
             </ul> -->
             <ul class="home-box" style="opacity: 1; transform: translate(0px, 0px);"
               [style]="{'background':themeData?.sidebarBg}">
-              <li data-category="home" class="ng-tns-c3392045011-3"><a class="ng-tns-c3392045011-3"
+              <li data-category="home" (click)="close()" class="ng-tns-c3392045011-3"><a class="ng-tns-c3392045011-3"
                   routerLink="/home"><span class="ng-tns-c3392045011-3"
                     style="mask-image: url(/assets/images/icon-set/icon-home.svg);background: var(--sideIconColor);"
                     [style.--sideIconColor]="themeData?.sidemenusvgicocolor"></span>
