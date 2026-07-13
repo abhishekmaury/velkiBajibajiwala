@@ -5525,4 +5525,12 @@ header .logo {
     background-position:left;
     background-size:contain;
   }
+  .toggle-container {
+    margin-top: 12.8px;
+    gap: 16px;
+    padding: 5.12px;
+    border-radius: 12.8px;
+    box-shadow: 0 10.24px 12.8px color-mix(in srgb, rgba(0, 0, 0, .2), transparent 70%), inset 1.28px 1.28px color-mix(in srgb, #ffff, transparent 80%);
+    font-size: 14.08px;
+  }
 }
