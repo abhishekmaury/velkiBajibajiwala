@@ -145,25 +145,25 @@ export class SportComponent implements OnInit, OnDestroy {
   }
 
   async getSportsData() {
-    // try {
-    //   const [todayGamesResponse, tomorrowGamesResponse] =
-    //     await forkJoin([
-    //       this.dataServe.getTodayGames(),
-    //       this.dataServe.getTomorrowGames()
-    //     ]).toPromise() as any;
+    try {
+      const [todayGamesResponse, tomorrowGamesResponse] =
+        await forkJoin([
+          this.dataServe.getTodayGames(),
+          this.dataServe.getTomorrowGames()
+        ]).toPromise() as any;
 
-    //   this.gameslist2 = [
-    //     ...(todayGamesResponse || []),
-    //     ...(tomorrowGamesResponse || [])
-    //   ].map((r: any) => ({
-    //     ...r,
-    //     isMulti: !this.multiList?.includes(r.eventid)
-    //   }));
+      this.gameslist2 = [
+        ...(todayGamesResponse || []),
+        ...(tomorrowGamesResponse || [])
+      ].map((r: any) => ({
+        ...r,
+        isMulti: !this.multiList?.includes(r.eventid)
+      }));
 
-    //   this.gameListDataSubject2.next(this.gameslist2);
-    // } catch (error) {
-    //   console.error('getSportsData error', error);
-    // }
+      this.gameListDataSubject2.next(this.gameslist2);
+    } catch (error) {
+      console.error('getSportsData error', error);
+    }
   }
   changeCount(data: any) {
     this.mainTabs = data;
