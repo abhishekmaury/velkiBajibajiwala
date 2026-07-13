@@ -45,6 +45,12 @@ export class SkyexchComponent implements OnInit {
 
 
   openbets() {
-    this.myBets = !this.myBets
+    const token = localStorage.getItem('token');
+    if (token) {
+      // this.myBets = !this.myBets;
+      this.myBets = true;
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
 }
