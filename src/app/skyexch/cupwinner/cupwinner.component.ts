@@ -86,25 +86,9 @@ export class CupwinnerComponent {
   odlimit=false;
   webdata : any;
   jsonWebdt : any;
-     private exchangeStyles = [
-  'assets/css/style.css',
-  'assets/css/style2.css',
-  'assets/css/newstyle.css'
-];
 
   constructor(private dataServe: DataHandlerService, private getSocketPath: GetSocketUrlService, private socket: SocketServiceService,
     private route: ActivatedRoute, private elRef: ElementRef, private router: Router) {
-    if (this.router.url.startsWith('/exchange/cupwinner/')) {
-      this.exchangeStyles.forEach((href, i) => {
-        if (!document.getElementById(`exchange-style-${i}`)) {
-          const link = document.createElement('link');
-          link.id = `exchange-style-${i}`;
-          link.rel = 'stylesheet';
-          link.href = href;
-          document.head.prepend(link);
-        }
-      });
-    }
   }
 
   async ngOnInit() {
@@ -269,9 +253,7 @@ export class CupwinnerComponent {
     if (this.oddsub) {
       this.oddsub.unsubscribe();
     }
-    this.exchangeStyles.forEach((_, i) => {
-      document.getElementById(`exchange-style-${i}`)?.remove();
-    });
+
   }
 
   closeBet(){

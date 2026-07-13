@@ -225,26 +225,10 @@ export class MatchComponent implements OnInit, OnDestroy {
    isMuted: boolean = false;
    intervalIdTime: any;
    newSocketData: any;
-  private exchangeStyles = [
-    'assets/css/style.css',
-    'assets/css/style2.css',
-    'assets/css/newstyle.css'
-  ];
 
    constructor(private dataServe: DataHandlerService, private socket: SocketServiceService,
      private route: ActivatedRoute, public sanitizer: DomSanitizer, private getSocketPath : GetSocketUrlService, private authServe: AuthserviceService, private router: Router,
      private el: ElementRef, private renderer: Renderer2) {
-      if (this.router.url.startsWith('/exchange/match/')) {
-        this.exchangeStyles.forEach((href, i) => {
-          if (!document.getElementById(`exchange-style-${i}`)) {
-            const link = document.createElement('link');
-            link.id = `exchange-style-${i}`;
-            link.rel = 'stylesheet';
-            link.href = href;
-            document.head.prepend(link);
-          }
-        });
-      }
       }
 
    async ngOnInit() {
@@ -1659,9 +1643,6 @@ export class MatchComponent implements OnInit, OnDestroy {
    }
 
    ngOnDestroy() {
-      this.exchangeStyles.forEach((_, i) => {
-    document.getElementById(`exchange-style-${i}`)?.remove();
-  });
      this.socket.destorySocket(this.eventId);
      if (this.oddsub) {
        this.oddsub.unsubscribe();

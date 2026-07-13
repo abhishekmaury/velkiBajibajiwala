@@ -87,22 +87,10 @@ export class SportComponent implements OnInit, OnDestroy {
   soccerMatches: any;
   expandedSectiongame: Set<number> = new Set<number>();
   expandedSectionsOrgdata: Set<number> = new Set<number>();
-  private exchangeStyles = [
-    'assets/css/style.css',
-    'assets/css/style2.css',
-    'assets/css/newstyle.css'
-  ];
+
 
   constructor(private authServe: AuthserviceService, private socket: SocketServiceService, private dataServe: DataHandlerService, private activeRoute: ActivatedRoute, private router: Router) {
-    if (this.router.url.startsWith('/exchange/sport')) {
-      this.exchangeStyles.forEach((href, i) => {
-          const link = document.createElement('link');
-          link.id = `exchange-style-${i}`;
-          link.rel = 'stylesheet';
-          link.href = href;
-          document.head.prepend(link);
-      });
-    }
+
   }
 
   customOptions: OwlOptions = {
@@ -413,9 +401,6 @@ export class SportComponent implements OnInit, OnDestroy {
     if (this.oddsub) {
       this.oddsub.unsubscribe();
     }
-    this.exchangeStyles.forEach((_, i) => {
-      document.getElementById(`exchange-style-${i}`)?.remove();
-    });
   }
 
   showLeagues() {

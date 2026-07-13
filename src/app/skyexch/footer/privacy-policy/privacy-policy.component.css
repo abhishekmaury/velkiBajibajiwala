@@ -1,4 +1,4 @@
-/* @import url(../../exStyles.css); */
+@import url(../../exStyles.css);
 @media (min-width:768px) {
     #PrivacyPolicyPopup {
         width: 480px;

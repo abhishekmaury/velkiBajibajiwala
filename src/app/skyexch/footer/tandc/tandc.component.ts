@@ -17,26 +17,12 @@ export class TandcComponent implements OnInit {
   favicon: any;
   jsonWeblinksdt: any;
   loading = true;
-  exchangeStyles = [
-    'assets/css/style.css',
-    'assets/css/style2.css',
-    'assets/css/newstyle.css'
-  ];
 
   constructor(private location: Location, private dataServe: DataHandlerService, private router: Router, private titleService: Title) { }
 
   @Output() closePopup = new EventEmitter()
   domainName: any;
   ngOnInit(): void {
-    this.exchangeStyles.forEach((href, i) => {
-      if (!document.getElementById(`exchange-style-${i}`)) {
-        const link = document.createElement('link');
-        link.id = `exchange-style-${i}`;
-        link.rel = 'stylesheet';
-        link.href = href;
-        document.head.prepend(link);
-      }
-    });
     let webdata = localStorage.getItem("webData");
     if (webdata) {
       let formatedDt = JSON.parse(webdata)
@@ -97,9 +83,4 @@ export class TandcComponent implements OnInit {
     return domain;
   }
 
-  ngOnDestroy() {
-    this.exchangeStyles.forEach((_, i) => {
-      document.getElementById(`exchange-style-${i}`)?.remove();
-    });
-  }
 }

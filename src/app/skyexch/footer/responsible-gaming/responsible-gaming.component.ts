@@ -18,11 +18,6 @@ export class ResponsibleGamingComponent implements OnInit {
   favicon: any;
   jsonWeblinksdt: any;
   loading = true;
-  exchangeStyles = [
-    'assets/css/style.css',
-    'assets/css/style2.css',
-    'assets/css/newstyle.css'
-  ];
 
   constructor(private location: Location, private dataServe: DataHandlerService, private router: Router, private titleService: Title) { }
 
@@ -35,15 +30,6 @@ export class ResponsibleGamingComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.exchangeStyles.forEach((href, i) => {
-      if (!document.getElementById(`exchange-style-${i}`)) {
-        const link = document.createElement('link');
-        link.id = `exchange-style-${i}`;
-        link.rel = 'stylesheet';
-        link.href = href;
-        document.head.prepend(link);
-      }
-    });
     let data1 = localStorage.getItem('webData');
     if (data1 == null) {
       this.dataServe.getWebsiteData().subscribe((res) => {
@@ -93,10 +79,5 @@ export class ResponsibleGamingComponent implements OnInit {
     return domain;
   }
 
-  ngOnDestroy() {
-    this.exchangeStyles.forEach((_, i) => {
-      document.getElementById(`exchange-style-${i}`)?.remove();
-    });
-  }
 
 }
