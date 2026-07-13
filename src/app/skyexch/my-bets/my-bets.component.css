@@ -810,4 +810,7 @@ dt {
   .hideshowFont{
     font-size: 1rem;
   }
+  .s-app .s-w-90px {
+    width: 115.2px;
+  }
 }
