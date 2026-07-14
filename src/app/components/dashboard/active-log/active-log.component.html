@@ -51,13 +51,13 @@
             </div>
             <div data-v-e313196e="" class="p-2 flex justify-start items-center bg-white border-b border-black-300"><span
                 data-v-e313196e="" class="mr-4 w-4/12 text-12 text-global-font-on-light">IP Address</span><span
-                data-v-e313196e="" class="w-8/12 text-12 text-black-600">{{data?.ipaddress}}</span></div>
+                data-v-e313196e="" class="w-8/12 text-12" [class.text-black-600]="!isClassicTheme">{{data?.ipaddress}}</span></div>
             <div data-v-e313196e="" class="p-2 flex justify-start items-start bg-white border-b border-black-300"><span
                 data-v-e313196e="" class="mr-4 w-4/12 text-12 text-global-font-on-light">ISP</span><span
-                data-v-e313196e="" class="w-8/12 text-12 text-black-600">{{data?.isp || '-'}}</span></div>
+                data-v-e313196e="" class="w-8/12 text-12" [class.text-black-600]="!isClassicTheme">{{data?.isp || '-'}}</span></div>
             <div data-v-e313196e="" class="p-2 flex justify-start items-start bg-white rounded-b-lg"><span
                 data-v-e313196e="" class="mr-4 w-4/12 text-12 text-global-font-on-light">City/State/Country</span><span
-                data-v-e313196e="" class="w-8/12 text-12 text-black-600 leading-16px">{{data?.city}}
+                data-v-e313196e="" class="w-8/12 text-12 leading-16px" [class.text-black-600]="!isClassicTheme">{{data?.city}}
                 {{data?.country}}</span>
             </div>
           </div>
@@ -76,13 +76,13 @@
             </div> -->
             <div data-v-e313196e="" class="p-2 flex justify-start items-center bg-white border-b border-black-300"><span
                 data-v-e313196e="" class="mr-4 w-4/12 text-12 text-global-font-on-light">Date/Time</span><span
-                data-v-e313196e="" class="w-8/12 text-12 text-black-600">{{data?.activityOn | date:'yyyy-mm-dd hh:mm:ss'}}</span></div>
+                data-v-e313196e="" class="w-8/12 text-12" [class.text-black-600]="!isClassicTheme">{{data?.activityOn | date:'yyyy-mm-dd hh:mm:ss'}}</span></div>
             <div data-v-e313196e="" class="p-2 flex justify-start items-start bg-white border-b border-black-300"><span
                 data-v-e313196e="" class="mr-4 w-4/12 text-12 text-global-font-on-light">IP</span><span
-                data-v-e313196e="" class="w-8/12 text-12 text-black-600">{{data?.ipaddress}}</span></div>
+                data-v-e313196e="" class="w-8/12 text-12" [class.text-black-600]="!isClassicTheme">{{data?.ipaddress}}</span></div>
             <div data-v-e313196e="" class="p-2 flex justify-start items-start bg-white rounded-b-lg"><span
                 data-v-e313196e="" class="mr-4 w-4/12 text-12 text-global-font-on-light">Updator</span><span
-                data-v-e313196e="" class="w-8/12 text-12 text-black-600 leading-16px">{{data?.userid}} </span>
+                data-v-e313196e="" class="w-8/12 text-12" [class.text-black-600 leading-16px]="!isClassicTheme">{{data?.userid}} </span>
             </div>
           </div>
 

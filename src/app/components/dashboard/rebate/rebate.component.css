@@ -256,3 +256,8 @@
 .classic .icon-close:before {
   content: "";
 }
+
+.classic .bg-white {
+    --tw-bg-opacity: 1;
+    background-color: #292929;
+}
