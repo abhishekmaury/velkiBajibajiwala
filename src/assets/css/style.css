@@ -5580,7 +5580,7 @@ header .header-title {
   vertical-align: middle
 }
 
-.language-list .left-language-area p {
+.language-list .left-language-area p:not(.reset) {
   display: inline-block;
   width: 53%;
   color: #0e274999;

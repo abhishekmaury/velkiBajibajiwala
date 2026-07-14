@@ -2,16 +2,18 @@ import { CommonModule } from '@angular/common';
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
+import { SettingComponent } from '../setting/setting.component';
 
 @Component({
   selector: 'app-parlay',
   standalone: true,
-  imports:[CommonModule,RouterLink],
+  imports:[CommonModule,RouterLink, SettingComponent],
   templateUrl: './parlay.component.html',
   styleUrls: ['./parlay.component.css'],
   encapsulation: ViewEncapsulation.None
 })
 export class ParlayComponent {
+  isSettingsOpen = false;
   validateapi: any;
   cricdata: any;
   soccdata: any;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -10,12 +10,9 @@ import { Location } from '@angular/common';
   styleUrls: ['./setting.component.css']
 })
 export class SettingComponent {
+  @Output() closeModal = new EventEmitter<void>();
 
-  constructor(private router: Router, private location: Location) {
-
-  }
-  closeSearch() {
-    this.location.back()
-
+  close() {
+    this.closeModal.next()
   }
 }

@@ -9,18 +9,19 @@ import { SocketServiceService } from '../../services/socket-service.service';
 import { DatePipePipe } from "../pipes/datepipe.pipe";
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 import { LoaderComponent } from '../loader/loader.component';
+import { SettingComponent } from '../setting/setting.component';
 
 @Component({
   selector: 'app-sport',
   standalone: true,
-  imports: [CommonModule, DatePipePipe, RouterLink, LoaderComponent],
+  imports: [CommonModule, DatePipePipe, RouterLink, LoaderComponent, SettingComponent],
   templateUrl: './sport.component.html',
   styleUrls: ['./sport.component.css'],
   encapsulation: ViewEncapsulation.None
 })
 
 export class SportComponent implements OnInit, OnDestroy {
-
+  isSettingsOpen = false;
   isLogin = false;
   warningPopup = false;
   loggedData: any;

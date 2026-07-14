@@ -63,7 +63,7 @@
                               class="s-flex s-justify-center s-items-center s-w-24px s-h-24px s-bg-filter-background-light dark:s-bg-filter-background-dark s-rounded-full s-shadow-2sm">
                               <span class="s-icon-notifications dark:s-text-global-font-default-dark"></span>
                             </div> -->
-                          <div id="settingpopup" routerLink="/exchange/setting"
+                          <div id="settingpopup" (click)="isSettingsOpen = true;"
                             class="s-flex s-justify-center s-items-center s-w-24px s-h-24px s-bg-filter-background-light dark:s-bg-filter-background-dark s-rounded-full s-shadow-2sm">
                             <span class="s-icon-setting dark:s-text-global-font-default-dark"></span>
                           </div>
@@ -1789,3 +1789,7 @@
     </div>
   </div>
 </div>
+
+<ng-container *ngIf="isSettingsOpen">
+  <app-setting (closeModal)="isSettingsOpen = false"></app-setting>
+</ng-container>
