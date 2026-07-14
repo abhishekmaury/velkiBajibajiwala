@@ -11,6 +11,15 @@
   src: url(/assets/1.6.9-icomoon.8b58f7a5.eot?2l1zi4);
   src: url(/assets/1.6.9-icomoon.8b58f7a5.eot?2l1zi4#iefix) format("embedded-opentype"),url(/assets/1.6.9-icomoon.1f8c38fd.ttf?2l1zi4) format("truetype"),url(/assets/1.6.9-icomoon.bc791575.woff?2l1zi4) format("woff"),url(/assets/1.6.9-icomoon.2c1dab02.svg?2l1zi4#icomoon) format("svg")
 }
+
+@font-face {
+  font-display: block;
+  font-family: icomoon-1-6;
+  font-style: normal;
+  font-weight: 400;
+  src: url(/assets/1.6.9-icomoon.8b58f7a5.eot?2l1zi4);
+  src: url(/assets/1.6.9-icomoon.8b58f7a5.eot?2l1zi4#iefix) format("embedded-opentype"),url(/assets/1.6.9-icomoon.1f8c38fd.ttf?2l1zi4) format("truetype"),url(/assets/1.6.9-icomoon.bc791575.woff?2l1zi4) format("woff"),url(/assets/1.6.9-icomoon.2c1dab02.svg?2l1zi4#icomoon) format("svg")
+}
 [class*=" icon-"],[class^=icon-] {
   font-family: icomoon!important;
   speak: never;
@@ -8502,4 +8511,8 @@ html {
 }
 .hk-tg-2 input:checked + label::after {
   transform: translateX(19px);
+}
+
+.icon-original {
+  font-family:icomoon-1-6 !important;
 }

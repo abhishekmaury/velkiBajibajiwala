@@ -20,7 +20,8 @@ export class ClassicThemeGuard implements CanActivate {
     state: RouterStateSnapshot,
   ) {
     if (
-      state.url.startsWith('/exchange') &&
+      (state.url.startsWith('/exchange') ||
+      state.url.startsWith('/account')) &&
       !this.dataServe.isClassicTheme()
     ) {
       return this.router.createUrlTree(['/home'])
