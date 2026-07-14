@@ -4922,7 +4922,7 @@ header .header-title {
   display: block
 }
 
-.footer-top ul {
+.footer-top ul:not(.reset) {
   display: flex;
   justify-content: flex-start;
   align-items: center;

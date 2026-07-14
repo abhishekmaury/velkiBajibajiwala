@@ -14889,7 +14889,7 @@ header .header-right-btn-group .language-select img {
 }
 
 .footer .footer-top .license ul,
-.footer .footer-top .safe ul,
+.footer .footer-top .safe ul:not(.reset),
 .footer .footer-top .pay ul {
   background: #2b2922
 }
