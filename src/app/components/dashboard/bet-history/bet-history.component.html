@@ -99,7 +99,9 @@
 
           <button type="button" (click)="toggleCalendar()"
             class="calendar-btn text-left px-2 h-30px border rounded border-reportForm-main bg-white bg-opacity-0 text-reportForm-main text-15 mr-2 flex-1 flex items-center justify-start">
-            <div class="icon-calendar mr-2"></div><span class="text-white truncate">
+            <!-- <div class="icon-calendar mr-2"></div> -->
+            <i class="fa-regular fa-calendar mr-2"></i>
+            <span class="text-white truncate">
               {{ selectedStartDate ? (selectedStartDate | date:'dd/MM/yyyy') : 'Start' }} -
               {{ selectedEndDate ? (selectedEndDate | date:'dd/MM/yyyy') : 'End' }}</span>
           </button>
