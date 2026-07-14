@@ -978,14 +978,14 @@
                         <h2 [style]="{'color':themeData?.masterTextColor2}">{{'HOTCASINOGAMES' | transloco}}</h2>
                     </div>
                     <div class="recommend-bg games">
-                        <div class="recommend-main games-main" id="featuredGames">
+                        <div class="recommend-main games-main reset" id="featuredGames">
 
                             <div class="games-box ng-star-inserted" *ngFor="let item of casinoGames">
                                 <div class="pic" (click)="opencasinogamesmob(item)">
                                     <a><img fetchpriority="high" [alt]="item.Image" [src]="item.Image"
                                             loading="lazy"></a>
                                 </div>
-                                <div class="text">{{item?.image_name}}</div>
+                                <div class="text reset">{{item?.image_name}}</div>
                             </div>
 
                         </div>

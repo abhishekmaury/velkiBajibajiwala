@@ -8777,7 +8777,7 @@ header .header-title {
   text-shadow: 0 0 2.6666666667vw rgba(0, 0, 0, .5)
 }
 
-.games .games-main {
+.games .games-main:not(.reset) {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 2.1333333333vw;
@@ -8797,7 +8797,7 @@ header .header-title {
   border-bottom-left-radius: 1rem;
 }
 
-.games .games-box .text {
+.games .games-box .text:not(.reset) {
   position: relative;
   width: 100%;
   height: auto;
