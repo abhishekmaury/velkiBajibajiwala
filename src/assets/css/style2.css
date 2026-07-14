@@ -14898,7 +14898,7 @@ header .header-right-btn-group .language-select img {
   background-color: #fff
 }
 
-.searchpage-main .check-group {
+.searchpage-main .check-group:not(.reset) {
   padding: 2.1333333333vw
 }
 

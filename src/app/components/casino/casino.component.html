@@ -253,10 +253,10 @@
         <div  class="content-box" bis_skin_checked="1">
           <div  class="games" bis_skin_checked="1">
             <div 
-              class="ng-tns-c84-5 ng-trigger ng-trigger-staggerFadeAnimation tab search-tab ng-star-inserted mobile-tab"
+              class="ng-tns-c84-5 ng-trigger reset ng-trigger-staggerFadeAnimation tab search-tab ng-star-inserted mobile-tab"
               bis_skin_checked="1" style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);">
-              <ul  id="providers" class="item-ani ng-tns-c84-5">
-                <li class="condition-groups proCl" (click)="sportsactive('ALL')"  [ngClass]="activesport==='ALL' ? 'condition-groups-active' : 'condition-groups-active-white'"
+              <ul  id="providers" class="item-ani reset ng-tns-c84-5">
+                <li class="condition-groups proCl reset" (click)="sportsactive('ALL')"  [ngClass]="activesport==='ALL' ? 'condition-groups-active' : 'condition-groups-active-white'"
                   style=""><label 
                     for="sort_recommend">ALL</label></li>
                 <li *ngFor="let tab of sortedTabs()"  class="condition-groups proCl" (click)="sportsactive(tab)" [ngClass]="activesport===tab ? 'condition-groups-active' : 'condition-groups-active-white'"
@@ -267,22 +267,22 @@
               <div  class="btn search-btn ng-tns-c84-5 ng-star-inserted searchpagebutton" 
                 bis_skin_checked="1" style="background: rgb(41, 41, 41);" (click)="toggleSearchPage()"></div>
             </div>
-            <div class="searchpage ng-tns-c84-5 ng-star-inserted searchpagemodal" [ngClass]="isSearchPageOpen ? 'active' : 'inactive'"
+            <div class="searchpage reset ng-tns-c84-5 ng-star-inserted searchpagemodal" [ngClass]="isSearchPageOpen ? 'active' : 'inactive'"
               bis_skin_checked="1" style="background: rgb(32, 32, 32);">
-              <div  class="search-top-info ng-tns-c84-5" bis_skin_checked="1">
-                <div  class="back ng-tns-c84-5 closesearchmodal" bis_skin_checked="1"
+              <div  class="search-top-info reset ng-tns-c84-5" bis_skin_checked="1">
+                <div  class="back reset ng-tns-c84-5 closesearchmodal" bis_skin_checked="1"
                   style="color: rgb(255, 255, 255);">Back</div><input  type="text"
                   placeholder="Search Games" class="ng-tns-c84-5 ng-untouched ng-pristine ng-valid"
                   fdprocessedid="0yr9um">
-                <div  class="search ng-tns-c84-5 closesearchmodal" bis_skin_checked="1"
+                <div  class="search reset ng-tns-c84-5 closesearchmodal" bis_skin_checked="1"
                   style="color: rgb(255, 255, 255);"></div>
               </div>
-              <div  class="searchpage-main ng-tns-c84-5" bis_skin_checked="1" >
+              <div  class="searchpage-main reset" bis_skin_checked="1">
                 <div 
-                  class="search-checkbox-group check-group ng-tns-c84-5 ng-star-inserted" bis_skin_checked="1">
+                  class="search-checkbox-group check-group reset" bis_skin_checked="1">
                   <h2  class="ng-tns-c84-5 ng-star-inserted">Provider</h2>
-                  <ul id="filters" class="ng-tns-c84-5">
-                    <li  *ngFor="let provider of providersArr" (click)="toggleSearchPage()" [ngClass]="activesport===provider ? 'serachpage-provider' : 'serachpage-provider-default'"
+                  <ul id="filters reset" class="ng-tns-c84-5">
+                    <li class="reset" *ngFor="let provider of providersArr" (click)="toggleSearchPage()" [ngClass]="activesport===provider ? 'serachpage-provider' : 'serachpage-provider-default'"
                       style=""><input
                          type="checkbox"><label (click)="sportsactive(provider)"><span
                           
@@ -292,7 +292,7 @@
                 </div>
               </div><!---->
             </div>
-            <div  id="gamesList" class="games-main" bis_skin_checked="1">
+            <div  id="gamesList" class="games-main reset" bis_skin_checked="1">
               <div *ngFor="let game of gameslist"
                 class="games-box ng-tns-c2286114882-6 ng-trigger ng-trigger-staggerFadeAnimation" bis_skin_checked="1">
                 <div  class="pic item-ani ng-tns-c2286114882-6" bis_skin_checked="1" (click)="opencasinogamesmob(game)"><a

@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 header {
-  z-index: 60
+  z-index: 10010
 }
 
 .pop-bg {
@@ -1226,7 +1226,7 @@ input[type=number]::-webkit-outer-spin-button {
   background: #2b2922
 }
 
-.tab.search-tab,
+.tab.search-tab:not(.reset),
 .tab.filter-tab {
   width: calc(100% - 4.2666666667vw);
   margin: 2.1333333333vw;
@@ -1275,7 +1275,7 @@ input[type=number]::-webkit-outer-spin-button {
   top: 13.3333333333vw
 }
 
-.tab ul {
+.tab ul:not(.reset) {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -1748,7 +1748,7 @@ input[type=number]::-webkit-outer-spin-button {
   background: none
 }
 
-.check-group {
+.check-group:not(.reset) {
   display: flex;
   flex-direction: column;
   padding-bottom: 4.2666666667vw;
@@ -8299,7 +8299,7 @@ header .header-title {
   line-height: 13.3333333333vw
 }
 
-.search-top-info {
+.search-top-info:not(.reset) {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8308,7 +8308,7 @@ header .header-title {
   background: #2b2922
 }
 
-.search-top-info .back {
+.search-top-info .back:not(.reset) {
   display: block;
   width: 13.3333333333vw;
   height: 100%;
@@ -8323,7 +8323,7 @@ header .header-title {
   cursor: pointer
 }
 
-.search-top-info input {
+.search-top-info input:not(.reset) {
   position: relative;
   width: calc(100% - 26.6666666667vw);
   height: 10.6666666667vw;
@@ -8341,7 +8341,7 @@ header .header-title {
   color: #0e274980
 }
 
-.search-top-info .icon-search {
+.search-top-info .icon-search:not(.reset) {
   display: block;
   width: 13.3333333333vw;
   height: 100%;
@@ -8370,7 +8370,7 @@ header .header-title {
   left: 0
 }
 
-.searchpage-main {
+.searchpage-main:not(.reset) {
   position: relative;
   padding: 9.6vw 2.1333333333vw 4.2666666667vw
 }
@@ -8391,7 +8391,7 @@ header .header-title {
   font-weight: 500
 }
 
-.searchpage-main .check-group {
+.searchpage-main .check-group:not(.reset) {
   padding: 2.1333333333vw;
   background: #2b2922
 }
@@ -8400,7 +8400,7 @@ header .header-title {
   margin-bottom: 0
 }
 
-.search-checkbox-group ul {
+.search-checkbox-group ul:not(.reset) {
   display: grid;
   grid-gap: 1.0666666667vw;
   grid-template-columns: repeat(3, 1fr);
@@ -8409,7 +8409,7 @@ header .header-title {
   overflow: hidden
 }
 
-.search-checkbox-group li {
+.search-checkbox-group li:not(.reset) {
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
