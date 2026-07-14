@@ -3,7 +3,7 @@
   margin-right: 2.1333333333vw;
 }
 
-footer:not(.reset) {
+/* footer:not(.reset) {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,10 +12,27 @@ footer:not(.reset) {
   height: auto;
   padding: 0 2.1333333333vw;
   background-color: #1f1f1f;
+} */
+.footers {
+  background-color: #1f1f1f !important;
 }
 
 @media (min-width:768px) {
   .footer-top .license {
     margin-right: 10.24px;
+  }
+
+  .footer-top {
+    border-bottom: 0;
+  }
+
+  .footer-top ul:not(.reset) {
+    padding: 10.24px !important;
+    border-radius: 6.4px !important;
+    box-shadow: 0 2.56px 2.56px #ebebeb0d !important;
+  }
+
+  .footer-top div img {
+    height: 23.04px !important;
   }
 }
