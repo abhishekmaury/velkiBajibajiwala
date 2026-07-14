@@ -2,6 +2,8 @@
 .content-z-index {
   z-index: 9991;
 }
+  @media (min-width:768px) {
+
  #ResponsiblePopup {
         width: 480px;
     }
@@ -31,3 +33,4 @@
     .s-app .s-text-17px {
         font-size: 19.2939px;
     }
+ }
