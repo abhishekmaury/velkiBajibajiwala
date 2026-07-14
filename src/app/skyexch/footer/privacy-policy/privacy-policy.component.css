@@ -1,4 +1,7 @@
 @import url(../../exStyles.css);
+.content-z-index {
+  z-index: 9991;
+}
 @media (min-width:768px) {
     #PrivacyPolicyPopup {
         width: 480px;

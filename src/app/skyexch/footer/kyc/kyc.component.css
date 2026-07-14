@@ -1,4 +1,7 @@
 @import url(../../exStyles.css);
+.content-z-index {
+  z-index: 9991;
+}
  #KYCPopup {
         width: 480px;
     }
