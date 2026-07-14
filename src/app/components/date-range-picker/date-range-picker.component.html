@@ -1,11 +1,11 @@
 <div data-v-1a3d4c25=""
   class="mybet fixed container bottom-0 ng-tns-c3078540662-1 ng-trigger ng-trigger-slideInOut ng-star-inserted"
-  [@slideInOut]>
+  [@slideInOut] [class.classic]="isClassicTheme">
   <div data-v-1a3d4c25=""
     class="mybet-content bg-secondary flex flex-col h-full overscroll-y-none rounded-t-xl overflow-hidden ng-tns-c3078540662-1">
     <div data-v-1a3d4c25="" class="shrink-0 bg-secondary rounded-t-xl ng-tns-c3078540662-1">
       <header data-v-1a3d4c25=""
-        class="mybet-title flex p-1 py-2 h-40px justify-center items-center ng-tns-c3078540662-1">
+        class="mybet-title flex p-1 py-2 h-40px justify-center items-center ng-tns-c3078540662-1 classic-headr">
         <div data-v-1a3d4c25="" class="main-filter flex-1 text-pop-title -mr-28px ng-tns-c3078540662-1">
           <ul data-v-1a3d4c25=""
             class="main-filter-ul flex justify-center items-center leading-tight text-center break-all ng-tns-c3078540662-1">
@@ -13,9 +13,10 @@
               Select Date</li>
           </ul>
         </div>
-        <div data-v-1a3d4c25="" (click)="applySelection()"
+        <!-- <div data-v-1a3d4c25="" (click)="applySelection()"
           class="icon-close flex justify-center items-center mr-2 cursor-pointer text-global-font-on-dark text-14 ng-tns-c3078540662-1">
-        </div>
+        </div> -->
+        <i class="fa-solid fa-xmark flex justify-center items-center mr-2 cursor-pointer text-global-font-on-dark text-14" (click)="applySelection()"></i>
       </header>
     </div>
     <section class="date-picker-area rounded-t-lg bg-white flex justify-center">
@@ -57,7 +58,7 @@
               <!-- Months -->
               <button *ngFor="let month of monthNames; let i = index" (click)="selectMonth(i)"
                 class="px-3 py-1 rounded hover:bg-blue-600" [ngClass]="{
-          'is-active': i === currentMonth, 
+          'is-active': i === currentMonth,
           'border border-white rounded': i === todayMonth && currentYear === todayYear
         }">
                 {{ month | slice:0:3 }}
@@ -112,7 +113,9 @@
 
           <div class="px-4">
             <div class="bg-black-300 rounded-lg h-40px mb-4 flex items-center p-2 pl-4">
-              <div class="icon-clock text-20 text-black-400 mr-2"></div><span class="text-15 text-black">09:30 am -
+              <!-- <div class="icon-clock text-20 text-black-400 mr-2"></div> -->
+              <i class="fa-regular fa-clock text-20 text-black-400 mr-2"></i>
+              <span class="text-15 text-black">09:30 am -
                 09:29 am</span>
             </div>
           </div>

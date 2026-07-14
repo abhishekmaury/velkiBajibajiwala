@@ -1,5 +1,6 @@
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import { DataHandlerService } from 'src/app/services/datahandler.service';
 
 @Component({
   selector: 'app-date-range-picker',
@@ -47,7 +48,13 @@ export class DateRangePickerComponent {
   toggleMonthYearPopup() {
     this.showMonthYearPopup = !this.showMonthYearPopup;
   }
+  isClassicTheme = false;
+
+  constructor(private dataServe: DataHandlerService) { }
   ngOnInit() {
+    this.dataServe.changeTheme$.subscribe({
+      next:(f) => this.isClassicTheme = f,
+    })
     const today = new Date();
     this.currentMonth = today.getMonth();
     this.currentYear = today.getFullYear();

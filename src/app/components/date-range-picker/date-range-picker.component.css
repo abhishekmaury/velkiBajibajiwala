@@ -173,13 +173,20 @@
 @media screen and (min-width:768px) {
   .gap-2 {
     gap: 8.96px 0;
-}
+  }
 
-.pdd-4 {
+  .pdd-4 {
     padding: 17.92px 7.168px 7.168px;
-}
-.month-pos {
+  }
+
+  .month-pos {
     top: 12%;
     transform: translate(62.4px, 10px);
+  }
 }
+
+.classic .classic-headr {
+  position: relative;
+  top: unset;
+  overflow: unset;
 }
