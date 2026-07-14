@@ -8384,7 +8384,7 @@ header .header-title {
   text-decoration: underline
 }
 
-.searchpage-main h2 {
+.searchpage-main h2:not(.reset) {
   margin-bottom: 1.0666666667vw;
   color: #fff;
   font-size: 4.2666666667vw;

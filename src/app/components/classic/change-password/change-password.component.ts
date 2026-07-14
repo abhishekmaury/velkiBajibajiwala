@@ -114,6 +114,8 @@ export class ChangePasswordComponent {
     } else {
       this.errMsg = " New Password Field can not be empty"
     }
+    console.log(this.errMsg);
+    
 
   }
 

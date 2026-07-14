@@ -1309,7 +1309,8 @@
   mask-size: 70%
 }
 
-.tips-info {
+
+.tips-info:not(.reset) {
   position: relative;
   flex: 1;
   margin: 4.2666666667vw;
@@ -1334,7 +1335,7 @@
   transform-origin: center
 }
 
-.tips-info ol {
+.tips-info ol:not(.reset) {
   position: relative;
   width: auto;
   max-height: 0;
@@ -1357,7 +1358,7 @@
   background-size: 2.6666666667vw
 }
 
-.tips-info .title-box {
+.tips-info .title-box:not(.reset) {
   display: flex;
   position: relative;
   flex-flow: row nowrap;
@@ -1366,7 +1367,7 @@
   padding: 4.2666666667vw
 }
 
-.tips-info h5 {
+.tips-info h5:not(.reset) {
   display: flex;
   flex: 1;
   flex-flow: row nowrap;
@@ -1378,7 +1379,7 @@
   font-size: 3.7333333333vw
 }
 
-.tips-info h5 i {
+.tips-info h5 i:not(.reset) {
   display: inline-block;
   width: 3.7333333333vw;
   height: 3.7333333333vw;
@@ -1392,7 +1393,7 @@
   mask-size: 100%
 }
 
-.tips-info h5 span {
+.tips-info h5 span:not(.reset) {
   display: inline-block;
   flex: 1;
   width: calc(100% - 50px);
