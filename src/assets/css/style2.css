@@ -10579,11 +10579,13 @@ header .logo {
 }
 
 .sport-loader .ball-wrap li {
+  --_left:min(2.1333333333vw,10px);
+
   display: inline-block;
   position: absolute;
-  top: calc(50% - 2.1333333333vw);
-  width: 4.2666666667vw;
-  height: 4.2666666667vw;
+  top: calc(50% - var(--_left));
+  width: min(4.2666666667vw,20.50px);
+  height: min(4.2666666667vw,20.5px);
   transform-origin: center;
   animation: rotate-in-center infinite 2s cubic-bezier(.25, .46, .45, .94) both;
   background-repeat: no-repeat;
@@ -10593,17 +10595,17 @@ header .logo {
 
 .sport-loader .basketball {
   animation-delay: .3s;
-  left: calc(40% - 2.1333333333vw)
+  left: calc(40% - var(--_left));
 }
 
 .sport-loader .soccer {
   animation-delay: .6s;
-  left: calc(50% - 2.1333333333vw)
+  left: calc(50% - var(--_left));
 }
 
 .sport-loader .cricket {
   animation-delay: .9s;
-  left: calc(60% - 2.1333333333vw)
+  left: calc(60% - var(--_left));
 }
 
 @keyframes tap {
