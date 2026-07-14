@@ -65,9 +65,11 @@
                 <span data-v-8a49f53f="" class="option-context mr-2 font-bold truncate leading-tight">{{
                   betHistoryData.controls['resultType']?.value || 'Settled' }}</span>
               </div>
-              <span data-v-8a49f53f=""
+              <!-- <span data-v-8a49f53f=""
                 class="icon-arrow-down absolute right-0 top-1.5 text-12 transition-transform origin-center duration-300"
-                [ngClass]="dropdownshow?'transform rotate-180':''"></span>
+                [ngClass]="dropdownshow?'transform rotate-180':''"></span> -->
+                <i class="fa-solid fa-angle-down absolute right-0 top-1.5 text-12 transition-transform origin-center duration-300"
+                 [ngClass]="dropdownshow?'transform rotate-180':''"></i>
             </div>
           </button>
           <div data-v-8a49f53f="" *ngIf="dropdownshow"
