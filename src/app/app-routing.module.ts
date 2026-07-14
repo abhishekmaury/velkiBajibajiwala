@@ -36,7 +36,7 @@ const routes: Routes = [
   { path: 'info', loadChildren : ()=> import('./components/footer-pages/footer-pages.module').then(c =>(c.FooterPagesModule)) },
   { path: 'menu', loadChildren: () => import('./components/dashboard/dashboard.module').then(m => m.DashboardModule), canActivate : [AuthGuardGuard] },
   { path: 'exchange', loadChildren: () => import('./skyexch/skyexch.routers').then(c => (c.exchRoute)), canActivate: [ClassicThemeGuard] },
-  { path: "account", loadComponent: () => import('./components/classic/account/account.component').then(m => m.AccountComponent),canActivate: [AuthGuardGuard] },
+  { path: "account", loadComponent: () => import('./components/classic/account/account.component').then(m => m.AccountComponent),canActivate: [AuthGuardGuard,ClassicThemeGuard] },
   { path: "change-password", loadComponent: () => import('./components/classic/change-password/change-password.component').then(m => m.ChangePasswordComponent),canActivate: [AuthGuardGuard]  },
 ]
 
