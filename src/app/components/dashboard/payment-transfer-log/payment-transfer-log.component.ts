@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 import { Location } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-payment-transfer-log',
   templateUrl: './payment-transfer-log.component.html',
-  styleUrls: ['./payment-transfer-log.component.css']
+  styleUrls: ['./payment-transfer-log.component.css'],
+  standalone:true,
+  imports:[RouterLink],
 })
 export class PaymentTransferLogComponent implements OnInit{
   balInfo: any;

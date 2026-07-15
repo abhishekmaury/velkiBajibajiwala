@@ -1,13 +1,17 @@
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Meta } from '@angular/platform-browser';
+import { RouterLink } from '@angular/router';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
+import { LoaderComponent } from '../../loader/loader.component';
 
 @Component({
   selector: 'app-current-bets',
   templateUrl: './current-bets.component.html',
-  styleUrls: ['./current-bets.component.css']
+  styleUrls: ['./current-bets.component.css'],
+  standalone:true,
+  imports:[RouterLink,CommonModule,ReactiveFormsModule,LoaderComponent],
 })
 export class CurrentBetsComponent {
   @ViewChild('tabsContainer') tabsContainer!: ElementRef;

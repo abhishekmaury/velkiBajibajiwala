@@ -1,14 +1,17 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
-import { DatePipe, Location } from '@angular/common';
-import { FormGroup, FormControl } from '@angular/forms';
-import { Meta } from '@angular/platform-browser';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { CommonModule, DatePipe, Location } from '@angular/common';
+import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute, ParamMap, RouterLink } from '@angular/router';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
+import { DateRangePickerComponent } from '../../date-range-picker/date-range-picker.component';
+import { LoaderComponent } from '../../loader/loader.component';
 
 @Component({
   selector: 'app-bet-history',
   templateUrl: './bet-history.component.html',
-  styleUrls: ['./bet-history.component.css']
+  styleUrls: ['./bet-history.component.css'],
+  standalone:true,
+  imports:[DatePipe,CommonModule,DateRangePickerComponent,LoaderComponent,RouterLink,ReactiveFormsModule],
 })
 export class BetHistoryComponent {
   @ViewChild('tabsContainer') tabsContainer!: ElementRef;

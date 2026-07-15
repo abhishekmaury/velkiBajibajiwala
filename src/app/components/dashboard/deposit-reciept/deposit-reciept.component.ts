@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 
@@ -7,6 +7,8 @@ import { DataHandlerService } from 'src/app/services/datahandler.service';
   selector: 'app-deposit-reciept',
   templateUrl: './deposit-reciept.component.html',
   styleUrls: ['./deposit-reciept.component.css'],
+  standalone:true,
+  imports:[FormsModule,ReactiveFormsModule],
 })
 export class DepositRecieptComponent {
 
@@ -51,7 +53,7 @@ export class DepositRecieptComponent {
       this.loggedData = JSON.parse(lsData);
       this.mobileNum = this.loggedData.mobileNumber;
       // console.log(this.mobileNum);
-      
+
     }
     let webdata = localStorage.getItem("webData");
     if (webdata) {
@@ -84,7 +86,7 @@ export class DepositRecieptComponent {
         "transRecp": this.base64Image
       }
       console.log(data);
-      
+
       this.dataserve.updateManualUserTransDetails(data).subscribe((res : any)=>{
         console.log(res);
         if (res?.type == 'error') {
@@ -93,7 +95,7 @@ export class DepositRecieptComponent {
         this.showSucPopup = true;
         this.errMsg = res.message;
       }
-        
+
       })
     }
     else {

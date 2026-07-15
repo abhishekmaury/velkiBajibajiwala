@@ -1,13 +1,18 @@
-import { DatePipe, Location } from '@angular/common';
-import { ChangeDetectorRef, Component, ElementRef, HostListener, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { CommonModule, DatePipe, Location } from '@angular/common';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute, ParamMap, RouterLink } from '@angular/router';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
+import { DateRangePickerComponent } from '../../date-range-picker/date-range-picker.component';
+import { PipeModule } from 'src/app/pipes/sharePipe.module';
+import { LoaderComponent } from '../../loader/loader.component';
 
 @Component({
   selector: 'app-profit-loss',
   templateUrl: './profit-loss.component.html',
-  styleUrls: ['./profit-loss.component.css']
+  styleUrls: ['./profit-loss.component.css'],
+  standalone:true,
+  imports:[RouterLink,DateRangePickerComponent,PipeModule,LoaderComponent,CommonModule,ReactiveFormsModule],
 })
 export class ProfitLossComponent {
   @ViewChild('tabsContainer') tabsContainer!: ElementRef;

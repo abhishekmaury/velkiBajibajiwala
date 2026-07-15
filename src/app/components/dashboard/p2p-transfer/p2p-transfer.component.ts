@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 import { HttpResponse } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { LoaderComponent } from '../../loader/loader.component';
 
 @Component({
   selector: 'app-p2p-transfer',
   templateUrl: './p2p-transfer.component.html',
-  styleUrls: ['./p2p-transfer.component.css']
+  styleUrls: ['./p2p-transfer.component.css'],
+  standalone:true,
+  imports:[CommonModule,FormsModule,LoaderComponent],
 })
 export class P2pTransferComponent implements OnInit {
   userData: any;

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-deposit',
@@ -18,7 +19,9 @@ import { Router } from '@angular/router';
         animate('500ms ease-in-out', style({ transform: 'translateY(100%)', opacity: 0 }))
       ])
     ])
-  ]
+  ],
+  standalone:true,
+  imports:[CommonModule,RouterLink,FormsModule],
 })
 export class DepositComponent implements OnInit {
   balInfo: any;

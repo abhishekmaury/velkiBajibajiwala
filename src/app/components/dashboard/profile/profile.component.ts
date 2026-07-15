@@ -1,14 +1,17 @@
 import { HandlerService } from 'src/app/services/handler.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
+import { LoaderComponent } from '../../loader/loader.component';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
+  standalone:true,
+  imports:[RouterLink,CommonModule,LoaderComponent],
 })
 export class ProfileComponent implements OnInit{
   openProfile=false

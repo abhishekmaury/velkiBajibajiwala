@@ -1,4 +1,5 @@
 import { trigger, transition, style, animate } from '@angular/animations';
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 
@@ -16,7 +17,9 @@ import { DataHandlerService } from 'src/app/services/datahandler.service';
         animate('500ms ease-in-out', style({ transform: 'translateY(100%)', opacity: 0 }))
       ])
     ])
-  ]
+  ],
+  standalone:true,
+  imports:[CommonModule],
 })
 export class DateRangePickerComponent {
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Router } from '@angular/router';
 
@@ -19,7 +19,9 @@ import { Router } from '@angular/router';
         animate('300ms ease-out', style({ opacity: 0 }))
       ])
     ])
-  ]
+  ],
+  standalone:true,
+  imports:[CommonModule,ReactiveFormsModule],
 })
 
 export class ChangePasswordComponent implements OnInit {
@@ -148,5 +150,5 @@ export class ChangePasswordComponent implements OnInit {
     this.router.navigate(['/login'])
   }
 
-  
+
 }

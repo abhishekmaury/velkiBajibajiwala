@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
+import { LoaderComponent } from '../../loader/loader.component';
+import { PipeModule } from 'src/app/pipes/sharePipe.module';
 
 @Component({
   selector: 'app-account-statement',
   templateUrl: './account-statement.component.html',
-  styleUrls: ['./account-statement.component.css']
+  styleUrls: ['./account-statement.component.css'],
+  standalone:true,
+  imports:[LoaderComponent,PipeModule,CommonModule],
 })
 export class AccountStatementComponent {
 

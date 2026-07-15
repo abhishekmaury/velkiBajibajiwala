@@ -1,12 +1,15 @@
-import { DatePipe, Location } from '@angular/common';
+import { CommonModule, DatePipe, Location } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, RouterLink } from '@angular/router';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
+import { LoaderComponent } from '../../loader/loader.component';
 
 @Component({
   selector: 'app-rebate',
   templateUrl: './rebate.component.html',
-  styleUrls: ['./rebate.component.css']
+  styleUrls: ['./rebate.component.css'],
+  standalone:true,
+  imports:[LoaderComponent,RouterLink,CommonModule],
 })
 export class RebateComponent {
   during = false
@@ -32,7 +35,7 @@ export class RebateComponent {
   indicatorWidth: number = 0;
   indicatorLeft: number = 0;
   isClassicTheme = false;
-  
+
   constructor(private dataServe: DataHandlerService, private activeRoute: ActivatedRoute, private location: Location,
     private datePipe: DatePipe
   ) { }
@@ -53,7 +56,7 @@ export class RebateComponent {
     if (data) {
       this.loginResData = JSON.parse(data)
     }
-   
+
     this.activeRoute.paramMap.subscribe((name: ParamMap) => {
       let name1 = name.get('name');
       if(name1=='Daily'){

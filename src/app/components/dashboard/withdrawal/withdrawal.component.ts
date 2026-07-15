@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-withdrawal',
@@ -17,7 +19,9 @@ import { trigger, transition, style, animate } from '@angular/animations';
         animate('500ms ease-in-out', style({ transform: 'translateY(100%)', opacity: 0 }))
       ])
     ])
-  ]
+  ],
+  standalone:true,
+  imports:[FormsModule,RouterLink,CommonModule],
 })
 export class WithdrawalComponent implements OnInit {
   balInfo: any;

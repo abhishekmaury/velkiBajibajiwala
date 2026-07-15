@@ -5,7 +5,9 @@ import { DataHandlerService } from 'src/app/services/datahandler.service';
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.css']
+  styleUrls: ['./settings.component.css'],
+  standalone:true,
+  imports:[],
 })
 export class SettingsComponent {
   isClassicTheme = false;

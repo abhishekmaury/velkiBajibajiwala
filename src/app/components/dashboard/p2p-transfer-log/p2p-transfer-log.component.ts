@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-p2p-transfer-log',
   templateUrl: './p2p-transfer-log.component.html',
-  styleUrls: ['./p2p-transfer-log.component.css']
+  styleUrls: ['./p2p-transfer-log.component.css'],
+  standalone:true,
+  imports:[RouterLink,CommonModule],
 })
 
 export class P2pTransferLogComponent implements OnInit{

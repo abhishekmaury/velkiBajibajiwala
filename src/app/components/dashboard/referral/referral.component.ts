@@ -1,10 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 
 @Component({
   selector: 'app-referral',
   templateUrl: './referral.component.html',
-  styleUrls: ['./referral.component.css']
+  styleUrls: ['./referral.component.css'],
+  standalone:true,
+  imports:[CommonModule],
 })
 export class ReferralComponent {
   activeTab: string = 'all';
@@ -17,7 +20,7 @@ export class ReferralComponent {
   myCommPer: number = 0;
   commEar: number = 0;
   isClassicTheme: boolean = false;
-  
+
   setTab(tab: string) {
     this.activeTab = tab;
   }
