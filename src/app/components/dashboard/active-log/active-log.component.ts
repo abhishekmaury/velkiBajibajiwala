@@ -1,12 +1,16 @@
-import { Location } from '@angular/common';
+import { CommonModule, DatePipe, Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
+import { LoaderComponent } from '../../loader/loader.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-active-log',
   templateUrl: './active-log.component.html',
-  styleUrls: ['./active-log.component.css']
+  styleUrls: ['./active-log.component.css'],
+  standalone:true,
+  imports:[CommonModule,LoaderComponent,DatePipe,RouterLink],
 })
 export class ActiveLogComponent {
 

@@ -1,11 +1,15 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
+import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-bet-place-parlay',
   templateUrl: './bet-place-parlay.component.html',
-  styleUrls: ['./bet-place-parlay.component.css']
+  styleUrls: ['./bet-place-parlay.component.css'],
+  standalone:true,
+  imports:[CommonModule,LoaderComponent],
 })
 export class BetPlaceParlayComponent implements OnInit {
   @Input() data: any

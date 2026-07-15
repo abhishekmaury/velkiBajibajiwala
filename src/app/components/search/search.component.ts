@@ -4,6 +4,8 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 import { HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-search',
@@ -19,7 +21,9 @@ import { Router } from '@angular/router';
         animate('500ms ease-in-out', style({ transform: 'translateY(100%)', opacity: 0 }))
       ])
     ])
-  ]
+  ],
+  standalone:true,
+  imports:[CommonModule,FormsModule],
 })
 export class SearchComponent {
   isOpen = false;

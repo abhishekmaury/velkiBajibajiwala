@@ -1,9 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-stake-settings',
   templateUrl: './stake-settings.component.html',
-  styleUrls: ['./stake-settings.component.css']
+  styleUrls: ['./stake-settings.component.css'],
+  standalone:true,
+  imports:[CommonModule],
 })
 export class StakeSettingsComponent implements OnInit{
   stakeNumPad = [1, 2, 3, 4, 5, 6, 7, 8, 9, '', 0,]
@@ -27,7 +30,7 @@ export class StakeSettingsComponent implements OnInit{
     }
   }
   closeStake(){
-    
+
   }
   stakeFocus(index: any) {
     this.stakeFocusnum = index;

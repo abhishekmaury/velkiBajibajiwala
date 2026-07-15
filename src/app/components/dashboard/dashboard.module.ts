@@ -26,6 +26,7 @@ import { DepositRecieptComponent } from './deposit-reciept/deposit-reciept.compo
 import { ReferralComponent } from './referral/referral.component';
 import { RebateComponent } from './rebate/rebate.component';
 import { SharedModule } from 'src/app/directives/shared.module';
+import { LoaderComponent } from '../loader/loader.component';
 
 const routes: Routes = [
   {
@@ -57,7 +58,6 @@ const routes: Routes = [
     CurrentBetsComponent,
     BetHistoryComponent,
     ProfitLossComponent,
-    ActiveLogComponent,
     ProfileComponent,
     P2pTransferComponent,
     P2pTransferLogComponent,
@@ -65,7 +65,7 @@ const routes: Routes = [
     BalanceComponent,
     ChangePasswordComponent,
     AccountStatementComponent,
-    UplineWhatsappNumberComponent,
+    // UplineWhatsappNumberComponent,
     DepositComponent,
     WithdrawalComponent,
     PaymentTransferLogComponent,
@@ -75,6 +75,7 @@ const routes: Routes = [
     RebateComponent
   ],
   imports: [
+    LoaderComponent,
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
@@ -82,6 +83,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     LoaderModule,
 
+    // Standalone
+    ActiveLogComponent,
 ],
 exports : [
   ReactiveFormsModule

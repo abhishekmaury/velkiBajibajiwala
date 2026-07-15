@@ -10,6 +10,11 @@ import 'moment-timezone';
 import { HandlerService } from 'src/app/services/handler.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { GetSocketUrlService } from 'src/app/services/get-socket-url.service';
+import { BetPlaceComponent } from '../bet-place/bet-place.component';
+import { LoaderComponent } from '../loader/loader.component';
+import { CommonModule } from '@angular/common';
+import { MainFooterComponent } from '../main-footer/main-footer.component';
+import { BetPlaceParlayComponent } from '../bet-place-parlay/bet-place-parlay.component';
 
 @Component({
   selector: 'app-market-premium-parlay',
@@ -25,7 +30,9 @@ import { GetSocketUrlService } from 'src/app/services/get-socket-url.service';
           animate('300ms ease-out', style({ opacity: 0 }))
         ])
       ])
-    ]
+    ],
+    standalone:true,
+    imports:[BetPlaceComponent,LoaderComponent,CommonModule,MainFooterComponent,BetPlaceParlayComponent]
 })
 
 export class MarketPremiumParlayComponent implements OnInit , OnDestroy{

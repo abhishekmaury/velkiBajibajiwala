@@ -1,17 +1,23 @@
-import { Component, OnInit, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { HandlerService } from 'src/app/services/handler.service';
-import { forkJoin, Observable } from 'rxjs';
+import { forkJoin } from 'rxjs';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
 import { SocketServiceService } from 'src/app/services/socket-service.service';
 import * as moment from 'moment';
 import { GetSocketUrlService } from 'src/app/services/get-socket-url.service';
+import { CommonModule } from '@angular/common';
+import { BetPlaceComponent } from '../bet-place/bet-place.component';
+import { LoaderComponent } from '../loader/loader.component';
+import { MainFooterComponent } from '../main-footer/main-footer.component';
+import { MarqueeComponent } from '../marquee/marquee.component';
 
 @Component({
   selector: 'app-sports',
   templateUrl: './sports.component.html',
-  styleUrls: ['./sports.component.css']
+  styleUrls: ['./sports.component.css'],
+  standalone:true,
+  imports:[CommonModule,BetPlaceComponent,RouterLink, LoaderComponent,MainFooterComponent,MarqueeComponent]
 })
 
 export class SportsComponent implements OnInit {
@@ -295,7 +301,7 @@ export class SportsComponent implements OnInit {
         this.marketList.push(eventId);
         id.multi = true;
       }
-    }    
+    }
   }
 
   async addToMultimarket1(id: any): Promise<void> {

@@ -3,15 +3,20 @@ import { Component, OnInit, OnDestroy, ViewChild, ElementRef, Renderer2 } from '
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { SocketServiceService } from 'src/app/services/socket-service.service';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
-import { min, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import * as moment from 'moment';
 import 'moment-timezone';
 import { HandlerService } from 'src/app/services/handler.service';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { HttpResponse } from '@angular/common/http';
 import { GetSocketUrlService } from 'src/app/services/get-socket-url.service';
-import { NodeWebSocket } from 'socket.io-client';
+import { BetPlaceComponent } from '../bet-place/bet-place.component';
+import { CommonModule } from '@angular/common';
+import { LoaderComponent } from '../loader/loader.component';
+import { MarketWidgetComponent } from '../market-widget/market-widget.component';
+import { MainFooterComponent } from '../main-footer/main-footer.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { BetPlaceParlayComponent } from '../bet-place-parlay/bet-place-parlay.component';
 declare var Hls: any;
 
 @Component({
@@ -28,7 +33,9 @@ declare var Hls: any;
         animate('300ms ease-out', style({ opacity: 0 }))
       ])
     ])
-  ]
+  ],
+  standalone:true,
+  imports:[CommonModule,BetPlaceComponent,LoaderComponent,MarketWidgetComponent,MainFooterComponent,DragDropModule,BetPlaceParlayComponent],
 })
 
 export class MarketComponent implements OnInit, OnDestroy {

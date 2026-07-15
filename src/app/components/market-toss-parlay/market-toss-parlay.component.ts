@@ -1,4 +1,3 @@
-import { map } from 'rxjs/operators';
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { HandlerService } from 'src/app/services/handler.service';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
@@ -8,11 +7,19 @@ import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import 'moment-timezone';
 import { GetSocketUrlService } from 'src/app/services/get-socket-url.service';
+import { CommonModule } from '@angular/common';
+import { BetPlaceParlayComponent } from '../bet-place-parlay/bet-place-parlay.component';
+import { MainFooterComponent } from '../main-footer/main-footer.component';
+import { MarqueeComponent } from '../marquee/marquee.component';
+import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-market-toss-parlay',
   templateUrl: './market-toss-parlay.component.html',
-  styleUrls: ['./market-toss-parlay.component.css']
+  styleUrls: ['./market-toss-parlay.component.css'],
+  standalone:true,
+  imports:[CommonModule,BetPlaceParlayComponent,MainFooterComponent,MarqueeComponent,LoaderComponent],
+
 })
 
 export class MarketTossParlayComponent implements OnInit , OnDestroy {

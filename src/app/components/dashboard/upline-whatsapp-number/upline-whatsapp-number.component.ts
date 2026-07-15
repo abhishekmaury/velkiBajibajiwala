@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
+import { StakeSettingsComponent } from '../../stake-settings/stake-settings.component';
+import { LoaderComponent } from '../../loader/loader.component';
 
 @Component({
   selector: 'app-upline-whatsapp-number',
   templateUrl: './upline-whatsapp-number.component.html',
-  styleUrls: ['./upline-whatsapp-number.component.css']
+  styleUrls: ['./upline-whatsapp-number.component.css'],
+  standalone:true,
+  imports:[StakeSettingsComponent,CommonModule,LoaderComponent],
 })
 export class UplineWhatsappNumberComponent implements OnInit{
   balInfo: any;

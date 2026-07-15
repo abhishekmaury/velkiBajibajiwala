@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CommonModule, Location } from '@angular/common';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
-  styleUrls: ['./edit-profile.component.css']
+  styleUrls: ['./edit-profile.component.css'],
+  standalone:true,
+  imports:[CommonModule,ReactiveFormsModule],
 })
 export class EditProfileComponent implements OnInit {
   webdata: any;

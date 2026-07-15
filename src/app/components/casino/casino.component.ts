@@ -1,11 +1,14 @@
 import { trigger, transition, style, animate } from '@angular/animations';
+import { CommonModule } from '@angular/common';
 import { HttpResponse } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, filter, Subject, Subscription, switchMap } from 'rxjs';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 import { HandlerService } from 'src/app/services/handler.service';
 import SwiperCore, { Autoplay, Pagination, Navigation, SwiperOptions, Swiper } from 'swiper';
+import { MainFooterComponent } from '../main-footer/main-footer.component';
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 @Component({
   selector: 'app-casino',
@@ -21,7 +24,9 @@ SwiperCore.use([Autoplay, Pagination, Navigation]);
         animate('500ms ease-in-out', style({ transform: 'translateY(100%)', opacity: 0 }))
       ])
     ])
-  ]
+  ],
+  standalone:true,
+  imports:[CommonModule,FormsModule,MainFooterComponent],
 })
 export class CasinoComponent implements AfterViewInit, OnInit {
   activeTabId: number = 2;
@@ -276,9 +281,9 @@ export class CasinoComponent implements AfterViewInit, OnInit {
     else if (index == 4) this.router.navigate([`/casino/FH/ALL`]);
     else if (index == 5) this.router.navigate([`/casino/EGAME/ALL`]);
   }
-  
 
- 
+
+
   setActiveTab(tabId: number) {
     this.activeTabId = tabId;
     if (tabId == 1) {

@@ -17,7 +17,9 @@ import { trigger, transition, style, animate } from '@angular/animations';
             animate('500ms ease-in-out', style({ transform: 'translateY(100%)', opacity: 0 }))
           ])
         ])
-      ]
+      ],
+      standalone:true,
+      imports:[],
 })
 export class RegionComponent {
 isOpen = false;

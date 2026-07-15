@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-marquee',
@@ -23,7 +24,9 @@ import { trigger, transition, style, animate } from '@angular/animations';
         animate('300ms ease-out', style({ opacity: 0 }))
       ])
     ])
-  ]
+  ],
+  standalone:true,
+  imports:[CommonModule]
 })
 export class MarqueeComponent implements AfterViewInit {
 

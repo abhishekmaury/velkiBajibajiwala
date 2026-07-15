@@ -49,6 +49,7 @@ import { TranslocoRootModule } from './transloco-root.module';
 import { HomeComponent } from './components/home/home.component';
 import { HomeOriginalComponent } from './components/original/home/home-original.component';
 import { HomeClassicComponent } from './components/classic/home/home-classic.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 register();
 export function initApp(configService: GetSocketUrlService) {
@@ -56,40 +57,43 @@ export function initApp(configService: GetSocketUrlService) {
 }
 
 @NgModule({
-  declarations: [
+ declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
     HeaderComponent,
     ClassicHeaderComponent,
-    SportsComponent,
+    // SportsComponent,
     FooterComponent,
-    CasinoComponent,
-    MarketComponent,
-    LeagueComponent,
+    // CasinoComponent,
+    // MarketComponent,
+    // LeagueComponent,
     MyBetsComponent,
-    EditProfileComponent,
-    RegionComponent,
-    SearchComponent,
-    MarqueeComponent,
-    BetPlaceComponent,
+    // EditProfileComponent,
+    // RegionComponent,
+    // SearchComponent,
+    // MarqueeComponent,
+    // BetPlaceComponent,
     CupwinnerComponent,
     PlaceBetCupwinnerComponent,
     ParlaySportsComponent,
-    MarketPremiumParlayComponent,
-    MarketTossParlayComponent,
-    BetPlaceParlayComponent,
+    // MarketPremiumParlayComponent,
+    // MarketTossParlayComponent,
+    // BetPlaceParlayComponent,
     PopupComponent,
-    MarketWidgetComponent,
+    // MarketWidgetComponent,
     AnouncementPopupComponent,
     SearchCasinoComponent,
-    SignUpComponent,
-    StakeSettingsComponent,
+    // SignUpComponent,
+    // StakeSettingsComponent,
     HomeComponent,
     HomeOriginalComponent,
     HomeClassicComponent,
   ],
   imports: [
+    RegionComponent,
+    LoaderComponent,
+    MarqueeComponent,
     BrowserModule,
     DragDropModule,
     AppRoutingModule,
@@ -108,11 +112,10 @@ export function initApp(configService: GetSocketUrlService) {
         }
       }
     }),
-    LoaderModule,
     CarouselModule,
     TranslocoRootModule,
     MainFooterComponent,
-
+    LoaderComponent,
   ],
   exports : [TranslocoRootModule],
   providers: [

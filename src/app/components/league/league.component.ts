@@ -3,6 +3,9 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
+import { CommonModule, DatePipe } from '@angular/common';
+import { LoaderComponent } from '../loader/loader.component';
+import { PipeModule } from 'src/app/pipes/sharePipe.module';
 
 @Component({
   selector: 'app-league',
@@ -18,7 +21,9 @@ import { Router } from '@angular/router';
         animate('500ms', style({ opacity: 0 }))
       ])
     ])
-  ]
+  ],
+  standalone:true,
+  imports:[CommonModule,LoaderComponent, PipeModule]
 })
 
 export class LeagueComponent implements OnInit {

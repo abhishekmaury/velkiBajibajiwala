@@ -1,14 +1,19 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { PipeModule } from 'src/app/pipes/sharePipe.module';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
-import SwiperCore, { Autoplay, Pagination, Navigation, SwiperOptions, Swiper } from 'swiper';
+import SwiperCore, { Autoplay, Pagination, Navigation, Swiper } from 'swiper';
 
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 @Component({
   selector: 'app-market-widget',
   templateUrl: './market-widget.component.html',
-  styleUrls: ['./market-widget.component.css']
+  styleUrls: ['./market-widget.component.css'],
+  standalone:true,
+  imports:[PipeModule,CommonModule],
+
 })
 export class MarketWidgetComponent implements OnInit {
   @Output() closeWidget = new EventEmitter()

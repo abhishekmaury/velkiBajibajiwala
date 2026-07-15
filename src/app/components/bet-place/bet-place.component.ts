@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { HandlerService } from 'src/app/services/handler.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-bet-place',
@@ -18,7 +19,9 @@ import { HandlerService } from 'src/app/services/handler.service';
         animate('500ms ease-in-out', style({ transform: 'translateY(100%)', opacity: 0 }))
       ])
     ])
-  ]
+  ],
+  standalone:true,
+  imports:[CommonModule]
 })
 
 export class BetPlaceComponent implements OnInit{
@@ -99,9 +102,9 @@ export class BetPlaceComponent implements OnInit{
       this.stakeArr = this.stake;
     }
 
-    if(this.data[0].sourceBetType==='Odds') { 
+    if(this.data[0].sourceBetType==='Odds') {
       if(this.minLimit == undefined && this.maxLimit == undefined){
-        this.dataServe.getEventDataOnLoadnew(this.socketEventData?.eventId).subscribe((res: any) => {  
+        this.dataServe.getEventDataOnLoadnew(this.socketEventData?.eventId).subscribe((res: any) => {
           this.lowLiquidity = res?.lowLiquidity;
           if(res.limits!='NONE' && res.limits?.commonOddsLimit?.limitProvider=='Website'){
             if(this.isInplay == true){
