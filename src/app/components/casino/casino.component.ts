@@ -103,7 +103,7 @@ export class CasinoComponent implements AfterViewInit, OnInit {
       } else if (this.gamename == 'LIVE') {
         this.activeIndex = 1;
         this.activeTabId = 1;
-        this.activesport = this.tabname;
+        this.activesport = this.tabname == 'All' ? this.tabname.toUpperCase() : this.tabname
         this.LiveCasino(this.tabname, this.gamename)
       } else if (this.gamename == 'TABLE') {
         this.activeIndex = 2;

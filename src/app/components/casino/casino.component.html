@@ -257,7 +257,7 @@
               class="ng-tns-c84-5 ng-trigger reset ng-trigger-staggerFadeAnimation tab search-tab ng-star-inserted mobile-tab"
               bis_skin_checked="1" style="background: linear-gradient(rgb(164, 42, 47) 0%, rgb(123, 16, 21) 100%);">
               <ul  id="providers" class="item-ani reset ng-tns-c84-5">
-                <li class="condition-groups proCl reset" (click)="sportsactive('ALL')"  [ngClass]="activesport==='ALL' ? 'condition-groups-active' : 'condition-groups-active-white'"
+                <li *ngIf="gamename != 'ALL'" class="condition-groups proCl reset" (click)="sportsactive('ALL')"  [ngClass]="activesport==='ALL' ? 'condition-groups-active' : 'condition-groups-active-white'"
                   style=""><label 
                     for="sort_recommend">ALL</label></li>
                 <li *ngFor="let tab of sortedTabs()"  class="condition-groups proCl" (click)="sportsactive(tab)" [ngClass]="activesport===tab ? 'condition-groups-active' : 'condition-groups-active-white'"

@@ -5537,3 +5537,16 @@ header .logo {
 .amount:before {
   margin-right: 0 !important;
 }
+
+.icon-refresh.spinning {
+  animation: refreshSpin .8s linear infinite;
+}
+
+@keyframes refreshSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

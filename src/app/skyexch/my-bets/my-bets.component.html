@@ -30,7 +30,7 @@
                           </div>
                           <div class="s-flex s-pl-15px s-h-27px s-text-14px">
                             <!-- exchange -->
-                            <div (click)="tabs('exchange')" [ngClass]="activeTab == 'exchange' ? 'active' : ''"
+                            <div (click)="tabs('exchange')" [ngClass]="activeTab == 'exchange' ? 'active' : ''" style=" background: #ffb80c;color: #000;"
                               class="s-relative s-h-full s-flex s-items-center s-justify-around s-rounded-t-5px s-w-90px s-text-market-tab-text dark:s-text-global-font-default-dark s-bg-white s-z-10 dark:s-bg-black-800">
                               <div class="s-flex s-items-center">
                                 <span>Exchange</span>
@@ -152,9 +152,9 @@
                                   </li>
                                 </ul>
                               </div>
-                              <div
+                              <!-- <div
                                 class="s-icon-close s-flex s-justify-center s-items-center s-mr-2 s-cursor-pointer s-text-14px"
-                                (click)="closebet()"></div>
+                                (click)="closebet()"></div> -->
                             </div>
                             <section
                               class="s-list-area s-rounded-t-5px s-bg-white dark:s-bg-black-800 s-flex-1 s-overflow-hidden">
@@ -201,7 +201,7 @@
                                           </div>
                                         </div>
                                       </div>
-                                      <div class="s-row s-third">
+                                      <div class="s-row s-third" style="color: #cbcbcb;">
                                         <div class="s-flex s-justify-between">
                                           <span>Ref:
                                             {{list?.id.slice(0-12)}}</span><span>{{list?.betDate}}

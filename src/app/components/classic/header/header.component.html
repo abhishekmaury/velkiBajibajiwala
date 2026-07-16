@@ -68,7 +68,7 @@
   </div>
   <div *ngIf="loggedIn" class="header-right-btn-group ng-star-inserted">
     <div class="cricket-money">
-      <div (click)="upDateBalance()" class="icon-refresh"
+      <div (click)="upDateBalance()" class="icon-refresh" [class.spinning]="isRefreshing"
         style="mask-image: url('../../../assets/bjimage/icons/icon-refresh-type01.svg'); -webkit-mask-image: url('../../../assets/bjimage/icons/icon-refresh-type01.svg');">
       </div> PBU&nbsp;<span class="mainBalance">{{balInfo | number : '.2-2'}}</span>
     </div>
@@ -141,7 +141,7 @@
                 <font style="vertical-align: inherit;">
                   <font style="vertical-align: inherit;">{{"MAINWALLET" | transloco }}</font>
                 </font>
-                <div class="icon-refresh ng-tns-c3392045011-16" [class]="spinner ? 'active' : ''"
+                <div class="icon-refresh ng-tns-c3392045011-16"  [class.spinning]="isRefreshing"
                   [style]="{'background':themeData?.homenavsvgtextcolor}" (click)="upDateBalance()"
                   style="mask-image: url(/assets/images/icon-refresh-type01.svg);">
                 </div>
