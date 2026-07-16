@@ -257,3 +257,9 @@ input[type=radio]:disabled+label span[data-v-a5fdb595]:after {
   }
 }
 }
+.text-reportForm-main {
+    color: rgb(23, 147, 78);
+}
+.border-reportForm-main {
+    border-color: rgb(23, 147, 78);
+}

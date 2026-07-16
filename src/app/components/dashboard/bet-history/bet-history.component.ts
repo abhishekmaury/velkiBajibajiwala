@@ -2,7 +2,7 @@ import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { DatePipe, Location } from '@angular/common';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Meta } from '@angular/platform-browser';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 
 @Component({
@@ -43,7 +43,7 @@ export class BetHistoryComponent {
   isRefreshing = false;
   isClassicTheme = false;
 
-  constructor(private location: Location, private dataServe: DataHandlerService, private activeRoute: ActivatedRoute, private datePipe: DatePipe) { }
+  constructor(private location: Location, private dataServe: DataHandlerService, private activeRoute: ActivatedRoute, private datePipe: DatePipe, private router : Router) { }
 
   ngOnInit(): void {
      this.dataServe.changeTheme$.subscribe({
@@ -100,7 +100,11 @@ export class BetHistoryComponent {
   }
 
   goBack(): void {
-    this.location.back();
+    if(this.isClassicTheme){
+      this.router.navigate(['/account'])
+    }else{
+      this.location.back();
+    }
   }
 
   onDuring() {

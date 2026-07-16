@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-balance',
@@ -15,7 +16,7 @@ export class BalanceComponent implements OnInit{
   validShowing: any;
   accountStmt: any;
   isClassicTheme = false;
-  constructor(private dataServe : DataHandlerService,private location: Location) { }
+  constructor(private dataServe : DataHandlerService,private location: Location, private router : Router) { }
 
   ngOnInit(): void {
     this.dataServe.changeTheme$.subscribe({
@@ -43,7 +44,12 @@ export class BalanceComponent implements OnInit{
       );
     });
   }
+  
   goBack(): void {
-    this.location.back();
+    if(this.isClassicTheme){
+      this.router.navigate(['/account'])
+    }else{
+      this.location.back();
+    }
   }
 }

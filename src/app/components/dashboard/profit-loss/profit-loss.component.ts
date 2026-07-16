@@ -1,7 +1,7 @@
 import { DatePipe, Location } from '@angular/common';
 import { ChangeDetectorRef, Component, ElementRef, HostListener, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 
 @Component({
@@ -15,9 +15,6 @@ export class ProfitLossComponent {
   during = false
   calender = false
   isRefreshing = false;
-  goBack(): void {
-    this.location.back();
-  }
   onDuring() {
     this.during = !this.during
   }
@@ -48,7 +45,7 @@ export class ProfitLossComponent {
   showCalendar = false;
   isClassicTheme = false;
   constructor(private dataServe: DataHandlerService, private activeRoute: ActivatedRoute, private location: Location,
-    private datePipe: DatePipe
+    private datePipe: DatePipe, private router : Router
   ) { }
 
   ngOnInit(): void {
@@ -402,6 +399,14 @@ scrollActiveTabToCenter() {
     // If clicked outside both asidebar & button → close
     if (!target.closest('.asidebar') && !target.closest('.calendar-btn')) {
       this.showCalendar = false;
+    }
+  }
+  
+  goBack(): void {
+    if(this.isClassicTheme){
+      this.router.navigate(['/account'])
+    }else{
+      this.location.back();
     }
   }
 }

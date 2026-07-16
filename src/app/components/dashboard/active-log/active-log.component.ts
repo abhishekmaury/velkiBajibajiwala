@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class ActiveLogComponent {
   totalPages: any;
   isClassicTheme = false;
 
-  constructor(private location: Location, private dataServe: DataHandlerService, private meta: Meta) { }
+  constructor(private location: Location, private dataServe: DataHandlerService, private router: Router) { }
 
   ngOnInit(): void {
      this.dataServe.changeTheme$.subscribe({
@@ -72,7 +73,11 @@ export class ActiveLogComponent {
   }
 
   goBack(): void {
-    this.location.back();
+    if(this.isClassicTheme){
+      this.router.navigate(['/account'])
+    }else{
+      this.location.back();
+    }
   }
 
   selectTab = false;

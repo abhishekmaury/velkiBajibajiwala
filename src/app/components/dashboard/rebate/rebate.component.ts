@@ -1,6 +1,6 @@
 import { DatePipe, Location } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 
 @Component({
@@ -11,9 +11,6 @@ import { DataHandlerService } from 'src/app/services/datahandler.service';
 export class RebateComponent {
   during = false
   calender = false
-  goBack(): void {
-    this.location.back();
-  }
   dropdownshow = false;
   betAllProfitLoss: any
   betProfitLoss: any;
@@ -34,7 +31,7 @@ export class RebateComponent {
   isClassicTheme = false;
   
   constructor(private dataServe: DataHandlerService, private activeRoute: ActivatedRoute, private location: Location,
-    private datePipe: DatePipe
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -70,6 +67,14 @@ export class RebateComponent {
       })
     });
     this.updateIndicatorPosition();
+  }
+  
+  goBack(): void {
+    if(this.isClassicTheme){
+      this.router.navigate(['/account'])
+    }else{
+      this.location.back();
+    }
   }
 
   onPageClick(page: number): void {

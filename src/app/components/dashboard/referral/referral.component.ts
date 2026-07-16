@@ -1,4 +1,6 @@
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 
 @Component({
@@ -21,7 +23,7 @@ export class ReferralComponent {
   setTab(tab: string) {
     this.activeTab = tab;
   }
-  constructor(private dataserve: DataHandlerService) { }
+  constructor(private dataserve: DataHandlerService, private router : Router, private location : Location) { }
 
   ngOnInit() {
      this.dataserve.changeTheme$.subscribe({
@@ -34,6 +36,14 @@ export class ReferralComponent {
 
     this.refDetails();
     this.refUsers();
+  }
+  
+  goBack(): void {
+    if(this.isClassicTheme){
+      this.router.navigate(['/account'])
+    }else{
+      this.location.back();
+    }
   }
 
   refDetails() {

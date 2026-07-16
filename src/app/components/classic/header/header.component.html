@@ -146,13 +146,16 @@
                   style="mask-image: url(/assets/images/icon-refresh-type01.svg);">
                 </div>
               </div>
-              <div class="amount ng-tns-c3392045011-16">
-                <span class="amount ng-tns-c3392045011-16" [style]="{'color':themeData?.homenavsvgtextcolor}"><i
+              <div class=" ng-tns-c3392045011-16">
+                <span class="amount ng-tns-c3392045011-16" [style]="{'color':themeData?.homenavsvgtextcolor}">
+                  PBU&nbsp;{{balInfo | number : '.2-2'}}
+                  <!-- <i
                     class="ng-tns-c3392045011-16">
                     <font style="vertical-align: inherit;">
                       <font style="vertical-align: inherit;">PBU&nbsp;{{balInfo | number : '.2-2'}}</font>
                     </font>
-                  </i></span>
+                  </i> -->
+                </span>
               </div>
             </div>
           </div>
@@ -307,12 +310,12 @@
               <p class="ng-tns-c41-5" [style]="{'color':themeData?.sidebarTextColor}">Exchange</p>
             </a>
           </li>
-          <li class="ng-tns-c41-5 ng-star-inserted">
+          <!-- <li class="ng-tns-c41-5 ng-star-inserted">
             <a tabindex="-1" class="ng-tns-c41-5" (click)="opensabagamesmob('/sabaSports/1/3/gn001')">
               <div class="ng-tns-c41-5 icon-sport sportbook ng-star-inserted"></div>
               <p class="ng-tns-c41-5" [style]="{'color':themeData?.sidebarTextColor}">Sportsbook</p>
             </a>
-          </li>
+          </li> -->
           <li class="ng-tns-c41-5 ng-star-inserted">
             <a tabindex="-1" class="ng-tns-c41-5" (click)="opensabagamesmob('/sabaSports/179/3/gn001')">
               <div class="ng-tns-c41-5 icon-sport virtual ng-star-inserted"></div>
@@ -320,7 +323,7 @@
             </a>
           </li>
           <li class="ng-tns-c41-5 ng-star-inserted">
-            <a tabindex="-1" class="ng-tns-c41-5" (click)="opensabagamesmob('/sabaSports/1/3/gn001')">
+            <a tabindex="-1" class="ng-tns-c41-5" (click)="opensabagamesmob('/TABLE/HORSEBOOK/LIVE/HRB-LIVE-001')">
               <div class="ng-tns-c41-5 icon-sport horsebook ng-star-inserted"></div>
               <p class="ng-tns-c41-5" [style]="{'color':themeData?.sidebarTextColor}">Horse Racing</p>
             </a>

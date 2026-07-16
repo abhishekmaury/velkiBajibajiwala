@@ -5534,3 +5534,6 @@ header .logo {
     font-size: 14.08px;
   }
 }
+.amount:before {
+  margin-right: 0 !important;
+}

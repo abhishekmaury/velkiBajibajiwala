@@ -287,3 +287,10 @@
 .classic .icon-close:before {
   content: "";
 }
+
+.text-reportForm-main {
+    color: rgb(23, 147, 78);
+}
+.border-reportForm-main {
+    border-color: rgb(23, 147, 78);
+}

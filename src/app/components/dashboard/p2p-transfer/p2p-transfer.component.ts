@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 import { HttpResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-p2p-transfer',
@@ -21,7 +22,7 @@ export class P2pTransferComponent implements OnInit {
   message:any;
   isP2P=false;
   isClassicTheme = false
-  constructor(private dataServe: DataHandlerService, private location: Location) {}
+  constructor(private dataServe: DataHandlerService, private location: Location, private router : Router) {}
 
   ngOnInit(): void {
     this.dataServe.changeTheme$.subscribe({
@@ -41,6 +42,15 @@ export class P2pTransferComponent implements OnInit {
     this.dataServe.getUserP2PStatus().subscribe((res: any) => {
       this.isP2P=res.isP2P;
     })
+  }
+
+  
+  goBack(): void {
+    if(this.isClassicTheme){
+      this.router.navigate(['/account'])
+    }else{
+      this.location.back();
+    }
   }
 
   copyToClipboard(walletId: string): void {

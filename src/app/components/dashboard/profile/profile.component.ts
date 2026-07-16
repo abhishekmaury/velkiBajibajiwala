@@ -1,7 +1,6 @@
-import { HandlerService } from 'src/app/services/handler.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 import { Location } from '@angular/common';
 
@@ -19,7 +18,7 @@ export class ProfileComponent implements OnInit{
   validShowing: any;
   isClassicTheme = false;
 
-  constructor(private location: Location,private popupService: HandlerService,private dataServe: DataHandlerService) { }
+  constructor(private location: Location,private router: Router,private dataServe: DataHandlerService) { }
   ngOnInit(): void {
 
     this.dataServe.changeTheme$.subscribe({
@@ -40,8 +39,13 @@ let wData = localStorage.getItem("webData")
     }
   }
 
+  
   goBack(): void {
-    this.location.back();
+    if(this.isClassicTheme){
+      this.router.navigate(['/account'])
+    }else{
+      this.location.back();
+    }
   }
 
 

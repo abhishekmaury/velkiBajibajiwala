@@ -4,7 +4,7 @@
       <header data-v-6266c5cb=""
         class="h-12 p-3 bg-secondary text-global-font-on-dark text-14 flex items-center justify-center">P2P Transfer Log
         <!-- <div class="icon-close text-16 absolute right-4" routerLink="/home"></div> -->
-         <i class="fa-solid fa-xmark text-16 absolute right-4" routerLink="/home" ></i>
+         <i class="fa-solid fa-xmark text-16 absolute right-4" (click)="goBack()" ></i>
       </header>
       <div data-v-6266c5cb="" class="p-4">
         <div *ngFor="let data of data" data-v-6266c5cb="" class="mb-2">
@@ -22,7 +22,7 @@
           </div>
           <div data-v-6266c5cb="" class="p-2 flex justify-start items-center bg-white border-b border-black-300"><span
               data-v-6266c5cb="" class="mr-4 w-1/5 text-12 text-global-font-on-light">Balance</span><span data-v-6266c5cb=""
-              class="w-auto text-12 text-black-600">{{data?.balance}}</span></div>
+              class="w-auto text-12 text-black-600">{{data?.balance | number}}</span></div>
           <div data-v-6266c5cb="" class="p-2 flex justify-start items-center bg-white border-b border-black-300"><span
               data-v-6266c5cb="" class="mr-4 w-1/5 text-12 text-global-font-on-light">Remark</span><span data-v-6266c5cb=""
               class="w-auto text-12 text-black-600">{{data?.remark}}</span></div>

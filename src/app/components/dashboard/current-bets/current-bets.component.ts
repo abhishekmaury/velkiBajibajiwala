@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Meta } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { DataHandlerService } from 'src/app/services/datahandler.service';
 
 @Component({
@@ -35,10 +36,15 @@ export class CurrentBetsComponent {
 
   constructor(
     private location: Location,
-    private dataServe: DataHandlerService, private meta: Meta
+    private dataServe: DataHandlerService, private router: Router
   ) { }
+  
   goBack(): void {
-    this.location.back();
+    if(this.isClassicTheme){
+      this.router.navigate(['/account'])
+    }else{
+      this.location.back();
+    }
   }
   normalWorking(dt: any) {
     this.checkboxx = dt;

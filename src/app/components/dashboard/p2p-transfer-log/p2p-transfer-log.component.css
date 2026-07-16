@@ -1,5 +1,5 @@
 .success-header[data-v-6266c5cb] {
-    background-color: #d5f2b8;
+  background-color: #d5f2b8;
 }
 
 
@@ -44,7 +44,8 @@
     padding-right: 0.5rem;
   }
 
-  .bg-black-300 , .success-header[data-v-e313196e] {
+  .bg-black-300,
+  .success-header {
     --tw-bg-opacity: 1;
     background-color: rgb(90 96 98);
   }
@@ -65,17 +66,32 @@
     color: #ffffff;
   }
 
+  .content {
+    padding: 0;
+  }
+
+  .bg-lay-100 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(90 96 98);
+  }
+
+  .text-black-600 {
+    color: #cbcbcb;
+  }
+
 }
+
 @media screen and (min-width : 768px) {
   .classic {
-  background: rgb(32, 32, 32);
+    background: rgb(32, 32, 32);
 
-  header {
-    position: static !important;
-    margin-block-start: 62.4px;
+    header {
+      position: static !important;
+      margin-block-start: 62.4px;
+    }
   }
 }
-}
+
 .icon-close {
   position: absolute;
   z-index: 10;
