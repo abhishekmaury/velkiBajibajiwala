@@ -54,27 +54,33 @@
         border-style: solid;
         border-color: #202020;
     }
-}
-@media screen and (min-width : 768px) {
-  .classic {
-  background: rgb(32, 32, 32);
 
-  header {
-    position: static !important;
-    margin-block-start: 62.4px;
-  }
+    .content {
+        background-color: transparent !important;
+    }
 }
+
+@media screen and (min-width : 768px) {
+    .classic {
+        background: rgb(32, 32, 32);
+
+        header {
+            position: static !important;
+            margin-block-start: 62.4px;
+        }
+    }
 }
+
 .icon-close {
-  position: absolute;
-  z-index: 10;
-  left: unset;
-  width: auto;
-  height: auto;
-  margin: unset;
-  transform: unset;
+    position: absolute;
+    z-index: 10;
+    left: unset;
+    width: auto;
+    height: auto;
+    margin: unset;
+    transform: unset;
 }
 
 .classic .icon-close:before {
-  content: "";
+    content: "";
 }

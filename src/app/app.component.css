@@ -155,7 +155,7 @@ iframe[name="intercom-launcher-frame"] {
 
 @media (max-width: 768px) {
   .custom-fab {
-    bottom: 5px;
+    bottom: 60px;
     right: 10px;
   }
 }

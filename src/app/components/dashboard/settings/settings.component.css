@@ -198,7 +198,8 @@
 }
 
 .btn-switch__tgl-ios:checked+.btn-switch__tgl-label[data-v-9a42e1e7] {
-  background-color: #ffc800;
+  /* background-color: #ffc800; */
+  background-color: rgb(23, 147, 78);
 }
 
 .btn-switch__tgl-ios:checked+.btn-switch__tgl-label[data-v-9a42e1e7]:active {
