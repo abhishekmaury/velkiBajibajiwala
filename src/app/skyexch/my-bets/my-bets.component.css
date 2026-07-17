@@ -766,9 +766,9 @@ dt {
     padding: 5.12px;
   }
 
-  .s-app .s-mybet-detail-content .s-row {
+  /* .s-app .s-mybet-detail-content .s-row {
     padding: 8.96px;
-  }
+  } */
 
   .s-app .s-text-13px {
     font-size: 16.64px;
@@ -798,10 +798,10 @@ dt {
     font-size: 12.8px;
     color: var(--color-black-600);
   } */
-  .s-app .s-mybet-detail-content .s-row.s-third, .s-row.s-third span {
+  /* .s-app .s-mybet-detail-content .s-row.s-third, .s-row.s-third span {
     font-size: 2.6666666666666665vw;
     color: #fff !important;
-}
+} */
 
   .s-app .s-rounded-md {
     border-radius: 6.72px;
@@ -816,5 +816,15 @@ dt {
   }
   .s-app .s-w-90px {
     width: 115.2px;
+  }
+  .s-app .s-mybet-detail-content .s-row{
+    padding:0 !important
+  }
+
+  .s-app .s-mybet-detail-content .s-row.s-third {
+    padding: 7.94453px !important;
+   }
+   .s-app .s-mybet-detail-content .s-row.s-third{
+     font-size: 11.3493px !important
   }
 }
