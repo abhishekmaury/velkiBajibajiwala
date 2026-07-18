@@ -145,11 +145,8 @@ export class SportComponent implements OnInit, OnDestroy {
       }else{
         this.GamelistData = this.gameList.filter((ele : any)=> ele.matchType == 'virtual1');
       }
-      console.log(this.GamelistData);
-      
       this.gameListDataSubject.next(this.GamelistData);
     } catch (error) {
-      console.error('getData error', error);
     } finally {
       this.isLoading = false;
     }
@@ -177,12 +174,10 @@ export class SportComponent implements OnInit, OnDestroy {
       }else{
         this.gameslist2 = this.gameslist2.filter((ele : any)=> ele.matchType == 'virtual1');
       }
-      console.log(this.gameslist2);
       
       this.gameListDataSubject2.next(this.gameslist2);
       this.isLoading = false;
     } catch (error) {
-      console.error('getSportsData error', error);
       this.isLoading = false;
     }
   }
@@ -651,7 +646,6 @@ export class SportComponent implements OnInit, OnDestroy {
         await this.getMarketData();
       }
     } catch (error) {
-      console.error('addToMultimarket error', error);
     } finally {
       this.isRefreshing = false;
     }
@@ -707,7 +701,6 @@ export class SportComponent implements OnInit, OnDestroy {
       }
 
     } catch (error) {
-      console.error('addToMultimarket1 error', error);
     } finally {
       this.isRefreshing = false;
     }

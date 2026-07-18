@@ -37,7 +37,6 @@ export class KycComponent implements OnInit {
 
         let dt = this.webdata?.imageData?.domain;
         this.domain = this.getdomain(dt)
-        console.log(this.domain)
         const titleFromAPI = this.domain;
         if (titleFromAPI) {
           this.setTitle(titleFromAPI);
@@ -56,7 +55,6 @@ export class KycComponent implements OnInit {
       this.domain = this.getdomain(dt)
 
       const titleFromAPI = this.domain;
-      console.log(titleFromAPI)
       if (titleFromAPI) {
         this.setTitle(titleFromAPI.toUpperCase());
       }

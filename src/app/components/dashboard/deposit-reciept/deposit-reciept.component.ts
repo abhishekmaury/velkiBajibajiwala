@@ -83,10 +83,8 @@ export class DepositRecieptComponent {
         "userNumber": this.mobileNum,
         "transRecp": this.base64Image
       }
-      console.log(data);
       
       this.dataserve.updateManualUserTransDetails(data).subscribe((res : any)=>{
-        console.log(res);
         if (res?.type == 'error') {
         this.errMsg = res?.message;
       }else{
