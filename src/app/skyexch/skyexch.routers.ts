@@ -5,7 +5,7 @@ export const exchRoute: Routes = [
 
     {
         path: '', component: SkyexchComponent, children: [
-            { path: 'sport', loadComponent: () => import('./sport/sport.component').then(m => m.SportComponent) },
+            { path: 'sport/:type', loadComponent: () => import('./sport/sport.component').then(m => m.SportComponent) },
             { path: 'match/:sportId/:eventId', loadComponent: () => import('./match/match.component').then(m => m.MatchComponent) },
             { path: 'sports-parlay', loadComponent: () => import('./parlay/parlay.component').then(m => m.ParlayComponent) },
             { path: 'premium-parlay/:sportId/:eventId', loadComponent: () => import('./premium-parlay/premium-parlay.component').then(m => m.PremiumParlayComponent) },

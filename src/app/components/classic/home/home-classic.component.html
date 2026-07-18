@@ -349,7 +349,7 @@
                                         <ul>
                                             <li [style]="{'background':themeData?.masterBgColor6,'border':'.59vw solid'+themeData?.masterBgColor2}"
                                                 class="ng-star-inserted">
-                                                <a tabindex="-1" (click)="navigateToExch()">
+                                                <a tabindex="-1" (click)="navigateToExch(1)">
                                                     <img fetchpriority="high"
                                                         src="/assets/images/newimg/exchange.webp?v=1.01" loading="lazy"
                                                         class="ng-star-inserted">
@@ -366,7 +366,7 @@
                                             <li [style]="{'background':themeData?.masterBgColor6,'border':'.59vw solid'+themeData?.masterBgColor2}"
                                                 class="ng-star-inserted">
                                                 <a tabindex="-1" vender="Virtual"
-                                                    (click)="opensabagamesmob('/sabaSports/179/3/gn001')">
+                                                    (click)="navigateToExch(0)">
                                                     <img fetchpriority="high"
                                                         src="/assets/images/newimg/virtual.webp?v=1.01" loading="lazy"
                                                         class="ng-star-inserted">
@@ -962,7 +962,7 @@
                     <div class="recommend-bg">
                         <div class="recommend-main" id="spFeaGame">
                             <ng-container *ngFor="let item of featuredGames;">
-                                <div class="recommend-card ng-star-inserted" (click)="navigateToExch()">
+                                <div class="recommend-card ng-star-inserted" (click)="navigateToExch(1)">
                                     <a><img fetchpriority="high" [alt]="item.Image" [src]="item.Image"></a>
                                 </div>
                             </ng-container>

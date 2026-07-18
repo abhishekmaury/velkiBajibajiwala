@@ -88,7 +88,7 @@ export class SportComponent implements OnInit, OnDestroy {
   soccerMatches: any;
   expandedSectiongame: Set<number> = new Set<number>();
   expandedSectionsOrgdata: Set<number> = new Set<number>();
-
+  filterMatchType : any = 1
 
   constructor(private authServe: AuthserviceService, private socket: SocketServiceService, private dataServe: DataHandlerService, private activeRoute: ActivatedRoute, private router: Router) {
 
@@ -120,14 +120,16 @@ export class SportComponent implements OnInit, OnDestroy {
     if (token) {
       this.getMarketData();
     }
-
-    await this.getData();
-    await this.getSportsData();
-
-    this.changeCount(1);
+    this.activeRoute.paramMap.subscribe(async (params) => {
+      this.filterMatchType = params.get('type');
+      await this.getData(this.filterMatchType);
+      await this.getSportsData(this.filterMatchType);
+      
+    })
+      this.changeCount(1);
   }
 
-  async getData() {
+  async getData(type : any) {
     try {
       this.isLoading = true;
 
@@ -138,9 +140,13 @@ export class SportComponent implements OnInit, OnDestroy {
         ...r,
         isMulti: !this.multiList?.includes(r.eventid)
       }));
-
-      this.GamelistData = this.gameList;
-
+      if(type == 1){
+        this.GamelistData = this.gameList;
+      }else{
+        this.GamelistData = this.gameList.filter((ele : any)=> ele.matchType == 'virtual1');
+      }
+      console.log(this.GamelistData);
+      
       this.gameListDataSubject.next(this.GamelistData);
     } catch (error) {
       console.error('getData error', error);
@@ -149,7 +155,7 @@ export class SportComponent implements OnInit, OnDestroy {
     }
   }
 
-  async getSportsData() {
+  async getSportsData(type : any) {
     this.isLoading = true;
     try {
       const [todayGamesResponse, tomorrowGamesResponse] =
@@ -166,6 +172,13 @@ export class SportComponent implements OnInit, OnDestroy {
         isMulti: !this.multiList?.includes(r.eventid)
       }));
 
+      if(type == 1){
+        this.gameslist2 = this.gameslist2;
+      }else{
+        this.gameslist2 = this.gameslist2.filter((ele : any)=> ele.matchType == 'virtual1');
+      }
+      console.log(this.gameslist2);
+      
       this.gameListDataSubject2.next(this.gameslist2);
       this.isLoading = false;
     } catch (error) {
@@ -688,9 +701,9 @@ export class SportComponent implements OnInit, OnDestroy {
 
       // Game list refresh
       if (this.mainTabs == 1) {
-        await this.getData();
+        await this.getData(this.filterMatchType);
       } else {
-        await this.getSportsData();
+        await this.getSportsData(this.filterMatchType);
       }
 
     } catch (error) {

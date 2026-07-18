@@ -309,17 +309,9 @@ export class HomeClassicComponent {
     //   );
     // });
   }
-  promoR() {
-    let token = localStorage.getItem('token')
-    if (token) {
-      this.router.navigate(['/exchange/sport'])
-    } else {
-      this.router.navigate(['/login'])
-    }
-  }
 
-  navigateToExch() {
-    this.router.navigate(['/exchange/sport'])
+  navigateToExch(type : any) {
+    this.router.navigate([`/exchange/sport/${type}`])
     // let token = localStorage.getItem('token')
     // if (token) {
     //   this.isLoading = true;

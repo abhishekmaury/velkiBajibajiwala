@@ -305,7 +305,7 @@
       <div class="menu-second ng-tns-c41-5">
         <ul *ngIf="sportsmenu" class="menu-second-ul ng-tns-c41-5 ng-star-inserted sportsmenu" [class.active]="activeMenu === 'sports'">
           <li class="ng-tns-c41-5 ng-star-inserted">
-            <a tabindex="-1" class="ng-tns-c41-5" (click)="navigateToExch()">
+            <a tabindex="-1" class="ng-tns-c41-5" (click)="navigateToExch(1)">
               <div class="ng-tns-c41-5 icon-sport exchange ng-star-inserted"></div>
               <p class="ng-tns-c41-5" [style]="{'color':themeData?.sidebarTextColor}">Exchange</p>
             </a>
@@ -317,7 +317,7 @@
             </a>
           </li> -->
           <li class="ng-tns-c41-5 ng-star-inserted">
-            <a tabindex="-1" class="ng-tns-c41-5" (click)="opensabagamesmob('/sabaSports/179/3/gn001')">
+            <a tabindex="-1" class="ng-tns-c41-5" (click)="navigateToExch(0)">
               <div class="ng-tns-c41-5 icon-sport virtual ng-star-inserted"></div>
               <p class="ng-tns-c41-5" [style]="{'color':themeData?.sidebarTextColor}">Virtual</p>
             </a>

@@ -329,9 +329,9 @@ export class ClassicHeaderComponent implements OnInit {
 
 
   navigateTochatbot() { }
-  navigateToExch() {
+  navigateToExch(type : any) {
 
-    this.router.navigate(['/exchange/sport'])
+    this.router.navigate([`/exchange/sport/${type}`])
     // this.isSidebarOpen = false;
     // let token = localStorage.getItem('token')
     // if (token) {
